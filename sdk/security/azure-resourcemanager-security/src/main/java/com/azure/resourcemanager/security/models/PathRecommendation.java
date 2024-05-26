@@ -26,7 +26,7 @@ public final class PathRecommendation {
     private RecommendationAction action;
 
     /*
-     * The type of IoT Security recommendation.
+     * The type of the rule to be allowed
      */
     @JsonProperty(value = "type")
     private RecommendationType type;
@@ -114,7 +114,7 @@ public final class PathRecommendation {
     }
 
     /**
-     * Get the type property: The type of IoT Security recommendation.
+     * Get the type property: The type of the rule to be allowed.
      * 
      * @return the type value.
      */
@@ -123,7 +123,7 @@ public final class PathRecommendation {
     }
 
     /**
-     * Set the type property: The type of IoT Security recommendation.
+     * Set the type property: The type of the rule to be allowed.
      * 
      * @param type the type value to set.
      * @return the PathRecommendation object itself.

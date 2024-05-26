@@ -107,11 +107,10 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, solutionName, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, solutionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -146,11 +145,10 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, accept, context);
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, accept, context);
     }
 
     /**
@@ -233,11 +231,10 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, solutionName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, solutionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -272,11 +269,10 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, accept, context);
     }
 
     /**

@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 public final class GovernanceRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutManagementGroupGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PutManagementGroupGovernanceRule_example.json
      */
     /**
      * Sample code: Create or update governance rule over management group scope.
@@ -53,7 +53,7 @@ public final class GovernanceRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutSecurityConnectorGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PutSecurityConnectorGovernanceRule_example.json
      */
     /**
      * Sample code: Create or update governance rule over security connector scope.
@@ -87,7 +87,7 @@ public final class GovernanceRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PutGovernanceRule_example.json
      */
     /**
      * Sample code: Create or update governance rule over subscription scope.

@@ -130,11 +130,9 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         if (applicationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-07-01-preview";
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, applicationId, accept, context))
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, securityConnectorName, applicationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -174,11 +172,10 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         if (applicationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, applicationId, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, securityConnectorName, applicationId, accept, context);
     }
 
     /**
@@ -277,10 +274,9 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         } else {
             application.validate();
         }
-        final String apiVersion = "2022-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, securityConnectorName, applicationId, application,
                 accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -328,11 +324,11 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         } else {
             application.validate();
         }
-        final String apiVersion = "2022-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, securityConnectorName, applicationId, application, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, securityConnectorName, applicationId, application,
+            accept, context);
     }
 
     /**
@@ -430,9 +426,8 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         if (applicationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-07-01-preview";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, securityConnectorName, applicationId, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -472,10 +467,9 @@ public final class SecurityConnectorApplicationOperationsClientImpl
         if (applicationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter applicationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-07-01-preview";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, applicationId, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, securityConnectorName, applicationId, context);
     }
 
     /**

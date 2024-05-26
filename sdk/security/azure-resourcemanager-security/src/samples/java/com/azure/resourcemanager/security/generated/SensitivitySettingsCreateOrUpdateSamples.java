@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 public final class SensitivitySettingsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/PutSensitivitySettings_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/SensitivitySettings/PutSensitivitySettings_example.json
      */
     /**
      * Sample code: Update sensitivity settings.

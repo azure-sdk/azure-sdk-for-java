@@ -11,7 +11,7 @@ import com.azure.resourcemanager.security.models.ConnectionType;
  */
 public final class AllowedConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/AllowedConnections/GetAllowedConnections_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/AllowedConnections/GetAllowedConnections_example.json
      */
     /**
      * Sample code: Get allowed connections.

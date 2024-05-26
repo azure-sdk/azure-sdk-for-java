@@ -30,11 +30,11 @@ public final class MdeOnboardingDataImpl implements MdeOnboardingData {
         return this.innerModel().type();
     }
 
-    public byte[] onboardingPackageWindows() {
+    public String onboardingPackageWindows() {
         return this.innerModel().onboardingPackageWindows();
     }
 
-    public byte[] onboardingPackageLinux() {
+    public String onboardingPackageLinux() {
         return this.innerModel().onboardingPackageLinux();
     }
 

@@ -156,10 +156,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
             .<PagedResponse<GovernanceRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -188,10 +188,9 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -293,10 +292,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, scope, ruleId, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -327,10 +326,9 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, ruleId, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, accept, context);
     }
 
     /**
@@ -420,11 +418,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         } else {
             governanceRule.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, ruleId,
-                governanceRule, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                scope, ruleId, governanceRule, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -461,11 +458,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         } else {
             governanceRule.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, ruleId, governanceRule, accept,
-            context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId,
+            governanceRule, accept, context);
     }
 
     /**
@@ -554,9 +550,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, context))
+        return FluxUtil.withContext(
+            context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -586,9 +581,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (ruleId == null) {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId, context);
     }
 
     /**
@@ -772,11 +766,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (executeGovernanceRuleParams != null) {
             executeGovernanceRuleParams.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.execute(this.client.getEndpoint(), apiVersion, scope, ruleId,
-                executeGovernanceRuleParams, accept, context))
+            .withContext(context -> service.execute(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                ruleId, executeGovernanceRuleParams, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -811,11 +804,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (executeGovernanceRuleParams != null) {
             executeGovernanceRuleParams.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.execute(this.client.getEndpoint(), apiVersion, scope, ruleId, executeGovernanceRuleParams,
-            accept, context);
+        return service.execute(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId,
+            executeGovernanceRuleParams, accept, context);
     }
 
     /**
@@ -1058,11 +1050,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.operationResults(this.client.getEndpoint(), apiVersion, scope, ruleId,
-                operationId, accept, context))
+            .withContext(context -> service.operationResults(this.client.getEndpoint(), this.client.getApiVersion(),
+                scope, ruleId, operationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1098,11 +1089,10 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.operationResults(this.client.getEndpoint(), apiVersion, scope, ruleId, operationId, accept,
-            context);
+        return service.operationResults(this.client.getEndpoint(), this.client.getApiVersion(), scope, ruleId,
+            operationId, accept, context);
     }
 
     /**

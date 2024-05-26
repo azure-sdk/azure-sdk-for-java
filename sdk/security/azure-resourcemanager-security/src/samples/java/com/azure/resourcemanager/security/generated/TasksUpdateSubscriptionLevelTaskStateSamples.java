@@ -11,7 +11,7 @@ import com.azure.resourcemanager.security.models.TaskUpdateActionType;
  */
 public final class TasksUpdateSubscriptionLevelTaskStateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2015-06-01-preview/examples/Tasks/UpdateTaskSubscriptionLocation_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Tasks/UpdateTaskSubscriptionLocation_example.json
      */
     /**
      * Sample code: Change security recommendation task state.

@@ -23,7 +23,7 @@ import java.util.Arrays;
  */
 public final class AdaptiveApplicationControlsPutSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/ApplicationWhitelistings/PutAdaptiveApplicationControls_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/ApplicationWhitelistings/PutAdaptiveApplicationControls_example.json
      */
     /**
      * Sample code: Update an application control machine group by adding a new application.
@@ -56,7 +56,7 @@ public final class AdaptiveApplicationControlsPutSamples {
                     new PathRecommendation()
                         .withPath("[Exe] O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US\\*\\*\\0.0.0.0")
                         .withAction(RecommendationAction.RECOMMENDED)
-                        .withType(RecommendationType.fromString("PublisherSignature"))
+                        .withType(RecommendationType.PUBLISHER_SIGNATURE)
                         .withPublisherInfo(new PublisherInfo()
                             .withPublisherName("O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US")
                             .withProductName("*")
@@ -71,7 +71,7 @@ public final class AdaptiveApplicationControlsPutSamples {
                         .withConfigurationStatus(ConfigurationStatus.CONFIGURED),
                     new PathRecommendation().withPath("%OSDRIVE%\\WINDOWSAZURE\\SECAGENT\\WASECAGENTPROV.EXE")
                         .withAction(RecommendationAction.RECOMMENDED)
-                        .withType(RecommendationType.fromString("ProductSignature"))
+                        .withType(RecommendationType.PRODUCT_SIGNATURE)
                         .withPublisherInfo(
                             new PublisherInfo().withPublisherName("CN=MICROSOFT AZURE DEPENDENCY CODE SIGN")
                                 .withProductName("MICROSOFT® COREXT")
@@ -87,7 +87,7 @@ public final class AdaptiveApplicationControlsPutSamples {
                     new PathRecommendation()
                         .withPath("%OSDRIVE%\\WINDOWSAZURE\\PACKAGES_201973_7415\\COLLECTGUESTLOGS.EXE")
                         .withAction(RecommendationAction.RECOMMENDED)
-                        .withType(RecommendationType.fromString("PublisherSignature"))
+                        .withType(RecommendationType.PUBLISHER_SIGNATURE)
                         .withPublisherInfo(
                             new PublisherInfo().withPublisherName("CN=MICROSOFT AZURE DEPENDENCY CODE SIGN")
                                 .withProductName("*")
@@ -101,7 +101,7 @@ public final class AdaptiveApplicationControlsPutSamples {
                         .withConfigurationStatus(ConfigurationStatus.CONFIGURED),
                     new PathRecommendation().withPath("C:\\directory\\file.exe")
                         .withAction(RecommendationAction.ADD)
-                        .withType(RecommendationType.fromString("File"))
+                        .withType(RecommendationType.FILE)
                         .withCommon(true)))
             .apply();
     }

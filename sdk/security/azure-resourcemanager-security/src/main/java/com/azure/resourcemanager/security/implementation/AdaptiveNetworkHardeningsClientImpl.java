@@ -156,12 +156,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByExtendedResource(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, resourceNamespace, resourceType, resourceName, apiVersion, accept, context))
+            .withContext(context -> service.listByExtendedResource(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, resourceNamespace, resourceType, resourceName,
+                this.client.getApiVersion(), accept, context))
             .<PagedResponse<AdaptiveNetworkHardeningInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -207,12 +206,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByExtendedResource(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                resourceNamespace, resourceType, resourceName, apiVersion, accept, context)
+                resourceNamespace, resourceType, resourceName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -349,12 +347,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
             return Mono.error(new IllegalArgumentException(
                 "Parameter adaptiveNetworkHardeningResourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 resourceGroupName, resourceNamespace, resourceType, resourceName, adaptiveNetworkHardeningResourceName,
-                apiVersion, accept, context))
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -404,12 +401,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
             return Mono.error(new IllegalArgumentException(
                 "Parameter adaptiveNetworkHardeningResourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            resourceNamespace, resourceType, resourceName, adaptiveNetworkHardeningResourceName, apiVersion, accept,
-            context);
+            resourceNamespace, resourceType, resourceName, adaptiveNetworkHardeningResourceName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -527,12 +523,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
             body.validate();
         }
         final String adaptiveNetworkHardeningEnforceAction = "enforce";
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.enforce(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 resourceGroupName, resourceNamespace, resourceType, resourceName, adaptiveNetworkHardeningResourceName,
-                adaptiveNetworkHardeningEnforceAction, apiVersion, body, accept, context))
+                adaptiveNetworkHardeningEnforceAction, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -588,12 +583,11 @@ public final class AdaptiveNetworkHardeningsClientImpl implements AdaptiveNetwor
             body.validate();
         }
         final String adaptiveNetworkHardeningEnforceAction = "enforce";
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.enforce(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             resourceNamespace, resourceType, resourceName, adaptiveNetworkHardeningResourceName,
-            adaptiveNetworkHardeningEnforceAction, apiVersion, body, accept, context);
+            adaptiveNetworkHardeningEnforceAction, this.client.getApiVersion(), body, accept, context);
     }
 
     /**

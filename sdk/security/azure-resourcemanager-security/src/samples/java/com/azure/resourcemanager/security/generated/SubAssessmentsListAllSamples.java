@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class SubAssessmentsListAllSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2019-01-01-preview/examples/SubAssessments/ListSubscriptionSubAssessments_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/SubAssessments/ListSubscriptionSubAssessments_example.json
      */
     /**
      * Sample code: List security sub-assessments.

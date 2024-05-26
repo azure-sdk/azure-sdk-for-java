@@ -125,11 +125,10 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ConnectorSettingInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -155,10 +154,11 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -242,11 +242,10 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         if (connectorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter connectorName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                connectorName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), connectorName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -273,11 +272,10 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         if (connectorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter connectorName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), connectorName,
-            accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            connectorName, accept, context);
     }
 
     /**
@@ -354,10 +352,9 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         } else {
             connectorSetting.validate();
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), connectorName, connectorSetting, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -394,11 +391,10 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         } else {
             connectorSetting.validate();
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            connectorName, connectorSetting, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), connectorName, connectorSetting, accept, context);
     }
 
     /**
@@ -475,10 +471,9 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         if (connectorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter connectorName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), connectorName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -506,11 +501,10 @@ public final class ConnectorsClientImpl implements ConnectorsClient {
         if (connectorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter connectorName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), connectorName,
-            accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            connectorName, accept, context);
     }
 
     /**

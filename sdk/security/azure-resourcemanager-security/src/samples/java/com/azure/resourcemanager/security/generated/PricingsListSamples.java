@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class PricingsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-01-01/examples/Pricings/ListPricingsWithPlanFilter_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Pricings/ListPricingsWithPlanFilter_example.json
      */
     /**
      * Sample code: Get pricings on subscription with plans filter.
@@ -24,7 +24,7 @@ public final class PricingsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-01-01/examples/Pricings/ListPricings_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Pricings/ListPricings_example.json
      */
     /**
      * Sample code: Get pricings on subscription.
@@ -38,7 +38,7 @@ public final class PricingsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-01-01/examples/Pricings/ListResourcePricings_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Pricings/ListResourcePricings_example.json
      */
     /**
      * Sample code: Get pricings on resource.

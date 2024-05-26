@@ -37,7 +37,7 @@ public interface MdeOnboardingData {
      * 
      * @return the onboardingPackageWindows value.
      */
-    byte[] onboardingPackageWindows();
+    String onboardingPackageWindows();
 
     /**
      * Gets the onboardingPackageLinux property: The onboarding package used to onboard Linux machines to MDE, coded in
@@ -45,7 +45,7 @@ public interface MdeOnboardingData {
      * 
      * @return the onboardingPackageLinux value.
      */
-    byte[] onboardingPackageLinux();
+    String onboardingPackageLinux();
 
     /**
      * Gets the inner com.azure.resourcemanager.security.fluent.models.MdeOnboardingDataInner object.

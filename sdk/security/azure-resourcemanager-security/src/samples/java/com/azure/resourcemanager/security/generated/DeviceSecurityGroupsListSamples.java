@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class DeviceSecurityGroupsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2019-08-01/examples/DeviceSecurityGroups/ListDeviceSecurityGroups_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/DeviceSecurityGroups/ListDeviceSecurityGroups_example.json
      */
     /**
      * Sample code: List all device security groups for the specified IoT Hub resource.

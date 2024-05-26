@@ -117,11 +117,10 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<AutoProvisioningSettingInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -147,10 +146,11 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -230,11 +230,10 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
         if (settingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                settingName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), settingName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -261,11 +260,10 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
         if (settingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName, accept,
-            context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            settingName, accept, context);
     }
 
     /**
@@ -340,10 +338,9 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
         } else {
             setting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), settingName, setting, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -378,11 +375,10 @@ public final class AutoProvisioningSettingsClientImpl implements AutoProvisionin
         } else {
             setting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName,
-            setting, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            settingName, setting, accept, context);
     }
 
     /**

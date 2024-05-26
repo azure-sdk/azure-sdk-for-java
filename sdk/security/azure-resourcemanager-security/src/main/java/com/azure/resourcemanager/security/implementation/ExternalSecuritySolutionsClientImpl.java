@@ -123,11 +123,10 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ExternalSecuritySolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -153,10 +152,11 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -240,11 +240,10 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                ascLocation, apiVersion, accept, context))
+                ascLocation, this.client.getApiVersion(), accept, context))
             .<PagedResponse<ExternalSecuritySolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -276,12 +275,11 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, apiVersion,
-                accept, context)
+            .listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -390,11 +388,11 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
             return Mono.error(new IllegalArgumentException(
                 "Parameter externalSecuritySolutionsName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, ascLocation, externalSecuritySolutionsName, apiVersion, accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    ascLocation, externalSecuritySolutionsName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -435,11 +433,10 @@ public final class ExternalSecuritySolutionsClientImpl implements ExternalSecuri
             return Mono.error(new IllegalArgumentException(
                 "Parameter externalSecuritySolutionsName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, ascLocation,
-            externalSecuritySolutionsName, apiVersion, accept, context);
+            externalSecuritySolutionsName, this.client.getApiVersion(), accept, context);
     }
 
     /**

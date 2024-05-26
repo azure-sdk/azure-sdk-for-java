@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class ApiCollectionsOffboardAzureApiManagementApiSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_OffboardAzureApiManagementApi_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/ApiCollections/APICollections_OffboardAzureApiManagementApi_example.json
      */
     /**
      * Sample code: Offboard an Azure API Management API from Microsoft Defender for APIs.

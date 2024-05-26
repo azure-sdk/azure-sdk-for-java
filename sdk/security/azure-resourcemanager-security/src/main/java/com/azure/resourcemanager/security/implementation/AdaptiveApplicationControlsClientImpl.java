@@ -121,11 +121,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
-                includePathRecommendations, summary, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), includePathRecommendations, summary, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -152,10 +151,9 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
+        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
             includePathRecommendations, summary, accept, context);
     }
 
@@ -235,11 +233,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
-                groupName, apiVersion, accept, context))
+                groupName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -273,11 +270,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, groupName,
-            apiVersion, accept, context);
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -364,11 +360,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.put(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
-                groupName, apiVersion, body, accept, context))
+                groupName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -407,11 +402,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.put(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, groupName,
-            apiVersion, body, accept, context);
+            this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -496,11 +490,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                ascLocation, groupName, apiVersion, accept, context))
+                ascLocation, groupName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -532,11 +525,10 @@ public final class AdaptiveApplicationControlsClientImpl implements AdaptiveAppl
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, groupName,
-            apiVersion, accept, context);
+            this.client.getApiVersion(), accept, context);
     }
 
     /**

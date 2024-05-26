@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public final class AlertsSimulateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2022-01-01/examples/Alerts/SimulateAlerts_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Alerts/SimulateAlerts_example.json
      */
     /**
      * Sample code: Simulate security alerts on a subscription.
@@ -24,7 +24,7 @@ public final class AlertsSimulateSamples {
     public static void
         simulateSecurityAlertsOnASubscription(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.alerts()
-            .simulate("centralus",
+            .simulateWithResponse("centralus",
                 new AlertSimulatorRequestBody().withProperties(new AlertSimulatorBundlesRequestProperties()
                     .withBundles(Arrays.asList(BundleType.APP_SERVICES, BundleType.DNS, BundleType.KEY_VAULTS,
                         BundleType.KUBERNETES_SERVICE, BundleType.RESOURCE_MANAGER, BundleType.SQL_SERVERS,

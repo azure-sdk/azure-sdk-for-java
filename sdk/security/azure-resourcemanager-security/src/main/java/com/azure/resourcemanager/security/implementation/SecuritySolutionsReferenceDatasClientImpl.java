@@ -92,11 +92,10 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -120,10 +119,10 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context);
+        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
+            accept, context);
     }
 
     /**
@@ -189,11 +188,10 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                ascLocation, apiVersion, accept, context))
+                ascLocation, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -223,11 +221,10 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
-            apiVersion, accept, context);
+            this.client.getApiVersion(), accept, context);
     }
 
     /**

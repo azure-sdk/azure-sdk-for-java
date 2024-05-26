@@ -132,10 +132,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
             .<PagedResponse<SecurityAssessmentResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -162,10 +162,9 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -262,11 +261,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, resourceId, assessmentName,
-                expand, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+                assessmentName, expand, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -296,10 +294,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, assessmentName, expand, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, assessmentName, expand,
+            accept, context);
     }
 
     /**
@@ -384,11 +382,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         } else {
             assessment.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, resourceId,
-                assessmentName, assessment, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceId, assessmentName, assessment, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -424,11 +421,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         } else {
             assessment.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, resourceId, assessmentName, assessment,
-            accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+            assessmentName, assessment, accept, context);
     }
 
     /**
@@ -510,11 +506,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, resourceId, assessmentName,
-                accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+                assessmentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -542,10 +537,10 @@ public final class AssessmentsClientImpl implements AssessmentsClient {
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, resourceId, assessmentName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, assessmentName,
+            accept, context);
     }
 
     /**

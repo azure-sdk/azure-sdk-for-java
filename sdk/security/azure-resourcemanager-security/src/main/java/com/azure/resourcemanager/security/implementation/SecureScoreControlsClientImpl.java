@@ -123,10 +123,9 @@ public final class SecureScoreControlsClientImpl implements SecureScoreControlsC
             return Mono
                 .error(new IllegalArgumentException("Parameter secureScoreName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listBySecureScore(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listBySecureScore(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), secureScoreName, expand, accept, context))
             .<PagedResponse<SecureScoreControlDetailsInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -161,12 +160,11 @@ public final class SecureScoreControlsClientImpl implements SecureScoreControlsC
             return Mono
                 .error(new IllegalArgumentException("Parameter secureScoreName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySecureScore(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), secureScoreName,
-                expand, accept, context)
+            .listBySecureScore(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                secureScoreName, expand, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -284,11 +282,10 @@ public final class SecureScoreControlsClientImpl implements SecureScoreControlsC
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                expand, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), expand, accept, context))
             .<PagedResponse<SecureScoreControlDetailsInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -316,11 +313,11 @@ public final class SecureScoreControlsClientImpl implements SecureScoreControlsC
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), expand, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), expand,
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

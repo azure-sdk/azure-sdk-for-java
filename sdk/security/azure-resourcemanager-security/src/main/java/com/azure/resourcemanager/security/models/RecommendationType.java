@@ -9,9 +9,39 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The type of IoT Security recommendation.
+ * The type of the rule to be allowed.
  */
 public final class RecommendationType extends ExpandableStringEnum<RecommendationType> {
+    /**
+     * Static value File for RecommendationType.
+     */
+    public static final RecommendationType FILE = fromString("File");
+
+    /**
+     * Static value FileHash for RecommendationType.
+     */
+    public static final RecommendationType FILE_HASH = fromString("FileHash");
+
+    /**
+     * Static value PublisherSignature for RecommendationType.
+     */
+    public static final RecommendationType PUBLISHER_SIGNATURE = fromString("PublisherSignature");
+
+    /**
+     * Static value ProductSignature for RecommendationType.
+     */
+    public static final RecommendationType PRODUCT_SIGNATURE = fromString("ProductSignature");
+
+    /**
+     * Static value BinarySignature for RecommendationType.
+     */
+    public static final RecommendationType BINARY_SIGNATURE = fromString("BinarySignature");
+
+    /**
+     * Static value VersionAndAboveSignature for RecommendationType.
+     */
+    public static final RecommendationType VERSION_AND_ABOVE_SIGNATURE = fromString("VersionAndAboveSignature");
+
     /**
      * Static value IoT_ACRAuthentication for RecommendationType.
      */

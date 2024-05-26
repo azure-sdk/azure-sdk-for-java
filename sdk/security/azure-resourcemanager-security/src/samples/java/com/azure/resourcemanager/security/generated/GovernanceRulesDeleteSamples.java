@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class GovernanceRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteManagementGroupGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/DeleteManagementGroupGovernanceRule_example.json
      */
     /**
      * Sample code: Delete a Governance rule over management group scope.
@@ -24,7 +24,7 @@ public final class GovernanceRulesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/DeleteGovernanceRule_example.json
      */
     /**
      * Sample code: Delete a Governance rule over subscription scope.
@@ -39,7 +39,7 @@ public final class GovernanceRulesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/DeleteSecurityConnectorGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/DeleteSecurityConnectorGovernanceRule_example.json
      */
     /**
      * Sample code: Delete a Governance rule over security connector scope.

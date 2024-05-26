@@ -128,11 +128,10 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<SecurityContactInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -158,10 +157,11 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -243,11 +243,10 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter securityContactName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                securityContactName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), securityContactName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -277,11 +276,10 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter securityContactName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), securityContactName,
-            accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            securityContactName, accept, context);
     }
 
     /**
@@ -359,10 +357,9 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
         } else {
             securityContact.validate();
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), securityContactName, securityContact, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -400,10 +397,9 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
         } else {
             securityContact.validate();
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             securityContactName, securityContact, accept, context);
     }
 
@@ -481,10 +477,9 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter securityContactName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), securityContactName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -513,10 +508,9 @@ public final class SecurityContactsClientImpl implements SecurityContactsClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter securityContactName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             securityContactName, accept, context);
     }
 

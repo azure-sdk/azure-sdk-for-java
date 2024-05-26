@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class IotSecuritySolutionsAnalyticsAggregatedAlertGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2019-08-01/examples/IoTSecuritySolutionsAnalytics/GetIoTSecuritySolutionsSecurityAggregatedAlert.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/IoTSecuritySolutionsAnalytics/GetIoTSecuritySolutionsSecurityAggregatedAlert.json
      */
     /**
      * Sample code: Get the aggregated security analytics alert of yours IoT Security solution. This aggregation is

@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class GovernanceRulesExecuteSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostSecurityConnectorGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PostSecurityConnectorGovernanceRule_example.json
      */
     /**
      * Sample code: Execute governance rule over security connector scope.
@@ -25,7 +25,7 @@ public final class GovernanceRulesExecuteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PostGovernanceRule_example.json
      */
     /**
      * Sample code: Execute Governance rule over subscription scope.
@@ -40,7 +40,7 @@ public final class GovernanceRulesExecuteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PostManagementGroupGovernanceRule_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/PostManagementGroupGovernanceRule_example.json
      */
     /**
      * Sample code: Execute governance rule over management group scope.

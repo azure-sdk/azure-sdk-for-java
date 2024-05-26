@@ -172,11 +172,10 @@ public final class TasksClientImpl implements TasksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                filter, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), filter, accept, context))
             .<PagedResponse<SecurityTaskInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -203,11 +202,11 @@ public final class TasksClientImpl implements TasksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), filter,
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -308,10 +307,9 @@ public final class TasksClientImpl implements TasksClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByHomeRegion(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByHomeRegion(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), ascLocation, filter, accept, context))
             .<PagedResponse<SecurityTaskInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -345,12 +343,11 @@ public final class TasksClientImpl implements TasksClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByHomeRegion(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), ascLocation,
-                filter, accept, context)
+            .listByHomeRegion(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                ascLocation, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -469,11 +466,10 @@ public final class TasksClientImpl implements TasksClient {
         if (taskName == null) {
             return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getSubscriptionLevelTask(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, taskName, accept, context))
+            .withContext(context -> service.getSubscriptionLevelTask(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, taskName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -507,11 +503,10 @@ public final class TasksClientImpl implements TasksClient {
         if (taskName == null) {
             return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getSubscriptionLevelTask(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            ascLocation, taskName, accept, context);
+        return service.getSubscriptionLevelTask(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), ascLocation, taskName, accept, context);
     }
 
     /**
@@ -599,11 +594,11 @@ public final class TasksClientImpl implements TasksClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter taskUpdateActionType is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateSubscriptionLevelTaskState(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, taskName, taskUpdateActionType, accept, context))
+            .withContext(context -> service.updateSubscriptionLevelTaskState(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, taskName,
+                taskUpdateActionType, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -641,10 +636,9 @@ public final class TasksClientImpl implements TasksClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter taskUpdateActionType is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateSubscriptionLevelTaskState(this.client.getEndpoint(), apiVersion,
+        return service.updateSubscriptionLevelTaskState(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), ascLocation, taskName, taskUpdateActionType, accept, context);
     }
 
@@ -736,10 +730,9 @@ public final class TasksClientImpl implements TasksClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, ascLocation, filter, accept, context))
             .<PagedResponse<SecurityTaskInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -779,12 +772,11 @@ public final class TasksClientImpl implements TasksClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, ascLocation, filter, accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, ascLocation, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -923,11 +915,11 @@ public final class TasksClientImpl implements TasksClient {
         if (taskName == null) {
             return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getResourceGroupLevelTask(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName, accept, context))
+            .withContext(
+                context -> service.getResourceGroupLevelTask(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -967,11 +959,10 @@ public final class TasksClientImpl implements TasksClient {
         if (taskName == null) {
             return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getResourceGroupLevelTask(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, ascLocation, taskName, accept, context);
+        return service.getResourceGroupLevelTask(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName, accept, context);
     }
 
     /**
@@ -1072,12 +1063,11 @@ public final class TasksClientImpl implements TasksClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter taskUpdateActionType is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateResourceGroupLevelTaskState(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName, taskUpdateActionType, accept,
-                context))
+            .withContext(context -> service.updateResourceGroupLevelTaskState(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName,
+                taskUpdateActionType, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1121,10 +1111,9 @@ public final class TasksClientImpl implements TasksClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter taskUpdateActionType is required and cannot be null."));
         }
-        final String apiVersion = "2015-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateResourceGroupLevelTaskState(this.client.getEndpoint(), apiVersion,
+        return service.updateResourceGroupLevelTaskState(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, ascLocation, taskName, taskUpdateActionType, accept,
             context);
     }

@@ -128,11 +128,11 @@ public final class IotSecuritySolutionsAnalyticsRecommendationsClientImpl
             return Mono.error(
                 new IllegalArgumentException("Parameter aggregatedRecommendationName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, solutionName, aggregatedRecommendationName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, solutionName, aggregatedRecommendationName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -173,11 +173,10 @@ public final class IotSecuritySolutionsAnalyticsRecommendationsClientImpl
             return Mono.error(
                 new IllegalArgumentException("Parameter aggregatedRecommendationName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, aggregatedRecommendationName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, aggregatedRecommendationName, accept, context);
     }
 
     /**
@@ -270,11 +269,10 @@ public final class IotSecuritySolutionsAnalyticsRecommendationsClientImpl
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, solutionName, top, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, solutionName, top, accept, context))
             .<PagedResponse<IoTSecurityAggregatedRecommendationInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -313,12 +311,11 @@ public final class IotSecuritySolutionsAnalyticsRecommendationsClientImpl
         if (solutionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-                solutionName, top, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, solutionName, top, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

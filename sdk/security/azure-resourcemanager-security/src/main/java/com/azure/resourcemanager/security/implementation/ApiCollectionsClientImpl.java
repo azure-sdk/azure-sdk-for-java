@@ -170,11 +170,10 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
             .<PagedResponse<ApiCollectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -202,10 +201,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -302,11 +302,10 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<ApiCollectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -340,12 +339,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                apiVersion, accept, context)
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -455,11 +453,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByAzureApiManagementService(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, this.client.getApiVersion(), accept,
+                context))
             .<PagedResponse<ApiCollectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -499,12 +497,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByAzureApiManagementService(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, apiVersion, accept, context)
+                resourceGroupName, serviceName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -636,11 +633,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getByAzureApiManagementService(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, this.client.getApiVersion(),
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -683,11 +680,10 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByAzureApiManagementService(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, apiId, apiVersion, accept, context);
+            resourceGroupName, serviceName, apiId, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -799,11 +795,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.onboardAzureApiManagementApi(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, this.client.getApiVersion(),
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -846,11 +842,10 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.onboardAzureApiManagementApi(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, apiId, apiVersion, accept, context);
+            resourceGroupName, serviceName, apiId, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1078,11 +1073,11 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.offboardAzureApiManagementApi(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, apiId, this.client.getApiVersion(),
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1123,11 +1118,10 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         if (apiId == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiId is required and cannot be null."));
         }
-        final String apiVersion = "2023-11-15";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.offboardAzureApiManagementApi(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, apiId, apiVersion, accept, context);
+            resourceGroupName, serviceName, apiId, this.client.getApiVersion(), accept, context);
     }
 
     /**

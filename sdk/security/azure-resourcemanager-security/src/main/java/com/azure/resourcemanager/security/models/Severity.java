@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The sub-assessment severity level.
+ * The severity level of the assessment.
  */
 public final class Severity extends ExpandableStringEnum<Severity> {
     /**

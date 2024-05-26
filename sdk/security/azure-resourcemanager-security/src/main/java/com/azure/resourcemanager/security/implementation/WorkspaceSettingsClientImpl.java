@@ -139,11 +139,10 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<WorkspaceSettingInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -170,10 +169,11 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -260,11 +260,10 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter workspaceSettingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                workspaceSettingName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), workspaceSettingName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -294,11 +293,10 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter workspaceSettingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), workspaceSettingName,
-            accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            workspaceSettingName, accept, context);
     }
 
     /**
@@ -380,10 +378,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
         } else {
             workspaceSetting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), workspaceSettingName, workspaceSetting, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -421,10 +418,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
         } else {
             workspaceSetting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             workspaceSettingName, workspaceSetting, accept, context);
     }
 
@@ -510,10 +506,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
         } else {
             workspaceSetting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), workspaceSettingName, workspaceSetting, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -551,10 +546,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
         } else {
             workspaceSetting.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             workspaceSettingName, workspaceSetting, accept, context);
     }
 
@@ -631,10 +625,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter workspaceSettingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), workspaceSettingName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -663,10 +656,9 @@ public final class WorkspaceSettingsClientImpl implements WorkspaceSettingsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter workspaceSettingName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             workspaceSettingName, accept, context);
     }
 

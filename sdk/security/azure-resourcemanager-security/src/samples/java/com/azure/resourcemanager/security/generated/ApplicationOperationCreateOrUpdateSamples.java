@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public final class ApplicationOperationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-07-01-preview/examples/Applications/PutApplication_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Applications/PutApplication_example.json
      */
     /**
      * Sample code: Create application.

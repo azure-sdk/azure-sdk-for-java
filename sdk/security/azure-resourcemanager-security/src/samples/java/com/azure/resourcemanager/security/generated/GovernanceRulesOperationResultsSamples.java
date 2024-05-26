@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class GovernanceRulesOperationResultsSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRuleExecuteStatus_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/GetManagementGroupGovernanceRuleExecuteStatus_example.json
      */
     /**
      * Sample code: Get governance rules long run operation result over management group.
@@ -25,7 +25,7 @@ public final class GovernanceRulesOperationResultsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/GetSecurityConnectorGovernanceRuleExecuteStatus_example.json
      */
     /**
      * Sample code: Get governance rules long run operation result over security connector.
@@ -42,7 +42,7 @@ public final class GovernanceRulesOperationResultsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/GetGovernanceRuleExecuteStatus_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceRules/GetGovernanceRuleExecuteStatus_example.json
      */
     /**
      * Sample code: Get governance rules long run operation result over subscription.

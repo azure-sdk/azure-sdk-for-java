@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public final class SecurityConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
      */
     /**
      * Sample code: Update a security connector.

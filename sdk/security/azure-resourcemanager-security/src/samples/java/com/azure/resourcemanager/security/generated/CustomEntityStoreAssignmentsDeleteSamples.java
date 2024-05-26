@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class CustomEntityStoreAssignmentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-07-01-preview/examples/CustomEntityStoreAssignments/customEntityStoreAssignmentDelete_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/CustomEntityStoreAssignments/customEntityStoreAssignmentDelete_example.json
      */
     /**
      * Sample code: Delete a custom entity store assignment.

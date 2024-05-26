@@ -197,11 +197,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
             .<PagedResponse<JitNetworkAccessPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -226,10 +225,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -310,11 +310,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByRegion(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                ascLocation, apiVersion, accept, context))
+                ascLocation, this.client.getApiVersion(), accept, context))
             .<PagedResponse<JitNetworkAccessPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -345,12 +344,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, apiVersion, accept,
-                context)
+            .listByRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -444,11 +442,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<JitNetworkAccessPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -480,12 +477,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                apiVersion, accept, context)
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -584,11 +580,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroupAndRegion(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, ascLocation, apiVersion, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, ascLocation, this.client.getApiVersion(), accept,
+                context))
             .<PagedResponse<JitNetworkAccessPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -625,12 +621,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroupAndRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                ascLocation, apiVersion, accept, context)
+                ascLocation, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -747,11 +742,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(
                 new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    ascLocation, jitNetworkAccessPolicyName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -791,11 +786,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(
                 new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, ascLocation,
-            jitNetworkAccessPolicyName, apiVersion, accept, context);
+            jitNetworkAccessPolicyName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -898,11 +892,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, ascLocation, jitNetworkAccessPolicyName, apiVersion, body, accept, context))
+                resourceGroupName, ascLocation, jitNetworkAccessPolicyName, this.client.getApiVersion(), body, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -948,11 +942,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, apiVersion, body, accept, context);
+            ascLocation, jitNetworkAccessPolicyName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -1054,11 +1047,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(
                 new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    ascLocation, jitNetworkAccessPolicyName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1098,11 +1091,10 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             return Mono.error(
                 new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context);
+            ascLocation, jitNetworkAccessPolicyName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1203,12 +1195,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             body.validate();
         }
         final String jitNetworkAccessPolicyInitiateType = "initiate";
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.initiate(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 resourceGroupName, ascLocation, jitNetworkAccessPolicyName, jitNetworkAccessPolicyInitiateType,
-                apiVersion, body, accept, context))
+                this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1256,12 +1247,11 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             body.validate();
         }
         final String jitNetworkAccessPolicyInitiateType = "initiate";
-        final String apiVersion = "2020-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.initiate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, jitNetworkAccessPolicyInitiateType, apiVersion, body, accept,
-            context);
+            ascLocation, jitNetworkAccessPolicyName, jitNetworkAccessPolicyInitiateType, this.client.getApiVersion(),
+            body, accept, context);
     }
 
     /**

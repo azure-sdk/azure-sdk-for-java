@@ -165,11 +165,11 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         if (projectName == null) {
             return Mono.error(new IllegalArgumentException("Parameter projectName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, projectName, apiVersion, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    securityConnectorName, orgName, projectName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<AzureDevOpsRepositoryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -214,12 +214,11 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         if (projectName == null) {
             return Mono.error(new IllegalArgumentException("Parameter projectName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, securityConnectorName,
-                orgName, projectName, apiVersion, accept, context)
+                orgName, projectName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -343,11 +342,11 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         if (repoName == null) {
             return Mono.error(new IllegalArgumentException("Parameter repoName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, projectName, repoName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(),
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -393,11 +392,10 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         if (repoName == null) {
             return Mono.error(new IllegalArgumentException("Parameter repoName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, projectName, repoName, apiVersion, accept, context);
+            securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -510,11 +508,10 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         } else {
             azureDevOpsRepository.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, projectName, repoName, apiVersion,
+                resourceGroupName, securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(),
                 azureDevOpsRepository, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -569,11 +566,11 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         } else {
             azureDevOpsRepository.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, projectName, repoName, apiVersion, azureDevOpsRepository, accept, context);
+            securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(), azureDevOpsRepository,
+            accept, context);
     }
 
     /**
@@ -813,11 +810,10 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         } else {
             azureDevOpsRepository.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, projectName, repoName, apiVersion,
+                resourceGroupName, securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(),
                 azureDevOpsRepository, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -872,11 +868,11 @@ public final class AzureDevOpsReposClientImpl implements AzureDevOpsReposClient 
         } else {
             azureDevOpsRepository.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, projectName, repoName, apiVersion, azureDevOpsRepository, accept, context);
+            securityConnectorName, orgName, projectName, repoName, this.client.getApiVersion(), azureDevOpsRepository,
+            accept, context);
     }
 
     /**

@@ -107,11 +107,10 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
         } else {
             sensitivitySettings.validate();
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, sensitivitySettings,
-                accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                sensitivitySettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -139,10 +138,10 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
         } else {
             sensitivitySettings.validate();
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, sensitivitySettings, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), sensitivitySettings,
+            accept, context);
     }
 
     /**
@@ -204,9 +203,10 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), apiVersion, accept, context))
+        return FluxUtil
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -226,10 +226,9 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -284,9 +283,10 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
+        return FluxUtil
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -306,10 +306,9 @@ public final class SensitivitySettingsClientImpl implements SensitivitySettingsC
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-15-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, accept, context);
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context);
     }
 
     /**

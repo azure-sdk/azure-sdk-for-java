@@ -25,17 +25,12 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.security.fluent.AlertsClient;
 import com.azure.resourcemanager.security.fluent.models.AlertInner;
 import com.azure.resourcemanager.security.models.AlertList;
 import com.azure.resourcemanager.security.models.AlertSimulatorRequestBody;
-import java.nio.ByteBuffer;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -195,11 +190,10 @@ public final class AlertsClientImpl implements AlertsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/alerts/default/simulate")
-        @ExpectedResponses({ 202 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> simulate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("ascLocation") String ascLocation,
+        Mono<Response<Void>> simulate(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("ascLocation") String ascLocation,
             @BodyParam("application/json") AlertSimulatorRequestBody alertSimulatorRequestBody,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -252,11 +246,10 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<AlertInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -281,10 +274,11 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -366,10 +360,9 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, accept, context))
             .<PagedResponse<AlertInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -402,12 +395,11 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -499,11 +491,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listSubscriptionLevelByRegion(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, accept, context))
+            .withContext(context -> service.listSubscriptionLevelByRegion(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, accept, context))
             .<PagedResponse<AlertInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -534,12 +525,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listSubscriptionLevelByRegion(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                ascLocation, accept, context)
+            .listSubscriptionLevelByRegion(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), ascLocation, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -638,11 +628,11 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listResourceGroupLevelByRegion(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, resourceGroupName, accept, context))
+            .withContext(context -> service.listResourceGroupLevelByRegion(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, resourceGroupName, accept,
+                context))
             .<PagedResponse<AlertInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -679,12 +669,11 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listResourceGroupLevelByRegion(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                ascLocation, resourceGroupName, accept, context)
+            .listResourceGroupLevelByRegion(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), ascLocation, resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -792,10 +781,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getSubscriptionLevel(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.getSubscriptionLevel(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -830,11 +818,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getSubscriptionLevel(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            ascLocation, alertName, accept, context);
+        return service.getSubscriptionLevel(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), ascLocation, alertName, accept, context);
     }
 
     /**
@@ -923,11 +910,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getResourceGroupLevel(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
+            .withContext(
+                context -> service.getResourceGroupLevel(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -967,11 +954,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getResourceGroupLevel(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, ascLocation, alertName, accept, context);
+        return service.getResourceGroupLevel(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context);
     }
 
     /**
@@ -1062,11 +1048,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateSubscriptionLevelStateToDismiss(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateSubscriptionLevelStateToDismiss(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1099,10 +1084,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateSubscriptionLevelStateToDismiss(this.client.getEndpoint(), apiVersion,
+        return service.updateSubscriptionLevelStateToDismiss(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), ascLocation, alertName, accept, context);
     }
 
@@ -1184,11 +1168,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateSubscriptionLevelStateToResolve(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateSubscriptionLevelStateToResolve(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1221,10 +1204,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateSubscriptionLevelStateToResolve(this.client.getEndpoint(), apiVersion,
+        return service.updateSubscriptionLevelStateToResolve(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), ascLocation, alertName, accept, context);
     }
 
@@ -1306,11 +1288,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSubscriptionLevelStateToActivate(this.client.getEndpoint(),
-                apiVersion, this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1343,10 +1324,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateSubscriptionLevelStateToActivate(this.client.getEndpoint(), apiVersion,
+        return service.updateSubscriptionLevelStateToActivate(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), ascLocation, alertName, accept, context);
     }
 
@@ -1428,11 +1408,10 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSubscriptionLevelStateToInProgress(this.client.getEndpoint(),
-                apiVersion, this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), ascLocation, alertName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1465,10 +1444,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateSubscriptionLevelStateToInProgress(this.client.getEndpoint(), apiVersion,
+        return service.updateSubscriptionLevelStateToInProgress(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), ascLocation, alertName, accept, context);
     }
 
@@ -1556,12 +1534,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateResourceGroupLevelStateToResolve(this.client.getEndpoint(), apiVersion,
-                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateResourceGroupLevelStateToResolve(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1600,10 +1577,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateResourceGroupLevelStateToResolve(this.client.getEndpoint(), apiVersion,
+        return service.updateResourceGroupLevelStateToResolve(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context);
     }
 
@@ -1699,12 +1675,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateResourceGroupLevelStateToDismiss(this.client.getEndpoint(), apiVersion,
-                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateResourceGroupLevelStateToDismiss(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1743,10 +1718,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateResourceGroupLevelStateToDismiss(this.client.getEndpoint(), apiVersion,
+        return service.updateResourceGroupLevelStateToDismiss(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context);
     }
 
@@ -1842,12 +1816,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateResourceGroupLevelStateToActivate(this.client.getEndpoint(), apiVersion,
-                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateResourceGroupLevelStateToActivate(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1886,10 +1859,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateResourceGroupLevelStateToActivate(this.client.getEndpoint(), apiVersion,
+        return service.updateResourceGroupLevelStateToActivate(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context);
     }
 
@@ -1986,12 +1958,11 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateResourceGroupLevelStateToInProgress(this.client.getEndpoint(), apiVersion,
-                    this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context))
+            .withContext(context -> service.updateResourceGroupLevelStateToInProgress(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -2030,10 +2001,9 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateResourceGroupLevelStateToInProgress(this.client.getEndpoint(), apiVersion,
+        return service.updateResourceGroupLevelStateToInProgress(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, ascLocation, alertName, accept, context);
     }
 
@@ -2108,7 +2078,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> simulateWithResponseAsync(String ascLocation,
+    private Mono<Response<Void>> simulateWithResponseAsync(String ascLocation,
         AlertSimulatorRequestBody alertSimulatorRequestBody) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -2127,10 +2097,9 @@ public final class AlertsClientImpl implements AlertsClient {
         } else {
             alertSimulatorRequestBody.validate();
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.simulate(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.simulate(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), ascLocation, alertSimulatorRequestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -2148,7 +2117,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> simulateWithResponseAsync(String ascLocation,
+    private Mono<Response<Void>> simulateWithResponseAsync(String ascLocation,
         AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -2167,87 +2136,10 @@ public final class AlertsClientImpl implements AlertsClient {
         } else {
             alertSimulatorRequestBody.validate();
         }
-        final String apiVersion = "2022-01-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.simulate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), ascLocation,
-            alertSimulatorRequestBody, accept, context);
-    }
-
-    /**
-     * Simulate security alerts.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginSimulateAsync(String ascLocation,
-        AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        Mono<Response<Flux<ByteBuffer>>> mono = simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Simulate security alerts.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginSimulateAsync(String ascLocation,
-        AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Simulate security alerts.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginSimulate(String ascLocation,
-        AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        return this.beginSimulateAsync(ascLocation, alertSimulatorRequestBody).getSyncPoller();
-    }
-
-    /**
-     * Simulate security alerts.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginSimulate(String ascLocation,
-        AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        return this.beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context).getSyncPoller();
+        return service.simulate(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            ascLocation, alertSimulatorRequestBody, accept, context);
     }
 
     /**
@@ -2263,8 +2155,7 @@ public final class AlertsClientImpl implements AlertsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> simulateAsync(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2277,13 +2168,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> simulateAsync(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody,
+    public Response<Void> simulateWithResponse(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody,
         Context context) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody, context).block();
     }
 
     /**
@@ -2298,23 +2188,7 @@ public final class AlertsClientImpl implements AlertsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        simulateAsync(ascLocation, alertSimulatorRequestBody).block();
-    }
-
-    /**
-     * Simulate security alerts.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        simulateAsync(ascLocation, alertSimulatorRequestBody, context).block();
+        simulateWithResponse(ascLocation, alertSimulatorRequestBody, Context.NONE);
     }
 
     /**
