@@ -130,11 +130,10 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                alertType, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), alertType, accept, context))
             .<PagedResponse<AlertsSuppressionRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -161,11 +160,11 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), alertType, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), alertType,
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -265,11 +264,10 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(
                 new IllegalArgumentException("Parameter alertsSuppressionRuleName is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                alertsSuppressionRuleName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), alertsSuppressionRuleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -299,10 +297,9 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(
                 new IllegalArgumentException("Parameter alertsSuppressionRuleName is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             alertsSuppressionRuleName, accept, context);
     }
 
@@ -382,10 +379,9 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
         } else {
             alertsSuppressionRule.validate();
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), alertsSuppressionRuleName, alertsSuppressionRule, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -422,10 +418,9 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
         } else {
             alertsSuppressionRule.validate();
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             alertsSuppressionRuleName, alertsSuppressionRule, accept, context);
     }
 
@@ -502,10 +497,9 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(
                 new IllegalArgumentException("Parameter alertsSuppressionRuleName is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), alertsSuppressionRuleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -534,10 +528,9 @@ public final class AlertsSuppressionRulesClientImpl implements AlertsSuppression
             return Mono.error(
                 new IllegalArgumentException("Parameter alertsSuppressionRuleName is required and cannot be null."));
         }
-        final String apiVersion = "2019-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             alertsSuppressionRuleName, accept, context);
     }
 

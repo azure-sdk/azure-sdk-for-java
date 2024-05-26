@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class SecurityOperatorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-01-01-preview/examples/SecurityOperators/PutSecurityOperatorByName_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/SecurityOperators/PutSecurityOperatorByName_example.json
      */
     /**
      * Sample code: Create a security operator on the given scope.

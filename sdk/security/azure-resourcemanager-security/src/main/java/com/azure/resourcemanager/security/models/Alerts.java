@@ -409,11 +409,14 @@ public interface Alerts {
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
      * @param alertSimulatorRequestBody Alert Simulator Request Properties.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
      */
-    void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody);
+    Response<Void> simulateWithResponse(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody,
+        Context context);
 
     /**
      * Simulate security alerts.
@@ -421,10 +424,9 @@ public interface Alerts {
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
      * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context);
+    void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody);
 }

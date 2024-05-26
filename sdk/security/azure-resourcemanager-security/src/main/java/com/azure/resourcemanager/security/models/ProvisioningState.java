@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The security family provisioning State.
+ * Gets the provisioning state of the API collection.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**
@@ -23,9 +23,14 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     public static final ProvisioningState FAILED = fromString("Failed");
 
     /**
-     * Static value Updating for ProvisioningState.
+     * Static value Canceled for ProvisioningState.
      */
-    public static final ProvisioningState UPDATING = fromString("Updating");
+    public static final ProvisioningState CANCELED = fromString("Canceled");
+
+    /**
+     * Static value InProgress for ProvisioningState.
+     */
+    public static final ProvisioningState IN_PROGRESS = fromString("InProgress");
 
     /**
      * Creates a new instance of ProvisioningState value.

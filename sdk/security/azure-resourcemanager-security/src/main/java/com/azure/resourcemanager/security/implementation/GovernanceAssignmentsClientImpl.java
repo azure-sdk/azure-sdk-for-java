@@ -134,11 +134,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), apiVersion, scope, assessmentName, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                assessmentName, accept, context))
             .<PagedResponse<GovernanceAssignmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -171,10 +170,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assessmentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assessmentName is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, assessmentName, accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), scope, assessmentName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -285,11 +284,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assignmentKey == null) {
             return Mono.error(new IllegalArgumentException("Parameter assignmentKey is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, scope, assessmentName,
-                assignmentKey, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                assessmentName, assignmentKey, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -324,11 +322,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assignmentKey == null) {
             return Mono.error(new IllegalArgumentException("Parameter assignmentKey is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey, accept,
-            context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, assessmentName, assignmentKey,
+            accept, context);
     }
 
     /**
@@ -426,11 +423,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         } else {
             governanceAssignment.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, assessmentName,
-                assignmentKey, governanceAssignment, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                scope, assessmentName, assignmentKey, governanceAssignment, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -472,11 +468,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         } else {
             governanceAssignment.validate();
         }
-        final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey,
-            governanceAssignment, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), scope, assessmentName,
+            assignmentKey, governanceAssignment, accept, context);
     }
 
     /**
@@ -571,10 +566,9 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assignmentKey == null) {
             return Mono.error(new IllegalArgumentException("Parameter assignmentKey is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, scope, assessmentName,
-                assignmentKey, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                assessmentName, assignmentKey, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -608,9 +602,9 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         if (assignmentKey == null) {
             return Mono.error(new IllegalArgumentException("Parameter assignmentKey is required and cannot be null."));
         }
-        final String apiVersion = "2022-01-01-preview";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), scope, assessmentName,
+            assignmentKey, context);
     }
 
     /**

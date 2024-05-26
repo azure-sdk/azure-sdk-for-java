@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class GovernanceAssignmentsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/ListGovernanceAssignments_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/GovernanceAssignments/ListGovernanceAssignments_example.json
      */
     /**
      * Sample code: List governance assignments.

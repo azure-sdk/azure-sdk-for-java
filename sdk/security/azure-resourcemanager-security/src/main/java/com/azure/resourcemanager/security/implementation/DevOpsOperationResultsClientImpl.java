@@ -104,11 +104,11 @@ public final class DevOpsOperationResultsClientImpl implements DevOpsOperationRe
             return Mono
                 .error(new IllegalArgumentException("Parameter operationResultId is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, operationResultId, apiVersion, accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    securityConnectorName, operationResultId, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -148,11 +148,10 @@ public final class DevOpsOperationResultsClientImpl implements DevOpsOperationRe
             return Mono
                 .error(new IllegalArgumentException("Parameter operationResultId is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, operationResultId, apiVersion, accept, context);
+            securityConnectorName, operationResultId, this.client.getApiVersion(), accept, context);
     }
 
     /**

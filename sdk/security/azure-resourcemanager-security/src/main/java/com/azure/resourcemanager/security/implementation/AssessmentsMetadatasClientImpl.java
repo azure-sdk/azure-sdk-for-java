@@ -149,9 +149,10 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
+        return FluxUtil
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
             .<PagedResponse<SecurityAssessmentMetadataResponseInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -174,10 +175,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -256,11 +256,10 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(
                 new IllegalArgumentException("Parameter assessmentMetadataName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), apiVersion, assessmentMetadataName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                assessmentMetadataName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -286,10 +285,10 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(
                 new IllegalArgumentException("Parameter assessmentMetadataName is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, assessmentMetadataName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), assessmentMetadataName, accept,
+            context);
     }
 
     /**
@@ -354,10 +353,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listBySubscription(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<SecurityAssessmentMetadataResponseInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
@@ -386,11 +384,11 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySubscription(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+            .listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -478,10 +476,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getInSubscription(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.getInSubscription(this.client.getEndpoint(), this.client.getApiVersion(),
                 assessmentMetadataName, this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -512,10 +509,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getInSubscription(this.client.getEndpoint(), apiVersion, assessmentMetadataName,
+        return service.getInSubscription(this.client.getEndpoint(), this.client.getApiVersion(), assessmentMetadataName,
             this.client.getSubscriptionId(), accept, context);
     }
 
@@ -597,10 +593,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
         } else {
             assessmentMetadata.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createInSubscription(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.createInSubscription(this.client.getEndpoint(), this.client.getApiVersion(),
                 assessmentMetadataName, this.client.getSubscriptionId(), assessmentMetadata, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -638,11 +633,10 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
         } else {
             assessmentMetadata.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createInSubscription(this.client.getEndpoint(), apiVersion, assessmentMetadataName,
-            this.client.getSubscriptionId(), assessmentMetadata, accept, context);
+        return service.createInSubscription(this.client.getEndpoint(), this.client.getApiVersion(),
+            assessmentMetadataName, this.client.getSubscriptionId(), assessmentMetadata, accept, context);
     }
 
     /**
@@ -719,10 +713,9 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.deleteInSubscription(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.deleteInSubscription(this.client.getEndpoint(), this.client.getApiVersion(),
                 assessmentMetadataName, this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -752,11 +745,10 @@ public final class AssessmentsMetadatasClientImpl implements AssessmentsMetadata
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.deleteInSubscription(this.client.getEndpoint(), apiVersion, assessmentMetadataName,
-            this.client.getSubscriptionId(), accept, context);
+        return service.deleteInSubscription(this.client.getEndpoint(), this.client.getApiVersion(),
+            assessmentMetadataName, this.client.getSubscriptionId(), accept, context);
     }
 
     /**

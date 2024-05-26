@@ -164,10 +164,9 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter customEntityStoreAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, customEntityStoreAssignmentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -206,11 +205,10 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter customEntityStoreAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, customEntityStoreAssignmentName, accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, customEntityStoreAssignmentName, accept, context);
     }
 
     /**
@@ -315,10 +313,9 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
         } else {
             customEntityStoreAssignmentRequestBody.validate();
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, customEntityStoreAssignmentName,
                 customEntityStoreAssignmentRequestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -365,11 +362,11 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
         } else {
             customEntityStoreAssignmentRequestBody.validate();
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            customEntityStoreAssignmentName, customEntityStoreAssignmentRequestBody, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, customEntityStoreAssignmentName, customEntityStoreAssignmentRequestBody, accept,
+            context);
     }
 
     /**
@@ -470,10 +467,9 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter customEntityStoreAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, customEntityStoreAssignmentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -511,11 +507,10 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter customEntityStoreAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            customEntityStoreAssignmentName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, customEntityStoreAssignmentName, accept, context);
     }
 
     /**
@@ -602,10 +597,9 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, accept, context))
             .<PagedResponse<CustomEntityStoreAssignmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -641,12 +635,11 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -745,11 +738,10 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<CustomEntityStoreAssignmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -777,10 +769,11 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-07-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

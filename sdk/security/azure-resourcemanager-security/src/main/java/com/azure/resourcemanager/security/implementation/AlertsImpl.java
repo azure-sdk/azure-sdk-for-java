@@ -190,12 +190,13 @@ public final class AlertsImpl implements Alerts {
         this.serviceClient().updateResourceGroupLevelStateToInProgress(resourceGroupName, ascLocation, alertName);
     }
 
-    public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        this.serviceClient().simulate(ascLocation, alertSimulatorRequestBody);
+    public Response<Void> simulateWithResponse(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody,
+        Context context) {
+        return this.serviceClient().simulateWithResponse(ascLocation, alertSimulatorRequestBody, context);
     }
 
-    public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        this.serviceClient().simulate(ascLocation, alertSimulatorRequestBody, context);
+    public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
+        this.serviceClient().simulate(ascLocation, alertSimulatorRequestBody);
     }
 
     private AlertsClient serviceClient() {

@@ -13,8 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class MdeOnboardingDataInner extends ProxyResource {
-    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
-
     /*
      * Properties of the MDE configuration or data parameter needed to onboard the machine to MDE
      */
@@ -43,8 +41,8 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * 
      * @return the onboardingPackageWindows value.
      */
-    public byte[] onboardingPackageWindows() {
-        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().onboardingPackageWindows();
+    public String onboardingPackageWindows() {
+        return this.innerProperties() == null ? null : this.innerProperties().onboardingPackageWindows();
     }
 
     /**
@@ -54,7 +52,7 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * @param onboardingPackageWindows the onboardingPackageWindows value to set.
      * @return the MdeOnboardingDataInner object itself.
      */
-    public MdeOnboardingDataInner withOnboardingPackageWindows(byte[] onboardingPackageWindows) {
+    public MdeOnboardingDataInner withOnboardingPackageWindows(String onboardingPackageWindows) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MdeOnboardingDataProperties();
         }
@@ -68,8 +66,8 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * 
      * @return the onboardingPackageLinux value.
      */
-    public byte[] onboardingPackageLinux() {
-        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().onboardingPackageLinux();
+    public String onboardingPackageLinux() {
+        return this.innerProperties() == null ? null : this.innerProperties().onboardingPackageLinux();
     }
 
     /**
@@ -79,7 +77,7 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * @param onboardingPackageLinux the onboardingPackageLinux value to set.
      * @return the MdeOnboardingDataInner object itself.
      */
-    public MdeOnboardingDataInner withOnboardingPackageLinux(byte[] onboardingPackageLinux) {
+    public MdeOnboardingDataInner withOnboardingPackageLinux(String onboardingPackageLinux) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MdeOnboardingDataProperties();
         }

@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class AdaptiveApplicationControlsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/ApplicationWhitelistings/GetAdaptiveApplicationControlsGroup_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/ApplicationWhitelistings/GetAdaptiveApplicationControlsGroup_example.json
      */
     /**
      * Sample code: Gets a configured application control VM/server group.

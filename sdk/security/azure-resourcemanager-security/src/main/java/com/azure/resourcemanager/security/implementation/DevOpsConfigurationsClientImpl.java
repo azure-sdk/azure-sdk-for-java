@@ -164,11 +164,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<DevOpsConfigurationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -205,12 +204,11 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, securityConnectorName,
-                apiVersion, accept, context)
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -310,11 +308,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -348,11 +345,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, accept, context);
+            securityConnectorName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -439,11 +435,11 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
         } else {
             devOpsConfiguration.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, devOpsConfiguration, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), devOpsConfiguration, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -484,11 +480,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
         } else {
             devOpsConfiguration.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, devOpsConfiguration, accept, context);
+            securityConnectorName, this.client.getApiVersion(), devOpsConfiguration, accept, context);
     }
 
     /**
@@ -681,11 +676,11 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
         } else {
             devOpsConfiguration.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, devOpsConfiguration, accept, context))
+            .withContext(
+                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    securityConnectorName, this.client.getApiVersion(), devOpsConfiguration, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -726,11 +721,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
         } else {
             devOpsConfiguration.validate();
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, devOpsConfiguration, accept, context);
+            securityConnectorName, this.client.getApiVersion(), devOpsConfiguration, accept, context);
     }
 
     /**
@@ -915,11 +909,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -953,11 +946,10 @@ public final class DevOpsConfigurationsClientImpl implements DevOpsConfiguration
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2024-04-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, accept, context);
+            securityConnectorName, this.client.getApiVersion(), accept, context);
     }
 
     /**

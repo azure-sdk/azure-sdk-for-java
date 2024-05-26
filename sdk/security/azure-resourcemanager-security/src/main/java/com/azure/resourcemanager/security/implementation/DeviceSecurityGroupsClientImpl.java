@@ -130,10 +130,10 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, resourceId, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+                accept, context))
             .<PagedResponse<DeviceSecurityGroupInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -158,10 +158,9 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, resourceId, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -250,10 +249,9 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             return Mono.error(
                 new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, resourceId,
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
                 deviceSecurityGroupName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -284,10 +282,10 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             return Mono.error(
                 new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, deviceSecurityGroupName,
+            accept, context);
     }
 
     /**
@@ -373,11 +371,10 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
         } else {
             deviceSecurityGroup.validate();
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, resourceId,
-                deviceSecurityGroupName, deviceSecurityGroup, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceId, deviceSecurityGroupName, deviceSecurityGroup, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -414,11 +411,10 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
         } else {
             deviceSecurityGroup.validate();
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName,
-            deviceSecurityGroup, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+            deviceSecurityGroupName, deviceSecurityGroup, accept, context);
     }
 
     /**
@@ -503,10 +499,9 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             return Mono.error(
                 new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, resourceId,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
                 deviceSecurityGroupName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -537,11 +532,10 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             return Mono.error(
                 new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept,
-            context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+            deviceSecurityGroupName, accept, context);
     }
 
     /**

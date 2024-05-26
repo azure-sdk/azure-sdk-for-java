@@ -9,7 +9,7 @@ package com.azure.resourcemanager.security.generated;
  */
 public final class AutomationsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-12-01-preview/examples/Automations/GetAutomationResourceGroup_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/Automations/GetAutomationResourceGroup_example.json
      */
     /**
      * Sample code: Retrieve a security automation.

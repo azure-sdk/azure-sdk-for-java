@@ -106,10 +106,10 @@ public final class CompliancesClientImpl implements CompliancesClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
             .<PagedResponse<ComplianceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -136,10 +136,9 @@ public final class CompliancesClientImpl implements CompliancesClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -230,11 +229,10 @@ public final class CompliancesClientImpl implements CompliancesClient {
         if (complianceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter complianceName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), apiVersion, scope, complianceName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                complianceName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -262,10 +260,10 @@ public final class CompliancesClientImpl implements CompliancesClient {
         if (complianceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter complianceName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, complianceName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope, complianceName, accept,
+            context);
     }
 
     /**

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.security.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.CoreUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -17,13 +16,13 @@ public final class MdeOnboardingDataProperties {
      * The onboarding package used to onboard Windows machines to MDE, coded in base64. This can also be used for onboarding using the dedicated VM Extension
      */
     @JsonProperty(value = "onboardingPackageWindows")
-    private byte[] onboardingPackageWindows;
+    private String onboardingPackageWindows;
 
     /*
      * The onboarding package used to onboard Linux machines to MDE, coded in base64. This can also be used for onboarding using the dedicated VM Extension
      */
     @JsonProperty(value = "onboardingPackageLinux")
-    private byte[] onboardingPackageLinux;
+    private String onboardingPackageLinux;
 
     /**
      * Creates an instance of MdeOnboardingDataProperties class.
@@ -37,8 +36,8 @@ public final class MdeOnboardingDataProperties {
      * 
      * @return the onboardingPackageWindows value.
      */
-    public byte[] onboardingPackageWindows() {
-        return CoreUtils.clone(this.onboardingPackageWindows);
+    public String onboardingPackageWindows() {
+        return this.onboardingPackageWindows;
     }
 
     /**
@@ -48,8 +47,8 @@ public final class MdeOnboardingDataProperties {
      * @param onboardingPackageWindows the onboardingPackageWindows value to set.
      * @return the MdeOnboardingDataProperties object itself.
      */
-    public MdeOnboardingDataProperties withOnboardingPackageWindows(byte[] onboardingPackageWindows) {
-        this.onboardingPackageWindows = CoreUtils.clone(onboardingPackageWindows);
+    public MdeOnboardingDataProperties withOnboardingPackageWindows(String onboardingPackageWindows) {
+        this.onboardingPackageWindows = onboardingPackageWindows;
         return this;
     }
 
@@ -59,8 +58,8 @@ public final class MdeOnboardingDataProperties {
      * 
      * @return the onboardingPackageLinux value.
      */
-    public byte[] onboardingPackageLinux() {
-        return CoreUtils.clone(this.onboardingPackageLinux);
+    public String onboardingPackageLinux() {
+        return this.onboardingPackageLinux;
     }
 
     /**
@@ -70,8 +69,8 @@ public final class MdeOnboardingDataProperties {
      * @param onboardingPackageLinux the onboardingPackageLinux value to set.
      * @return the MdeOnboardingDataProperties object itself.
      */
-    public MdeOnboardingDataProperties withOnboardingPackageLinux(byte[] onboardingPackageLinux) {
-        this.onboardingPackageLinux = CoreUtils.clone(onboardingPackageLinux);
+    public MdeOnboardingDataProperties withOnboardingPackageLinux(String onboardingPackageLinux) {
+        this.onboardingPackageLinux = onboardingPackageLinux;
         return this;
     }
 

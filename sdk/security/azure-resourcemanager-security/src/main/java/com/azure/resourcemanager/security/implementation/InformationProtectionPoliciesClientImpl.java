@@ -126,10 +126,9 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
             return Mono.error(new IllegalArgumentException(
                 "Parameter informationProtectionPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, scope,
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope,
                 informationProtectionPolicyName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -160,11 +159,10 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
             return Mono.error(new IllegalArgumentException(
                 "Parameter informationProtectionPolicyName is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, informationProtectionPolicyName, accept,
-            context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+            informationProtectionPolicyName, accept, context);
     }
 
     /**
@@ -253,11 +251,10 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
         } else {
             informationProtectionPolicy.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope,
-                informationProtectionPolicyName, informationProtectionPolicy, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                scope, informationProtectionPolicyName, informationProtectionPolicy, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -295,11 +292,10 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
         } else {
             informationProtectionPolicy.validate();
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, informationProtectionPolicyName,
-            informationProtectionPolicy, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+            informationProtectionPolicyName, informationProtectionPolicy, accept, context);
     }
 
     /**
@@ -383,10 +379,10 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
             .<PagedResponse<InformationProtectionPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -413,10 +409,9 @@ public final class InformationProtectionPoliciesClientImpl implements Informatio
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2017-08-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

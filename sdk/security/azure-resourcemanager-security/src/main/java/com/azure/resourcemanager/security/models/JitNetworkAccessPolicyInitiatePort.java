@@ -5,12 +5,15 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.Duration;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
- * The JitNetworkAccessPolicyInitiatePort model.
+ * A port to open access for. The model should contain either `allowedSourceAddressPrefix` or
+ * `allowedSourceAddressPrefixes`, but not both. The Model should contain either `duration` or `endTimeUtc`, but not
+ * both.
  */
 @Fluent
 public final class JitNetworkAccessPolicyInitiatePort {
@@ -27,9 +30,21 @@ public final class JitNetworkAccessPolicyInitiatePort {
     private String allowedSourceAddressPrefix;
 
     /*
-     * The time to close the request in UTC
+     * Mutually exclusive with the "allowedSourceAddressPrefix" parameter.
      */
-    @JsonProperty(value = "endTimeUtc", required = true)
+    @JsonProperty(value = "allowedSourceAddressPrefixes")
+    private List<String> allowedSourceAddressPrefixes;
+
+    /*
+     * ISO 8601 time duration for the JIT request
+     */
+    @JsonProperty(value = "duration")
+    private Duration duration;
+
+    /*
+     * ISO 8601 timestamp to close the request in UTC
+     */
+    @JsonProperty(value = "endTimeUtc")
     private OffsetDateTime endTimeUtc;
 
     /**
@@ -81,7 +96,50 @@ public final class JitNetworkAccessPolicyInitiatePort {
     }
 
     /**
-     * Get the endTimeUtc property: The time to close the request in UTC.
+     * Get the allowedSourceAddressPrefixes property: Mutually exclusive with the "allowedSourceAddressPrefix"
+     * parameter.
+     * 
+     * @return the allowedSourceAddressPrefixes value.
+     */
+    public List<String> allowedSourceAddressPrefixes() {
+        return this.allowedSourceAddressPrefixes;
+    }
+
+    /**
+     * Set the allowedSourceAddressPrefixes property: Mutually exclusive with the "allowedSourceAddressPrefix"
+     * parameter.
+     * 
+     * @param allowedSourceAddressPrefixes the allowedSourceAddressPrefixes value to set.
+     * @return the JitNetworkAccessPolicyInitiatePort object itself.
+     */
+    public JitNetworkAccessPolicyInitiatePort
+        withAllowedSourceAddressPrefixes(List<String> allowedSourceAddressPrefixes) {
+        this.allowedSourceAddressPrefixes = allowedSourceAddressPrefixes;
+        return this;
+    }
+
+    /**
+     * Get the duration property: ISO 8601 time duration for the JIT request.
+     * 
+     * @return the duration value.
+     */
+    public Duration duration() {
+        return this.duration;
+    }
+
+    /**
+     * Set the duration property: ISO 8601 time duration for the JIT request.
+     * 
+     * @param duration the duration value to set.
+     * @return the JitNetworkAccessPolicyInitiatePort object itself.
+     */
+    public JitNetworkAccessPolicyInitiatePort withDuration(Duration duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    /**
+     * Get the endTimeUtc property: ISO 8601 timestamp to close the request in UTC.
      * 
      * @return the endTimeUtc value.
      */
@@ -90,7 +148,7 @@ public final class JitNetworkAccessPolicyInitiatePort {
     }
 
     /**
-     * Set the endTimeUtc property: The time to close the request in UTC.
+     * Set the endTimeUtc property: ISO 8601 timestamp to close the request in UTC.
      * 
      * @param endTimeUtc the endTimeUtc value to set.
      * @return the JitNetworkAccessPolicyInitiatePort object itself.
@@ -106,12 +164,5 @@ public final class JitNetworkAccessPolicyInitiatePort {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (endTimeUtc() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property endTimeUtc in model JitNetworkAccessPolicyInitiatePort"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(JitNetworkAccessPolicyInitiatePort.class);
 }

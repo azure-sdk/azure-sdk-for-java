@@ -11,7 +11,7 @@ import com.azure.resourcemanager.security.models.WorkspaceSetting;
  */
 public final class WorkspaceSettingsUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2017-08-01-preview/examples/WorkspaceSettings/UpdateWorkspaceSetting_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-05-01-preview/examples/WorkspaceSettings/UpdateWorkspaceSetting_example.json
      */
     /**
      * Sample code: Update a workspace setting data for subscription.
@@ -25,6 +25,7 @@ public final class WorkspaceSettingsUpdateSamples {
         resource.update()
             .withWorkspaceId(
                 "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/myRg/providers/Microsoft.OperationalInsights/workspaces/myWorkspace")
+            .withScope("/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23")
             .apply();
     }
 }

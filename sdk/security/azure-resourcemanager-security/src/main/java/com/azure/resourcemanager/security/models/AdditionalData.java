@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SqlServerVulnerability", value = SqlServerVulnerabilityProperties.class),
     @JsonSubTypes.Type(name = "ContainerRegistryVulnerability", value = ContainerRegistryVulnerabilityProperties.class),
-    @JsonSubTypes.Type(name = "ServerVulnerabilityAssessment", value = ServerVulnerabilityProperties.class) })
+    @JsonSubTypes.Type(name = "ServerVulnerability", value = ServerVulnerabilityProperties.class) })
 @Immutable
 public class AdditionalData {
     /*

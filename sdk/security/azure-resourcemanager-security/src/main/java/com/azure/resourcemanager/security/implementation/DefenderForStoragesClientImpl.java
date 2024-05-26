@@ -105,11 +105,10 @@ public final class DefenderForStoragesClientImpl implements DefenderForStoragesC
         if (settingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
         }
-        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), apiVersion, resourceId, settingName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+                settingName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -138,10 +137,10 @@ public final class DefenderForStoragesClientImpl implements DefenderForStoragesC
         if (settingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
         }
-        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, settingName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, settingName, accept,
+            context);
     }
 
     /**
@@ -222,11 +221,10 @@ public final class DefenderForStoragesClientImpl implements DefenderForStoragesC
         } else {
             defenderForStorageSetting.validate();
         }
-        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion, resourceId, settingName,
-                defenderForStorageSetting, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(), resourceId,
+                settingName, defenderForStorageSetting, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -261,11 +259,10 @@ public final class DefenderForStoragesClientImpl implements DefenderForStoragesC
         } else {
             defenderForStorageSetting.validate();
         }
-        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, resourceId, settingName, defenderForStorageSetting,
-            accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), resourceId, settingName,
+            defenderForStorageSetting, accept, context);
     }
 
     /**
