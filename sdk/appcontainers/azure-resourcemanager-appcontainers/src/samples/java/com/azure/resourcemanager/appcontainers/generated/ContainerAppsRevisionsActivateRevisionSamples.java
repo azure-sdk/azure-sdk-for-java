@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class ContainerAppsRevisionsActivateRevisionSamples {
     /*
-     * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/Revisions_Activate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/Revisions_Activate.json
      */
     /**
      * Sample code: Activate Container App's revision.
@@ -19,7 +18,8 @@ public final class ContainerAppsRevisionsActivateRevisionSamples {
      */
     public static void
         activateContainerAppSRevision(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.containerAppsRevisions().activateRevisionWithResponse("rg", "testcontainerApp0",
-            "testcontainerApp0-pjxhsye", com.azure.core.util.Context.NONE);
+        manager.containerAppsRevisions()
+            .activateRevisionWithResponse("rg", "testcontainerApp0", "testcontainerApp0-pjxhsye",
+                com.azure.core.util.Context.NONE);
     }
 }

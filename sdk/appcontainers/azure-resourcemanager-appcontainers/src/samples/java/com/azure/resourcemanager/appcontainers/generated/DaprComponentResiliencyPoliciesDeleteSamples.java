@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class DaprComponentResiliencyPoliciesDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * DaprComponentResiliencyPolicies_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/DaprComponentResiliencyPolicies_Delete.json
      */
     /**
      * Sample code: Delete dapr component resiliency policy.
@@ -19,7 +18,8 @@ public final class DaprComponentResiliencyPoliciesDeleteSamples {
      */
     public static void
         deleteDaprComponentResiliencyPolicy(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.daprComponentResiliencyPolicies().deleteWithResponse("examplerg", "myenvironment", "mydaprcomponent",
-            "myresiliencypolicy", com.azure.core.util.Context.NONE);
+        manager.daprComponentResiliencyPolicies()
+            .deleteWithResponse("examplerg", "myenvironment", "mydaprcomponent", "myresiliencypolicy",
+                com.azure.core.util.Context.NONE);
     }
 }

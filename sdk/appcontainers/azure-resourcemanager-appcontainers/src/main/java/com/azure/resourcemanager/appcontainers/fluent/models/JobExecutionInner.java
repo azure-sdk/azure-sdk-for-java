@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.appcontainers.models.ExecutionStatus;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionRunningState;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -189,6 +190,29 @@ public final class JobExecutionInner {
             this.innerProperties = new JobExecutionProperties();
         }
         this.innerProperties().withTemplate(template);
+        return this;
+    }
+
+    /**
+     * Get the detailedStatus property: Detailed status of the job execution.
+     * 
+     * @return the detailedStatus value.
+     */
+    public ExecutionStatus detailedStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().detailedStatus();
+    }
+
+    /**
+     * Set the detailedStatus property: Detailed status of the job execution.
+     * 
+     * @param detailedStatus the detailedStatus value to set.
+     * @return the JobExecutionInner object itself.
+     */
+    public JobExecutionInner withDetailedStatus(ExecutionStatus detailedStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new JobExecutionProperties();
+        }
+        this.innerProperties().withDetailedStatus(detailedStatus);
         return this;
     }
 
