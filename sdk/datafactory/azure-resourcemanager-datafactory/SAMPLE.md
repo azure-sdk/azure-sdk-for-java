@@ -121,10 +121,6 @@
 - [Get](#managedvirtualnetworks_get)
 - [ListByFactory](#managedvirtualnetworks_listbyfactory)
 
-## Operations
-
-- [List](#operations_list)
-
 ## PipelineRuns
 
 - [Cancel](#pipelineruns_cancel)
@@ -2377,27 +2373,6 @@ public final class ManagedVirtualNetworksListByFactorySamples {
         managedVirtualNetworksListByFactory(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
         manager.managedVirtualNetworks()
             .listByFactory("exampleResourceGroup", "exampleFactoryName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
