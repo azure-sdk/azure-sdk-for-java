@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Update VM resource collection. */
+/**
+ * Update VM resource collection.
+ */
 @Fluent
 public final class VMCollectionUpdate {
     /*
@@ -18,19 +20,21 @@ public final class VMCollectionUpdate {
 
     /*
      * OperationName
-     *
+     * 
      * Operation to be performed for given VM.
      */
     @JsonProperty(value = "operationName")
     private OperationName operationName;
 
-    /** Creates an instance of VMCollectionUpdate class. */
+    /**
+     * Creates an instance of VMCollectionUpdate class.
+     */
     public VMCollectionUpdate() {
     }
 
     /**
      * Get the vmResourceId property: ARM id of the VM resource.
-     *
+     * 
      * @return the vmResourceId value.
      */
     public String vmResourceId() {
@@ -39,7 +43,7 @@ public final class VMCollectionUpdate {
 
     /**
      * Set the vmResourceId property: ARM id of the VM resource.
-     *
+     * 
      * @param vmResourceId the vmResourceId value to set.
      * @return the VMCollectionUpdate object itself.
      */
@@ -50,9 +54,9 @@ public final class VMCollectionUpdate {
 
     /**
      * Get the operationName property: OperationName
-     *
-     * <p>Operation to be performed for given VM.
-     *
+     * 
+     * Operation to be performed for given VM.
+     * 
      * @return the operationName value.
      */
     public OperationName operationName() {
@@ -61,9 +65,9 @@ public final class VMCollectionUpdate {
 
     /**
      * Set the operationName property: OperationName
-     *
-     * <p>Operation to be performed for given VM.
-     *
+     * 
+     * Operation to be performed for given VM.
+     * 
      * @param operationName the operationName value to set.
      * @return the VMCollectionUpdate object itself.
      */
@@ -74,7 +78,7 @@ public final class VMCollectionUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

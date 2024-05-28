@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the response we got from elastic while creating external user. */
+/**
+ * The properties of the response we got from elastic while creating external user.
+ */
 @Immutable
 public final class ExternalUserCreationResponseInner {
     /*
@@ -16,13 +18,15 @@ public final class ExternalUserCreationResponseInner {
     @JsonProperty(value = "created", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean created;
 
-    /** Creates an instance of ExternalUserCreationResponseInner class. */
+    /**
+     * Creates an instance of ExternalUserCreationResponseInner class.
+     */
     public ExternalUserCreationResponseInner() {
     }
 
     /**
      * Get the created property: Shows if user is created or updated.
-     *
+     * 
      * @return the created value.
      */
     public Boolean created() {
@@ -31,7 +35,7 @@ public final class ExternalUserCreationResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

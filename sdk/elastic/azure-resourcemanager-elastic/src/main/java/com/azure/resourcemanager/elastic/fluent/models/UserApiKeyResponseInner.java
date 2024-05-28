@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.elastic.models.UserApiKeyResponseProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The User Api Key created for the Organization associated with the User Email Id that was passed in the request. */
+/**
+ * The User Api Key created for the Organization associated with the User Email Id that was passed in the request.
+ */
 @Fluent
 public final class UserApiKeyResponseInner {
     /*
@@ -17,13 +19,15 @@ public final class UserApiKeyResponseInner {
     @JsonProperty(value = "properties")
     private UserApiKeyResponseProperties properties;
 
-    /** Creates an instance of UserApiKeyResponseInner class. */
+    /**
+     * Creates an instance of UserApiKeyResponseInner class.
+     */
     public UserApiKeyResponseInner() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public UserApiKeyResponseProperties properties() {
@@ -32,7 +36,7 @@ public final class UserApiKeyResponseInner {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the UserApiKeyResponseInner object itself.
      */
@@ -43,7 +47,7 @@ public final class UserApiKeyResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

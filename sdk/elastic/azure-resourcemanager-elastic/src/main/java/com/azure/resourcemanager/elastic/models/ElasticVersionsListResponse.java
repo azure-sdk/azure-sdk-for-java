@@ -9,7 +9,9 @@ import com.azure.resourcemanager.elastic.fluent.models.ElasticVersionListFormatI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of elastic versions available in a region. */
+/**
+ * List of elastic versions available in a region.
+ */
 @Fluent
 public final class ElasticVersionsListResponse {
     /*
@@ -24,13 +26,15 @@ public final class ElasticVersionsListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ElasticVersionsListResponse class. */
+    /**
+     * Creates an instance of ElasticVersionsListResponse class.
+     */
     public ElasticVersionsListResponse() {
     }
 
     /**
      * Get the value property: Results of a list operation.
-     *
+     * 
      * @return the value value.
      */
     public List<ElasticVersionListFormatInner> value() {
@@ -39,7 +43,7 @@ public final class ElasticVersionsListResponse {
 
     /**
      * Set the value property: Results of a list operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the ElasticVersionsListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class ElasticVersionsListResponse {
 
     /**
      * Get the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ElasticVersionsListResponse {
 
     /**
      * Set the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ElasticVersionsListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class ElasticVersionsListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

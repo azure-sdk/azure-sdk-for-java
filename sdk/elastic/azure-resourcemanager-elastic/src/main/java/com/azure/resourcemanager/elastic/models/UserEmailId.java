@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Email Id of the User Organization, of which the API Key must be returned. */
+/**
+ * Email Id of the User Organization, of which the API Key must be returned.
+ */
 @Fluent
 public final class UserEmailId {
     /*
@@ -16,13 +18,15 @@ public final class UserEmailId {
     @JsonProperty(value = "emailId")
     private String emailId;
 
-    /** Creates an instance of UserEmailId class. */
+    /**
+     * Creates an instance of UserEmailId class.
+     */
     public UserEmailId() {
     }
 
     /**
      * Get the emailId property: The User email Id.
-     *
+     * 
      * @return the emailId value.
      */
     public String emailId() {
@@ -31,7 +35,7 @@ public final class UserEmailId {
 
     /**
      * Set the emailId property: The User email Id.
-     *
+     * 
      * @param emailId the emailId value to set.
      * @return the UserEmailId object itself.
      */
@@ -42,7 +46,7 @@ public final class UserEmailId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Company information of the user to be passed to partners. */
+/**
+ * Company information of the user to be passed to partners.
+ */
 @Fluent
 public final class CompanyInfo {
     /*
@@ -40,13 +42,15 @@ public final class CompanyInfo {
     @JsonProperty(value = "country")
     private String country;
 
-    /** Creates an instance of CompanyInfo class. */
+    /**
+     * Creates an instance of CompanyInfo class.
+     */
     public CompanyInfo() {
     }
 
     /**
      * Get the domain property: Domain of the company.
-     *
+     * 
      * @return the domain value.
      */
     public String domain() {
@@ -55,7 +59,7 @@ public final class CompanyInfo {
 
     /**
      * Set the domain property: Domain of the company.
-     *
+     * 
      * @param domain the domain value to set.
      * @return the CompanyInfo object itself.
      */
@@ -66,7 +70,7 @@ public final class CompanyInfo {
 
     /**
      * Get the business property: Business of the company.
-     *
+     * 
      * @return the business value.
      */
     public String business() {
@@ -75,7 +79,7 @@ public final class CompanyInfo {
 
     /**
      * Set the business property: Business of the company.
-     *
+     * 
      * @param business the business value to set.
      * @return the CompanyInfo object itself.
      */
@@ -86,7 +90,7 @@ public final class CompanyInfo {
 
     /**
      * Get the employeesNumber property: Number of employees in the company.
-     *
+     * 
      * @return the employeesNumber value.
      */
     public String employeesNumber() {
@@ -95,7 +99,7 @@ public final class CompanyInfo {
 
     /**
      * Set the employeesNumber property: Number of employees in the company.
-     *
+     * 
      * @param employeesNumber the employeesNumber value to set.
      * @return the CompanyInfo object itself.
      */
@@ -106,7 +110,7 @@ public final class CompanyInfo {
 
     /**
      * Get the state property: State of the company location.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -115,7 +119,7 @@ public final class CompanyInfo {
 
     /**
      * Set the state property: State of the company location.
-     *
+     * 
      * @param state the state value to set.
      * @return the CompanyInfo object itself.
      */
@@ -126,7 +130,7 @@ public final class CompanyInfo {
 
     /**
      * Get the country property: Country of the company location.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -135,7 +139,7 @@ public final class CompanyInfo {
 
     /**
      * Set the country property: Country of the company location.
-     *
+     * 
      * @param country the country value to set.
      * @return the CompanyInfo object itself.
      */
@@ -146,7 +150,7 @@ public final class CompanyInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
