@@ -14,7 +14,9 @@ import com.azure.resourcemanager.loganalytics.models.WorkspaceSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Workspace properties. */
+/**
+ * Workspace properties.
+ */
 @Fluent
 public final class WorkspaceProperties {
     /*
@@ -36,8 +38,7 @@ public final class WorkspaceProperties {
     private WorkspaceSku sku;
 
     /*
-     * The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for
-     * details.
+     * The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for details.
      */
     @JsonProperty(value = "retentionInDays")
     private Integer retentionInDays;
@@ -91,19 +92,20 @@ public final class WorkspaceProperties {
     private WorkspaceFeatures features;
 
     /*
-     * The resource ID of the default Data Collection Rule to use for this workspace. Expected format is -
-     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}.
+     * The resource ID of the default Data Collection Rule to use for this workspace. Expected format is - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}.
      */
     @JsonProperty(value = "defaultDataCollectionRuleResourceId")
     private String defaultDataCollectionRuleResourceId;
 
-    /** Creates an instance of WorkspaceProperties class. */
+    /**
+     * Creates an instance of WorkspaceProperties class.
+     */
     public WorkspaceProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the workspace.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkspaceEntityStatus provisioningState() {
@@ -112,7 +114,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the customerId property: This is a read-only property. Represents the ID associated with the workspace.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -121,7 +123,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the sku property: The SKU of the workspace.
-     *
+     * 
      * @return the sku value.
      */
     public WorkspaceSku sku() {
@@ -130,7 +132,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the sku property: The SKU of the workspace.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -142,7 +144,7 @@ public final class WorkspaceProperties {
     /**
      * Get the retentionInDays property: The workspace data retention in days. Allowed values are per pricing plan. See
      * pricing tiers documentation for details.
-     *
+     * 
      * @return the retentionInDays value.
      */
     public Integer retentionInDays() {
@@ -152,7 +154,7 @@ public final class WorkspaceProperties {
     /**
      * Set the retentionInDays property: The workspace data retention in days. Allowed values are per pricing plan. See
      * pricing tiers documentation for details.
-     *
+     * 
      * @param retentionInDays the retentionInDays value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -163,7 +165,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the workspaceCapping property: The daily volume cap for ingestion.
-     *
+     * 
      * @return the workspaceCapping value.
      */
     public WorkspaceCapping workspaceCapping() {
@@ -172,7 +174,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the workspaceCapping property: The daily volume cap for ingestion.
-     *
+     * 
      * @param workspaceCapping the workspaceCapping value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -183,7 +185,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the createdDate property: Workspace creation date.
-     *
+     * 
      * @return the createdDate value.
      */
     public String createdDate() {
@@ -192,7 +194,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the modifiedDate property: Workspace modification date.
-     *
+     * 
      * @return the modifiedDate value.
      */
     public String modifiedDate() {
@@ -201,7 +203,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the publicNetworkAccessForIngestion property: The network access type for accessing Log Analytics ingestion.
-     *
+     * 
      * @return the publicNetworkAccessForIngestion value.
      */
     public PublicNetworkAccessType publicNetworkAccessForIngestion() {
@@ -210,19 +212,19 @@ public final class WorkspaceProperties {
 
     /**
      * Set the publicNetworkAccessForIngestion property: The network access type for accessing Log Analytics ingestion.
-     *
+     * 
      * @param publicNetworkAccessForIngestion the publicNetworkAccessForIngestion value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withPublicNetworkAccessForIngestion(
-        PublicNetworkAccessType publicNetworkAccessForIngestion) {
+    public WorkspaceProperties
+        withPublicNetworkAccessForIngestion(PublicNetworkAccessType publicNetworkAccessForIngestion) {
         this.publicNetworkAccessForIngestion = publicNetworkAccessForIngestion;
         return this;
     }
 
     /**
      * Get the publicNetworkAccessForQuery property: The network access type for accessing Log Analytics query.
-     *
+     * 
      * @return the publicNetworkAccessForQuery value.
      */
     public PublicNetworkAccessType publicNetworkAccessForQuery() {
@@ -231,7 +233,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the publicNetworkAccessForQuery property: The network access type for accessing Log Analytics query.
-     *
+     * 
      * @param publicNetworkAccessForQuery the publicNetworkAccessForQuery value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -242,7 +244,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the forceCmkForQuery property: Indicates whether customer managed storage is mandatory for query management.
-     *
+     * 
      * @return the forceCmkForQuery value.
      */
     public Boolean forceCmkForQuery() {
@@ -251,7 +253,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the forceCmkForQuery property: Indicates whether customer managed storage is mandatory for query management.
-     *
+     * 
      * @param forceCmkForQuery the forceCmkForQuery value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -262,7 +264,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the privateLinkScopedResources property: List of linked private link scope resources.
-     *
+     * 
      * @return the privateLinkScopedResources value.
      */
     public List<PrivateLinkScopedResource> privateLinkScopedResources() {
@@ -271,7 +273,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the features property: Workspace features.
-     *
+     * 
      * @return the features value.
      */
     public WorkspaceFeatures features() {
@@ -280,7 +282,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the features property: Workspace features.
-     *
+     * 
      * @param features the features value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -293,7 +295,7 @@ public final class WorkspaceProperties {
      * Get the defaultDataCollectionRuleResourceId property: The resource ID of the default Data Collection Rule to use
      * for this workspace. Expected format is -
      * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}.
-     *
+     * 
      * @return the defaultDataCollectionRuleResourceId value.
      */
     public String defaultDataCollectionRuleResourceId() {
@@ -304,7 +306,7 @@ public final class WorkspaceProperties {
      * Set the defaultDataCollectionRuleResourceId property: The resource ID of the default Data Collection Rule to use
      * for this workspace. Expected format is -
      * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}.
-     *
+     * 
      * @param defaultDataCollectionRuleResourceId the defaultDataCollectionRuleResourceId value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -315,7 +317,7 @@ public final class WorkspaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

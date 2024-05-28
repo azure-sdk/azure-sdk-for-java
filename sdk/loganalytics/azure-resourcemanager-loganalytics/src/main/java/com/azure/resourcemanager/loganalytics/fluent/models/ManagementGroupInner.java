@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A management group that is connected to a workspace. */
+/**
+ * A management group that is connected to a workspace.
+ */
 @Fluent
 public final class ManagementGroupInner {
     /*
@@ -17,13 +19,15 @@ public final class ManagementGroupInner {
     @JsonProperty(value = "properties")
     private ManagementGroupProperties innerProperties;
 
-    /** Creates an instance of ManagementGroupInner class. */
+    /**
+     * Creates an instance of ManagementGroupInner class.
+     */
     public ManagementGroupInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the management group.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ManagementGroupProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the serverCount property: The number of servers connected to the management group.
-     *
+     * 
      * @return the serverCount value.
      */
     public Integer serverCount() {
@@ -41,7 +45,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the serverCount property: The number of servers connected to the management group.
-     *
+     * 
      * @param serverCount the serverCount value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -55,7 +59,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the isGateway property: Gets or sets a value indicating whether the management group is a gateway.
-     *
+     * 
      * @return the isGateway value.
      */
     public Boolean isGateway() {
@@ -64,7 +68,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the isGateway property: Gets or sets a value indicating whether the management group is a gateway.
-     *
+     * 
      * @param isGateway the isGateway value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -78,7 +82,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the name property: The name of the management group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -87,7 +91,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the name property: The name of the management group.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -101,7 +105,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the id property: The unique ID of the management group.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -110,7 +114,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the id property: The unique ID of the management group.
-     *
+     * 
      * @param id the id value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -124,7 +128,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the created property: The datetime that the management group was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -133,7 +137,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the created property: The datetime that the management group was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -147,7 +151,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the dataReceived property: The last datetime that the management group received data.
-     *
+     * 
      * @return the dataReceived value.
      */
     public OffsetDateTime dataReceived() {
@@ -156,7 +160,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the dataReceived property: The last datetime that the management group received data.
-     *
+     * 
      * @param dataReceived the dataReceived value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -170,7 +174,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the version property: The version of System Center that is managing the management group.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -179,7 +183,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the version property: The version of System Center that is managing the management group.
-     *
+     * 
      * @param version the version value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -193,7 +197,7 @@ public final class ManagementGroupInner {
 
     /**
      * Get the sku property: The SKU of System Center that is managing the management group.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -202,7 +206,7 @@ public final class ManagementGroupInner {
 
     /**
      * Set the sku property: The SKU of System Center that is managing the management group.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ManagementGroupInner object itself.
      */
@@ -216,7 +220,7 @@ public final class ManagementGroupInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

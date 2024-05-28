@@ -13,19 +13,19 @@ import com.azure.resourcemanager.loganalytics.models.SearchResults;
 import com.azure.resourcemanager.loganalytics.models.TablePlanEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Table properties. */
+/**
+ * Table properties.
+ */
 @Fluent
 public final class TableProperties {
     /*
-     * The table retention in days, between 4 and 730. Setting this property to -1 will default to the workspace
-     * retention.
+     * The table retention in days, between 4 and 730. Setting this property to -1 will default to the workspace retention.
      */
     @JsonProperty(value = "retentionInDays")
     private Integer retentionInDays;
 
     /*
-     * The table total retention in days, between 4 and 2556. Setting this property to -1 will default to table
-     * retention.
+     * The table total retention in days, between 4 and 4383. Setting this property to -1 will default to table retention.
      */
     @JsonProperty(value = "totalRetentionInDays")
     private Integer totalRetentionInDays;
@@ -73,8 +73,7 @@ public final class TableProperties {
     private Schema schema;
 
     /*
-     * Table's current provisioning state. If set to 'updating', indicates a resource lock due to ongoing operation,
-     * forbidding any update to the table until the ongoing operation is concluded.
+     * Table's current provisioning state. If set to 'updating', indicates a resource lock due to ongoing operation, forbidding any update to the table until the ongoing operation is concluded.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
@@ -91,14 +90,16 @@ public final class TableProperties {
     @JsonProperty(value = "totalRetentionInDaysAsDefault", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean totalRetentionInDaysAsDefault;
 
-    /** Creates an instance of TableProperties class. */
+    /**
+     * Creates an instance of TableProperties class.
+     */
     public TableProperties() {
     }
 
     /**
      * Get the retentionInDays property: The table retention in days, between 4 and 730. Setting this property to -1
      * will default to the workspace retention.
-     *
+     * 
      * @return the retentionInDays value.
      */
     public Integer retentionInDays() {
@@ -108,7 +109,7 @@ public final class TableProperties {
     /**
      * Set the retentionInDays property: The table retention in days, between 4 and 730. Setting this property to -1
      * will default to the workspace retention.
-     *
+     * 
      * @param retentionInDays the retentionInDays value to set.
      * @return the TableProperties object itself.
      */
@@ -118,9 +119,9 @@ public final class TableProperties {
     }
 
     /**
-     * Get the totalRetentionInDays property: The table total retention in days, between 4 and 2556. Setting this
+     * Get the totalRetentionInDays property: The table total retention in days, between 4 and 4383. Setting this
      * property to -1 will default to table retention.
-     *
+     * 
      * @return the totalRetentionInDays value.
      */
     public Integer totalRetentionInDays() {
@@ -128,9 +129,9 @@ public final class TableProperties {
     }
 
     /**
-     * Set the totalRetentionInDays property: The table total retention in days, between 4 and 2556. Setting this
+     * Set the totalRetentionInDays property: The table total retention in days, between 4 and 4383. Setting this
      * property to -1 will default to table retention.
-     *
+     * 
      * @param totalRetentionInDays the totalRetentionInDays value to set.
      * @return the TableProperties object itself.
      */
@@ -142,7 +143,7 @@ public final class TableProperties {
     /**
      * Get the archiveRetentionInDays property: The table data archive retention in days. Calculated as
      * (totalRetentionInDays-retentionInDays).
-     *
+     * 
      * @return the archiveRetentionInDays value.
      */
     public Integer archiveRetentionInDays() {
@@ -151,7 +152,7 @@ public final class TableProperties {
 
     /**
      * Get the searchResults property: Parameters of the search job that initiated this table.
-     *
+     * 
      * @return the searchResults value.
      */
     public SearchResults searchResults() {
@@ -160,7 +161,7 @@ public final class TableProperties {
 
     /**
      * Set the searchResults property: Parameters of the search job that initiated this table.
-     *
+     * 
      * @param searchResults the searchResults value to set.
      * @return the TableProperties object itself.
      */
@@ -171,7 +172,7 @@ public final class TableProperties {
 
     /**
      * Get the restoredLogs property: Parameters of the restore operation that initiated this table.
-     *
+     * 
      * @return the restoredLogs value.
      */
     public RestoredLogs restoredLogs() {
@@ -180,7 +181,7 @@ public final class TableProperties {
 
     /**
      * Set the restoredLogs property: Parameters of the restore operation that initiated this table.
-     *
+     * 
      * @param restoredLogs the restoredLogs value to set.
      * @return the TableProperties object itself.
      */
@@ -191,7 +192,7 @@ public final class TableProperties {
 
     /**
      * Get the resultStatistics property: Search job execution statistics.
-     *
+     * 
      * @return the resultStatistics value.
      */
     public ResultStatistics resultStatistics() {
@@ -200,7 +201,7 @@ public final class TableProperties {
 
     /**
      * Get the plan property: Instruct the system how to handle and charge the logs ingested to this table.
-     *
+     * 
      * @return the plan value.
      */
     public TablePlanEnum plan() {
@@ -209,7 +210,7 @@ public final class TableProperties {
 
     /**
      * Set the plan property: Instruct the system how to handle and charge the logs ingested to this table.
-     *
+     * 
      * @param plan the plan value to set.
      * @return the TableProperties object itself.
      */
@@ -220,7 +221,7 @@ public final class TableProperties {
 
     /**
      * Get the lastPlanModifiedDate property: The timestamp that table plan was last modified (UTC).
-     *
+     * 
      * @return the lastPlanModifiedDate value.
      */
     public String lastPlanModifiedDate() {
@@ -229,7 +230,7 @@ public final class TableProperties {
 
     /**
      * Get the schema property: Table schema.
-     *
+     * 
      * @return the schema value.
      */
     public Schema schema() {
@@ -238,7 +239,7 @@ public final class TableProperties {
 
     /**
      * Set the schema property: Table schema.
-     *
+     * 
      * @param schema the schema value to set.
      * @return the TableProperties object itself.
      */
@@ -251,7 +252,7 @@ public final class TableProperties {
      * Get the provisioningState property: Table's current provisioning state. If set to 'updating', indicates a
      * resource lock due to ongoing operation, forbidding any update to the table until the ongoing operation is
      * concluded.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -261,7 +262,7 @@ public final class TableProperties {
     /**
      * Get the retentionInDaysAsDefault property: True - Value originates from workspace retention in days, False -
      * Customer specific.
-     *
+     * 
      * @return the retentionInDaysAsDefault value.
      */
     public Boolean retentionInDaysAsDefault() {
@@ -271,7 +272,7 @@ public final class TableProperties {
     /**
      * Get the totalRetentionInDaysAsDefault property: True - Value originates from retention in days, False - Customer
      * specific.
-     *
+     * 
      * @return the totalRetentionInDaysAsDefault value.
      */
     public Boolean totalRetentionInDaysAsDefault() {
@@ -280,7 +281,7 @@ public final class TableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

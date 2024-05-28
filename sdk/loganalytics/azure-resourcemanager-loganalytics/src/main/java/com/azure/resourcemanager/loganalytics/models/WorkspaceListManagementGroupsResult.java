@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.ManagementGroupInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list workspace management groups operation response. */
+/**
+ * The list workspace management groups operation response.
+ */
 @Fluent
 public final class WorkspaceListManagementGroupsResult {
     /*
@@ -18,13 +20,15 @@ public final class WorkspaceListManagementGroupsResult {
     @JsonProperty(value = "value")
     private List<ManagementGroupInner> value;
 
-    /** Creates an instance of WorkspaceListManagementGroupsResult class. */
+    /**
+     * Creates an instance of WorkspaceListManagementGroupsResult class.
+     */
     public WorkspaceListManagementGroupsResult() {
     }
 
     /**
      * Get the value property: Gets or sets a list of management groups attached to the workspace.
-     *
+     * 
      * @return the value value.
      */
     public List<ManagementGroupInner> value() {
@@ -33,7 +37,7 @@ public final class WorkspaceListManagementGroupsResult {
 
     /**
      * Set the value property: Gets or sets a list of management groups attached to the workspace.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceListManagementGroupsResult object itself.
      */
@@ -44,7 +48,7 @@ public final class WorkspaceListManagementGroupsResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
