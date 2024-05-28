@@ -17,8 +17,7 @@ public final class EndpointPropertiesBaseImpl implements EndpointPropertiesBase 
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    EndpointPropertiesBaseImpl(
-        EndpointPropertiesBaseInner innerObject,
+    EndpointPropertiesBaseImpl(EndpointPropertiesBaseInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

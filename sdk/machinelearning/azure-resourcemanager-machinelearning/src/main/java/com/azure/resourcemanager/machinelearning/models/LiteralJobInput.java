@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Literal input type. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
+/**
+ * Literal input type.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobInputType",
+    defaultImpl = LiteralJobInput.class,
+    visible = true)
 @JsonTypeName("literal")
 @Fluent
 public final class LiteralJobInput extends JobInput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobInputType", required = true)
+    private JobInputType jobInputType = JobInputType.LITERAL;
+
     /*
      * [Required] Literal value for the input.
      */
     @JsonProperty(value = "value", required = true)
     private String value;
 
-    /** Creates an instance of LiteralJobInput class. */
+    /**
+     * Creates an instance of LiteralJobInput class.
+     */
     public LiteralJobInput() {
     }
 
     /**
+     * Get the jobInputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobInputType value.
+     */
+    @Override
+    public JobInputType jobInputType() {
+        return this.jobInputType;
+    }
+
+    /**
      * Get the value property: [Required] Literal value for the input.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -36,7 +62,7 @@ public final class LiteralJobInput extends JobInput {
 
     /**
      * Set the value property: [Required] Literal value for the input.
-     *
+     * 
      * @param value the value value to set.
      * @return the LiteralJobInput object itself.
      */
@@ -45,7 +71,9 @@ public final class LiteralJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LiteralJobInput withDescription(String description) {
         super.withDescription(description);
@@ -54,16 +82,15 @@ public final class LiteralJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model LiteralJobInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model LiteralJobInput"));
         }
     }
 

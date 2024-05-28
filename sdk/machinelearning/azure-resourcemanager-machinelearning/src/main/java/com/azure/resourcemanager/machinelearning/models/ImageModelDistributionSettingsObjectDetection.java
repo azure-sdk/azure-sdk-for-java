@@ -8,11 +8,17 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Distribution expressions to sweep over values of model settings. &lt;example&gt; Some examples are: &lt;code&gt;
- * ModelName = "choice('seresnext', 'resnest50')"; LearningRate = "uniform(0.001, 0.01)"; LayersToFreeze = "choice(0,
- * 2)"; &lt;/code&gt;&lt;/example&gt; For more details on how to compose distribution expressions please check the
- * documentation: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters For more
- * information on the available settings please visit the official documentation:
+ * Distribution expressions to sweep over values of model settings.
+ * &lt;example&gt;
+ * Some examples are:
+ * ```
+ * ModelName = "choice('seresnext', 'resnest50')";
+ * LearningRate = "uniform(0.001, 0.01)";
+ * LayersToFreeze = "choice(0, 2)";
+ * ```&lt;/example&gt;
+ * For more details on how to compose distribution expressions please check the documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
+ * For more information on the available settings please visit the official documentation:
  * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
@@ -113,14 +119,17 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     @JsonProperty(value = "validationMetricType")
     private String validationMetricType;
 
-    /** Creates an instance of ImageModelDistributionSettingsObjectDetection class. */
+    /**
+     * Creates an instance of ImageModelDistributionSettingsObjectDetection class.
+     */
     public ImageModelDistributionSettingsObjectDetection() {
     }
 
     /**
      * Get the boxDetectionsPerImage property: Maximum number of detections per image, for all classes. Must be a
-     * positive integer. Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * positive integer.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the boxDetectionsPerImage value.
      */
     public String boxDetectionsPerImage() {
@@ -129,8 +138,9 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Set the boxDetectionsPerImage property: Maximum number of detections per image, for all classes. Must be a
-     * positive integer. Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * positive integer.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param boxDetectionsPerImage the boxDetectionsPerImage value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -141,8 +151,9 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Get the boxScoreThreshold property: During inference, only return proposals with a classification score greater
-     * than BoxScoreThreshold. Must be a float in the range[0, 1].
-     *
+     * than
+     * BoxScoreThreshold. Must be a float in the range[0, 1].
+     * 
      * @return the boxScoreThreshold value.
      */
     public String boxScoreThreshold() {
@@ -151,8 +162,9 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Set the boxScoreThreshold property: During inference, only return proposals with a classification score greater
-     * than BoxScoreThreshold. Must be a float in the range[0, 1].
-     *
+     * than
+     * BoxScoreThreshold. Must be a float in the range[0, 1].
+     * 
      * @param boxScoreThreshold the boxScoreThreshold value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -162,10 +174,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the imageSize property: Image size for train and validation. Must be a positive integer. Note: The training
-     * run may get into CUDA OOM if the size is too big. Note: This settings is only supported for the 'yolov5'
-     * algorithm.
-     *
+     * Get the imageSize property: Image size for train and validation. Must be a positive integer.
+     * Note: The training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the imageSize value.
      */
     public String imageSize() {
@@ -173,10 +185,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the imageSize property: Image size for train and validation. Must be a positive integer. Note: The training
-     * run may get into CUDA OOM if the size is too big. Note: This settings is only supported for the 'yolov5'
-     * algorithm.
-     *
+     * Set the imageSize property: Image size for train and validation. Must be a positive integer.
+     * Note: The training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param imageSize the imageSize value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -186,10 +198,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the maxSize value.
      */
     public String maxSize() {
@@ -197,10 +209,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param maxSize the maxSize value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -210,10 +222,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the minSize value.
      */
     public String minSize() {
@@ -221,10 +233,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param minSize the minSize value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -234,9 +246,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'. Note: training run may
-     * get into CUDA OOM if the model size is too big. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Get the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'.
+     * Note: training run may get into CUDA OOM if the model size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the modelSize value.
      */
     public String modelSize() {
@@ -244,9 +257,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'. Note: training run may
-     * get into CUDA OOM if the model size is too big. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Set the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'.
+     * Note: training run may get into CUDA OOM if the model size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param modelSize the modelSize value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -256,9 +270,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the multiScale property: Enable multi-scale image by varying image size by +/- 50%. Note: training run may
-     * get into CUDA OOM if no sufficient GPU memory. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Get the multiScale property: Enable multi-scale image by varying image size by +/- 50%.
+     * Note: training run may get into CUDA OOM if no sufficient GPU memory.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the multiScale value.
      */
     public String multiScale() {
@@ -266,9 +281,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the multiScale property: Enable multi-scale image by varying image size by +/- 50%. Note: training run may
-     * get into CUDA OOM if no sufficient GPU memory. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Set the multiScale property: Enable multi-scale image by varying image size by +/- 50%.
+     * Note: training run may get into CUDA OOM if no sufficient GPU memory.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param multiScale the multiScale value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -280,7 +296,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Get the nmsIouThreshold property: IOU threshold used during inference in NMS post processing. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @return the nmsIouThreshold value.
      */
     public String nmsIouThreshold() {
@@ -290,7 +306,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Set the nmsIouThreshold property: IOU threshold used during inference in NMS post processing. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @param nmsIouThreshold the nmsIouThreshold value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -300,10 +316,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Get the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be None to
-     * enable small object detection logic. A string containing two integers in mxn format. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be
+     * None to enable small object detection logic. A string containing two integers in mxn format.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the tileGridSize value.
      */
     public String tileGridSize() {
@@ -311,10 +327,10 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     }
 
     /**
-     * Set the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be None to
-     * enable small object detection logic. A string containing two integers in mxn format. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be
+     * None to enable small object detection logic. A string containing two integers in mxn format.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param tileGridSize the tileGridSize value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -325,8 +341,9 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Get the tileOverlapRatio property: Overlap ratio between adjacent tiles in each dimension. Must be float in the
-     * range [0, 1). Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * range [0, 1).
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the tileOverlapRatio value.
      */
     public String tileOverlapRatio() {
@@ -335,8 +352,9 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Set the tileOverlapRatio property: Overlap ratio between adjacent tiles in each dimension. Must be float in the
-     * range [0, 1). Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * range [0, 1).
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param tileOverlapRatio the tileOverlapRatio value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -347,9 +365,11 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Get the tilePredictionsNmsThreshold property: The IOU threshold to use to perform NMS while merging predictions
-     * from tiles and image. Used in validation/ inference. Must be float in the range [0, 1]. Note: This settings is
-     * not supported for the 'yolov5' algorithm. NMS: Non-maximum suppression.
-     *
+     * from tiles and image.
+     * Used in validation/ inference. Must be float in the range [0, 1].
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * NMS: Non-maximum suppression.
+     * 
      * @return the tilePredictionsNmsThreshold value.
      */
     public String tilePredictionsNmsThreshold() {
@@ -358,14 +378,16 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Set the tilePredictionsNmsThreshold property: The IOU threshold to use to perform NMS while merging predictions
-     * from tiles and image. Used in validation/ inference. Must be float in the range [0, 1]. Note: This settings is
-     * not supported for the 'yolov5' algorithm. NMS: Non-maximum suppression.
-     *
+     * from tiles and image.
+     * Used in validation/ inference. Must be float in the range [0, 1].
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * NMS: Non-maximum suppression.
+     * 
      * @param tilePredictionsNmsThreshold the tilePredictionsNmsThreshold value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
-    public ImageModelDistributionSettingsObjectDetection withTilePredictionsNmsThreshold(
-        String tilePredictionsNmsThreshold) {
+    public ImageModelDistributionSettingsObjectDetection
+        withTilePredictionsNmsThreshold(String tilePredictionsNmsThreshold) {
         this.tilePredictionsNmsThreshold = tilePredictionsNmsThreshold;
         return this;
     }
@@ -373,7 +395,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Get the validationIouThreshold property: IOU threshold to use when computing validation metric. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @return the validationIouThreshold value.
      */
     public String validationIouThreshold() {
@@ -383,7 +405,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Set the validationIouThreshold property: IOU threshold to use when computing validation metric. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @param validationIouThreshold the validationIouThreshold value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -395,7 +417,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Get the validationMetricType property: Metric computation method to use for validation metrics. Must be 'none',
      * 'coco', 'voc', or 'coco_voc'.
-     *
+     * 
      * @return the validationMetricType value.
      */
     public String validationMetricType() {
@@ -405,7 +427,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
     /**
      * Set the validationMetricType property: Metric computation method to use for validation metrics. Must be 'none',
      * 'coco', 'voc', or 'coco_voc'.
-     *
+     * 
      * @param validationMetricType the validationMetricType value to set.
      * @return the ImageModelDistributionSettingsObjectDetection object itself.
      */
@@ -414,197 +436,253 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withAmsGradient(String amsGradient) {
         super.withAmsGradient(amsGradient);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withAugmentations(String augmentations) {
         super.withAugmentations(augmentations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withBeta1(String beta1) {
         super.withBeta1(beta1);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withBeta2(String beta2) {
         super.withBeta2(beta2);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withDistributed(String distributed) {
         super.withDistributed(distributed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withEarlyStopping(String earlyStopping) {
         super.withEarlyStopping(earlyStopping);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withEarlyStoppingDelay(String earlyStoppingDelay) {
         super.withEarlyStoppingDelay(earlyStoppingDelay);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withEarlyStoppingPatience(String earlyStoppingPatience) {
         super.withEarlyStoppingPatience(earlyStoppingPatience);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withEnableOnnxNormalization(String enableOnnxNormalization) {
         super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withEvaluationFrequency(String evaluationFrequency) {
         super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withGradientAccumulationStep(String gradientAccumulationStep) {
         super.withGradientAccumulationStep(gradientAccumulationStep);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withLayersToFreeze(String layersToFreeze) {
         super.withLayersToFreeze(layersToFreeze);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withLearningRate(String learningRate) {
         super.withLearningRate(learningRate);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withLearningRateScheduler(String learningRateScheduler) {
         super.withLearningRateScheduler(learningRateScheduler);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withModelName(String modelName) {
         super.withModelName(modelName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withMomentum(String momentum) {
         super.withMomentum(momentum);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withNesterov(String nesterov) {
         super.withNesterov(nesterov);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withNumberOfEpochs(String numberOfEpochs) {
         super.withNumberOfEpochs(numberOfEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withNumberOfWorkers(String numberOfWorkers) {
         super.withNumberOfWorkers(numberOfWorkers);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withOptimizer(String optimizer) {
         super.withOptimizer(optimizer);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withRandomSeed(String randomSeed) {
         super.withRandomSeed(randomSeed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withStepLRGamma(String stepLRGamma) {
         super.withStepLRGamma(stepLRGamma);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withStepLRStepSize(String stepLRStepSize) {
         super.withStepLRStepSize(stepLRStepSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withTrainingBatchSize(String trainingBatchSize) {
         super.withTrainingBatchSize(trainingBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withValidationBatchSize(String validationBatchSize) {
         super.withValidationBatchSize(validationBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withWarmupCosineLRCycles(String warmupCosineLRCycles) {
         super.withWarmupCosineLRCycles(warmupCosineLRCycles);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ImageModelDistributionSettingsObjectDetection withWarmupCosineLRWarmupEpochs(
-        String warmupCosineLRWarmupEpochs) {
+    public ImageModelDistributionSettingsObjectDetection
+        withWarmupCosineLRWarmupEpochs(String warmupCosineLRWarmupEpochs) {
         super.withWarmupCosineLRWarmupEpochs(warmupCosineLRWarmupEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsObjectDetection withWeightDecay(String weightDecay) {
         super.withWeightDecay(weightDecay);
@@ -613,7 +691,7 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

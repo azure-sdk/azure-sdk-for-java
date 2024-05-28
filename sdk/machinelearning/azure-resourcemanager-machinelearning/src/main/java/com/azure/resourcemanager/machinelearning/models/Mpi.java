@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** MPI distribution configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "distributionType")
+/**
+ * MPI distribution configuration.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "distributionType", defaultImpl = Mpi.class, visible = true)
 @JsonTypeName("Mpi")
 @Fluent
 public final class Mpi extends DistributionConfiguration {
+    /*
+     * [Required] Specifies the type of distribution framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "distributionType", required = true)
+    private DistributionType distributionType = DistributionType.MPI;
+
     /*
      * Number of processes per MPI node.
      */
     @JsonProperty(value = "processCountPerInstance")
     private Integer processCountPerInstance;
 
-    /** Creates an instance of Mpi class. */
+    /**
+     * Creates an instance of Mpi class.
+     */
     public Mpi() {
     }
 
     /**
+     * Get the distributionType property: [Required] Specifies the type of distribution framework.
+     * 
+     * @return the distributionType value.
+     */
+    @Override
+    public DistributionType distributionType() {
+        return this.distributionType;
+    }
+
+    /**
      * Get the processCountPerInstance property: Number of processes per MPI node.
-     *
+     * 
      * @return the processCountPerInstance value.
      */
     public Integer processCountPerInstance() {
@@ -35,7 +57,7 @@ public final class Mpi extends DistributionConfiguration {
 
     /**
      * Set the processCountPerInstance property: Number of processes per MPI node.
-     *
+     * 
      * @param processCountPerInstance the processCountPerInstance value to set.
      * @return the Mpi object itself.
      */
@@ -46,7 +68,7 @@ public final class Mpi extends DistributionConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
