@@ -4,25 +4,29 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A list which includes all the compliance result for one report. */
-@Fluent
+/**
+ * A list which includes all the compliance result for one report.
+ */
+@Immutable
 public final class ReportComplianceStatus {
     /*
      * The Microsoft 365 certification name.
      */
-    @JsonProperty(value = "m365")
+    @JsonProperty(value = "m365", access = JsonProperty.Access.WRITE_ONLY)
     private OverviewStatus m365;
 
-    /** Creates an instance of ReportComplianceStatus class. */
+    /**
+     * Creates an instance of ReportComplianceStatus class.
+     */
     public ReportComplianceStatus() {
     }
 
     /**
      * Get the m365 property: The Microsoft 365 certification name.
-     *
+     * 
      * @return the m365 value.
      */
     public OverviewStatus m365() {
@@ -30,19 +34,8 @@ public final class ReportComplianceStatus {
     }
 
     /**
-     * Set the m365 property: The Microsoft 365 certification name.
-     *
-     * @param m365 the m365 value to set.
-     * @return the ReportComplianceStatus object itself.
-     */
-    public ReportComplianceStatus withM365(OverviewStatus m365) {
-        this.m365 = m365;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

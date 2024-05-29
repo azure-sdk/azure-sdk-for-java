@@ -4,15 +4,12 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.implementation;
 
-import com.azure.core.http.rest.Response;
-import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.ReportOperationsClient;
-import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportVerificationResultInner;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportOperations;
-import com.azure.resourcemanager.appcomplianceautomation.models.ReportResource;
-import com.azure.resourcemanager.appcomplianceautomation.models.ReportResourcePatch;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportVerificationResult;
 
 public final class ReportOperationsImpl implements ReportOperations {
     private static final ClientLogger LOGGER = new ClientLogger(ReportOperationsImpl.class);
@@ -21,77 +18,28 @@ public final class ReportOperationsImpl implements ReportOperations {
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    public ReportOperationsImpl(
-        ReportOperationsClient innerClient,
+    public ReportOperationsImpl(ReportOperationsClient innerClient,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<ReportResource> getWithResponse(String reportName, Context context) {
-        Response<ReportResourceInner> inner = this.serviceClient().getWithResponse(reportName, context);
+    public ReportVerificationResult verify(String reportName) {
+        ReportVerificationResultInner inner = this.serviceClient().verify(reportName);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ReportResourceImpl(inner.getValue(), this.manager()));
+            return new ReportVerificationResultImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public ReportResource get(String reportName) {
-        ReportResourceInner inner = this.serviceClient().get(reportName);
+    public ReportVerificationResult verify(String reportName, Context context) {
+        ReportVerificationResultInner inner = this.serviceClient().verify(reportName, context);
         if (inner != null) {
-            return new ReportResourceImpl(inner, this.manager());
+            return new ReportVerificationResultImpl(inner, this.manager());
         } else {
             return null;
         }
-    }
-
-    public ReportResource createOrUpdate(String reportName, ReportResourceInner parameters) {
-        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, parameters);
-        if (inner != null) {
-            return new ReportResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ReportResource createOrUpdate(String reportName, ReportResourceInner parameters, Context context) {
-        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, parameters, context);
-        if (inner != null) {
-            return new ReportResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ReportResource update(String reportName, ReportResourcePatch parameters) {
-        ReportResourceInner inner = this.serviceClient().update(reportName, parameters);
-        if (inner != null) {
-            return new ReportResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ReportResource update(String reportName, ReportResourcePatch parameters, Context context) {
-        ReportResourceInner inner = this.serviceClient().update(reportName, parameters, context);
-        if (inner != null) {
-            return new ReportResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public void delete(String reportName) {
-        this.serviceClient().delete(reportName);
-    }
-
-    public void delete(String reportName, Context context) {
-        this.serviceClient().delete(reportName, context);
     }
 
     private ReportOperationsClient serviceClient() {
