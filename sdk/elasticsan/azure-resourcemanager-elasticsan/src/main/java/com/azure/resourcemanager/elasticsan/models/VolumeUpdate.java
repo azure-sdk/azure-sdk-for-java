@@ -81,6 +81,29 @@ public final class VolumeUpdate {
     }
 
     /**
+     * Get the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @return the softDeleteEnabled value.
+     */
+    public Boolean softDeleteEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeleteEnabled();
+    }
+
+    /**
+     * Set the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @param softDeleteEnabled the softDeleteEnabled value to set.
+     * @return the VolumeUpdate object itself.
+     */
+    public VolumeUpdate withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumeUpdateProperties();
+        }
+        this.innerProperties().withSoftDeleteEnabled(softDeleteEnabled);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

@@ -11,8 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeGroupsClient;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeGroupInner;
+import com.azure.resourcemanager.elasticsan.models.Purge;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroup;
 import com.azure.resourcemanager.elasticsan.models.VolumeGroups;
+import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources;
 
 public final class VolumeGroupsImpl implements VolumeGroups {
     private static final ClientLogger LOGGER = new ClientLogger(VolumeGroupsImpl.class);
@@ -34,9 +36,9 @@ public final class VolumeGroupsImpl implements VolumeGroups {
     }
 
     public PagedIterable<VolumeGroup> listByElasticSan(String resourceGroupName, String elasticSanName,
-        Context context) {
-        PagedIterable<VolumeGroupInner> inner
-            = this.serviceClient().listByElasticSan(resourceGroupName, elasticSanName, context);
+        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
+        PagedIterable<VolumeGroupInner> inner = this.serviceClient()
+            .listByElasticSan(resourceGroupName, elasticSanName, xMsAccessSoftDeletedResources, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeGroupImpl(inner1, this.manager()));
     }
 
@@ -44,14 +46,16 @@ public final class VolumeGroupsImpl implements VolumeGroups {
         this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName);
     }
 
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Context context) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, context);
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Purge purge,
+        Context context) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, purge, context);
     }
 
     public Response<VolumeGroup> getWithResponse(String resourceGroupName, String elasticSanName,
-        String volumeGroupName, Context context) {
-        Response<VolumeGroupInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, context);
+        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
+        Response<VolumeGroupInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, xMsAccessSoftDeletedResources,
+                context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VolumeGroupImpl(inner.getValue(), this.manager()));
@@ -85,10 +89,15 @@ public final class VolumeGroupsImpl implements VolumeGroups {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumegroups'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, Context.NONE).getValue();
+        XMsAccessSoftDeletedResources localXMsAccessSoftDeletedResources = null;
+        return this
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, localXMsAccessSoftDeletedResources,
+                Context.NONE)
+            .getValue();
     }
 
-    public Response<VolumeGroup> getByIdWithResponse(String id, Context context) {
+    public Response<VolumeGroup> getByIdWithResponse(String id,
+        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -104,7 +113,8 @@ public final class VolumeGroupsImpl implements VolumeGroups {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumegroups'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, context);
+        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, xMsAccessSoftDeletedResources,
+            context);
     }
 
     public void deleteById(String id) {
@@ -123,10 +133,11 @@ public final class VolumeGroupsImpl implements VolumeGroups {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumegroups'.", id)));
         }
-        this.delete(resourceGroupName, elasticSanName, volumeGroupName, Context.NONE);
+        Purge localPurge = null;
+        this.delete(resourceGroupName, elasticSanName, volumeGroupName, localPurge, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Purge purge, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -142,7 +153,7 @@ public final class VolumeGroupsImpl implements VolumeGroups {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumegroups'.", id)));
         }
-        this.delete(resourceGroupName, elasticSanName, volumeGroupName, context);
+        this.delete(resourceGroupName, elasticSanName, volumeGroupName, purge, context);
     }
 
     private VolumeGroupsClient serviceClient() {

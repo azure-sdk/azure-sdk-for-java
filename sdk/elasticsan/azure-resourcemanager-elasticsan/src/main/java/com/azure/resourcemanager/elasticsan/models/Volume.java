@@ -69,6 +69,13 @@ public interface Volume {
     IscsiTargetInfo storageTarget();
 
     /**
+     * Gets the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @return the softDeleteEnabled value.
+     */
+    Boolean softDeleteEnabled();
+
+    /**
      * Gets the managedBy property: Parent resource information.
      * 
      * @return the managedBy value.
@@ -146,7 +153,8 @@ public interface Volume {
          * The stage of the Volume definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithCreationData, DefinitionStages.WithManagedBy {
+        interface WithCreate extends DefinitionStages.WithCreationData, DefinitionStages.WithSoftDeleteEnabled,
+            DefinitionStages.WithManagedBy {
             /**
              * Executes the create request.
              * 
@@ -177,6 +185,19 @@ public interface Volume {
         }
 
         /**
+         * The stage of the Volume definition allowing to specify softDeleteEnabled.
+         */
+        interface WithSoftDeleteEnabled {
+            /**
+             * Specifies the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume..
+             * 
+             * @param softDeleteEnabled Indicates whether delete retention is allowed on the volume.
+             * @return the next definition stage.
+             */
+            WithCreate withSoftDeleteEnabled(Boolean softDeleteEnabled);
+        }
+
+        /**
          * The stage of the Volume definition allowing to specify managedBy.
          */
         interface WithManagedBy {
@@ -200,7 +221,7 @@ public interface Volume {
     /**
      * The template for Volume update.
      */
-    interface Update extends UpdateStages.WithSizeGiB, UpdateStages.WithManagedBy {
+    interface Update extends UpdateStages.WithSizeGiB, UpdateStages.WithManagedBy, UpdateStages.WithSoftDeleteEnabled {
         /**
          * Executes the update request.
          * 
@@ -245,6 +266,19 @@ public interface Volume {
              * @return the next definition stage.
              */
             Update withManagedBy(ManagedByInfo managedBy);
+        }
+
+        /**
+         * The stage of the Volume update allowing to specify softDeleteEnabled.
+         */
+        interface WithSoftDeleteEnabled {
+            /**
+             * Specifies the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume..
+             * 
+             * @param softDeleteEnabled Indicates whether delete retention is allowed on the volume.
+             * @return the next definition stage.
+             */
+            Update withSoftDeleteEnabled(Boolean softDeleteEnabled);
         }
     }
 

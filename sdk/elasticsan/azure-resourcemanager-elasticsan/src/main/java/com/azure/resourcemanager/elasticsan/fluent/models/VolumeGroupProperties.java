@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.elasticsan.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.elasticsan.models.DeleteRetentionPolicy;
 import com.azure.resourcemanager.elasticsan.models.EncryptionProperties;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.NetworkRuleSet;
@@ -53,6 +54,12 @@ public final class VolumeGroupProperties {
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /*
+     * The retention policy for the deleted volumes.
+     */
+    @JsonProperty(value = "deleteRetentionPolicy")
+    private DeleteRetentionPolicy deleteRetentionPolicy;
 
     /**
      * Creates an instance of VolumeGroupProperties class.
@@ -159,6 +166,26 @@ public final class VolumeGroupProperties {
     }
 
     /**
+     * Get the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @return the deleteRetentionPolicy value.
+     */
+    public DeleteRetentionPolicy deleteRetentionPolicy() {
+        return this.deleteRetentionPolicy;
+    }
+
+    /**
+     * Set the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @param deleteRetentionPolicy the deleteRetentionPolicy value to set.
+     * @return the VolumeGroupProperties object itself.
+     */
+    public VolumeGroupProperties withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy) {
+        this.deleteRetentionPolicy = deleteRetentionPolicy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -172,6 +199,9 @@ public final class VolumeGroupProperties {
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
+        }
+        if (deleteRetentionPolicy() != null) {
+            deleteRetentionPolicy().validate();
         }
     }
 }

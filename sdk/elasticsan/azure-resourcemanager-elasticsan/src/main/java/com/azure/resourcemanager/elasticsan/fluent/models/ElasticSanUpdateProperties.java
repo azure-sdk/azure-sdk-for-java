@@ -26,8 +26,7 @@ public final class ElasticSanUpdateProperties {
     private Long extendedCapacitySizeTiB;
 
     /*
-     * Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be
-     * 'Enabled' or 'Disabled'.
+     * Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be 'Enabled' or 'Disabled'.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;

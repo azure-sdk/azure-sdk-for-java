@@ -134,6 +134,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.DeleteRetentionPolicy",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.elasticsan.models.VolumeGroupUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -259,6 +264,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.elasticsan.models.IdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -275,6 +285,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.elasticsan.models.Action",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.Purge",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

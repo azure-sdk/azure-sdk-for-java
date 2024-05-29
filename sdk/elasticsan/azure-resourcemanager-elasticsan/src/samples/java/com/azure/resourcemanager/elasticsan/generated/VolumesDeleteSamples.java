@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.Purge;
 import com.azure.resourcemanager.elasticsan.models.XMsDeleteSnapshots;
 import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
 
@@ -12,8 +13,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
  */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/Volumes_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MinimumSet_Gen.
@@ -21,13 +21,13 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename", null, null, Purge.TRUE,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/Volumes_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MaximumSet_Gen.
@@ -35,7 +35,8 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            XMsDeleteSnapshots.TRUE, XMsForceDelete.TRUE, com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename", XMsDeleteSnapshots.TRUE,
+                XMsForceDelete.TRUE, Purge.TRUE, com.azure.core.util.Context.NONE);
     }
 }

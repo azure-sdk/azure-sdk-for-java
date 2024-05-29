@@ -7,6 +7,7 @@ package com.azure.resourcemanager.elasticsan.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.elasticsan.models.DeleteRetentionPolicy;
 import com.azure.resourcemanager.elasticsan.models.EncryptionProperties;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.Identity;
@@ -191,6 +192,29 @@ public final class VolumeGroupInner extends ProxyResource {
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
         return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Get the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @return the deleteRetentionPolicy value.
+     */
+    public DeleteRetentionPolicy deleteRetentionPolicy() {
+        return this.innerProperties() == null ? null : this.innerProperties().deleteRetentionPolicy();
+    }
+
+    /**
+     * Set the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @param deleteRetentionPolicy the deleteRetentionPolicy value to set.
+     * @return the VolumeGroupInner object itself.
+     */
+    public VolumeGroupInner withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumeGroupProperties();
+        }
+        this.innerProperties().withDeleteRetentionPolicy(deleteRetentionPolicy);
+        return this;
     }
 
     /**
