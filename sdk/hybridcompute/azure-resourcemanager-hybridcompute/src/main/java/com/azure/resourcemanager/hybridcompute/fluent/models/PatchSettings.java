@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hybridcompute.models.AssessmentModeTypes;
 import com.azure.resourcemanager.hybridcompute.models.PatchModeTypes;
+import com.azure.resourcemanager.hybridcompute.models.PatchSettingsStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -25,6 +26,18 @@ public final class PatchSettings {
      */
     @JsonProperty(value = "patchMode")
     private PatchModeTypes patchMode;
+
+    /*
+     * Captures the hotpatch capability enrollment intent of the customers, which enables customers to patch their Windows machines without requiring a reboot.
+     */
+    @JsonProperty(value = "enableHotpatching")
+    private Boolean enableHotpatching;
+
+    /*
+     * Status of the hotpatch capability enrollment or disenrollment.
+     */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
+    private PatchSettingsStatus status;
 
     /**
      * Creates an instance of PatchSettings class.
@@ -73,10 +86,44 @@ public final class PatchSettings {
     }
 
     /**
+     * Get the enableHotpatching property: Captures the hotpatch capability enrollment intent of the customers, which
+     * enables customers to patch their Windows machines without requiring a reboot.
+     * 
+     * @return the enableHotpatching value.
+     */
+    public Boolean enableHotpatching() {
+        return this.enableHotpatching;
+    }
+
+    /**
+     * Set the enableHotpatching property: Captures the hotpatch capability enrollment intent of the customers, which
+     * enables customers to patch their Windows machines without requiring a reboot.
+     * 
+     * @param enableHotpatching the enableHotpatching value to set.
+     * @return the PatchSettings object itself.
+     */
+    public PatchSettings withEnableHotpatching(Boolean enableHotpatching) {
+        this.enableHotpatching = enableHotpatching;
+        return this;
+    }
+
+    /**
+     * Get the status property: Status of the hotpatch capability enrollment or disenrollment.
+     * 
+     * @return the status value.
+     */
+    public PatchSettingsStatus status() {
+        return this.status;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (status() != null) {
+            status().validate();
+        }
     }
 }
