@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A header to add to the WebTest. */
+/**
+ * A header to add to the WebTest.
+ */
 @Fluent
 public final class HeaderField {
     /*
@@ -22,13 +24,15 @@ public final class HeaderField {
     @JsonProperty(value = "value")
     private String headerFieldValue;
 
-    /** Creates an instance of HeaderField class. */
+    /**
+     * Creates an instance of HeaderField class.
+     */
     public HeaderField() {
     }
 
     /**
      * Get the headerFieldName property: The name of the header.
-     *
+     * 
      * @return the headerFieldName value.
      */
     public String headerFieldName() {
@@ -37,7 +41,7 @@ public final class HeaderField {
 
     /**
      * Set the headerFieldName property: The name of the header.
-     *
+     * 
      * @param headerFieldName the headerFieldName value to set.
      * @return the HeaderField object itself.
      */
@@ -48,7 +52,7 @@ public final class HeaderField {
 
     /**
      * Get the headerFieldValue property: The value of the header.
-     *
+     * 
      * @return the headerFieldValue value.
      */
     public String headerFieldValue() {
@@ -57,7 +61,7 @@ public final class HeaderField {
 
     /**
      * Set the headerFieldValue property: The value of the header.
-     *
+     * 
      * @param headerFieldValue the headerFieldValue value to set.
      * @return the HeaderField object itself.
      */
@@ -68,7 +72,7 @@ public final class HeaderField {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Localized template data and gallery information. */
+/**
+ * Localized template data and gallery information.
+ */
 @Fluent
 public final class WorkbookTemplateLocalizedGallery {
     /*
@@ -23,13 +25,15 @@ public final class WorkbookTemplateLocalizedGallery {
     @JsonProperty(value = "galleries")
     private List<WorkbookTemplateGallery> galleries;
 
-    /** Creates an instance of WorkbookTemplateLocalizedGallery class. */
+    /**
+     * Creates an instance of WorkbookTemplateLocalizedGallery class.
+     */
     public WorkbookTemplateLocalizedGallery() {
     }
 
     /**
      * Get the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @return the templateData value.
      */
     public Object templateData() {
@@ -38,7 +42,7 @@ public final class WorkbookTemplateLocalizedGallery {
 
     /**
      * Set the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @param templateData the templateData value to set.
      * @return the WorkbookTemplateLocalizedGallery object itself.
      */
@@ -49,7 +53,7 @@ public final class WorkbookTemplateLocalizedGallery {
 
     /**
      * Get the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @return the galleries value.
      */
     public List<WorkbookTemplateGallery> galleries() {
@@ -58,7 +62,7 @@ public final class WorkbookTemplateLocalizedGallery {
 
     /**
      * Set the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @param galleries the galleries value to set.
      * @return the WorkbookTemplateLocalizedGallery object itself.
      */
@@ -69,7 +73,7 @@ public final class WorkbookTemplateLocalizedGallery {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

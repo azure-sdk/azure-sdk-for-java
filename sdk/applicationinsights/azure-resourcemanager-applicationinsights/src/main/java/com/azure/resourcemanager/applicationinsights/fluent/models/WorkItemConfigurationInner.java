@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Work item configuration associated with an application insights resource. */
+/**
+ * Work item configuration associated with an application insights resource.
+ */
 @Fluent
 public final class WorkItemConfigurationInner {
     /*
@@ -40,13 +42,15 @@ public final class WorkItemConfigurationInner {
     @JsonProperty(value = "ConfigProperties")
     private String configProperties;
 
-    /** Creates an instance of WorkItemConfigurationInner class. */
+    /**
+     * Creates an instance of WorkItemConfigurationInner class.
+     */
     public WorkItemConfigurationInner() {
     }
 
     /**
      * Get the connectorId property: Connector identifier where work item is created.
-     *
+     * 
      * @return the connectorId value.
      */
     public String connectorId() {
@@ -55,7 +59,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Set the connectorId property: Connector identifier where work item is created.
-     *
+     * 
      * @param connectorId the connectorId value to set.
      * @return the WorkItemConfigurationInner object itself.
      */
@@ -66,7 +70,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Get the configDisplayName property: Configuration friendly name.
-     *
+     * 
      * @return the configDisplayName value.
      */
     public String configDisplayName() {
@@ -75,7 +79,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Set the configDisplayName property: Configuration friendly name.
-     *
+     * 
      * @param configDisplayName the configDisplayName value to set.
      * @return the WorkItemConfigurationInner object itself.
      */
@@ -86,7 +90,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Get the isDefault property: Boolean value indicating whether configuration is default.
-     *
+     * 
      * @return the isDefault value.
      */
     public Boolean isDefault() {
@@ -95,7 +99,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Set the isDefault property: Boolean value indicating whether configuration is default.
-     *
+     * 
      * @param isDefault the isDefault value to set.
      * @return the WorkItemConfigurationInner object itself.
      */
@@ -106,7 +110,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Get the id property: Unique Id for work item.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -115,7 +119,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Set the id property: Unique Id for work item.
-     *
+     * 
      * @param id the id value to set.
      * @return the WorkItemConfigurationInner object itself.
      */
@@ -126,7 +130,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Get the configProperties property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @return the configProperties value.
      */
     public String configProperties() {
@@ -135,7 +139,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Set the configProperties property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @param configProperties the configProperties value to set.
      * @return the WorkItemConfigurationInner object itself.
      */
@@ -146,7 +150,7 @@ public final class WorkItemConfigurationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

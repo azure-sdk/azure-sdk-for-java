@@ -10,7 +10,9 @@ import com.azure.resourcemanager.applicationinsights.models.ItemScope;
 import com.azure.resourcemanager.applicationinsights.models.ItemType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties that define an Analytics item that is associated to an Application Insights component. */
+/**
+ * Properties that define an Analytics item that is associated to an Application Insights component.
+ */
 @Fluent
 public final class ApplicationInsightsComponentAnalyticsItemInner {
     /*
@@ -38,8 +40,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     private String version;
 
     /*
-     * Enum indicating if this item definition is owned by a specific user or is shared between all users with access
-     * to the Application Insights component.
+     * Enum indicating if this item definition is owned by a specific user or is shared between all users with access to the Application Insights component.
      */
     @JsonProperty(value = "Scope")
     private ItemScope scope;
@@ -63,19 +64,20 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     private String timeModified;
 
     /*
-     * A set of properties that can be defined in the context of a specific item type. Each type may have its own
-     * properties.
+     * A set of properties that can be defined in the context of a specific item type. Each type may have its own properties.
      */
     @JsonProperty(value = "Properties")
     private ApplicationInsightsComponentAnalyticsItemProperties properties;
 
-    /** Creates an instance of ApplicationInsightsComponentAnalyticsItemInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentAnalyticsItemInner class.
+     */
     public ApplicationInsightsComponentAnalyticsItemInner() {
     }
 
     /**
      * Get the id property: Internally assigned unique id of the item definition.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -84,7 +86,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Set the id property: Internally assigned unique id of the item definition.
-     *
+     * 
      * @param id the id value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
@@ -95,7 +97,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the name property: The user-defined name of the item.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -104,7 +106,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Set the name property: The user-defined name of the item.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
@@ -115,7 +117,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the content property: The content of this item.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -124,7 +126,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Set the content property: The content of this item.
-     *
+     * 
      * @param content the content value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
@@ -135,7 +137,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the version property: This instance's version of the data model. This can change as new features are added.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -145,7 +147,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     /**
      * Get the scope property: Enum indicating if this item definition is owned by a specific user or is shared between
      * all users with access to the Application Insights component.
-     *
+     * 
      * @return the scope value.
      */
     public ItemScope scope() {
@@ -155,7 +157,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     /**
      * Set the scope property: Enum indicating if this item definition is owned by a specific user or is shared between
      * all users with access to the Application Insights component.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
@@ -166,7 +168,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the type property: Enum indicating the type of the Analytics item.
-     *
+     * 
      * @return the type value.
      */
     public ItemType type() {
@@ -175,7 +177,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Set the type property: Enum indicating the type of the Analytics item.
-     *
+     * 
      * @param type the type value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
@@ -186,7 +188,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the timeCreated property: Date and time in UTC when this item was created.
-     *
+     * 
      * @return the timeCreated value.
      */
     public String timeCreated() {
@@ -195,7 +197,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
 
     /**
      * Get the timeModified property: Date and time in UTC of the last modification that was made to this item.
-     *
+     * 
      * @return the timeModified value.
      */
     public String timeModified() {
@@ -205,7 +207,7 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     /**
      * Get the properties property: A set of properties that can be defined in the context of a specific item type. Each
      * type may have its own properties.
-     *
+     * 
      * @return the properties value.
      */
     public ApplicationInsightsComponentAnalyticsItemProperties properties() {
@@ -215,19 +217,19 @@ public final class ApplicationInsightsComponentAnalyticsItemInner {
     /**
      * Set the properties property: A set of properties that can be defined in the context of a specific item type. Each
      * type may have its own properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemInner object itself.
      */
-    public ApplicationInsightsComponentAnalyticsItemInner withProperties(
-        ApplicationInsightsComponentAnalyticsItemProperties properties) {
+    public ApplicationInsightsComponentAnalyticsItemInner
+        withProperties(ApplicationInsightsComponentAnalyticsItemProperties properties) {
         this.properties = properties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
