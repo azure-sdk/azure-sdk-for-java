@@ -4,20 +4,30 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.FileEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a file entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a file entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = FileEntity.class, visible = true)
 @JsonTypeName("File")
-@Fluent
+@Immutable
 public final class FileEntity extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.FILE;
+
     /*
      * File entity properties
      */
@@ -25,8 +35,24 @@ public final class FileEntity extends EntityInner {
     private FileEntityProperties innerProperties;
 
     /**
+     * Creates an instance of FileEntity class.
+     */
+    public FileEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: File entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private FileEntityProperties innerProperties() {
@@ -35,7 +61,7 @@ public final class FileEntity extends EntityInner {
 
     /**
      * Get the directory property: The full path to the file.
-     *
+     * 
      * @return the directory value.
      */
     public String directory() {
@@ -44,7 +70,7 @@ public final class FileEntity extends EntityInner {
 
     /**
      * Get the fileHashEntityIds property: The file hash entity identifiers associated with this file.
-     *
+     * 
      * @return the fileHashEntityIds value.
      */
     public List<String> fileHashEntityIds() {
@@ -53,7 +79,7 @@ public final class FileEntity extends EntityInner {
 
     /**
      * Get the fileName property: The file name without path (some alerts might not include path).
-     *
+     * 
      * @return the fileName value.
      */
     public String fileName() {
@@ -62,7 +88,7 @@ public final class FileEntity extends EntityInner {
 
     /**
      * Get the hostEntityId property: The Host entity id which the file belongs to.
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -72,7 +98,7 @@ public final class FileEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -82,7 +108,7 @@ public final class FileEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -91,7 +117,7 @@ public final class FileEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

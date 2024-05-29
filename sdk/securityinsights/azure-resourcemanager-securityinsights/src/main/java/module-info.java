@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.securityinsights {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.securityinsights;
     exports com.azure.resourcemanager.securityinsights.fluent;
     exports com.azure.resourcemanager.securityinsights.fluent.models;
     exports com.azure.resourcemanager.securityinsights.models;
-
-    opens com.azure.resourcemanager.securityinsights.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.securityinsights.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.securityinsights.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.securityinsights.models to com.azure.core, com.fasterxml.jackson.databind;
 }

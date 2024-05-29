@@ -8,17 +8,152 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Operator used for list of dependencies in criteria array. */
+/**
+ * Represents an operator in a ConditionClause.
+ */
 public final class Operator extends ExpandableStringEnum<Operator> {
-    /** Static value AND for Operator. */
-    public static final Operator AND = fromString("AND");
+    /**
+     * Static value Equals for Operator.
+     */
+    public static final Operator EQUALS = fromString("Equals");
 
-    /** Static value OR for Operator. */
-    public static final Operator OR = fromString("OR");
+    /**
+     * Static value NotEquals for Operator.
+     */
+    public static final Operator NOT_EQUALS = fromString("NotEquals");
+
+    /**
+     * Static value LessThan for Operator.
+     */
+    public static final Operator LESS_THAN = fromString("LessThan");
+
+    /**
+     * Static value LessThanEqual for Operator.
+     */
+    public static final Operator LESS_THAN_EQUAL = fromString("LessThanEqual");
+
+    /**
+     * Static value GreaterThan for Operator.
+     */
+    public static final Operator GREATER_THAN = fromString("GreaterThan");
+
+    /**
+     * Static value GreaterThanEqual for Operator.
+     */
+    public static final Operator GREATER_THAN_EQUAL = fromString("GreaterThanEqual");
+
+    /**
+     * Static value StringContains for Operator.
+     */
+    public static final Operator STRING_CONTAINS = fromString("StringContains");
+
+    /**
+     * Static value StringNotContains for Operator.
+     */
+    public static final Operator STRING_NOT_CONTAINS = fromString("StringNotContains");
+
+    /**
+     * Static value StringStartsWith for Operator.
+     */
+    public static final Operator STRING_STARTS_WITH = fromString("StringStartsWith");
+
+    /**
+     * Static value StringNotStartsWith for Operator.
+     */
+    public static final Operator STRING_NOT_STARTS_WITH = fromString("StringNotStartsWith");
+
+    /**
+     * Static value StringEndsWith for Operator.
+     */
+    public static final Operator STRING_ENDS_WITH = fromString("StringEndsWith");
+
+    /**
+     * Static value StringNotEndsWith for Operator.
+     */
+    public static final Operator STRING_NOT_ENDS_WITH = fromString("StringNotEndsWith");
+
+    /**
+     * Static value StringIsEmpty for Operator.
+     */
+    public static final Operator STRING_IS_EMPTY = fromString("StringIsEmpty");
+
+    /**
+     * Static value IsNull for Operator.
+     */
+    public static final Operator IS_NULL = fromString("IsNull");
+
+    /**
+     * Static value IsTrue for Operator.
+     */
+    public static final Operator IS_TRUE = fromString("IsTrue");
+
+    /**
+     * Static value IsFalse for Operator.
+     */
+    public static final Operator IS_FALSE = fromString("IsFalse");
+
+    /**
+     * Static value ArrayContains for Operator.
+     */
+    public static final Operator ARRAY_CONTAINS = fromString("ArrayContains");
+
+    /**
+     * Static value ArrayNotContains for Operator.
+     */
+    public static final Operator ARRAY_NOT_CONTAINS = fromString("ArrayNotContains");
+
+    /**
+     * Static value OnOrAfterRelative for Operator.
+     */
+    public static final Operator ON_OR_AFTER_RELATIVE = fromString("OnOrAfterRelative");
+
+    /**
+     * Static value AfterRelative for Operator.
+     */
+    public static final Operator AFTER_RELATIVE = fromString("AfterRelative");
+
+    /**
+     * Static value OnOrBeforeRelative for Operator.
+     */
+    public static final Operator ON_OR_BEFORE_RELATIVE = fromString("OnOrBeforeRelative");
+
+    /**
+     * Static value BeforeRelative for Operator.
+     */
+    public static final Operator BEFORE_RELATIVE = fromString("BeforeRelative");
+
+    /**
+     * Static value OnOrAfterAbsolute for Operator.
+     */
+    public static final Operator ON_OR_AFTER_ABSOLUTE = fromString("OnOrAfterAbsolute");
+
+    /**
+     * Static value AfterAbsolute for Operator.
+     */
+    public static final Operator AFTER_ABSOLUTE = fromString("AfterAbsolute");
+
+    /**
+     * Static value OnOrBeforeAbsolute for Operator.
+     */
+    public static final Operator ON_OR_BEFORE_ABSOLUTE = fromString("OnOrBeforeAbsolute");
+
+    /**
+     * Static value BeforeAbsolute for Operator.
+     */
+    public static final Operator BEFORE_ABSOLUTE = fromString("BeforeAbsolute");
+
+    /**
+     * Creates a new instance of Operator value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Operator() {
+    }
 
     /**
      * Creates or finds a Operator from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Operator.
      */
@@ -29,7 +164,7 @@ public final class Operator extends ExpandableStringEnum<Operator> {
 
     /**
      * Gets known Operator values.
-     *
+     * 
      * @return known Operator values.
      */
     public static Collection<Operator> values() {

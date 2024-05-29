@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.GetInsightsResultsMetad
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Get Insights result operation response. */
+/**
+ * The Get Insights result operation response.
+ */
 @Fluent
 public final class EntityGetInsightsResponseInner {
     /*
@@ -26,8 +28,14 @@ public final class EntityGetInsightsResponseInner {
     private List<EntityInsightItem> value;
 
     /**
+     * Creates an instance of EntityGetInsightsResponseInner class.
+     */
+    public EntityGetInsightsResponseInner() {
+    }
+
+    /**
      * Get the metadata property: The metadata from the get insights operation results.
-     *
+     * 
      * @return the metadata value.
      */
     public GetInsightsResultsMetadata metadata() {
@@ -36,7 +44,7 @@ public final class EntityGetInsightsResponseInner {
 
     /**
      * Set the metadata property: The metadata from the get insights operation results.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the EntityGetInsightsResponseInner object itself.
      */
@@ -47,7 +55,7 @@ public final class EntityGetInsightsResponseInner {
 
     /**
      * Get the value property: The insights result values.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityInsightItem> value() {
@@ -56,7 +64,7 @@ public final class EntityGetInsightsResponseInner {
 
     /**
      * Set the value property: The insights result values.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityGetInsightsResponseInner object itself.
      */
@@ -67,7 +75,7 @@ public final class EntityGetInsightsResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

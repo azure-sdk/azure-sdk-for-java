@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Activity query definitions. */
+/**
+ * The Activity query definitions.
+ */
 @Fluent
 public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
     /*
@@ -23,8 +25,14 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
     private String summarizeBy;
 
     /**
+     * Creates an instance of ActivityEntityQueryTemplatePropertiesQueryDefinitions class.
+     */
+    public ActivityEntityQueryTemplatePropertiesQueryDefinitions() {
+    }
+
+    /**
      * Get the query property: The Activity query to run on a given entity.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -33,7 +41,7 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
 
     /**
      * Set the query property: The Activity query to run on a given entity.
-     *
+     * 
      * @param query the query value to set.
      * @return the ActivityEntityQueryTemplatePropertiesQueryDefinitions object itself.
      */
@@ -45,7 +53,7 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
     /**
      * Get the summarizeBy property: The dimensions we want to summarize the timeline results on, this is comma
      * separated list.
-     *
+     * 
      * @return the summarizeBy value.
      */
     public String summarizeBy() {
@@ -55,7 +63,7 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
     /**
      * Set the summarizeBy property: The dimensions we want to summarize the timeline results on, this is comma
      * separated list.
-     *
+     * 
      * @param summarizeBy the summarizeBy value to set.
      * @return the ActivityEntityQueryTemplatePropertiesQueryDefinitions object itself.
      */
@@ -66,7 +74,7 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
