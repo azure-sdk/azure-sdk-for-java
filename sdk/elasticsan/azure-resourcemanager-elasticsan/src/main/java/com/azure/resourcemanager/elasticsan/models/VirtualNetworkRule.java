@@ -14,9 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VirtualNetworkRule {
     /*
-     * Resource ID of a subnet, for example:
-     * /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}
-     * /subnets/{subnetName}.
+     * Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
      */
     @JsonProperty(value = "id", required = true)
     private String virtualNetworkResourceId;
@@ -82,8 +80,9 @@ public final class VirtualNetworkRule {
      */
     public void validate() {
         if (virtualNetworkResourceId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property virtualNetworkResourceId in model VirtualNetworkRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property virtualNetworkResourceId in model VirtualNetworkRule"));
         }
     }
 

@@ -91,6 +91,13 @@ public interface VolumeGroup {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @return the deleteRetentionPolicy value.
+     */
+    DeleteRetentionPolicy deleteRetentionPolicy();
+
+    /**
      * Gets the name of the resource group.
      * 
      * @return the name of the resource group.
@@ -139,9 +146,9 @@ public interface VolumeGroup {
          * The stage of the VolumeGroup definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithIdentity, DefinitionStages.WithProtocolType, DefinitionStages.WithEncryption,
-            DefinitionStages.WithEncryptionProperties, DefinitionStages.WithNetworkAcls {
+        interface WithCreate extends DefinitionStages.WithIdentity, DefinitionStages.WithProtocolType,
+            DefinitionStages.WithEncryption, DefinitionStages.WithEncryptionProperties,
+            DefinitionStages.WithNetworkAcls, DefinitionStages.WithDeleteRetentionPolicy {
             /**
              * Executes the create request.
              * 
@@ -224,6 +231,19 @@ public interface VolumeGroup {
              */
             WithCreate withNetworkAcls(NetworkRuleSet networkAcls);
         }
+
+        /**
+         * The stage of the VolumeGroup definition allowing to specify deleteRetentionPolicy.
+         */
+        interface WithDeleteRetentionPolicy {
+            /**
+             * Specifies the deleteRetentionPolicy property: The retention policy for the deleted volumes..
+             * 
+             * @param deleteRetentionPolicy The retention policy for the deleted volumes.
+             * @return the next definition stage.
+             */
+            WithCreate withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy);
+        }
     }
 
     /**
@@ -237,7 +257,7 @@ public interface VolumeGroup {
      * The template for VolumeGroup update.
      */
     interface Update extends UpdateStages.WithIdentity, UpdateStages.WithProtocolType, UpdateStages.WithEncryption,
-        UpdateStages.WithEncryptionProperties, UpdateStages.WithNetworkAcls {
+        UpdateStages.WithEncryptionProperties, UpdateStages.WithNetworkAcls, UpdateStages.WithDeleteRetentionPolicy {
         /**
          * Executes the update request.
          * 
@@ -323,6 +343,19 @@ public interface VolumeGroup {
              * @return the next definition stage.
              */
             Update withNetworkAcls(NetworkRuleSet networkAcls);
+        }
+
+        /**
+         * The stage of the VolumeGroup update allowing to specify deleteRetentionPolicy.
+         */
+        interface WithDeleteRetentionPolicy {
+            /**
+             * Specifies the deleteRetentionPolicy property: The retention policy for the deleted volumes..
+             * 
+             * @param deleteRetentionPolicy The retention policy for the deleted volumes.
+             * @return the next definition stage.
+             */
+            Update withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy);
         }
     }
 

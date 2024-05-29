@@ -153,6 +153,29 @@ public final class VolumeGroupUpdate {
     }
 
     /**
+     * Get the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @return the deleteRetentionPolicy value.
+     */
+    public DeleteRetentionPolicy deleteRetentionPolicy() {
+        return this.innerProperties() == null ? null : this.innerProperties().deleteRetentionPolicy();
+    }
+
+    /**
+     * Set the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @param deleteRetentionPolicy the deleteRetentionPolicy value to set.
+     * @return the VolumeGroupUpdate object itself.
+     */
+    public VolumeGroupUpdate withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumeGroupUpdateProperties();
+        }
+        this.innerProperties().withDeleteRetentionPolicy(deleteRetentionPolicy);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

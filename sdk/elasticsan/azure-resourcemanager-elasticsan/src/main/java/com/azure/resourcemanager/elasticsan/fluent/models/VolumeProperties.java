@@ -41,6 +41,12 @@ public final class VolumeProperties {
     private IscsiTargetInfo storageTarget;
 
     /*
+     * Indicates whether delete retention is allowed on the volume.
+     */
+    @JsonProperty(value = "softDeleteEnabled")
+    private Boolean softDeleteEnabled;
+
+    /*
      * Parent resource information.
      */
     @JsonProperty(value = "managedBy")
@@ -114,6 +120,26 @@ public final class VolumeProperties {
      */
     public IscsiTargetInfo storageTarget() {
         return this.storageTarget;
+    }
+
+    /**
+     * Get the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @return the softDeleteEnabled value.
+     */
+    public Boolean softDeleteEnabled() {
+        return this.softDeleteEnabled;
+    }
+
+    /**
+     * Set the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @param softDeleteEnabled the softDeleteEnabled value to set.
+     * @return the VolumeProperties object itself.
+     */
+    public VolumeProperties withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        this.softDeleteEnabled = softDeleteEnabled;
+        return this;
     }
 
     /**

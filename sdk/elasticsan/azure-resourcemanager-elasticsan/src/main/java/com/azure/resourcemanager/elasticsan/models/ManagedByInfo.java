@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ManagedByInfo {
     /*
-     * Resource ID of the resource managing the volume, this is a restricted field and can only be set for internal
-     * use.
+     * Resource ID of the resource managing the volume, this is a restricted field and can only be set for internal use.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;

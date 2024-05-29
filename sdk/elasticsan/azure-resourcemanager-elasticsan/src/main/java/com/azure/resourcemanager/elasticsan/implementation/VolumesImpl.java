@@ -11,8 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.fluent.VolumesClient;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
+import com.azure.resourcemanager.elasticsan.models.Purge;
 import com.azure.resourcemanager.elasticsan.models.Volume;
 import com.azure.resourcemanager.elasticsan.models.Volumes;
+import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources;
 import com.azure.resourcemanager.elasticsan.models.XMsDeleteSnapshots;
 import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
 
@@ -34,15 +36,17 @@ public final class VolumesImpl implements Volumes {
     }
 
     public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
-        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, Context context) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots,
-            xMsForceDelete, context);
+        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, Purge purge, Context context) {
+        this.serviceClient()
+            .delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots, xMsForceDelete,
+                purge, context);
     }
 
     public Response<Volume> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String volumeName, Context context) {
-        Response<VolumeInner> inner = this.serviceClient().getWithResponse(resourceGroupName, elasticSanName,
-            volumeGroupName, volumeName, context);
+        String volumeName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
+        Response<VolumeInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName,
+                xMsAccessSoftDeletedResources, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VolumeImpl(inner.getValue(), this.manager()));
@@ -68,9 +72,10 @@ public final class VolumesImpl implements Volumes {
     }
 
     public PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName, Context context) {
-        PagedIterable<VolumeInner> inner
-            = this.serviceClient().listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName, context);
+        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
+        PagedIterable<VolumeInner> inner = this.serviceClient()
+            .listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName, xMsAccessSoftDeletedResources,
+                context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
     }
 
@@ -95,11 +100,15 @@ public final class VolumesImpl implements Volumes {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumes'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, Context.NONE)
+        XMsAccessSoftDeletedResources localXMsAccessSoftDeletedResources = null;
+        return this
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName,
+                localXMsAccessSoftDeletedResources, Context.NONE)
             .getValue();
     }
 
-    public Response<Volume> getByIdWithResponse(String id, Context context) {
+    public Response<Volume> getByIdWithResponse(String id, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources,
+        Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -120,7 +129,8 @@ public final class VolumesImpl implements Volumes {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumes'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context);
+        return this.getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName,
+            xMsAccessSoftDeletedResources, context);
     }
 
     public void deleteById(String id) {
@@ -146,12 +156,13 @@ public final class VolumesImpl implements Volumes {
         }
         XMsDeleteSnapshots localXMsDeleteSnapshots = null;
         XMsForceDelete localXMsForceDelete = null;
+        Purge localPurge = null;
         this.delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, localXMsDeleteSnapshots,
-            localXMsForceDelete, Context.NONE);
+            localXMsForceDelete, localPurge, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete,
-        Context context) {
+        Purge purge, Context context) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
@@ -173,7 +184,7 @@ public final class VolumesImpl implements Volumes {
                 String.format("The resource ID '%s' is not valid. Missing path segment 'volumes'.", id)));
         }
         this.delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots, xMsForceDelete,
-            context);
+            purge, context);
     }
 
     private VolumesClient serviceClient() {

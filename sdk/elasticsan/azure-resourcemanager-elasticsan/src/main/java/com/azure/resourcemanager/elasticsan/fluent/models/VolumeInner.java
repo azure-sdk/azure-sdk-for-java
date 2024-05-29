@@ -120,6 +120,29 @@ public final class VolumeInner extends ProxyResource {
     }
 
     /**
+     * Get the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @return the softDeleteEnabled value.
+     */
+    public Boolean softDeleteEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeleteEnabled();
+    }
+
+    /**
+     * Set the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @param softDeleteEnabled the softDeleteEnabled value to set.
+     * @return the VolumeInner object itself.
+     */
+    public VolumeInner withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumeProperties();
+        }
+        this.innerProperties().withSoftDeleteEnabled(softDeleteEnabled);
+        return this;
+    }
+
+    /**
      * Get the managedBy property: Parent resource information.
      * 
      * @return the managedBy value.
@@ -158,8 +181,8 @@ public final class VolumeInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
         } else {
             innerProperties().validate();
         }

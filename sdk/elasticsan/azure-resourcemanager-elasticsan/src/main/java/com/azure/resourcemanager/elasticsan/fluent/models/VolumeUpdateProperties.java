@@ -25,6 +25,12 @@ public final class VolumeUpdateProperties {
     @JsonProperty(value = "managedBy")
     private ManagedByInfo managedBy;
 
+    /*
+     * Indicates whether delete retention is allowed on the volume.
+     */
+    @JsonProperty(value = "softDeleteEnabled")
+    private Boolean softDeleteEnabled;
+
     /**
      * Creates an instance of VolumeUpdateProperties class.
      */
@@ -68,6 +74,26 @@ public final class VolumeUpdateProperties {
      */
     public VolumeUpdateProperties withManagedBy(ManagedByInfo managedBy) {
         this.managedBy = managedBy;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @return the softDeleteEnabled value.
+     */
+    public Boolean softDeleteEnabled() {
+        return this.softDeleteEnabled;
+    }
+
+    /**
+     * Set the softDeleteEnabled property: Indicates whether delete retention is allowed on the volume.
+     * 
+     * @param softDeleteEnabled the softDeleteEnabled value to set.
+     * @return the VolumeUpdateProperties object itself.
+     */
+    public VolumeUpdateProperties withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        this.softDeleteEnabled = softDeleteEnabled;
         return this;
     }
 

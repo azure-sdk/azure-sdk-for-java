@@ -12,7 +12,9 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
+import com.azure.resourcemanager.elasticsan.models.Purge;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
+import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources;
 import com.azure.resourcemanager.elasticsan.models.XMsDeleteSnapshots;
 import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
 
@@ -187,6 +189,7 @@ public interface VolumesClient {
      * Default value is false.
      * @param xMsForceDelete Optional, used to delete volume if active sessions present. Allowed value are only true or
      * false. Default value is false.
+     * @param purge Optional, used to purge soft deleted volumes if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -196,7 +199,7 @@ public interface VolumesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String elasticSanName,
         String volumeGroupName, String volumeName, XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete,
-        Context context);
+        Purge purge, Context context);
 
     /**
      * Delete an Volume.
@@ -223,6 +226,7 @@ public interface VolumesClient {
      * Default value is false.
      * @param xMsForceDelete Optional, used to delete volume if active sessions present. Allowed value are only true or
      * false. Default value is false.
+     * @param purge Optional, used to purge soft deleted volumes if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -230,7 +234,7 @@ public interface VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
-        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, Context context);
+        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, Purge purge, Context context);
 
     /**
      * Get an Volume.
@@ -239,6 +243,7 @@ public interface VolumesClient {
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
      * @param volumeName The name of the Volume.
+     * @param xMsAccessSoftDeletedResources Optional, used to get soft deleted volumes if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -247,7 +252,7 @@ public interface VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VolumeInner> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String volumeName, Context context);
+        String volumeName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
 
     /**
      * Get an Volume.
@@ -285,6 +290,7 @@ public interface VolumesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
+     * @param xMsAccessSoftDeletedResources Optional, used to get soft deleted volumes if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -293,5 +299,5 @@ public interface VolumesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VolumeInner> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName, Context context);
+        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
 }

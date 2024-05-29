@@ -84,8 +84,7 @@ public final class ElasticSanProperties {
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
-     * Allow or disallow public network access to ElasticSan. Value is optional but if passed in, must be 'Enabled' or
-     * 'Disabled'.
+     * Allow or disallow public network access to ElasticSan. Value is optional but if passed in, must be 'Enabled' or 'Disabled'.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
@@ -268,8 +267,8 @@ public final class ElasticSanProperties {
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sku in model ElasticSanProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sku in model ElasticSanProperties"));
         } else {
             sku().validate();
         }
