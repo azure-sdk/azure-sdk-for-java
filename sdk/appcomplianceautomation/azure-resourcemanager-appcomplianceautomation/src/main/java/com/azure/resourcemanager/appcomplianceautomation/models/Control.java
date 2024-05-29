@@ -8,33 +8,28 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the control. */
+/**
+ * A class represent the control.
+ */
 @Immutable
 public final class Control {
     /*
-     * The Id of the control. e.g. "Operational Security#10"
+     * The Id of the control. e.g. "Operational_Security_10"
      */
     @JsonProperty(value = "controlId", access = JsonProperty.Access.WRITE_ONLY)
     private String controlId;
 
     /*
-     * The short name of the control. e.g. "Unsupported OS and Software."
+     * The name of the control. e.g. "Unsupported OS and Software."
      */
-    @JsonProperty(value = "controlShortName", access = JsonProperty.Access.WRITE_ONLY)
-    private String controlShortName;
+    @JsonProperty(value = "controlName", access = JsonProperty.Access.WRITE_ONLY)
+    private String controlName;
 
     /*
-     * The full name of the control. e.g. "Validate that unsupported operating systems and software components are not
-     * in use."
+     * The full name of the control. e.g. "Validate that unsupported operating systems and software components are not in use."
      */
     @JsonProperty(value = "controlFullName", access = JsonProperty.Access.WRITE_ONLY)
     private String controlFullName;
-
-    /*
-     * The control type
-     */
-    @JsonProperty(value = "controlType", access = JsonProperty.Access.WRITE_ONLY)
-    private ControlType controlType;
 
     /*
      * The control's description
@@ -55,18 +50,20 @@ public final class Control {
     private ControlStatus controlStatus;
 
     /*
-     * List of assessments.
+     * List of customer responsibility.
      */
-    @JsonProperty(value = "assessments", access = JsonProperty.Access.WRITE_ONLY)
-    private List<Assessment> assessments;
+    @JsonProperty(value = "responsibilities", access = JsonProperty.Access.WRITE_ONLY)
+    private List<Responsibility> responsibilities;
 
-    /** Creates an instance of Control class. */
+    /**
+     * Creates an instance of Control class.
+     */
     public Control() {
     }
 
     /**
-     * Get the controlId property: The Id of the control. e.g. "Operational Security#10".
-     *
+     * Get the controlId property: The Id of the control. e.g. "Operational_Security_10".
+     * 
      * @return the controlId value.
      */
     public String controlId() {
@@ -74,18 +71,18 @@ public final class Control {
     }
 
     /**
-     * Get the controlShortName property: The short name of the control. e.g. "Unsupported OS and Software.".
-     *
-     * @return the controlShortName value.
+     * Get the controlName property: The name of the control. e.g. "Unsupported OS and Software.".
+     * 
+     * @return the controlName value.
      */
-    public String controlShortName() {
-        return this.controlShortName;
+    public String controlName() {
+        return this.controlName;
     }
 
     /**
      * Get the controlFullName property: The full name of the control. e.g. "Validate that unsupported operating systems
      * and software components are not in use.".
-     *
+     * 
      * @return the controlFullName value.
      */
     public String controlFullName() {
@@ -93,17 +90,8 @@ public final class Control {
     }
 
     /**
-     * Get the controlType property: The control type.
-     *
-     * @return the controlType value.
-     */
-    public ControlType controlType() {
-        return this.controlType;
-    }
-
-    /**
      * Get the controlDescription property: The control's description.
-     *
+     * 
      * @return the controlDescription value.
      */
     public String controlDescription() {
@@ -112,7 +100,7 @@ public final class Control {
 
     /**
      * Get the controlDescriptionHyperLink property: The hyper link to the control's description'.
-     *
+     * 
      * @return the controlDescriptionHyperLink value.
      */
     public String controlDescriptionHyperLink() {
@@ -121,7 +109,7 @@ public final class Control {
 
     /**
      * Get the controlStatus property: Control status.
-     *
+     * 
      * @return the controlStatus value.
      */
     public ControlStatus controlStatus() {
@@ -129,22 +117,22 @@ public final class Control {
     }
 
     /**
-     * Get the assessments property: List of assessments.
-     *
-     * @return the assessments value.
+     * Get the responsibilities property: List of customer responsibility.
+     * 
+     * @return the responsibilities value.
      */
-    public List<Assessment> assessments() {
-        return this.assessments;
+    public List<Responsibility> responsibilities() {
+        return this.responsibilities;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (assessments() != null) {
-            assessments().forEach(e -> e.validate());
+        if (responsibilities() != null) {
+            responsibilities().forEach(e -> e.validate());
         }
     }
 }

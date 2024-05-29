@@ -7,68 +7,105 @@ package com.azure.resourcemanager.appcomplianceautomation.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for AppComplianceAutomationToolForMicrosoft365 class. */
+/**
+ * The interface for AppComplianceAutomationToolForMicrosoft365 class.
+ */
 public interface AppComplianceAutomationToolForMicrosoft365 {
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the ProviderActionsClient object to access its operations.
+     * 
+     * @return the ProviderActionsClient object.
+     */
+    ProviderActionsClient getProviderActions();
+
+    /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
      * Gets the ReportsClient object to access its operations.
-     *
+     * 
      * @return the ReportsClient object.
      */
     ReportsClient getReports();
 
     /**
-     * Gets the ReportOperationsClient object to access its operations.
-     *
-     * @return the ReportOperationsClient object.
+     * Gets the EvidencesClient object to access its operations.
+     * 
+     * @return the EvidencesClient object.
      */
-    ReportOperationsClient getReportOperations();
+    EvidencesClient getEvidences();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the ScopingConfigurationsClient object to access its operations.
+     * 
+     * @return the ScopingConfigurationsClient object.
+     */
+    ScopingConfigurationsClient getScopingConfigurations();
+
+    /**
+     * Gets the ScopingConfigurationOperationsClient object to access its operations.
+     * 
+     * @return the ScopingConfigurationOperationsClient object.
+     */
+    ScopingConfigurationOperationsClient getScopingConfigurationOperations();
 
     /**
      * Gets the SnapshotsClient object to access its operations.
-     *
+     * 
      * @return the SnapshotsClient object.
      */
     SnapshotsClient getSnapshots();
 
     /**
-     * Gets the SnapshotOperationsClient object to access its operations.
-     *
-     * @return the SnapshotOperationsClient object.
+     * Gets the ReportOperationsClient object to access its operations.
+     * 
+     * @return the ReportOperationsClient object.
      */
-    SnapshotOperationsClient getSnapshotOperations();
+    ReportOperationsClient getReportOperations();
+
+    /**
+     * Gets the WebhooksClient object to access its operations.
+     * 
+     * @return the WebhooksClient object.
+     */
+    WebhooksClient getWebhooks();
 }
