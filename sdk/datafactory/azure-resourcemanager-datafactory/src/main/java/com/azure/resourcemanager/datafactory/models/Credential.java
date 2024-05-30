@@ -24,8 +24,8 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = Credential.class, visible = true)
 @JsonTypeName("Credential")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityCredential.class),
-    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalCredential.class) })
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalCredential.class),
+    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityCredential.class) })
 @Fluent
 public class Credential {
     /*
