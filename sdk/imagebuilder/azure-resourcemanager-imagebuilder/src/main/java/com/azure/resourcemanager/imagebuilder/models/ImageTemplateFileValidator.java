@@ -6,19 +6,30 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Uploads files required for validation to VMs (Linux, Windows). Corresponds to Packer file provisioner.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateFileValidator.class,
+    visible = true)
 @JsonTypeName("File")
 @Fluent
 public final class ImageTemplateFileValidator extends ImageTemplateInVMValidator {
     /*
-     * The URI of the file to be uploaded to the VM for validation. It can be a github link, Azure Storage URI
-     * (authorized or SAS), etc
+     * The type of validation you want to use on the Image. For example, "Shell" can be shell validation
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "File";
+
+    /*
+     * The URI of the file to be uploaded to the VM for validation. It can be a github link, Azure Storage URI (authorized or SAS), etc
      */
     @JsonProperty(value = "sourceUri")
     private String sourceUri;
@@ -30,8 +41,7 @@ public final class ImageTemplateFileValidator extends ImageTemplateInVMValidator
     private String sha256Checksum;
 
     /*
-     * The absolute path to a file (with nested directory structures already created) where the file (from sourceUri)
-     * will be uploaded to in the VM
+     * The absolute path to a file (with nested directory structures already created) where the file (from sourceUri) will be uploaded to in the VM
      */
     @JsonProperty(value = "destination")
     private String destination;
@@ -43,8 +53,19 @@ public final class ImageTemplateFileValidator extends ImageTemplateInVMValidator
     }
 
     /**
-     * Get the sourceUri property: The URI of the file to be uploaded to the VM for validation. It can be a github
-     * link, Azure Storage URI (authorized or SAS), etc.
+     * Get the type property: The type of validation you want to use on the Image. For example, "Shell" can be shell
+     * validation.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the sourceUri property: The URI of the file to be uploaded to the VM for validation. It can be a github link,
+     * Azure Storage URI (authorized or SAS), etc.
      * 
      * @return the sourceUri value.
      */
@@ -53,8 +74,8 @@ public final class ImageTemplateFileValidator extends ImageTemplateInVMValidator
     }
 
     /**
-     * Set the sourceUri property: The URI of the file to be uploaded to the VM for validation. It can be a github
-     * link, Azure Storage URI (authorized or SAS), etc.
+     * Set the sourceUri property: The URI of the file to be uploaded to the VM for validation. It can be a github link,
+     * Azure Storage URI (authorized or SAS), etc.
      * 
      * @param sourceUri the sourceUri value to set.
      * @return the ImageTemplateFileValidator object itself.

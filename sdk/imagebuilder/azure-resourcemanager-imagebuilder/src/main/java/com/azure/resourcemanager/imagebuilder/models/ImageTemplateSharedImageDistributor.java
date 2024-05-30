@@ -7,6 +7,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,10 +16,21 @@ import java.util.Map;
 /**
  * Distribute via Azure Compute Gallery.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateSharedImageDistributor.class,
+    visible = true)
 @JsonTypeName("SharedImage")
 @Fluent
 public final class ImageTemplateSharedImageDistributor extends ImageTemplateDistributor {
+    /*
+     * Type of distribution.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "SharedImage";
+
     /*
      * Resource Id of the Azure Compute Gallery image
      */
@@ -26,30 +38,25 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
     private String galleryImageId;
 
     /*
-     * [Deprecated] A list of regions that the image will be replicated to. This list can be specified only if
-     * targetRegions is not specified. This field is deprecated - use targetRegions instead.
+     * [Deprecated] A list of regions that the image will be replicated to. This list can be specified only if targetRegions is not specified. This field is deprecated - use targetRegions instead.
      */
     @JsonProperty(value = "replicationRegions")
     private List<String> replicationRegions;
 
     /*
-     * Flag that indicates whether created image version should be excluded from latest. Omit to use the default
-     * (false).
+     * Flag that indicates whether created image version should be excluded from latest. Omit to use the default (false).
      */
     @JsonProperty(value = "excludeFromLatest")
     private Boolean excludeFromLatest;
 
     /*
-     * [Deprecated] Storage account type to be used to store the shared image. Omit to use the default (Standard_LRS).
-     * This field can be specified only if replicationRegions is specified. This field is deprecated - use
-     * targetRegions instead.
+     * [Deprecated] Storage account type to be used to store the shared image. Omit to use the default (Standard_LRS). This field can be specified only if replicationRegions is specified. This field is deprecated - use targetRegions instead.
      */
     @JsonProperty(value = "storageAccountType")
     private SharedImageStorageAccountType storageAccountType;
 
     /*
-     * The target regions where the distributed Image Version is going to be replicated to. This object supersedes
-     * replicationRegions and can be specified only if replicationRegions is not specified.
+     * The target regions where the distributed Image Version is going to be replicated to. This object supersedes replicationRegions and can be specified only if replicationRegions is not specified.
      */
     @JsonProperty(value = "targetRegions")
     private List<TargetRegion> targetRegions;
@@ -64,6 +71,16 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
      * Creates an instance of ImageTemplateSharedImageDistributor class.
      */
     public ImageTemplateSharedImageDistributor() {
+    }
+
+    /**
+     * Get the type property: Type of distribution.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -133,9 +150,9 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
     }
 
     /**
-     * Get the storageAccountType property: [Deprecated] Storage account type to be used to store the shared image.
-     * Omit to use the default (Standard_LRS). This field can be specified only if replicationRegions is specified.
-     * This field is deprecated - use targetRegions instead.
+     * Get the storageAccountType property: [Deprecated] Storage account type to be used to store the shared image. Omit
+     * to use the default (Standard_LRS). This field can be specified only if replicationRegions is specified. This
+     * field is deprecated - use targetRegions instead.
      * 
      * @return the storageAccountType value.
      */
@@ -144,9 +161,9 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
     }
 
     /**
-     * Set the storageAccountType property: [Deprecated] Storage account type to be used to store the shared image.
-     * Omit to use the default (Standard_LRS). This field can be specified only if replicationRegions is specified.
-     * This field is deprecated - use targetRegions instead.
+     * Set the storageAccountType property: [Deprecated] Storage account type to be used to store the shared image. Omit
+     * to use the default (Standard_LRS). This field can be specified only if replicationRegions is specified. This
+     * field is deprecated - use targetRegions instead.
      * 
      * @param storageAccountType the storageAccountType value to set.
      * @return the ImageTemplateSharedImageDistributor object itself.
@@ -226,8 +243,9 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
     public void validate() {
         super.validate();
         if (galleryImageId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property galleryImageId in model ImageTemplateSharedImageDistributor"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property galleryImageId in model ImageTemplateSharedImageDistributor"));
         }
         if (targetRegions() != null) {
             targetRegions().forEach(e -> e.validate());
