@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Common Data Service data type connection. */
+/**
+ * Common Data Service data type connection.
+ */
 @Fluent
 public final class Dynamics365DataConnectorDataTypesDynamics365CdsActivities extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of Dynamics365DataConnectorDataTypesDynamics365CdsActivities class.
+     */
+    public Dynamics365DataConnectorDataTypesDynamics365CdsActivities() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dynamics365DataConnectorDataTypesDynamics365CdsActivities withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class Dynamics365DataConnectorDataTypesDynamics365CdsActivities ext
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

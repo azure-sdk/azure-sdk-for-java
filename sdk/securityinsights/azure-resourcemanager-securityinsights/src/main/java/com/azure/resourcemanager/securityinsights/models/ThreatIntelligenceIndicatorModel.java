@@ -8,16 +8,30 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceIndicatorProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Threat intelligence indicator entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Threat intelligence indicator entity.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = ThreatIntelligenceIndicatorModel.class,
+    visible = true)
 @JsonTypeName("indicator")
 @Fluent
 public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceInformationInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private ThreatIntelligenceResourceInnerKind kind = ThreatIntelligenceResourceInnerKind.INDICATOR;
+
     /*
      * Threat Intelligence Entity properties
      */
@@ -25,15 +39,33 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
     private ThreatIntelligenceIndicatorProperties innerProperties;
 
     /**
+     * Creates an instance of ThreatIntelligenceIndicatorModel class.
+     */
+    public ThreatIntelligenceIndicatorModel() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public ThreatIntelligenceResourceInnerKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Threat Intelligence Entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ThreatIntelligenceIndicatorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceIndicatorModel withEtag(String etag) {
         super.withEtag(etag);
@@ -42,7 +74,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the threatIntelligenceTags property: List of tags.
-     *
+     * 
      * @return the threatIntelligenceTags value.
      */
     public List<String> threatIntelligenceTags() {
@@ -51,7 +83,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the threatIntelligenceTags property: List of tags.
-     *
+     * 
      * @param threatIntelligenceTags the threatIntelligenceTags value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -65,7 +97,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the lastUpdatedTimeUtc property: Last updated time in UTC.
-     *
+     * 
      * @return the lastUpdatedTimeUtc value.
      */
     public String lastUpdatedTimeUtc() {
@@ -74,7 +106,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the lastUpdatedTimeUtc property: Last updated time in UTC.
-     *
+     * 
      * @param lastUpdatedTimeUtc the lastUpdatedTimeUtc value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -88,7 +120,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the source property: Source of a threat intelligence entity.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -97,7 +129,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the source property: Source of a threat intelligence entity.
-     *
+     * 
      * @param source the source value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -111,7 +143,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the displayName property: Display name of a threat intelligence entity.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -120,7 +152,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the displayName property: Display name of a threat intelligence entity.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -134,7 +166,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the description property: Description of a threat intelligence entity.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -143,7 +175,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the description property: Description of a threat intelligence entity.
-     *
+     * 
      * @param description the description value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -157,7 +189,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the indicatorTypes property: Indicator types of threat intelligence entities.
-     *
+     * 
      * @return the indicatorTypes value.
      */
     public List<String> indicatorTypes() {
@@ -166,7 +198,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the indicatorTypes property: Indicator types of threat intelligence entities.
-     *
+     * 
      * @param indicatorTypes the indicatorTypes value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -180,7 +212,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the pattern property: Pattern of a threat intelligence entity.
-     *
+     * 
      * @return the pattern value.
      */
     public String pattern() {
@@ -189,7 +221,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the pattern property: Pattern of a threat intelligence entity.
-     *
+     * 
      * @param pattern the pattern value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -203,7 +235,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the patternType property: Pattern type of a threat intelligence entity.
-     *
+     * 
      * @return the patternType value.
      */
     public String patternType() {
@@ -212,7 +244,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the patternType property: Pattern type of a threat intelligence entity.
-     *
+     * 
      * @param patternType the patternType value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -226,7 +258,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the patternVersion property: Pattern version of a threat intelligence entity.
-     *
+     * 
      * @return the patternVersion value.
      */
     public String patternVersion() {
@@ -235,7 +267,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the patternVersion property: Pattern version of a threat intelligence entity.
-     *
+     * 
      * @param patternVersion the patternVersion value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -249,7 +281,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the killChainPhases property: Kill chain phases.
-     *
+     * 
      * @return the killChainPhases value.
      */
     public List<ThreatIntelligenceKillChainPhase> killChainPhases() {
@@ -258,12 +290,12 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the killChainPhases property: Kill chain phases.
-     *
+     * 
      * @param killChainPhases the killChainPhases value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
-    public ThreatIntelligenceIndicatorModel withKillChainPhases(
-        List<ThreatIntelligenceKillChainPhase> killChainPhases) {
+    public ThreatIntelligenceIndicatorModel
+        withKillChainPhases(List<ThreatIntelligenceKillChainPhase> killChainPhases) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ThreatIntelligenceIndicatorProperties();
         }
@@ -273,7 +305,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the parsedPattern property: Parsed patterns.
-     *
+     * 
      * @return the parsedPattern value.
      */
     public List<ThreatIntelligenceParsedPattern> parsedPattern() {
@@ -282,7 +314,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the parsedPattern property: Parsed patterns.
-     *
+     * 
      * @param parsedPattern the parsedPattern value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -296,7 +328,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the externalId property: External ID of threat intelligence entity.
-     *
+     * 
      * @return the externalId value.
      */
     public String externalId() {
@@ -305,7 +337,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the externalId property: External ID of threat intelligence entity.
-     *
+     * 
      * @param externalId the externalId value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -319,7 +351,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the createdByRef property: Created by reference of threat intelligence entity.
-     *
+     * 
      * @return the createdByRef value.
      */
     public String createdByRef() {
@@ -328,7 +360,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the createdByRef property: Created by reference of threat intelligence entity.
-     *
+     * 
      * @param createdByRef the createdByRef value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -342,7 +374,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the defanged property: Is threat intelligence entity defanged.
-     *
+     * 
      * @return the defanged value.
      */
     public Boolean defanged() {
@@ -351,7 +383,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the defanged property: Is threat intelligence entity defanged.
-     *
+     * 
      * @param defanged the defanged value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -365,7 +397,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the externalLastUpdatedTimeUtc property: External last updated time in UTC.
-     *
+     * 
      * @return the externalLastUpdatedTimeUtc value.
      */
     public String externalLastUpdatedTimeUtc() {
@@ -374,7 +406,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the externalLastUpdatedTimeUtc property: External last updated time in UTC.
-     *
+     * 
      * @param externalLastUpdatedTimeUtc the externalLastUpdatedTimeUtc value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -388,7 +420,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the externalReferences property: External References.
-     *
+     * 
      * @return the externalReferences value.
      */
     public List<ThreatIntelligenceExternalReference> externalReferences() {
@@ -397,12 +429,12 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the externalReferences property: External References.
-     *
+     * 
      * @param externalReferences the externalReferences value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
-    public ThreatIntelligenceIndicatorModel withExternalReferences(
-        List<ThreatIntelligenceExternalReference> externalReferences) {
+    public ThreatIntelligenceIndicatorModel
+        withExternalReferences(List<ThreatIntelligenceExternalReference> externalReferences) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ThreatIntelligenceIndicatorProperties();
         }
@@ -412,7 +444,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the granularMarkings property: Granular Markings.
-     *
+     * 
      * @return the granularMarkings value.
      */
     public List<ThreatIntelligenceGranularMarkingModel> granularMarkings() {
@@ -421,12 +453,12 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the granularMarkings property: Granular Markings.
-     *
+     * 
      * @param granularMarkings the granularMarkings value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
-    public ThreatIntelligenceIndicatorModel withGranularMarkings(
-        List<ThreatIntelligenceGranularMarkingModel> granularMarkings) {
+    public ThreatIntelligenceIndicatorModel
+        withGranularMarkings(List<ThreatIntelligenceGranularMarkingModel> granularMarkings) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ThreatIntelligenceIndicatorProperties();
         }
@@ -436,7 +468,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the labels property: Labels of threat intelligence entity.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -445,7 +477,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the labels property: Labels of threat intelligence entity.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -459,7 +491,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the revoked property: Is threat intelligence entity revoked.
-     *
+     * 
      * @return the revoked value.
      */
     public Boolean revoked() {
@@ -468,7 +500,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the revoked property: Is threat intelligence entity revoked.
-     *
+     * 
      * @param revoked the revoked value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -482,7 +514,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the confidence property: Confidence of threat intelligence entity.
-     *
+     * 
      * @return the confidence value.
      */
     public Integer confidence() {
@@ -491,7 +523,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the confidence property: Confidence of threat intelligence entity.
-     *
+     * 
      * @param confidence the confidence value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -505,7 +537,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the objectMarkingRefs property: Threat intelligence entity object marking references.
-     *
+     * 
      * @return the objectMarkingRefs value.
      */
     public List<String> objectMarkingRefs() {
@@ -514,7 +546,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the objectMarkingRefs property: Threat intelligence entity object marking references.
-     *
+     * 
      * @param objectMarkingRefs the objectMarkingRefs value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -528,7 +560,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the language property: Language of threat intelligence entity.
-     *
+     * 
      * @return the language value.
      */
     public String language() {
@@ -537,7 +569,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the language property: Language of threat intelligence entity.
-     *
+     * 
      * @param language the language value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -551,7 +583,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the threatTypes property: Threat types.
-     *
+     * 
      * @return the threatTypes value.
      */
     public List<String> threatTypes() {
@@ -560,7 +592,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the threatTypes property: Threat types.
-     *
+     * 
      * @param threatTypes the threatTypes value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -574,7 +606,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the validFrom property: Valid from.
-     *
+     * 
      * @return the validFrom value.
      */
     public String validFrom() {
@@ -583,7 +615,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the validFrom property: Valid from.
-     *
+     * 
      * @param validFrom the validFrom value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -597,7 +629,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the validUntil property: Valid until.
-     *
+     * 
      * @return the validUntil value.
      */
     public String validUntil() {
@@ -606,7 +638,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the validUntil property: Valid until.
-     *
+     * 
      * @param validUntil the validUntil value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -620,7 +652,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the created property: Created by.
-     *
+     * 
      * @return the created value.
      */
     public String created() {
@@ -629,7 +661,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the created property: Created by.
-     *
+     * 
      * @param created the created value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -643,7 +675,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the modified property: Modified by.
-     *
+     * 
      * @return the modified value.
      */
     public String modified() {
@@ -652,7 +684,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the modified property: Modified by.
-     *
+     * 
      * @param modified the modified value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -666,7 +698,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Get the extensions property: Extensions map.
-     *
+     * 
      * @return the extensions value.
      */
     public Map<String, Object> extensions() {
@@ -675,7 +707,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Set the extensions property: Extensions map.
-     *
+     * 
      * @param extensions the extensions value to set.
      * @return the ThreatIntelligenceIndicatorModel object itself.
      */
@@ -690,7 +722,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -700,7 +732,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -709,7 +741,7 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

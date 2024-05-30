@@ -5,28 +5,50 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Entity timeline Item. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = EntityTimelineItem.class)
+/**
+ * Entity timeline Item.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = EntityTimelineItem.class, visible = true)
 @JsonTypeName("EntityTimelineItem")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Activity", value = ActivityTimelineItem.class),
     @JsonSubTypes.Type(name = "Bookmark", value = BookmarkTimelineItem.class),
     @JsonSubTypes.Type(name = "Anomaly", value = AnomalyTimelineItem.class),
-    @JsonSubTypes.Type(name = "SecurityAlert", value = SecurityAlertTimelineItem.class)
-})
+    @JsonSubTypes.Type(name = "SecurityAlert", value = SecurityAlertTimelineItem.class) })
 @Immutable
 public class EntityTimelineItem {
+    /*
+     * The entity query kind type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityTimelineKind kind;
+
+    /**
+     * Creates an instance of EntityTimelineItem class.
+     */
+    public EntityTimelineItem() {
+        this.kind = EntityTimelineKind.fromString("EntityTimelineItem");
+    }
+
+    /**
+     * Get the kind property: The entity query kind type.
+     * 
+     * @return the kind value.
+     */
+    public EntityTimelineKind kind() {
+        return this.kind;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

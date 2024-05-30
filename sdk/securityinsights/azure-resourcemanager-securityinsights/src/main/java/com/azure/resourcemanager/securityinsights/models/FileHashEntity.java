@@ -4,19 +4,29 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.FileHashEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a file hash entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a file hash entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = FileHashEntity.class, visible = true)
 @JsonTypeName("FileHash")
-@Fluent
+@Immutable
 public final class FileHashEntity extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.FILE_HASH;
+
     /*
      * FileHash entity properties
      */
@@ -24,8 +34,24 @@ public final class FileHashEntity extends EntityInner {
     private FileHashEntityProperties innerProperties;
 
     /**
+     * Creates an instance of FileHashEntity class.
+     */
+    public FileHashEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: FileHash entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private FileHashEntityProperties innerProperties() {
@@ -34,7 +60,7 @@ public final class FileHashEntity extends EntityInner {
 
     /**
      * Get the algorithm property: The hash algorithm type.
-     *
+     * 
      * @return the algorithm value.
      */
     public FileHashAlgorithm algorithm() {
@@ -43,7 +69,7 @@ public final class FileHashEntity extends EntityInner {
 
     /**
      * Get the hashValue property: The file hash value.
-     *
+     * 
      * @return the hashValue value.
      */
     public String hashValue() {
@@ -53,7 +79,7 @@ public final class FileHashEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -63,7 +89,7 @@ public final class FileHashEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -72,7 +98,7 @@ public final class FileHashEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

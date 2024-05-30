@@ -6,26 +6,51 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ActivityEntityQuery;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryKind;
 import com.azure.resourcemanager.securityinsights.models.ExpansionEntityQuery;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity query. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = EntityQueryInner.class)
+/**
+ * Specific entity query.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = EntityQueryInner.class, visible = true)
 @JsonTypeName("EntityQuery")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Expansion", value = ExpansionEntityQuery.class),
-    @JsonSubTypes.Type(name = "Activity", value = ActivityEntityQuery.class)
-})
+    @JsonSubTypes.Type(name = "Activity", value = ActivityEntityQuery.class) })
 @Fluent
 public class EntityQueryInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /*
+     * the entity query kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityQueryKind kind;
+
+    /**
+     * Creates an instance of EntityQueryInner class.
+     */
+    public EntityQueryInner() {
+        this.kind = EntityQueryKind.fromString("EntityQuery");
+    }
+
+    /**
+     * Get the kind property: the entity query kind.
+     * 
+     * @return the kind value.
+     */
+    public EntityQueryKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityQueryInner withEtag(String etag) {
         super.withEtag(etag);
@@ -34,7 +59,7 @@ public class EntityQueryInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

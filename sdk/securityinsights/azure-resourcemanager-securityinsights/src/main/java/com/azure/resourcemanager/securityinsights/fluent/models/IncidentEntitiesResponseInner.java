@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.IncidentEntitiesResults
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The incident related entities response. */
+/**
+ * The incident related entities response.
+ */
 @Fluent
 public final class IncidentEntitiesResponseInner {
     /*
@@ -25,8 +27,14 @@ public final class IncidentEntitiesResponseInner {
     private List<IncidentEntitiesResultsMetadata> metadata;
 
     /**
+     * Creates an instance of IncidentEntitiesResponseInner class.
+     */
+    public IncidentEntitiesResponseInner() {
+    }
+
+    /**
      * Get the entities property: Array of the incident related entities.
-     *
+     * 
      * @return the entities value.
      */
     public List<EntityInner> entities() {
@@ -35,7 +43,7 @@ public final class IncidentEntitiesResponseInner {
 
     /**
      * Set the entities property: Array of the incident related entities.
-     *
+     * 
      * @param entities the entities value to set.
      * @return the IncidentEntitiesResponseInner object itself.
      */
@@ -46,7 +54,7 @@ public final class IncidentEntitiesResponseInner {
 
     /**
      * Get the metadata property: The metadata from the incident related entities results.
-     *
+     * 
      * @return the metadata value.
      */
     public List<IncidentEntitiesResultsMetadata> metadata() {
@@ -55,7 +63,7 @@ public final class IncidentEntitiesResponseInner {
 
     /**
      * Set the metadata property: The metadata from the incident related entities results.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the IncidentEntitiesResponseInner object itself.
      */
@@ -66,7 +74,7 @@ public final class IncidentEntitiesResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Required permissions for the connector. */
+/**
+ * Required permissions for the connector.
+ */
 @Fluent
 public final class RequiredPermissions {
     /*
@@ -35,8 +37,14 @@ public final class RequiredPermissions {
     private Boolean delete;
 
     /**
+     * Creates an instance of RequiredPermissions class.
+     */
+    public RequiredPermissions() {
+    }
+
+    /**
      * Get the action property: action permission.
-     *
+     * 
      * @return the action value.
      */
     public Boolean action() {
@@ -45,7 +53,7 @@ public final class RequiredPermissions {
 
     /**
      * Set the action property: action permission.
-     *
+     * 
      * @param action the action value to set.
      * @return the RequiredPermissions object itself.
      */
@@ -56,7 +64,7 @@ public final class RequiredPermissions {
 
     /**
      * Get the write property: write permission.
-     *
+     * 
      * @return the write value.
      */
     public Boolean write() {
@@ -65,7 +73,7 @@ public final class RequiredPermissions {
 
     /**
      * Set the write property: write permission.
-     *
+     * 
      * @param write the write value to set.
      * @return the RequiredPermissions object itself.
      */
@@ -76,7 +84,7 @@ public final class RequiredPermissions {
 
     /**
      * Get the read property: read permission.
-     *
+     * 
      * @return the read value.
      */
     public Boolean read() {
@@ -85,7 +93,7 @@ public final class RequiredPermissions {
 
     /**
      * Set the read property: read permission.
-     *
+     * 
      * @param read the read value to set.
      * @return the RequiredPermissions object itself.
      */
@@ -96,7 +104,7 @@ public final class RequiredPermissions {
 
     /**
      * Get the delete property: delete permission.
-     *
+     * 
      * @return the delete value.
      */
     public Boolean delete() {
@@ -105,7 +113,7 @@ public final class RequiredPermissions {
 
     /**
      * Set the delete property: delete permission.
-     *
+     * 
      * @param delete the delete value to set.
      * @return the RequiredPermissions object itself.
      */
@@ -116,7 +124,7 @@ public final class RequiredPermissions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
