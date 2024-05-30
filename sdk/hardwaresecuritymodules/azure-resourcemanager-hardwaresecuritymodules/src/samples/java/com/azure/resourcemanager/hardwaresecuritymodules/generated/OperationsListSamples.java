@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/PaymentHsm_OperationsList.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/OperationsList.json
      */
     /**
      * Sample code: Get a list of Payment HSM operations.
@@ -24,9 +22,7 @@ public final class OperationsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/DedicatedHsm_OperationsList.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/OperationsList.json
      */
     /**
      * Sample code: Get a list of Dedicated HSM operations.

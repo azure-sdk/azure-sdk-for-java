@@ -16,16 +16,16 @@ import java.util.Map;
 @Fluent
 public class CloudHsmClusterResource extends Resource {
     /*
-     * SKU details
-     */
-    @JsonProperty(value = "sku")
-    private CloudHsmClusterSku sku;
-
-    /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
+
+    /*
+     * SKU details
+     */
+    @JsonProperty(value = "sku")
+    private CloudHsmClusterSku sku;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -37,26 +37,6 @@ public class CloudHsmClusterResource extends Resource {
      * Creates an instance of CloudHsmClusterResource class.
      */
     public CloudHsmClusterResource() {
-    }
-
-    /**
-     * Get the sku property: SKU details.
-     * 
-     * @return the sku value.
-     */
-    public CloudHsmClusterSku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: SKU details.
-     * 
-     * @param sku the sku value to set.
-     * @return the CloudHsmClusterResource object itself.
-     */
-    public CloudHsmClusterResource withSku(CloudHsmClusterSku sku) {
-        this.sku = sku;
-        return this;
     }
 
     /**
@@ -76,6 +56,26 @@ public class CloudHsmClusterResource extends Resource {
      */
     public CloudHsmClusterResource withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the sku property: SKU details.
+     * 
+     * @return the sku value.
+     */
+    public CloudHsmClusterSku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: SKU details.
+     * 
+     * @param sku the sku value to set.
+     * @return the CloudHsmClusterResource object itself.
+     */
+    public CloudHsmClusterResource withSku(CloudHsmClusterSku sku) {
+        this.sku = sku;
         return this;
     }
 
@@ -112,11 +112,11 @@ public class CloudHsmClusterResource extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sku() != null) {
-            sku().validate();
-        }
         if (identity() != null) {
             identity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 }

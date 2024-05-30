@@ -14,10 +14,10 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class BackupProperties {
     /*
-     * Azure storage Resource Uri
+     * Azure Blob storage container Uri
      */
-    @JsonProperty(value = "azureStorageResourceUri")
-    private String azureStorageResourceUri;
+    @JsonProperty(value = "azureStorageContainerUri")
+    private String azureStorageContainerUri;
 
     /*
      * Last Date Time that Customer Enabled Backup was taken
@@ -38,22 +38,22 @@ public final class BackupProperties {
     }
 
     /**
-     * Get the azureStorageResourceUri property: Azure storage Resource Uri.
+     * Get the azureStorageContainerUri property: Azure Blob storage container Uri.
      * 
-     * @return the azureStorageResourceUri value.
+     * @return the azureStorageContainerUri value.
      */
-    public String azureStorageResourceUri() {
-        return this.azureStorageResourceUri;
+    public String azureStorageContainerUri() {
+        return this.azureStorageContainerUri;
     }
 
     /**
-     * Set the azureStorageResourceUri property: Azure storage Resource Uri.
+     * Set the azureStorageContainerUri property: Azure Blob storage container Uri.
      * 
-     * @param azureStorageResourceUri the azureStorageResourceUri value to set.
+     * @param azureStorageContainerUri the azureStorageContainerUri value to set.
      * @return the BackupProperties object itself.
      */
-    public BackupProperties withAzureStorageResourceUri(String azureStorageResourceUri) {
-        this.azureStorageResourceUri = azureStorageResourceUri;
+    public BackupProperties withAzureStorageContainerUri(String azureStorageContainerUri) {
+        this.azureStorageContainerUri = azureStorageContainerUri;
         return this;
     }
 

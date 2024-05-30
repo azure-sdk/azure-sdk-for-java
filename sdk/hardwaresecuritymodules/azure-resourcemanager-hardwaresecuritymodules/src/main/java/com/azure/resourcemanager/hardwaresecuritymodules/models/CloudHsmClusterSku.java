@@ -104,12 +104,12 @@ public final class CloudHsmClusterSku {
      */
     public void validate() {
         if (family() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property family in model CloudHsmClusterSku"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property family in model CloudHsmClusterSku"));
         }
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model CloudHsmClusterSku"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model CloudHsmClusterSku"));
         }
     }
 

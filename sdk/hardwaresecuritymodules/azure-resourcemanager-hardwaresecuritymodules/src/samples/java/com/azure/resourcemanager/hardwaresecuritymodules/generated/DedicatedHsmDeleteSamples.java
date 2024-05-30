@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
  */
 public final class DedicatedHsmDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/DedicatedHsm_Delete.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/DedicatedHsm_Delete.json
      */
     /**
      * Sample code: Delete a dedicated HSM.
