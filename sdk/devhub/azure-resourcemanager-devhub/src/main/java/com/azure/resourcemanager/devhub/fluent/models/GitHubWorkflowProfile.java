@@ -13,12 +13,14 @@ import com.azure.resourcemanager.devhub.models.PullRequestStatus;
 import com.azure.resourcemanager.devhub.models.WorkflowRun;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** GitHub Workflow Profile. */
+/**
+ * GitHub Workflow Profile.
+ */
 @Fluent
 public final class GitHubWorkflowProfile {
     /*
      * The owner of the repository the workflow is associated with.
-     *
+     * 
      * Repository Owner
      */
     @JsonProperty(value = "repositoryOwner")
@@ -26,7 +28,7 @@ public final class GitHubWorkflowProfile {
 
     /*
      * The name of the repository the workflow is associated with.
-     *
+     * 
      * Repository Name
      */
     @JsonProperty(value = "repositoryName")
@@ -34,7 +36,7 @@ public final class GitHubWorkflowProfile {
 
     /*
      * The name of the branch the workflow is associated with.
-     *
+     * 
      * Repository Branch Name
      */
     @JsonProperty(value = "branchName")
@@ -42,7 +44,7 @@ public final class GitHubWorkflowProfile {
 
     /*
      * Path to Dockerfile within the repository.
-     *
+     * 
      * Path to the Dockerfile within the repository.
      */
     @JsonProperty(value = "dockerfile")
@@ -62,7 +64,7 @@ public final class GitHubWorkflowProfile {
 
     /*
      * The Kubernetes namespace the application is deployed to
-     *
+     * 
      * Kubernetes namespace the application is deployed to.
      */
     @JsonProperty(value = "namespace")
@@ -82,7 +84,7 @@ public final class GitHubWorkflowProfile {
 
     /*
      * The Azure Kubernetes Managed Cluster resource.
-     *
+     * 
      * The Azure Kubernetes Cluster Resource the application will be deployed to.
      */
     @JsonProperty(value = "aksResourceId")
@@ -118,15 +120,17 @@ public final class GitHubWorkflowProfile {
     @JsonProperty(value = "authStatus", access = JsonProperty.Access.WRITE_ONLY)
     private AuthorizationStatus authStatus;
 
-    /** Creates an instance of GitHubWorkflowProfile class. */
+    /**
+     * Creates an instance of GitHubWorkflowProfile class.
+     */
     public GitHubWorkflowProfile() {
     }
 
     /**
      * Get the repositoryOwner property: The owner of the repository the workflow is associated with.
-     *
-     * <p>Repository Owner.
-     *
+     * 
+     * Repository Owner.
+     * 
      * @return the repositoryOwner value.
      */
     public String repositoryOwner() {
@@ -135,9 +139,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the repositoryOwner property: The owner of the repository the workflow is associated with.
-     *
-     * <p>Repository Owner.
-     *
+     * 
+     * Repository Owner.
+     * 
      * @param repositoryOwner the repositoryOwner value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -148,9 +152,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the repositoryName property: The name of the repository the workflow is associated with.
-     *
-     * <p>Repository Name.
-     *
+     * 
+     * Repository Name.
+     * 
      * @return the repositoryName value.
      */
     public String repositoryName() {
@@ -159,9 +163,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the repositoryName property: The name of the repository the workflow is associated with.
-     *
-     * <p>Repository Name.
-     *
+     * 
+     * Repository Name.
+     * 
      * @param repositoryName the repositoryName value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -172,9 +176,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the branchName property: The name of the branch the workflow is associated with.
-     *
-     * <p>Repository Branch Name.
-     *
+     * 
+     * Repository Branch Name.
+     * 
      * @return the branchName value.
      */
     public String branchName() {
@@ -183,9 +187,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the branchName property: The name of the branch the workflow is associated with.
-     *
-     * <p>Repository Branch Name.
-     *
+     * 
+     * Repository Branch Name.
+     * 
      * @param branchName the branchName value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -196,9 +200,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the dockerfile property: Path to Dockerfile within the repository.
-     *
-     * <p>Path to the Dockerfile within the repository.
-     *
+     * 
+     * Path to the Dockerfile within the repository.
+     * 
      * @return the dockerfile value.
      */
     public String dockerfile() {
@@ -207,9 +211,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the dockerfile property: Path to Dockerfile within the repository.
-     *
-     * <p>Path to the Dockerfile within the repository.
-     *
+     * 
+     * Path to the Dockerfile within the repository.
+     * 
      * @param dockerfile the dockerfile value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -220,7 +224,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the dockerBuildContext property: Path to Dockerfile Build Context within the repository.
-     *
+     * 
      * @return the dockerBuildContext value.
      */
     public String dockerBuildContext() {
@@ -229,7 +233,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the dockerBuildContext property: Path to Dockerfile Build Context within the repository.
-     *
+     * 
      * @param dockerBuildContext the dockerBuildContext value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -240,7 +244,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the deploymentProperties property: The deploymentProperties property.
-     *
+     * 
      * @return the deploymentProperties value.
      */
     public DeploymentProperties deploymentProperties() {
@@ -249,7 +253,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the deploymentProperties property: The deploymentProperties property.
-     *
+     * 
      * @param deploymentProperties the deploymentProperties value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -260,9 +264,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the namespace property: The Kubernetes namespace the application is deployed to
-     *
-     * <p>Kubernetes namespace the application is deployed to.
-     *
+     * 
+     * Kubernetes namespace the application is deployed to.
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -271,9 +275,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the namespace property: The Kubernetes namespace the application is deployed to
-     *
-     * <p>Kubernetes namespace the application is deployed to.
-     *
+     * 
+     * Kubernetes namespace the application is deployed to.
+     * 
      * @param namespace the namespace value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -284,7 +288,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the acr property: Information on the azure container registry.
-     *
+     * 
      * @return the acr value.
      */
     public Acr acr() {
@@ -293,7 +297,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the acr property: Information on the azure container registry.
-     *
+     * 
      * @param acr the acr value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -304,7 +308,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the oidcCredentials property: The fields needed for OIDC with GitHub.
-     *
+     * 
      * @return the oidcCredentials value.
      */
     public GitHubWorkflowProfileOidcCredentials oidcCredentials() {
@@ -313,7 +317,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the oidcCredentials property: The fields needed for OIDC with GitHub.
-     *
+     * 
      * @param oidcCredentials the oidcCredentials value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -324,9 +328,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the aksResourceId property: The Azure Kubernetes Managed Cluster resource.
-     *
-     * <p>The Azure Kubernetes Cluster Resource the application will be deployed to.
-     *
+     * 
+     * The Azure Kubernetes Cluster Resource the application will be deployed to.
+     * 
      * @return the aksResourceId value.
      */
     public String aksResourceId() {
@@ -335,9 +339,9 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the aksResourceId property: The Azure Kubernetes Managed Cluster resource.
-     *
-     * <p>The Azure Kubernetes Cluster Resource the application will be deployed to.
-     *
+     * 
+     * The Azure Kubernetes Cluster Resource the application will be deployed to.
+     * 
      * @param aksResourceId the aksResourceId value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -348,7 +352,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the prUrl property: The URL to the Pull Request submitted against the users repository.
-     *
+     * 
      * @return the prUrl value.
      */
     public String prUrl() {
@@ -357,7 +361,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the pullNumber property: The number associated with the submitted pull request.
-     *
+     * 
      * @return the pullNumber value.
      */
     public Integer pullNumber() {
@@ -366,7 +370,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the prStatus property: The status of the Pull Request submitted against the users repository.
-     *
+     * 
      * @return the prStatus value.
      */
     public PullRequestStatus prStatus() {
@@ -375,7 +379,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the lastWorkflowRun property: The lastWorkflowRun property.
-     *
+     * 
      * @return the lastWorkflowRun value.
      */
     public WorkflowRun lastWorkflowRun() {
@@ -384,7 +388,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Set the lastWorkflowRun property: The lastWorkflowRun property.
-     *
+     * 
      * @param lastWorkflowRun the lastWorkflowRun value to set.
      * @return the GitHubWorkflowProfile object itself.
      */
@@ -395,7 +399,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Get the authStatus property: Determines the authorization status of requests.
-     *
+     * 
      * @return the authStatus value.
      */
     public AuthorizationStatus authStatus() {
@@ -404,7 +408,7 @@ public final class GitHubWorkflowProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

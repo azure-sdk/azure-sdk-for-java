@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information on the azure container registry. */
+/**
+ * Information on the azure container registry.
+ */
 @Fluent
 public final class Acr {
     /*
@@ -34,13 +36,15 @@ public final class Acr {
     @JsonProperty(value = "acrRepositoryName")
     private String acrRepositoryName;
 
-    /** Creates an instance of Acr class. */
+    /**
+     * Creates an instance of Acr class.
+     */
     public Acr() {
     }
 
     /**
      * Get the acrSubscriptionId property: ACR subscription id.
-     *
+     * 
      * @return the acrSubscriptionId value.
      */
     public String acrSubscriptionId() {
@@ -49,7 +53,7 @@ public final class Acr {
 
     /**
      * Set the acrSubscriptionId property: ACR subscription id.
-     *
+     * 
      * @param acrSubscriptionId the acrSubscriptionId value to set.
      * @return the Acr object itself.
      */
@@ -60,7 +64,7 @@ public final class Acr {
 
     /**
      * Get the acrResourceGroup property: ACR resource group.
-     *
+     * 
      * @return the acrResourceGroup value.
      */
     public String acrResourceGroup() {
@@ -69,7 +73,7 @@ public final class Acr {
 
     /**
      * Set the acrResourceGroup property: ACR resource group.
-     *
+     * 
      * @param acrResourceGroup the acrResourceGroup value to set.
      * @return the Acr object itself.
      */
@@ -80,7 +84,7 @@ public final class Acr {
 
     /**
      * Get the acrRegistryName property: ACR registry.
-     *
+     * 
      * @return the acrRegistryName value.
      */
     public String acrRegistryName() {
@@ -89,7 +93,7 @@ public final class Acr {
 
     /**
      * Set the acrRegistryName property: ACR registry.
-     *
+     * 
      * @param acrRegistryName the acrRegistryName value to set.
      * @return the Acr object itself.
      */
@@ -100,7 +104,7 @@ public final class Acr {
 
     /**
      * Get the acrRepositoryName property: ACR repository.
-     *
+     * 
      * @return the acrRepositoryName value.
      */
     public String acrRepositoryName() {
@@ -109,7 +113,7 @@ public final class Acr {
 
     /**
      * Set the acrRepositoryName property: ACR repository.
-     *
+     * 
      * @param acrRepositoryName the acrRepositoryName value to set.
      * @return the Acr object itself.
      */
@@ -120,7 +124,7 @@ public final class Acr {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

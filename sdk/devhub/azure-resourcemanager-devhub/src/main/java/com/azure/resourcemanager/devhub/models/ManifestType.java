@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Determines the type of manifests within the repository. */
+/**
+ * Determines the type of manifests within the repository.
+ */
 public final class ManifestType extends ExpandableStringEnum<ManifestType> {
-    /** Static value helm for ManifestType. */
+    /**
+     * Static value helm for ManifestType.
+     */
     public static final ManifestType HELM = fromString("helm");
 
-    /** Static value kube for ManifestType. */
+    /**
+     * Static value kube for ManifestType.
+     */
     public static final ManifestType KUBE = fromString("kube");
 
     /**
      * Creates a new instance of ManifestType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ManifestType extends ExpandableStringEnum<ManifestType> {
 
     /**
      * Creates or finds a ManifestType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ManifestType.
      */
@@ -38,7 +44,7 @@ public final class ManifestType extends ExpandableStringEnum<ManifestType> {
 
     /**
      * Gets known ManifestType values.
-     *
+     * 
      * @return known ManifestType values.
      */
     public static Collection<ManifestType> values() {

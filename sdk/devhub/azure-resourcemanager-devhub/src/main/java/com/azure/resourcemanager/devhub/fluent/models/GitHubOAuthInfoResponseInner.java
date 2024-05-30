@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** URL used to authorize the Developer Hub GitHub App. */
+/**
+ * URL used to authorize the Developer Hub GitHub App.
+ */
 @Fluent
 public final class GitHubOAuthInfoResponseInner {
     /*
@@ -22,13 +24,15 @@ public final class GitHubOAuthInfoResponseInner {
     @JsonProperty(value = "token")
     private String token;
 
-    /** Creates an instance of GitHubOAuthInfoResponseInner class. */
+    /**
+     * Creates an instance of GitHubOAuthInfoResponseInner class.
+     */
     public GitHubOAuthInfoResponseInner() {
     }
 
     /**
      * Get the authUrl property: URL for authorizing the Developer Hub GitHub App.
-     *
+     * 
      * @return the authUrl value.
      */
     public String authUrl() {
@@ -37,7 +41,7 @@ public final class GitHubOAuthInfoResponseInner {
 
     /**
      * Set the authUrl property: URL for authorizing the Developer Hub GitHub App.
-     *
+     * 
      * @param authUrl the authUrl value to set.
      * @return the GitHubOAuthInfoResponseInner object itself.
      */
@@ -48,7 +52,7 @@ public final class GitHubOAuthInfoResponseInner {
 
     /**
      * Get the token property: OAuth token used to make calls to GitHub.
-     *
+     * 
      * @return the token value.
      */
     public String token() {
@@ -57,7 +61,7 @@ public final class GitHubOAuthInfoResponseInner {
 
     /**
      * Set the token property: OAuth token used to make calls to GitHub.
-     *
+     * 
      * @param token the token value to set.
      * @return the GitHubOAuthInfoResponseInner object itself.
      */
@@ -68,7 +72,7 @@ public final class GitHubOAuthInfoResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

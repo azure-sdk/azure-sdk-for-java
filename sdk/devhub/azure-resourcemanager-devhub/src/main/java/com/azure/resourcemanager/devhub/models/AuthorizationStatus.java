@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Determines the authorization status of requests. */
+/**
+ * Determines the authorization status of requests.
+ */
 public final class AuthorizationStatus extends ExpandableStringEnum<AuthorizationStatus> {
-    /** Static value Authorized for AuthorizationStatus. */
+    /**
+     * Static value Authorized for AuthorizationStatus.
+     */
     public static final AuthorizationStatus AUTHORIZED = fromString("Authorized");
 
-    /** Static value NotFound for AuthorizationStatus. */
+    /**
+     * Static value NotFound for AuthorizationStatus.
+     */
     public static final AuthorizationStatus NOT_FOUND = fromString("NotFound");
 
-    /** Static value Error for AuthorizationStatus. */
+    /**
+     * Static value Error for AuthorizationStatus.
+     */
     public static final AuthorizationStatus ERROR = fromString("Error");
 
     /**
      * Creates a new instance of AuthorizationStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class AuthorizationStatus extends ExpandableStringEnum<Authorizatio
 
     /**
      * Creates or finds a AuthorizationStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AuthorizationStatus.
      */
@@ -41,7 +49,7 @@ public final class AuthorizationStatus extends ExpandableStringEnum<Authorizatio
 
     /**
      * Gets known AuthorizationStatus values.
-     *
+     * 
      * @return known AuthorizationStatus values.
      */
     public static Collection<AuthorizationStatus> values() {

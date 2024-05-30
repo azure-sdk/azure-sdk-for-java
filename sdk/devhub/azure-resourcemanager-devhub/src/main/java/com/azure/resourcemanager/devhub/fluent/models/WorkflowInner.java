@@ -22,8 +22,8 @@ import java.util.Map;
 
 /**
  * Workflow
- *
- * <p>Resource representation of a workflow.
+ * 
+ * Resource representation of a workflow.
  */
 @Fluent
 public final class WorkflowInner extends Resource {
@@ -39,13 +39,15 @@ public final class WorkflowInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of WorkflowInner class. */
+    /**
+     * Creates an instance of WorkflowInner class.
+     */
     public WorkflowInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of a workflow.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkflowProperties innerProperties() {
@@ -54,21 +56,25 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkflowInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkflowInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -77,9 +83,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the repositoryOwner property: The owner of the repository the workflow is associated with.
-     *
-     * <p>Repository Owner.
-     *
+     * 
+     * Repository Owner.
+     * 
      * @return the repositoryOwner value.
      */
     public String repositoryOwner() {
@@ -88,9 +94,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the repositoryOwner property: The owner of the repository the workflow is associated with.
-     *
-     * <p>Repository Owner.
-     *
+     * 
+     * Repository Owner.
+     * 
      * @param repositoryOwner the repositoryOwner value to set.
      * @return the WorkflowInner object itself.
      */
@@ -104,9 +110,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the repositoryName property: The name of the repository the workflow is associated with.
-     *
-     * <p>Repository Name.
-     *
+     * 
+     * Repository Name.
+     * 
      * @return the repositoryName value.
      */
     public String repositoryName() {
@@ -115,9 +121,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the repositoryName property: The name of the repository the workflow is associated with.
-     *
-     * <p>Repository Name.
-     *
+     * 
+     * Repository Name.
+     * 
      * @param repositoryName the repositoryName value to set.
      * @return the WorkflowInner object itself.
      */
@@ -131,9 +137,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the branchName property: The name of the branch the workflow is associated with.
-     *
-     * <p>Repository Branch Name.
-     *
+     * 
+     * Repository Branch Name.
+     * 
      * @return the branchName value.
      */
     public String branchName() {
@@ -142,9 +148,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the branchName property: The name of the branch the workflow is associated with.
-     *
-     * <p>Repository Branch Name.
-     *
+     * 
+     * Repository Branch Name.
+     * 
      * @param branchName the branchName value to set.
      * @return the WorkflowInner object itself.
      */
@@ -158,9 +164,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the dockerfile property: Path to Dockerfile within the repository.
-     *
-     * <p>Path to the Dockerfile within the repository.
-     *
+     * 
+     * Path to the Dockerfile within the repository.
+     * 
      * @return the dockerfile value.
      */
     public String dockerfile() {
@@ -169,9 +175,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the dockerfile property: Path to Dockerfile within the repository.
-     *
-     * <p>Path to the Dockerfile within the repository.
-     *
+     * 
+     * Path to the Dockerfile within the repository.
+     * 
      * @param dockerfile the dockerfile value to set.
      * @return the WorkflowInner object itself.
      */
@@ -185,7 +191,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the dockerBuildContext property: Path to Dockerfile Build Context within the repository.
-     *
+     * 
      * @return the dockerBuildContext value.
      */
     public String dockerBuildContext() {
@@ -194,7 +200,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the dockerBuildContext property: Path to Dockerfile Build Context within the repository.
-     *
+     * 
      * @param dockerBuildContext the dockerBuildContext value to set.
      * @return the WorkflowInner object itself.
      */
@@ -208,7 +214,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the deploymentProperties property: The deploymentProperties property.
-     *
+     * 
      * @return the deploymentProperties value.
      */
     public DeploymentProperties deploymentProperties() {
@@ -217,7 +223,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the deploymentProperties property: The deploymentProperties property.
-     *
+     * 
      * @param deploymentProperties the deploymentProperties value to set.
      * @return the WorkflowInner object itself.
      */
@@ -231,9 +237,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the namespace property: The Kubernetes namespace the application is deployed to
-     *
-     * <p>Kubernetes namespace the application is deployed to.
-     *
+     * 
+     * Kubernetes namespace the application is deployed to.
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -242,9 +248,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the namespace property: The Kubernetes namespace the application is deployed to
-     *
-     * <p>Kubernetes namespace the application is deployed to.
-     *
+     * 
+     * Kubernetes namespace the application is deployed to.
+     * 
      * @param namespace the namespace value to set.
      * @return the WorkflowInner object itself.
      */
@@ -258,7 +264,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the acr property: Information on the azure container registry.
-     *
+     * 
      * @return the acr value.
      */
     public Acr acr() {
@@ -267,7 +273,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the acr property: Information on the azure container registry.
-     *
+     * 
      * @param acr the acr value to set.
      * @return the WorkflowInner object itself.
      */
@@ -281,7 +287,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the oidcCredentials property: The fields needed for OIDC with GitHub.
-     *
+     * 
      * @return the oidcCredentials value.
      */
     public GitHubWorkflowProfileOidcCredentials oidcCredentials() {
@@ -290,7 +296,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the oidcCredentials property: The fields needed for OIDC with GitHub.
-     *
+     * 
      * @param oidcCredentials the oidcCredentials value to set.
      * @return the WorkflowInner object itself.
      */
@@ -304,9 +310,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the aksResourceId property: The Azure Kubernetes Managed Cluster resource.
-     *
-     * <p>The Azure Kubernetes Cluster Resource the application will be deployed to.
-     *
+     * 
+     * The Azure Kubernetes Cluster Resource the application will be deployed to.
+     * 
      * @return the aksResourceId value.
      */
     public String aksResourceId() {
@@ -315,9 +321,9 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the aksResourceId property: The Azure Kubernetes Managed Cluster resource.
-     *
-     * <p>The Azure Kubernetes Cluster Resource the application will be deployed to.
-     *
+     * 
+     * The Azure Kubernetes Cluster Resource the application will be deployed to.
+     * 
      * @param aksResourceId the aksResourceId value to set.
      * @return the WorkflowInner object itself.
      */
@@ -331,7 +337,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the prUrl property: The URL to the Pull Request submitted against the users repository.
-     *
+     * 
      * @return the prUrl value.
      */
     public String prUrl() {
@@ -340,7 +346,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the pullNumber property: The number associated with the submitted pull request.
-     *
+     * 
      * @return the pullNumber value.
      */
     public Integer pullNumber() {
@@ -349,7 +355,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the prStatus property: The status of the Pull Request submitted against the users repository.
-     *
+     * 
      * @return the prStatus value.
      */
     public PullRequestStatus prStatus() {
@@ -358,7 +364,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the lastWorkflowRun property: The lastWorkflowRun property.
-     *
+     * 
      * @return the lastWorkflowRun value.
      */
     public WorkflowRun lastWorkflowRun() {
@@ -367,7 +373,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the lastWorkflowRun property: The lastWorkflowRun property.
-     *
+     * 
      * @param lastWorkflowRun the lastWorkflowRun value to set.
      * @return the WorkflowInner object itself.
      */
@@ -381,7 +387,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the authStatus property: Determines the authorization status of requests.
-     *
+     * 
      * @return the authStatus value.
      */
     public AuthorizationStatus authStatus() {
@@ -390,7 +396,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the generationLanguage property: The programming language used.
-     *
+     * 
      * @return the generationLanguage value.
      */
     public GenerationLanguage generationLanguage() {
@@ -399,7 +405,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the generationLanguage property: The programming language used.
-     *
+     * 
      * @param generationLanguage the generationLanguage value to set.
      * @return the WorkflowInner object itself.
      */
@@ -414,7 +420,7 @@ public final class WorkflowInner extends Resource {
     /**
      * Get the languageVersion property: The version of the language image used for execution in the generated
      * dockerfile.
-     *
+     * 
      * @return the languageVersion value.
      */
     public String languageVersion() {
@@ -424,7 +430,7 @@ public final class WorkflowInner extends Resource {
     /**
      * Set the languageVersion property: The version of the language image used for execution in the generated
      * dockerfile.
-     *
+     * 
      * @param languageVersion the languageVersion value to set.
      * @return the WorkflowInner object itself.
      */
@@ -439,7 +445,7 @@ public final class WorkflowInner extends Resource {
     /**
      * Get the builderVersion property: The version of the language image used for building the code in the generated
      * dockerfile.
-     *
+     * 
      * @return the builderVersion value.
      */
     public String builderVersion() {
@@ -449,7 +455,7 @@ public final class WorkflowInner extends Resource {
     /**
      * Set the builderVersion property: The version of the language image used for building the code in the generated
      * dockerfile.
-     *
+     * 
      * @param builderVersion the builderVersion value to set.
      * @return the WorkflowInner object itself.
      */
@@ -463,7 +469,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the port property: The port the application is exposed on.
-     *
+     * 
      * @return the port value.
      */
     public String port() {
@@ -472,7 +478,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the port property: The port the application is exposed on.
-     *
+     * 
      * @param port the port value to set.
      * @return the WorkflowInner object itself.
      */
@@ -486,7 +492,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the appName property: The name of the app.
-     *
+     * 
      * @return the appName value.
      */
     public String appName() {
@@ -495,7 +501,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the appName property: The name of the app.
-     *
+     * 
      * @param appName the appName value to set.
      * @return the WorkflowInner object itself.
      */
@@ -509,7 +515,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the dockerfileOutputDirectory property: The directory to output the generated Dockerfile to.
-     *
+     * 
      * @return the dockerfileOutputDirectory value.
      */
     public String dockerfileOutputDirectory() {
@@ -518,7 +524,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the dockerfileOutputDirectory property: The directory to output the generated Dockerfile to.
-     *
+     * 
      * @param dockerfileOutputDirectory the dockerfileOutputDirectory value to set.
      * @return the WorkflowInner object itself.
      */
@@ -532,7 +538,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the manifestOutputDirectory property: The directory to output the generated manifests to.
-     *
+     * 
      * @return the manifestOutputDirectory value.
      */
     public String manifestOutputDirectory() {
@@ -541,7 +547,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the manifestOutputDirectory property: The directory to output the generated manifests to.
-     *
+     * 
      * @param manifestOutputDirectory the manifestOutputDirectory value to set.
      * @return the WorkflowInner object itself.
      */
@@ -555,7 +561,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the dockerfileGenerationMode property: The mode of generation to be used for generating Dockerfiles.
-     *
+     * 
      * @return the dockerfileGenerationMode value.
      */
     public DockerfileGenerationMode dockerfileGenerationMode() {
@@ -564,7 +570,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the dockerfileGenerationMode property: The mode of generation to be used for generating Dockerfiles.
-     *
+     * 
      * @param dockerfileGenerationMode the dockerfileGenerationMode value to set.
      * @return the WorkflowInner object itself.
      */
@@ -578,7 +584,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the manifestGenerationMode property: The mode of generation to be used for generating Manifest.
-     *
+     * 
      * @return the manifestGenerationMode value.
      */
     public ManifestGenerationMode manifestGenerationMode() {
@@ -587,7 +593,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the manifestGenerationMode property: The mode of generation to be used for generating Manifest.
-     *
+     * 
      * @param manifestGenerationMode the manifestGenerationMode value to set.
      * @return the WorkflowInner object itself.
      */
@@ -601,7 +607,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the manifestType property: Determines the type of manifests to be generated.
-     *
+     * 
      * @return the manifestType value.
      */
     public GenerationManifestType manifestType() {
@@ -610,7 +616,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the manifestType property: Determines the type of manifests to be generated.
-     *
+     * 
      * @param manifestType the manifestType value to set.
      * @return the WorkflowInner object itself.
      */
@@ -624,7 +630,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the imageName property: The name of the image to be generated.
-     *
+     * 
      * @return the imageName value.
      */
     public String imageName() {
@@ -633,7 +639,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the imageName property: The name of the image to be generated.
-     *
+     * 
      * @param imageName the imageName value to set.
      * @return the WorkflowInner object itself.
      */
@@ -647,7 +653,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Get the namespaceArtifactGenerationPropertiesNamespace property: The namespace to deploy the application to.
-     *
+     * 
      * @return the namespaceArtifactGenerationPropertiesNamespace value.
      */
     public String namespaceArtifactGenerationPropertiesNamespace() {
@@ -658,25 +664,24 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the namespaceArtifactGenerationPropertiesNamespace property: The namespace to deploy the application to.
-     *
+     * 
      * @param namespaceArtifactGenerationPropertiesNamespace the namespaceArtifactGenerationPropertiesNamespace value to
-     *     set.
+     * set.
      * @return the WorkflowInner object itself.
      */
-    public WorkflowInner withNamespaceArtifactGenerationPropertiesNamespace(
-        String namespaceArtifactGenerationPropertiesNamespace) {
+    public WorkflowInner
+        withNamespaceArtifactGenerationPropertiesNamespace(String namespaceArtifactGenerationPropertiesNamespace) {
         if (this.innerProperties() == null) {
             this.innerProperties = new WorkflowProperties();
         }
-        this
-            .innerProperties()
+        this.innerProperties()
             .withNamespaceArtifactGenerationPropertiesNamespace(namespaceArtifactGenerationPropertiesNamespace);
         return this;
     }
 
     /**
      * Get the imageTag property: The tag to apply to the generated image.
-     *
+     * 
      * @return the imageTag value.
      */
     public String imageTag() {
@@ -685,7 +690,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Set the imageTag property: The tag to apply to the generated image.
-     *
+     * 
      * @param imageTag the imageTag value to set.
      * @return the WorkflowInner object itself.
      */
@@ -699,7 +704,7 @@ public final class WorkflowInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

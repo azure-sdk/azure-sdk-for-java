@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from List GitHubOAuth operation. */
+/**
+ * The response from List GitHubOAuth operation.
+ */
 @Fluent
 public final class GitHubOAuthListResponseInner {
     /*
@@ -17,13 +19,15 @@ public final class GitHubOAuthListResponseInner {
     @JsonProperty(value = "value")
     private List<GitHubOAuthResponseInner> value;
 
-    /** Creates an instance of GitHubOAuthListResponseInner class. */
+    /**
+     * Creates an instance of GitHubOAuthListResponseInner class.
+     */
     public GitHubOAuthListResponseInner() {
     }
 
     /**
      * Get the value property: Singleton list response containing one GitHubOAuthResponse response.
-     *
+     * 
      * @return the value value.
      */
     public List<GitHubOAuthResponseInner> value() {
@@ -32,7 +36,7 @@ public final class GitHubOAuthListResponseInner {
 
     /**
      * Set the value property: Singleton list response containing one GitHubOAuthResponse response.
-     *
+     * 
      * @param value the value value to set.
      * @return the GitHubOAuthListResponseInner object itself.
      */
@@ -43,7 +47,7 @@ public final class GitHubOAuthListResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

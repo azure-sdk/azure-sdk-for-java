@@ -10,23 +10,22 @@ import com.azure.resourcemanager.devhub.models.GenerationLanguage;
 import com.azure.resourcemanager.devhub.models.GenerationManifestType;
 import com.azure.resourcemanager.devhub.models.ManifestGenerationMode;
 
-/** Samples for ResourceProvider GeneratePreviewArtifacts. */
+/**
+ * Samples for ResourceProvider GeneratePreviewArtifacts.
+ */
 public final class ResourceProviderGeneratePreviewArtifactsSamples {
     /*
-     * x-ms-original-file: specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/GeneratePreviewArtifacts.json
+     * x-ms-original-file: specification/developerhub/resource-manager/Microsoft.DevHub/preview/2024-05-01-preview/examples/GeneratePreviewArtifacts.json
      */
     /**
      * Sample code: Artifact Generation Properties.
-     *
+     * 
      * @param manager Entry point to DevHubManager.
      */
     public static void artifactGenerationProperties(com.azure.resourcemanager.devhub.DevHubManager manager) {
-        manager
-            .resourceProviders()
-            .generatePreviewArtifactsWithResponse(
-                "location1",
-                new ArtifactGenerationProperties()
-                    .withGenerationLanguage(GenerationLanguage.JAVASCRIPT)
+        manager.resourceProviders()
+            .generatePreviewArtifactsWithResponse("location1",
+                new ArtifactGenerationProperties().withGenerationLanguage(GenerationLanguage.JAVASCRIPT)
                     .withLanguageVersion("14")
                     .withPort("80")
                     .withAppName("my-app")

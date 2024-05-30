@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Resource tags. */
+/**
+ * Resource tags.
+ */
 @Fluent
 public final class TagsObject {
     /*
@@ -19,13 +21,15 @@ public final class TagsObject {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of TagsObject class. */
+    /**
+     * Creates an instance of TagsObject class.
+     */
     public TagsObject() {
     }
 
     /**
      * Get the tags property: Dictionary of &lt;string&gt;.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class TagsObject {
 
     /**
      * Set the tags property: Dictionary of &lt;string&gt;.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the TagsObject object itself.
      */
@@ -45,7 +49,7 @@ public final class TagsObject {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

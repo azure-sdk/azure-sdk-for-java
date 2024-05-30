@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** delete response if content must be provided on delete operation. */
+/**
+ * delete response if content must be provided on delete operation.
+ */
 @Fluent
 public final class DeleteWorkflowResponseInner {
     /*
@@ -16,13 +18,15 @@ public final class DeleteWorkflowResponseInner {
     @JsonProperty(value = "status")
     private String status;
 
-    /** Creates an instance of DeleteWorkflowResponseInner class. */
+    /**
+     * Creates an instance of DeleteWorkflowResponseInner class.
+     */
     public DeleteWorkflowResponseInner() {
     }
 
     /**
      * Get the status property: delete status message.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -31,7 +35,7 @@ public final class DeleteWorkflowResponseInner {
 
     /**
      * Set the status property: delete status message.
-     *
+     * 
      * @param status the status value to set.
      * @return the DeleteWorkflowResponseInner object itself.
      */
@@ -42,7 +46,7 @@ public final class DeleteWorkflowResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The response from List GitHubOAuth operation. */
+/**
+ * The response from List GitHubOAuth operation.
+ */
 @Fluent
 public final class GitHubOAuthProperties {
     /*
@@ -16,13 +18,15 @@ public final class GitHubOAuthProperties {
     @JsonProperty(value = "username")
     private String username;
 
-    /** Creates an instance of GitHubOAuthProperties class. */
+    /**
+     * Creates an instance of GitHubOAuthProperties class.
+     */
     public GitHubOAuthProperties() {
     }
 
     /**
      * Get the username property: user making request.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -31,7 +35,7 @@ public final class GitHubOAuthProperties {
 
     /**
      * Set the username property: user making request.
-     *
+     * 
      * @param username the username value to set.
      * @return the GitHubOAuthProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class GitHubOAuthProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Singleton response of GitHubOAuth containing. */
+/**
+ * Singleton response of GitHubOAuth containing.
+ */
 @Fluent
 public final class GitHubOAuthResponseInner extends ProxyResource {
     /*
@@ -24,13 +26,15 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of GitHubOAuthResponseInner class. */
+    /**
+     * Creates an instance of GitHubOAuthResponseInner class.
+     */
     public GitHubOAuthResponseInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of a workflow.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GitHubOAuthProperties innerProperties() {
@@ -39,7 +43,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -48,7 +52,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
 
     /**
      * Get the username property: user making request.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -57,7 +61,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
 
     /**
      * Set the username property: user making request.
-     *
+     * 
      * @param username the username value to set.
      * @return the GitHubOAuthResponseInner object itself.
      */
@@ -71,7 +75,7 @@ public final class GitHubOAuthResponseInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

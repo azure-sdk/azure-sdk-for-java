@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** GitHubOAuth request object. */
+/**
+ * GitHubOAuth request object.
+ */
 @Fluent
 public final class GitHubOAuthCallRequest {
     /*
@@ -16,14 +18,16 @@ public final class GitHubOAuthCallRequest {
     @JsonProperty(value = "redirectUrl")
     private String redirectUrl;
 
-    /** Creates an instance of GitHubOAuthCallRequest class. */
+    /**
+     * Creates an instance of GitHubOAuthCallRequest class.
+     */
     public GitHubOAuthCallRequest() {
     }
 
     /**
      * Get the redirectUrl property: The URL the client will redirect to on successful authentication. If empty, no
      * redirect will occur.
-     *
+     * 
      * @return the redirectUrl value.
      */
     public String redirectUrl() {
@@ -33,7 +37,7 @@ public final class GitHubOAuthCallRequest {
     /**
      * Set the redirectUrl property: The URL the client will redirect to on successful authentication. If empty, no
      * redirect will occur.
-     *
+     * 
      * @param redirectUrl the redirectUrl value to set.
      * @return the GitHubOAuthCallRequest object itself.
      */
@@ -44,7 +48,7 @@ public final class GitHubOAuthCallRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

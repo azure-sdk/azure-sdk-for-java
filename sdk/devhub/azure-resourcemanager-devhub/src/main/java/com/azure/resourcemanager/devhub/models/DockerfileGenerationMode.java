@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The mode of generation to be used for generating Dockerfiles. */
+/**
+ * The mode of generation to be used for generating Dockerfiles.
+ */
 public final class DockerfileGenerationMode extends ExpandableStringEnum<DockerfileGenerationMode> {
-    /** Static value enabled for DockerfileGenerationMode. */
+    /**
+     * Static value enabled for DockerfileGenerationMode.
+     */
     public static final DockerfileGenerationMode ENABLED = fromString("enabled");
 
-    /** Static value disabled for DockerfileGenerationMode. */
+    /**
+     * Static value disabled for DockerfileGenerationMode.
+     */
     public static final DockerfileGenerationMode DISABLED = fromString("disabled");
 
     /**
      * Creates a new instance of DockerfileGenerationMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class DockerfileGenerationMode extends ExpandableStringEnum<Dockerf
 
     /**
      * Creates or finds a DockerfileGenerationMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DockerfileGenerationMode.
      */
@@ -38,7 +44,7 @@ public final class DockerfileGenerationMode extends ExpandableStringEnum<Dockerf
 
     /**
      * Gets known DockerfileGenerationMode values.
-     *
+     * 
      * @return known DockerfileGenerationMode values.
      */
     public static Collection<DockerfileGenerationMode> values() {

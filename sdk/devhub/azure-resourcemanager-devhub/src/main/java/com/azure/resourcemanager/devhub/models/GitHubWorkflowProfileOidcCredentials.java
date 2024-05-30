@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The fields needed for OIDC with GitHub. */
+/**
+ * The fields needed for OIDC with GitHub.
+ */
 @Fluent
 public final class GitHubWorkflowProfileOidcCredentials {
     /*
@@ -22,13 +24,15 @@ public final class GitHubWorkflowProfileOidcCredentials {
     @JsonProperty(value = "azureTenantId")
     private String azureTenantId;
 
-    /** Creates an instance of GitHubWorkflowProfileOidcCredentials class. */
+    /**
+     * Creates an instance of GitHubWorkflowProfileOidcCredentials class.
+     */
     public GitHubWorkflowProfileOidcCredentials() {
     }
 
     /**
      * Get the azureClientId property: Azure Application Client ID.
-     *
+     * 
      * @return the azureClientId value.
      */
     public String azureClientId() {
@@ -37,7 +41,7 @@ public final class GitHubWorkflowProfileOidcCredentials {
 
     /**
      * Set the azureClientId property: Azure Application Client ID.
-     *
+     * 
      * @param azureClientId the azureClientId value to set.
      * @return the GitHubWorkflowProfileOidcCredentials object itself.
      */
@@ -48,7 +52,7 @@ public final class GitHubWorkflowProfileOidcCredentials {
 
     /**
      * Get the azureTenantId property: Azure Directory (tenant) ID.
-     *
+     * 
      * @return the azureTenantId value.
      */
     public String azureTenantId() {
@@ -57,7 +61,7 @@ public final class GitHubWorkflowProfileOidcCredentials {
 
     /**
      * Set the azureTenantId property: Azure Directory (tenant) ID.
-     *
+     * 
      * @param azureTenantId the azureTenantId value to set.
      * @return the GitHubWorkflowProfileOidcCredentials object itself.
      */
@@ -68,7 +72,7 @@ public final class GitHubWorkflowProfileOidcCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

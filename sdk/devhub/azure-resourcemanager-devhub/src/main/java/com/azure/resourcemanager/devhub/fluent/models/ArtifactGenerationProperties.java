@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Artifact Generation Properties
- *
- * <p>Properties used for generating artifacts such as Dockerfiles and manifests.
+ * 
+ * Properties used for generating artifacts such as Dockerfiles and manifests.
  */
 @Fluent
 public final class ArtifactGenerationProperties {
@@ -96,13 +96,15 @@ public final class ArtifactGenerationProperties {
     @JsonProperty(value = "imageTag")
     private String imageTag;
 
-    /** Creates an instance of ArtifactGenerationProperties class. */
+    /**
+     * Creates an instance of ArtifactGenerationProperties class.
+     */
     public ArtifactGenerationProperties() {
     }
 
     /**
      * Get the generationLanguage property: The programming language used.
-     *
+     * 
      * @return the generationLanguage value.
      */
     public GenerationLanguage generationLanguage() {
@@ -111,7 +113,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the generationLanguage property: The programming language used.
-     *
+     * 
      * @param generationLanguage the generationLanguage value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -123,7 +125,7 @@ public final class ArtifactGenerationProperties {
     /**
      * Get the languageVersion property: The version of the language image used for execution in the generated
      * dockerfile.
-     *
+     * 
      * @return the languageVersion value.
      */
     public String languageVersion() {
@@ -133,7 +135,7 @@ public final class ArtifactGenerationProperties {
     /**
      * Set the languageVersion property: The version of the language image used for execution in the generated
      * dockerfile.
-     *
+     * 
      * @param languageVersion the languageVersion value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -145,7 +147,7 @@ public final class ArtifactGenerationProperties {
     /**
      * Get the builderVersion property: The version of the language image used for building the code in the generated
      * dockerfile.
-     *
+     * 
      * @return the builderVersion value.
      */
     public String builderVersion() {
@@ -155,7 +157,7 @@ public final class ArtifactGenerationProperties {
     /**
      * Set the builderVersion property: The version of the language image used for building the code in the generated
      * dockerfile.
-     *
+     * 
      * @param builderVersion the builderVersion value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -166,7 +168,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the port property: The port the application is exposed on.
-     *
+     * 
      * @return the port value.
      */
     public String port() {
@@ -175,7 +177,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the port property: The port the application is exposed on.
-     *
+     * 
      * @param port the port value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -186,7 +188,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the appName property: The name of the app.
-     *
+     * 
      * @return the appName value.
      */
     public String appName() {
@@ -195,7 +197,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the appName property: The name of the app.
-     *
+     * 
      * @param appName the appName value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -206,7 +208,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the dockerfileOutputDirectory property: The directory to output the generated Dockerfile to.
-     *
+     * 
      * @return the dockerfileOutputDirectory value.
      */
     public String dockerfileOutputDirectory() {
@@ -215,7 +217,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the dockerfileOutputDirectory property: The directory to output the generated Dockerfile to.
-     *
+     * 
      * @param dockerfileOutputDirectory the dockerfileOutputDirectory value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -226,7 +228,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the manifestOutputDirectory property: The directory to output the generated manifests to.
-     *
+     * 
      * @return the manifestOutputDirectory value.
      */
     public String manifestOutputDirectory() {
@@ -235,7 +237,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the manifestOutputDirectory property: The directory to output the generated manifests to.
-     *
+     * 
      * @param manifestOutputDirectory the manifestOutputDirectory value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -246,7 +248,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the dockerfileGenerationMode property: The mode of generation to be used for generating Dockerfiles.
-     *
+     * 
      * @return the dockerfileGenerationMode value.
      */
     public DockerfileGenerationMode dockerfileGenerationMode() {
@@ -255,19 +257,19 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the dockerfileGenerationMode property: The mode of generation to be used for generating Dockerfiles.
-     *
+     * 
      * @param dockerfileGenerationMode the dockerfileGenerationMode value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
-    public ArtifactGenerationProperties withDockerfileGenerationMode(
-        DockerfileGenerationMode dockerfileGenerationMode) {
+    public ArtifactGenerationProperties
+        withDockerfileGenerationMode(DockerfileGenerationMode dockerfileGenerationMode) {
         this.dockerfileGenerationMode = dockerfileGenerationMode;
         return this;
     }
 
     /**
      * Get the manifestGenerationMode property: The mode of generation to be used for generating Manifest.
-     *
+     * 
      * @return the manifestGenerationMode value.
      */
     public ManifestGenerationMode manifestGenerationMode() {
@@ -276,7 +278,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the manifestGenerationMode property: The mode of generation to be used for generating Manifest.
-     *
+     * 
      * @param manifestGenerationMode the manifestGenerationMode value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -287,7 +289,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the manifestType property: Determines the type of manifests to be generated.
-     *
+     * 
      * @return the manifestType value.
      */
     public GenerationManifestType manifestType() {
@@ -296,7 +298,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the manifestType property: Determines the type of manifests to be generated.
-     *
+     * 
      * @param manifestType the manifestType value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -307,7 +309,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the imageName property: The name of the image to be generated.
-     *
+     * 
      * @return the imageName value.
      */
     public String imageName() {
@@ -316,7 +318,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the imageName property: The name of the image to be generated.
-     *
+     * 
      * @param imageName the imageName value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -327,7 +329,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the namespace property: The namespace to deploy the application to.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -336,7 +338,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the namespace property: The namespace to deploy the application to.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -347,7 +349,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Get the imageTag property: The tag to apply to the generated image.
-     *
+     * 
      * @return the imageTag value.
      */
     public String imageTag() {
@@ -356,7 +358,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Set the imageTag property: The tag to apply to the generated image.
-     *
+     * 
      * @param imageTag the imageTag value to set.
      * @return the ArtifactGenerationProperties object itself.
      */
@@ -367,7 +369,7 @@ public final class ArtifactGenerationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

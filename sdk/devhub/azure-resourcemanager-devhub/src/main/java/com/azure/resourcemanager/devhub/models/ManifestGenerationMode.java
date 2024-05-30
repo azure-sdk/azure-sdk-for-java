@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The mode of generation to be used for generating Manifest. */
+/**
+ * The mode of generation to be used for generating Manifest.
+ */
 public final class ManifestGenerationMode extends ExpandableStringEnum<ManifestGenerationMode> {
-    /** Static value enabled for ManifestGenerationMode. */
+    /**
+     * Static value enabled for ManifestGenerationMode.
+     */
     public static final ManifestGenerationMode ENABLED = fromString("enabled");
 
-    /** Static value disabled for ManifestGenerationMode. */
+    /**
+     * Static value disabled for ManifestGenerationMode.
+     */
     public static final ManifestGenerationMode DISABLED = fromString("disabled");
 
     /**
      * Creates a new instance of ManifestGenerationMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ManifestGenerationMode extends ExpandableStringEnum<ManifestG
 
     /**
      * Creates or finds a ManifestGenerationMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ManifestGenerationMode.
      */
@@ -38,7 +44,7 @@ public final class ManifestGenerationMode extends ExpandableStringEnum<ManifestG
 
     /**
      * Gets known ManifestGenerationMode values.
-     *
+     * 
      * @return known ManifestGenerationMode values.
      */
     public static Collection<ManifestGenerationMode> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The WorkflowRun model. */
+/**
+ * The WorkflowRun model.
+ */
 @Fluent
 public final class WorkflowRun {
     /*
@@ -35,13 +37,15 @@ public final class WorkflowRun {
     @JsonProperty(value = "workflowRunStatus")
     private WorkflowRunStatus workflowRunStatus;
 
-    /** Creates an instance of WorkflowRun class. */
+    /**
+     * Creates an instance of WorkflowRun class.
+     */
     public WorkflowRun() {
     }
 
     /**
      * Get the succeeded property: Describes if the workflow run succeeded.
-     *
+     * 
      * @return the succeeded value.
      */
     public Boolean succeeded() {
@@ -50,7 +54,7 @@ public final class WorkflowRun {
 
     /**
      * Get the workflowRunUrl property: URL to the run of the workflow.
-     *
+     * 
      * @return the workflowRunUrl value.
      */
     public String workflowRunUrl() {
@@ -59,7 +63,7 @@ public final class WorkflowRun {
 
     /**
      * Get the lastRunAt property: The timestamp of the last workflow run.
-     *
+     * 
      * @return the lastRunAt value.
      */
     public OffsetDateTime lastRunAt() {
@@ -68,7 +72,7 @@ public final class WorkflowRun {
 
     /**
      * Get the workflowRunStatus property: Describes the status of the workflow run.
-     *
+     * 
      * @return the workflowRunStatus value.
      */
     public WorkflowRunStatus workflowRunStatus() {
@@ -77,7 +81,7 @@ public final class WorkflowRun {
 
     /**
      * Set the workflowRunStatus property: Describes the status of the workflow run.
-     *
+     * 
      * @param workflowRunStatus the workflowRunStatus value to set.
      * @return the WorkflowRun object itself.
      */
@@ -88,7 +92,7 @@ public final class WorkflowRun {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
