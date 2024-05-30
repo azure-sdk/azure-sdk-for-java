@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
  */
 public final class DedicatedHsmListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/DedicatedHsm_ListByResourceGroup.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/DedicatedHsm_ListByResourceGroup.json
      */
     /**
      * Sample code: List dedicated HSM devices in a resource group.
@@ -24,9 +22,7 @@ public final class DedicatedHsmListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/PaymentHsm_ListByResourceGroup.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/PaymentHsm_ListByResourceGroup.json
      */
     /**
      * Sample code: List dedicated HSM devices in a resource group including payment HSM.

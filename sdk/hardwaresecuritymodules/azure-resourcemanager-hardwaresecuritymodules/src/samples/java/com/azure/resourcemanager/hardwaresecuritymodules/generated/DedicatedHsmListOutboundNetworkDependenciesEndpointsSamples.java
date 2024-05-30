@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
  */
 public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
     /*
-     * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
-     * examples/GetOutboundNetworkDependenciesEndpointsList.json
+     * x-ms-original-file: specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/examples/GetOutboundNetworkDependenciesEndpointsList.json
      */
     /**
      * Sample code: List OutboundNetworkDependenciesEndpoints by Managed Cluster.
@@ -20,7 +18,7 @@ public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
      */
     public static void listOutboundNetworkDependenciesEndpointsByManagedCluster(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().listOutboundNetworkDependenciesEndpoints("hsm-group", "hsm1",
-            com.azure.core.util.Context.NONE);
+        manager.dedicatedHsms()
+            .listOutboundNetworkDependenciesEndpoints("hsm-group", "hsm1", com.azure.core.util.Context.NONE);
     }
 }

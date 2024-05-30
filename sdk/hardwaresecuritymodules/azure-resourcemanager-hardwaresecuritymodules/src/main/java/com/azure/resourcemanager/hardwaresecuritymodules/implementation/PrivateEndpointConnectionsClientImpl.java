@@ -112,11 +112,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudHsmCluster(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudHsmClusterName, apiVersion, accept, context))
+            .withContext(
+                context -> service.listByCloudHsmCluster(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<PrivateEndpointConnectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -154,12 +154,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByCloudHsmCluster(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                cloudHsmClusterName, apiVersion, accept, context)
+                cloudHsmClusterName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

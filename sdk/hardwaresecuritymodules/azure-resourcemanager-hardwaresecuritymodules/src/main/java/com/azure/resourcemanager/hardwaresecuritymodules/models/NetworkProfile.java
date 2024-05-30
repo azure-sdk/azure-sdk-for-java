@@ -52,8 +52,8 @@ public final class NetworkProfile {
     }
 
     /**
-     * Get the networkInterfaces property: Specifies the list of resource Ids for the network interfaces associated
-     * with the dedicated HSM.
+     * Get the networkInterfaces property: Specifies the list of resource Ids for the network interfaces associated with
+     * the dedicated HSM.
      * 
      * @return the networkInterfaces value.
      */
@@ -62,8 +62,8 @@ public final class NetworkProfile {
     }
 
     /**
-     * Set the networkInterfaces property: Specifies the list of resource Ids for the network interfaces associated
-     * with the dedicated HSM.
+     * Set the networkInterfaces property: Specifies the list of resource Ids for the network interfaces associated with
+     * the dedicated HSM.
      * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the NetworkProfile object itself.
