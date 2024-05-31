@@ -7,14 +7,24 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CronTrigger model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "triggerType")
+/**
+ * The CronTrigger model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "triggerType", defaultImpl = CronTrigger.class, visible = true)
 @JsonTypeName("Cron")
 @Fluent
 public final class CronTrigger extends TriggerBase {
+    /*
+     * [Required] 
+     */
+    @JsonTypeId
+    @JsonProperty(value = "triggerType", required = true)
+    private TriggerType triggerType = TriggerType.CRON;
+
     /*
      * [Required] Specifies cron expression of schedule.
      * The expression should follow NCronTab format.
@@ -22,14 +32,26 @@ public final class CronTrigger extends TriggerBase {
     @JsonProperty(value = "expression", required = true)
     private String expression;
 
-    /** Creates an instance of CronTrigger class. */
+    /**
+     * Creates an instance of CronTrigger class.
+     */
     public CronTrigger() {
     }
 
     /**
-     * Get the expression property: [Required] Specifies cron expression of schedule. The expression should follow
-     * NCronTab format.
-     *
+     * Get the triggerType property: [Required].
+     * 
+     * @return the triggerType value.
+     */
+    @Override
+    public TriggerType triggerType() {
+        return this.triggerType;
+    }
+
+    /**
+     * Get the expression property: [Required] Specifies cron expression of schedule.
+     * The expression should follow NCronTab format.
+     * 
      * @return the expression value.
      */
     public String expression() {
@@ -37,9 +59,9 @@ public final class CronTrigger extends TriggerBase {
     }
 
     /**
-     * Set the expression property: [Required] Specifies cron expression of schedule. The expression should follow
-     * NCronTab format.
-     *
+     * Set the expression property: [Required] Specifies cron expression of schedule.
+     * The expression should follow NCronTab format.
+     * 
      * @param expression the expression value to set.
      * @return the CronTrigger object itself.
      */
@@ -48,21 +70,27 @@ public final class CronTrigger extends TriggerBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withEndTime(String endTime) {
         super.withEndTime(endTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withStartTime(String startTime) {
         super.withStartTime(startTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withTimeZone(String timeZone) {
         super.withTimeZone(timeZone);
@@ -71,16 +99,15 @@ public final class CronTrigger extends TriggerBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (expression() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property expression in model CronTrigger"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property expression in model CronTrigger"));
         }
     }
 

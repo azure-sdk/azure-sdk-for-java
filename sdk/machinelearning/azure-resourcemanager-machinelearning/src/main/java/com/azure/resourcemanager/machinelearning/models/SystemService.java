@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A system service running on a compute. */
+/**
+ * A system service running on a compute.
+ */
 @Immutable
 public final class SystemService {
     /*
@@ -28,13 +30,15 @@ public final class SystemService {
     @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
 
-    /** Creates an instance of SystemService class. */
+    /**
+     * Creates an instance of SystemService class.
+     */
     public SystemService() {
     }
 
     /**
      * Get the systemServiceType property: The type of this system service.
-     *
+     * 
      * @return the systemServiceType value.
      */
     public String systemServiceType() {
@@ -43,7 +47,7 @@ public final class SystemService {
 
     /**
      * Get the publicIpAddress property: Public IP address.
-     *
+     * 
      * @return the publicIpAddress value.
      */
     public String publicIpAddress() {
@@ -52,7 +56,7 @@ public final class SystemService {
 
     /**
      * Get the version property: The version for this type.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -61,7 +65,7 @@ public final class SystemService {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

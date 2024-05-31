@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HDInsight compute properties. */
+/**
+ * HDInsight compute properties.
+ */
 @Fluent
 public final class HDInsightProperties {
     /*
@@ -28,13 +30,15 @@ public final class HDInsightProperties {
     @JsonProperty(value = "administratorAccount")
     private VirtualMachineSshCredentials administratorAccount;
 
-    /** Creates an instance of HDInsightProperties class. */
+    /**
+     * Creates an instance of HDInsightProperties class.
+     */
     public HDInsightProperties() {
     }
 
     /**
      * Get the sshPort property: Port open for ssh connections on the master node of the cluster.
-     *
+     * 
      * @return the sshPort value.
      */
     public Integer sshPort() {
@@ -43,7 +47,7 @@ public final class HDInsightProperties {
 
     /**
      * Set the sshPort property: Port open for ssh connections on the master node of the cluster.
-     *
+     * 
      * @param sshPort the sshPort value to set.
      * @return the HDInsightProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class HDInsightProperties {
 
     /**
      * Get the address property: Public IP address of the master node of the cluster.
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -63,7 +67,7 @@ public final class HDInsightProperties {
 
     /**
      * Set the address property: Public IP address of the master node of the cluster.
-     *
+     * 
      * @param address the address value to set.
      * @return the HDInsightProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class HDInsightProperties {
 
     /**
      * Get the administratorAccount property: Admin credentials for master node of the cluster.
-     *
+     * 
      * @return the administratorAccount value.
      */
     public VirtualMachineSshCredentials administratorAccount() {
@@ -83,7 +87,7 @@ public final class HDInsightProperties {
 
     /**
      * Set the administratorAccount property: Admin credentials for master node of the cluster.
-     *
+     * 
      * @param administratorAccount the administratorAccount value to set.
      * @return the HDInsightProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class HDInsightProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
