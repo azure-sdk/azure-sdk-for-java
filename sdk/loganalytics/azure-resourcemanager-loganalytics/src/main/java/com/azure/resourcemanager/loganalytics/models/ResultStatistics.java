@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Search job execution statistics. */
+/**
+ * Search job execution statistics.
+ */
 @Immutable
 public final class ResultStatistics {
     /*
@@ -28,13 +30,15 @@ public final class ResultStatistics {
     @JsonProperty(value = "scannedGb", access = JsonProperty.Access.WRITE_ONLY)
     private Float scannedGb;
 
-    /** Creates an instance of ResultStatistics class. */
+    /**
+     * Creates an instance of ResultStatistics class.
+     */
     public ResultStatistics() {
     }
 
     /**
      * Get the progress property: Search job completion percentage.
-     *
+     * 
      * @return the progress value.
      */
     public Float progress() {
@@ -43,7 +47,7 @@ public final class ResultStatistics {
 
     /**
      * Get the ingestedRecords property: The number of rows that were returned by the search job.
-     *
+     * 
      * @return the ingestedRecords value.
      */
     public Integer ingestedRecords() {
@@ -52,7 +56,7 @@ public final class ResultStatistics {
 
     /**
      * Get the scannedGb property: Search job: Amount of scanned data.
-     *
+     * 
      * @return the scannedGb value.
      */
     public Float scannedGb() {
@@ -61,7 +65,7 @@ public final class ResultStatistics {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

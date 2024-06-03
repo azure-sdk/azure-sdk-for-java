@@ -7,24 +7,38 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Linked storage accounts type. */
+/**
+ * Linked storage accounts type.
+ */
 public enum DataSourceType {
-    /** Enum value CustomLogs. */
+    /**
+     * Enum value CustomLogs.
+     */
     CUSTOM_LOGS("CustomLogs"),
 
-    /** Enum value AzureWatson. */
+    /**
+     * Enum value AzureWatson.
+     */
     AZURE_WATSON("AzureWatson"),
 
-    /** Enum value Query. */
+    /**
+     * Enum value Query.
+     */
     QUERY("Query"),
 
-    /** Enum value Ingestion. */
+    /**
+     * Enum value Ingestion.
+     */
     INGESTION("Ingestion"),
 
-    /** Enum value Alerts. */
+    /**
+     * Enum value Alerts.
+     */
     ALERTS("Alerts");
 
-    /** The actual serialized value for a DataSourceType instance. */
+    /**
+     * The actual serialized value for a DataSourceType instance.
+     */
     private final String value;
 
     DataSourceType(String value) {
@@ -33,7 +47,7 @@ public enum DataSourceType {
 
     /**
      * Parses a serialized value to a DataSourceType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed DataSourceType object, or null if unable to parse.
      */
@@ -51,7 +65,9 @@ public enum DataSourceType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

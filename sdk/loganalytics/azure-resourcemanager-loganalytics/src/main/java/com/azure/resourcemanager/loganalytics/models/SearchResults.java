@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Parameters of the search job that initiated this table. */
+/**
+ * Parameters of the search job that initiated this table.
+ */
 @Fluent
 public final class SearchResults {
     /*
@@ -53,13 +55,15 @@ public final class SearchResults {
     @JsonProperty(value = "azureAsyncOperationId", access = JsonProperty.Access.WRITE_ONLY)
     private String azureAsyncOperationId;
 
-    /** Creates an instance of SearchResults class. */
+    /**
+     * Creates an instance of SearchResults class.
+     */
     public SearchResults() {
     }
 
     /**
      * Get the query property: Search job query.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -68,7 +72,7 @@ public final class SearchResults {
 
     /**
      * Set the query property: Search job query.
-     *
+     * 
      * @param query the query value to set.
      * @return the SearchResults object itself.
      */
@@ -79,7 +83,7 @@ public final class SearchResults {
 
     /**
      * Get the description property: Search job Description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -88,7 +92,7 @@ public final class SearchResults {
 
     /**
      * Set the description property: Search job Description.
-     *
+     * 
      * @param description the description value to set.
      * @return the SearchResults object itself.
      */
@@ -99,7 +103,7 @@ public final class SearchResults {
 
     /**
      * Get the limit property: Limit the search job to return up to specified number of rows.
-     *
+     * 
      * @return the limit value.
      */
     public Integer limit() {
@@ -108,7 +112,7 @@ public final class SearchResults {
 
     /**
      * Set the limit property: Limit the search job to return up to specified number of rows.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the SearchResults object itself.
      */
@@ -119,7 +123,7 @@ public final class SearchResults {
 
     /**
      * Get the startSearchTime property: The timestamp to start the search from (UTC).
-     *
+     * 
      * @return the startSearchTime value.
      */
     public OffsetDateTime startSearchTime() {
@@ -128,7 +132,7 @@ public final class SearchResults {
 
     /**
      * Set the startSearchTime property: The timestamp to start the search from (UTC).
-     *
+     * 
      * @param startSearchTime the startSearchTime value to set.
      * @return the SearchResults object itself.
      */
@@ -139,7 +143,7 @@ public final class SearchResults {
 
     /**
      * Get the endSearchTime property: The timestamp to end the search by (UTC).
-     *
+     * 
      * @return the endSearchTime value.
      */
     public OffsetDateTime endSearchTime() {
@@ -148,7 +152,7 @@ public final class SearchResults {
 
     /**
      * Set the endSearchTime property: The timestamp to end the search by (UTC).
-     *
+     * 
      * @param endSearchTime the endSearchTime value to set.
      * @return the SearchResults object itself.
      */
@@ -159,7 +163,7 @@ public final class SearchResults {
 
     /**
      * Get the sourceTable property: The table used in the search job.
-     *
+     * 
      * @return the sourceTable value.
      */
     public String sourceTable() {
@@ -168,7 +172,7 @@ public final class SearchResults {
 
     /**
      * Get the azureAsyncOperationId property: Search results table async operation id.
-     *
+     * 
      * @return the azureAsyncOperationId value.
      */
     public String azureAsyncOperationId() {
@@ -177,7 +181,7 @@ public final class SearchResults {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

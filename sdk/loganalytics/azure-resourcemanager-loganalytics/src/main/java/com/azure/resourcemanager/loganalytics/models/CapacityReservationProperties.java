@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Capacity Reservation properties. */
+/**
+ * The Capacity Reservation properties.
+ */
 @Immutable
 public final class CapacityReservationProperties {
     /*
@@ -17,18 +19,20 @@ public final class CapacityReservationProperties {
     private String lastSkuUpdate;
 
     /*
-     * Minimum CapacityReservation value in GB.
+     * Minimum CapacityReservation value in Gigabytes.
      */
     @JsonProperty(value = "minCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private Long minCapacity;
 
-    /** Creates an instance of CapacityReservationProperties class. */
+    /**
+     * Creates an instance of CapacityReservationProperties class.
+     */
     public CapacityReservationProperties() {
     }
 
     /**
      * Get the lastSkuUpdate property: The last time Sku was updated.
-     *
+     * 
      * @return the lastSkuUpdate value.
      */
     public String lastSkuUpdate() {
@@ -36,8 +40,8 @@ public final class CapacityReservationProperties {
     }
 
     /**
-     * Get the minCapacity property: Minimum CapacityReservation value in GB.
-     *
+     * Get the minCapacity property: Minimum CapacityReservation value in Gigabytes.
+     * 
      * @return the minCapacity value.
      */
     public Long minCapacity() {
@@ -46,7 +50,7 @@ public final class CapacityReservationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

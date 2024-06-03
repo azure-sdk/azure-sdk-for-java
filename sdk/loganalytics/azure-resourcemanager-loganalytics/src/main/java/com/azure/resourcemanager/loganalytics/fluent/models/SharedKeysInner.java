@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The shared keys for a workspace. */
+/**
+ * The shared keys for a workspace.
+ */
 @Fluent
 public final class SharedKeysInner {
     /*
@@ -22,13 +24,15 @@ public final class SharedKeysInner {
     @JsonProperty(value = "secondarySharedKey")
     private String secondarySharedKey;
 
-    /** Creates an instance of SharedKeysInner class. */
+    /**
+     * Creates an instance of SharedKeysInner class.
+     */
     public SharedKeysInner() {
     }
 
     /**
      * Get the primarySharedKey property: The primary shared key of a workspace.
-     *
+     * 
      * @return the primarySharedKey value.
      */
     public String primarySharedKey() {
@@ -37,7 +41,7 @@ public final class SharedKeysInner {
 
     /**
      * Set the primarySharedKey property: The primary shared key of a workspace.
-     *
+     * 
      * @param primarySharedKey the primarySharedKey value to set.
      * @return the SharedKeysInner object itself.
      */
@@ -48,7 +52,7 @@ public final class SharedKeysInner {
 
     /**
      * Get the secondarySharedKey property: The secondary shared key of a workspace.
-     *
+     * 
      * @return the secondarySharedKey value.
      */
     public String secondarySharedKey() {
@@ -57,7 +61,7 @@ public final class SharedKeysInner {
 
     /**
      * Set the secondarySharedKey property: The secondary shared key of a workspace.
-     *
+     * 
      * @param secondarySharedKey the secondarySharedKey value to set.
      * @return the SharedKeysInner object itself.
      */
@@ -68,7 +72,7 @@ public final class SharedKeysInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The top level storage insight resource container. */
+/**
+ * The top level storage insight resource container.
+ */
 @Fluent
 public final class StorageInsightInner extends ProxyResource {
     /*
@@ -35,13 +37,15 @@ public final class StorageInsightInner extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of StorageInsightInner class. */
+    /**
+     * Creates an instance of StorageInsightInner class.
+     */
     public StorageInsightInner() {
     }
 
     /**
      * Get the innerProperties property: Storage insight properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StorageInsightProperties innerProperties() {
@@ -50,7 +54,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the etag property: The ETag of the storage insight.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -59,7 +63,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Set the etag property: The ETag of the storage insight.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the StorageInsightInner object itself.
      */
@@ -70,7 +74,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -79,7 +83,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the StorageInsightInner object itself.
      */
@@ -90,7 +94,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the containers property: The names of the blob containers that the workspace should read.
-     *
+     * 
      * @return the containers value.
      */
     public List<String> containers() {
@@ -99,7 +103,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Set the containers property: The names of the blob containers that the workspace should read.
-     *
+     * 
      * @param containers the containers value to set.
      * @return the StorageInsightInner object itself.
      */
@@ -113,7 +117,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the tables property: The names of the Azure tables that the workspace should read.
-     *
+     * 
      * @return the tables value.
      */
     public List<String> tables() {
@@ -122,7 +126,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Set the tables property: The names of the Azure tables that the workspace should read.
-     *
+     * 
      * @param tables the tables value to set.
      * @return the StorageInsightInner object itself.
      */
@@ -136,7 +140,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the storageAccount property: The storage account connection details.
-     *
+     * 
      * @return the storageAccount value.
      */
     public StorageAccount storageAccount() {
@@ -145,7 +149,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Set the storageAccount property: The storage account connection details.
-     *
+     * 
      * @param storageAccount the storageAccount value to set.
      * @return the StorageInsightInner object itself.
      */
@@ -159,7 +163,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Get the status property: The status of the storage insight.
-     *
+     * 
      * @return the status value.
      */
     public StorageInsightStatus status() {
@@ -168,7 +172,7 @@ public final class StorageInsightInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

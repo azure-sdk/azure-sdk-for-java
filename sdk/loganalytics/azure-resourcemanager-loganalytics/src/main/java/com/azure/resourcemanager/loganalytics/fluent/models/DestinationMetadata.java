@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Destination meta data. */
+/**
+ * Destination meta data.
+ */
 @Fluent
 public final class DestinationMetadata {
     /*
@@ -16,14 +18,16 @@ public final class DestinationMetadata {
     @JsonProperty(value = "eventHubName")
     private String eventHubName;
 
-    /** Creates an instance of DestinationMetadata class. */
+    /**
+     * Creates an instance of DestinationMetadata class.
+     */
     public DestinationMetadata() {
     }
 
     /**
      * Get the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
      * Storage Account.
-     *
+     * 
      * @return the eventHubName value.
      */
     public String eventHubName() {
@@ -33,7 +37,7 @@ public final class DestinationMetadata {
     /**
      * Set the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
      * Storage Account.
-     *
+     * 
      * @param eventHubName the eventHubName value to set.
      * @return the DestinationMetadata object itself.
      */
@@ -44,7 +48,7 @@ public final class DestinationMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

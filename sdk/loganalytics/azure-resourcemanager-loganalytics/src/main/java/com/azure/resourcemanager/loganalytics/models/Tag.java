@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A tag of a saved search. */
+/**
+ * A tag of a saved search.
+ */
 @Fluent
 public final class Tag {
     /*
@@ -23,13 +25,15 @@ public final class Tag {
     @JsonProperty(value = "value", required = true)
     private String value;
 
-    /** Creates an instance of Tag class. */
+    /**
+     * Creates an instance of Tag class.
+     */
     public Tag() {
     }
 
     /**
      * Get the name property: The tag name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class Tag {
 
     /**
      * Set the name property: The tag name.
-     *
+     * 
      * @param name the name value to set.
      * @return the Tag object itself.
      */
@@ -49,7 +53,7 @@ public final class Tag {
 
     /**
      * Get the value property: The tag value.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -58,7 +62,7 @@ public final class Tag {
 
     /**
      * Set the value property: The tag value.
-     *
+     * 
      * @param value the value value to set.
      * @return the Tag object itself.
      */
@@ -69,17 +73,15 @@ public final class Tag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Tag"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property name in model Tag"));
         }
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property value in model Tag"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property value in model Tag"));
         }
     }
 
