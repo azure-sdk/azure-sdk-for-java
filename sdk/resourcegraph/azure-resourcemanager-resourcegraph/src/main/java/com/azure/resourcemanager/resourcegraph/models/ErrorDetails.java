@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Error details. */
+/**
+ * Error details.
+ */
 @Fluent
 public final class ErrorDetails {
     /*
@@ -31,15 +33,18 @@ public final class ErrorDetails {
     /*
      * Error details.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of ErrorDetails class. */
+    /**
+     * Creates an instance of ErrorDetails class.
+     */
     public ErrorDetails() {
     }
 
     /**
      * Get the code property: Error code identifying the specific error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -48,7 +53,7 @@ public final class ErrorDetails {
 
     /**
      * Set the code property: Error code identifying the specific error.
-     *
+     * 
      * @param code the code value to set.
      * @return the ErrorDetails object itself.
      */
@@ -59,7 +64,7 @@ public final class ErrorDetails {
 
     /**
      * Get the message property: A human readable error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -68,7 +73,7 @@ public final class ErrorDetails {
 
     /**
      * Set the message property: A human readable error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the ErrorDetails object itself.
      */
@@ -79,7 +84,7 @@ public final class ErrorDetails {
 
     /**
      * Get the additionalProperties property: Error details.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -89,7 +94,7 @@ public final class ErrorDetails {
 
     /**
      * Set the additionalProperties property: Error details.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the ErrorDetails object itself.
      */
@@ -108,19 +113,17 @@ public final class ErrorDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (code() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property code in model ErrorDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property code in model ErrorDetails"));
         }
         if (message() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property message in model ErrorDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property message in model ErrorDetails"));
         }
     }
 

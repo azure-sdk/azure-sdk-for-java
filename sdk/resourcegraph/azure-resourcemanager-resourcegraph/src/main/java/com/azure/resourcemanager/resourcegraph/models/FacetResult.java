@@ -7,14 +7,24 @@ package com.azure.resourcemanager.resourcegraph.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Successfully executed facet containing additional statistics on the response of a query. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
+/**
+ * Successfully executed facet containing additional statistics on the response of a query.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "resultType", defaultImpl = FacetResult.class, visible = true)
 @JsonTypeName("FacetResult")
 @Fluent
 public final class FacetResult extends Facet {
+    /*
+     * Result type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resultType", required = true)
+    private String resultType = "FacetResult";
+
     /*
      * Number of total records in the facet results.
      */
@@ -33,13 +43,25 @@ public final class FacetResult extends Facet {
     @JsonProperty(value = "data", required = true)
     private Object data;
 
-    /** Creates an instance of FacetResult class. */
+    /**
+     * Creates an instance of FacetResult class.
+     */
     public FacetResult() {
     }
 
     /**
+     * Get the resultType property: Result type.
+     * 
+     * @return the resultType value.
+     */
+    @Override
+    public String resultType() {
+        return this.resultType;
+    }
+
+    /**
      * Get the totalRecords property: Number of total records in the facet results.
-     *
+     * 
      * @return the totalRecords value.
      */
     public long totalRecords() {
@@ -48,7 +70,7 @@ public final class FacetResult extends Facet {
 
     /**
      * Set the totalRecords property: Number of total records in the facet results.
-     *
+     * 
      * @param totalRecords the totalRecords value to set.
      * @return the FacetResult object itself.
      */
@@ -59,7 +81,7 @@ public final class FacetResult extends Facet {
 
     /**
      * Get the count property: Number of records returned in the facet response.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -68,7 +90,7 @@ public final class FacetResult extends Facet {
 
     /**
      * Set the count property: Number of records returned in the facet response.
-     *
+     * 
      * @param count the count value to set.
      * @return the FacetResult object itself.
      */
@@ -80,7 +102,7 @@ public final class FacetResult extends Facet {
     /**
      * Get the data property: A JObject array or Table containing the desired facets. Only present if the facet is
      * valid.
-     *
+     * 
      * @return the data value.
      */
     public Object data() {
@@ -90,7 +112,7 @@ public final class FacetResult extends Facet {
     /**
      * Set the data property: A JObject array or Table containing the desired facets. Only present if the facet is
      * valid.
-     *
+     * 
      * @param data the data value to set.
      * @return the FacetResult object itself.
      */
@@ -99,7 +121,9 @@ public final class FacetResult extends Facet {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FacetResult withExpression(String expression) {
         super.withExpression(expression);
@@ -108,16 +132,15 @@ public final class FacetResult extends Facet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (data() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property data in model FacetResult"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property data in model FacetResult"));
         }
     }
 

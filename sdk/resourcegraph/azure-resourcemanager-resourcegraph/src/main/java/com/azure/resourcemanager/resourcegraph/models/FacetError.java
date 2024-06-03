@@ -7,28 +7,50 @@ package com.azure.resourcemanager.resourcegraph.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** A facet whose execution resulted in an error. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
+/**
+ * A facet whose execution resulted in an error.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "resultType", defaultImpl = FacetError.class, visible = true)
 @JsonTypeName("FacetError")
 @Fluent
 public final class FacetError extends Facet {
+    /*
+     * Result type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resultType", required = true)
+    private String resultType = "FacetError";
+
     /*
      * An array containing detected facet errors with details.
      */
     @JsonProperty(value = "errors", required = true)
     private List<ErrorDetails> errors;
 
-    /** Creates an instance of FacetError class. */
+    /**
+     * Creates an instance of FacetError class.
+     */
     public FacetError() {
     }
 
     /**
+     * Get the resultType property: Result type.
+     * 
+     * @return the resultType value.
+     */
+    @Override
+    public String resultType() {
+        return this.resultType;
+    }
+
+    /**
      * Get the errors property: An array containing detected facet errors with details.
-     *
+     * 
      * @return the errors value.
      */
     public List<ErrorDetails> errors() {
@@ -37,7 +59,7 @@ public final class FacetError extends Facet {
 
     /**
      * Set the errors property: An array containing detected facet errors with details.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the FacetError object itself.
      */
@@ -46,7 +68,9 @@ public final class FacetError extends Facet {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FacetError withExpression(String expression) {
         super.withExpression(expression);
@@ -55,16 +79,15 @@ public final class FacetError extends Facet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (errors() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property errors in model FacetError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property errors in model FacetError"));
         } else {
             errors().forEach(e -> e.validate());
         }

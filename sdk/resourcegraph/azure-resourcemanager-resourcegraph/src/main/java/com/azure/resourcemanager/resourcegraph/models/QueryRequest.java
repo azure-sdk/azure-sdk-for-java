@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes a query to be executed. */
+/**
+ * Describes a query to be executed.
+ */
 @Fluent
 public final class QueryRequest {
     /*
@@ -42,13 +44,15 @@ public final class QueryRequest {
     @JsonProperty(value = "facets")
     private List<FacetRequest> facets;
 
-    /** Creates an instance of QueryRequest class. */
+    /**
+     * Creates an instance of QueryRequest class.
+     */
     public QueryRequest() {
     }
 
     /**
      * Get the subscriptions property: Azure subscriptions against which to execute the query.
-     *
+     * 
      * @return the subscriptions value.
      */
     public List<String> subscriptions() {
@@ -57,7 +61,7 @@ public final class QueryRequest {
 
     /**
      * Set the subscriptions property: Azure subscriptions against which to execute the query.
-     *
+     * 
      * @param subscriptions the subscriptions value to set.
      * @return the QueryRequest object itself.
      */
@@ -69,7 +73,7 @@ public final class QueryRequest {
     /**
      * Get the managementGroups property: Azure management groups against which to execute the query. Example: [ 'mg1',
      * 'mg2' ].
-     *
+     * 
      * @return the managementGroups value.
      */
     public List<String> managementGroups() {
@@ -79,7 +83,7 @@ public final class QueryRequest {
     /**
      * Set the managementGroups property: Azure management groups against which to execute the query. Example: [ 'mg1',
      * 'mg2' ].
-     *
+     * 
      * @param managementGroups the managementGroups value to set.
      * @return the QueryRequest object itself.
      */
@@ -90,7 +94,7 @@ public final class QueryRequest {
 
     /**
      * Get the query property: The resources query.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -99,7 +103,7 @@ public final class QueryRequest {
 
     /**
      * Set the query property: The resources query.
-     *
+     * 
      * @param query the query value to set.
      * @return the QueryRequest object itself.
      */
@@ -110,7 +114,7 @@ public final class QueryRequest {
 
     /**
      * Get the options property: The query evaluation options.
-     *
+     * 
      * @return the options value.
      */
     public QueryRequestOptions options() {
@@ -119,7 +123,7 @@ public final class QueryRequest {
 
     /**
      * Set the options property: The query evaluation options.
-     *
+     * 
      * @param options the options value to set.
      * @return the QueryRequest object itself.
      */
@@ -130,7 +134,7 @@ public final class QueryRequest {
 
     /**
      * Get the facets property: An array of facet requests to be computed against the query result.
-     *
+     * 
      * @return the facets value.
      */
     public List<FacetRequest> facets() {
@@ -139,7 +143,7 @@ public final class QueryRequest {
 
     /**
      * Set the facets property: An array of facet requests to be computed against the query result.
-     *
+     * 
      * @param facets the facets value to set.
      * @return the QueryRequest object itself.
      */
@@ -150,14 +154,13 @@ public final class QueryRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (query() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property query in model QueryRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property query in model QueryRequest"));
         }
         if (options() != null) {
             options().validate();

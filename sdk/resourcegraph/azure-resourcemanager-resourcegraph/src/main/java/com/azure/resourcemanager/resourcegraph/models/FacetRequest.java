@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A request to compute additional statistics (facets) over the query results. */
+/**
+ * A request to compute additional statistics (facets) over the query results.
+ */
 @Fluent
 public final class FacetRequest {
     /*
@@ -23,13 +25,15 @@ public final class FacetRequest {
     @JsonProperty(value = "options")
     private FacetRequestOptions options;
 
-    /** Creates an instance of FacetRequest class. */
+    /**
+     * Creates an instance of FacetRequest class.
+     */
     public FacetRequest() {
     }
 
     /**
      * Get the expression property: The column or list of columns to summarize by.
-     *
+     * 
      * @return the expression value.
      */
     public String expression() {
@@ -38,7 +42,7 @@ public final class FacetRequest {
 
     /**
      * Set the expression property: The column or list of columns to summarize by.
-     *
+     * 
      * @param expression the expression value to set.
      * @return the FacetRequest object itself.
      */
@@ -49,7 +53,7 @@ public final class FacetRequest {
 
     /**
      * Get the options property: The options for facet evaluation.
-     *
+     * 
      * @return the options value.
      */
     public FacetRequestOptions options() {
@@ -58,7 +62,7 @@ public final class FacetRequest {
 
     /**
      * Set the options property: The options for facet evaluation.
-     *
+     * 
      * @param options the options value to set.
      * @return the FacetRequest object itself.
      */
@@ -69,14 +73,13 @@ public final class FacetRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (expression() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property expression in model FacetRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property expression in model FacetRequest"));
         }
         if (options() != null) {
             options().validate();
