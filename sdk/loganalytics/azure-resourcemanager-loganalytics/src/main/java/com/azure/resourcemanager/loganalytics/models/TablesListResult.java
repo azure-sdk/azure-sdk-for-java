@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.TableInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list tables operation response. */
+/**
+ * The list tables operation response.
+ */
 @Fluent
 public final class TablesListResult {
     /*
@@ -18,13 +20,15 @@ public final class TablesListResult {
     @JsonProperty(value = "value")
     private List<TableInner> value;
 
-    /** Creates an instance of TablesListResult class. */
+    /**
+     * Creates an instance of TablesListResult class.
+     */
     public TablesListResult() {
     }
 
     /**
      * Get the value property: A list of data tables.
-     *
+     * 
      * @return the value value.
      */
     public List<TableInner> value() {
@@ -33,7 +37,7 @@ public final class TablesListResult {
 
     /**
      * Set the value property: A list of data tables.
-     *
+     * 
      * @param value the value value to set.
      * @return the TablesListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class TablesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

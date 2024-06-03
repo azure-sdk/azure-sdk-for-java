@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.UsageMetricInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list workspace usages operation response. */
+/**
+ * The list workspace usages operation response.
+ */
 @Fluent
 public final class WorkspaceListUsagesResult {
     /*
@@ -18,13 +20,15 @@ public final class WorkspaceListUsagesResult {
     @JsonProperty(value = "value")
     private List<UsageMetricInner> value;
 
-    /** Creates an instance of WorkspaceListUsagesResult class. */
+    /**
+     * Creates an instance of WorkspaceListUsagesResult class.
+     */
     public WorkspaceListUsagesResult() {
     }
 
     /**
      * Get the value property: Gets or sets a list of usage metrics for a workspace.
-     *
+     * 
      * @return the value value.
      */
     public List<UsageMetricInner> value() {
@@ -33,7 +37,7 @@ public final class WorkspaceListUsagesResult {
 
     /**
      * Set the value property: Gets or sets a list of usage metrics for a workspace.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceListUsagesResult object itself.
      */
@@ -44,7 +48,7 @@ public final class WorkspaceListUsagesResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.DataSourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list data source by workspace operation response. */
+/**
+ * The list data source by workspace operation response.
+ */
 @Fluent
 public final class DataSourceListResult {
     /*
@@ -24,13 +26,15 @@ public final class DataSourceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of DataSourceListResult class. */
+    /**
+     * Creates an instance of DataSourceListResult class.
+     */
     public DataSourceListResult() {
     }
 
     /**
      * Get the value property: A list of datasources.
-     *
+     * 
      * @return the value value.
      */
     public List<DataSourceInner> value() {
@@ -39,7 +43,7 @@ public final class DataSourceListResult {
 
     /**
      * Set the value property: A list of datasources.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataSourceListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class DataSourceListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of datasources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class DataSourceListResult {
 
     /**
      * Set the nextLink property: The link (url) to the next page of datasources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DataSourceListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class DataSourceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

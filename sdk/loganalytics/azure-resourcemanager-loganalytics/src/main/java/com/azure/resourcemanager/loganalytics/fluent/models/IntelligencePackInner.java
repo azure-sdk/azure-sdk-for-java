@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Intelligence Pack containing a string name and boolean indicating if it's enabled. */
+/**
+ * Intelligence Pack containing a string name and boolean indicating if it's enabled.
+ */
 @Fluent
 public final class IntelligencePackInner {
     /*
@@ -28,13 +30,15 @@ public final class IntelligencePackInner {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of IntelligencePackInner class. */
+    /**
+     * Creates an instance of IntelligencePackInner class.
+     */
     public IntelligencePackInner() {
     }
 
     /**
      * Get the name property: The name of the intelligence pack.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class IntelligencePackInner {
 
     /**
      * Set the name property: The name of the intelligence pack.
-     *
+     * 
      * @param name the name value to set.
      * @return the IntelligencePackInner object itself.
      */
@@ -54,7 +58,7 @@ public final class IntelligencePackInner {
 
     /**
      * Get the enabled property: The enabled boolean for the intelligence pack.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -63,7 +67,7 @@ public final class IntelligencePackInner {
 
     /**
      * Set the enabled property: The enabled boolean for the intelligence pack.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the IntelligencePackInner object itself.
      */
@@ -74,7 +78,7 @@ public final class IntelligencePackInner {
 
     /**
      * Get the displayName property: The display name of the intelligence pack.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -83,7 +87,7 @@ public final class IntelligencePackInner {
 
     /**
      * Set the displayName property: The display name of the intelligence pack.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the IntelligencePackInner object itself.
      */
@@ -94,7 +98,7 @@ public final class IntelligencePackInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

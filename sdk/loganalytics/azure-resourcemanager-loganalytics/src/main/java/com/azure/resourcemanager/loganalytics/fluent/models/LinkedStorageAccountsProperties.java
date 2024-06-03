@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.models.DataSourceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Linked storage accounts properties. */
+/**
+ * Linked storage accounts properties.
+ */
 @Fluent
 public final class LinkedStorageAccountsProperties {
     /*
@@ -24,13 +26,15 @@ public final class LinkedStorageAccountsProperties {
     @JsonProperty(value = "storageAccountIds")
     private List<String> storageAccountIds;
 
-    /** Creates an instance of LinkedStorageAccountsProperties class. */
+    /**
+     * Creates an instance of LinkedStorageAccountsProperties class.
+     */
     public LinkedStorageAccountsProperties() {
     }
 
     /**
      * Get the dataSourceType property: Linked storage accounts type.
-     *
+     * 
      * @return the dataSourceType value.
      */
     public DataSourceType dataSourceType() {
@@ -39,7 +43,7 @@ public final class LinkedStorageAccountsProperties {
 
     /**
      * Get the storageAccountIds property: Linked storage accounts resources ids.
-     *
+     * 
      * @return the storageAccountIds value.
      */
     public List<String> storageAccountIds() {
@@ -48,7 +52,7 @@ public final class LinkedStorageAccountsProperties {
 
     /**
      * Set the storageAccountIds property: Linked storage accounts resources ids.
-     *
+     * 
      * @param storageAccountIds the storageAccountIds value to set.
      * @return the LinkedStorageAccountsProperties object itself.
      */
@@ -59,7 +63,7 @@ public final class LinkedStorageAccountsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

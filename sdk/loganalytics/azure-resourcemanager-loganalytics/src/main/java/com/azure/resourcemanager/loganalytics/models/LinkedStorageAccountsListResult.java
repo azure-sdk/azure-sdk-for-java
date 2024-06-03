@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.LinkedStorageAccount
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list linked storage accounts service operation response. */
+/**
+ * The list linked storage accounts service operation response.
+ */
 @Fluent
 public final class LinkedStorageAccountsListResult {
     /*
@@ -18,13 +20,15 @@ public final class LinkedStorageAccountsListResult {
     @JsonProperty(value = "value")
     private List<LinkedStorageAccountsResourceInner> value;
 
-    /** Creates an instance of LinkedStorageAccountsListResult class. */
+    /**
+     * Creates an instance of LinkedStorageAccountsListResult class.
+     */
     public LinkedStorageAccountsListResult() {
     }
 
     /**
      * Get the value property: A list of linked storage accounts instances.
-     *
+     * 
      * @return the value value.
      */
     public List<LinkedStorageAccountsResourceInner> value() {
@@ -33,7 +37,7 @@ public final class LinkedStorageAccountsListResult {
 
     /**
      * Set the value property: A list of linked storage accounts instances.
-     *
+     * 
      * @param value the value value to set.
      * @return the LinkedStorageAccountsListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class LinkedStorageAccountsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Metadata for search results. */
+/**
+ * Metadata for search results.
+ */
 @Fluent
 public final class SearchMetadata {
     /*
@@ -114,13 +116,15 @@ public final class SearchMetadata {
     @JsonProperty(value = "schema")
     private SearchMetadataSchema schema;
 
-    /** Creates an instance of SearchMetadata class. */
+    /**
+     * Creates an instance of SearchMetadata class.
+     */
     public SearchMetadata() {
     }
 
     /**
      * Get the searchId property: The request id of the search.
-     *
+     * 
      * @return the searchId value.
      */
     public String searchId() {
@@ -129,7 +133,7 @@ public final class SearchMetadata {
 
     /**
      * Set the searchId property: The request id of the search.
-     *
+     * 
      * @param searchId the searchId value to set.
      * @return the SearchMetadata object itself.
      */
@@ -140,7 +144,7 @@ public final class SearchMetadata {
 
     /**
      * Get the resultType property: The search result type.
-     *
+     * 
      * @return the resultType value.
      */
     public String resultType() {
@@ -149,7 +153,7 @@ public final class SearchMetadata {
 
     /**
      * Set the resultType property: The search result type.
-     *
+     * 
      * @param resultType the resultType value to set.
      * @return the SearchMetadata object itself.
      */
@@ -160,7 +164,7 @@ public final class SearchMetadata {
 
     /**
      * Get the total property: The total number of search results.
-     *
+     * 
      * @return the total value.
      */
     public Long total() {
@@ -169,7 +173,7 @@ public final class SearchMetadata {
 
     /**
      * Set the total property: The total number of search results.
-     *
+     * 
      * @param total the total value to set.
      * @return the SearchMetadata object itself.
      */
@@ -180,7 +184,7 @@ public final class SearchMetadata {
 
     /**
      * Get the top property: The number of top search results.
-     *
+     * 
      * @return the top value.
      */
     public Long top() {
@@ -189,7 +193,7 @@ public final class SearchMetadata {
 
     /**
      * Set the top property: The number of top search results.
-     *
+     * 
      * @param top the top value to set.
      * @return the SearchMetadata object itself.
      */
@@ -200,7 +204,7 @@ public final class SearchMetadata {
 
     /**
      * Get the id property: The id of the search results request.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -209,7 +213,7 @@ public final class SearchMetadata {
 
     /**
      * Set the id property: The id of the search results request.
-     *
+     * 
      * @param id the id value to set.
      * @return the SearchMetadata object itself.
      */
@@ -220,7 +224,7 @@ public final class SearchMetadata {
 
     /**
      * Get the coreSummaries property: The core summaries.
-     *
+     * 
      * @return the coreSummaries value.
      */
     public List<CoreSummary> coreSummaries() {
@@ -229,7 +233,7 @@ public final class SearchMetadata {
 
     /**
      * Set the coreSummaries property: The core summaries.
-     *
+     * 
      * @param coreSummaries the coreSummaries value to set.
      * @return the SearchMetadata object itself.
      */
@@ -240,7 +244,7 @@ public final class SearchMetadata {
 
     /**
      * Get the status property: The status of the search results.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -249,7 +253,7 @@ public final class SearchMetadata {
 
     /**
      * Set the status property: The status of the search results.
-     *
+     * 
      * @param status the status value to set.
      * @return the SearchMetadata object itself.
      */
@@ -260,7 +264,7 @@ public final class SearchMetadata {
 
     /**
      * Get the startTime property: The start time for the search.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -269,7 +273,7 @@ public final class SearchMetadata {
 
     /**
      * Set the startTime property: The start time for the search.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the SearchMetadata object itself.
      */
@@ -280,7 +284,7 @@ public final class SearchMetadata {
 
     /**
      * Get the lastUpdated property: The time of last update.
-     *
+     * 
      * @return the lastUpdated value.
      */
     public OffsetDateTime lastUpdated() {
@@ -289,7 +293,7 @@ public final class SearchMetadata {
 
     /**
      * Set the lastUpdated property: The time of last update.
-     *
+     * 
      * @param lastUpdated the lastUpdated value to set.
      * @return the SearchMetadata object itself.
      */
@@ -300,7 +304,7 @@ public final class SearchMetadata {
 
     /**
      * Get the etag property: The ETag of the search results.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -309,7 +313,7 @@ public final class SearchMetadata {
 
     /**
      * Set the etag property: The ETag of the search results.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the SearchMetadata object itself.
      */
@@ -320,7 +324,7 @@ public final class SearchMetadata {
 
     /**
      * Get the sort property: How the results are sorted.
-     *
+     * 
      * @return the sort value.
      */
     public List<SearchSort> sort() {
@@ -329,7 +333,7 @@ public final class SearchMetadata {
 
     /**
      * Set the sort property: How the results are sorted.
-     *
+     * 
      * @param sort the sort value to set.
      * @return the SearchMetadata object itself.
      */
@@ -340,7 +344,7 @@ public final class SearchMetadata {
 
     /**
      * Get the requestTime property: The request time.
-     *
+     * 
      * @return the requestTime value.
      */
     public Long requestTime() {
@@ -349,7 +353,7 @@ public final class SearchMetadata {
 
     /**
      * Set the requestTime property: The request time.
-     *
+     * 
      * @param requestTime the requestTime value to set.
      * @return the SearchMetadata object itself.
      */
@@ -360,7 +364,7 @@ public final class SearchMetadata {
 
     /**
      * Get the aggregatedValueField property: The aggregated value field.
-     *
+     * 
      * @return the aggregatedValueField value.
      */
     public String aggregatedValueField() {
@@ -369,7 +373,7 @@ public final class SearchMetadata {
 
     /**
      * Set the aggregatedValueField property: The aggregated value field.
-     *
+     * 
      * @param aggregatedValueField the aggregatedValueField value to set.
      * @return the SearchMetadata object itself.
      */
@@ -380,7 +384,7 @@ public final class SearchMetadata {
 
     /**
      * Get the aggregatedGroupingFields property: The aggregated grouping fields.
-     *
+     * 
      * @return the aggregatedGroupingFields value.
      */
     public String aggregatedGroupingFields() {
@@ -389,7 +393,7 @@ public final class SearchMetadata {
 
     /**
      * Set the aggregatedGroupingFields property: The aggregated grouping fields.
-     *
+     * 
      * @param aggregatedGroupingFields the aggregatedGroupingFields value to set.
      * @return the SearchMetadata object itself.
      */
@@ -400,7 +404,7 @@ public final class SearchMetadata {
 
     /**
      * Get the sum property: The sum of all aggregates returned in the result set.
-     *
+     * 
      * @return the sum value.
      */
     public Long sum() {
@@ -409,7 +413,7 @@ public final class SearchMetadata {
 
     /**
      * Set the sum property: The sum of all aggregates returned in the result set.
-     *
+     * 
      * @param sum the sum value to set.
      * @return the SearchMetadata object itself.
      */
@@ -420,7 +424,7 @@ public final class SearchMetadata {
 
     /**
      * Get the max property: The max of all aggregates returned in the result set.
-     *
+     * 
      * @return the max value.
      */
     public Long max() {
@@ -429,7 +433,7 @@ public final class SearchMetadata {
 
     /**
      * Set the max property: The max of all aggregates returned in the result set.
-     *
+     * 
      * @param max the max value to set.
      * @return the SearchMetadata object itself.
      */
@@ -440,7 +444,7 @@ public final class SearchMetadata {
 
     /**
      * Get the schema property: The schema.
-     *
+     * 
      * @return the schema value.
      */
     public SearchMetadataSchema schema() {
@@ -449,7 +453,7 @@ public final class SearchMetadata {
 
     /**
      * Set the schema property: The schema.
-     *
+     * 
      * @param schema the schema value to set.
      * @return the SearchMetadata object itself.
      */
@@ -460,7 +464,7 @@ public final class SearchMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

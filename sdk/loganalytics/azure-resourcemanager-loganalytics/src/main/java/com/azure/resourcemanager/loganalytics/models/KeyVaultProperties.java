@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The key vault properties. */
+/**
+ * The key vault properties.
+ */
 @Fluent
 public final class KeyVaultProperties {
     /*
@@ -34,13 +36,15 @@ public final class KeyVaultProperties {
     @JsonProperty(value = "keyRsaSize")
     private Integer keyRsaSize;
 
-    /** Creates an instance of KeyVaultProperties class. */
+    /**
+     * Creates an instance of KeyVaultProperties class.
+     */
     public KeyVaultProperties() {
     }
 
     /**
      * Get the keyVaultUri property: The Key Vault uri which holds they key associated with the Log Analytics cluster.
-     *
+     * 
      * @return the keyVaultUri value.
      */
     public String keyVaultUri() {
@@ -49,7 +53,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyVaultUri property: The Key Vault uri which holds they key associated with the Log Analytics cluster.
-     *
+     * 
      * @param keyVaultUri the keyVaultUri value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the keyName property: The name of the key associated with the Log Analytics cluster.
-     *
+     * 
      * @return the keyName value.
      */
     public String keyName() {
@@ -69,7 +73,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyName property: The name of the key associated with the Log Analytics cluster.
-     *
+     * 
      * @param keyName the keyName value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the keyVersion property: The version of the key associated with the Log Analytics cluster.
-     *
+     * 
      * @return the keyVersion value.
      */
     public String keyVersion() {
@@ -89,7 +93,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyVersion property: The version of the key associated with the Log Analytics cluster.
-     *
+     * 
      * @param keyVersion the keyVersion value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the keyRsaSize property: Selected key minimum required size.
-     *
+     * 
      * @return the keyRsaSize value.
      */
     public Integer keyRsaSize() {
@@ -109,7 +113,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyRsaSize property: Selected key minimum required size.
-     *
+     * 
      * @param keyRsaSize the keyRsaSize value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class KeyVaultProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

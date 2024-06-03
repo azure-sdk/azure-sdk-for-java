@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.DataExportInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of the request to list data exports. */
+/**
+ * Result of the request to list data exports.
+ */
 @Fluent
 public final class DataExportListResult {
     /*
@@ -18,13 +20,15 @@ public final class DataExportListResult {
     @JsonProperty(value = "value")
     private List<DataExportInner> value;
 
-    /** Creates an instance of DataExportListResult class. */
+    /**
+     * Creates an instance of DataExportListResult class.
+     */
     public DataExportListResult() {
     }
 
     /**
      * Get the value property: List of data export instances within a workspace..
-     *
+     * 
      * @return the value value.
      */
     public List<DataExportInner> value() {
@@ -33,7 +37,7 @@ public final class DataExportListResult {
 
     /**
      * Set the value property: List of data export instances within a workspace..
-     *
+     * 
      * @param value the value value to set.
      * @return the DataExportListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class DataExportListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

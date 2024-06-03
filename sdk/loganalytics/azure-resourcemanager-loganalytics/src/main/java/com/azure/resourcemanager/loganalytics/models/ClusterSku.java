@@ -7,28 +7,32 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The cluster sku definition. */
+/**
+ * The cluster sku definition.
+ */
 @Fluent
 public final class ClusterSku {
     /*
-     * The capacity value
+     * The capacity reservation level in Gigabytes for this cluster.
      */
     @JsonProperty(value = "capacity")
     private Capacity capacity;
 
     /*
-     * The name of the SKU.
+     * The SKU (tier) of a cluster.
      */
     @JsonProperty(value = "name")
     private ClusterSkuNameEnum name;
 
-    /** Creates an instance of ClusterSku class. */
+    /**
+     * Creates an instance of ClusterSku class.
+     */
     public ClusterSku() {
     }
 
     /**
-     * Get the capacity property: The capacity value.
-     *
+     * Get the capacity property: The capacity reservation level in Gigabytes for this cluster.
+     * 
      * @return the capacity value.
      */
     public Capacity capacity() {
@@ -36,8 +40,8 @@ public final class ClusterSku {
     }
 
     /**
-     * Set the capacity property: The capacity value.
-     *
+     * Set the capacity property: The capacity reservation level in Gigabytes for this cluster.
+     * 
      * @param capacity the capacity value to set.
      * @return the ClusterSku object itself.
      */
@@ -47,8 +51,8 @@ public final class ClusterSku {
     }
 
     /**
-     * Get the name property: The name of the SKU.
-     *
+     * Get the name property: The SKU (tier) of a cluster.
+     * 
      * @return the name value.
      */
     public ClusterSkuNameEnum name() {
@@ -56,8 +60,8 @@ public final class ClusterSku {
     }
 
     /**
-     * Set the name property: The name of the SKU.
-     *
+     * Set the name property: The SKU (tier) of a cluster.
+     * 
      * @param name the name value to set.
      * @return the ClusterSku object itself.
      */
@@ -68,7 +72,7 @@ public final class ClusterSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The saved search list operation response. */
+/**
+ * The saved search list operation response.
+ */
 @Fluent
 public final class SavedSearchesListResultInner {
     /*
@@ -17,13 +19,15 @@ public final class SavedSearchesListResultInner {
     @JsonProperty(value = "value")
     private List<SavedSearchInner> value;
 
-    /** Creates an instance of SavedSearchesListResultInner class. */
+    /**
+     * Creates an instance of SavedSearchesListResultInner class.
+     */
     public SavedSearchesListResultInner() {
     }
 
     /**
      * Get the value property: The array of result values.
-     *
+     * 
      * @return the value value.
      */
     public List<SavedSearchInner> value() {
@@ -32,7 +36,7 @@ public final class SavedSearchesListResultInner {
 
     /**
      * Set the value property: The array of result values.
-     *
+     * 
      * @param value the value value to set.
      * @return the SavedSearchesListResultInner object itself.
      */
@@ -43,7 +47,7 @@ public final class SavedSearchesListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Table's creator. */
+/**
+ * Table's creator.
+ */
 public final class SourceEnum extends ExpandableStringEnum<SourceEnum> {
-    /** Static value microsoft for SourceEnum. */
+    /**
+     * Static value microsoft for SourceEnum.
+     */
     public static final SourceEnum MICROSOFT = fromString("microsoft");
 
-    /** Static value customer for SourceEnum. */
+    /**
+     * Static value customer for SourceEnum.
+     */
     public static final SourceEnum CUSTOMER = fromString("customer");
 
     /**
      * Creates a new instance of SourceEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SourceEnum extends ExpandableStringEnum<SourceEnum> {
 
     /**
      * Creates or finds a SourceEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SourceEnum.
      */
@@ -38,7 +44,7 @@ public final class SourceEnum extends ExpandableStringEnum<SourceEnum> {
 
     /**
      * Gets known SourceEnum values.
-     *
+     * 
      * @return known SourceEnum values.
      */
     public static Collection<SourceEnum> values() {

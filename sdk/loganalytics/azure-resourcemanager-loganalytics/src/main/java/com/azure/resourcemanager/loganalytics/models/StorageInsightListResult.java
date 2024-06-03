@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.StorageInsightInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list storage insights operation response. */
+/**
+ * The list storage insights operation response.
+ */
 @Fluent
 public final class StorageInsightListResult {
     /*
@@ -24,13 +26,15 @@ public final class StorageInsightListResult {
     @JsonProperty(value = "@odata.nextLink")
     private String odataNextLink;
 
-    /** Creates an instance of StorageInsightListResult class. */
+    /**
+     * Creates an instance of StorageInsightListResult class.
+     */
     public StorageInsightListResult() {
     }
 
     /**
      * Get the value property: A list of storage insight items.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageInsightInner> value() {
@@ -39,7 +43,7 @@ public final class StorageInsightListResult {
 
     /**
      * Set the value property: A list of storage insight items.
-     *
+     * 
      * @param value the value value to set.
      * @return the StorageInsightListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class StorageInsightListResult {
 
     /**
      * Get the odataNextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the odataNextLink value.
      */
     public String odataNextLink() {
@@ -59,7 +63,7 @@ public final class StorageInsightListResult {
 
     /**
      * Set the odataNextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @param odataNextLink the odataNextLink value to set.
      * @return the StorageInsightListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class StorageInsightListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

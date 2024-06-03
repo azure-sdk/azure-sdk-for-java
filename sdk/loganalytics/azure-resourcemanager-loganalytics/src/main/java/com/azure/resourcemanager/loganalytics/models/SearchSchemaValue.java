@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Value object for schema results. */
+/**
+ * Value object for schema results.
+ */
 @Fluent
 public final class SearchSchemaValue {
     /*
@@ -53,13 +55,15 @@ public final class SearchSchemaValue {
     @JsonProperty(value = "ownerType")
     private List<String> ownerType;
 
-    /** Creates an instance of SearchSchemaValue class. */
+    /**
+     * Creates an instance of SearchSchemaValue class.
+     */
     public SearchSchemaValue() {
     }
 
     /**
      * Get the name property: The name of the schema.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -68,7 +72,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the name property: The name of the schema.
-     *
+     * 
      * @param name the name value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -79,7 +83,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the displayName property: The display name of the schema.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -88,7 +92,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the displayName property: The display name of the schema.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -99,7 +103,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the type property: The type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -108,7 +112,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the type property: The type.
-     *
+     * 
      * @param type the type value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -119,7 +123,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the indexed property: The boolean that indicates the field is searchable as free text.
-     *
+     * 
      * @return the indexed value.
      */
     public boolean indexed() {
@@ -128,7 +132,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the indexed property: The boolean that indicates the field is searchable as free text.
-     *
+     * 
      * @param indexed the indexed value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -139,7 +143,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the stored property: The boolean that indicates whether or not the field is stored.
-     *
+     * 
      * @return the stored value.
      */
     public boolean stored() {
@@ -148,7 +152,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the stored property: The boolean that indicates whether or not the field is stored.
-     *
+     * 
      * @param stored the stored value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -159,7 +163,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the facet property: The boolean that indicates whether or not the field is a facet.
-     *
+     * 
      * @return the facet value.
      */
     public boolean facet() {
@@ -168,7 +172,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the facet property: The boolean that indicates whether or not the field is a facet.
-     *
+     * 
      * @param facet the facet value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -179,7 +183,7 @@ public final class SearchSchemaValue {
 
     /**
      * Get the ownerType property: The array of workflows containing the field.
-     *
+     * 
      * @return the ownerType value.
      */
     public List<String> ownerType() {
@@ -188,7 +192,7 @@ public final class SearchSchemaValue {
 
     /**
      * Set the ownerType property: The array of workflows containing the field.
-     *
+     * 
      * @param ownerType the ownerType value to set.
      * @return the SearchSchemaValue object itself.
      */
@@ -199,7 +203,7 @@ public final class SearchSchemaValue {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

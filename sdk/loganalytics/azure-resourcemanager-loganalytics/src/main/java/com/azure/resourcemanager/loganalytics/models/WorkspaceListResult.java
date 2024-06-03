@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.WorkspaceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list workspaces operation response. */
+/**
+ * The list workspaces operation response.
+ */
 @Fluent
 public final class WorkspaceListResult {
     /*
@@ -18,13 +20,15 @@ public final class WorkspaceListResult {
     @JsonProperty(value = "value")
     private List<WorkspaceInner> value;
 
-    /** Creates an instance of WorkspaceListResult class. */
+    /**
+     * Creates an instance of WorkspaceListResult class.
+     */
     public WorkspaceListResult() {
     }
 
     /**
      * Get the value property: A list of workspaces.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkspaceInner> value() {
@@ -33,7 +37,7 @@ public final class WorkspaceListResult {
 
     /**
      * Set the value property: A list of workspaces.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class WorkspaceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
