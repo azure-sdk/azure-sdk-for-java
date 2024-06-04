@@ -25,10 +25,12 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hybridcompute.fluent.ExtensionMetadatasClient;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
+import com.azure.resourcemanager.hybridcompute.fluent.LicensesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachineExtensionsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachineRunCommandsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachinesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.NetworkProfilesClient;
+import com.azure.resourcemanager.hybridcompute.fluent.NetworkSecurityPerimeterConfigurationsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.OperationsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateLinkResourcesClient;
@@ -130,6 +132,20 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
+    }
+
+    /**
+     * The LicensesClient object to access its operations.
+     */
+    private final LicensesClient licenses;
+
+    /**
+     * Gets the LicensesClient object to access its operations.
+     * 
+     * @return the LicensesClient object.
+     */
+    public LicensesClient getLicenses() {
+        return this.licenses;
     }
 
     /**
@@ -273,6 +289,20 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
     }
 
     /**
+     * The NetworkSecurityPerimeterConfigurationsClient object to access its operations.
+     */
+    private final NetworkSecurityPerimeterConfigurationsClient networkSecurityPerimeterConfigurations;
+
+    /**
+     * Gets the NetworkSecurityPerimeterConfigurationsClient object to access its operations.
+     * 
+     * @return the NetworkSecurityPerimeterConfigurationsClient object.
+     */
+    public NetworkSecurityPerimeterConfigurationsClient getNetworkSecurityPerimeterConfigurations() {
+        return this.networkSecurityPerimeterConfigurations;
+    }
+
+    /**
      * Initializes an instance of HybridComputeManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -289,7 +319,8 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-10-03-preview";
+        this.apiVersion = "2024-05-20-preview";
+        this.licenses = new LicensesClientImpl(this);
         this.machines = new MachinesClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
@@ -300,6 +331,7 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.privateLinkScopes = new PrivateLinkScopesClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.networkSecurityPerimeterConfigurations = new NetworkSecurityPerimeterConfigurationsClientImpl(this);
     }
 
     /**
