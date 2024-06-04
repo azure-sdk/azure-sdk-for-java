@@ -4,15 +4,22 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.azure.core.annotation.Generated;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Request payload for declining offers.
  */
 @Fluent
-public final class DeclineJobOfferOptions {
+public final class DeclineJobOfferOptions implements JsonSerializable<DeclineJobOfferOptions> {
 
     /*
      * If the RetryOfferAt is not provided, then this job will not be offered again to the worker who declined this job
@@ -53,5 +60,43 @@ public final class DeclineJobOfferOptions {
     public DeclineJobOfferOptions setRetryOfferAt(OffsetDateTime retryOfferAt) {
         this.retryOfferAt = retryOfferAt;
         return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Generated
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("retryOfferAt",
+            this.retryOfferAt == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.retryOfferAt));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DeclineJobOfferOptions from the JsonReader.
+     *
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DeclineJobOfferOptions if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DeclineJobOfferOptions.
+     */
+    @Generated
+    public static DeclineJobOfferOptions fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DeclineJobOfferOptions deserializedDeclineJobOfferOptions = new DeclineJobOfferOptions();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+                if ("retryOfferAt".equals(fieldName)) {
+                    deserializedDeclineJobOfferOptions.retryOfferAt = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else {
+                    reader.skipChildren();
+                }
+            }
+            return deserializedDeclineJobOfferOptions;
+        });
     }
 }

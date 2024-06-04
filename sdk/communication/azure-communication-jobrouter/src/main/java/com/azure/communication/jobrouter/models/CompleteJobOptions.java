@@ -4,13 +4,19 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Generated;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Request payload for completing jobs.
  */
 @Fluent
-public final class CompleteJobOptions {
+public final class CompleteJobOptions implements JsonSerializable<CompleteJobOptions> {
 
     /*
      * A note that will be appended to a job's Notes collection with the current timestamp.
@@ -42,5 +48,41 @@ public final class CompleteJobOptions {
     public CompleteJobOptions setNote(String note) {
         this.note = note;
         return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Generated
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("note", this.note);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of CompleteJobOptions from the JsonReader.
+     *
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of CompleteJobOptions if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the CompleteJobOptions.
+     */
+    @Generated
+    public static CompleteJobOptions fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            CompleteJobOptions deserializedCompleteJobOptions = new CompleteJobOptions();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+                if ("note".equals(fieldName)) {
+                    deserializedCompleteJobOptions.note = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+            return deserializedCompleteJobOptions;
+        });
     }
 }
