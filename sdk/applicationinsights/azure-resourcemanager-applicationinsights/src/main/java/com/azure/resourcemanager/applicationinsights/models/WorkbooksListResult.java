@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.WorkbookInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Workbook list result. */
+/**
+ * Workbook list result.
+ */
 @Fluent
 public final class WorkbooksListResult {
     /*
@@ -24,13 +26,15 @@ public final class WorkbooksListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of WorkbooksListResult class. */
+    /**
+     * Creates an instance of WorkbooksListResult class.
+     */
     public WorkbooksListResult() {
     }
 
     /**
      * Get the value property: An array of workbooks.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkbookInner> value() {
@@ -39,7 +43,7 @@ public final class WorkbooksListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkbooksListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WorkbooksListResult object itself.
      */
@@ -59,7 +63,7 @@ public final class WorkbooksListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

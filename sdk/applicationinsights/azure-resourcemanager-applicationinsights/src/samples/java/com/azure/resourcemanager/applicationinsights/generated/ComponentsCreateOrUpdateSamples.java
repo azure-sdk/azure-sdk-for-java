@@ -10,20 +10,21 @@ import com.azure.resourcemanager.applicationinsights.models.RequestSource;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Components CreateOrUpdate. */
+/**
+ * Samples for Components CreateOrUpdate.
+ */
 public final class ComponentsCreateOrUpdateSamples {
     /*
      * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsCreate.json
      */
     /**
      * Sample code: ComponentCreate.
-     *
+     * 
      * @param manager Entry point to ApplicationInsightsManager.
      */
-    public static void componentCreate(
-        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager
-            .components()
+    public static void
+        componentCreate(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.components()
             .define("my-component")
             .withRegion("South Central US")
             .withExistingResourceGroup("my-resource-group")
@@ -41,13 +42,12 @@ public final class ComponentsCreateOrUpdateSamples {
      */
     /**
      * Sample code: ComponentUpdate.
-     *
+     * 
      * @param manager Entry point to ApplicationInsightsManager.
      */
-    public static void componentUpdate(
-        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager
-            .components()
+    public static void
+        componentUpdate(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.components()
             .define("my-component")
             .withRegion("South Central US")
             .withExistingResourceGroup("my-resource-group")

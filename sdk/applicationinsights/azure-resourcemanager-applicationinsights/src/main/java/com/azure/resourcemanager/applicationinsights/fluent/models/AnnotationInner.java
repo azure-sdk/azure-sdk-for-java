@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Annotation associated with an application insights resource. */
+/**
+ * Annotation associated with an application insights resource.
+ */
 @Fluent
 public final class AnnotationInner {
     /*
@@ -47,13 +49,15 @@ public final class AnnotationInner {
     @JsonProperty(value = "RelatedAnnotation")
     private String relatedAnnotation;
 
-    /** Creates an instance of AnnotationInner class. */
+    /**
+     * Creates an instance of AnnotationInner class.
+     */
     public AnnotationInner() {
     }
 
     /**
      * Get the annotationName property: Name of annotation.
-     *
+     * 
      * @return the annotationName value.
      */
     public String annotationName() {
@@ -62,7 +66,7 @@ public final class AnnotationInner {
 
     /**
      * Set the annotationName property: Name of annotation.
-     *
+     * 
      * @param annotationName the annotationName value to set.
      * @return the AnnotationInner object itself.
      */
@@ -73,7 +77,7 @@ public final class AnnotationInner {
 
     /**
      * Get the category property: Category of annotation, free form.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -82,7 +86,7 @@ public final class AnnotationInner {
 
     /**
      * Set the category property: Category of annotation, free form.
-     *
+     * 
      * @param category the category value to set.
      * @return the AnnotationInner object itself.
      */
@@ -93,7 +97,7 @@ public final class AnnotationInner {
 
     /**
      * Get the eventTime property: Time when event occurred.
-     *
+     * 
      * @return the eventTime value.
      */
     public OffsetDateTime eventTime() {
@@ -102,7 +106,7 @@ public final class AnnotationInner {
 
     /**
      * Set the eventTime property: Time when event occurred.
-     *
+     * 
      * @param eventTime the eventTime value to set.
      * @return the AnnotationInner object itself.
      */
@@ -113,7 +117,7 @@ public final class AnnotationInner {
 
     /**
      * Get the id property: Unique Id for annotation.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -122,7 +126,7 @@ public final class AnnotationInner {
 
     /**
      * Set the id property: Unique Id for annotation.
-     *
+     * 
      * @param id the id value to set.
      * @return the AnnotationInner object itself.
      */
@@ -133,7 +137,7 @@ public final class AnnotationInner {
 
     /**
      * Get the properties property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @return the properties value.
      */
     public String properties() {
@@ -142,7 +146,7 @@ public final class AnnotationInner {
 
     /**
      * Set the properties property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AnnotationInner object itself.
      */
@@ -153,7 +157,7 @@ public final class AnnotationInner {
 
     /**
      * Get the relatedAnnotation property: Related parent annotation if any.
-     *
+     * 
      * @return the relatedAnnotation value.
      */
     public String relatedAnnotation() {
@@ -162,7 +166,7 @@ public final class AnnotationInner {
 
     /**
      * Set the relatedAnnotation property: Related parent annotation if any.
-     *
+     * 
      * @param relatedAnnotation the relatedAnnotation value to set.
      * @return the AnnotationInner object itself.
      */
@@ -173,7 +177,7 @@ public final class AnnotationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

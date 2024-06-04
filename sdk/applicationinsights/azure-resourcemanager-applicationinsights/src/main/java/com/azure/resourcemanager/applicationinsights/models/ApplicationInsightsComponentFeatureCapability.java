@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Application Insights component feature capability. */
+/**
+ * An Application Insights component feature capability.
+ */
 @Immutable
 public final class ApplicationInsightsComponentFeatureCapability {
     /*
@@ -46,13 +48,15 @@ public final class ApplicationInsightsComponentFeatureCapability {
     @JsonProperty(value = "MeterRateFrequency", access = JsonProperty.Access.WRITE_ONLY)
     private String meterRateFrequency;
 
-    /** Creates an instance of ApplicationInsightsComponentFeatureCapability class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentFeatureCapability class.
+     */
     public ApplicationInsightsComponentFeatureCapability() {
     }
 
     /**
      * Get the name property: The name of the capability.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -61,7 +65,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Get the description property: The description of the capability.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -70,7 +74,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Get the value property: The value of the capability.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -79,7 +83,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Get the unit property: The unit of the capability.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -88,7 +92,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Get the meterId property: The meter used for the capability.
-     *
+     * 
      * @return the meterId value.
      */
     public String meterId() {
@@ -97,7 +101,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Get the meterRateFrequency property: The meter rate of the meter.
-     *
+     * 
      * @return the meterRateFrequency value.
      */
     public String meterRateFrequency() {
@@ -106,7 +110,7 @@ public final class ApplicationInsightsComponentFeatureCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
