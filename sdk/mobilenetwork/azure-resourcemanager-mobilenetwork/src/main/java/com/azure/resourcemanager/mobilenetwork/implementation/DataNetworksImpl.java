@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.mobilenetwork.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.Response;
-import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.DataNetworksClient;
@@ -27,35 +25,6 @@ public final class DataNetworksImpl implements DataNetworks {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String dataNetworkName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, dataNetworkName);
-    }
-
-    public void delete(String resourceGroupName, String mobileNetworkName, String dataNetworkName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, dataNetworkName, context);
-    }
-
-    public Response<DataNetwork> getWithResponse(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, Context context) {
-        Response<DataNetworkInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new DataNetworkImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public DataNetwork get(String resourceGroupName, String mobileNetworkName, String dataNetworkName) {
-        DataNetworkInner inner = this.serviceClient().get(resourceGroupName, mobileNetworkName, dataNetworkName);
-        if (inner != null) {
-            return new DataNetworkImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public PagedIterable<DataNetwork> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
         PagedIterable<DataNetworkInner> inner
             = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
@@ -69,91 +38,11 @@ public final class DataNetworksImpl implements DataNetworks {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DataNetworkImpl(inner1, this.manager()));
     }
 
-    public DataNetwork getById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String mobileNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "mobileNetworks");
-        if (mobileNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'mobileNetworks'.", id)));
-        }
-        String dataNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "dataNetworks");
-        if (dataNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, Context.NONE).getValue();
-    }
-
-    public Response<DataNetwork> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String mobileNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "mobileNetworks");
-        if (mobileNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'mobileNetworks'.", id)));
-        }
-        String dataNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "dataNetworks");
-        if (dataNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String mobileNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "mobileNetworks");
-        if (mobileNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'mobileNetworks'.", id)));
-        }
-        String dataNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "dataNetworks");
-        if (dataNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
-        }
-        this.delete(resourceGroupName, mobileNetworkName, dataNetworkName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String mobileNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "mobileNetworks");
-        if (mobileNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'mobileNetworks'.", id)));
-        }
-        String dataNetworkName = ResourceManagerUtils.getValueFromIdByName(id, "dataNetworks");
-        if (dataNetworkName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
-        }
-        this.delete(resourceGroupName, mobileNetworkName, dataNetworkName, context);
-    }
-
     private DataNetworksClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager() {
         return this.serviceManager;
-    }
-
-    public DataNetworkImpl define(String name) {
-        return new DataNetworkImpl(name, this.manager());
     }
 }
