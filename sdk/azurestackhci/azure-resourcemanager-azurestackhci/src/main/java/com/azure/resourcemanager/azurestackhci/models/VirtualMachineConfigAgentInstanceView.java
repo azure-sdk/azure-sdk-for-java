@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The instance view of the VM Config Agent running on the virtual machine. */
+/**
+ * The instance view of the VM Config Agent running on the virtual machine.
+ */
 @Fluent
 public final class VirtualMachineConfigAgentInstanceView {
     /*
@@ -23,13 +25,15 @@ public final class VirtualMachineConfigAgentInstanceView {
     @JsonProperty(value = "statuses")
     private List<InstanceViewStatus> statuses;
 
-    /** Creates an instance of VirtualMachineConfigAgentInstanceView class. */
+    /**
+     * Creates an instance of VirtualMachineConfigAgentInstanceView class.
+     */
     public VirtualMachineConfigAgentInstanceView() {
     }
 
     /**
      * Get the vmConfigAgentVersion property: The VM Config Agent full version.
-     *
+     * 
      * @return the vmConfigAgentVersion value.
      */
     public String vmConfigAgentVersion() {
@@ -38,7 +42,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Set the vmConfigAgentVersion property: The VM Config Agent full version.
-     *
+     * 
      * @param vmConfigAgentVersion the vmConfigAgentVersion value to set.
      * @return the VirtualMachineConfigAgentInstanceView object itself.
      */
@@ -49,7 +53,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<InstanceViewStatus> statuses() {
@@ -58,7 +62,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Set the statuses property: The resource status information.
-     *
+     * 
      * @param statuses the statuses value to set.
      * @return the VirtualMachineConfigAgentInstanceView object itself.
      */
@@ -69,7 +73,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

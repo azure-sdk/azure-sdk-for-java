@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The download status of the gallery image. */
+/**
+ * The download status of the gallery image.
+ */
 @Fluent
 public final class GalleryImageStatusDownloadStatus {
     /*
@@ -16,13 +18,15 @@ public final class GalleryImageStatusDownloadStatus {
     @JsonProperty(value = "downloadSizeInMB")
     private Long downloadSizeInMB;
 
-    /** Creates an instance of GalleryImageStatusDownloadStatus class. */
+    /**
+     * Creates an instance of GalleryImageStatusDownloadStatus class.
+     */
     public GalleryImageStatusDownloadStatus() {
     }
 
     /**
      * Get the downloadSizeInMB property: The downloaded sized of the image in MB.
-     *
+     * 
      * @return the downloadSizeInMB value.
      */
     public Long downloadSizeInMB() {
@@ -31,7 +35,7 @@ public final class GalleryImageStatusDownloadStatus {
 
     /**
      * Set the downloadSizeInMB property: The downloaded sized of the image in MB.
-     *
+     * 
      * @param downloadSizeInMB the downloadSizeInMB value to set.
      * @return the GalleryImageStatusDownloadStatus object itself.
      */
@@ -42,7 +46,7 @@ public final class GalleryImageStatusDownloadStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

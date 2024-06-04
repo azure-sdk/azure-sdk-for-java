@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.models.Route;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** RouteTablePropertiesFormat - Route Table resource. */
+/**
+ * RouteTablePropertiesFormat - Route Table resource.
+ */
 @Fluent
 public final class RouteTablePropertiesFormat {
     /*
@@ -18,13 +20,15 @@ public final class RouteTablePropertiesFormat {
     @JsonProperty(value = "routes")
     private List<Route> routes;
 
-    /** Creates an instance of RouteTablePropertiesFormat class. */
+    /**
+     * Creates an instance of RouteTablePropertiesFormat class.
+     */
     public RouteTablePropertiesFormat() {
     }
 
     /**
      * Get the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @return the routes value.
      */
     public List<Route> routes() {
@@ -33,7 +37,7 @@ public final class RouteTablePropertiesFormat {
 
     /**
      * Set the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @param routes the routes value to set.
      * @return the RouteTablePropertiesFormat object itself.
      */
@@ -44,7 +48,7 @@ public final class RouteTablePropertiesFormat {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

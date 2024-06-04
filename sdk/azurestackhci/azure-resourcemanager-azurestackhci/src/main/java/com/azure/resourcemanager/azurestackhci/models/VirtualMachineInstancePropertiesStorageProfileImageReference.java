@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Which Image to use for the virtual machine instance. */
+/**
+ * Which Image to use for the virtual machine instance.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesStorageProfileImageReference {
     /*
@@ -16,13 +18,15 @@ public final class VirtualMachineInstancePropertiesStorageProfileImageReference 
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfileImageReference class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfileImageReference class.
+     */
     public VirtualMachineInstancePropertiesStorageProfileImageReference() {
     }
 
     /**
      * Get the id property: Resource ID of the image.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileImageReference 
 
     /**
      * Set the id property: Resource ID of the image.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileImageReference object itself.
      */
@@ -42,7 +46,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileImageReference 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The MarketplaceGalleryImageStatusProvisioningStatus model. */
+/**
+ * The MarketplaceGalleryImageStatusProvisioningStatus model.
+ */
 @Fluent
 public final class MarketplaceGalleryImageStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class MarketplaceGalleryImageStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of MarketplaceGalleryImageStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImageStatusProvisioningStatus class.
+     */
     public MarketplaceGalleryImageStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the gallery image.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class MarketplaceGalleryImageStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the gallery image.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the MarketplaceGalleryImageStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class MarketplaceGalleryImageStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the gallery image [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class MarketplaceGalleryImageStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the gallery image [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the MarketplaceGalleryImageStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class MarketplaceGalleryImageStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

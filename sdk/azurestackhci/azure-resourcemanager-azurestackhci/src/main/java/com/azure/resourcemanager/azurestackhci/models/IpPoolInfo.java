@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The IpPoolInfo model. */
+/**
+ * The IpPoolInfo model.
+ */
 @Immutable
 public final class IpPoolInfo {
     /*
@@ -22,13 +24,15 @@ public final class IpPoolInfo {
     @JsonProperty(value = "available", access = JsonProperty.Access.WRITE_ONLY)
     private String available;
 
-    /** Creates an instance of IpPoolInfo class. */
+    /**
+     * Creates an instance of IpPoolInfo class.
+     */
     public IpPoolInfo() {
     }
 
     /**
      * Get the used property: Number of IP addresses allocated from the IP Pool.
-     *
+     * 
      * @return the used value.
      */
     public String used() {
@@ -37,7 +41,7 @@ public final class IpPoolInfo {
 
     /**
      * Get the available property: Number of IP addresses available in the IP Pool.
-     *
+     * 
      * @return the available value.
      */
     public String available() {
@@ -46,7 +50,7 @@ public final class IpPoolInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

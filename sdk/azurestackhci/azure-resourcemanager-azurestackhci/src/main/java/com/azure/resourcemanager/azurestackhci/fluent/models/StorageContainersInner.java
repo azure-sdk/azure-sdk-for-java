@@ -13,7 +13,9 @@ import com.azure.resourcemanager.azurestackhci.models.StorageContainerStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The storage container resource definition. */
+/**
+ * The storage container resource definition.
+ */
 @Fluent
 public final class StorageContainersInner extends Resource {
     /*
@@ -34,13 +36,15 @@ public final class StorageContainersInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of StorageContainersInner class. */
+    /**
+     * Creates an instance of StorageContainersInner class.
+     */
     public StorageContainersInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the storage container resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StorageContainerProperties innerProperties() {
@@ -49,7 +53,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -58,7 +62,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the StorageContainersInner object itself.
      */
@@ -69,21 +73,25 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageContainersInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageContainersInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -92,7 +100,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the path property: Path of the storage container on the disk.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -101,7 +109,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Set the path property: Path of the storage container on the disk.
-     *
+     * 
      * @param path the path value to set.
      * @return the StorageContainersInner object itself.
      */
@@ -115,7 +123,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the storage container.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -124,7 +132,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the status property: The observed state of storage containers.
-     *
+     * 
      * @return the status value.
      */
     public StorageContainerStatus status() {
@@ -133,7 +141,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

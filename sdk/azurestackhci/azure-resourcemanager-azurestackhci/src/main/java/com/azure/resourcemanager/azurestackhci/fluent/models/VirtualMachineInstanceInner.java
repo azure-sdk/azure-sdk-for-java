@@ -21,7 +21,9 @@ import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceStat
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The virtual machine instance resource definition. */
+/**
+ * The virtual machine instance resource definition.
+ */
 @Fluent
 public final class VirtualMachineInstanceInner extends ProxyResource {
     /*
@@ -48,13 +50,15 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of VirtualMachineInstanceInner class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceInner class.
+     */
     public VirtualMachineInstanceInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the virtual machine instance resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualMachineInstanceProperties innerProperties() {
@@ -63,7 +67,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -72,7 +76,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -83,7 +87,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -92,7 +96,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the identity property: Identity for the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -103,7 +107,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -113,7 +117,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Get the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public VirtualMachineInstancePropertiesHardwareProfile hardwareProfile() {
@@ -123,12 +127,12 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Set the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
-    public VirtualMachineInstanceInner withHardwareProfile(
-        VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
+    public VirtualMachineInstanceInner
+        withHardwareProfile(VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VirtualMachineInstanceProperties();
         }
@@ -139,7 +143,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Get the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public VirtualMachineInstancePropertiesNetworkProfile networkProfile() {
@@ -149,12 +153,12 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Set the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
-    public VirtualMachineInstanceInner withNetworkProfile(
-        VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
+    public VirtualMachineInstanceInner
+        withNetworkProfile(VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VirtualMachineInstanceProperties();
         }
@@ -164,7 +168,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @return the osProfile value.
      */
     public VirtualMachineInstancePropertiesOsProfile osProfile() {
@@ -173,7 +177,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -188,7 +192,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Get the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the securityProfile value.
      */
     public VirtualMachineInstancePropertiesSecurityProfile securityProfile() {
@@ -198,12 +202,12 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Set the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @param securityProfile the securityProfile value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
-    public VirtualMachineInstanceInner withSecurityProfile(
-        VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
+    public VirtualMachineInstanceInner
+        withSecurityProfile(VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VirtualMachineInstanceProperties();
         }
@@ -214,7 +218,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Get the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @return the storageProfile value.
      */
     public VirtualMachineInstancePropertiesStorageProfile storageProfile() {
@@ -224,12 +228,12 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /**
      * Set the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
-    public VirtualMachineInstanceInner withStorageProfile(
-        VirtualMachineInstancePropertiesStorageProfile storageProfile) {
+    public VirtualMachineInstanceInner
+        withStorageProfile(VirtualMachineInstancePropertiesStorageProfile storageProfile) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VirtualMachineInstanceProperties();
         }
@@ -239,7 +243,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @return the httpProxyConfig value.
      */
     public HttpProxyConfiguration httpProxyConfig() {
@@ -248,7 +252,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @param httpProxyConfig the httpProxyConfig value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -262,7 +266,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the virtual machine instance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -271,7 +275,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the instanceView property: The virtual machine instance view.
-     *
+     * 
      * @return the instanceView value.
      */
     public VirtualMachineInstanceView instanceView() {
@@ -280,7 +284,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the status property: The observed state of virtual machine instances.
-     *
+     * 
      * @return the status value.
      */
     public VirtualMachineInstanceStatus status() {
@@ -289,7 +293,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @return the guestAgentInstallStatus value.
      */
     public GuestAgentInstallStatus guestAgentInstallStatus() {
@@ -298,7 +302,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @param guestAgentInstallStatus the guestAgentInstallStatus value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -312,7 +316,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the vmId property: Unique identifier for the vm resource.
-     *
+     * 
      * @return the vmId value.
      */
     public String vmId() {
@@ -321,7 +325,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Get the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -330,7 +334,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Set the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the VirtualMachineInstanceInner object itself.
      */
@@ -344,7 +348,7 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

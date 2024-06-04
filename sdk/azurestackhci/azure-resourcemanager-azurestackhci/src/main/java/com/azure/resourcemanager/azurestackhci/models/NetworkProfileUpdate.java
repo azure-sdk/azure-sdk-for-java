@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** NetworkProfile - describes the network update configuration the virtual machine instance. */
+/**
+ * NetworkProfile - describes the network update configuration the virtual machine instance.
+ */
 @Fluent
 public final class NetworkProfileUpdate {
     /*
@@ -17,14 +19,16 @@ public final class NetworkProfileUpdate {
     @JsonProperty(value = "networkInterfaces")
     private List<NetworkProfileUpdateNetworkInterfacesItem> networkInterfaces;
 
-    /** Creates an instance of NetworkProfileUpdate class. */
+    /**
+     * Creates an instance of NetworkProfileUpdate class.
+     */
     public NetworkProfileUpdate() {
     }
 
     /**
      * Get the networkInterfaces property: NetworkInterfaces - list of network interfaces to be attached to the virtual
      * machine instance.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkProfileUpdateNetworkInterfacesItem> networkInterfaces() {
@@ -34,19 +38,19 @@ public final class NetworkProfileUpdate {
     /**
      * Set the networkInterfaces property: NetworkInterfaces - list of network interfaces to be attached to the virtual
      * machine instance.
-     *
+     * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the NetworkProfileUpdate object itself.
      */
-    public NetworkProfileUpdate withNetworkInterfaces(
-        List<NetworkProfileUpdateNetworkInterfacesItem> networkInterfaces) {
+    public NetworkProfileUpdate
+        withNetworkInterfaces(List<NetworkProfileUpdateNetworkInterfacesItem> networkInterfaces) {
         this.networkInterfaces = networkInterfaces;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
