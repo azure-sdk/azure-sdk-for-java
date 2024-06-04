@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Server Gtid set parameters.
+ * Server Gtid set parameters: Replication with Global Transaction Identifiers.
  */
 @Fluent
 public final class ServerGtidSetParameter {

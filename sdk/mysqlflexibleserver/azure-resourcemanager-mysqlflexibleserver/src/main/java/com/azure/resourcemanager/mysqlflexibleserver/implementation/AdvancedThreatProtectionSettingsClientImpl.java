@@ -156,7 +156,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), resourceGroupName, serverName,
@@ -199,7 +199,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), resourceGroupName, serverName, advancedThreatProtectionName,
@@ -299,7 +299,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName, serverName,
@@ -349,7 +349,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), resourceGroupName, serverName, advancedThreatProtectionName,
@@ -563,7 +563,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updatePut(this.client.getEndpoint(), resourceGroupName, serverName,
@@ -613,7 +613,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updatePut(this.client.getEndpoint(), resourceGroupName, serverName, advancedThreatProtectionName,
@@ -818,7 +818,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), resourceGroupName, serverName,
@@ -858,7 +858,7 @@ public final class AdvancedThreatProtectionSettingsClientImpl implements Advance
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2024-02-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

@@ -48,6 +48,12 @@ public final class Storage {
     @JsonProperty(value = "autoIoScaling")
     private EnableStatusEnum autoIoScaling;
 
+    /*
+     * The redundant type of the server storage. The parameter is used for server creation.
+     */
+    @JsonProperty(value = "storageRedundancy")
+    private StorageRedundancyEnum storageRedundancy;
+
     /**
      * Creates an instance of Storage class.
      */
@@ -160,6 +166,28 @@ public final class Storage {
      */
     public Storage withAutoIoScaling(EnableStatusEnum autoIoScaling) {
         this.autoIoScaling = autoIoScaling;
+        return this;
+    }
+
+    /**
+     * Get the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @return the storageRedundancy value.
+     */
+    public StorageRedundancyEnum storageRedundancy() {
+        return this.storageRedundancy;
+    }
+
+    /**
+     * Set the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @param storageRedundancy the storageRedundancy value to set.
+     * @return the Storage object itself.
+     */
+    public Storage withStorageRedundancy(StorageRedundancyEnum storageRedundancy) {
+        this.storageRedundancy = storageRedundancy;
         return this;
     }
 
