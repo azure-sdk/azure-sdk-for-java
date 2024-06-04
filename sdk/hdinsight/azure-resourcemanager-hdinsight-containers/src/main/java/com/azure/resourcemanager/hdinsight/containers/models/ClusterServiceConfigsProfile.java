@@ -79,12 +79,14 @@ public final class ClusterServiceConfigsProfile {
      */
     public void validate() {
         if (serviceName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property serviceName in model ClusterServiceConfigsProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serviceName in model ClusterServiceConfigsProfile"));
         }
         if (configs() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property configs in model ClusterServiceConfigsProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property configs in model ClusterServiceConfigsProfile"));
         } else {
             configs().forEach(e -> e.validate());
         }

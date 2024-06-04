@@ -79,8 +79,8 @@ public final class ConnectivityProfile {
      */
     public void validate() {
         if (web() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property web in model ConnectivityProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property web in model ConnectivityProfile"));
         } else {
             web().validate();
         }

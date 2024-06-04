@@ -27,8 +27,7 @@ public final class Schedule {
     private String endTime;
 
     /*
-     * User has to set the node count anticipated at end of the scaling operation of the set current schedule
-     * configuration, format is integer.
+     * User has to set the node count anticipated at end of the scaling operation of the set current schedule configuration, format is integer.
      */
     @JsonProperty(value = "count", required = true)
     private int count;
@@ -138,16 +137,16 @@ public final class Schedule {
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property startTime in model Schedule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property startTime in model Schedule"));
         }
         if (endTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property endTime in model Schedule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property endTime in model Schedule"));
         }
         if (days() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property days in model Schedule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property days in model Schedule"));
         }
     }
 

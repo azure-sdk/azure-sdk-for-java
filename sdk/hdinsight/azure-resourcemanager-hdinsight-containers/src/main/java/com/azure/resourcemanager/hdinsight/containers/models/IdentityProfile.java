@@ -104,16 +104,16 @@ public class IdentityProfile {
      */
     public void validate() {
         if (msiResourceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property msiResourceId in model IdentityProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property msiResourceId in model IdentityProfile"));
         }
         if (msiClientId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property msiClientId in model IdentityProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property msiClientId in model IdentityProfile"));
         }
         if (msiObjectId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property msiObjectId in model IdentityProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property msiObjectId in model IdentityProfile"));
         }
     }
 

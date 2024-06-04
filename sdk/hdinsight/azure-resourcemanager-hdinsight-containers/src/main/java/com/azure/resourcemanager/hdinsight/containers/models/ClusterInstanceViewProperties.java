@@ -53,8 +53,8 @@ public class ClusterInstanceViewProperties {
     }
 
     /**
-     * Get the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on AKS
-     * cluster to surface to the customer.
+     * Get the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on AKS cluster
+     * to surface to the customer.
      * 
      * @return the serviceStatuses value.
      */
@@ -63,8 +63,8 @@ public class ClusterInstanceViewProperties {
     }
 
     /**
-     * Set the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on AKS
-     * cluster to surface to the customer.
+     * Set the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on AKS cluster
+     * to surface to the customer.
      * 
      * @param serviceStatuses the serviceStatuses value to set.
      * @return the ClusterInstanceViewProperties object itself.
@@ -81,14 +81,16 @@ public class ClusterInstanceViewProperties {
      */
     public void validate() {
         if (status() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property status in model ClusterInstanceViewProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property status in model ClusterInstanceViewProperties"));
         } else {
             status().validate();
         }
         if (serviceStatuses() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property serviceStatuses in model ClusterInstanceViewProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serviceStatuses in model ClusterInstanceViewProperties"));
         } else {
             serviceStatuses().forEach(e -> e.validate());
         }

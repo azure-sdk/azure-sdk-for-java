@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -13,75 +14,20 @@ import java.time.OffsetDateTime;
 /**
  * Cluster available hotfix version upgrade.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "upgradeType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "upgradeType",
+    defaultImpl = ClusterAvailableUpgradeHotfixUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("HotfixUpgrade")
 @Fluent
-public final class ClusterAvailableUpgradeHotfixUpgradeProperties extends ClusterAvailableUpgradeProperties {
+public final class ClusterAvailableUpgradeHotfixUpgradeProperties extends ClusterAvailableInPlaceUpgradeProperties {
     /*
-     * Hotfix version upgrade description.
+     * Type of upgrade.
      */
-    @JsonProperty(value = "description")
-    private String description;
-
-    /*
-     * Source OSS version of current cluster component.
-     */
-    @JsonProperty(value = "sourceOssVersion")
-    private String sourceOssVersion;
-
-    /*
-     * Source cluster version of current cluster component.
-     */
-    @JsonProperty(value = "sourceClusterVersion")
-    private String sourceClusterVersion;
-
-    /*
-     * Source build number of current cluster component.
-     */
-    @JsonProperty(value = "sourceBuildNumber")
-    private String sourceBuildNumber;
-
-    /*
-     * Target OSS version of component to be upgraded.
-     */
-    @JsonProperty(value = "targetOssVersion")
-    private String targetOssVersion;
-
-    /*
-     * Target cluster version of component to be upgraded.
-     */
-    @JsonProperty(value = "targetClusterVersion")
-    private String targetClusterVersion;
-
-    /*
-     * Target build number of component to be upgraded.
-     */
-    @JsonProperty(value = "targetBuildNumber")
-    private String targetBuildNumber;
-
-    /*
-     * Name of component to be upgraded.
-     */
-    @JsonProperty(value = "componentName")
-    private String componentName;
-
-    /*
-     * Severity of this upgrade.
-     */
-    @JsonProperty(value = "severity")
-    private Severity severity;
-
-    /*
-     * Extended properties of current available upgrade version
-     */
-    @JsonProperty(value = "extendedProperties")
-    private String extendedProperties;
-
-    /*
-     * Created time of current available upgrade version
-     */
-    @JsonProperty(value = "createdTime")
-    private OffsetDateTime createdTime;
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterAvailableUpgradeType upgradeType = ClusterAvailableUpgradeType.HOTFIX_UPGRADE;
 
     /**
      * Creates an instance of ClusterAvailableUpgradeHotfixUpgradeProperties class.
@@ -90,222 +36,111 @@ public final class ClusterAvailableUpgradeHotfixUpgradeProperties extends Cluste
     }
 
     /**
-     * Get the description property: Hotfix version upgrade description.
+     * Get the upgradeType property: Type of upgrade.
      * 
-     * @return the description value.
+     * @return the upgradeType value.
      */
-    public String description() {
-        return this.description;
+    @Override
+    public ClusterAvailableUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**
-     * Set the description property: Hotfix version upgrade description.
-     * 
-     * @param description the description value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
+     * {@inheritDoc}
      */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withDescription(String description) {
-        this.description = description;
+        super.withDescription(description);
         return this;
     }
 
     /**
-     * Get the sourceOssVersion property: Source OSS version of current cluster component.
-     * 
-     * @return the sourceOssVersion value.
+     * {@inheritDoc}
      */
-    public String sourceOssVersion() {
-        return this.sourceOssVersion;
-    }
-
-    /**
-     * Set the sourceOssVersion property: Source OSS version of current cluster component.
-     * 
-     * @param sourceOssVersion the sourceOssVersion value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withSourceOssVersion(String sourceOssVersion) {
-        this.sourceOssVersion = sourceOssVersion;
+        super.withSourceOssVersion(sourceOssVersion);
         return this;
     }
 
     /**
-     * Get the sourceClusterVersion property: Source cluster version of current cluster component.
-     * 
-     * @return the sourceClusterVersion value.
+     * {@inheritDoc}
      */
-    public String sourceClusterVersion() {
-        return this.sourceClusterVersion;
-    }
-
-    /**
-     * Set the sourceClusterVersion property: Source cluster version of current cluster component.
-     * 
-     * @param sourceClusterVersion the sourceClusterVersion value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withSourceClusterVersion(String sourceClusterVersion) {
-        this.sourceClusterVersion = sourceClusterVersion;
+        super.withSourceClusterVersion(sourceClusterVersion);
         return this;
     }
 
     /**
-     * Get the sourceBuildNumber property: Source build number of current cluster component.
-     * 
-     * @return the sourceBuildNumber value.
+     * {@inheritDoc}
      */
-    public String sourceBuildNumber() {
-        return this.sourceBuildNumber;
-    }
-
-    /**
-     * Set the sourceBuildNumber property: Source build number of current cluster component.
-     * 
-     * @param sourceBuildNumber the sourceBuildNumber value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withSourceBuildNumber(String sourceBuildNumber) {
-        this.sourceBuildNumber = sourceBuildNumber;
+        super.withSourceBuildNumber(sourceBuildNumber);
         return this;
     }
 
     /**
-     * Get the targetOssVersion property: Target OSS version of component to be upgraded.
-     * 
-     * @return the targetOssVersion value.
+     * {@inheritDoc}
      */
-    public String targetOssVersion() {
-        return this.targetOssVersion;
-    }
-
-    /**
-     * Set the targetOssVersion property: Target OSS version of component to be upgraded.
-     * 
-     * @param targetOssVersion the targetOssVersion value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withTargetOssVersion(String targetOssVersion) {
-        this.targetOssVersion = targetOssVersion;
+        super.withTargetOssVersion(targetOssVersion);
         return this;
     }
 
     /**
-     * Get the targetClusterVersion property: Target cluster version of component to be upgraded.
-     * 
-     * @return the targetClusterVersion value.
+     * {@inheritDoc}
      */
-    public String targetClusterVersion() {
-        return this.targetClusterVersion;
-    }
-
-    /**
-     * Set the targetClusterVersion property: Target cluster version of component to be upgraded.
-     * 
-     * @param targetClusterVersion the targetClusterVersion value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withTargetClusterVersion(String targetClusterVersion) {
-        this.targetClusterVersion = targetClusterVersion;
+        super.withTargetClusterVersion(targetClusterVersion);
         return this;
     }
 
     /**
-     * Get the targetBuildNumber property: Target build number of component to be upgraded.
-     * 
-     * @return the targetBuildNumber value.
+     * {@inheritDoc}
      */
-    public String targetBuildNumber() {
-        return this.targetBuildNumber;
-    }
-
-    /**
-     * Set the targetBuildNumber property: Target build number of component to be upgraded.
-     * 
-     * @param targetBuildNumber the targetBuildNumber value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withTargetBuildNumber(String targetBuildNumber) {
-        this.targetBuildNumber = targetBuildNumber;
+        super.withTargetBuildNumber(targetBuildNumber);
         return this;
     }
 
     /**
-     * Get the componentName property: Name of component to be upgraded.
-     * 
-     * @return the componentName value.
+     * {@inheritDoc}
      */
-    public String componentName() {
-        return this.componentName;
-    }
-
-    /**
-     * Set the componentName property: Name of component to be upgraded.
-     * 
-     * @param componentName the componentName value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withComponentName(String componentName) {
-        this.componentName = componentName;
+        super.withComponentName(componentName);
         return this;
     }
 
     /**
-     * Get the severity property: Severity of this upgrade.
-     * 
-     * @return the severity value.
+     * {@inheritDoc}
      */
-    public Severity severity() {
-        return this.severity;
-    }
-
-    /**
-     * Set the severity property: Severity of this upgrade.
-     * 
-     * @param severity the severity value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withSeverity(Severity severity) {
-        this.severity = severity;
+        super.withSeverity(severity);
         return this;
     }
 
     /**
-     * Get the extendedProperties property: Extended properties of current available upgrade version.
-     * 
-     * @return the extendedProperties value.
+     * {@inheritDoc}
      */
-    public String extendedProperties() {
-        return this.extendedProperties;
-    }
-
-    /**
-     * Set the extendedProperties property: Extended properties of current available upgrade version.
-     * 
-     * @param extendedProperties the extendedProperties value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withExtendedProperties(String extendedProperties) {
-        this.extendedProperties = extendedProperties;
+        super.withExtendedProperties(extendedProperties);
         return this;
     }
 
     /**
-     * Get the createdTime property: Created time of current available upgrade version.
-     * 
-     * @return the createdTime value.
+     * {@inheritDoc}
      */
-    public OffsetDateTime createdTime() {
-        return this.createdTime;
-    }
-
-    /**
-     * Set the createdTime property: Created time of current available upgrade version.
-     * 
-     * @param createdTime the createdTime value to set.
-     * @return the ClusterAvailableUpgradeHotfixUpgradeProperties object itself.
-     */
+    @Override
     public ClusterAvailableUpgradeHotfixUpgradeProperties withCreatedTime(OffsetDateTime createdTime) {
-        this.createdTime = createdTime;
+        super.withCreatedTime(createdTime);
         return this;
     }
 

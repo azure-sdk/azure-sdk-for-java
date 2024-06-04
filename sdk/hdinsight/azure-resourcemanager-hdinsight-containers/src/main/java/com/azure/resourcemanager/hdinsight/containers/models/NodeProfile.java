@@ -104,12 +104,12 @@ public final class NodeProfile {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model NodeProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model NodeProfile"));
         }
         if (vmSize() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property vmSize in model NodeProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property vmSize in model NodeProfile"));
         }
     }
 

@@ -26,9 +26,7 @@ public final class SparkMetastoreSpec {
     private String dbName;
 
     /*
-     * The authentication mode to connect to your Hive metastore database. More details:
-     * https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-
-     * authorization
+     * The authentication mode to connect to your Hive metastore database. More details: https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-authorization
      */
     @JsonProperty(value = "dbConnectionAuthenticationMode")
     private DbConnectionAuthenticationMode dbConnectionAuthenticationMode;
@@ -215,12 +213,13 @@ public final class SparkMetastoreSpec {
      */
     public void validate() {
         if (dbServerHost() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dbServerHost in model SparkMetastoreSpec"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property dbServerHost in model SparkMetastoreSpec"));
         }
         if (dbName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dbName in model SparkMetastoreSpec"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dbName in model SparkMetastoreSpec"));
         }
     }
 

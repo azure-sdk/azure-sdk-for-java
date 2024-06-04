@@ -52,8 +52,8 @@ public final class SparkUserPlugin {
      */
     public void validate() {
         if (path() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property path in model SparkUserPlugin"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property path in model SparkUserPlugin"));
         }
     }
 

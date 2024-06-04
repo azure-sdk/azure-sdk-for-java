@@ -20,6 +20,12 @@ public final class ComputeProfile {
     @JsonProperty(value = "nodes", required = true)
     private List<NodeProfile> nodes;
 
+    /*
+     * The list of Availability zones to use for AKS VMSS nodes.
+     */
+    @JsonProperty(value = "availabilityZones")
+    private List<String> availabilityZones;
+
     /**
      * Creates an instance of ComputeProfile class.
      */
@@ -47,14 +53,34 @@ public final class ComputeProfile {
     }
 
     /**
+     * Get the availabilityZones property: The list of Availability zones to use for AKS VMSS nodes.
+     * 
+     * @return the availabilityZones value.
+     */
+    public List<String> availabilityZones() {
+        return this.availabilityZones;
+    }
+
+    /**
+     * Set the availabilityZones property: The list of Availability zones to use for AKS VMSS nodes.
+     * 
+     * @param availabilityZones the availabilityZones value to set.
+     * @return the ComputeProfile object itself.
+     */
+    public ComputeProfile withAvailabilityZones(List<String> availabilityZones) {
+        this.availabilityZones = availabilityZones;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (nodes() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property nodes in model ComputeProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property nodes in model ComputeProfile"));
         } else {
             nodes().forEach(e -> e.validate());
         }

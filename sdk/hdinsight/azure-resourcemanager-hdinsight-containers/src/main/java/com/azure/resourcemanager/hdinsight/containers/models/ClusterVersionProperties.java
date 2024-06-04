@@ -32,8 +32,7 @@ public final class ClusterVersionProperties {
     private String ossVersion;
 
     /*
-     * The two part cluster pool version. If the cluster version is before cluster pool version on-board, the return
-     * value will be empty string
+     * The two part cluster pool version. If the cluster version is before cluster pool version on-board, the return value will be empty string
      */
     @JsonProperty(value = "clusterPoolVersion")
     private String clusterPoolVersion;
