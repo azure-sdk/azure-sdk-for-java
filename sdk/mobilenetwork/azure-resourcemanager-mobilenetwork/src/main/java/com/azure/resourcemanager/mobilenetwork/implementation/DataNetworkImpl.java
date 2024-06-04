@@ -4,20 +4,23 @@
 
 package com.azure.resourcemanager.mobilenetwork.implementation;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.DataNetworkInner;
 import com.azure.resourcemanager.mobilenetwork.models.DataNetwork;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
-import com.azure.resourcemanager.mobilenetwork.models.TagsObject;
 import java.util.Collections;
 import java.util.Map;
 
-public final class DataNetworkImpl implements DataNetwork, DataNetwork.Definition, DataNetwork.Update {
+public final class DataNetworkImpl implements DataNetwork {
     private DataNetworkInner innerObject;
 
     private final com.azure.resourcemanager.mobilenetwork.MobileNetworkManager serviceManager;
+
+    DataNetworkImpl(DataNetworkInner innerObject,
+        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -56,123 +59,11 @@ public final class DataNetworkImpl implements DataNetwork, DataNetwork.Definitio
         return this.innerModel().description();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public DataNetworkInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager() {
         return this.serviceManager;
-    }
-
-    private String resourceGroupName;
-
-    private String mobileNetworkName;
-
-    private String dataNetworkName;
-
-    private TagsObject updateParameters;
-
-    public DataNetworkImpl withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        this.resourceGroupName = resourceGroupName;
-        this.mobileNetworkName = mobileNetworkName;
-        return this;
-    }
-
-    public DataNetwork create() {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks().createOrUpdate(resourceGroupName,
-            mobileNetworkName, dataNetworkName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public DataNetwork create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks().createOrUpdate(resourceGroupName,
-            mobileNetworkName, dataNetworkName, this.innerModel(), context);
-        return this;
-    }
-
-    DataNetworkImpl(String name, com.azure.resourcemanager.mobilenetwork.MobileNetworkManager serviceManager) {
-        this.innerObject = new DataNetworkInner();
-        this.serviceManager = serviceManager;
-        this.dataNetworkName = name;
-    }
-
-    public DataNetworkImpl update() {
-        this.updateParameters = new TagsObject();
-        return this;
-    }
-
-    public DataNetwork apply() {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks().updateTagsWithResponse(resourceGroupName,
-            mobileNetworkName, dataNetworkName, updateParameters, Context.NONE).getValue();
-        return this;
-    }
-
-    public DataNetwork apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, updateParameters, context)
-            .getValue();
-        return this;
-    }
-
-    DataNetworkImpl(DataNetworkInner innerObject,
-        com.azure.resourcemanager.mobilenetwork.MobileNetworkManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.mobileNetworkName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "mobileNetworks");
-        this.dataNetworkName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "dataNetworks");
-    }
-
-    public DataNetwork refresh() {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks()
-            .getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, Context.NONE).getValue();
-        return this;
-    }
-
-    public DataNetwork refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataNetworks()
-            .getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, context).getValue();
-        return this;
-    }
-
-    public DataNetworkImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public DataNetworkImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public DataNetworkImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateParameters.withTags(tags);
-            return this;
-        }
-    }
-
-    public DataNetworkImpl withDescription(String description) {
-        this.innerModel().withDescription(description);
-        return this;
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }
