@@ -56,59 +56,19 @@ public final class EasmClientImpl {
     private final EasmClientService service;
 
     /**
-     * The endpoint hosting the requested resource. For example, https://{region}.easm.defender.microsoft.com.
+     * The endpoint hosting the requested resource. For example,
+     * https://{region}.easm.defender.microsoft.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}.
      */
     private final String endpoint;
 
     /**
-     * Gets The endpoint hosting the requested resource. For example, https://{region}.easm.defender.microsoft.com.
+     * Gets The endpoint hosting the requested resource. For example,
+     * https://{region}.easm.defender.microsoft.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}.
      * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /**
-     * The ID of the target subscription.
-     */
-    private final String subscriptionId;
-
-    /**
-     * Gets The ID of the target subscription.
-     * 
-     * @return the subscriptionId value.
-     */
-    public String getSubscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /**
-     * The name of the Resource Group.
-     */
-    private final String resourceGroupName;
-
-    /**
-     * Gets The name of the Resource Group.
-     * 
-     * @return the resourceGroupName value.
-     */
-    public String getResourceGroupName() {
-        return this.resourceGroupName;
-    }
-
-    /**
-     * The name of the Workspace.
-     */
-    private final String workspaceName;
-
-    /**
-     * Gets The name of the Workspace.
-     * 
-     * @return the workspaceName value.
-     */
-    public String getWorkspaceName() {
-        return this.workspaceName;
     }
 
     /**
@@ -157,17 +117,12 @@ public final class EasmClientImpl {
      * Initializes an instance of EasmClient client.
      * 
      * @param endpoint The endpoint hosting the requested resource. For example,
-     * https://{region}.easm.defender.microsoft.com.
-     * @param subscriptionId The ID of the target subscription.
-     * @param resourceGroupName The name of the Resource Group.
-     * @param workspaceName The name of the Workspace.
+     * https://{region}.easm.defender.microsoft.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}.
      * @param serviceVersion Service version.
      */
-    public EasmClientImpl(String endpoint, String subscriptionId, String resourceGroupName, String workspaceName,
-        EasmServiceVersion serviceVersion) {
+    public EasmClientImpl(String endpoint, EasmServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
-            JacksonAdapter.createDefaultSerializerAdapter(), endpoint, subscriptionId, resourceGroupName, workspaceName,
-            serviceVersion);
+            JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
     /**
@@ -175,16 +130,11 @@ public final class EasmClientImpl {
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param endpoint The endpoint hosting the requested resource. For example,
-     * https://{region}.easm.defender.microsoft.com.
-     * @param subscriptionId The ID of the target subscription.
-     * @param resourceGroupName The name of the Resource Group.
-     * @param workspaceName The name of the Workspace.
+     * https://{region}.easm.defender.microsoft.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}.
      * @param serviceVersion Service version.
      */
-    public EasmClientImpl(HttpPipeline httpPipeline, String endpoint, String subscriptionId, String resourceGroupName,
-        String workspaceName, EasmServiceVersion serviceVersion) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, subscriptionId, resourceGroupName,
-            workspaceName, serviceVersion);
+    public EasmClientImpl(HttpPipeline httpPipeline, String endpoint, EasmServiceVersion serviceVersion) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
     /**
@@ -193,20 +143,14 @@ public final class EasmClientImpl {
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param endpoint The endpoint hosting the requested resource. For example,
-     * https://{region}.easm.defender.microsoft.com.
-     * @param subscriptionId The ID of the target subscription.
-     * @param resourceGroupName The name of the Resource Group.
-     * @param workspaceName The name of the Workspace.
+     * https://{region}.easm.defender.microsoft.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}.
      * @param serviceVersion Service version.
      */
     public EasmClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        String subscriptionId, String resourceGroupName, String workspaceName, EasmServiceVersion serviceVersion) {
+        EasmServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;
-        this.subscriptionId = subscriptionId;
-        this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
         this.serviceVersion = serviceVersion;
         this.service = RestProxy.create(EasmClientService.class, this.httpPipeline, this.getSerializerAdapter());
     }
@@ -214,7 +158,7 @@ public final class EasmClientImpl {
     /**
      * The interface defining all the services for EasmClient to be used by the proxy service to perform REST calls.
      */
-    @Host("{endpoint}/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/workspaces/{workspaceName}")
+    @Host("{endpoint}")
     @ServiceInterface(name = "EasmClient")
     public interface EasmClientService {
         @Get("/assets")
@@ -224,8 +168,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listAssetResource(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -236,8 +178,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listAssetResourceSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -248,8 +188,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> updateAssets(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @QueryParam("filter") String filter,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData assetUpdateData,
             RequestOptions requestOptions, Context context);
@@ -261,8 +199,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> updateAssetsSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @QueryParam("filter") String filter,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData assetUpdateData,
             RequestOptions requestOptions, Context context);
@@ -274,8 +210,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getAssetResource(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("assetId") String assetId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -286,10 +220,94 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getAssetResourceSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("assetId") String assetId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/assets:export")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getAssetsExport(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetsExportRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/assets:export")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getAssetsExportSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetsExportRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/assets/{assetId}:getObservations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getObservations(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("assetId") String assetId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/assets/{assetId}:getObservations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getObservationsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("assetId") String assetId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/assets:getDeltaDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getDeltaDetails(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData deltaDetailsRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/assets:getDeltaDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getDeltaDetailsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData deltaDetailsRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/assets:getDeltaSummary")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getDeltaSummary(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData deltaSummaryRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/assets:getDeltaSummary")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getDeltaSummarySync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData deltaSummaryRequest, RequestOptions requestOptions,
+            Context context);
 
         @Get("/dataConnections")
         @ExpectedResponses({ 200 })
@@ -298,8 +316,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDataConnection(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -310,8 +326,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -322,8 +336,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> validateDataConnection(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData dataConnectionData, RequestOptions requestOptions,
             Context context);
@@ -335,8 +347,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> validateDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData dataConnectionData, RequestOptions requestOptions,
             Context context);
@@ -348,8 +358,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getDataConnection(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -360,8 +368,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -372,8 +378,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createOrReplaceDataConnection(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData dataConnectionData,
             RequestOptions requestOptions, Context context);
@@ -385,8 +389,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createOrReplaceDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData dataConnectionData,
             RequestOptions requestOptions, Context context);
@@ -398,8 +400,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> deleteDataConnection(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -410,8 +410,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> deleteDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -422,8 +420,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDiscoGroup(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -434,8 +430,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -446,8 +440,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> validateDiscoGroup(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData discoGroupData, RequestOptions requestOptions, Context context);
 
@@ -458,8 +450,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> validateDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData discoGroupData, RequestOptions requestOptions, Context context);
 
@@ -470,8 +460,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getDiscoGroup(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -482,8 +470,26 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Delete("/discoGroups/{groupName}")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> deleteDiscoGroup(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Delete("/discoGroups/{groupName}")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<Void> deleteDiscoGroupSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -494,8 +500,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createOrReplaceDiscoGroup(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData discoGroupData,
             RequestOptions requestOptions, Context context);
@@ -507,8 +511,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createOrReplaceDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData discoGroupData,
             RequestOptions requestOptions, Context context);
@@ -520,8 +522,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> runDiscoGroup(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -532,8 +532,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> runDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -544,8 +542,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listRuns(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -556,10 +552,52 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listRunsSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/discoGroups:getAssetChainSummary")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getAssetChainSummary(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetChainRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/discoGroups:getAssetChainSummary")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getAssetChainSummarySync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetChainRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/discoGroups:dismissAssetChain")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> dismissAssetChain(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetChainRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/discoGroups:dismissAssetChain")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> dismissAssetChainSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData assetChainRequest, RequestOptions requestOptions,
+            Context context);
 
         @Get("/discoTemplates")
         @ExpectedResponses({ 200 })
@@ -568,8 +606,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDiscoTemplate(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -580,8 +616,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDiscoTemplateSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -592,8 +626,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getDiscoTemplate(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("templateId") String templateId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -604,8 +636,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getDiscoTemplateSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("templateId") String templateId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -616,8 +646,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getBillable(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -628,8 +656,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getBillableSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -640,8 +666,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getSnapshot(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData reportAssetSnapshotRequest, RequestOptions requestOptions,
             Context context);
@@ -653,8 +677,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getSnapshotSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData reportAssetSnapshotRequest, RequestOptions requestOptions,
             Context context);
@@ -666,8 +688,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getSummary(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData reportAssetSummaryRequest, RequestOptions requestOptions,
             Context context);
@@ -679,10 +699,30 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getSummarySync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData reportAssetSummaryRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/reports/assets:getSnapshotExport")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getSnapshotExport(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData reportAssetSnapshotExportRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/reports/assets:getSnapshotExport")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getSnapshotExportSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData reportAssetSnapshotExportRequest, RequestOptions requestOptions,
             Context context);
 
         @Get("/savedFilters")
@@ -692,8 +732,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listSavedFilter(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -704,8 +742,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listSavedFilterSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -716,8 +752,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getSavedFilter(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -728,8 +762,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getSavedFilterSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -740,8 +772,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createOrReplaceSavedFilter(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData savedFilterData,
             RequestOptions requestOptions, Context context);
@@ -753,8 +783,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createOrReplaceSavedFilterSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData savedFilterData,
             RequestOptions requestOptions, Context context);
@@ -766,8 +794,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> deleteSavedFilter(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -778,8 +804,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> deleteSavedFilterSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("filterName") String filterName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -790,8 +814,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listTask(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -802,8 +824,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listTaskSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             RequestOptions requestOptions, Context context);
 
@@ -814,8 +834,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getTask(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -826,8 +844,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getTaskSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -838,8 +854,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> cancelTask(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
@@ -850,9 +864,87 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> cancelTaskSync(@HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/tasks/{taskId}:run")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> runTask(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/tasks/{taskId}:run")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> runTaskSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/tasks/{taskId}:download")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> downloadTask(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/tasks/{taskId}:download")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> downloadTaskSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("taskId") String taskId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/cisaCves")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getCisaCves(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/cisaCves")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getCisaCvesSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/cisaCves/{cveId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getCisaCve(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("cveId") String cveId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/cisaCves/{cveId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getCisaCveSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("cveId") String cveId,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
         @Get("{nextLink}")
@@ -862,9 +954,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listAssetResourceNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -873,9 +964,28 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listAssetResourceNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getDeltaDetailsNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getDeltaDetailsNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -885,8 +995,6 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDataConnectionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
-            @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
         @Get("{nextLink}")
@@ -896,9 +1004,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDataConnectionNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -907,9 +1014,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDiscoGroupNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -918,9 +1024,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDiscoGroupNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -929,9 +1034,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listRunsNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -940,9 +1044,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listRunsNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -951,9 +1054,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listDiscoTemplateNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -962,9 +1064,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listDiscoTemplateNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -973,9 +1074,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listSavedFilterNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -984,9 +1084,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listSavedFilterNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -995,9 +1094,8 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listTaskNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
 
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
@@ -1006,62 +1104,55 @@ public final class EasmClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> listTaskNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("endpoint") String endpoint, @HostParam("subscriptionId") String subscriptionId,
-            @HostParam("resourceGroupName") String resourceGroupName, @HostParam("workspaceName") String workspaceName,
-            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getCisaCvesNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getCisaCvesNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
     }
 
     /**
      * Retrieve a list of assets for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
-     * <tr>
-     * <td>mark</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent
-     * values are returned in the response.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * <tr><td>mark</td><td>String</td><td>No</td><td>Specify this value instead of 'skip' to use cursor-based
+     * searching. Initial value is '*' and subsequent values are returned in the response.</td></tr>
+     * <tr><td>responseType</td><td>String</td><td>No</td><td>Specify the response type. The possible values are: ID,
+     * STANDARD, FULL, REDUCED. Allowed values: "id", "standard", "full", "reduced".</td></tr>
+     * <tr><td>responseIncludes</td><td>List&lt;String&gt;</td><td>No</td><td>The properties to include in the response.
+     * In the form of "," separated string.</td></tr>
+     * <tr><td>recentOnly</td><td>Boolean</td><td>No</td><td>If it's recent only.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1100,64 +1191,37 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listAssetResourceSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listAssetResource(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-                requestOptions, context))
+            .withContext(context -> service.listAssetResource(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of assets for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
-     * <tr>
-     * <td>mark</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent
-     * values are returned in the response.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * <tr><td>mark</td><td>String</td><td>No</td><td>Specify this value instead of 'skip' to use cursor-based
+     * searching. Initial value is '*' and subsequent values are returned in the response.</td></tr>
+     * <tr><td>responseType</td><td>String</td><td>No</td><td>Specify the response type. The possible values are: ID,
+     * STANDARD, FULL, REDUCED. Allowed values: "id", "standard", "full", "reduced".</td></tr>
+     * <tr><td>responseIncludes</td><td>List&lt;String&gt;</td><td>No</td><td>The properties to include in the response.
+     * In the form of "," separated string.</td></tr>
+     * <tr><td>recentOnly</td><td>Boolean</td><td>No</td><td>If it's recent only.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1222,55 +1286,29 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of assets for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
-     * <tr>
-     * <td>mark</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent
-     * values are returned in the response.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * <tr><td>mark</td><td>String</td><td>No</td><td>Specify this value instead of 'skip' to use cursor-based
+     * searching. Initial value is '*' and subsequent values are returned in the response.</td></tr>
+     * <tr><td>responseType</td><td>String</td><td>No</td><td>Specify the response type. The possible values are: ID,
+     * STANDARD, FULL, REDUCED. Allowed values: "id", "standard", "full", "reduced".</td></tr>
+     * <tr><td>responseIncludes</td><td>List&lt;String&gt;</td><td>No</td><td>The properties to include in the response.
+     * In the form of "," separated string.</td></tr>
+     * <tr><td>recentOnly</td><td>Boolean</td><td>No</td><td>If it's recent only.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1307,64 +1345,37 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAssetResourceSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listAssetResourceSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listAssetResourceSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of assets for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
-     * <tr>
-     * <td>mark</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent
-     * values are returned in the response.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * <tr><td>mark</td><td>String</td><td>No</td><td>Specify this value instead of 'skip' to use cursor-based
+     * searching. Initial value is '*' and subsequent values are returned in the response.</td></tr>
+     * <tr><td>responseType</td><td>String</td><td>No</td><td>Specify the response type. The possible values are: ID,
+     * STANDARD, FULL, REDUCED. Allowed values: "id", "standard", "full", "reduced".</td></tr>
+     * <tr><td>responseIncludes</td><td>List&lt;String&gt;</td><td>No</td><td>The properties to include in the response.
+     * In the form of "," separated string.</td></tr>
+     * <tr><td>recentOnly</td><td>Boolean</td><td>No</td><td>If it's recent only.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1429,9 +1440,8 @@ public final class EasmClientImpl {
 
     /**
      * Update labels on assets matching the provided filter.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     state: String(candidate/confirmed/dismissed/candidateInvestigate/associatedPartner/associatedThirdparty) (Optional)
@@ -1442,9 +1452,9 @@ public final class EasmClientImpl {
      *     transfers: String(as/contact/domain/host/ipAddress/ipBlock/page/sslCert) (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -1473,16 +1483,14 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> updateAssetsWithResponseAsync(String filter, BinaryData assetUpdateData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.updateAssets(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), filter, accept,
-            assetUpdateData, requestOptions, context));
+        return FluxUtil.withContext(context -> service.updateAssets(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), filter, accept, assetUpdateData, requestOptions, context));
     }
 
     /**
      * Update labels on assets matching the provided filter.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     state: String(candidate/confirmed/dismissed/candidateInvestigate/associatedPartner/associatedThirdparty) (Optional)
@@ -1493,9 +1501,9 @@ public final class EasmClientImpl {
      *     transfers: String(as/contact/domain/host/ipAddress/ipBlock/page/sslCert) (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -1524,18 +1532,17 @@ public final class EasmClientImpl {
     public Response<BinaryData> updateAssetsWithResponse(String filter, BinaryData assetUpdateData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.updateAssetsSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), filter, accept, assetUpdateData,
-            requestOptions, Context.NONE);
+        return service.updateAssetsSync(this.getEndpoint(), this.getServiceVersion().getVersion(), filter, accept,
+            assetUpdateData, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve an asset by assetId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1574,18 +1581,17 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getAssetResourceWithResponseAsync(String assetId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getAssetResource(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), assetId,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getAssetResource(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), assetId, accept, requestOptions, context));
     }
 
     /**
      * Retrieve an asset by assetId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -1623,43 +1629,604 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAssetResourceWithResponse(String assetId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getAssetResourceSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), assetId, accept, requestOptions,
-            Context.NONE);
+        return service.getAssetResourceSync(this.getEndpoint(), this.getServiceVersion().getVersion(), assetId, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Export a list of assets for the provided search parameters.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     fileName: String (Required)
+     *     columns (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param assetsExportRequest A request body used to export an asset.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getAssetsExportWithResponseAsync(BinaryData assetsExportRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getAssetsExport(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, assetsExportRequest, requestOptions, context));
+    }
+
+    /**
+     * Export a list of assets for the provided search parameters.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     fileName: String (Required)
+     *     columns (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param assetsExportRequest A request body used to export an asset.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getAssetsExportWithResponse(BinaryData assetsExportRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getAssetsExportSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            assetsExportRequest, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Retrieve observations on an asset.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     totalElements: long (Required)
+     *     prioritySummary (Required): {
+     *         String: int (Required)
+     *     }
+     *     value (Required): [
+     *          (Required){
+     *             name: String (Required)
+     *             types (Required): [
+     *                 String(cve/insight) (Required)
+     *             ]
+     *             priority: String(high/medium/low/none) (Required)
+     *             cvssScoreV2: double (Required)
+     *             cvssScoreV3: double (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param assetId The system generated unique id for the resource.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the page result response for the observation along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getObservationsWithResponseAsync(String assetId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getObservations(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), assetId, accept, requestOptions, context));
+    }
+
+    /**
+     * Retrieve observations on an asset.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     totalElements: long (Required)
+     *     prioritySummary (Required): {
+     *         String: int (Required)
+     *     }
+     *     value (Required): [
+     *          (Required){
+     *             name: String (Required)
+     *             types (Required): [
+     *                 String(cve/insight) (Required)
+     *             ]
+     *             priority: String(high/medium/low/none) (Required)
+     *             cvssScoreV2: double (Required)
+     *             cvssScoreV3: double (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param assetId The system generated unique id for the resource.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the page result response for the observation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getObservationsWithResponse(String assetId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getObservationsSync(this.getEndpoint(), this.getServiceVersion().getVersion(), assetId, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Retrieve a list of deltas for the provided time range.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     deltaDetailType: String(added/removed) (Required)
+     *     priorDays: Integer (Optional)
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param deltaDetailsRequest A request body used to retrieve a list of deltas.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getDeltaDetailsSinglePageAsync(BinaryData deltaDetailsRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getDeltaDetails(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, deltaDetailsRequest, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Retrieve a list of deltas for the provided time range.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     deltaDetailType: String(added/removed) (Required)
+     *     priorDays: Integer (Optional)
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param deltaDetailsRequest A request body used to retrieve a list of deltas.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> getDeltaDetailsAsync(BinaryData deltaDetailsRequest, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>((pageSize) -> {
+            RequestOptions requestOptionsLocal = requestOptions == null ? new RequestOptions() : requestOptions;
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return getDeltaDetailsSinglePageAsync(deltaDetailsRequest, requestOptionsLocal);
+        }, (nextLink, pageSize) -> {
+            RequestOptions requestOptionsLocal = new RequestOptions();
+            requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return getDeltaDetailsNextSinglePageAsync(nextLink, requestOptionsLocal);
+        });
+    }
+
+    /**
+     * Retrieve a list of deltas for the provided time range.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     deltaDetailType: String(added/removed) (Required)
+     *     priorDays: Integer (Optional)
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param deltaDetailsRequest A request body used to retrieve a list of deltas.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getDeltaDetailsSinglePage(BinaryData deltaDetailsRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.getDeltaDetailsSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, deltaDetailsRequest, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Retrieve a list of deltas for the provided time range.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     deltaDetailType: String(added/removed) (Required)
+     *     priorDays: Integer (Optional)
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param deltaDetailsRequest A request body used to retrieve a list of deltas.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> getDeltaDetails(BinaryData deltaDetailsRequest, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>((pageSize) -> {
+            RequestOptions requestOptionsLocal = requestOptions == null ? new RequestOptions() : requestOptions;
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return getDeltaDetailsSinglePage(deltaDetailsRequest, requestOptionsLocal);
+        }, (nextLink, pageSize) -> {
+            RequestOptions requestOptionsLocal = new RequestOptions();
+            requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return getDeltaDetailsNextSinglePage(nextLink, requestOptionsLocal);
+        });
+    }
+
+    /**
+     * Retrieve a list of deltas with overall summary changes for the provided time range.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     priorDays: Integer (Optional)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     summary (Required): {
+     *         range: long (Required)
+     *         removed: long (Required)
+     *         added: long (Required)
+     *         difference: long (Required)
+     *         kindSummaries (Required): [
+     *              (Required){
+     *                 kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *                 removed: long (Required)
+     *                 added: long (Required)
+     *                 difference: long (Required)
+     *             }
+     *         ]
+     *     }
+     *     daily (Required): [
+     *          (Required){
+     *             date: OffsetDateTime (Required)
+     *             deltas (Required): [
+     *                  (Required){
+     *                     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *                     removed: long (Required)
+     *                     added: long (Required)
+     *                     difference: long (Required)
+     *                     count: long (Required)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param deltaSummaryRequest A request body used to retrieve a delta summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return define response body for getting delta summary along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeltaSummaryWithResponseAsync(BinaryData deltaSummaryRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getDeltaSummary(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, deltaSummaryRequest, requestOptions, context));
+    }
+
+    /**
+     * Retrieve a list of deltas with overall summary changes for the provided time range.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     priorDays: Integer (Optional)
+     *     date: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     summary (Required): {
+     *         range: long (Required)
+     *         removed: long (Required)
+     *         added: long (Required)
+     *         difference: long (Required)
+     *         kindSummaries (Required): [
+     *              (Required){
+     *                 kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *                 removed: long (Required)
+     *                 added: long (Required)
+     *                 difference: long (Required)
+     *             }
+     *         ]
+     *     }
+     *     daily (Required): [
+     *          (Required){
+     *             date: OffsetDateTime (Required)
+     *             deltas (Required): [
+     *                  (Required){
+     *                     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *                     removed: long (Required)
+     *                     added: long (Required)
+     *                     difference: long (Required)
+     *                     count: long (Required)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param deltaSummaryRequest A request body used to retrieve a delta summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return define response body for getting delta summary along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getDeltaSummaryWithResponse(BinaryData deltaSummaryRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getDeltaSummarySync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            deltaSummaryRequest, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a list of data connections.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -1686,45 +2253,27 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listDataConnectionSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listDataConnection(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-                requestOptions, context))
+            .withContext(context -> service.listDataConnection(this.getEndpoint(),
+                this.getServiceVersion().getVersion(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of data connections.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -1777,36 +2326,19 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of data connections.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -1831,45 +2363,27 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listDataConnectionSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listDataConnectionSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listDataConnectionSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of data connections.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -1922,20 +2436,20 @@ public final class EasmClientImpl {
 
     /**
      * Validate a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -1959,33 +2473,33 @@ public final class EasmClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return validate result for validate action endpoints along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> validateDataConnectionWithResponseAsync(BinaryData dataConnectionData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.validateDataConnection(this.getEndpoint(),
-            this.getSubscriptionId(), this.getResourceGroupName(), this.getWorkspaceName(),
             this.getServiceVersion().getVersion(), accept, dataConnectionData, requestOptions, context));
     }
 
     /**
      * Validate a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -2009,24 +2523,23 @@ public final class EasmClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
+     * @return validate result for validate action endpoints along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> validateDataConnectionWithResponse(BinaryData dataConnectionData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.validateDataConnectionSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
+        return service.validateDataConnectionSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
             dataConnectionData, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -2053,18 +2566,17 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> getDataConnectionWithResponseAsync(String dataConnectionName,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getDataConnection(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(),
-            dataConnectionName, accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getDataConnection(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), dataConnectionName, accept, requestOptions, context));
     }
 
     /**
      * Retrieve a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -2091,29 +2603,29 @@ public final class EasmClientImpl {
     public Response<BinaryData> getDataConnectionWithResponse(String dataConnectionName,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getDataConnectionSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), dataConnectionName, accept, requestOptions,
-            Context.NONE);
+        return service.getDataConnectionSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            dataConnectionName, accept, requestOptions, Context.NONE);
     }
 
     /**
      * Create or replace a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -2141,30 +2653,30 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> createOrReplaceDataConnectionWithResponseAsync(String dataConnectionName,
         BinaryData dataConnectionData, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrReplaceDataConnection(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(),
+        return FluxUtil.withContext(
+            context -> service.createOrReplaceDataConnection(this.getEndpoint(), this.getServiceVersion().getVersion(),
                 dataConnectionName, accept, dataConnectionData, requestOptions, context));
     }
 
     /**
      * Create or replace a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -2192,8 +2704,7 @@ public final class EasmClientImpl {
     public Response<BinaryData> createOrReplaceDataConnectionWithResponse(String dataConnectionName,
         BinaryData dataConnectionData, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.createOrReplaceDataConnectionSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(),
+        return service.createOrReplaceDataConnectionSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
             dataConnectionName, accept, dataConnectionData, requestOptions, Context.NONE);
     }
 
@@ -2213,7 +2724,6 @@ public final class EasmClientImpl {
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.deleteDataConnection(this.getEndpoint(),
-            this.getSubscriptionId(), this.getResourceGroupName(), this.getWorkspaceName(),
             this.getServiceVersion().getVersion(), dataConnectionName, accept, requestOptions, context));
     }
 
@@ -2231,47 +2741,23 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteDataConnectionWithResponse(String dataConnectionName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.deleteDataConnectionSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(),
+        return service.deleteDataConnectionSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
             dataConnectionName, accept, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a list of discovery group for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2326,49 +2812,25 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listDiscoGroupSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listDiscoGroup(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-                requestOptions, context))
+            .withContext(context -> service.listDiscoGroup(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of discovery group for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2449,40 +2911,17 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of discovery group for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2535,49 +2974,25 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listDiscoGroupSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listDiscoGroupSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of discovery group for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2658,9 +3073,8 @@ public final class EasmClientImpl {
 
     /**
      * Validate a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -2682,9 +3096,9 @@ public final class EasmClientImpl {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -2708,22 +3122,21 @@ public final class EasmClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return validate result for validate action endpoints along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> validateDiscoGroupWithResponseAsync(BinaryData discoGroupData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.validateDiscoGroup(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-            discoGroupData, requestOptions, context));
+        return FluxUtil.withContext(context -> service.validateDiscoGroup(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, discoGroupData, requestOptions, context));
     }
 
     /**
      * Validate a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -2745,9 +3158,9 @@ public final class EasmClientImpl {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -2771,22 +3184,20 @@ public final class EasmClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
+     * @return validate result for validate action endpoints along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> validateDiscoGroupWithResponse(BinaryData discoGroupData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.validateDiscoGroupSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, discoGroupData, requestOptions,
-            Context.NONE);
+        return service.validateDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            discoGroupData, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a discovery group with a given groupName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2840,16 +3251,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getDiscoGroupWithResponseAsync(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getDiscoGroup(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getDiscoGroup(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), groupName, accept, requestOptions, context));
     }
 
     /**
      * Retrieve a discovery group with a given groupName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2903,16 +3312,50 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getDiscoGroupWithResponse(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getDiscoGroupSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName, accept, requestOptions,
-            Context.NONE);
+        return service.getDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), groupName, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Delete a discovery group with a given discovery group name.
+     * 
+     * @param groupName The caller provided unique name for the resource.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteDiscoGroupWithResponseAsync(String groupName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.deleteDiscoGroup(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), groupName, accept, requestOptions, context));
+    }
+
+    /**
+     * Delete a discovery group with a given discovery group name.
+     * 
+     * @param groupName The caller provided unique name for the resource.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteDiscoGroupWithResponse(String groupName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.deleteDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), groupName,
+            accept, requestOptions, Context.NONE);
     }
 
     /**
      * Create a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -2934,9 +3377,9 @@ public final class EasmClientImpl {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -2993,15 +3436,13 @@ public final class EasmClientImpl {
         BinaryData discoGroupData, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.createOrReplaceDiscoGroup(this.getEndpoint(),
-            this.getSubscriptionId(), this.getResourceGroupName(), this.getWorkspaceName(),
             this.getServiceVersion().getVersion(), groupName, accept, discoGroupData, requestOptions, context));
     }
 
     /**
      * Create a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -3023,9 +3464,9 @@ public final class EasmClientImpl {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -3081,9 +3522,8 @@ public final class EasmClientImpl {
     public Response<BinaryData> createOrReplaceDiscoGroupWithResponse(String groupName, BinaryData discoGroupData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.createOrReplaceDiscoGroupSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName,
-            accept, discoGroupData, requestOptions, Context.NONE);
+        return service.createOrReplaceDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            groupName, accept, discoGroupData, requestOptions, Context.NONE);
     }
 
     /**
@@ -3100,9 +3540,8 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> runDiscoGroupWithResponseAsync(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.runDiscoGroup(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.runDiscoGroup(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), groupName, accept, requestOptions, context));
     }
 
     /**
@@ -3119,47 +3558,23 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> runDiscoGroupWithResponse(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.runDiscoGroupSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName, accept, requestOptions,
-            Context.NONE);
+        return service.runDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), groupName, accept,
+            requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a collection of discovery run results for a discovery group with a given groupName.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -3195,49 +3610,25 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listRunsSinglePageAsync(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listRuns(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName,
-                accept, requestOptions, context))
+            .withContext(context -> service.listRuns(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                groupName, accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a collection of discovery run results for a discovery group with a given groupName.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -3300,40 +3691,17 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a collection of discovery run results for a discovery group with a given groupName.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -3368,49 +3736,25 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listRunsSinglePage(String groupName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res = service.listRunsSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), groupName,
-            accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listRunsSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            groupName, accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a collection of discovery run results for a discovery group with a given groupName.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -3472,41 +3816,245 @@ public final class EasmClientImpl {
     }
 
     /**
+     * Retrieve an asset chain summary.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     assetChainSource: String(DISCO_GROUP/ASSET) (Required)
+     *     sourceIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     affectedAssetsSummary (Required): [
+     *          (Required){
+     *             kind: String(as/contact/domain/host/ipAddress/ipBlock/page/sslCert) (Required)
+     *             affectedCount: long (Required)
+     *         }
+     *     ]
+     *     affectedGroupsSummary (Required): [
+     *          (Required){
+     *             id: String (Required)
+     *             name: String (Required)
+     *             displayName: String (Required)
+     *         }
+     *     ]
+     *     errors (Optional): [
+     *          (Optional){
+     *             error (Required): {
+     *                 code: String (Required)
+     *                 message: String (Required)
+     *                 target: String (Optional)
+     *                 details (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 innererror (Optional): {
+     *                     code: String (Optional)
+     *                     innererror (Optional): (recursive schema, see innererror above)
+     *                 }
+     *             }
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param assetChainRequest AssetChainRequest containing information needed for the retrieval of the asset chain
+     * summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response for the asset chain summary along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getAssetChainSummaryWithResponseAsync(BinaryData assetChainRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getAssetChainSummary(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, assetChainRequest, requestOptions, context));
+    }
+
+    /**
+     * Retrieve an asset chain summary.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     assetChainSource: String(DISCO_GROUP/ASSET) (Required)
+     *     sourceIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     affectedAssetsSummary (Required): [
+     *          (Required){
+     *             kind: String(as/contact/domain/host/ipAddress/ipBlock/page/sslCert) (Required)
+     *             affectedCount: long (Required)
+     *         }
+     *     ]
+     *     affectedGroupsSummary (Required): [
+     *          (Required){
+     *             id: String (Required)
+     *             name: String (Required)
+     *             displayName: String (Required)
+     *         }
+     *     ]
+     *     errors (Optional): [
+     *          (Optional){
+     *             error (Required): {
+     *                 code: String (Required)
+     *                 message: String (Required)
+     *                 target: String (Optional)
+     *                 details (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 innererror (Optional): {
+     *                     code: String (Optional)
+     *                     innererror (Optional): (recursive schema, see innererror above)
+     *                 }
+     *             }
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param assetChainRequest AssetChainRequest containing information needed for the retrieval of the asset chain
+     * summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response for the asset chain summary along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getAssetChainSummaryWithResponse(BinaryData assetChainRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getAssetChainSummarySync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            assetChainRequest, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Dismiss discovery chain for a given asset chain source.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     assetChainSource: String(DISCO_GROUP/ASSET) (Required)
+     *     sourceIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param assetChainRequest AssetChainRequest containing information needed for the retrieval of the asset chain
+     * summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> dismissAssetChainWithResponseAsync(BinaryData assetChainRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.dismissAssetChain(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, assetChainRequest, requestOptions, context));
+    }
+
+    /**
+     * Dismiss discovery chain for a given asset chain source.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     assetChainSource: String(DISCO_GROUP/ASSET) (Required)
+     *     sourceIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param assetChainRequest AssetChainRequest containing information needed for the retrieval of the asset chain
+     * summary.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> dismissAssetChainWithResponse(BinaryData assetChainRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.dismissAssetChainSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            assetChainRequest, requestOptions, Context.NONE);
+    }
+
+    /**
      * Retrieve a list of disco templates for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3541,49 +4089,25 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listDiscoTemplateSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listDiscoTemplate(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-                requestOptions, context))
+            .withContext(context -> service.listDiscoTemplate(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of disco templates for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3644,40 +4168,17 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of disco templates for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3710,49 +4211,25 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listDiscoTemplateSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listDiscoTemplateSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listDiscoTemplateSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of disco templates for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3813,9 +4290,8 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a disco template with a given templateId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3851,16 +4327,14 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> getDiscoTemplateWithResponseAsync(String templateId,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getDiscoTemplate(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), templateId,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getDiscoTemplate(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), templateId, accept, requestOptions, context));
     }
 
     /**
      * Retrieve a disco template with a given templateId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -3894,16 +4368,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getDiscoTemplateWithResponse(String templateId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getDiscoTemplateSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), templateId, accept, requestOptions,
-            Context.NONE);
+        return service.getDiscoTemplateSync(this.getEndpoint(), this.getServiceVersion().getVersion(), templateId,
+            accept, requestOptions, Context.NONE);
     }
 
     /**
      * Get billable assets summary for the workspace.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -3932,16 +4404,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getBillableWithResponseAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(
-            context -> service.getBillable(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getBillable(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, context));
     }
 
     /**
      * Get billable assets summary for the workspace.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -3969,15 +4439,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getBillableWithResponse(RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getBillableSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        return service.getBillableSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            requestOptions, Context.NONE);
     }
 
     /**
      * Get the most recent snapshot of asset summary values for the snapshot request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metric: String (Optional)
@@ -3986,9 +4455,9 @@ public final class EasmClientImpl {
      *     page: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     displayName: String (Optional)
@@ -4002,6 +4471,7 @@ public final class EasmClientImpl {
      *         nextLink: String (Optional)
      *         value (Optional): [
      *              (Optional){
+     *                 kind: String (Required)
      *                 id: String (Required)
      *                 name: String (Optional)
      *                 displayName: String (Optional)
@@ -4044,16 +4514,14 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> getSnapshotWithResponseAsync(BinaryData reportAssetSnapshotRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getSnapshot(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-            reportAssetSnapshotRequest, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getSnapshot(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, reportAssetSnapshotRequest, requestOptions, context));
     }
 
     /**
      * Get the most recent snapshot of asset summary values for the snapshot request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metric: String (Optional)
@@ -4062,9 +4530,9 @@ public final class EasmClientImpl {
      *     page: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     displayName: String (Optional)
@@ -4078,6 +4546,7 @@ public final class EasmClientImpl {
      *         nextLink: String (Optional)
      *         value (Optional): [
      *              (Optional){
+     *                 kind: String (Required)
      *                 id: String (Required)
      *                 name: String (Optional)
      *                 displayName: String (Optional)
@@ -4119,16 +4588,14 @@ public final class EasmClientImpl {
     public Response<BinaryData> getSnapshotWithResponse(BinaryData reportAssetSnapshotRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getSnapshotSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, reportAssetSnapshotRequest,
-            requestOptions, Context.NONE);
+        return service.getSnapshotSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            reportAssetSnapshotRequest, requestOptions, Context.NONE);
     }
 
     /**
      * Get asset summary details for the summary request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metricCategories (Optional): [
@@ -4145,9 +4612,9 @@ public final class EasmClientImpl {
      *     labelName: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -4183,16 +4650,14 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> getSummaryWithResponseAsync(BinaryData reportAssetSummaryRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getSummary(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-            reportAssetSummaryRequest, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getSummary(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, reportAssetSummaryRequest, requestOptions, context));
     }
 
     /**
      * Get asset summary details for the summary request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metricCategories (Optional): [
@@ -4209,9 +4674,9 @@ public final class EasmClientImpl {
      *     labelName: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -4246,47 +4711,119 @@ public final class EasmClientImpl {
     public Response<BinaryData> getSummaryWithResponse(BinaryData reportAssetSummaryRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getSummarySync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, reportAssetSummaryRequest,
-            requestOptions, Context.NONE);
+        return service.getSummarySync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            reportAssetSummaryRequest, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Get the most recent snapshot of asset summary values for the snapshot request exported to a file.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     metric: String (Optional)
+     *     fileName: String (Optional)
+     *     columns (Optional): [
+     *         String (Optional)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param reportAssetSnapshotExportRequest A request body used for an asset report snapshot export.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the most recent snapshot of asset summary values for the snapshot request exported to a file along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getSnapshotExportWithResponseAsync(BinaryData reportAssetSnapshotExportRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getSnapshotExport(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, reportAssetSnapshotExportRequest, requestOptions, context));
+    }
+
+    /**
+     * Get the most recent snapshot of asset summary values for the snapshot request exported to a file.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     metric: String (Optional)
+     *     fileName: String (Optional)
+     *     columns (Optional): [
+     *         String (Optional)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param reportAssetSnapshotExportRequest A request body used for an asset report snapshot export.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the most recent snapshot of asset summary values for the snapshot request exported to a file along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getSnapshotExportWithResponse(BinaryData reportAssetSnapshotExportRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getSnapshotExportSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            reportAssetSnapshotExportRequest, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a list of saved filters for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4309,49 +4846,25 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listSavedFilterSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listSavedFilter(this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept,
-                requestOptions, context))
+            .withContext(context -> service.listSavedFilter(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of saved filters for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4400,40 +4913,17 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of saved filters for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4454,49 +4944,25 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listSavedFilterSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listSavedFilterSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listSavedFilterSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of saved filters for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4545,9 +5011,8 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a saved filter by filterName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4570,16 +5035,14 @@ public final class EasmClientImpl {
     public Mono<Response<BinaryData>> getSavedFilterWithResponseAsync(String filterName,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getSavedFilter(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), filterName,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.getSavedFilter(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), filterName, accept, requestOptions, context));
     }
 
     /**
      * Retrieve a saved filter by filterName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4601,25 +5064,23 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getSavedFilterWithResponse(String filterName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getSavedFilterSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), filterName, accept, requestOptions,
-            Context.NONE);
+        return service.getSavedFilterSync(this.getEndpoint(), this.getServiceVersion().getVersion(), filterName, accept,
+            requestOptions, Context.NONE);
     }
 
     /**
      * Create or replace a saved filter with a given filterName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     filter: String (Required)
      *     description: String (Required)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4644,24 +5105,22 @@ public final class EasmClientImpl {
         BinaryData savedFilterData, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.createOrReplaceSavedFilter(this.getEndpoint(),
-            this.getSubscriptionId(), this.getResourceGroupName(), this.getWorkspaceName(),
             this.getServiceVersion().getVersion(), filterName, accept, savedFilterData, requestOptions, context));
     }
 
     /**
      * Create or replace a saved filter with a given filterName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     filter: String (Required)
      *     description: String (Required)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -4685,9 +5144,8 @@ public final class EasmClientImpl {
     public Response<BinaryData> createOrReplaceSavedFilterWithResponse(String filterName, BinaryData savedFilterData,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.createOrReplaceSavedFilterSync(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), filterName,
-            accept, savedFilterData, requestOptions, Context.NONE);
+        return service.createOrReplaceSavedFilterSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            filterName, accept, savedFilterData, requestOptions, Context.NONE);
     }
 
     /**
@@ -4704,9 +5162,8 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteSavedFilterWithResponseAsync(String filterName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.deleteSavedFilter(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), filterName,
-            accept, requestOptions, context));
+        return FluxUtil.withContext(context -> service.deleteSavedFilter(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), filterName, accept, requestOptions, context));
     }
 
     /**
@@ -4723,53 +5180,25 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteSavedFilterWithResponse(String filterName, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.deleteSavedFilterSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), filterName, accept, requestOptions,
-            Context.NONE);
+        return service.deleteSavedFilterSync(this.getEndpoint(), this.getServiceVersion().getVersion(), filterName,
+            accept, requestOptions, Context.NONE);
     }
 
     /**
      * Retrieve a list of tasks for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -4796,55 +5225,27 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listTaskSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listTask(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                    this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, context))
+            .withContext(context -> service.listTask(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+                requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Retrieve a list of tasks for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -4898,46 +5299,19 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a list of tasks for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -4963,55 +5337,27 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listTaskSinglePage(RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res
-            = service.listTaskSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-                this.getWorkspaceName(), this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res = service.listTaskSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Retrieve a list of tasks for the provided search parameters.
-     * <p>
-     * <strong>Query Parameters</strong>
-     * </p>
+     * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
-     * <tr>
-     * <th>Name</th>
-     * <th>Type</th>
-     * <th>Required</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td>filter</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>Filter the result list using the given expression.</td>
-     * </tr>
-     * <tr>
-     * <td>orderby</td>
-     * <td>String</td>
-     * <td>No</td>
-     * <td>A list of expressions that specify the order of the returned resources.</td>
-     * </tr>
-     * <tr>
-     * <td>skip</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The number of result items to skip.</td>
-     * </tr>
-     * <tr>
-     * <td>maxpagesize</td>
-     * <td>Integer</td>
-     * <td>No</td>
-     * <td>The maximum number of result items per page.</td>
-     * </tr>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>filter</td><td>String</td><td>No</td><td>Filter the result list using the given expression.</td></tr>
+     * <tr><td>orderby</td><td>String</td><td>No</td><td>A list of expressions that specify the order of the returned
+     * resources.</td></tr>
+     * <tr><td>skip</td><td>Integer</td><td>No</td><td>The number of result items to skip.</td></tr>
+     * <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>The maximum number of result items per page.</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5065,9 +5411,8 @@ public final class EasmClientImpl {
 
     /**
      * Retrieve a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5094,16 +5439,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getTaskWithResponseAsync(String taskId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.getTask(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), taskId, accept,
-            requestOptions, context));
+        return FluxUtil.withContext(context -> service.getTask(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), taskId, accept, requestOptions, context));
     }
 
     /**
      * Retrieve a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5130,16 +5473,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getTaskWithResponse(String taskId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.getTaskSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), taskId, accept, requestOptions,
-            Context.NONE);
+        return service.getTaskSync(this.getEndpoint(), this.getServiceVersion().getVersion(), taskId, accept,
+            requestOptions, Context.NONE);
     }
 
     /**
      * Cancel a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5166,16 +5507,14 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> cancelTaskWithResponseAsync(String taskId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.cancelTask(this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), this.getServiceVersion().getVersion(), taskId, accept,
-            requestOptions, context));
+        return FluxUtil.withContext(context -> service.cancelTask(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), taskId, accept, requestOptions, context));
     }
 
     /**
      * Cancel a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5202,18 +5541,371 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> cancelTaskWithResponse(String taskId, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.cancelTaskSync(this.getEndpoint(), this.getSubscriptionId(), this.getResourceGroupName(),
-            this.getWorkspaceName(), this.getServiceVersion().getVersion(), taskId, accept, requestOptions,
-            Context.NONE);
+        return service.cancelTaskSync(this.getEndpoint(), this.getServiceVersion().getVersion(), taskId, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Run a task by taskId.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param taskId The unique identifier of the task.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> runTaskWithResponseAsync(String taskId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.runTask(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), taskId, accept, requestOptions, context));
+    }
+
+    /**
+     * Run a task by taskId.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param taskId The unique identifier of the task.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> runTaskWithResponse(String taskId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.runTaskSync(this.getEndpoint(), this.getServiceVersion().getVersion(), taskId, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Download a task.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param taskId The unique identifier of the task.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> downloadTaskWithResponseAsync(String taskId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.downloadTask(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), taskId, accept, requestOptions, context));
+    }
+
+    /**
+     * Download a task.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     startedAt: OffsetDateTime (Optional)
+     *     completedAt: OffsetDateTime (Optional)
+     *     lastPolledAt: OffsetDateTime (Optional)
+     *     state: String(pending/running/paused/complete/incomplete/failed/warning) (Optional)
+     *     phase: String(running/polling/complete) (Optional)
+     *     reason: String (Optional)
+     *     metadata (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param taskId The unique identifier of the task.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> downloadTaskWithResponse(String taskId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.downloadTaskSync(this.getEndpoint(), this.getServiceVersion().getVersion(), taskId, accept,
+            requestOptions, Context.NONE);
+    }
+
+    /**
+     * Retrieve a list of CisaCves for the provided search parameters.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getCisaCvesSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getCisaCves(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Retrieve a list of CisaCves for the provided search parameters.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> getCisaCvesAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>(() -> getCisaCvesSinglePageAsync(requestOptions),
+            nextLink -> getCisaCvesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Retrieve a list of CisaCves for the provided search parameters.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getCisaCvesSinglePage(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.getCisaCvesSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Retrieve a list of CisaCves for the provided search parameters.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> getCisaCves(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>(() -> getCisaCvesSinglePage(requestOptions),
+            nextLink -> getCisaCvesNextSinglePage(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Retrieve details of CisaCve by cveId.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param cveId The CVE ID of the vulnerability in the format CVE-YYYY-NNNN, note that the number portion can have
+     * more than 4 digits.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return cisa cve in a given workspace along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getCisaCveWithResponseAsync(String cveId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getCisaCve(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), cveId, accept, requestOptions, context));
+    }
+
+    /**
+     * Retrieve details of CisaCve by cveId.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param cveId The CVE ID of the vulnerability in the format CVE-YYYY-NNNN, note that the number portion can have
+     * more than 4 digits.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return cisa cve in a given workspace along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getCisaCveWithResponse(String cveId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getCisaCveSync(this.getEndpoint(), this.getServiceVersion().getVersion(), cveId, accept,
+            requestOptions, Context.NONE);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -5240,9 +5932,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5257,19 +5947,18 @@ public final class EasmClientImpl {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listAssetResourceNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                    this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+                context -> service.listAssetResourceNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -5296,9 +5985,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5310,19 +5997,82 @@ public final class EasmClientImpl {
     private PagedResponse<BinaryData> listAssetResourceNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         Response<BinaryData> res
-            = service.listAssetResourceNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+            = service.listAssetResourceNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getDeltaDetailsNextSinglePageAsync(String nextLink,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.getDeltaDetailsNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String(page/resource/mailServer/nameServer/host/domain/ipAddress/ipBlock/as/contact/sslCert) (Required)
+     *     name: String (Required)
+     *     createdAt: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     state: String(candidate/candidateInvestigate/confirmed/associated/associatedPartner/associatedThirdParty/archived/dismissed/autoconfirmed) (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getDeltaDetailsNextSinglePage(String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res
+            = service.getDeltaDetailsNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -5337,9 +6087,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5352,21 +6100,19 @@ public final class EasmClientImpl {
     private Mono<PagedResponse<BinaryData>> listDataConnectionNextSinglePageAsync(String nextLink,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listDataConnectionNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                    this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+        return FluxUtil.withContext(
+            context -> service.listDataConnectionNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -5381,9 +6127,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5395,17 +6139,15 @@ public final class EasmClientImpl {
     private PagedResponse<BinaryData> listDataConnectionNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         Response<BinaryData> res
-            = service.listDataConnectionNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+            = service.listDataConnectionNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -5448,9 +6190,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5464,17 +6204,16 @@ public final class EasmClientImpl {
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listDiscoGroupNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+            .withContext(
+                context -> service.listDiscoGroupNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -5517,9 +6256,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5531,17 +6268,15 @@ public final class EasmClientImpl {
     private PagedResponse<BinaryData> listDiscoGroupNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         Response<BinaryData> res
-            = service.listDiscoGroupNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+            = service.listDiscoGroupNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -5565,9 +6300,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5580,17 +6313,15 @@ public final class EasmClientImpl {
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listRunsNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+            .withContext(context -> service.listRunsNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     submittedDate: OffsetDateTime (Optional)
@@ -5614,9 +6345,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5627,17 +6356,16 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listRunsNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res = service.listRunsNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res
+            = service.listRunsNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5660,9 +6388,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5677,17 +6403,15 @@ public final class EasmClientImpl {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listDiscoTemplateNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                    this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+                context -> service.listDiscoTemplateNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5710,9 +6434,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5724,17 +6446,15 @@ public final class EasmClientImpl {
     private PagedResponse<BinaryData> listDiscoTemplateNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         Response<BinaryData> res
-            = service.listDiscoTemplateNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+            = service.listDiscoTemplateNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -5745,9 +6465,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5761,17 +6479,16 @@ public final class EasmClientImpl {
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listSavedFilterNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+            .withContext(
+                context -> service.listSavedFilterNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -5782,9 +6499,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5796,17 +6511,15 @@ public final class EasmClientImpl {
     private PagedResponse<BinaryData> listSavedFilterNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         Response<BinaryData> res
-            = service.listSavedFilterNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+            = service.listSavedFilterNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5822,9 +6535,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5837,17 +6548,15 @@ public final class EasmClientImpl {
         RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listTaskNext(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-                this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, context))
+            .withContext(context -> service.listTaskNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
     }
 
     /**
      * Get the next page of items.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -5863,9 +6572,7 @@ public final class EasmClientImpl {
      * }
      * }</pre>
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5876,8 +6583,85 @@ public final class EasmClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listTaskNextSinglePage(String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
-        Response<BinaryData> res = service.listTaskNextSync(nextLink, this.getEndpoint(), this.getSubscriptionId(),
-            this.getResourceGroupName(), this.getWorkspaceName(), accept, requestOptions, Context.NONE);
+        Response<BinaryData> res
+            = service.listTaskNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> getCisaCvesNextSinglePageAsync(String nextLink,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.getCisaCvesNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     cveId: String (Required)
+     *     vendorProject: String (Required)
+     *     product: String (Required)
+     *     vulnerabilityName: String (Required)
+     *     shortDescription: String (Required)
+     *     requiredAction: String (Required)
+     *     notes: String (Required)
+     *     dateAdded: OffsetDateTime (Required)
+     *     dueDate: OffsetDateTime (Required)
+     *     updatedAt: OffsetDateTime (Required)
+     *     count: long (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of CisaCveResult items along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> getCisaCvesNextSinglePage(String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res
+            = service.getCisaCvesNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
         return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
             getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
     }
