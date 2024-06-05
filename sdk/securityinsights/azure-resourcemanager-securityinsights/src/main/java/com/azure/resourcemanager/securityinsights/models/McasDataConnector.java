@@ -8,14 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.McasDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents MCAS (Microsoft Cloud App Security) data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents MCAS (Microsoft Cloud App Security) data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = McasDataConnector.class, visible = true)
 @JsonTypeName("MicrosoftCloudAppSecurity")
 @Fluent
 public final class McasDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.MICROSOFT_CLOUD_APP_SECURITY;
+
     /*
      * MCAS (Microsoft Cloud App Security) data connector properties.
      */
@@ -23,15 +33,33 @@ public final class McasDataConnector extends DataConnectorInner {
     private McasDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of McasDataConnector class.
+     */
+    public McasDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: MCAS (Microsoft Cloud App Security) data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private McasDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public McasDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -39,31 +67,8 @@ public final class McasDataConnector extends DataConnectorInner {
     }
 
     /**
-     * Get the dataTypes property: The available data types for the connector.
-     *
-     * @return the dataTypes value.
-     */
-    public McasDataConnectorDataTypes dataTypes() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
-    }
-
-    /**
-     * Set the dataTypes property: The available data types for the connector.
-     *
-     * @param dataTypes the dataTypes value to set.
-     * @return the McasDataConnector object itself.
-     */
-    public McasDataConnector withDataTypes(McasDataConnectorDataTypes dataTypes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new McasDataConnectorProperties();
-        }
-        this.innerProperties().withDataTypes(dataTypes);
-        return this;
-    }
-
-    /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +77,7 @@ public final class McasDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the McasDataConnector object itself.
      */
@@ -85,8 +90,31 @@ public final class McasDataConnector extends DataConnectorInner {
     }
 
     /**
+     * Get the dataTypes property: The available data types for the connector.
+     * 
+     * @return the dataTypes value.
+     */
+    public McasDataConnectorDataTypes dataTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
+    }
+
+    /**
+     * Set the dataTypes property: The available data types for the connector.
+     * 
+     * @param dataTypes the dataTypes value to set.
+     * @return the McasDataConnector object itself.
+     */
+    public McasDataConnector withDataTypes(McasDataConnectorDataTypes dataTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new McasDataConnectorProperties();
+        }
+        this.innerProperties().withDataTypes(dataTypes);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRuleBooleanCondition model. */
+/**
+ * Describes an automation rule condition with boolean operators.
+ */
 @Fluent
 public final class AutomationRuleBooleanCondition {
     /*
-     * The operator property.
+     * Describes a boolean condition operator.
      */
     @JsonProperty(value = "operator")
     private AutomationRuleBooleanConditionSupportedOperator operator;
@@ -24,8 +26,14 @@ public final class AutomationRuleBooleanCondition {
     private List<AutomationRuleCondition> innerConditions;
 
     /**
-     * Get the operator property: The operator property.
-     *
+     * Creates an instance of AutomationRuleBooleanCondition class.
+     */
+    public AutomationRuleBooleanCondition() {
+    }
+
+    /**
+     * Get the operator property: Describes a boolean condition operator.
+     * 
      * @return the operator value.
      */
     public AutomationRuleBooleanConditionSupportedOperator operator() {
@@ -33,8 +41,8 @@ public final class AutomationRuleBooleanCondition {
     }
 
     /**
-     * Set the operator property: The operator property.
-     *
+     * Set the operator property: Describes a boolean condition operator.
+     * 
      * @param operator the operator value to set.
      * @return the AutomationRuleBooleanCondition object itself.
      */
@@ -45,7 +53,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Get the innerConditions property: The innerConditions property.
-     *
+     * 
      * @return the innerConditions value.
      */
     public List<AutomationRuleCondition> innerConditions() {
@@ -54,7 +62,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Set the innerConditions property: The innerConditions property.
-     *
+     * 
      * @param innerConditions the innerConditions value to set.
      * @return the AutomationRuleBooleanCondition object itself.
      */
@@ -65,7 +73,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

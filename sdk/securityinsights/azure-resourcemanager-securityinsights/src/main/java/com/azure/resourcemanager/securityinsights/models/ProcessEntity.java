@@ -5,19 +5,28 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ProcessEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Represents a process entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a process entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = ProcessEntity.class, visible = true)
 @JsonTypeName("Process")
 @Fluent
-public final class ProcessEntity extends EntityInner {
+public final class ProcessEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.PROCESS;
+
     /*
      * Process entity properties
      */
@@ -25,8 +34,24 @@ public final class ProcessEntity extends EntityInner {
     private ProcessEntityProperties innerProperties;
 
     /**
+     * Creates an instance of ProcessEntity class.
+     */
+    public ProcessEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Process entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProcessEntityProperties innerProperties() {
@@ -35,7 +60,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the accountEntityId property: The account entity id running the processes.
-     *
+     * 
      * @return the accountEntityId value.
      */
     public String accountEntityId() {
@@ -44,7 +69,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the commandLine property: The command line used to create the process.
-     *
+     * 
      * @return the commandLine value.
      */
     public String commandLine() {
@@ -53,7 +78,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the creationTimeUtc property: The time when the process started to run.
-     *
+     * 
      * @return the creationTimeUtc value.
      */
     public OffsetDateTime creationTimeUtc() {
@@ -62,7 +87,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the elevationToken property: The elevation token associated with the process.
-     *
+     * 
      * @return the elevationToken value.
      */
     public ElevationToken elevationToken() {
@@ -71,7 +96,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Set the elevationToken property: The elevation token associated with the process.
-     *
+     * 
      * @param elevationToken the elevationToken value to set.
      * @return the ProcessEntity object itself.
      */
@@ -85,7 +110,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the hostEntityId property: The host entity id on which the process was running.
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -94,7 +119,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the hostLogonSessionEntityId property: The session entity id in which the process was running.
-     *
+     * 
      * @return the hostLogonSessionEntityId value.
      */
     public String hostLogonSessionEntityId() {
@@ -103,7 +128,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the imageFileEntityId property: Image file entity id.
-     *
+     * 
      * @return the imageFileEntityId value.
      */
     public String imageFileEntityId() {
@@ -112,7 +137,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the parentProcessEntityId property: The parent process entity id.
-     *
+     * 
      * @return the parentProcessEntityId value.
      */
     public String parentProcessEntityId() {
@@ -121,7 +146,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Get the processId property: The process ID.
-     *
+     * 
      * @return the processId value.
      */
     public String processId() {
@@ -131,7 +156,7 @@ public final class ProcessEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -141,7 +166,7 @@ public final class ProcessEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -150,7 +175,7 @@ public final class ProcessEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

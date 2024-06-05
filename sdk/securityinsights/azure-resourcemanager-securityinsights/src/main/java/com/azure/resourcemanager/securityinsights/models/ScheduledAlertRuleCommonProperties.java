@@ -11,7 +11,9 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-/** Scheduled alert rule template property bag. */
+/**
+ * Scheduled alert rule template property bag.
+ */
 @Fluent
 public class ScheduledAlertRuleCommonProperties {
     /*
@@ -76,8 +78,14 @@ public class ScheduledAlertRuleCommonProperties {
     private AlertDetailsOverride alertDetailsOverride;
 
     /**
+     * Creates an instance of ScheduledAlertRuleCommonProperties class.
+     */
+    public ScheduledAlertRuleCommonProperties() {
+    }
+
+    /**
      * Get the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -86,7 +94,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @param query the query value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -97,7 +105,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
-     *
+     * 
      * @return the queryFrequency value.
      */
     public Duration queryFrequency() {
@@ -106,7 +114,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
-     *
+     * 
      * @param queryFrequency the queryFrequency value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -117,7 +125,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
-     *
+     * 
      * @return the queryPeriod value.
      */
     public Duration queryPeriod() {
@@ -126,7 +134,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
-     *
+     * 
      * @param queryPeriod the queryPeriod value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -137,7 +145,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -146,7 +154,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -157,7 +165,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the triggerOperator property: The operation against the threshold that triggers alert rule.
-     *
+     * 
      * @return the triggerOperator value.
      */
     public TriggerOperator triggerOperator() {
@@ -166,7 +174,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the triggerOperator property: The operation against the threshold that triggers alert rule.
-     *
+     * 
      * @param triggerOperator the triggerOperator value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -177,7 +185,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the triggerThreshold property: The threshold triggers this alert rule.
-     *
+     * 
      * @return the triggerThreshold value.
      */
     public Integer triggerThreshold() {
@@ -186,7 +194,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the triggerThreshold property: The threshold triggers this alert rule.
-     *
+     * 
      * @param triggerThreshold the triggerThreshold value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -197,7 +205,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @return the eventGroupingSettings value.
      */
     public EventGroupingSettings eventGroupingSettings() {
@@ -206,7 +214,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @param eventGroupingSettings the eventGroupingSettings value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -217,7 +225,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @return the customDetails value.
      */
     public Map<String, String> customDetails() {
@@ -226,7 +234,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @param customDetails the customDetails value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -237,7 +245,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @return the entityMappings value.
      */
     public List<EntityMapping> entityMappings() {
@@ -246,7 +254,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @param entityMappings the entityMappings value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -257,7 +265,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Get the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @return the alertDetailsOverride value.
      */
     public AlertDetailsOverride alertDetailsOverride() {
@@ -266,7 +274,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Set the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @param alertDetailsOverride the alertDetailsOverride value to set.
      * @return the ScheduledAlertRuleCommonProperties object itself.
      */
@@ -277,7 +285,7 @@ public class ScheduledAlertRuleCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

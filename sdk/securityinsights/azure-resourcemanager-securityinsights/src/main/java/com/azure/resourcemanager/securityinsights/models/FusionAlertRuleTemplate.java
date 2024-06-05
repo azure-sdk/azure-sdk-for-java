@@ -8,16 +8,30 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleTemplateInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.FusionAlertRuleTemplateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents Fusion alert rule template. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Fusion alert rule template.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = FusionAlertRuleTemplate.class,
+    visible = true)
 @JsonTypeName("Fusion")
 @Fluent
 public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
+    /*
+     * The alert rule kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private AlertRuleKind kind = AlertRuleKind.FUSION;
+
     /*
      * Fusion alert rule template properties
      */
@@ -25,8 +39,24 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     private FusionAlertRuleTemplateProperties innerProperties;
 
     /**
+     * Creates an instance of FusionAlertRuleTemplate class.
+     */
+    public FusionAlertRuleTemplate() {
+    }
+
+    /**
+     * Get the kind property: The alert rule kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public AlertRuleKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Fusion alert rule template properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private FusionAlertRuleTemplateProperties innerProperties() {
@@ -35,7 +65,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @return the alertRulesCreatedByTemplateCount value.
      */
     public Integer alertRulesCreatedByTemplateCount() {
@@ -44,7 +74,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -58,7 +88,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the createdDateUtc property: The time that this alert rule template has been added.
-     *
+     * 
      * @return the createdDateUtc value.
      */
     public OffsetDateTime createdDateUtc() {
@@ -67,7 +97,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the lastUpdatedDateUtc property: The time that this alert rule template was last updated.
-     *
+     * 
      * @return the lastUpdatedDateUtc value.
      */
     public OffsetDateTime lastUpdatedDateUtc() {
@@ -76,7 +106,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the description property: The description of the alert rule template.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -85,7 +115,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the description property: The description of the alert rule template.
-     *
+     * 
      * @param description the description value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -99,7 +129,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the displayName property: The display name for alert rule template.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -108,7 +138,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the displayName property: The display name for alert rule template.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -122,7 +152,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the requiredDataConnectors property: The required data connectors for this template.
-     *
+     * 
      * @return the requiredDataConnectors value.
      */
     public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
@@ -131,12 +161,12 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the requiredDataConnectors property: The required data connectors for this template.
-     *
+     * 
      * @param requiredDataConnectors the requiredDataConnectors value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
-    public FusionAlertRuleTemplate withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public FusionAlertRuleTemplate
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new FusionAlertRuleTemplateProperties();
         }
@@ -146,7 +176,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the status property: The alert rule template status.
-     *
+     * 
      * @return the status value.
      */
     public TemplateStatus status() {
@@ -155,7 +185,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the status property: The alert rule template status.
-     *
+     * 
      * @param status the status value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -169,7 +199,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -178,7 +208,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -192,7 +222,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Get the tactics property: The tactics of the alert rule template.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -201,7 +231,7 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
 
     /**
      * Set the tactics property: The tactics of the alert rule template.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -214,8 +244,8 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
+     * Get the techniques property: The techniques of the alert rule template.
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -223,8 +253,8 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
+     * Set the techniques property: The techniques of the alert rule template.
+     * 
      * @param techniques the techniques value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
@@ -237,31 +267,8 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionTemplateSourceSetting> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
-    }
-
-    /**
-     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withSourceSettings(sourceSettings);
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

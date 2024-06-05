@@ -4,21 +4,30 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailClusterEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a mail cluster entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a mail cluster entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = MailClusterEntity.class, visible = true)
 @JsonTypeName("MailCluster")
-@Fluent
-public final class MailClusterEntity extends EntityInner {
+@Immutable
+public final class MailClusterEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.MAIL_CLUSTER;
+
     /*
      * Mail cluster entity properties
      */
@@ -26,8 +35,24 @@ public final class MailClusterEntity extends EntityInner {
     private MailClusterEntityProperties innerProperties;
 
     /**
+     * Creates an instance of MailClusterEntity class.
+     */
+    public MailClusterEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Mail cluster entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MailClusterEntityProperties innerProperties() {
@@ -36,7 +61,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the networkMessageIds property: The mail message IDs that are part of the mail cluster.
-     *
+     * 
      * @return the networkMessageIds value.
      */
     public List<String> networkMessageIds() {
@@ -45,7 +70,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the countByDeliveryStatus property: Count of mail messages by DeliveryStatus string representation.
-     *
+     * 
      * @return the countByDeliveryStatus value.
      */
     public Object countByDeliveryStatus() {
@@ -54,7 +79,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the countByThreatType property: Count of mail messages by ThreatType string representation.
-     *
+     * 
      * @return the countByThreatType value.
      */
     public Object countByThreatType() {
@@ -63,7 +88,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the countByProtectionStatus property: Count of mail messages by ProtectionStatus string representation.
-     *
+     * 
      * @return the countByProtectionStatus value.
      */
     public Object countByProtectionStatus() {
@@ -72,7 +97,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the threats property: The threats of mail messages that are part of the mail cluster.
-     *
+     * 
      * @return the threats value.
      */
     public List<String> threats() {
@@ -81,7 +106,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the query property: The query that was used to identify the messages of the mail cluster.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -90,7 +115,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the queryTime property: The query time.
-     *
+     * 
      * @return the queryTime value.
      */
     public OffsetDateTime queryTime() {
@@ -99,7 +124,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the mailCount property: The number of mail messages that are part of the mail cluster.
-     *
+     * 
      * @return the mailCount value.
      */
     public Integer mailCount() {
@@ -108,7 +133,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the isVolumeAnomaly property: Is this a volume anomaly mail cluster.
-     *
+     * 
      * @return the isVolumeAnomaly value.
      */
     public Boolean isVolumeAnomaly() {
@@ -117,7 +142,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the source property: The source of the mail cluster (default is 'O365 ATP').
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -126,7 +151,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the clusterSourceIdentifier property: The id of the cluster source.
-     *
+     * 
      * @return the clusterSourceIdentifier value.
      */
     public String clusterSourceIdentifier() {
@@ -135,7 +160,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the clusterSourceType property: The type of the cluster source.
-     *
+     * 
      * @return the clusterSourceType value.
      */
     public String clusterSourceType() {
@@ -144,7 +169,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the clusterQueryStartTime property: The cluster query start time.
-     *
+     * 
      * @return the clusterQueryStartTime value.
      */
     public OffsetDateTime clusterQueryStartTime() {
@@ -153,7 +178,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the clusterQueryEndTime property: The cluster query end time.
-     *
+     * 
      * @return the clusterQueryEndTime value.
      */
     public OffsetDateTime clusterQueryEndTime() {
@@ -162,7 +187,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Get the clusterGroup property: The cluster group.
-     *
+     * 
      * @return the clusterGroup value.
      */
     public String clusterGroup() {
@@ -172,7 +197,7 @@ public final class MailClusterEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -182,7 +207,7 @@ public final class MailClusterEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -191,7 +216,7 @@ public final class MailClusterEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

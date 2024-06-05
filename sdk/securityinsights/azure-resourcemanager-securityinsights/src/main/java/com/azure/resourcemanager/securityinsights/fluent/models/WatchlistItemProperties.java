@@ -7,12 +7,12 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
-import java.util.Map;
 
-/** Describes watchlist item properties. */
+/**
+ * Describes watchlist item properties.
+ */
 @Fluent
 public final class WatchlistItemProperties {
     /*
@@ -67,19 +67,23 @@ public final class WatchlistItemProperties {
      * key-value pairs for a watchlist item
      */
     @JsonProperty(value = "itemsKeyValue", required = true)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> itemsKeyValue;
+    private Object itemsKeyValue;
 
     /*
      * key-value pairs for a watchlist item entity mapping
      */
     @JsonProperty(value = "entityMapping")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> entityMapping;
+    private Object entityMapping;
+
+    /**
+     * Creates an instance of WatchlistItemProperties class.
+     */
+    public WatchlistItemProperties() {
+    }
 
     /**
      * Get the watchlistItemType property: The type of the watchlist item.
-     *
+     * 
      * @return the watchlistItemType value.
      */
     public String watchlistItemType() {
@@ -88,7 +92,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the watchlistItemType property: The type of the watchlist item.
-     *
+     * 
      * @param watchlistItemType the watchlistItemType value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -99,7 +103,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the watchlistItemId property: The id (a Guid) of the watchlist item.
-     *
+     * 
      * @return the watchlistItemId value.
      */
     public String watchlistItemId() {
@@ -108,7 +112,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the watchlistItemId property: The id (a Guid) of the watchlist item.
-     *
+     * 
      * @param watchlistItemId the watchlistItemId value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -119,7 +123,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the tenantId property: The tenantId to which the watchlist item belongs to.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -128,7 +132,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the tenantId property: The tenantId to which the watchlist item belongs to.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -139,7 +143,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the isDeleted property: A flag that indicates if the watchlist item is deleted or not.
-     *
+     * 
      * @return the isDeleted value.
      */
     public Boolean isDeleted() {
@@ -148,7 +152,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the isDeleted property: A flag that indicates if the watchlist item is deleted or not.
-     *
+     * 
      * @param isDeleted the isDeleted value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -159,7 +163,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the created property: The time the watchlist item was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -168,7 +172,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the created property: The time the watchlist item was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the updated property: The last time the watchlist item was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -188,7 +192,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the updated property: The last time the watchlist item was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -199,7 +203,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the createdBy property: Describes a user that created the watchlist item.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -208,7 +212,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the createdBy property: Describes a user that created the watchlist item.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -219,7 +223,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the updatedBy property: Describes a user that updated the watchlist item.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -228,7 +232,7 @@ public final class WatchlistItemProperties {
 
     /**
      * Set the updatedBy property: Describes a user that updated the watchlist item.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the WatchlistItemProperties object itself.
      */
@@ -239,47 +243,47 @@ public final class WatchlistItemProperties {
 
     /**
      * Get the itemsKeyValue property: key-value pairs for a watchlist item.
-     *
+     * 
      * @return the itemsKeyValue value.
      */
-    public Map<String, Object> itemsKeyValue() {
+    public Object itemsKeyValue() {
         return this.itemsKeyValue;
     }
 
     /**
      * Set the itemsKeyValue property: key-value pairs for a watchlist item.
-     *
+     * 
      * @param itemsKeyValue the itemsKeyValue value to set.
      * @return the WatchlistItemProperties object itself.
      */
-    public WatchlistItemProperties withItemsKeyValue(Map<String, Object> itemsKeyValue) {
+    public WatchlistItemProperties withItemsKeyValue(Object itemsKeyValue) {
         this.itemsKeyValue = itemsKeyValue;
         return this;
     }
 
     /**
      * Get the entityMapping property: key-value pairs for a watchlist item entity mapping.
-     *
+     * 
      * @return the entityMapping value.
      */
-    public Map<String, Object> entityMapping() {
+    public Object entityMapping() {
         return this.entityMapping;
     }
 
     /**
      * Set the entityMapping property: key-value pairs for a watchlist item entity mapping.
-     *
+     * 
      * @param entityMapping the entityMapping value to set.
      * @return the WatchlistItemProperties object itself.
      */
-    public WatchlistItemProperties withEntityMapping(Map<String, Object> entityMapping) {
+    public WatchlistItemProperties withEntityMapping(Object entityMapping) {
         this.entityMapping = entityMapping;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -290,10 +294,9 @@ public final class WatchlistItemProperties {
             updatedBy().validate();
         }
         if (itemsKeyValue() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property itemsKeyValue in model WatchlistItemProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property itemsKeyValue in model WatchlistItemProperties"));
         }
     }
 

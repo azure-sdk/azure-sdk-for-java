@@ -8,14 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents office data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents office data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = OfficeDataConnector.class, visible = true)
 @JsonTypeName("Office365")
 @Fluent
 public final class OfficeDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.OFFICE365;
+
     /*
      * Office data connector properties.
      */
@@ -23,15 +33,33 @@ public final class OfficeDataConnector extends DataConnectorInner {
     private OfficeDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of OfficeDataConnector class.
+     */
+    public OfficeDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Office data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OfficeDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -39,31 +67,8 @@ public final class OfficeDataConnector extends DataConnectorInner {
     }
 
     /**
-     * Get the dataTypes property: The available data types for the connector.
-     *
-     * @return the dataTypes value.
-     */
-    public OfficeDataConnectorDataTypes dataTypes() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
-    }
-
-    /**
-     * Set the dataTypes property: The available data types for the connector.
-     *
-     * @param dataTypes the dataTypes value to set.
-     * @return the OfficeDataConnector object itself.
-     */
-    public OfficeDataConnector withDataTypes(OfficeDataConnectorDataTypes dataTypes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OfficeDataConnectorProperties();
-        }
-        this.innerProperties().withDataTypes(dataTypes);
-        return this;
-    }
-
-    /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +77,7 @@ public final class OfficeDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the OfficeDataConnector object itself.
      */
@@ -85,8 +90,31 @@ public final class OfficeDataConnector extends DataConnectorInner {
     }
 
     /**
+     * Get the dataTypes property: The available data types for the connector.
+     * 
+     * @return the dataTypes value.
+     */
+    public OfficeDataConnectorDataTypes dataTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
+    }
+
+    /**
+     * Set the dataTypes property: The available data types for the connector.
+     * 
+     * @param dataTypes the dataTypes value to set.
+     * @return the OfficeDataConnector object itself.
+     */
+    public OfficeDataConnector withDataTypes(OfficeDataConnectorDataTypes dataTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficeDataConnectorProperties();
+        }
+        this.innerProperties().withDataTypes(dataTypes);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

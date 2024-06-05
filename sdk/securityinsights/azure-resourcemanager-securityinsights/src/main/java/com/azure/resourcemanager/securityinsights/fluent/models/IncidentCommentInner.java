@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents an incident comment. */
+/**
+ * Represents an incident comment.
+ */
 @Fluent
 public final class IncidentCommentInner extends ResourceWithEtag {
     /*
@@ -20,15 +22,23 @@ public final class IncidentCommentInner extends ResourceWithEtag {
     private IncidentCommentProperties innerProperties;
 
     /**
+     * Creates an instance of IncidentCommentInner class.
+     */
+    public IncidentCommentInner() {
+    }
+
+    /**
      * Get the innerProperties property: Incident comment properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IncidentCommentProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IncidentCommentInner withEtag(String etag) {
         super.withEtag(etag);
@@ -37,7 +47,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Get the createdTimeUtc property: The time the comment was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -46,7 +56,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -55,7 +65,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Get the message property: The comment message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -64,7 +74,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Set the message property: The comment message.
-     *
+     * 
      * @param message the message value to set.
      * @return the IncidentCommentInner object itself.
      */
@@ -78,7 +88,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Get the author property: Describes the client that created the comment.
-     *
+     * 
      * @return the author value.
      */
     public ClientInfo author() {
@@ -87,7 +97,7 @@ public final class IncidentCommentInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

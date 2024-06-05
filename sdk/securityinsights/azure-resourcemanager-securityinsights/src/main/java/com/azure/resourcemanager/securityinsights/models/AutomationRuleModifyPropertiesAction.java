@@ -6,14 +6,28 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule action to modify an object's properties. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
+/**
+ * Describes an automation rule action to modify an object's properties.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "actionType",
+    defaultImpl = AutomationRuleModifyPropertiesAction.class,
+    visible = true)
 @JsonTypeName("ModifyProperties")
 @Fluent
 public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAction {
+    /*
+     * The type of the automation rule action.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "actionType", required = true)
+    private ActionType actionType = ActionType.MODIFY_PROPERTIES;
+
     /*
      * The actionConfiguration property.
      */
@@ -21,8 +35,24 @@ public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAc
     private IncidentPropertiesAction actionConfiguration;
 
     /**
+     * Creates an instance of AutomationRuleModifyPropertiesAction class.
+     */
+    public AutomationRuleModifyPropertiesAction() {
+    }
+
+    /**
+     * Get the actionType property: The type of the automation rule action.
+     * 
+     * @return the actionType value.
+     */
+    @Override
+    public ActionType actionType() {
+        return this.actionType;
+    }
+
+    /**
      * Get the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @return the actionConfiguration value.
      */
     public IncidentPropertiesAction actionConfiguration() {
@@ -31,7 +61,7 @@ public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAc
 
     /**
      * Set the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @param actionConfiguration the actionConfiguration value to set.
      * @return the AutomationRuleModifyPropertiesAction object itself.
      */
@@ -40,7 +70,9 @@ public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAc
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutomationRuleModifyPropertiesAction withOrder(int order) {
         super.withOrder(order);
@@ -49,7 +81,7 @@ public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAc
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

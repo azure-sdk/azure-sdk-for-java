@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.CloudApplicationEntityProperties;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a cloud application entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a cloud application entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = CloudApplicationEntity.class, visible = true)
 @JsonTypeName("CloudApplication")
-@Fluent
-public final class CloudApplicationEntity extends EntityInner {
+@Immutable
+public final class CloudApplicationEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.CLOUD_APPLICATION;
+
     /*
      * CloudApplication entity properties
      */
@@ -24,8 +33,24 @@ public final class CloudApplicationEntity extends EntityInner {
     private CloudApplicationEntityProperties innerProperties;
 
     /**
+     * Creates an instance of CloudApplicationEntity class.
+     */
+    public CloudApplicationEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: CloudApplication entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CloudApplicationEntityProperties innerProperties() {
@@ -34,7 +59,7 @@ public final class CloudApplicationEntity extends EntityInner {
 
     /**
      * Get the appId property: The technical identifier of the application.
-     *
+     * 
      * @return the appId value.
      */
     public Integer appId() {
@@ -43,7 +68,7 @@ public final class CloudApplicationEntity extends EntityInner {
 
     /**
      * Get the appName property: The name of the related cloud application.
-     *
+     * 
      * @return the appName value.
      */
     public String appName() {
@@ -53,7 +78,7 @@ public final class CloudApplicationEntity extends EntityInner {
     /**
      * Get the instanceName property: The user defined instance name of the cloud application. It is often used to
      * distinguish between several applications of the same type that a customer has.
-     *
+     * 
      * @return the instanceName value.
      */
     public String instanceName() {
@@ -63,7 +88,7 @@ public final class CloudApplicationEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -73,7 +98,7 @@ public final class CloudApplicationEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -82,7 +107,7 @@ public final class CloudApplicationEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -6,23 +6,53 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that applies a boolean operator (e.g AND, OR) to conditions. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
+/**
+ * Describes an automation rule condition that applies a boolean operator (e.g AND, OR) to conditions.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "conditionType",
+    defaultImpl = BooleanConditionProperties.class,
+    visible = true)
 @JsonTypeName("Boolean")
 @Fluent
 public final class BooleanConditionProperties extends AutomationRuleCondition {
     /*
-     * The conditionProperties property.
+     * The conditionType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "conditionType", required = true)
+    private ConditionType conditionType = ConditionType.BOOLEAN;
+
+    /*
+     * Describes an automation rule condition with boolean operators.
      */
     @JsonProperty(value = "conditionProperties")
     private AutomationRuleBooleanCondition conditionProperties;
 
     /**
-     * Get the conditionProperties property: The conditionProperties property.
-     *
+     * Creates an instance of BooleanConditionProperties class.
+     */
+    public BooleanConditionProperties() {
+    }
+
+    /**
+     * Get the conditionType property: The conditionType property.
+     * 
+     * @return the conditionType value.
+     */
+    @Override
+    public ConditionType conditionType() {
+        return this.conditionType;
+    }
+
+    /**
+     * Get the conditionProperties property: Describes an automation rule condition with boolean operators.
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRuleBooleanCondition conditionProperties() {
@@ -30,8 +60,8 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
     }
 
     /**
-     * Set the conditionProperties property: The conditionProperties property.
-     *
+     * Set the conditionProperties property: Describes an automation rule condition with boolean operators.
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the BooleanConditionProperties object itself.
      */
@@ -42,7 +72,7 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

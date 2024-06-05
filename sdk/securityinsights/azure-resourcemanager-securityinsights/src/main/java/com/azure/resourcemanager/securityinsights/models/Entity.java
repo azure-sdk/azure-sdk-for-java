@@ -4,43 +4,87 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
+import com.azure.core.annotation.Immutable;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An immutable client-side representation of Entity. */
-public interface Entity {
-    /**
-     * Gets the id property: Fully qualified resource Id for the resource.
-     *
-     * @return the id value.
+/**
+ * Specific entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = Entity.class, visible = true)
+@JsonTypeName("Entity")
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "SecurityAlert", value = SecurityAlert.class),
+    @JsonSubTypes.Type(name = "Bookmark", value = HuntingBookmark.class),
+    @JsonSubTypes.Type(name = "Account", value = AccountEntity.class),
+    @JsonSubTypes.Type(name = "AzureResource", value = AzureResourceEntity.class),
+    @JsonSubTypes.Type(name = "CloudApplication", value = CloudApplicationEntity.class),
+    @JsonSubTypes.Type(name = "DnsResolution", value = DnsEntity.class),
+    @JsonSubTypes.Type(name = "File", value = FileEntity.class),
+    @JsonSubTypes.Type(name = "FileHash", value = FileHashEntity.class),
+    @JsonSubTypes.Type(name = "Host", value = HostEntity.class),
+    @JsonSubTypes.Type(name = "IoTDevice", value = IoTDeviceEntity.class),
+    @JsonSubTypes.Type(name = "Ip", value = IpEntity.class),
+    @JsonSubTypes.Type(name = "Mailbox", value = MailboxEntity.class),
+    @JsonSubTypes.Type(name = "MailCluster", value = MailClusterEntity.class),
+    @JsonSubTypes.Type(name = "MailMessage", value = MailMessageEntity.class),
+    @JsonSubTypes.Type(name = "Malware", value = MalwareEntity.class),
+    @JsonSubTypes.Type(name = "Process", value = ProcessEntity.class),
+    @JsonSubTypes.Type(name = "RegistryKey", value = RegistryKeyEntity.class),
+    @JsonSubTypes.Type(name = "RegistryValue", value = RegistryValueEntity.class),
+    @JsonSubTypes.Type(name = "SecurityGroup", value = SecurityGroupEntity.class),
+    @JsonSubTypes.Type(name = "SubmissionMail", value = SubmissionMailEntity.class),
+    @JsonSubTypes.Type(name = "Url", value = UrlEntity.class) })
+@Immutable
+public class Entity extends ProxyResource {
+    /*
+     * The kind of the entity.
      */
-    String id();
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind;
 
-    /**
-     * Gets the name property: The name of the resource.
-     *
-     * @return the name value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    String name();
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Gets the type property: The type of the resource.
-     *
-     * @return the type value.
+     * Creates an instance of Entity class.
      */
-    String type();
+    public Entity() {
+        this.kind = EntityKindEnum.fromString("Entity");
+    }
 
     /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
-    SystemData systemData();
+    public SystemData systemData() {
+        return this.systemData;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.EntityInner object.
-     *
-     * @return the inner object.
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    EntityInner innerModel();
+    public void validate() {
+    }
 }

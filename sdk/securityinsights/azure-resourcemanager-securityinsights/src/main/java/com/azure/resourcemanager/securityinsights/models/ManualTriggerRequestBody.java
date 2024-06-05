@@ -9,24 +9,32 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** The ManualTriggerRequestBody model. */
+/**
+ * Describes the request body for triggering a playbook on an incident.
+ */
 @Fluent
 public final class ManualTriggerRequestBody {
     /*
-     * The tenantId property.
+     * The tenant id of the playbook resource.
      */
     @JsonProperty(value = "tenantId")
     private UUID tenantId;
 
     /*
-     * The logicAppsResourceId property.
+     * The resource id of the playbook resource.
      */
     @JsonProperty(value = "logicAppsResourceId", required = true)
     private String logicAppsResourceId;
 
     /**
-     * Get the tenantId property: The tenantId property.
-     *
+     * Creates an instance of ManualTriggerRequestBody class.
+     */
+    public ManualTriggerRequestBody() {
+    }
+
+    /**
+     * Get the tenantId property: The tenant id of the playbook resource.
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -34,8 +42,8 @@ public final class ManualTriggerRequestBody {
     }
 
     /**
-     * Set the tenantId property: The tenantId property.
-     *
+     * Set the tenantId property: The tenant id of the playbook resource.
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ManualTriggerRequestBody object itself.
      */
@@ -45,8 +53,8 @@ public final class ManualTriggerRequestBody {
     }
 
     /**
-     * Get the logicAppsResourceId property: The logicAppsResourceId property.
-     *
+     * Get the logicAppsResourceId property: The resource id of the playbook resource.
+     * 
      * @return the logicAppsResourceId value.
      */
     public String logicAppsResourceId() {
@@ -54,8 +62,8 @@ public final class ManualTriggerRequestBody {
     }
 
     /**
-     * Set the logicAppsResourceId property: The logicAppsResourceId property.
-     *
+     * Set the logicAppsResourceId property: The resource id of the playbook resource.
+     * 
      * @param logicAppsResourceId the logicAppsResourceId value to set.
      * @return the ManualTriggerRequestBody object itself.
      */
@@ -66,15 +74,14 @@ public final class ManualTriggerRequestBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logicAppsResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logicAppsResourceId in model ManualTriggerRequestBody"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property logicAppsResourceId in model ManualTriggerRequestBody"));
         }
     }
 

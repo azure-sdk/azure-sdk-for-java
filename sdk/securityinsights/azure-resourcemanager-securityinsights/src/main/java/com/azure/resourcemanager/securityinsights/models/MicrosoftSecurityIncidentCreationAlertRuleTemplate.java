@@ -8,16 +8,30 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleTemplateInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents MicrosoftSecurityIncidentCreation rule template. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents MicrosoftSecurityIncidentCreation rule template.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = MicrosoftSecurityIncidentCreationAlertRuleTemplate.class,
+    visible = true)
 @JsonTypeName("MicrosoftSecurityIncidentCreation")
 @Fluent
 public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends AlertRuleTemplateInner {
+    /*
+     * The alert rule kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private AlertRuleKind kind = AlertRuleKind.MICROSOFT_SECURITY_INCIDENT_CREATION;
+
     /*
      * MicrosoftSecurityIncidentCreation rule template properties
      */
@@ -25,8 +39,24 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     private MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties innerProperties;
 
     /**
+     * Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleTemplate class.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate() {
+    }
+
+    /**
+     * Get the kind property: The alert rule kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public AlertRuleKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: MicrosoftSecurityIncidentCreation rule template properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties innerProperties() {
@@ -34,103 +64,8 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
-     * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
-     * @return the displayNamesFilter value.
-     */
-    public List<String> displayNamesFilter() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayNamesFilter();
-    }
-
-    /**
-     * Set the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
-     * @param displayNamesFilter the displayNamesFilter value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDisplayNamesFilter(List<String> displayNamesFilter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDisplayNamesFilter(displayNamesFilter);
-        return this;
-    }
-
-    /**
-     * Get the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
-     * @return the displayNamesExcludeFilter value.
-     */
-    public List<String> displayNamesExcludeFilter() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayNamesExcludeFilter();
-    }
-
-    /**
-     * Set the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
-     * @param displayNamesExcludeFilter the displayNamesExcludeFilter value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDisplayNamesExcludeFilter(
-        List<String> displayNamesExcludeFilter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDisplayNamesExcludeFilter(displayNamesExcludeFilter);
-        return this;
-    }
-
-    /**
-     * Get the productFilter property: The alerts' productName on which the cases will be generated.
-     *
-     * @return the productFilter value.
-     */
-    public MicrosoftSecurityProductName productFilter() {
-        return this.innerProperties() == null ? null : this.innerProperties().productFilter();
-    }
-
-    /**
-     * Set the productFilter property: The alerts' productName on which the cases will be generated.
-     *
-     * @param productFilter the productFilter value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withProductFilter(
-        MicrosoftSecurityProductName productFilter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withProductFilter(productFilter);
-        return this;
-    }
-
-    /**
-     * Get the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
-     * @return the severitiesFilter value.
-     */
-    public List<AlertSeverity> severitiesFilter() {
-        return this.innerProperties() == null ? null : this.innerProperties().severitiesFilter();
-    }
-
-    /**
-     * Set the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
-     * @param severitiesFilter the severitiesFilter value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withSeveritiesFilter(
-        List<AlertSeverity> severitiesFilter) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withSeveritiesFilter(severitiesFilter);
-        return this;
-    }
-
-    /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @return the alertRulesCreatedByTemplateCount value.
      */
     public Integer alertRulesCreatedByTemplateCount() {
@@ -139,12 +74,12 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
         }
@@ -153,17 +88,8 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
-     * Get the lastUpdatedDateUtc property: The last time that this alert rule template has been updated.
-     *
-     * @return the lastUpdatedDateUtc value.
-     */
-    public OffsetDateTime lastUpdatedDateUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
-    }
-
-    /**
      * Get the createdDateUtc property: The time that this alert rule template has been added.
-     *
+     * 
      * @return the createdDateUtc value.
      */
     public OffsetDateTime createdDateUtc() {
@@ -171,8 +97,17 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
+     * Get the lastUpdatedDateUtc property: The time that this alert rule template was last updated.
+     * 
+     * @return the lastUpdatedDateUtc value.
+     */
+    public OffsetDateTime lastUpdatedDateUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
+    }
+
+    /**
      * Get the description property: The description of the alert rule template.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -181,7 +116,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Set the description property: The description of the alert rule template.
-     *
+     * 
      * @param description the description value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
      */
@@ -195,7 +130,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Get the displayName property: The display name for alert rule template.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -204,7 +139,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Set the displayName property: The display name for alert rule template.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
      */
@@ -217,8 +152,8 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
-     * Get the requiredDataConnectors property: The required data sources for this template.
-     *
+     * Get the requiredDataConnectors property: The required data connectors for this template.
+     * 
      * @return the requiredDataConnectors value.
      */
     public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
@@ -226,13 +161,13 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
-     * Set the requiredDataConnectors property: The required data sources for this template.
-     *
+     * Set the requiredDataConnectors property: The required data connectors for this template.
+     * 
      * @param requiredDataConnectors the requiredDataConnectors value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
         }
@@ -242,7 +177,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Get the status property: The alert rule template status.
-     *
+     * 
      * @return the status value.
      */
     public TemplateStatus status() {
@@ -251,7 +186,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
 
     /**
      * Set the status property: The alert rule template status.
-     *
+     * 
      * @param status the status value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
      */
@@ -264,8 +199,103 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
+     * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
+     * 
+     * @return the displayNamesFilter value.
+     */
+    public List<String> displayNamesFilter() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayNamesFilter();
+    }
+
+    /**
+     * Set the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
+     * 
+     * @param displayNamesFilter the displayNamesFilter value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDisplayNamesFilter(List<String> displayNamesFilter) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withDisplayNamesFilter(displayNamesFilter);
+        return this;
+    }
+
+    /**
+     * Get the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
+     * 
+     * @return the displayNamesExcludeFilter value.
+     */
+    public List<String> displayNamesExcludeFilter() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayNamesExcludeFilter();
+    }
+
+    /**
+     * Set the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
+     * 
+     * @param displayNamesExcludeFilter the displayNamesExcludeFilter value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate
+        withDisplayNamesExcludeFilter(List<String> displayNamesExcludeFilter) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withDisplayNamesExcludeFilter(displayNamesExcludeFilter);
+        return this;
+    }
+
+    /**
+     * Get the productFilter property: The alerts' productName on which the cases will be generated.
+     * 
+     * @return the productFilter value.
+     */
+    public MicrosoftSecurityProductName productFilter() {
+        return this.innerProperties() == null ? null : this.innerProperties().productFilter();
+    }
+
+    /**
+     * Set the productFilter property: The alerts' productName on which the cases will be generated.
+     * 
+     * @param productFilter the productFilter value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate
+        withProductFilter(MicrosoftSecurityProductName productFilter) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withProductFilter(productFilter);
+        return this;
+    }
+
+    /**
+     * Get the severitiesFilter property: the alerts' severities on which the cases will be generated.
+     * 
+     * @return the severitiesFilter value.
+     */
+    public List<AlertSeverity> severitiesFilter() {
+        return this.innerProperties() == null ? null : this.innerProperties().severitiesFilter();
+    }
+
+    /**
+     * Set the severitiesFilter property: the alerts' severities on which the cases will be generated.
+     * 
+     * @param severitiesFilter the severitiesFilter value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate
+        withSeveritiesFilter(List<AlertSeverity> severitiesFilter) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSeveritiesFilter(severitiesFilter);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

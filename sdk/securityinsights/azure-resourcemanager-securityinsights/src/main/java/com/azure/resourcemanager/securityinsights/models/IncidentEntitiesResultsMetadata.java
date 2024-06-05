@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information of a specific aggregation in the incident related entities result. */
+/**
+ * Information of a specific aggregation in the incident related entities result.
+ */
 @Fluent
 public final class IncidentEntitiesResultsMetadata {
     /*
@@ -21,11 +23,17 @@ public final class IncidentEntitiesResultsMetadata {
      * The kind of the aggregated entity.
      */
     @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
+
+    /**
+     * Creates an instance of IncidentEntitiesResultsMetadata class.
+     */
+    public IncidentEntitiesResultsMetadata() {
+    }
 
     /**
      * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -34,7 +42,7 @@ public final class IncidentEntitiesResultsMetadata {
 
     /**
      * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
+     * 
      * @param count the count value to set.
      * @return the IncidentEntitiesResultsMetadata object itself.
      */
@@ -45,35 +53,34 @@ public final class IncidentEntitiesResultsMetadata {
 
     /**
      * Get the entityKind property: The kind of the aggregated entity.
-     *
+     * 
      * @return the entityKind value.
      */
-    public EntityKind entityKind() {
+    public EntityKindEnum entityKind() {
         return this.entityKind;
     }
 
     /**
      * Set the entityKind property: The kind of the aggregated entity.
-     *
+     * 
      * @param entityKind the entityKind value to set.
      * @return the IncidentEntitiesResultsMetadata object itself.
      */
-    public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
+    public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (entityKind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property entityKind in model IncidentEntitiesResultsMetadata"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property entityKind in model IncidentEntitiesResultsMetadata"));
         }
     }
 

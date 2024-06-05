@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.AzureResourceEntityProperties;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents an azure resource entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents an azure resource entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = AzureResourceEntity.class, visible = true)
 @JsonTypeName("AzureResource")
-@Fluent
-public final class AzureResourceEntity extends EntityInner {
+@Immutable
+public final class AzureResourceEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.AZURE_RESOURCE;
+
     /*
      * AzureResource entity properties
      */
@@ -24,8 +33,24 @@ public final class AzureResourceEntity extends EntityInner {
     private AzureResourceEntityProperties innerProperties;
 
     /**
+     * Creates an instance of AzureResourceEntity class.
+     */
+    public AzureResourceEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: AzureResource entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AzureResourceEntityProperties innerProperties() {
@@ -34,7 +59,7 @@ public final class AzureResourceEntity extends EntityInner {
 
     /**
      * Get the resourceId property: The azure resource id of the resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -43,7 +68,7 @@ public final class AzureResourceEntity extends EntityInner {
 
     /**
      * Get the subscriptionId property: The subscription id of the resource.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -53,7 +78,7 @@ public final class AzureResourceEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -63,7 +88,7 @@ public final class AzureResourceEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -72,7 +97,7 @@ public final class AzureResourceEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

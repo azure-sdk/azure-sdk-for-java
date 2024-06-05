@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securityinsights.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -21,21 +20,22 @@ public final class AlertRulesImpl implements AlertRules {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public AlertRulesImpl(
-        AlertRulesClient innerClient,
+    public AlertRulesImpl(AlertRulesClient innerClient,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<AlertRule> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<AlertRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new AlertRuleImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AlertRule> list(String resourceGroupName, String workspaceName, Context context) {
-        PagedIterable<AlertRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
-        return Utils.mapPage(inner, inner1 -> new AlertRuleImpl(inner1, this.manager()));
+    public Response<AlertRule> getWithResponse(String resourceGroupName, String workspaceName, String ruleId,
+        Context context) {
+        Response<AlertRuleInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, ruleId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AlertRuleImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public AlertRule get(String resourceGroupName, String workspaceName, String ruleId) {
@@ -47,23 +47,20 @@ public final class AlertRulesImpl implements AlertRules {
         }
     }
 
-    public Response<AlertRule> getWithResponse(
-        String resourceGroupName, String workspaceName, String ruleId, Context context) {
-        Response<AlertRuleInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, ruleId, context);
+    public Response<AlertRule> createOrUpdateWithResponse(String resourceGroupName, String workspaceName, String ruleId,
+        AlertRuleInner alertRule, Context context) {
+        Response<AlertRuleInner> inner = this.serviceClient()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, alertRule, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AlertRuleImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public AlertRule createOrUpdate(
-        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule) {
+    public AlertRule createOrUpdate(String resourceGroupName, String workspaceName, String ruleId,
+        AlertRuleInner alertRule) {
         AlertRuleInner inner = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, ruleId, alertRule);
         if (inner != null) {
             return new AlertRuleImpl(inner, this.manager());
@@ -72,30 +69,13 @@ public final class AlertRulesImpl implements AlertRules {
         }
     }
 
-    public Response<AlertRule> createOrUpdateWithResponse(
-        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule, Context context) {
-        Response<AlertRuleInner> inner =
-            this
-                .serviceClient()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, alertRule, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new AlertRuleImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String ruleId,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, ruleId, context);
     }
 
     public void delete(String resourceGroupName, String workspaceName, String ruleId) {
         this.serviceClient().delete(resourceGroupName, workspaceName, ruleId);
-    }
-
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String ruleId, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, ruleId, context);
     }
 
     private AlertRulesClient serviceClient() {

@@ -4,20 +4,29 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.SecurityGroupEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 import java.util.UUID;
 
-/** Represents a security group entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a security group entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = SecurityGroupEntity.class, visible = true)
 @JsonTypeName("SecurityGroup")
-@Fluent
-public final class SecurityGroupEntity extends EntityInner {
+@Immutable
+public final class SecurityGroupEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.SECURITY_GROUP;
+
     /*
      * SecurityGroup entity properties
      */
@@ -25,8 +34,24 @@ public final class SecurityGroupEntity extends EntityInner {
     private SecurityGroupEntityProperties innerProperties;
 
     /**
+     * Creates an instance of SecurityGroupEntity class.
+     */
+    public SecurityGroupEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: SecurityGroup entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SecurityGroupEntityProperties innerProperties() {
@@ -35,7 +60,7 @@ public final class SecurityGroupEntity extends EntityInner {
 
     /**
      * Get the distinguishedName property: The group distinguished name.
-     *
+     * 
      * @return the distinguishedName value.
      */
     public String distinguishedName() {
@@ -45,7 +70,7 @@ public final class SecurityGroupEntity extends EntityInner {
     /**
      * Get the objectGuid property: A single-value attribute that is the unique identifier for the object, assigned by
      * active directory.
-     *
+     * 
      * @return the objectGuid value.
      */
     public UUID objectGuid() {
@@ -55,7 +80,7 @@ public final class SecurityGroupEntity extends EntityInner {
     /**
      * Get the sid property: The SID attribute is a single-value attribute that specifies the security identifier (SID)
      * of the group.
-     *
+     * 
      * @return the sid value.
      */
     public String sid() {
@@ -65,7 +90,7 @@ public final class SecurityGroupEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -75,7 +100,7 @@ public final class SecurityGroupEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -84,7 +109,7 @@ public final class SecurityGroupEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

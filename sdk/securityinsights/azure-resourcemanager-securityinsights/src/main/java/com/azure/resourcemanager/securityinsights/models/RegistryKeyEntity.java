@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.RegistryKeyEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a registry key entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a registry key entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = RegistryKeyEntity.class, visible = true)
 @JsonTypeName("RegistryKey")
-@Fluent
-public final class RegistryKeyEntity extends EntityInner {
+@Immutable
+public final class RegistryKeyEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.REGISTRY_KEY;
+
     /*
      * RegistryKey entity properties
      */
@@ -24,8 +33,24 @@ public final class RegistryKeyEntity extends EntityInner {
     private RegistryKeyEntityProperties innerProperties;
 
     /**
+     * Creates an instance of RegistryKeyEntity class.
+     */
+    public RegistryKeyEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: RegistryKey entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RegistryKeyEntityProperties innerProperties() {
@@ -34,7 +59,7 @@ public final class RegistryKeyEntity extends EntityInner {
 
     /**
      * Get the hive property: the hive that holds the registry key.
-     *
+     * 
      * @return the hive value.
      */
     public RegistryHive hive() {
@@ -43,7 +68,7 @@ public final class RegistryKeyEntity extends EntityInner {
 
     /**
      * Get the key property: The registry key path.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -53,7 +78,7 @@ public final class RegistryKeyEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -63,7 +88,7 @@ public final class RegistryKeyEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -72,7 +97,7 @@ public final class RegistryKeyEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.RegistryValueEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a registry value entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a registry value entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = RegistryValueEntity.class, visible = true)
 @JsonTypeName("RegistryValue")
-@Fluent
-public final class RegistryValueEntity extends EntityInner {
+@Immutable
+public final class RegistryValueEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.REGISTRY_VALUE;
+
     /*
      * RegistryKey entity properties
      */
@@ -24,8 +33,24 @@ public final class RegistryValueEntity extends EntityInner {
     private RegistryValueEntityProperties innerProperties;
 
     /**
+     * Creates an instance of RegistryValueEntity class.
+     */
+    public RegistryValueEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: RegistryKey entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RegistryValueEntityProperties innerProperties() {
@@ -34,7 +59,7 @@ public final class RegistryValueEntity extends EntityInner {
 
     /**
      * Get the keyEntityId property: The registry key entity id.
-     *
+     * 
      * @return the keyEntityId value.
      */
     public String keyEntityId() {
@@ -43,7 +68,7 @@ public final class RegistryValueEntity extends EntityInner {
 
     /**
      * Get the valueData property: String formatted representation of the value data.
-     *
+     * 
      * @return the valueData value.
      */
     public String valueData() {
@@ -52,7 +77,7 @@ public final class RegistryValueEntity extends EntityInner {
 
     /**
      * Get the valueName property: The registry value name.
-     *
+     * 
      * @return the valueName value.
      */
     public String valueName() {
@@ -62,7 +87,7 @@ public final class RegistryValueEntity extends EntityInner {
     /**
      * Get the valueType property: Specifies the data types to use when storing values in the registry, or identifies
      * the data type of a value in the registry.
-     *
+     * 
      * @return the valueType value.
      */
     public RegistryValueKind valueType() {
@@ -72,7 +97,7 @@ public final class RegistryValueEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -82,7 +107,7 @@ public final class RegistryValueEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -91,7 +116,7 @@ public final class RegistryValueEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

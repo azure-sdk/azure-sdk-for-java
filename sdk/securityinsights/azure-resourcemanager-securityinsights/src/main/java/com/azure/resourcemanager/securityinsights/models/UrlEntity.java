@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.UrlEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a url entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a url entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = UrlEntity.class, visible = true)
 @JsonTypeName("Url")
-@Fluent
-public final class UrlEntity extends EntityInner {
+@Immutable
+public final class UrlEntity extends Entity {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.URL;
+
     /*
      * Url entity properties
      */
@@ -24,8 +33,24 @@ public final class UrlEntity extends EntityInner {
     private UrlEntityProperties innerProperties;
 
     /**
+     * Creates an instance of UrlEntity class.
+     */
+    public UrlEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Url entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UrlEntityProperties innerProperties() {
@@ -34,7 +59,7 @@ public final class UrlEntity extends EntityInner {
 
     /**
      * Get the url property: A full URL the entity points to.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -44,7 +69,7 @@ public final class UrlEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -54,7 +79,7 @@ public final class UrlEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -63,7 +88,7 @@ public final class UrlEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,36 +7,36 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.securityinsights.models.AlertRuleKind;
 import com.azure.resourcemanager.securityinsights.models.FusionAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.MLBehaviorAnalyticsAlertRuleTemplate;
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityIncidentCreationAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.NrtAlertRuleTemplate;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAlertRuleTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Alert rule template. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = AlertRuleTemplateInner.class)
+/**
+ * Alert rule template.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = AlertRuleTemplateInner.class, visible = true)
 @JsonTypeName("AlertRuleTemplate")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "MLBehaviorAnalytics", value = MLBehaviorAnalyticsAlertRuleTemplate.class),
     @JsonSubTypes.Type(name = "Fusion", value = FusionAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "ThreatIntelligence", value = ThreatIntelligenceAlertRuleTemplate.class),
     @JsonSubTypes.Type(
         name = "MicrosoftSecurityIncidentCreation",
         value = MicrosoftSecurityIncidentCreationAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRuleTemplate.class)
-})
+    @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRuleTemplate.class) })
 @Immutable
 public class AlertRuleTemplateInner extends ProxyResource {
+    /*
+     * The alert rule kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private AlertRuleKind kind;
+
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
@@ -44,8 +44,24 @@ public class AlertRuleTemplateInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of AlertRuleTemplateInner class.
+     */
+    public AlertRuleTemplateInner() {
+        this.kind = AlertRuleKind.fromString("AlertRuleTemplate");
+    }
+
+    /**
+     * Get the kind property: The alert rule kind.
+     * 
+     * @return the kind value.
+     */
+    public AlertRuleKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -54,7 +70,7 @@ public class AlertRuleTemplateInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

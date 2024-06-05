@@ -6,12 +6,19 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataConnector;
-import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AATP (Azure Advanced Threat Protection) data connector properties. */
+/**
+ * AATP (Azure Advanced Threat Protection) data connector properties.
+ */
 @Fluent
-public final class AatpDataConnectorProperties extends DataConnectorTenantId {
+public final class AatpDataConnectorProperties {
+    /*
+     * The tenant id to connect to, and get the data from.
+     */
+    @JsonProperty(value = "tenantId")
+    private String tenantId;
+
     /*
      * The available data types for the connector.
      */
@@ -19,8 +26,34 @@ public final class AatpDataConnectorProperties extends DataConnectorTenantId {
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of AatpDataConnectorProperties class.
+     */
+    public AatpDataConnectorProperties() {
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.tenantId;
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the AatpDataConnectorProperties object itself.
+     */
+    public AatpDataConnectorProperties withTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -29,7 +62,7 @@ public final class AatpDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AatpDataConnectorProperties object itself.
      */
@@ -38,21 +71,12 @@ public final class AatpDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AatpDataConnectorProperties withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (dataTypes() != null) {
             dataTypes().validate();
         }

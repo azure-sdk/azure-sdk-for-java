@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.ClientInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Incident comment property bag. */
+/**
+ * Incident comment property bag.
+ */
 @Fluent
 public final class IncidentCommentProperties {
     /*
@@ -38,8 +40,14 @@ public final class IncidentCommentProperties {
     private ClientInfo author;
 
     /**
+     * Creates an instance of IncidentCommentProperties class.
+     */
+    public IncidentCommentProperties() {
+    }
+
+    /**
      * Get the createdTimeUtc property: The time the comment was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -48,7 +56,7 @@ public final class IncidentCommentProperties {
 
     /**
      * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -57,7 +65,7 @@ public final class IncidentCommentProperties {
 
     /**
      * Get the message property: The comment message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -66,7 +74,7 @@ public final class IncidentCommentProperties {
 
     /**
      * Set the message property: The comment message.
-     *
+     * 
      * @param message the message value to set.
      * @return the IncidentCommentProperties object itself.
      */
@@ -77,7 +85,7 @@ public final class IncidentCommentProperties {
 
     /**
      * Get the author property: Describes the client that created the comment.
-     *
+     * 
      * @return the author value.
      */
     public ClientInfo author() {
@@ -86,15 +94,14 @@ public final class IncidentCommentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (message() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property message in model IncidentCommentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property message in model IncidentCommentProperties"));
         }
         if (author() != null) {
             author().validate();

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentCommentI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of incident comments. */
+/**
+ * List of incident comments.
+ */
 @Fluent
 public final class IncidentCommentList {
     /*
@@ -26,8 +28,14 @@ public final class IncidentCommentList {
     private List<IncidentCommentInner> value;
 
     /**
+     * Creates an instance of IncidentCommentList class.
+     */
+    public IncidentCommentList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of comments.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class IncidentCommentList {
 
     /**
      * Get the value property: Array of comments.
-     *
+     * 
      * @return the value value.
      */
     public List<IncidentCommentInner> value() {
@@ -45,7 +53,7 @@ public final class IncidentCommentList {
 
     /**
      * Set the value property: Array of comments.
-     *
+     * 
      * @param value the value value to set.
      * @return the IncidentCommentList object itself.
      */
@@ -56,14 +64,13 @@ public final class IncidentCommentList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model IncidentCommentList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model IncidentCommentList"));
         } else {
             value().forEach(e -> e.validate());
         }

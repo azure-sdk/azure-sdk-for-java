@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ies for the solution content item. */
+/**
+ * ies for the solution content item.
+ */
 @Fluent
 public final class MetadataCategories {
     /*
@@ -24,8 +26,14 @@ public final class MetadataCategories {
     private List<String> verticals;
 
     /**
+     * Creates an instance of MetadataCategories class.
+     */
+    public MetadataCategories() {
+    }
+
+    /**
      * Get the domains property: domain for the solution content item.
-     *
+     * 
      * @return the domains value.
      */
     public List<String> domains() {
@@ -34,7 +42,7 @@ public final class MetadataCategories {
 
     /**
      * Set the domains property: domain for the solution content item.
-     *
+     * 
      * @param domains the domains value to set.
      * @return the MetadataCategories object itself.
      */
@@ -45,7 +53,7 @@ public final class MetadataCategories {
 
     /**
      * Get the verticals property: Industry verticals for the solution content item.
-     *
+     * 
      * @return the verticals value.
      */
     public List<String> verticals() {
@@ -54,7 +62,7 @@ public final class MetadataCategories {
 
     /**
      * Set the verticals property: Industry verticals for the solution content item.
-     *
+     * 
      * @param verticals the verticals value to set.
      * @return the MetadataCategories object itself.
      */
@@ -65,7 +73,7 @@ public final class MetadataCategories {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
