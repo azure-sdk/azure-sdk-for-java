@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of storage containers. */
+/**
+ * The observed state of storage containers.
+ */
 @Fluent
 public final class StorageContainerStatus {
     /*
@@ -40,13 +42,15 @@ public final class StorageContainerStatus {
     @JsonProperty(value = "provisioningStatus")
     private StorageContainerStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of StorageContainerStatus class. */
+    /**
+     * Creates an instance of StorageContainerStatus class.
+     */
     public StorageContainerStatus() {
     }
 
     /**
      * Get the errorCode property: StorageContainer provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -55,7 +59,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the errorCode property: StorageContainer provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -66,7 +70,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -75,7 +79,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -86,7 +90,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the availableSizeMB property: Amount of space available on the disk in MB.
-     *
+     * 
      * @return the availableSizeMB value.
      */
     public Long availableSizeMB() {
@@ -95,7 +99,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the availableSizeMB property: Amount of space available on the disk in MB.
-     *
+     * 
      * @param availableSizeMB the availableSizeMB value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -106,7 +110,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the containerSizeMB property: Total size of the disk in MB.
-     *
+     * 
      * @return the containerSizeMB value.
      */
     public Long containerSizeMB() {
@@ -115,7 +119,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the containerSizeMB property: Total size of the disk in MB.
-     *
+     * 
      * @param containerSizeMB the containerSizeMB value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -126,7 +130,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public StorageContainerStatusProvisioningStatus provisioningStatus() {
@@ -135,7 +139,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -146,7 +150,7 @@ public final class StorageContainerStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

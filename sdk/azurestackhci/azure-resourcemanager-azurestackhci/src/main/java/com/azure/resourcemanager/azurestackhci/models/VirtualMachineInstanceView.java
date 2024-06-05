@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The instance view of a virtual machine. */
+/**
+ * The instance view of a virtual machine.
+ */
 @Fluent
 public final class VirtualMachineInstanceView {
     /*
@@ -16,13 +18,15 @@ public final class VirtualMachineInstanceView {
     @JsonProperty(value = "vmAgent")
     private VirtualMachineConfigAgentInstanceView vmAgent;
 
-    /** Creates an instance of VirtualMachineInstanceView class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceView class.
+     */
     public VirtualMachineInstanceView() {
     }
 
     /**
      * Get the vmAgent property: The VM Config Agent running on the virtual machine.
-     *
+     * 
      * @return the vmAgent value.
      */
     public VirtualMachineConfigAgentInstanceView vmAgent() {
@@ -31,7 +35,7 @@ public final class VirtualMachineInstanceView {
 
     /**
      * Set the vmAgent property: The VM Config Agent running on the virtual machine.
-     *
+     * 
      * @param vmAgent the vmAgent value to set.
      * @return the VirtualMachineInstanceView object itself.
      */
@@ -42,7 +46,7 @@ public final class VirtualMachineInstanceView {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

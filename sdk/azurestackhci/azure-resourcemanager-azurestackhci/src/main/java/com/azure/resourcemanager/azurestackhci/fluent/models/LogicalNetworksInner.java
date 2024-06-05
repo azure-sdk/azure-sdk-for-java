@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The logical network resource definition. */
+/**
+ * The logical network resource definition.
+ */
 @Fluent
 public final class LogicalNetworksInner extends Resource {
     /*
@@ -37,13 +39,15 @@ public final class LogicalNetworksInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of LogicalNetworksInner class. */
+    /**
+     * Creates an instance of LogicalNetworksInner class.
+     */
     public LogicalNetworksInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the logical network resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LogicalNetworkProperties innerProperties() {
@@ -52,7 +56,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,7 +65,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -72,21 +76,25 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogicalNetworksInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogicalNetworksInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -96,7 +104,7 @@ public final class LogicalNetworksInner extends Resource {
     /**
      * Get the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @return the dhcpOptions value.
      */
     public LogicalNetworkPropertiesDhcpOptions dhcpOptions() {
@@ -106,7 +114,7 @@ public final class LogicalNetworksInner extends Resource {
     /**
      * Set the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @param dhcpOptions the dhcpOptions value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -120,7 +128,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @return the subnets value.
      */
     public List<Subnet> subnets() {
@@ -129,7 +137,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @param subnets the subnets value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -143,7 +151,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the logical network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -152,7 +160,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @return the vmSwitchName value.
      */
     public String vmSwitchName() {
@@ -161,7 +169,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @param vmSwitchName the vmSwitchName value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -175,7 +183,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the status property: The observed state of logical networks.
-     *
+     * 
      * @return the status value.
      */
     public LogicalNetworkStatus status() {
@@ -184,7 +192,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
