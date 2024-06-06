@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** TrunkedNetworkPatchParameters represents the body of the request to patch the Trunked network. */
+/**
+ * TrunkedNetworkPatchParameters represents the body of the request to patch the Trunked network.
+ */
 @Fluent
 public final class TrunkedNetworkPatchParameters {
     /*
@@ -19,13 +21,15 @@ public final class TrunkedNetworkPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of TrunkedNetworkPatchParameters class. */
+    /**
+     * Creates an instance of TrunkedNetworkPatchParameters class.
+     */
     public TrunkedNetworkPatchParameters() {
     }
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class TrunkedNetworkPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the TrunkedNetworkPatchParameters object itself.
      */
@@ -45,7 +49,7 @@ public final class TrunkedNetworkPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

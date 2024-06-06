@@ -12,13 +12,14 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** BmcKeySetPatchParameters represents the body of the request to patch the baseboard management controller key set. */
+/**
+ * BmcKeySetPatchParameters represents the body of the request to patch the baseboard management controller key set.
+ */
 @Fluent
 public final class BmcKeySetPatchParameters {
     /*
-     * BmcKeySetPatchProperties represents the properties of baseboard management controller key set that are
-     * patchable.
-     *
+     * BmcKeySetPatchProperties represents the properties of baseboard management controller key set that are patchable.
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -31,16 +32,18 @@ public final class BmcKeySetPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of BmcKeySetPatchParameters class. */
+    /**
+     * Creates an instance of BmcKeySetPatchParameters class.
+     */
     public BmcKeySetPatchParameters() {
     }
 
     /**
      * Get the innerProperties property: BmcKeySetPatchProperties represents the properties of baseboard management
      * controller key set that are patchable.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private BmcKeySetPatchProperties innerProperties() {
@@ -49,7 +52,7 @@ public final class BmcKeySetPatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -58,7 +61,7 @@ public final class BmcKeySetPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the BmcKeySetPatchParameters object itself.
      */
@@ -70,7 +73,7 @@ public final class BmcKeySetPatchParameters {
     /**
      * Get the expiration property: The date and time after which the users in this key set will be removed from the
      * baseboard management controllers.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -80,7 +83,7 @@ public final class BmcKeySetPatchParameters {
     /**
      * Set the expiration property: The date and time after which the users in this key set will be removed from the
      * baseboard management controllers.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the BmcKeySetPatchParameters object itself.
      */
@@ -94,7 +97,7 @@ public final class BmcKeySetPatchParameters {
 
     /**
      * Get the userList property: The unique list of permitted users.
-     *
+     * 
      * @return the userList value.
      */
     public List<KeySetUser> userList() {
@@ -103,7 +106,7 @@ public final class BmcKeySetPatchParameters {
 
     /**
      * Set the userList property: The unique list of permitted users.
-     *
+     * 
      * @param userList the userList value to set.
      * @return the BmcKeySetPatchParameters object itself.
      */
@@ -117,7 +120,7 @@ public final class BmcKeySetPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

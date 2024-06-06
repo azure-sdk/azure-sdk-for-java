@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.CloudServicesNetwork
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** CloudServicesNetworkList represents a list of cloud services networks. */
+/**
+ * CloudServicesNetworkList represents a list of cloud services networks.
+ */
 @Fluent
 public final class CloudServicesNetworkList {
     /*
@@ -24,13 +26,15 @@ public final class CloudServicesNetworkList {
     @JsonProperty(value = "value")
     private List<CloudServicesNetworkInner> value;
 
-    /** Creates an instance of CloudServicesNetworkList class. */
+    /**
+     * Creates an instance of CloudServicesNetworkList class.
+     */
     public CloudServicesNetworkList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class CloudServicesNetworkList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CloudServicesNetworkList object itself.
      */
@@ -50,7 +54,7 @@ public final class CloudServicesNetworkList {
 
     /**
      * Get the value property: The list of cloud services networks.
-     *
+     * 
      * @return the value value.
      */
     public List<CloudServicesNetworkInner> value() {
@@ -59,7 +63,7 @@ public final class CloudServicesNetworkList {
 
     /**
      * Set the value property: The list of cloud services networks.
-     *
+     * 
      * @param value the value value to set.
      * @return the CloudServicesNetworkList object itself.
      */
@@ -70,7 +74,7 @@ public final class CloudServicesNetworkList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

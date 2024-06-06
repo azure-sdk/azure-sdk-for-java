@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** StorageAppliancePatchProperties represents the properties of the storage appliance that can be patched. */
+/**
+ * StorageAppliancePatchProperties represents the properties of the storage appliance that can be patched.
+ */
 @Fluent
 public final class StorageAppliancePatchProperties {
     /*
@@ -16,13 +18,15 @@ public final class StorageAppliancePatchProperties {
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of StorageAppliancePatchProperties class. */
+    /**
+     * Creates an instance of StorageAppliancePatchProperties class.
+     */
     public StorageAppliancePatchProperties() {
     }
 
     /**
      * Get the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -31,7 +35,7 @@ public final class StorageAppliancePatchProperties {
 
     /**
      * Set the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the StorageAppliancePatchProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class StorageAppliancePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Selection of how the type evaluation is applied to the cluster calculation. */
+/**
+ * Selection of how the type evaluation is applied to the cluster calculation.
+ */
 public final class ValidationThresholdGrouping extends ExpandableStringEnum<ValidationThresholdGrouping> {
-    /** Static value PerCluster for ValidationThresholdGrouping. */
+    /**
+     * Static value PerCluster for ValidationThresholdGrouping.
+     */
     public static final ValidationThresholdGrouping PER_CLUSTER = fromString("PerCluster");
 
-    /** Static value PerRack for ValidationThresholdGrouping. */
+    /**
+     * Static value PerRack for ValidationThresholdGrouping.
+     */
     public static final ValidationThresholdGrouping PER_RACK = fromString("PerRack");
 
     /**
      * Creates a new instance of ValidationThresholdGrouping value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ValidationThresholdGrouping extends ExpandableStringEnum<Vali
 
     /**
      * Creates or finds a ValidationThresholdGrouping from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ValidationThresholdGrouping.
      */
@@ -38,7 +44,7 @@ public final class ValidationThresholdGrouping extends ExpandableStringEnum<Vali
 
     /**
      * Gets known ValidationThresholdGrouping values.
-     *
+     * 
      * @return known ValidationThresholdGrouping values.
      */
     public static Collection<ValidationThresholdGrouping> values() {

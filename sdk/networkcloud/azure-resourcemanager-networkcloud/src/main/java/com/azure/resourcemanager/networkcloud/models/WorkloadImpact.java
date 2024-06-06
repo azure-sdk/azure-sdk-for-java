@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator of whether the workload will be impacted during the upgrade. */
+/**
+ * The indicator of whether the workload will be impacted during the upgrade.
+ */
 public final class WorkloadImpact extends ExpandableStringEnum<WorkloadImpact> {
-    /** Static value True for WorkloadImpact. */
+    /**
+     * Static value True for WorkloadImpact.
+     */
     public static final WorkloadImpact TRUE = fromString("True");
 
-    /** Static value False for WorkloadImpact. */
+    /**
+     * Static value False for WorkloadImpact.
+     */
     public static final WorkloadImpact FALSE = fromString("False");
 
     /**
      * Creates a new instance of WorkloadImpact value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class WorkloadImpact extends ExpandableStringEnum<WorkloadImpact> {
 
     /**
      * Creates or finds a WorkloadImpact from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding WorkloadImpact.
      */
@@ -38,7 +44,7 @@ public final class WorkloadImpact extends ExpandableStringEnum<WorkloadImpact> {
 
     /**
      * Gets known WorkloadImpact values.
-     *
+     * 
      * @return known WorkloadImpact values.
      */
     public static Collection<WorkloadImpact> values() {

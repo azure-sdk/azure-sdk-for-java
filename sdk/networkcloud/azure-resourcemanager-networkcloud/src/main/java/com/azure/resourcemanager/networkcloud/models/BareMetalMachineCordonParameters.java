@@ -19,14 +19,16 @@ public final class BareMetalMachineCordonParameters {
     @JsonProperty(value = "evacuate")
     private BareMetalMachineEvacuate evacuate;
 
-    /** Creates an instance of BareMetalMachineCordonParameters class. */
+    /**
+     * Creates an instance of BareMetalMachineCordonParameters class.
+     */
     public BareMetalMachineCordonParameters() {
     }
 
     /**
      * Get the evacuate property: The indicator of whether to evacuate the node workload when the bare metal machine is
      * cordoned.
-     *
+     * 
      * @return the evacuate value.
      */
     public BareMetalMachineEvacuate evacuate() {
@@ -36,7 +38,7 @@ public final class BareMetalMachineCordonParameters {
     /**
      * Set the evacuate property: The indicator of whether to evacuate the node workload when the bare metal machine is
      * cordoned.
-     *
+     * 
      * @param evacuate the evacuate value to set.
      * @return the BareMetalMachineCordonParameters object itself.
      */
@@ -47,7 +49,7 @@ public final class BareMetalMachineCordonParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

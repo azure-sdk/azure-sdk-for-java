@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The specification of whether this hint supports affinity or anti-affinity with the referenced resources. */
+/**
+ * The specification of whether this hint supports affinity or anti-affinity with the referenced resources.
+ */
 public final class VirtualMachinePlacementHintType extends ExpandableStringEnum<VirtualMachinePlacementHintType> {
-    /** Static value Affinity for VirtualMachinePlacementHintType. */
+    /**
+     * Static value Affinity for VirtualMachinePlacementHintType.
+     */
     public static final VirtualMachinePlacementHintType AFFINITY = fromString("Affinity");
 
-    /** Static value AntiAffinity for VirtualMachinePlacementHintType. */
+    /**
+     * Static value AntiAffinity for VirtualMachinePlacementHintType.
+     */
     public static final VirtualMachinePlacementHintType ANTI_AFFINITY = fromString("AntiAffinity");
 
     /**
      * Creates a new instance of VirtualMachinePlacementHintType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class VirtualMachinePlacementHintType extends ExpandableStringEnum<
 
     /**
      * Creates or finds a VirtualMachinePlacementHintType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualMachinePlacementHintType.
      */
@@ -38,7 +44,7 @@ public final class VirtualMachinePlacementHintType extends ExpandableStringEnum<
 
     /**
      * Gets known VirtualMachinePlacementHintType values.
-     *
+     * 
      * @return known VirtualMachinePlacementHintType values.
      */
     public static Collection<VirtualMachinePlacementHintType> values() {

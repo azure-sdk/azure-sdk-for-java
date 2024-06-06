@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the virtual machine console. */
+/**
+ * The provisioning state of the virtual machine console.
+ */
 public final class ConsoleProvisioningState extends ExpandableStringEnum<ConsoleProvisioningState> {
-    /** Static value Succeeded for ConsoleProvisioningState. */
+    /**
+     * Static value Succeeded for ConsoleProvisioningState.
+     */
     public static final ConsoleProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for ConsoleProvisioningState. */
+    /**
+     * Static value Failed for ConsoleProvisioningState.
+     */
     public static final ConsoleProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for ConsoleProvisioningState. */
+    /**
+     * Static value Canceled for ConsoleProvisioningState.
+     */
     public static final ConsoleProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Provisioning for ConsoleProvisioningState. */
+    /**
+     * Static value Provisioning for ConsoleProvisioningState.
+     */
     public static final ConsoleProvisioningState PROVISIONING = fromString("Provisioning");
 
-    /** Static value Accepted for ConsoleProvisioningState. */
+    /**
+     * Static value Accepted for ConsoleProvisioningState.
+     */
     public static final ConsoleProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates a new instance of ConsoleProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class ConsoleProvisioningState extends ExpandableStringEnum<Console
 
     /**
      * Creates or finds a ConsoleProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConsoleProvisioningState.
      */
@@ -47,7 +59,7 @@ public final class ConsoleProvisioningState extends ExpandableStringEnum<Console
 
     /**
      * Gets known ConsoleProvisioningState values.
-     *
+     * 
      * @return known ConsoleProvisioningState values.
      */
     public static Collection<ConsoleProvisioningState> values() {

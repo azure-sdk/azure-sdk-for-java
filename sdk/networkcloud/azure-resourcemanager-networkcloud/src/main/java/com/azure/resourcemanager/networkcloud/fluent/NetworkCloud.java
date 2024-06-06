@@ -7,172 +7,237 @@ package com.azure.resourcemanager.networkcloud.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for NetworkCloud class. */
+/**
+ * The interface for NetworkCloud class.
+ */
 public interface NetworkCloud {
     /**
      * Gets The ID of the target subscription. The value must be an UUID.
-     *
+     * 
      * @return the subscriptionId value.
      */
     String getSubscriptionId();
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
      * Gets the BareMetalMachinesClient object to access its operations.
-     *
+     * 
      * @return the BareMetalMachinesClient object.
      */
     BareMetalMachinesClient getBareMetalMachines();
 
     /**
      * Gets the CloudServicesNetworksClient object to access its operations.
-     *
+     * 
      * @return the CloudServicesNetworksClient object.
      */
     CloudServicesNetworksClient getCloudServicesNetworks();
 
     /**
      * Gets the ClusterManagersClient object to access its operations.
-     *
+     * 
      * @return the ClusterManagersClient object.
      */
     ClusterManagersClient getClusterManagers();
 
     /**
      * Gets the ClustersClient object to access its operations.
-     *
+     * 
      * @return the ClustersClient object.
      */
     ClustersClient getClusters();
 
     /**
+     * Gets the EdgeClusterMachineSkusClient object to access its operations.
+     * 
+     * @return the EdgeClusterMachineSkusClient object.
+     */
+    EdgeClusterMachineSkusClient getEdgeClusterMachineSkus();
+
+    /**
+     * Gets the EdgeClusterRuntimeVersionsClient object to access its operations.
+     * 
+     * @return the EdgeClusterRuntimeVersionsClient object.
+     */
+    EdgeClusterRuntimeVersionsClient getEdgeClusterRuntimeVersions();
+
+    /**
+     * Gets the EdgeClusterSkusClient object to access its operations.
+     * 
+     * @return the EdgeClusterSkusClient object.
+     */
+    EdgeClusterSkusClient getEdgeClusterSkus();
+
+    /**
+     * Gets the EdgeClustersClient object to access its operations.
+     * 
+     * @return the EdgeClustersClient object.
+     */
+    EdgeClustersClient getEdgeClusters();
+
+    /**
      * Gets the KubernetesClustersClient object to access its operations.
-     *
+     * 
      * @return the KubernetesClustersClient object.
      */
     KubernetesClustersClient getKubernetesClusters();
 
     /**
      * Gets the L2NetworksClient object to access its operations.
-     *
+     * 
      * @return the L2NetworksClient object.
      */
     L2NetworksClient getL2Networks();
 
     /**
      * Gets the L3NetworksClient object to access its operations.
-     *
+     * 
      * @return the L3NetworksClient object.
      */
     L3NetworksClient getL3Networks();
 
     /**
      * Gets the RackSkusClient object to access its operations.
-     *
+     * 
      * @return the RackSkusClient object.
      */
     RackSkusClient getRackSkus();
 
     /**
      * Gets the RacksClient object to access its operations.
-     *
+     * 
      * @return the RacksClient object.
      */
     RacksClient getRacks();
 
     /**
+     * Gets the RegistrationHubsClient object to access its operations.
+     * 
+     * @return the RegistrationHubsClient object.
+     */
+    RegistrationHubsClient getRegistrationHubs();
+
+    /**
      * Gets the StorageAppliancesClient object to access its operations.
-     *
+     * 
      * @return the StorageAppliancesClient object.
      */
     StorageAppliancesClient getStorageAppliances();
 
     /**
      * Gets the TrunkedNetworksClient object to access its operations.
-     *
+     * 
      * @return the TrunkedNetworksClient object.
      */
     TrunkedNetworksClient getTrunkedNetworks();
 
     /**
      * Gets the VirtualMachinesClient object to access its operations.
-     *
+     * 
      * @return the VirtualMachinesClient object.
      */
     VirtualMachinesClient getVirtualMachines();
 
     /**
      * Gets the VolumesClient object to access its operations.
-     *
+     * 
      * @return the VolumesClient object.
      */
     VolumesClient getVolumes();
 
     /**
      * Gets the BareMetalMachineKeySetsClient object to access its operations.
-     *
+     * 
      * @return the BareMetalMachineKeySetsClient object.
      */
     BareMetalMachineKeySetsClient getBareMetalMachineKeySets();
 
     /**
      * Gets the BmcKeySetsClient object to access its operations.
-     *
+     * 
      * @return the BmcKeySetsClient object.
      */
     BmcKeySetsClient getBmcKeySets();
 
     /**
      * Gets the MetricsConfigurationsClient object to access its operations.
-     *
+     * 
      * @return the MetricsConfigurationsClient object.
      */
     MetricsConfigurationsClient getMetricsConfigurations();
 
     /**
+     * Gets the EdgeClusterNodesClient object to access its operations.
+     * 
+     * @return the EdgeClusterNodesClient object.
+     */
+    EdgeClusterNodesClient getEdgeClusterNodes();
+
+    /**
      * Gets the AgentPoolsClient object to access its operations.
-     *
+     * 
      * @return the AgentPoolsClient object.
      */
     AgentPoolsClient getAgentPools();
 
     /**
+     * Gets the KubernetesClusterFeaturesClient object to access its operations.
+     * 
+     * @return the KubernetesClusterFeaturesClient object.
+     */
+    KubernetesClusterFeaturesClient getKubernetesClusterFeatures();
+
+    /**
+     * Gets the RegistrationHubImagesClient object to access its operations.
+     * 
+     * @return the RegistrationHubImagesClient object.
+     */
+    RegistrationHubImagesClient getRegistrationHubImages();
+
+    /**
+     * Gets the RegistrationHubMachinesClient object to access its operations.
+     * 
+     * @return the RegistrationHubMachinesClient object.
+     */
+    RegistrationHubMachinesClient getRegistrationHubMachines();
+
+    /**
      * Gets the ConsolesClient object to access its operations.
-     *
+     * 
      * @return the ConsolesClient object.
      */
     ConsolesClient getConsoles();

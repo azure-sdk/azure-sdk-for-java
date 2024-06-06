@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.StorageApplianceInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** StorageApplianceList represents a list of storage appliances. */
+/**
+ * StorageApplianceList represents a list of storage appliances.
+ */
 @Fluent
 public final class StorageApplianceList {
     /*
@@ -24,13 +26,15 @@ public final class StorageApplianceList {
     @JsonProperty(value = "value")
     private List<StorageApplianceInner> value;
 
-    /** Creates an instance of StorageApplianceList class. */
+    /**
+     * Creates an instance of StorageApplianceList class.
+     */
     public StorageApplianceList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class StorageApplianceList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the StorageApplianceList object itself.
      */
@@ -50,7 +54,7 @@ public final class StorageApplianceList {
 
     /**
      * Get the value property: The list of storage appliances.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageApplianceInner> value() {
@@ -59,7 +63,7 @@ public final class StorageApplianceList {
 
     /**
      * Set the value property: The list of storage appliances.
-     *
+     * 
      * @param value the value value to set.
      * @return the StorageApplianceList object itself.
      */
@@ -70,7 +74,7 @@ public final class StorageApplianceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

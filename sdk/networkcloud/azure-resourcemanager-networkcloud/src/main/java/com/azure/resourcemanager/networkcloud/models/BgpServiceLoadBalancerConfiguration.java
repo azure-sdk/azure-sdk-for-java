@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BgpServiceLoadBalancerConfiguration represents the configuration of a BGP service load balancer. */
+/**
+ * BgpServiceLoadBalancerConfiguration represents the configuration of a BGP service load balancer.
+ */
 @Fluent
 public final class BgpServiceLoadBalancerConfiguration {
     /*
@@ -18,8 +20,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     private List<BgpAdvertisement> bgpAdvertisements;
 
     /*
-     * The list of additional BgpPeer entities that the Kubernetes cluster will peer with. All peering must be
-     * explicitly defined.
+     * The list of additional BgpPeer entities that the Kubernetes cluster will peer with. All peering must be explicitly defined.
      */
     @JsonProperty(value = "bgpPeers")
     private List<ServiceLoadBalancerBgpPeer> bgpPeers;
@@ -31,19 +32,21 @@ public final class BgpServiceLoadBalancerConfiguration {
     private FabricPeeringEnabled fabricPeeringEnabled;
 
     /*
-     * The list of pools of IP addresses that can be allocated to Load Balancer services.
+     * The list of pools of IP addresses that can be allocated to load balancer services.
      */
     @JsonProperty(value = "ipAddressPools")
     private List<IpAddressPool> ipAddressPools;
 
-    /** Creates an instance of BgpServiceLoadBalancerConfiguration class. */
+    /**
+     * Creates an instance of BgpServiceLoadBalancerConfiguration class.
+     */
     public BgpServiceLoadBalancerConfiguration() {
     }
 
     /**
      * Get the bgpAdvertisements property: The association of IP address pools to the communities and peers, allowing
      * for announcement of IPs.
-     *
+     * 
      * @return the bgpAdvertisements value.
      */
     public List<BgpAdvertisement> bgpAdvertisements() {
@@ -53,7 +56,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     /**
      * Set the bgpAdvertisements property: The association of IP address pools to the communities and peers, allowing
      * for announcement of IPs.
-     *
+     * 
      * @param bgpAdvertisements the bgpAdvertisements value to set.
      * @return the BgpServiceLoadBalancerConfiguration object itself.
      */
@@ -65,7 +68,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     /**
      * Get the bgpPeers property: The list of additional BgpPeer entities that the Kubernetes cluster will peer with.
      * All peering must be explicitly defined.
-     *
+     * 
      * @return the bgpPeers value.
      */
     public List<ServiceLoadBalancerBgpPeer> bgpPeers() {
@@ -75,7 +78,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     /**
      * Set the bgpPeers property: The list of additional BgpPeer entities that the Kubernetes cluster will peer with.
      * All peering must be explicitly defined.
-     *
+     * 
      * @param bgpPeers the bgpPeers value to set.
      * @return the BgpServiceLoadBalancerConfiguration object itself.
      */
@@ -87,7 +90,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     /**
      * Get the fabricPeeringEnabled property: The indicator to specify if the load balancer peers with the network
      * fabric.
-     *
+     * 
      * @return the fabricPeeringEnabled value.
      */
     public FabricPeeringEnabled fabricPeeringEnabled() {
@@ -97,7 +100,7 @@ public final class BgpServiceLoadBalancerConfiguration {
     /**
      * Set the fabricPeeringEnabled property: The indicator to specify if the load balancer peers with the network
      * fabric.
-     *
+     * 
      * @param fabricPeeringEnabled the fabricPeeringEnabled value to set.
      * @return the BgpServiceLoadBalancerConfiguration object itself.
      */
@@ -107,9 +110,9 @@ public final class BgpServiceLoadBalancerConfiguration {
     }
 
     /**
-     * Get the ipAddressPools property: The list of pools of IP addresses that can be allocated to Load Balancer
+     * Get the ipAddressPools property: The list of pools of IP addresses that can be allocated to load balancer
      * services.
-     *
+     * 
      * @return the ipAddressPools value.
      */
     public List<IpAddressPool> ipAddressPools() {
@@ -117,9 +120,9 @@ public final class BgpServiceLoadBalancerConfiguration {
     }
 
     /**
-     * Set the ipAddressPools property: The list of pools of IP addresses that can be allocated to Load Balancer
+     * Set the ipAddressPools property: The list of pools of IP addresses that can be allocated to load balancer
      * services.
-     *
+     * 
      * @param ipAddressPools the ipAddressPools value to set.
      * @return the BgpServiceLoadBalancerConfiguration object itself.
      */
@@ -130,7 +133,7 @@ public final class BgpServiceLoadBalancerConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

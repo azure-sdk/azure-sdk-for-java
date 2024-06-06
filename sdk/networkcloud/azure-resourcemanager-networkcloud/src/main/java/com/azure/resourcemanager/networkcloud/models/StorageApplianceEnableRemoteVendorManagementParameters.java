@@ -15,14 +15,14 @@ import java.util.List;
 @Fluent
 public final class StorageApplianceEnableRemoteVendorManagementParameters {
     /*
-     * Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR
-     * format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to
-     * turn on the remote vendor management.
+     * Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management.
      */
     @JsonProperty(value = "supportEndpoints")
     private List<String> supportEndpoints;
 
-    /** Creates an instance of StorageApplianceEnableRemoteVendorManagementParameters class. */
+    /**
+     * Creates an instance of StorageApplianceEnableRemoteVendorManagementParameters class.
+     */
     public StorageApplianceEnableRemoteVendorManagementParameters() {
     }
 
@@ -30,7 +30,7 @@ public final class StorageApplianceEnableRemoteVendorManagementParameters {
      * Get the supportEndpoints property: Field Deprecated. This field is not used and will be rejected if provided. The
      * list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance
      * needs accessible in order to turn on the remote vendor management.
-     *
+     * 
      * @return the supportEndpoints value.
      */
     public List<String> supportEndpoints() {
@@ -41,7 +41,7 @@ public final class StorageApplianceEnableRemoteVendorManagementParameters {
      * Set the supportEndpoints property: Field Deprecated. This field is not used and will be rejected if provided. The
      * list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance
      * needs accessible in order to turn on the remote vendor management.
-     *
+     * 
      * @param supportEndpoints the supportEndpoints value to set.
      * @return the StorageApplianceEnableRemoteVendorManagementParameters object itself.
      */
@@ -52,7 +52,7 @@ public final class StorageApplianceEnableRemoteVendorManagementParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

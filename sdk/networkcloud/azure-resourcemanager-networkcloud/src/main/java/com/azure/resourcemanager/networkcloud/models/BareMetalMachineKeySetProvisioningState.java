@@ -8,27 +8,39 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the bare metal machine key set. */
+/**
+ * The provisioning state of the bare metal machine key set.
+ */
 public final class BareMetalMachineKeySetProvisioningState
     extends ExpandableStringEnum<BareMetalMachineKeySetProvisioningState> {
-    /** Static value Succeeded for BareMetalMachineKeySetProvisioningState. */
+    /**
+     * Static value Succeeded for BareMetalMachineKeySetProvisioningState.
+     */
     public static final BareMetalMachineKeySetProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for BareMetalMachineKeySetProvisioningState. */
+    /**
+     * Static value Failed for BareMetalMachineKeySetProvisioningState.
+     */
     public static final BareMetalMachineKeySetProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for BareMetalMachineKeySetProvisioningState. */
+    /**
+     * Static value Canceled for BareMetalMachineKeySetProvisioningState.
+     */
     public static final BareMetalMachineKeySetProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Accepted for BareMetalMachineKeySetProvisioningState. */
+    /**
+     * Static value Accepted for BareMetalMachineKeySetProvisioningState.
+     */
     public static final BareMetalMachineKeySetProvisioningState ACCEPTED = fromString("Accepted");
 
-    /** Static value Provisioning for BareMetalMachineKeySetProvisioningState. */
+    /**
+     * Static value Provisioning for BareMetalMachineKeySetProvisioningState.
+     */
     public static final BareMetalMachineKeySetProvisioningState PROVISIONING = fromString("Provisioning");
 
     /**
      * Creates a new instance of BareMetalMachineKeySetProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -37,7 +49,7 @@ public final class BareMetalMachineKeySetProvisioningState
 
     /**
      * Creates or finds a BareMetalMachineKeySetProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BareMetalMachineKeySetProvisioningState.
      */
@@ -48,7 +60,7 @@ public final class BareMetalMachineKeySetProvisioningState
 
     /**
      * Gets known BareMetalMachineKeySetProvisioningState values.
-     *
+     * 
      * @return known BareMetalMachineKeySetProvisioningState values.
      */
     public static Collection<BareMetalMachineKeySetProvisioningState> values() {

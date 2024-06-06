@@ -12,7 +12,9 @@ import com.azure.resourcemanager.networkcloud.models.TrunkedNetworkProvisioningS
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** TrunkedNetworkProperties represents properties of the trunked network. */
+/**
+ * TrunkedNetworkProperties represents properties of the trunked network.
+ */
 @Fluent
 public final class TrunkedNetworkProperties {
     /*
@@ -40,29 +42,25 @@ public final class TrunkedNetworkProperties {
     private String detailedStatusMessage;
 
     /*
-     * Field Deprecated. These fields will be empty/omitted. The list of Hybrid AKS cluster resource IDs that are
-     * associated with this trunked network.
+     * Field Deprecated. These fields will be empty/omitted. The list of Hybrid AKS cluster resource IDs that are associated with this trunked network.
      */
     @JsonProperty(value = "hybridAksClustersAssociatedIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> hybridAksClustersAssociatedIds;
 
     /*
-     * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored.
-     * The network plugin type for Hybrid AKS.
+     * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS.
      */
     @JsonProperty(value = "hybridAksPluginType")
     private HybridAksPluginType hybridAksPluginType;
 
     /*
-     * The default interface name for this trunked network in the virtual machine. This name can be overridden by the
-     * name supplied in the network attachment configuration of that virtual machine.
+     * The default interface name for this trunked network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine.
      */
     @JsonProperty(value = "interfaceName")
     private String interfaceName;
 
     /*
-     * The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of
-     * l2IsolationDomain and l3IsolationDomain resources.
+     * The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of l2IsolationDomain and l3IsolationDomain resources.
      */
     @JsonProperty(value = "isolationDomainIds", required = true)
     private List<String> isolationDomainIds;
@@ -74,8 +72,7 @@ public final class TrunkedNetworkProperties {
     private TrunkedNetworkProvisioningState provisioningState;
 
     /*
-     * Field Deprecated. These fields will be empty/omitted. The list of virtual machine resource IDs, excluding any
-     * Hybrid AKS virtual machines, that are currently using this trunked network.
+     * Field Deprecated. These fields will be empty/omitted. The list of virtual machine resource IDs, excluding any Hybrid AKS virtual machines, that are currently using this trunked network.
      */
     @JsonProperty(value = "virtualMachinesAssociatedIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> virtualMachinesAssociatedIds;
@@ -86,14 +83,16 @@ public final class TrunkedNetworkProperties {
     @JsonProperty(value = "vlans", required = true)
     private List<Long> vlans;
 
-    /** Creates an instance of TrunkedNetworkProperties class. */
+    /**
+     * Creates an instance of TrunkedNetworkProperties class.
+     */
     public TrunkedNetworkProperties() {
     }
 
     /**
      * Get the associatedResourceIds property: The list of resource IDs for the other Microsoft.NetworkCloud resources
      * that have attached this network.
-     *
+     * 
      * @return the associatedResourceIds value.
      */
     public List<String> associatedResourceIds() {
@@ -102,7 +101,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Get the clusterId property: The resource ID of the Network Cloud cluster this trunked network is associated with.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -111,7 +110,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the trunked network.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public TrunkedNetworkDetailedStatus detailedStatus() {
@@ -120,7 +119,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -130,7 +129,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Get the hybridAksClustersAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list
      * of Hybrid AKS cluster resource IDs that are associated with this trunked network.
-     *
+     * 
      * @return the hybridAksClustersAssociatedIds value.
      */
     public List<String> hybridAksClustersAssociatedIds() {
@@ -140,7 +139,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Get the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
      * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * 
      * @return the hybridAksPluginType value.
      */
     public HybridAksPluginType hybridAksPluginType() {
@@ -150,7 +149,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Set the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
      * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * 
      * @param hybridAksPluginType the hybridAksPluginType value to set.
      * @return the TrunkedNetworkProperties object itself.
      */
@@ -162,7 +161,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Get the interfaceName property: The default interface name for this trunked network in the virtual machine. This
      * name can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @return the interfaceName value.
      */
     public String interfaceName() {
@@ -172,7 +171,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Set the interfaceName property: The default interface name for this trunked network in the virtual machine. This
      * name can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @param interfaceName the interfaceName value to set.
      * @return the TrunkedNetworkProperties object itself.
      */
@@ -184,7 +183,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Get the isolationDomainIds property: The list of resource IDs representing the Network Fabric isolation domains.
      * It can be any combination of l2IsolationDomain and l3IsolationDomain resources.
-     *
+     * 
      * @return the isolationDomainIds value.
      */
     public List<String> isolationDomainIds() {
@@ -194,7 +193,7 @@ public final class TrunkedNetworkProperties {
     /**
      * Set the isolationDomainIds property: The list of resource IDs representing the Network Fabric isolation domains.
      * It can be any combination of l2IsolationDomain and l3IsolationDomain resources.
-     *
+     * 
      * @param isolationDomainIds the isolationDomainIds value to set.
      * @return the TrunkedNetworkProperties object itself.
      */
@@ -205,7 +204,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the trunked network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public TrunkedNetworkProvisioningState provisioningState() {
@@ -216,7 +215,7 @@ public final class TrunkedNetworkProperties {
      * Get the virtualMachinesAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list of
      * virtual machine resource IDs, excluding any Hybrid AKS virtual machines, that are currently using this trunked
      * network.
-     *
+     * 
      * @return the virtualMachinesAssociatedIds value.
      */
     public List<String> virtualMachinesAssociatedIds() {
@@ -225,7 +224,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Get the vlans property: The list of vlans that are selected from the isolation domains for trunking.
-     *
+     * 
      * @return the vlans value.
      */
     public List<Long> vlans() {
@@ -234,7 +233,7 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Set the vlans property: The list of vlans that are selected from the isolation domains for trunking.
-     *
+     * 
      * @param vlans the vlans value to set.
      * @return the TrunkedNetworkProperties object itself.
      */
@@ -245,20 +244,18 @@ public final class TrunkedNetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (isolationDomainIds() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property isolationDomainIds in model TrunkedNetworkProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property isolationDomainIds in model TrunkedNetworkProperties"));
         }
         if (vlans() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property vlans in model TrunkedNetworkProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property vlans in model TrunkedNetworkProperties"));
         }
     }
 

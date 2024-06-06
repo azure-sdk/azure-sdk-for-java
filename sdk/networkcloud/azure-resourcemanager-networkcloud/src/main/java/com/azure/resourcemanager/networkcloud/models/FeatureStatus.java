@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** FeatureStatus contains information regarding a Kubernetes cluster feature. */
+/**
+ * FeatureStatus contains information regarding a Kubernetes cluster feature.
+ */
 @Immutable
 public final class FeatureStatus {
     /*
@@ -34,13 +36,15 @@ public final class FeatureStatus {
     @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
 
-    /** Creates an instance of FeatureStatus class. */
+    /**
+     * Creates an instance of FeatureStatus class.
+     */
     public FeatureStatus() {
     }
 
     /**
      * Get the detailedStatus property: The status representing the state of this feature.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public FeatureDetailedStatus detailedStatus() {
@@ -49,7 +53,7 @@ public final class FeatureStatus {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -58,7 +62,7 @@ public final class FeatureStatus {
 
     /**
      * Get the name property: The name of the feature.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -67,7 +71,7 @@ public final class FeatureStatus {
 
     /**
      * Get the version property: The version of the feature.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -76,7 +80,7 @@ public final class FeatureStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

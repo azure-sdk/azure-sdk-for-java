@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The power state derived from the baseboard management controller. */
+/**
+ * The power state derived from the baseboard management controller.
+ */
 public final class BareMetalMachinePowerState extends ExpandableStringEnum<BareMetalMachinePowerState> {
-    /** Static value On for BareMetalMachinePowerState. */
+    /**
+     * Static value On for BareMetalMachinePowerState.
+     */
     public static final BareMetalMachinePowerState ON = fromString("On");
 
-    /** Static value Off for BareMetalMachinePowerState. */
+    /**
+     * Static value Off for BareMetalMachinePowerState.
+     */
     public static final BareMetalMachinePowerState OFF = fromString("Off");
 
     /**
      * Creates a new instance of BareMetalMachinePowerState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class BareMetalMachinePowerState extends ExpandableStringEnum<BareM
 
     /**
      * Creates or finds a BareMetalMachinePowerState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BareMetalMachinePowerState.
      */
@@ -38,7 +44,7 @@ public final class BareMetalMachinePowerState extends ExpandableStringEnum<BareM
 
     /**
      * Gets known BareMetalMachinePowerState values.
-     *
+     * 
      * @return known BareMetalMachinePowerState values.
      */
     public static Collection<BareMetalMachinePowerState> values() {

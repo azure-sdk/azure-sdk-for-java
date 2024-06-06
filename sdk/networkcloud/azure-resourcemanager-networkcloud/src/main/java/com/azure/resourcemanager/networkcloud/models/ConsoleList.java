@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ConsoleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ConsoleList represents a list of virtual machine consoles. */
+/**
+ * ConsoleList represents a list of virtual machine consoles.
+ */
 @Fluent
 public final class ConsoleList {
     /*
@@ -24,13 +26,15 @@ public final class ConsoleList {
     @JsonProperty(value = "value")
     private List<ConsoleInner> value;
 
-    /** Creates an instance of ConsoleList class. */
+    /**
+     * Creates an instance of ConsoleList class.
+     */
     public ConsoleList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ConsoleList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ConsoleList object itself.
      */
@@ -50,7 +54,7 @@ public final class ConsoleList {
 
     /**
      * Get the value property: The list of virtual machine consoles.
-     *
+     * 
      * @return the value value.
      */
     public List<ConsoleInner> value() {
@@ -59,7 +63,7 @@ public final class ConsoleList {
 
     /**
      * Set the value property: The list of virtual machine consoles.
-     *
+     * 
      * @param value the value value to set.
      * @return the ConsoleList object itself.
      */
@@ -70,7 +74,7 @@ public final class ConsoleList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

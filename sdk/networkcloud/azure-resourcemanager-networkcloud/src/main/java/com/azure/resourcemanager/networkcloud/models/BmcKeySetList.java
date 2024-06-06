@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.BmcKeySetInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BmcKeySetList represents a list of baseboard management controller key sets. */
+/**
+ * BmcKeySetList represents a list of baseboard management controller key sets.
+ */
 @Fluent
 public final class BmcKeySetList {
     /*
@@ -24,13 +26,15 @@ public final class BmcKeySetList {
     @JsonProperty(value = "value")
     private List<BmcKeySetInner> value;
 
-    /** Creates an instance of BmcKeySetList class. */
+    /**
+     * Creates an instance of BmcKeySetList class.
+     */
     public BmcKeySetList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class BmcKeySetList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BmcKeySetList object itself.
      */
@@ -50,7 +54,7 @@ public final class BmcKeySetList {
 
     /**
      * Get the value property: The list of baseboard management controller key sets.
-     *
+     * 
      * @return the value value.
      */
     public List<BmcKeySetInner> value() {
@@ -59,7 +63,7 @@ public final class BmcKeySetList {
 
     /**
      * Set the value property: The list of baseboard management controller key sets.
-     *
+     * 
      * @param value the value value to set.
      * @return the BmcKeySetList object itself.
      */
@@ -70,7 +74,7 @@ public final class BmcKeySetList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

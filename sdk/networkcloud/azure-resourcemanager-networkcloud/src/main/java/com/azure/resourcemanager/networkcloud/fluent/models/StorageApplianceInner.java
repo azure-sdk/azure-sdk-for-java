@@ -12,17 +12,21 @@ import com.azure.resourcemanager.networkcloud.models.AdministrativeCredentials;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.RemoteVendorManagementFeature;
 import com.azure.resourcemanager.networkcloud.models.RemoteVendorManagementStatus;
+import com.azure.resourcemanager.networkcloud.models.SecretRotationStatus;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceDetailedStatus;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
-/** StorageAppliance represents on-premises Network Cloud storage appliance. */
+/**
+ * StorageAppliance represents on-premises Network Cloud storage appliance.
+ */
 @Fluent
 public final class StorageApplianceInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -30,7 +34,7 @@ public final class StorageApplianceInner extends Resource {
 
     /*
      * StorageApplianceProperties represents the properties of the storage appliance.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -42,16 +46,18 @@ public final class StorageApplianceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of StorageApplianceInner class. */
+    /**
+     * Creates an instance of StorageApplianceInner class.
+     */
     public StorageApplianceInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,9 +67,9 @@ public final class StorageApplianceInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -74,9 +80,9 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the innerProperties property: StorageApplianceProperties represents the properties of the storage appliance.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private StorageApplianceProperties innerProperties() {
@@ -85,21 +91,25 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageApplianceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageApplianceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -109,9 +119,9 @@ public final class StorageApplianceInner extends Resource {
     /**
      * Get the administratorCredentials property: AdministrativeCredentials represents the admin credentials for the
      * device requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @return the administratorCredentials value.
      */
     public AdministrativeCredentials administratorCredentials() {
@@ -121,9 +131,9 @@ public final class StorageApplianceInner extends Resource {
     /**
      * Set the administratorCredentials property: AdministrativeCredentials represents the admin credentials for the
      * device requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @param administratorCredentials the administratorCredentials value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -137,7 +147,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the capacity property: The total capacity of the storage appliance.
-     *
+     * 
      * @return the capacity value.
      */
     public Long capacity() {
@@ -146,7 +156,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the capacityUsed property: The amount of storage consumed.
-     *
+     * 
      * @return the capacityUsed value.
      */
     public Long capacityUsed() {
@@ -155,7 +165,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the clusterId property: The resource ID of the cluster this storage appliance is associated with.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -164,7 +174,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the detailedStatus property: The detailed status of the storage appliance.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public StorageApplianceDetailedStatus detailedStatus() {
@@ -173,7 +183,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -182,7 +192,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the managementIpv4Address property: The endpoint for the management interface of the storage appliance.
-     *
+     * 
      * @return the managementIpv4Address value.
      */
     public String managementIpv4Address() {
@@ -190,8 +200,26 @@ public final class StorageApplianceInner extends Resource {
     }
 
     /**
+     * Get the manufacturer property: The manufacturer of the storage appliance.
+     * 
+     * @return the manufacturer value.
+     */
+    public String manufacturer() {
+        return this.innerProperties() == null ? null : this.innerProperties().manufacturer();
+    }
+
+    /**
+     * Get the model property: The model of the storage appliance.
+     * 
+     * @return the model value.
+     */
+    public String model() {
+        return this.innerProperties() == null ? null : this.innerProperties().model();
+    }
+
+    /**
      * Get the provisioningState property: The provisioning state of the storage appliance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public StorageApplianceProvisioningState provisioningState() {
@@ -200,7 +228,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the rackId property: The resource ID of the rack where this storage appliance resides.
-     *
+     * 
      * @return the rackId value.
      */
     public String rackId() {
@@ -209,7 +237,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Set the rackId property: The resource ID of the rack where this storage appliance resides.
-     *
+     * 
      * @param rackId the rackId value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -223,7 +251,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the rackSlot property: The slot the storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @return the rackSlot value.
      */
     public long rackSlot() {
@@ -232,7 +260,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Set the rackSlot property: The slot the storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @param rackSlot the rackSlot value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -247,7 +275,7 @@ public final class StorageApplianceInner extends Resource {
     /**
      * Get the remoteVendorManagementFeature property: The indicator of whether the storage appliance supports remote
      * vendor management.
-     *
+     * 
      * @return the remoteVendorManagementFeature value.
      */
     public RemoteVendorManagementFeature remoteVendorManagementFeature() {
@@ -257,7 +285,7 @@ public final class StorageApplianceInner extends Resource {
     /**
      * Get the remoteVendorManagementStatus property: The indicator of whether the remote vendor management feature is
      * enabled or disabled, or unsupported if it is an unsupported feature.
-     *
+     * 
      * @return the remoteVendorManagementStatus value.
      */
     public RemoteVendorManagementStatus remoteVendorManagementStatus() {
@@ -265,8 +293,17 @@ public final class StorageApplianceInner extends Resource {
     }
 
     /**
+     * Get the secretRotationStatus property: The list of statuses that represent secret rotation activity.
+     * 
+     * @return the secretRotationStatus value.
+     */
+    public List<SecretRotationStatus> secretRotationStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().secretRotationStatus();
+    }
+
+    /**
      * Get the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -275,7 +312,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Set the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -289,7 +326,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Get the storageApplianceSkuId property: The SKU for the storage appliance.
-     *
+     * 
      * @return the storageApplianceSkuId value.
      */
     public String storageApplianceSkuId() {
@@ -298,7 +335,7 @@ public final class StorageApplianceInner extends Resource {
 
     /**
      * Set the storageApplianceSkuId property: The SKU for the storage appliance.
-     *
+     * 
      * @param storageApplianceSkuId the storageApplianceSkuId value to set.
      * @return the StorageApplianceInner object itself.
      */
@@ -311,24 +348,31 @@ public final class StorageApplianceInner extends Resource {
     }
 
     /**
+     * Get the version property: The version of the storage appliance.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.innerProperties() == null ? null : this.innerProperties().version();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property extendedLocation in model StorageApplianceInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property extendedLocation in model StorageApplianceInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model StorageApplianceInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model StorageApplianceInner"));
         } else {
             innerProperties().validate();
         }

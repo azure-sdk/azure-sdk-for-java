@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** BareMetalMachinePatchParameters represents the body of the request to patch bare metal machine properties. */
+/**
+ * BareMetalMachinePatchParameters represents the body of the request to patch bare metal machine properties.
+ */
 @Fluent
 public final class BareMetalMachinePatchParameters {
     /*
      * BareMetalMachinePatchProperties represents the properties of the bare metal machine that can be patched.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -28,16 +30,18 @@ public final class BareMetalMachinePatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of BareMetalMachinePatchParameters class. */
+    /**
+     * Creates an instance of BareMetalMachinePatchParameters class.
+     */
     public BareMetalMachinePatchParameters() {
     }
 
     /**
      * Get the innerProperties property: BareMetalMachinePatchProperties represents the properties of the bare metal
      * machine that can be patched.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private BareMetalMachinePatchProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class BareMetalMachinePatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -55,7 +59,7 @@ public final class BareMetalMachinePatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the BareMetalMachinePatchParameters object itself.
      */
@@ -65,9 +69,9 @@ public final class BareMetalMachinePatchParameters {
     }
 
     /**
-     * Get the machineDetails property: The details provided by the customer during the creation of rack manifests that
-     * allows for custom data to be associated with this machine.
-     *
+     * Get the machineDetails property: The details provided by the customer during the creation of rack manifests
+     * that allows for custom data to be associated with this machine.
+     * 
      * @return the machineDetails value.
      */
     public String machineDetails() {
@@ -75,9 +79,9 @@ public final class BareMetalMachinePatchParameters {
     }
 
     /**
-     * Set the machineDetails property: The details provided by the customer during the creation of rack manifests that
-     * allows for custom data to be associated with this machine.
-     *
+     * Set the machineDetails property: The details provided by the customer during the creation of rack manifests
+     * that allows for custom data to be associated with this machine.
+     * 
      * @param machineDetails the machineDetails value to set.
      * @return the BareMetalMachinePatchParameters object itself.
      */
@@ -91,7 +95,7 @@ public final class BareMetalMachinePatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

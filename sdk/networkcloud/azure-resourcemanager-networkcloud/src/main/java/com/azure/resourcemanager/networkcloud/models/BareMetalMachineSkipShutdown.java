@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator of whether to skip the graceful OS shutdown and power off the bare metal machine immediately. */
+/**
+ * The indicator of whether to skip the graceful OS shutdown and power off the bare metal machine immediately.
+ */
 public final class BareMetalMachineSkipShutdown extends ExpandableStringEnum<BareMetalMachineSkipShutdown> {
-    /** Static value True for BareMetalMachineSkipShutdown. */
+    /**
+     * Static value True for BareMetalMachineSkipShutdown.
+     */
     public static final BareMetalMachineSkipShutdown TRUE = fromString("True");
 
-    /** Static value False for BareMetalMachineSkipShutdown. */
+    /**
+     * Static value False for BareMetalMachineSkipShutdown.
+     */
     public static final BareMetalMachineSkipShutdown FALSE = fromString("False");
 
     /**
      * Creates a new instance of BareMetalMachineSkipShutdown value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class BareMetalMachineSkipShutdown extends ExpandableStringEnum<Bar
 
     /**
      * Creates or finds a BareMetalMachineSkipShutdown from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BareMetalMachineSkipShutdown.
      */
@@ -38,7 +44,7 @@ public final class BareMetalMachineSkipShutdown extends ExpandableStringEnum<Bar
 
     /**
      * Gets known BareMetalMachineSkipShutdown values.
-     *
+     * 
      * @return known BareMetalMachineSkipShutdown values.
      */
     public static Collection<BareMetalMachineSkipShutdown> values() {

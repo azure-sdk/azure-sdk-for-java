@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.BareMetalMachineInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BareMetalMachineList represents a list of bare metal machines. */
+/**
+ * BareMetalMachineList represents a list of bare metal machines.
+ */
 @Fluent
 public final class BareMetalMachineList {
     /*
@@ -24,13 +26,15 @@ public final class BareMetalMachineList {
     @JsonProperty(value = "value")
     private List<BareMetalMachineInner> value;
 
-    /** Creates an instance of BareMetalMachineList class. */
+    /**
+     * Creates an instance of BareMetalMachineList class.
+     */
     public BareMetalMachineList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class BareMetalMachineList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BareMetalMachineList object itself.
      */
@@ -50,7 +54,7 @@ public final class BareMetalMachineList {
 
     /**
      * Get the value property: The list of bare metal machines.
-     *
+     * 
      * @return the value value.
      */
     public List<BareMetalMachineInner> value() {
@@ -59,7 +63,7 @@ public final class BareMetalMachineList {
 
     /**
      * Set the value property: The list of bare metal machines.
-     *
+     * 
      * @param value the value value to set.
      * @return the BareMetalMachineList object itself.
      */
@@ -70,7 +74,7 @@ public final class BareMetalMachineList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

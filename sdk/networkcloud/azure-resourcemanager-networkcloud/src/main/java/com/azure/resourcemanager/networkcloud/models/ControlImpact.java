@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator of whether the control plane will be impacted during the upgrade. */
+/**
+ * The indicator of whether the control plane will be impacted during the upgrade.
+ */
 public final class ControlImpact extends ExpandableStringEnum<ControlImpact> {
-    /** Static value True for ControlImpact. */
+    /**
+     * Static value True for ControlImpact.
+     */
     public static final ControlImpact TRUE = fromString("True");
 
-    /** Static value False for ControlImpact. */
+    /**
+     * Static value False for ControlImpact.
+     */
     public static final ControlImpact FALSE = fromString("False");
 
     /**
      * Creates a new instance of ControlImpact value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ControlImpact extends ExpandableStringEnum<ControlImpact> {
 
     /**
      * Creates or finds a ControlImpact from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ControlImpact.
      */
@@ -38,7 +44,7 @@ public final class ControlImpact extends ExpandableStringEnum<ControlImpact> {
 
     /**
      * Gets known ControlImpact values.
-     *
+     * 
      * @return known ControlImpact values.
      */
     public static Collection<ControlImpact> values() {

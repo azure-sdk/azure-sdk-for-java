@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** BareMetalMachinePowerOffParameters represents the body of the request to power off bare metal machine. */
+/**
+ * BareMetalMachinePowerOffParameters represents the body of the request to power off bare metal machine.
+ */
 @Fluent
 public final class BareMetalMachinePowerOffParameters {
     /*
@@ -16,14 +18,16 @@ public final class BareMetalMachinePowerOffParameters {
     @JsonProperty(value = "skipShutdown")
     private BareMetalMachineSkipShutdown skipShutdown;
 
-    /** Creates an instance of BareMetalMachinePowerOffParameters class. */
+    /**
+     * Creates an instance of BareMetalMachinePowerOffParameters class.
+     */
     public BareMetalMachinePowerOffParameters() {
     }
 
     /**
      * Get the skipShutdown property: The indicator of whether to skip the graceful OS shutdown and power off the bare
      * metal machine immediately.
-     *
+     * 
      * @return the skipShutdown value.
      */
     public BareMetalMachineSkipShutdown skipShutdown() {
@@ -33,7 +37,7 @@ public final class BareMetalMachinePowerOffParameters {
     /**
      * Set the skipShutdown property: The indicator of whether to skip the graceful OS shutdown and power off the bare
      * metal machine immediately.
-     *
+     * 
      * @param skipShutdown the skipShutdown value to set.
      * @return the BareMetalMachinePowerOffParameters object itself.
      */
@@ -44,7 +48,7 @@ public final class BareMetalMachinePowerOffParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

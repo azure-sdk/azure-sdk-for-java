@@ -7,28 +7,64 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool. */
+/**
+ * AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
+ */
 @Fluent
 public final class AgentPoolUpgradeSettings {
     /*
-     * The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer
-     * (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the percentage of the total agent
-     * pool size at the time of the upgrade. For percentages, fractional nodes are rounded up. If not specified, the
-     * default is 1.
+     * The maximum time in seconds that is allowed for a node drain to complete before proceeding with the upgrade of the agent pool. If not specified during creation, a value of 1800 seconds is used.
+     */
+    @JsonProperty(value = "drainTimeout")
+    private Long drainTimeout;
+
+    /*
+     * The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded up. If not specified during creation, a value of 1 is used. One of MaxSurge and MaxUnavailable must be greater than 0.
      */
     @JsonProperty(value = "maxSurge")
     private String maxSurge;
 
-    /** Creates an instance of AgentPoolUpgradeSettings class. */
+    /*
+     * The maximum number or percentage of nodes that can be unavailable during upgrade. This can either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded up. If not specified during creation, a value of 0 is used. One of MaxSurge and MaxUnavailable must be greater than 0.
+     */
+    @JsonProperty(value = "maxUnavailable")
+    private String maxUnavailable;
+
+    /**
+     * Creates an instance of AgentPoolUpgradeSettings class.
+     */
     public AgentPoolUpgradeSettings() {
+    }
+
+    /**
+     * Get the drainTimeout property: The maximum time in seconds that is allowed for a node drain to complete before
+     * proceeding with the upgrade of the agent pool. If not specified during creation, a value of 1800 seconds is used.
+     * 
+     * @return the drainTimeout value.
+     */
+    public Long drainTimeout() {
+        return this.drainTimeout;
+    }
+
+    /**
+     * Set the drainTimeout property: The maximum time in seconds that is allowed for a node drain to complete before
+     * proceeding with the upgrade of the agent pool. If not specified during creation, a value of 1800 seconds is used.
+     * 
+     * @param drainTimeout the drainTimeout value to set.
+     * @return the AgentPoolUpgradeSettings object itself.
+     */
+    public AgentPoolUpgradeSettings withDrainTimeout(Long drainTimeout) {
+        this.drainTimeout = drainTimeout;
+        return this;
     }
 
     /**
      * Get the maxSurge property: The maximum number or percentage of nodes that are surged during upgrade. This can
      * either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the
      * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded
-     * up. If not specified, the default is 1.
-     *
+     * up. If not specified during creation, a value of 1 is used. One of MaxSurge and MaxUnavailable must be greater
+     * than 0.
+     * 
      * @return the maxSurge value.
      */
     public String maxSurge() {
@@ -39,8 +75,9 @@ public final class AgentPoolUpgradeSettings {
      * Set the maxSurge property: The maximum number or percentage of nodes that are surged during upgrade. This can
      * either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the
      * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded
-     * up. If not specified, the default is 1.
-     *
+     * up. If not specified during creation, a value of 1 is used. One of MaxSurge and MaxUnavailable must be greater
+     * than 0.
+     * 
      * @param maxSurge the maxSurge value to set.
      * @return the AgentPoolUpgradeSettings object itself.
      */
@@ -50,8 +87,36 @@ public final class AgentPoolUpgradeSettings {
     }
 
     /**
+     * Get the maxUnavailable property: The maximum number or percentage of nodes that can be unavailable during
+     * upgrade. This can either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is
+     * specified, it is the percentage of the total agent pool size at the time of the upgrade. For percentages,
+     * fractional nodes are rounded up. If not specified during creation, a value of 0 is used. One of MaxSurge and
+     * MaxUnavailable must be greater than 0.
+     * 
+     * @return the maxUnavailable value.
+     */
+    public String maxUnavailable() {
+        return this.maxUnavailable;
+    }
+
+    /**
+     * Set the maxUnavailable property: The maximum number or percentage of nodes that can be unavailable during
+     * upgrade. This can either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is
+     * specified, it is the percentage of the total agent pool size at the time of the upgrade. For percentages,
+     * fractional nodes are rounded up. If not specified during creation, a value of 0 is used. One of MaxSurge and
+     * MaxUnavailable must be greater than 0.
+     * 
+     * @param maxUnavailable the maxUnavailable value to set.
+     * @return the AgentPoolUpgradeSettings object itself.
+     */
+    public AgentPoolUpgradeSettings withMaxUnavailable(String maxUnavailable) {
+        this.maxUnavailable = maxUnavailable;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

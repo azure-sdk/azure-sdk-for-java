@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.L3NetworkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** L3NetworkList represents a list of L3 networks. */
+/**
+ * L3NetworkList represents a list of L3 networks.
+ */
 @Fluent
 public final class L3NetworkList {
     /*
@@ -24,13 +26,15 @@ public final class L3NetworkList {
     @JsonProperty(value = "value")
     private List<L3NetworkInner> value;
 
-    /** Creates an instance of L3NetworkList class. */
+    /**
+     * Creates an instance of L3NetworkList class.
+     */
     public L3NetworkList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class L3NetworkList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the L3NetworkList object itself.
      */
@@ -50,7 +54,7 @@ public final class L3NetworkList {
 
     /**
      * Get the value property: The list of L3 networks.
-     *
+     * 
      * @return the value value.
      */
     public List<L3NetworkInner> value() {
@@ -59,7 +63,7 @@ public final class L3NetworkList {
 
     /**
      * Set the value property: The list of L3 networks.
-     *
+     * 
      * @param value the value value to set.
      * @return the L3NetworkList object itself.
      */
@@ -70,7 +74,7 @@ public final class L3NetworkList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

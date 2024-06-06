@@ -26,13 +26,13 @@ public final class ServiceLoadBalancerBgpPeer {
     private BgpMultiHop bgpMultiHop;
 
     /*
-     * The requested BGP hold time value. This field uses ISO 8601 duration format, for example P1H.
+     * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The requested BGP hold time value. This field uses ISO 8601 duration format, for example P1H.
      */
     @JsonProperty(value = "holdTime")
     private String holdTime;
 
     /*
-     * The requested BGP keepalive time value. This field uses ISO 8601 duration format, for example P1H.
+     * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The requested BGP keepalive time value. This field uses ISO 8601 duration format, for example P1H.
      */
     @JsonProperty(value = "keepAliveTime")
     private String keepAliveTime;
@@ -73,13 +73,15 @@ public final class ServiceLoadBalancerBgpPeer {
     @JsonProperty(value = "peerPort")
     private Long peerPort;
 
-    /** Creates an instance of ServiceLoadBalancerBgpPeer class. */
+    /**
+     * Creates an instance of ServiceLoadBalancerBgpPeer class.
+     */
     public ServiceLoadBalancerBgpPeer() {
     }
 
     /**
      * Get the bfdEnabled property: The indicator of BFD enablement for this BgpPeer.
-     *
+     * 
      * @return the bfdEnabled value.
      */
     public BfdEnabled bfdEnabled() {
@@ -88,7 +90,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the bfdEnabled property: The indicator of BFD enablement for this BgpPeer.
-     *
+     * 
      * @param bfdEnabled the bfdEnabled value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -99,7 +101,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the bgpMultiHop property: The indicator to enable multi-hop peering support.
-     *
+     * 
      * @return the bgpMultiHop value.
      */
     public BgpMultiHop bgpMultiHop() {
@@ -108,7 +110,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the bgpMultiHop property: The indicator to enable multi-hop peering support.
-     *
+     * 
      * @param bgpMultiHop the bgpMultiHop value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -118,9 +120,10 @@ public final class ServiceLoadBalancerBgpPeer {
     }
 
     /**
-     * Get the holdTime property: The requested BGP hold time value. This field uses ISO 8601 duration format, for
+     * Get the holdTime property: Field Deprecated. The field was previously optional, now it will have no defined
+     * behavior and will be ignored. The requested BGP hold time value. This field uses ISO 8601 duration format, for
      * example P1H.
-     *
+     * 
      * @return the holdTime value.
      */
     public String holdTime() {
@@ -128,9 +131,10 @@ public final class ServiceLoadBalancerBgpPeer {
     }
 
     /**
-     * Set the holdTime property: The requested BGP hold time value. This field uses ISO 8601 duration format, for
+     * Set the holdTime property: Field Deprecated. The field was previously optional, now it will have no defined
+     * behavior and will be ignored. The requested BGP hold time value. This field uses ISO 8601 duration format, for
      * example P1H.
-     *
+     * 
      * @param holdTime the holdTime value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -140,9 +144,10 @@ public final class ServiceLoadBalancerBgpPeer {
     }
 
     /**
-     * Get the keepAliveTime property: The requested BGP keepalive time value. This field uses ISO 8601 duration format,
+     * Get the keepAliveTime property: Field Deprecated. The field was previously optional, now it will have no defined
+     * behavior and will be ignored. The requested BGP keepalive time value. This field uses ISO 8601 duration format,
      * for example P1H.
-     *
+     * 
      * @return the keepAliveTime value.
      */
     public String keepAliveTime() {
@@ -150,9 +155,10 @@ public final class ServiceLoadBalancerBgpPeer {
     }
 
     /**
-     * Set the keepAliveTime property: The requested BGP keepalive time value. This field uses ISO 8601 duration format,
+     * Set the keepAliveTime property: Field Deprecated. The field was previously optional, now it will have no defined
+     * behavior and will be ignored. The requested BGP keepalive time value. This field uses ISO 8601 duration format,
      * for example P1H.
-     *
+     * 
      * @param keepAliveTime the keepAliveTime value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -163,7 +169,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the myAsn property: The autonomous system number used for the local end of the BGP session.
-     *
+     * 
      * @return the myAsn value.
      */
     public Long myAsn() {
@@ -172,7 +178,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the myAsn property: The autonomous system number used for the local end of the BGP session.
-     *
+     * 
      * @param myAsn the myAsn value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -183,7 +189,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the name property: The name used to identify this BGP peer for association with a BGP advertisement.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -192,7 +198,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the name property: The name used to identify this BGP peer for association with a BGP advertisement.
-     *
+     * 
      * @param name the name value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -203,7 +209,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the password property: The authentication password for routers enforcing TCP MD5 authenticated sessions.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -212,7 +218,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the password property: The authentication password for routers enforcing TCP MD5 authenticated sessions.
-     *
+     * 
      * @param password the password value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -223,7 +229,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the peerAddress property: The IPv4 or IPv6 address used to connect this BGP session.
-     *
+     * 
      * @return the peerAddress value.
      */
     public String peerAddress() {
@@ -232,7 +238,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the peerAddress property: The IPv4 or IPv6 address used to connect this BGP session.
-     *
+     * 
      * @param peerAddress the peerAddress value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -243,7 +249,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the peerAsn property: The autonomous system number expected from the remote end of the BGP session.
-     *
+     * 
      * @return the peerAsn value.
      */
     public long peerAsn() {
@@ -252,7 +258,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the peerAsn property: The autonomous system number expected from the remote end of the BGP session.
-     *
+     * 
      * @param peerAsn the peerAsn value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -263,7 +269,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Get the peerPort property: The port used to connect this BGP session.
-     *
+     * 
      * @return the peerPort value.
      */
     public Long peerPort() {
@@ -272,7 +278,7 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Set the peerPort property: The port used to connect this BGP session.
-     *
+     * 
      * @param peerPort the peerPort value to set.
      * @return the ServiceLoadBalancerBgpPeer object itself.
      */
@@ -283,20 +289,19 @@ public final class ServiceLoadBalancerBgpPeer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property name in model ServiceLoadBalancerBgpPeer"));
         }
         if (peerAddress() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property peerAddress in model ServiceLoadBalancerBgpPeer"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property peerAddress in model ServiceLoadBalancerBgpPeer"));
         }
     }
 

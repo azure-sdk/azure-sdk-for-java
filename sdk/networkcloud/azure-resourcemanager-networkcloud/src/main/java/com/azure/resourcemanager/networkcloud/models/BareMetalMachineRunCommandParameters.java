@@ -23,8 +23,7 @@ public final class BareMetalMachineRunCommandParameters {
 
     /*
      * The maximum time the script is allowed to run.
-     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be
-     * captured, and the exit code matching a timeout will be returned (252).
+     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252).
      */
     @JsonProperty(value = "limitTimeSeconds", required = true)
     private long limitTimeSeconds;
@@ -35,14 +34,16 @@ public final class BareMetalMachineRunCommandParameters {
     @JsonProperty(value = "script", required = true)
     private String script;
 
-    /** Creates an instance of BareMetalMachineRunCommandParameters class. */
+    /**
+     * Creates an instance of BareMetalMachineRunCommandParameters class.
+     */
     public BareMetalMachineRunCommandParameters() {
     }
 
     /**
      * Get the arguments property: The list of string arguments that will be passed to the script in order as separate
      * arguments.
-     *
+     * 
      * @return the arguments value.
      */
     public List<String> arguments() {
@@ -52,7 +53,7 @@ public final class BareMetalMachineRunCommandParameters {
     /**
      * Set the arguments property: The list of string arguments that will be passed to the script in order as separate
      * arguments.
-     *
+     * 
      * @param arguments the arguments value to set.
      * @return the BareMetalMachineRunCommandParameters object itself.
      */
@@ -62,10 +63,10 @@ public final class BareMetalMachineRunCommandParameters {
     }
 
     /**
-     * Get the limitTimeSeconds property: The maximum time the script is allowed to run. If the execution time exceeds
-     * the maximum, the script will be stopped, any output produced until then will be captured, and the exit code
-     * matching a timeout will be returned (252).
-     *
+     * Get the limitTimeSeconds property: The maximum time the script is allowed to run.
+     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be
+     * captured, and the exit code matching a timeout will be returned (252).
+     * 
      * @return the limitTimeSeconds value.
      */
     public long limitTimeSeconds() {
@@ -73,10 +74,10 @@ public final class BareMetalMachineRunCommandParameters {
     }
 
     /**
-     * Set the limitTimeSeconds property: The maximum time the script is allowed to run. If the execution time exceeds
-     * the maximum, the script will be stopped, any output produced until then will be captured, and the exit code
-     * matching a timeout will be returned (252).
-     *
+     * Set the limitTimeSeconds property: The maximum time the script is allowed to run.
+     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be
+     * captured, and the exit code matching a timeout will be returned (252).
+     * 
      * @param limitTimeSeconds the limitTimeSeconds value to set.
      * @return the BareMetalMachineRunCommandParameters object itself.
      */
@@ -87,7 +88,7 @@ public final class BareMetalMachineRunCommandParameters {
 
     /**
      * Get the script property: The base64 encoded script to execute on the bare metal machine.
-     *
+     * 
      * @return the script value.
      */
     public String script() {
@@ -96,7 +97,7 @@ public final class BareMetalMachineRunCommandParameters {
 
     /**
      * Set the script property: The base64 encoded script to execute on the bare metal machine.
-     *
+     * 
      * @param script the script value to set.
      * @return the BareMetalMachineRunCommandParameters object itself.
      */
@@ -107,15 +108,14 @@ public final class BareMetalMachineRunCommandParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (script() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property script in model BareMetalMachineRunCommandParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property script in model BareMetalMachineRunCommandParameters"));
         }
     }
 

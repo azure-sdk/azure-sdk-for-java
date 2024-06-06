@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The disk type of rack SKU resource. */
+/**
+ * The disk type of rack SKU resource.
+ */
 public final class DiskType extends ExpandableStringEnum<DiskType> {
-    /** Static value HDD for DiskType. */
+    /**
+     * Static value HDD for DiskType.
+     */
     public static final DiskType HDD = fromString("HDD");
 
-    /** Static value SSD for DiskType. */
+    /**
+     * Static value SSD for DiskType.
+     */
     public static final DiskType SSD = fromString("SSD");
 
     /**
      * Creates a new instance of DiskType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class DiskType extends ExpandableStringEnum<DiskType> {
 
     /**
      * Creates or finds a DiskType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DiskType.
      */
@@ -38,7 +44,7 @@ public final class DiskType extends ExpandableStringEnum<DiskType> {
 
     /**
      * Gets known DiskType values.
-     *
+     * 
      * @return known DiskType values.
      */
     public static Collection<DiskType> values() {

@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the virtual machine. */
+/**
+ * The provisioning state of the virtual machine.
+ */
 public final class VirtualMachineProvisioningState extends ExpandableStringEnum<VirtualMachineProvisioningState> {
-    /** Static value Succeeded for VirtualMachineProvisioningState. */
+    /**
+     * Static value Succeeded for VirtualMachineProvisioningState.
+     */
     public static final VirtualMachineProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for VirtualMachineProvisioningState. */
+    /**
+     * Static value Failed for VirtualMachineProvisioningState.
+     */
     public static final VirtualMachineProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for VirtualMachineProvisioningState. */
+    /**
+     * Static value Canceled for VirtualMachineProvisioningState.
+     */
     public static final VirtualMachineProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Provisioning for VirtualMachineProvisioningState. */
+    /**
+     * Static value Provisioning for VirtualMachineProvisioningState.
+     */
     public static final VirtualMachineProvisioningState PROVISIONING = fromString("Provisioning");
 
-    /** Static value Accepted for VirtualMachineProvisioningState. */
+    /**
+     * Static value Accepted for VirtualMachineProvisioningState.
+     */
     public static final VirtualMachineProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates a new instance of VirtualMachineProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class VirtualMachineProvisioningState extends ExpandableStringEnum<
 
     /**
      * Creates or finds a VirtualMachineProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualMachineProvisioningState.
      */
@@ -47,7 +59,7 @@ public final class VirtualMachineProvisioningState extends ExpandableStringEnum<
 
     /**
      * Gets known VirtualMachineProvisioningState values.
-     *
+     * 
      * @return known VirtualMachineProvisioningState values.
      */
     public static Collection<VirtualMachineProvisioningState> values() {

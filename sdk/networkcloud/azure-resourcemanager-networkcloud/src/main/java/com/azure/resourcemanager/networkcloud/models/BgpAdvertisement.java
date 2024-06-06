@@ -9,19 +9,19 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BgpAdvertisement represents the association of IP address pools to the communities and peers. */
+/**
+ * BgpAdvertisement represents the association of IP address pools to the communities and peers.
+ */
 @Fluent
 public final class BgpAdvertisement {
     /*
-     * The indicator of if this advertisement is also made to the network fabric associated with the Network Cloud
-     * Cluster. This field is ignored if fabricPeeringEnabled is set to False.
+     * The indicator of if this advertisement is also made to the network fabric associated with the Network Cloud Cluster. This field is ignored if fabricPeeringEnabled is set to False.
      */
     @JsonProperty(value = "advertiseToFabric")
     private AdvertiseToFabric advertiseToFabric;
 
     /*
-     * The names of the BGP communities to be associated with the announcement, utilizing a BGP community string in
-     * 1234:1234 format.
+     * The names of the BGP communities to be associated with the announcement, utilizing a BGP community string in 1234:1234 format.
      */
     @JsonProperty(value = "communities")
     private List<String> communities;
@@ -33,20 +33,21 @@ public final class BgpAdvertisement {
     private List<String> ipAddressPools;
 
     /*
-     * The names of the BGP peers to limit this advertisement to. If no values are specified, all BGP peers will
-     * receive this advertisement.
+     * The names of the BGP peers to limit this advertisement to. If no values are specified, all BGP peers will receive this advertisement.
      */
     @JsonProperty(value = "peers")
     private List<String> peers;
 
-    /** Creates an instance of BgpAdvertisement class. */
+    /**
+     * Creates an instance of BgpAdvertisement class.
+     */
     public BgpAdvertisement() {
     }
 
     /**
      * Get the advertiseToFabric property: The indicator of if this advertisement is also made to the network fabric
      * associated with the Network Cloud Cluster. This field is ignored if fabricPeeringEnabled is set to False.
-     *
+     * 
      * @return the advertiseToFabric value.
      */
     public AdvertiseToFabric advertiseToFabric() {
@@ -56,7 +57,7 @@ public final class BgpAdvertisement {
     /**
      * Set the advertiseToFabric property: The indicator of if this advertisement is also made to the network fabric
      * associated with the Network Cloud Cluster. This field is ignored if fabricPeeringEnabled is set to False.
-     *
+     * 
      * @param advertiseToFabric the advertiseToFabric value to set.
      * @return the BgpAdvertisement object itself.
      */
@@ -68,7 +69,7 @@ public final class BgpAdvertisement {
     /**
      * Get the communities property: The names of the BGP communities to be associated with the announcement, utilizing
      * a BGP community string in 1234:1234 format.
-     *
+     * 
      * @return the communities value.
      */
     public List<String> communities() {
@@ -78,7 +79,7 @@ public final class BgpAdvertisement {
     /**
      * Set the communities property: The names of the BGP communities to be associated with the announcement, utilizing
      * a BGP community string in 1234:1234 format.
-     *
+     * 
      * @param communities the communities value to set.
      * @return the BgpAdvertisement object itself.
      */
@@ -89,7 +90,7 @@ public final class BgpAdvertisement {
 
     /**
      * Get the ipAddressPools property: The names of the IP address pools associated with this announcement.
-     *
+     * 
      * @return the ipAddressPools value.
      */
     public List<String> ipAddressPools() {
@@ -98,7 +99,7 @@ public final class BgpAdvertisement {
 
     /**
      * Set the ipAddressPools property: The names of the IP address pools associated with this announcement.
-     *
+     * 
      * @param ipAddressPools the ipAddressPools value to set.
      * @return the BgpAdvertisement object itself.
      */
@@ -110,7 +111,7 @@ public final class BgpAdvertisement {
     /**
      * Get the peers property: The names of the BGP peers to limit this advertisement to. If no values are specified,
      * all BGP peers will receive this advertisement.
-     *
+     * 
      * @return the peers value.
      */
     public List<String> peers() {
@@ -120,7 +121,7 @@ public final class BgpAdvertisement {
     /**
      * Set the peers property: The names of the BGP peers to limit this advertisement to. If no values are specified,
      * all BGP peers will receive this advertisement.
-     *
+     * 
      * @param peers the peers value to set.
      * @return the BgpAdvertisement object itself.
      */
@@ -131,13 +132,13 @@ public final class BgpAdvertisement {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ipAddressPools() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property ipAddressPools in model BgpAdvertisement"));
         }
     }

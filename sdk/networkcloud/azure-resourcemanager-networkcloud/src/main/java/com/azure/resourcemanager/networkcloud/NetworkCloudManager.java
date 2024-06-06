@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -32,14 +32,23 @@ import com.azure.resourcemanager.networkcloud.implementation.CloudServicesNetwor
 import com.azure.resourcemanager.networkcloud.implementation.ClusterManagersImpl;
 import com.azure.resourcemanager.networkcloud.implementation.ClustersImpl;
 import com.azure.resourcemanager.networkcloud.implementation.ConsolesImpl;
+import com.azure.resourcemanager.networkcloud.implementation.EdgeClusterMachineSkusImpl;
+import com.azure.resourcemanager.networkcloud.implementation.EdgeClusterNodesImpl;
+import com.azure.resourcemanager.networkcloud.implementation.EdgeClusterRuntimeVersionsImpl;
+import com.azure.resourcemanager.networkcloud.implementation.EdgeClustersImpl;
+import com.azure.resourcemanager.networkcloud.implementation.EdgeClusterSkusImpl;
+import com.azure.resourcemanager.networkcloud.implementation.KubernetesClusterFeaturesImpl;
 import com.azure.resourcemanager.networkcloud.implementation.KubernetesClustersImpl;
 import com.azure.resourcemanager.networkcloud.implementation.L2NetworksImpl;
 import com.azure.resourcemanager.networkcloud.implementation.L3NetworksImpl;
 import com.azure.resourcemanager.networkcloud.implementation.MetricsConfigurationsImpl;
 import com.azure.resourcemanager.networkcloud.implementation.NetworkCloudBuilder;
 import com.azure.resourcemanager.networkcloud.implementation.OperationsImpl;
-import com.azure.resourcemanager.networkcloud.implementation.RackSkusImpl;
 import com.azure.resourcemanager.networkcloud.implementation.RacksImpl;
+import com.azure.resourcemanager.networkcloud.implementation.RackSkusImpl;
+import com.azure.resourcemanager.networkcloud.implementation.RegistrationHubImagesImpl;
+import com.azure.resourcemanager.networkcloud.implementation.RegistrationHubMachinesImpl;
+import com.azure.resourcemanager.networkcloud.implementation.RegistrationHubsImpl;
 import com.azure.resourcemanager.networkcloud.implementation.StorageAppliancesImpl;
 import com.azure.resourcemanager.networkcloud.implementation.TrunkedNetworksImpl;
 import com.azure.resourcemanager.networkcloud.implementation.VirtualMachinesImpl;
@@ -52,13 +61,22 @@ import com.azure.resourcemanager.networkcloud.models.CloudServicesNetworks;
 import com.azure.resourcemanager.networkcloud.models.ClusterManagers;
 import com.azure.resourcemanager.networkcloud.models.Clusters;
 import com.azure.resourcemanager.networkcloud.models.Consoles;
+import com.azure.resourcemanager.networkcloud.models.EdgeClusterMachineSkus;
+import com.azure.resourcemanager.networkcloud.models.EdgeClusterNodes;
+import com.azure.resourcemanager.networkcloud.models.EdgeClusterRuntimeVersions;
+import com.azure.resourcemanager.networkcloud.models.EdgeClusters;
+import com.azure.resourcemanager.networkcloud.models.EdgeClusterSkus;
+import com.azure.resourcemanager.networkcloud.models.KubernetesClusterFeatures;
 import com.azure.resourcemanager.networkcloud.models.KubernetesClusters;
 import com.azure.resourcemanager.networkcloud.models.L2Networks;
 import com.azure.resourcemanager.networkcloud.models.L3Networks;
 import com.azure.resourcemanager.networkcloud.models.MetricsConfigurations;
 import com.azure.resourcemanager.networkcloud.models.Operations;
-import com.azure.resourcemanager.networkcloud.models.RackSkus;
 import com.azure.resourcemanager.networkcloud.models.Racks;
+import com.azure.resourcemanager.networkcloud.models.RackSkus;
+import com.azure.resourcemanager.networkcloud.models.RegistrationHubImages;
+import com.azure.resourcemanager.networkcloud.models.RegistrationHubMachines;
+import com.azure.resourcemanager.networkcloud.models.RegistrationHubs;
 import com.azure.resourcemanager.networkcloud.models.StorageAppliances;
 import com.azure.resourcemanager.networkcloud.models.TrunkedNetworks;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachines;
@@ -71,8 +89,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to NetworkCloudManager. The Network Cloud APIs provide management of the on-premises clusters and their
- * resources, such as, racks, bare metal hosts, virtual machines, workload networks and more.
+ * Entry point to NetworkCloudManager.
+ * The Network Cloud APIs provide management of the Azure Operator Nexus compute resources such as on-premises clusters,
+ * hardware resources, and workload infrastructure resources.
  */
 public final class NetworkCloudManager {
     private Operations operations;
@@ -85,6 +104,14 @@ public final class NetworkCloudManager {
 
     private Clusters clusters;
 
+    private EdgeClusterMachineSkus edgeClusterMachineSkus;
+
+    private EdgeClusterRuntimeVersions edgeClusterRuntimeVersions;
+
+    private EdgeClusterSkus edgeClusterSkus;
+
+    private EdgeClusters edgeClusters;
+
     private KubernetesClusters kubernetesClusters;
 
     private L2Networks l2Networks;
@@ -94,6 +121,8 @@ public final class NetworkCloudManager {
     private RackSkus rackSkus;
 
     private Racks racks;
+
+    private RegistrationHubs registrationHubs;
 
     private StorageAppliances storageAppliances;
 
@@ -109,7 +138,15 @@ public final class NetworkCloudManager {
 
     private MetricsConfigurations metricsConfigurations;
 
+    private EdgeClusterNodes edgeClusterNodes;
+
     private AgentPools agentPools;
+
+    private KubernetesClusterFeatures kubernetesClusterFeatures;
+
+    private RegistrationHubImages registrationHubImages;
+
+    private RegistrationHubMachines registrationHubMachines;
 
     private Consoles consoles;
 
@@ -118,18 +155,16 @@ public final class NetworkCloudManager {
     private NetworkCloudManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new NetworkCloudBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new NetworkCloudBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
      * Creates an instance of NetworkCloud service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the NetworkCloud service API instance.
@@ -142,7 +177,7 @@ public final class NetworkCloudManager {
 
     /**
      * Creates an instance of NetworkCloud service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the NetworkCloud service API instance.
@@ -155,14 +190,16 @@ public final class NetworkCloudManager {
 
     /**
      * Gets a Configurable instance that can be used to create NetworkCloudManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new NetworkCloudManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -234,8 +271,8 @@ public final class NetworkCloudManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -252,8 +289,8 @@ public final class NetworkCloudManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -273,15 +310,13 @@ public final class NetworkCloudManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
+            userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.networkcloud")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
+                userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ")
                     .append(Configuration.getGlobalConfiguration().get("os.name"))
@@ -306,38 +341,28 @@ public final class NetworkCloudManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new NetworkCloudManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -349,7 +374,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of BareMetalMachines. It manages BareMetalMachine.
-     *
+     * 
      * @return Resource collection API of BareMetalMachines.
      */
     public BareMetalMachines bareMetalMachines() {
@@ -361,7 +386,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of CloudServicesNetworks. It manages CloudServicesNetwork.
-     *
+     * 
      * @return Resource collection API of CloudServicesNetworks.
      */
     public CloudServicesNetworks cloudServicesNetworks() {
@@ -373,7 +398,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of ClusterManagers. It manages ClusterManager.
-     *
+     * 
      * @return Resource collection API of ClusterManagers.
      */
     public ClusterManagers clusterManagers() {
@@ -385,7 +410,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of Clusters. It manages Cluster.
-     *
+     * 
      * @return Resource collection API of Clusters.
      */
     public Clusters clusters() {
@@ -396,8 +421,58 @@ public final class NetworkCloudManager {
     }
 
     /**
+     * Gets the resource collection API of EdgeClusterMachineSkus.
+     * 
+     * @return Resource collection API of EdgeClusterMachineSkus.
+     */
+    public EdgeClusterMachineSkus edgeClusterMachineSkus() {
+        if (this.edgeClusterMachineSkus == null) {
+            this.edgeClusterMachineSkus
+                = new EdgeClusterMachineSkusImpl(clientObject.getEdgeClusterMachineSkus(), this);
+        }
+        return edgeClusterMachineSkus;
+    }
+
+    /**
+     * Gets the resource collection API of EdgeClusterRuntimeVersions.
+     * 
+     * @return Resource collection API of EdgeClusterRuntimeVersions.
+     */
+    public EdgeClusterRuntimeVersions edgeClusterRuntimeVersions() {
+        if (this.edgeClusterRuntimeVersions == null) {
+            this.edgeClusterRuntimeVersions
+                = new EdgeClusterRuntimeVersionsImpl(clientObject.getEdgeClusterRuntimeVersions(), this);
+        }
+        return edgeClusterRuntimeVersions;
+    }
+
+    /**
+     * Gets the resource collection API of EdgeClusterSkus.
+     * 
+     * @return Resource collection API of EdgeClusterSkus.
+     */
+    public EdgeClusterSkus edgeClusterSkus() {
+        if (this.edgeClusterSkus == null) {
+            this.edgeClusterSkus = new EdgeClusterSkusImpl(clientObject.getEdgeClusterSkus(), this);
+        }
+        return edgeClusterSkus;
+    }
+
+    /**
+     * Gets the resource collection API of EdgeClusters. It manages EdgeCluster.
+     * 
+     * @return Resource collection API of EdgeClusters.
+     */
+    public EdgeClusters edgeClusters() {
+        if (this.edgeClusters == null) {
+            this.edgeClusters = new EdgeClustersImpl(clientObject.getEdgeClusters(), this);
+        }
+        return edgeClusters;
+    }
+
+    /**
      * Gets the resource collection API of KubernetesClusters. It manages KubernetesCluster.
-     *
+     * 
      * @return Resource collection API of KubernetesClusters.
      */
     public KubernetesClusters kubernetesClusters() {
@@ -409,7 +484,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of L2Networks. It manages L2Network.
-     *
+     * 
      * @return Resource collection API of L2Networks.
      */
     public L2Networks l2Networks() {
@@ -421,7 +496,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of L3Networks. It manages L3Network.
-     *
+     * 
      * @return Resource collection API of L3Networks.
      */
     public L3Networks l3Networks() {
@@ -433,7 +508,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of RackSkus.
-     *
+     * 
      * @return Resource collection API of RackSkus.
      */
     public RackSkus rackSkus() {
@@ -445,7 +520,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of Racks. It manages Rack.
-     *
+     * 
      * @return Resource collection API of Racks.
      */
     public Racks racks() {
@@ -456,8 +531,20 @@ public final class NetworkCloudManager {
     }
 
     /**
+     * Gets the resource collection API of RegistrationHubs. It manages RegistrationHub.
+     * 
+     * @return Resource collection API of RegistrationHubs.
+     */
+    public RegistrationHubs registrationHubs() {
+        if (this.registrationHubs == null) {
+            this.registrationHubs = new RegistrationHubsImpl(clientObject.getRegistrationHubs(), this);
+        }
+        return registrationHubs;
+    }
+
+    /**
      * Gets the resource collection API of StorageAppliances. It manages StorageAppliance.
-     *
+     * 
      * @return Resource collection API of StorageAppliances.
      */
     public StorageAppliances storageAppliances() {
@@ -469,7 +556,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of TrunkedNetworks. It manages TrunkedNetwork.
-     *
+     * 
      * @return Resource collection API of TrunkedNetworks.
      */
     public TrunkedNetworks trunkedNetworks() {
@@ -481,7 +568,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of VirtualMachines. It manages VirtualMachine.
-     *
+     * 
      * @return Resource collection API of VirtualMachines.
      */
     public VirtualMachines virtualMachines() {
@@ -493,7 +580,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of Volumes. It manages Volume.
-     *
+     * 
      * @return Resource collection API of Volumes.
      */
     public Volumes volumes() {
@@ -505,20 +592,20 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of BareMetalMachineKeySets. It manages BareMetalMachineKeySet.
-     *
+     * 
      * @return Resource collection API of BareMetalMachineKeySets.
      */
     public BareMetalMachineKeySets bareMetalMachineKeySets() {
         if (this.bareMetalMachineKeySets == null) {
-            this.bareMetalMachineKeySets =
-                new BareMetalMachineKeySetsImpl(clientObject.getBareMetalMachineKeySets(), this);
+            this.bareMetalMachineKeySets
+                = new BareMetalMachineKeySetsImpl(clientObject.getBareMetalMachineKeySets(), this);
         }
         return bareMetalMachineKeySets;
     }
 
     /**
      * Gets the resource collection API of BmcKeySets. It manages BmcKeySet.
-     *
+     * 
      * @return Resource collection API of BmcKeySets.
      */
     public BmcKeySets bmcKeySets() {
@@ -530,7 +617,7 @@ public final class NetworkCloudManager {
 
     /**
      * Gets the resource collection API of MetricsConfigurations. It manages ClusterMetricsConfiguration.
-     *
+     * 
      * @return Resource collection API of MetricsConfigurations.
      */
     public MetricsConfigurations metricsConfigurations() {
@@ -541,8 +628,20 @@ public final class NetworkCloudManager {
     }
 
     /**
+     * Gets the resource collection API of EdgeClusterNodes. It manages EdgeClusterNode.
+     * 
+     * @return Resource collection API of EdgeClusterNodes.
+     */
+    public EdgeClusterNodes edgeClusterNodes() {
+        if (this.edgeClusterNodes == null) {
+            this.edgeClusterNodes = new EdgeClusterNodesImpl(clientObject.getEdgeClusterNodes(), this);
+        }
+        return edgeClusterNodes;
+    }
+
+    /**
      * Gets the resource collection API of AgentPools. It manages AgentPool.
-     *
+     * 
      * @return Resource collection API of AgentPools.
      */
     public AgentPools agentPools() {
@@ -553,8 +652,46 @@ public final class NetworkCloudManager {
     }
 
     /**
+     * Gets the resource collection API of KubernetesClusterFeatures. It manages KubernetesClusterFeature.
+     * 
+     * @return Resource collection API of KubernetesClusterFeatures.
+     */
+    public KubernetesClusterFeatures kubernetesClusterFeatures() {
+        if (this.kubernetesClusterFeatures == null) {
+            this.kubernetesClusterFeatures
+                = new KubernetesClusterFeaturesImpl(clientObject.getKubernetesClusterFeatures(), this);
+        }
+        return kubernetesClusterFeatures;
+    }
+
+    /**
+     * Gets the resource collection API of RegistrationHubImages. It manages RegistrationHubImage.
+     * 
+     * @return Resource collection API of RegistrationHubImages.
+     */
+    public RegistrationHubImages registrationHubImages() {
+        if (this.registrationHubImages == null) {
+            this.registrationHubImages = new RegistrationHubImagesImpl(clientObject.getRegistrationHubImages(), this);
+        }
+        return registrationHubImages;
+    }
+
+    /**
+     * Gets the resource collection API of RegistrationHubMachines. It manages RegistrationHubMachine.
+     * 
+     * @return Resource collection API of RegistrationHubMachines.
+     */
+    public RegistrationHubMachines registrationHubMachines() {
+        if (this.registrationHubMachines == null) {
+            this.registrationHubMachines
+                = new RegistrationHubMachinesImpl(clientObject.getRegistrationHubMachines(), this);
+        }
+        return registrationHubMachines;
+    }
+
+    /**
      * Gets the resource collection API of Consoles. It manages Console.
-     *
+     * 
      * @return Resource collection API of Consoles.
      */
     public Consoles consoles() {
@@ -567,7 +704,7 @@ public final class NetworkCloudManager {
     /**
      * Gets wrapped service client NetworkCloud providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client NetworkCloud.
      */
     public NetworkCloud serviceClient() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AttachedNetworkConfiguration represents the set of workload networks to attach to a resource. */
+/**
+ * AttachedNetworkConfiguration represents the set of workload networks to attach to a resource.
+ */
 @Fluent
 public final class AttachedNetworkConfiguration {
     /*
@@ -29,13 +31,15 @@ public final class AttachedNetworkConfiguration {
     @JsonProperty(value = "trunkedNetworks")
     private List<TrunkedNetworkAttachmentConfiguration> trunkedNetworks;
 
-    /** Creates an instance of AttachedNetworkConfiguration class. */
+    /**
+     * Creates an instance of AttachedNetworkConfiguration class.
+     */
     public AttachedNetworkConfiguration() {
     }
 
     /**
      * Get the l2Networks property: The list of Layer 2 Networks and related configuration for attachment.
-     *
+     * 
      * @return the l2Networks value.
      */
     public List<L2NetworkAttachmentConfiguration> l2Networks() {
@@ -44,7 +48,7 @@ public final class AttachedNetworkConfiguration {
 
     /**
      * Set the l2Networks property: The list of Layer 2 Networks and related configuration for attachment.
-     *
+     * 
      * @param l2Networks the l2Networks value to set.
      * @return the AttachedNetworkConfiguration object itself.
      */
@@ -55,7 +59,7 @@ public final class AttachedNetworkConfiguration {
 
     /**
      * Get the l3Networks property: The list of Layer 3 Networks and related configuration for attachment.
-     *
+     * 
      * @return the l3Networks value.
      */
     public List<L3NetworkAttachmentConfiguration> l3Networks() {
@@ -64,7 +68,7 @@ public final class AttachedNetworkConfiguration {
 
     /**
      * Set the l3Networks property: The list of Layer 3 Networks and related configuration for attachment.
-     *
+     * 
      * @param l3Networks the l3Networks value to set.
      * @return the AttachedNetworkConfiguration object itself.
      */
@@ -75,7 +79,7 @@ public final class AttachedNetworkConfiguration {
 
     /**
      * Get the trunkedNetworks property: The list of Trunked Networks and related configuration for attachment.
-     *
+     * 
      * @return the trunkedNetworks value.
      */
     public List<TrunkedNetworkAttachmentConfiguration> trunkedNetworks() {
@@ -84,19 +88,19 @@ public final class AttachedNetworkConfiguration {
 
     /**
      * Set the trunkedNetworks property: The list of Trunked Networks and related configuration for attachment.
-     *
+     * 
      * @param trunkedNetworks the trunkedNetworks value to set.
      * @return the AttachedNetworkConfiguration object itself.
      */
-    public AttachedNetworkConfiguration withTrunkedNetworks(
-        List<TrunkedNetworkAttachmentConfiguration> trunkedNetworks) {
+    public AttachedNetworkConfiguration
+        withTrunkedNetworks(List<TrunkedNetworkAttachmentConfiguration> trunkedNetworks) {
         this.trunkedNetworks = trunkedNetworks;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

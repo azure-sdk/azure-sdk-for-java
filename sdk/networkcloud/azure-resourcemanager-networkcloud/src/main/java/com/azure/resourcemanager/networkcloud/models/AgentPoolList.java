@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.AgentPoolInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AgentPoolList represents a list of Kubernetes cluster agent pools. */
+/**
+ * AgentPoolList represents a list of Kubernetes cluster agent pools.
+ */
 @Fluent
 public final class AgentPoolList {
     /*
@@ -24,13 +26,15 @@ public final class AgentPoolList {
     @JsonProperty(value = "value")
     private List<AgentPoolInner> value;
 
-    /** Creates an instance of AgentPoolList class. */
+    /**
+     * Creates an instance of AgentPoolList class.
+     */
     public AgentPoolList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class AgentPoolList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AgentPoolList object itself.
      */
@@ -50,7 +54,7 @@ public final class AgentPoolList {
 
     /**
      * Get the value property: The list of agent pools.
-     *
+     * 
      * @return the value value.
      */
     public List<AgentPoolInner> value() {
@@ -59,7 +63,7 @@ public final class AgentPoolList {
 
     /**
      * Set the value property: The list of agent pools.
-     *
+     * 
      * @param value the value value to set.
      * @return the AgentPoolList object itself.
      */
@@ -70,7 +74,7 @@ public final class AgentPoolList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

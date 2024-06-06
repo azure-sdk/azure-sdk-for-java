@@ -8,21 +8,29 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The more detailed status of the metrics configuration. */
+/**
+ * The more detailed status of the metrics configuration.
+ */
 public final class ClusterMetricsConfigurationDetailedStatus
     extends ExpandableStringEnum<ClusterMetricsConfigurationDetailedStatus> {
-    /** Static value Processing for ClusterMetricsConfigurationDetailedStatus. */
+    /**
+     * Static value Processing for ClusterMetricsConfigurationDetailedStatus.
+     */
     public static final ClusterMetricsConfigurationDetailedStatus PROCESSING = fromString("Processing");
 
-    /** Static value Applied for ClusterMetricsConfigurationDetailedStatus. */
+    /**
+     * Static value Applied for ClusterMetricsConfigurationDetailedStatus.
+     */
     public static final ClusterMetricsConfigurationDetailedStatus APPLIED = fromString("Applied");
 
-    /** Static value Error for ClusterMetricsConfigurationDetailedStatus. */
+    /**
+     * Static value Error for ClusterMetricsConfigurationDetailedStatus.
+     */
     public static final ClusterMetricsConfigurationDetailedStatus ERROR = fromString("Error");
 
     /**
      * Creates a new instance of ClusterMetricsConfigurationDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +39,7 @@ public final class ClusterMetricsConfigurationDetailedStatus
 
     /**
      * Creates or finds a ClusterMetricsConfigurationDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ClusterMetricsConfigurationDetailedStatus.
      */
@@ -42,7 +50,7 @@ public final class ClusterMetricsConfigurationDetailedStatus
 
     /**
      * Gets known ClusterMetricsConfigurationDetailedStatus values.
-     *
+     * 
      * @return known ClusterMetricsConfigurationDetailedStatus values.
      */
     public static Collection<ClusterMetricsConfigurationDetailedStatus> values() {

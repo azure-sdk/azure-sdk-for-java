@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.VolumeInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** VolumeList represents a list of volumes. */
+/**
+ * VolumeList represents a list of volumes.
+ */
 @Fluent
 public final class VolumeList {
     /*
@@ -24,13 +26,15 @@ public final class VolumeList {
     @JsonProperty(value = "value")
     private List<VolumeInner> value;
 
-    /** Creates an instance of VolumeList class. */
+    /**
+     * Creates an instance of VolumeList class.
+     */
     public VolumeList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class VolumeList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VolumeList object itself.
      */
@@ -50,7 +54,7 @@ public final class VolumeList {
 
     /**
      * Get the value property: The list of volumes.
-     *
+     * 
      * @return the value value.
      */
     public List<VolumeInner> value() {
@@ -59,7 +63,7 @@ public final class VolumeList {
 
     /**
      * Set the value property: The list of volumes.
-     *
+     * 
      * @param value the value value to set.
      * @return the VolumeList object itself.
      */
@@ -70,7 +74,7 @@ public final class VolumeList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
