@@ -249,6 +249,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.mysqlflexibleserver.models.ServerDetachVNetParameter",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.mysqlflexibleserver.fluent.models.AdvancedThreatProtectionInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -535,6 +540,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.mysqlflexibleserver.models.EnableStatusEnum",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.mysqlflexibleserver.models.StorageRedundancyEnum",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
