@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of logical networks. */
+/**
+ * The observed state of logical networks.
+ */
 @Fluent
 public final class LogicalNetworkStatus {
     /*
@@ -28,13 +30,15 @@ public final class LogicalNetworkStatus {
     @JsonProperty(value = "provisioningStatus")
     private LogicalNetworkStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of LogicalNetworkStatus class. */
+    /**
+     * Creates an instance of LogicalNetworkStatus class.
+     */
     public LogicalNetworkStatus() {
     }
 
     /**
      * Get the errorCode property: LogicalNetwork provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -43,7 +47,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the errorCode property: LogicalNetwork provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -54,7 +58,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -63,7 +67,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -74,7 +78,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public LogicalNetworkStatusProvisioningStatus provisioningStatus() {
@@ -83,7 +87,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -94,7 +98,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

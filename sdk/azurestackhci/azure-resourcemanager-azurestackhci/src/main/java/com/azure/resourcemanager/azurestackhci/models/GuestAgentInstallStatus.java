@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Defines the status of a guest agent installation. */
+/**
+ * Defines the status of a guest agent installation.
+ */
 @Immutable
 public final class GuestAgentInstallStatus {
     /*
@@ -43,13 +45,15 @@ public final class GuestAgentInstallStatus {
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<ManagementError> errorDetails;
 
-    /** Creates an instance of GuestAgentInstallStatus class. */
+    /**
+     * Creates an instance of GuestAgentInstallStatus class.
+     */
     public GuestAgentInstallStatus() {
     }
 
     /**
      * Get the vmUuid property: Specifies the VM's unique SMBIOS ID.
-     *
+     * 
      * @return the vmUuid value.
      */
     public String vmUuid() {
@@ -58,7 +62,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the status property: The installation status of the hybrid machine agent installation.
-     *
+     * 
      * @return the status value.
      */
     public StatusTypes status() {
@@ -67,7 +71,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the lastStatusChange property: The time of the last status change.
-     *
+     * 
      * @return the lastStatusChange value.
      */
     public OffsetDateTime lastStatusChange() {
@@ -76,7 +80,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the agentVersion property: The hybrid machine agent full version.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -85,7 +89,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the errorDetails property: Details about the error state.
-     *
+     * 
      * @return the errorDetails value.
      */
     public List<ManagementError> errorDetails() {
@@ -94,7 +98,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

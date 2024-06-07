@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** This is the disk image base class. */
+/**
+ * This is the disk image base class.
+ */
 @Immutable
 public class GalleryDiskImage {
     /*
@@ -16,13 +18,15 @@ public class GalleryDiskImage {
     @JsonProperty(value = "sizeInMB", access = JsonProperty.Access.WRITE_ONLY)
     private Long sizeInMB;
 
-    /** Creates an instance of GalleryDiskImage class. */
+    /**
+     * Creates an instance of GalleryDiskImage class.
+     */
     public GalleryDiskImage() {
     }
 
     /**
      * Get the sizeInMB property: This property indicates the size of the VHD to be created.
-     *
+     * 
      * @return the sizeInMB value.
      */
     public Long sizeInMB() {
@@ -31,7 +35,7 @@ public class GalleryDiskImage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualHardDiskStatusProvisioningStatus model. */
+/**
+ * The VirtualHardDiskStatusProvisioningStatus model.
+ */
 @Fluent
 public final class VirtualHardDiskStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class VirtualHardDiskStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of VirtualHardDiskStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of VirtualHardDiskStatusProvisioningStatus class.
+     */
     public VirtualHardDiskStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the virtual hard disk.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class VirtualHardDiskStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the virtual hard disk.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the VirtualHardDiskStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class VirtualHardDiskStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the virtual hard disk [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class VirtualHardDiskStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the virtual hard disk [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the VirtualHardDiskStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class VirtualHardDiskStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

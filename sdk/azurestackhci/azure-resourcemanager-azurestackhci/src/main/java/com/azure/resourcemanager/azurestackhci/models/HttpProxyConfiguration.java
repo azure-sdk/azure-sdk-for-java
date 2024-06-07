@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** HTTP Proxy configuration for the VM. */
+/**
+ * HTTP Proxy configuration for the VM.
+ */
 @Fluent
 public final class HttpProxyConfiguration {
     /*
@@ -35,13 +37,15 @@ public final class HttpProxyConfiguration {
     @JsonProperty(value = "trustedCa")
     private String trustedCa;
 
-    /** Creates an instance of HttpProxyConfiguration class. */
+    /**
+     * Creates an instance of HttpProxyConfiguration class.
+     */
     public HttpProxyConfiguration() {
     }
 
     /**
      * Get the httpProxy property: The HTTP proxy server endpoint to use.
-     *
+     * 
      * @return the httpProxy value.
      */
     public String httpProxy() {
@@ -50,7 +54,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the httpProxy property: The HTTP proxy server endpoint to use.
-     *
+     * 
      * @param httpProxy the httpProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -61,7 +65,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the httpsProxy property: The HTTPS proxy server endpoint to use.
-     *
+     * 
      * @return the httpsProxy value.
      */
     public String httpsProxy() {
@@ -70,7 +74,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the httpsProxy property: The HTTPS proxy server endpoint to use.
-     *
+     * 
      * @param httpsProxy the httpsProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -81,7 +85,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the noProxy property: The endpoints that should not go through proxy.
-     *
+     * 
      * @return the noProxy value.
      */
     public List<String> noProxy() {
@@ -90,7 +94,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the noProxy property: The endpoints that should not go through proxy.
-     *
+     * 
      * @param noProxy the noProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -101,7 +105,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the trustedCa property: Alternative CA cert to use for connecting to proxy servers.
-     *
+     * 
      * @return the trustedCa value.
      */
     public String trustedCa() {
@@ -110,7 +114,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the trustedCa property: Alternative CA cert to use for connecting to proxy servers.
-     *
+     * 
      * @param trustedCa the trustedCa value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -121,7 +125,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.StorageContainersIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The StorageContainersListResult model. */
+/**
+ * The StorageContainersListResult model.
+ */
 @Fluent
 public final class StorageContainersListResult {
     /*
@@ -24,13 +26,15 @@ public final class StorageContainersListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of StorageContainersListResult class. */
+    /**
+     * Creates an instance of StorageContainersListResult class.
+     */
     public StorageContainersListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageContainersInner> value() {
@@ -39,7 +43,7 @@ public final class StorageContainersListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the StorageContainersListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class StorageContainersListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class StorageContainersListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the StorageContainersListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class StorageContainersListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

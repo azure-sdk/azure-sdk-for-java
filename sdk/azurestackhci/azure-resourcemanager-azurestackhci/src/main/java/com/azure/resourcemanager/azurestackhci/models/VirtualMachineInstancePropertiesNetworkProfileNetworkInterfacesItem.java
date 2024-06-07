@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem model. */
+/**
+ * The VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem model.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem {
     /*
@@ -16,13 +18,15 @@ public final class VirtualMachineInstancePropertiesNetworkProfileNetworkInterfac
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem class.
+     */
     public VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem() {
     }
 
     /**
      * Get the id property: ID - Resource Id of the network interface.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class VirtualMachineInstancePropertiesNetworkProfileNetworkInterfac
 
     /**
      * Set the id property: ID - Resource Id of the network interface.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesNetworkProfileNetworkInterfacesItem object itself.
      */
@@ -42,7 +46,7 @@ public final class VirtualMachineInstancePropertiesNetworkProfileNetworkInterfac
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

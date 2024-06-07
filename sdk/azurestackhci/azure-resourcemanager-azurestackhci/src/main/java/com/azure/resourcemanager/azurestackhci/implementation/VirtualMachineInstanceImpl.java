@@ -25,8 +25,7 @@ public final class VirtualMachineInstanceImpl implements VirtualMachineInstance 
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    VirtualMachineInstanceImpl(
-        VirtualMachineInstanceInner innerObject,
+    VirtualMachineInstanceImpl(VirtualMachineInstanceInner innerObject,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

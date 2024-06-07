@@ -15,7 +15,9 @@ import com.azure.resourcemanager.azurestackhci.models.VirtualHardDiskStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The virtual hard disk resource definition. */
+/**
+ * The virtual hard disk resource definition.
+ */
 @Fluent
 public final class VirtualHardDisksInner extends Resource {
     /*
@@ -36,13 +38,15 @@ public final class VirtualHardDisksInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of VirtualHardDisksInner class. */
+    /**
+     * Creates an instance of VirtualHardDisksInner class.
+     */
     public VirtualHardDisksInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the virtual hard disk resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualHardDiskProperties innerProperties() {
@@ -51,7 +55,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -60,7 +64,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -71,21 +75,25 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualHardDisksInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualHardDisksInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -94,7 +102,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the blockSizeBytes property: The blockSizeBytes property.
-     *
+     * 
      * @return the blockSizeBytes value.
      */
     public Integer blockSizeBytes() {
@@ -103,7 +111,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the blockSizeBytes property: The blockSizeBytes property.
-     *
+     * 
      * @param blockSizeBytes the blockSizeBytes value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -117,7 +125,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the diskSizeGB property: Size of the disk in GB.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Long diskSizeGB() {
@@ -126,7 +134,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the diskSizeGB property: Size of the disk in GB.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -140,7 +148,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the dynamic property: Boolean for enabling dynamic sizing on the virtual hard disk.
-     *
+     * 
      * @return the dynamic value.
      */
     public Boolean dynamic() {
@@ -149,7 +157,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the dynamic property: Boolean for enabling dynamic sizing on the virtual hard disk.
-     *
+     * 
      * @param dynamic the dynamic value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -163,7 +171,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the logicalSectorBytes property: The logicalSectorBytes property.
-     *
+     * 
      * @return the logicalSectorBytes value.
      */
     public Integer logicalSectorBytes() {
@@ -172,7 +180,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the logicalSectorBytes property: The logicalSectorBytes property.
-     *
+     * 
      * @param logicalSectorBytes the logicalSectorBytes value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -186,7 +194,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the physicalSectorBytes property: The physicalSectorBytes property.
-     *
+     * 
      * @return the physicalSectorBytes value.
      */
     public Integer physicalSectorBytes() {
@@ -195,7 +203,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the physicalSectorBytes property: The physicalSectorBytes property.
-     *
+     * 
      * @param physicalSectorBytes the physicalSectorBytes value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -209,7 +217,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -218,7 +226,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -232,7 +240,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the diskFileFormat property: The format of the actual VHD file [vhd, vhdx].
-     *
+     * 
      * @return the diskFileFormat value.
      */
     public DiskFileFormat diskFileFormat() {
@@ -241,7 +249,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the diskFileFormat property: The format of the actual VHD file [vhd, vhdx].
-     *
+     * 
      * @param diskFileFormat the diskFileFormat value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -255,7 +263,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the virtual hard disk.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -264,7 +272,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for VHD.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -273,7 +281,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for VHD.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the VirtualHardDisksInner object itself.
      */
@@ -287,7 +295,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Get the status property: The observed state of virtual hard disks.
-     *
+     * 
      * @return the status value.
      */
     public VirtualHardDiskStatus status() {
@@ -296,7 +304,7 @@ public final class VirtualHardDisksInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

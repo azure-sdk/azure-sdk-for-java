@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestackhci.fluent.models.RoutePropertiesFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Route - Route resource. */
+/**
+ * Route - Route resource.
+ */
 @Fluent
 public final class Route {
     /*
@@ -23,13 +25,15 @@ public final class Route {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of Route class. */
+    /**
+     * Creates an instance of Route class.
+     */
     public Route() {
     }
 
     /**
      * Get the innerProperties property: Properties of the route.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RoutePropertiesFormat innerProperties() {
@@ -38,7 +42,7 @@ public final class Route {
 
     /**
      * Get the name property: Name - name of the subnet.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -47,7 +51,7 @@ public final class Route {
 
     /**
      * Set the name property: Name - name of the subnet.
-     *
+     * 
      * @param name the name value to set.
      * @return the Route object itself.
      */
@@ -58,7 +62,7 @@ public final class Route {
 
     /**
      * Get the addressPrefix property: The destination CIDR to which the route applies.
-     *
+     * 
      * @return the addressPrefix value.
      */
     public String addressPrefix() {
@@ -67,7 +71,7 @@ public final class Route {
 
     /**
      * Set the addressPrefix property: The destination CIDR to which the route applies.
-     *
+     * 
      * @param addressPrefix the addressPrefix value to set.
      * @return the Route object itself.
      */
@@ -82,7 +86,7 @@ public final class Route {
     /**
      * Get the nextHopIpAddress property: The IP address packets should be forwarded to. Next hop values are only
      * allowed in routes where the next hop type is VirtualAppliance.
-     *
+     * 
      * @return the nextHopIpAddress value.
      */
     public String nextHopIpAddress() {
@@ -92,7 +96,7 @@ public final class Route {
     /**
      * Set the nextHopIpAddress property: The IP address packets should be forwarded to. Next hop values are only
      * allowed in routes where the next hop type is VirtualAppliance.
-     *
+     * 
      * @param nextHopIpAddress the nextHopIpAddress value to set.
      * @return the Route object itself.
      */
@@ -106,7 +110,7 @@ public final class Route {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

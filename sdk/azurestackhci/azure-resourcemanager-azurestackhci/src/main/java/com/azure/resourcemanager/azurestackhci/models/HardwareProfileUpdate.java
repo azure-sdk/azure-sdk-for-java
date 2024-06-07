@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HardwareProfile - Specifies the hardware settings for the virtual machine instance. */
+/**
+ * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
+ */
 @Fluent
 public final class HardwareProfileUpdate {
     /*
@@ -28,13 +30,15 @@ public final class HardwareProfileUpdate {
     @JsonProperty(value = "memoryMB")
     private Long memoryMB;
 
-    /** Creates an instance of HardwareProfileUpdate class. */
+    /**
+     * Creates an instance of HardwareProfileUpdate class.
+     */
     public HardwareProfileUpdate() {
     }
 
     /**
      * Get the vmSize property: The vmSize property.
-     *
+     * 
      * @return the vmSize value.
      */
     public VmSizeEnum vmSize() {
@@ -43,7 +47,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the vmSize property: The vmSize property.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -54,7 +58,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Get the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @return the processors value.
      */
     public Integer processors() {
@@ -63,7 +67,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @param processors the processors value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -74,7 +78,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Get the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -83,7 +87,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -94,7 +98,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

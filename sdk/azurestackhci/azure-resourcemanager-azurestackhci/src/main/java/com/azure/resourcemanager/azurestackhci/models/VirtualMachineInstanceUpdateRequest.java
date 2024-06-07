@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The virtual machine instance resource patch definition. */
+/**
+ * The virtual machine instance resource patch definition.
+ */
 @Fluent
 public final class VirtualMachineInstanceUpdateRequest {
     /*
@@ -22,13 +24,15 @@ public final class VirtualMachineInstanceUpdateRequest {
     @JsonProperty(value = "identity")
     private Identity identity;
 
-    /** Creates an instance of VirtualMachineInstanceUpdateRequest class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceUpdateRequest class.
+     */
     public VirtualMachineInstanceUpdateRequest() {
     }
 
     /**
      * Get the properties property: Defines the resource properties for the update.
-     *
+     * 
      * @return the properties value.
      */
     public VirtualMachineInstanceUpdateProperties properties() {
@@ -37,7 +41,7 @@ public final class VirtualMachineInstanceUpdateRequest {
 
     /**
      * Set the properties property: Defines the resource properties for the update.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the VirtualMachineInstanceUpdateRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class VirtualMachineInstanceUpdateRequest {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -57,7 +61,7 @@ public final class VirtualMachineInstanceUpdateRequest {
 
     /**
      * Set the identity property: Identity for the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the VirtualMachineInstanceUpdateRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class VirtualMachineInstanceUpdateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NetworkInterfaceStatusProvisioningStatus model. */
+/**
+ * The NetworkInterfaceStatusProvisioningStatus model.
+ */
 @Fluent
 public final class NetworkInterfaceStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class NetworkInterfaceStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of NetworkInterfaceStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of NetworkInterfaceStatusProvisioningStatus class.
+     */
     public NetworkInterfaceStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the network interface.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the network interface.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the NetworkInterfaceStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the network interface [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the network interface [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the NetworkInterfaceStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

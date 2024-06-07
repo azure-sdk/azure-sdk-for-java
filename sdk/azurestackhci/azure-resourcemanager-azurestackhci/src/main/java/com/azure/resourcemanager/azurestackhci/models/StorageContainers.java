@@ -10,125 +10,132 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.StorageContainersInner;
 import java.util.Map;
 
-/** An immutable client-side representation of StorageContainers. */
+/**
+ * An immutable client-side representation of StorageContainers.
+ */
 public interface StorageContainers {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
      * Gets the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the path property: Path of the storage container on the disk.
-     *
+     * 
      * @return the path value.
      */
     String path();
 
     /**
      * Gets the provisioningState property: Provisioning state of the storage container.
-     *
+     * 
      * @return the provisioningState value.
      */
     ProvisioningStateEnum provisioningState();
 
     /**
      * Gets the status property: The observed state of storage containers.
-     *
+     * 
      * @return the status value.
      */
     StorageContainerStatus status();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.azurestackhci.fluent.models.StorageContainersInner object.
-     *
+     * 
      * @return the inner object.
      */
     StorageContainersInner innerModel();
 
-    /** The entirety of the StorageContainers definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the StorageContainers definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
-    /** The StorageContainers definition stages. */
+    /**
+     * The StorageContainers definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the StorageContainers definition. */
+        /**
+         * The first stage of the StorageContainers definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the StorageContainers definition allowing to specify location. */
+        /**
+         * The stage of the StorageContainers definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -136,18 +143,20 @@ public interface StorageContainers {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
 
-        /** The stage of the StorageContainers definition allowing to specify parent resource. */
+        /**
+         * The stage of the StorageContainers definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
@@ -162,47 +171,53 @@ public interface StorageContainers {
             extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation, DefinitionStages.WithPath {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             StorageContainers create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             StorageContainers create(Context context);
         }
 
-        /** The stage of the StorageContainers definition allowing to specify tags. */
+        /**
+         * The stage of the StorageContainers definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the StorageContainers definition allowing to specify extendedLocation. */
+        /**
+         * The stage of the StorageContainers definition allowing to specify extendedLocation.
+         */
         interface WithExtendedLocation {
             /**
              * Specifies the extendedLocation property: The extendedLocation of the resource..
-             *
+             * 
              * @param extendedLocation The extendedLocation of the resource.
              * @return the next definition stage.
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
 
-        /** The stage of the StorageContainers definition allowing to specify path. */
+        /**
+         * The stage of the StorageContainers definition allowing to specify path.
+         */
         interface WithPath {
             /**
              * Specifies the path property: Path of the storage container on the disk.
-             *
+             * 
              * @param path Path of the storage container on the disk.
              * @return the next definition stage.
              */
@@ -212,36 +227,42 @@ public interface StorageContainers {
 
     /**
      * Begins update for the StorageContainers resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     StorageContainers.Update update();
 
-    /** The template for StorageContainers update. */
+    /**
+     * The template for StorageContainers update.
+     */
     interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         StorageContainers apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         StorageContainers apply(Context context);
     }
 
-    /** The StorageContainers update stages. */
+    /**
+     * The StorageContainers update stages.
+     */
     interface UpdateStages {
-        /** The stage of the StorageContainers update allowing to specify tags. */
+        /**
+         * The stage of the StorageContainers update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags.
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
@@ -251,14 +272,14 @@ public interface StorageContainers {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     StorageContainers refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

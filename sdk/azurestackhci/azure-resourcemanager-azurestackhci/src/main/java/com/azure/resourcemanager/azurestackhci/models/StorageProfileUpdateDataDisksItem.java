@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The StorageProfileUpdateDataDisksItem model. */
+/**
+ * The StorageProfileUpdateDataDisksItem model.
+ */
 @Fluent
 public final class StorageProfileUpdateDataDisksItem {
     /*
@@ -16,13 +18,15 @@ public final class StorageProfileUpdateDataDisksItem {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of StorageProfileUpdateDataDisksItem class. */
+    /**
+     * Creates an instance of StorageProfileUpdateDataDisksItem class.
+     */
     public StorageProfileUpdateDataDisksItem() {
     }
 
     /**
      * Get the id property: The id property.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class StorageProfileUpdateDataDisksItem {
 
     /**
      * Set the id property: The id property.
-     *
+     * 
      * @param id the id value to set.
      * @return the StorageProfileUpdateDataDisksItem object itself.
      */
@@ -42,7 +46,7 @@ public final class StorageProfileUpdateDataDisksItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

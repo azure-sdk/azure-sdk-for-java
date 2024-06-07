@@ -6,16 +6,20 @@ package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** This is the OS disk image. */
+/**
+ * This is the OS disk image.
+ */
 @Immutable
 public final class GalleryOSDiskImage extends GalleryDiskImage {
-    /** Creates an instance of GalleryOSDiskImage class. */
+    /**
+     * Creates an instance of GalleryOSDiskImage class.
+     */
     public GalleryOSDiskImage() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

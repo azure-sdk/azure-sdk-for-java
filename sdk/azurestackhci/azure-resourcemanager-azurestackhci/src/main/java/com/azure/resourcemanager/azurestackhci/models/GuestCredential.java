@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Username / Password Credentials to connect to guest. */
+/**
+ * Username / Password Credentials to connect to guest.
+ */
 @Fluent
 public final class GuestCredential {
     /*
@@ -22,13 +24,15 @@ public final class GuestCredential {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of GuestCredential class. */
+    /**
+     * Creates an instance of GuestCredential class.
+     */
     public GuestCredential() {
     }
 
     /**
      * Get the username property: The username to connect with the guest.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -37,7 +41,7 @@ public final class GuestCredential {
 
     /**
      * Set the username property: The username to connect with the guest.
-     *
+     * 
      * @param username the username value to set.
      * @return the GuestCredential object itself.
      */
@@ -48,7 +52,7 @@ public final class GuestCredential {
 
     /**
      * Get the password property: The password to connect with the guest.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +61,7 @@ public final class GuestCredential {
 
     /**
      * Set the password property: The password to connect with the guest.
-     *
+     * 
      * @param password the password value to set.
      * @return the GuestCredential object itself.
      */
@@ -68,7 +72,7 @@ public final class GuestCredential {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

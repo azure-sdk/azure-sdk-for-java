@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of gallery images. */
+/**
+ * The observed state of gallery images.
+ */
 @Fluent
 public final class GalleryImageStatus {
     /*
@@ -40,13 +42,15 @@ public final class GalleryImageStatus {
     @JsonProperty(value = "progressPercentage")
     private Long progressPercentage;
 
-    /** Creates an instance of GalleryImageStatus class. */
+    /**
+     * Creates an instance of GalleryImageStatus class.
+     */
     public GalleryImageStatus() {
     }
 
     /**
      * Get the errorCode property: GalleryImage provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -55,7 +59,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the errorCode property: GalleryImage provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -66,7 +70,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -75,7 +79,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -86,7 +90,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public GalleryImageStatusProvisioningStatus provisioningStatus() {
@@ -95,7 +99,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -106,7 +110,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @return the downloadStatus value.
      */
     public GalleryImageStatusDownloadStatus downloadStatus() {
@@ -115,7 +119,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @param downloadStatus the downloadStatus value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -126,7 +130,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @return the progressPercentage value.
      */
     public Long progressPercentage() {
@@ -135,7 +139,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @param progressPercentage the progressPercentage value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -146,7 +150,7 @@ public final class GalleryImageStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

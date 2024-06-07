@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.models.GuestCredential;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningAction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class GuestAgentProperties {
     /*
@@ -36,13 +38,15 @@ public final class GuestAgentProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
-    /** Creates an instance of GuestAgentProperties class. */
+    /**
+     * Creates an instance of GuestAgentProperties class.
+     */
     public GuestAgentProperties() {
     }
 
     /**
      * Get the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @return the credentials value.
      */
     public GuestCredential credentials() {
@@ -51,7 +55,7 @@ public final class GuestAgentProperties {
 
     /**
      * Set the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the GuestAgentProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @return the provisioningAction value.
      */
     public ProvisioningAction provisioningAction() {
@@ -71,7 +75,7 @@ public final class GuestAgentProperties {
 
     /**
      * Set the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @param provisioningAction the provisioningAction value to set.
      * @return the GuestAgentProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the status property: The guest agent status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -91,7 +95,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -100,7 +104,7 @@ public final class GuestAgentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

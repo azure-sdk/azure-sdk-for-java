@@ -14,11 +14,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurestackhci.fluent.models.NetworkInterfacesInner;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfacesUpdateRequest;
 
-/** An instance of this class provides access to all the operations defined in NetworkInterfacesOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in NetworkInterfacesOperationsClient.
+ */
 public interface NetworkInterfacesOperationsClient {
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -28,12 +30,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return a network interface along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NetworkInterfacesInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String networkInterfaceName, Context context);
+    Response<NetworkInterfacesInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String networkInterfaceName, Context context);
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface NetworkInterfacesOperationsClient {
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -57,13 +59,13 @@ public interface NetworkInterfacesOperationsClient {
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces);
+    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesInner networkInterfaces);
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -74,16 +76,13 @@ public interface NetworkInterfacesOperationsClient {
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
-        Context context);
+    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesInner networkInterfaces, Context context);
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -93,13 +92,13 @@ public interface NetworkInterfacesOperationsClient {
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NetworkInterfacesInner createOrUpdate(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces);
+    NetworkInterfacesInner createOrUpdate(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces);
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -110,15 +109,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NetworkInterfacesInner createOrUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
-        Context context);
+    NetworkInterfacesInner createOrUpdate(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces, Context context);
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -131,7 +127,7 @@ public interface NetworkInterfacesOperationsClient {
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -141,12 +137,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String networkInterfaceName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String networkInterfaceName,
+        Context context);
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -158,7 +154,7 @@ public interface NetworkInterfacesOperationsClient {
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -171,7 +167,7 @@ public interface NetworkInterfacesOperationsClient {
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -181,12 +177,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces);
+    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces);
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -197,15 +193,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context);
+    SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces, Context context);
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -215,12 +208,12 @@ public interface NetworkInterfacesOperationsClient {
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NetworkInterfacesInner update(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces);
+    NetworkInterfacesInner update(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces);
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -231,16 +224,13 @@ public interface NetworkInterfacesOperationsClient {
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NetworkInterfacesInner update(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context);
+    NetworkInterfacesInner update(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces, Context context);
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -253,7 +243,7 @@ public interface NetworkInterfacesOperationsClient {
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -267,7 +257,7 @@ public interface NetworkInterfacesOperationsClient {
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -278,7 +268,7 @@ public interface NetworkInterfacesOperationsClient {
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

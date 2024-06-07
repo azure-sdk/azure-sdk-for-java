@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Subnet - Name of Subnet bound to the IP configuration. */
+/**
+ * Subnet - Name of Subnet bound to the IP configuration.
+ */
 @Fluent
 public final class IpConfigurationPropertiesSubnet {
     /*
@@ -16,14 +18,16 @@ public final class IpConfigurationPropertiesSubnet {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of IpConfigurationPropertiesSubnet class. */
+    /**
+     * Creates an instance of IpConfigurationPropertiesSubnet class.
+     */
     public IpConfigurationPropertiesSubnet() {
     }
 
     /**
      * Get the id property: ID - The ARM resource id in the form of
      * /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/...
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -33,7 +37,7 @@ public final class IpConfigurationPropertiesSubnet {
     /**
      * Set the id property: ID - The ARM resource id in the form of
      * /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/...
-     *
+     * 
      * @param id the id value to set.
      * @return the IpConfigurationPropertiesSubnet object itself.
      */
@@ -44,7 +48,7 @@ public final class IpConfigurationPropertiesSubnet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

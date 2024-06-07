@@ -14,11 +14,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurestackhci.fluent.models.LogicalNetworksInner;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworksUpdateRequest;
 
-/** An instance of this class provides access to all the operations defined in LogicalNetworksOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in LogicalNetworksOperationsClient.
+ */
 public interface LogicalNetworksOperationsClient {
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param context The context to associate with this operation.
@@ -28,12 +30,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the logical network resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<LogicalNetworksInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String logicalNetworkName, Context context);
+    Response<LogicalNetworksInner> getByResourceGroupWithResponse(String resourceGroupName, String logicalNetworkName,
+        Context context);
 
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface LogicalNetworksOperationsClient {
     /**
      * The operation to create or update a logical network. Please note some properties can be set only during logical
      * network creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource definition.
@@ -57,13 +59,13 @@ public interface LogicalNetworksOperationsClient {
      * @return the {@link SyncPoller} for polling of the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginCreateOrUpdate(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksInner logicalNetworks);
+    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginCreateOrUpdate(String resourceGroupName,
+        String logicalNetworkName, LogicalNetworksInner logicalNetworks);
 
     /**
      * The operation to create or update a logical network. Please note some properties can be set only during logical
      * network creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource definition.
@@ -74,13 +76,13 @@ public interface LogicalNetworksOperationsClient {
      * @return the {@link SyncPoller} for polling of the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginCreateOrUpdate(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksInner logicalNetworks, Context context);
+    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginCreateOrUpdate(String resourceGroupName,
+        String logicalNetworkName, LogicalNetworksInner logicalNetworks, Context context);
 
     /**
      * The operation to create or update a logical network. Please note some properties can be set only during logical
      * network creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource definition.
@@ -90,13 +92,13 @@ public interface LogicalNetworksOperationsClient {
      * @return the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LogicalNetworksInner createOrUpdate(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksInner logicalNetworks);
+    LogicalNetworksInner createOrUpdate(String resourceGroupName, String logicalNetworkName,
+        LogicalNetworksInner logicalNetworks);
 
     /**
      * The operation to create or update a logical network. Please note some properties can be set only during logical
      * network creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource definition.
@@ -107,12 +109,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LogicalNetworksInner createOrUpdate(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksInner logicalNetworks, Context context);
+    LogicalNetworksInner createOrUpdate(String resourceGroupName, String logicalNetworkName,
+        LogicalNetworksInner logicalNetworks, Context context);
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -125,7 +127,7 @@ public interface LogicalNetworksOperationsClient {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param context The context to associate with this operation.
@@ -135,12 +137,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String logicalNetworkName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String logicalNetworkName,
+        Context context);
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -152,7 +154,7 @@ public interface LogicalNetworksOperationsClient {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param context The context to associate with this operation.
@@ -165,7 +167,7 @@ public interface LogicalNetworksOperationsClient {
 
     /**
      * The operation to update a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource patch definition.
@@ -175,12 +177,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the {@link SyncPoller} for polling of the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginUpdate(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksUpdateRequest logicalNetworks);
+    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginUpdate(String resourceGroupName,
+        String logicalNetworkName, LogicalNetworksUpdateRequest logicalNetworks);
 
     /**
      * The operation to update a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource patch definition.
@@ -191,15 +193,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the {@link SyncPoller} for polling of the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginUpdate(
-        String resourceGroupName,
-        String logicalNetworkName,
-        LogicalNetworksUpdateRequest logicalNetworks,
-        Context context);
+    SyncPoller<PollResult<LogicalNetworksInner>, LogicalNetworksInner> beginUpdate(String resourceGroupName,
+        String logicalNetworkName, LogicalNetworksUpdateRequest logicalNetworks, Context context);
 
     /**
      * The operation to update a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource patch definition.
@@ -209,12 +208,12 @@ public interface LogicalNetworksOperationsClient {
      * @return the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LogicalNetworksInner update(
-        String resourceGroupName, String logicalNetworkName, LogicalNetworksUpdateRequest logicalNetworks);
+    LogicalNetworksInner update(String resourceGroupName, String logicalNetworkName,
+        LogicalNetworksUpdateRequest logicalNetworks);
 
     /**
      * The operation to update a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param logicalNetworks The logical network resource patch definition.
@@ -225,16 +224,13 @@ public interface LogicalNetworksOperationsClient {
      * @return the logical network resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LogicalNetworksInner update(
-        String resourceGroupName,
-        String logicalNetworkName,
-        LogicalNetworksUpdateRequest logicalNetworks,
-        Context context);
+    LogicalNetworksInner update(String resourceGroupName, String logicalNetworkName,
+        LogicalNetworksUpdateRequest logicalNetworks, Context context);
 
     /**
      * Lists all of the logical networks in the specified resource group. Use the nextLink property in the response to
      * get the next page of logical networks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -247,7 +243,7 @@ public interface LogicalNetworksOperationsClient {
     /**
      * Lists all of the logical networks in the specified resource group. Use the nextLink property in the response to
      * get the next page of logical networks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -261,7 +257,7 @@ public interface LogicalNetworksOperationsClient {
     /**
      * Lists all of the logical networks in the specified subscription. Use the nextLink property in the response to get
      * the next page of logical networks.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -272,7 +268,7 @@ public interface LogicalNetworksOperationsClient {
     /**
      * Lists all of the logical networks in the specified subscription. Use the nextLink property in the response to get
      * the next page of logical networks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

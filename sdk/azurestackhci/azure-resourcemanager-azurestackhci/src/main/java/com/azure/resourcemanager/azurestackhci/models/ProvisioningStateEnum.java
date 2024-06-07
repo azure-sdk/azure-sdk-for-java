@@ -8,29 +8,43 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Provisioning state of the gallery image. */
+/**
+ * Provisioning state of the gallery image.
+ */
 public final class ProvisioningStateEnum extends ExpandableStringEnum<ProvisioningStateEnum> {
-    /** Static value Succeeded for ProvisioningStateEnum. */
+    /**
+     * Static value Succeeded for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for ProvisioningStateEnum. */
+    /**
+     * Static value Failed for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum FAILED = fromString("Failed");
 
-    /** Static value InProgress for ProvisioningStateEnum. */
+    /**
+     * Static value InProgress for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Accepted for ProvisioningStateEnum. */
+    /**
+     * Static value Accepted for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum ACCEPTED = fromString("Accepted");
 
-    /** Static value Deleting for ProvisioningStateEnum. */
+    /**
+     * Static value Deleting for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum DELETING = fromString("Deleting");
 
-    /** Static value Canceled for ProvisioningStateEnum. */
+    /**
+     * Static value Canceled for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum CANCELED = fromString("Canceled");
 
     /**
      * Creates a new instance of ProvisioningStateEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -39,7 +53,7 @@ public final class ProvisioningStateEnum extends ExpandableStringEnum<Provisioni
 
     /**
      * Creates or finds a ProvisioningStateEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ProvisioningStateEnum.
      */
@@ -50,7 +64,7 @@ public final class ProvisioningStateEnum extends ExpandableStringEnum<Provisioni
 
     /**
      * Gets known ProvisioningStateEnum values.
-     *
+     * 
      * @return known ProvisioningStateEnum values.
      */
     public static Collection<ProvisioningStateEnum> values() {

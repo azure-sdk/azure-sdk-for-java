@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties under the network interface resource. */
+/**
+ * Properties under the network interface resource.
+ */
 @Fluent
 public final class NetworkInterfaceProperties {
     /*
@@ -45,13 +47,15 @@ public final class NetworkInterfaceProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private NetworkInterfaceStatus status;
 
-    /** Creates an instance of NetworkInterfaceProperties class. */
+    /**
+     * Creates an instance of NetworkInterfaceProperties class.
+     */
     public NetworkInterfaceProperties() {
     }
 
     /**
      * Get the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -60,7 +64,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -80,7 +84,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @param macAddress the macAddress value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @return the dnsSettings value.
      */
     public InterfaceDnsSettings dnsSettings() {
@@ -100,7 +104,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @param dnsSettings the dnsSettings value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -111,7 +115,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the network interface.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -120,7 +124,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the status property: The observed state of network interfaces.
-     *
+     * 
      * @return the status value.
      */
     public NetworkInterfaceStatus status() {
@@ -129,7 +133,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
