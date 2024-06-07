@@ -12,11 +12,13 @@ import com.azure.resourcemanager.appcomplianceautomation.models.ResourceItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object that includes all the possible response for the download operation. */
+/**
+ * Object that includes all the possible response for the download operation.
+ */
 @Immutable
 public final class DownloadResponseInner {
     /*
-     * List of the reports
+     * Resource list of the report
      */
     @JsonProperty(value = "resourceList", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResourceItem> resourceList;
@@ -28,24 +30,26 @@ public final class DownloadResponseInner {
     private List<ComplianceReportItem> complianceReport;
 
     /*
-     * compliance pdf report
+     * Compliance pdf report
      */
     @JsonProperty(value = "compliancePdfReport", access = JsonProperty.Access.WRITE_ONLY)
     private DownloadResponseCompliancePdfReport compliancePdfReport;
 
     /*
-     * compliance detailed pdf report
+     * The detailed compliance pdf report
      */
     @JsonProperty(value = "complianceDetailedPdfReport", access = JsonProperty.Access.WRITE_ONLY)
     private DownloadResponseComplianceDetailedPdfReport complianceDetailedPdfReport;
 
-    /** Creates an instance of DownloadResponseInner class. */
+    /**
+     * Creates an instance of DownloadResponseInner class.
+     */
     public DownloadResponseInner() {
     }
 
     /**
-     * Get the resourceList property: List of the reports.
-     *
+     * Get the resourceList property: Resource list of the report.
+     * 
      * @return the resourceList value.
      */
     public List<ResourceItem> resourceList() {
@@ -54,7 +58,7 @@ public final class DownloadResponseInner {
 
     /**
      * Get the complianceReport property: List of the compliance result.
-     *
+     * 
      * @return the complianceReport value.
      */
     public List<ComplianceReportItem> complianceReport() {
@@ -62,8 +66,8 @@ public final class DownloadResponseInner {
     }
 
     /**
-     * Get the compliancePdfReport property: compliance pdf report.
-     *
+     * Get the compliancePdfReport property: Compliance pdf report.
+     * 
      * @return the compliancePdfReport value.
      */
     public DownloadResponseCompliancePdfReport compliancePdfReport() {
@@ -71,8 +75,8 @@ public final class DownloadResponseInner {
     }
 
     /**
-     * Get the complianceDetailedPdfReport property: compliance detailed pdf report.
-     *
+     * Get the complianceDetailedPdfReport property: The detailed compliance pdf report.
+     * 
      * @return the complianceDetailedPdfReport value.
      */
     public DownloadResponseComplianceDetailedPdfReport complianceDetailedPdfReport() {
@@ -81,7 +85,7 @@ public final class DownloadResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
