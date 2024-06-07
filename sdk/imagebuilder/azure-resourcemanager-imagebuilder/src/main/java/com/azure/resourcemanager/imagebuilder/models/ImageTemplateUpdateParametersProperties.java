@@ -19,6 +19,12 @@ public final class ImageTemplateUpdateParametersProperties {
     @JsonProperty(value = "distribute")
     private List<ImageTemplateDistributor> distribute;
 
+    /*
+     * Describes how virtual machine is set up to build images
+     */
+    @JsonProperty(value = "vmProfile")
+    private ImageTemplateVmProfile vmProfile;
+
     /**
      * Creates an instance of ImageTemplateUpdateParametersProperties class.
      */
@@ -46,6 +52,26 @@ public final class ImageTemplateUpdateParametersProperties {
     }
 
     /**
+     * Get the vmProfile property: Describes how virtual machine is set up to build images.
+     * 
+     * @return the vmProfile value.
+     */
+    public ImageTemplateVmProfile vmProfile() {
+        return this.vmProfile;
+    }
+
+    /**
+     * Set the vmProfile property: Describes how virtual machine is set up to build images.
+     * 
+     * @param vmProfile the vmProfile value to set.
+     * @return the ImageTemplateUpdateParametersProperties object itself.
+     */
+    public ImageTemplateUpdateParametersProperties withVmProfile(ImageTemplateVmProfile vmProfile) {
+        this.vmProfile = vmProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -53,6 +79,9 @@ public final class ImageTemplateUpdateParametersProperties {
     public void validate() {
         if (distribute() != null) {
             distribute().forEach(e -> e.validate());
+        }
+        if (vmProfile() != null) {
+            vmProfile().validate();
         }
     }
 }

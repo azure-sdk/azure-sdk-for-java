@@ -13,14 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VirtualNetworkConfig {
     /*
-     * Resource id of a pre-existing subnet.
+     * Resource id of a pre-existing subnet on which the build VM and validation VM will be deployed
      */
     @JsonProperty(value = "subnetId")
     private String subnetId;
 
     /*
-     * Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. Omit or specify empty
-     * string to use the default (Standard_A1_v2).
+     * Resource id of a pre-existing subnet on which Azure Container Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified and must be on the same Virtual Network as the subnet specified in `subnetId`.
+     */
+    @JsonProperty(value = "containerInstanceSubnetId")
+    private String containerInstanceSubnetId;
+
+    /*
+     * Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2).
      */
     @JsonProperty(value = "proxyVmSize")
     private String proxyVmSize;
@@ -32,7 +37,8 @@ public final class VirtualNetworkConfig {
     }
 
     /**
-     * Get the subnetId property: Resource id of a pre-existing subnet.
+     * Get the subnetId property: Resource id of a pre-existing subnet on which the build VM and validation VM will be
+     * deployed.
      * 
      * @return the subnetId value.
      */
@@ -41,7 +47,8 @@ public final class VirtualNetworkConfig {
     }
 
     /**
-     * Set the subnetId property: Resource id of a pre-existing subnet.
+     * Set the subnetId property: Resource id of a pre-existing subnet on which the build VM and validation VM will be
+     * deployed.
      * 
      * @param subnetId the subnetId value to set.
      * @return the VirtualNetworkConfig object itself.
@@ -52,8 +59,33 @@ public final class VirtualNetworkConfig {
     }
 
     /**
+     * Get the containerInstanceSubnetId property: Resource id of a pre-existing subnet on which Azure Container
+     * Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified
+     * and must be on the same Virtual Network as the subnet specified in `subnetId`.
+     * 
+     * @return the containerInstanceSubnetId value.
+     */
+    public String containerInstanceSubnetId() {
+        return this.containerInstanceSubnetId;
+    }
+
+    /**
+     * Set the containerInstanceSubnetId property: Resource id of a pre-existing subnet on which Azure Container
+     * Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified
+     * and must be on the same Virtual Network as the subnet specified in `subnetId`.
+     * 
+     * @param containerInstanceSubnetId the containerInstanceSubnetId value to set.
+     * @return the VirtualNetworkConfig object itself.
+     */
+    public VirtualNetworkConfig withContainerInstanceSubnetId(String containerInstanceSubnetId) {
+        this.containerInstanceSubnetId = containerInstanceSubnetId;
+        return this;
+    }
+
+    /**
      * Get the proxyVmSize property: Size of the proxy virtual machine used to pass traffic to the build VM and
-     * validation VM. Omit or specify empty string to use the default (Standard_A1_v2).
+     * validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual
+     * machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2).
      * 
      * @return the proxyVmSize value.
      */
@@ -63,7 +95,8 @@ public final class VirtualNetworkConfig {
 
     /**
      * Set the proxyVmSize property: Size of the proxy virtual machine used to pass traffic to the build VM and
-     * validation VM. Omit or specify empty string to use the default (Standard_A1_v2).
+     * validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual
+     * machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2).
      * 
      * @param proxyVmSize the proxyVmSize value to set.
      * @return the VirtualNetworkConfig object itself.

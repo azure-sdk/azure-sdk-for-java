@@ -7,21 +7,25 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Describes the properties of a trigger.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = TriggerProperties.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = TriggerProperties.class, visible = true)
 @JsonTypeName("TriggerProperties")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "SourceImage", value = SourceImageTriggerProperties.class) })
 @Immutable
 public class TriggerProperties {
+    /*
+     * The kind of trigger.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private String kind;
+
     /*
      * Trigger status
      */
@@ -38,6 +42,16 @@ public class TriggerProperties {
      * Creates an instance of TriggerProperties class.
      */
     public TriggerProperties() {
+        this.kind = "TriggerProperties";
+    }
+
+    /**
+     * Get the kind property: The kind of trigger.
+     * 
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
     }
 
     /**

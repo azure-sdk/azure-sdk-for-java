@@ -9,9 +9,7 @@ package com.azure.resourcemanager.imagebuilder.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/
-     * OperationsList.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/OperationsList.json
      */
     /**
      * Sample code: Retrieve operations list.

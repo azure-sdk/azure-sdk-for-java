@@ -5,18 +5,16 @@
 package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Describes a virtual machine image source for building, customizing and distributing.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = ImageTemplateSource.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = ImageTemplateSource.class, visible = true)
 @JsonTypeName("ImageTemplateSource")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "PlatformImage", value = ImageTemplatePlatformImageSource.class),
@@ -24,10 +22,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SharedImageVersion", value = ImageTemplateSharedImageVersionSource.class) })
 @Immutable
 public class ImageTemplateSource {
+    /*
+     * Specifies the type of source image you want to start with.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type;
+
     /**
      * Creates an instance of ImageTemplateSource class.
      */
     public ImageTemplateSource() {
+        this.type = "ImageTemplateSource";
+    }
+
+    /**
+     * Get the type property: Specifies the type of source image you want to start with.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**

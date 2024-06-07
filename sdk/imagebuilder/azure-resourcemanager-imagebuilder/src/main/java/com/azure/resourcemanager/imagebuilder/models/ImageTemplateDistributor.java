@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -18,9 +19,9 @@ import java.util.Map;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = ImageTemplateDistributor.class)
+    defaultImpl = ImageTemplateDistributor.class,
+    visible = true)
 @JsonTypeName("ImageTemplateDistributor")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ManagedImage", value = ImageTemplateManagedImageDistributor.class),
@@ -28,6 +29,13 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "VHD", value = ImageTemplateVhdDistributor.class) })
 @Fluent
 public class ImageTemplateDistributor {
+    /*
+     * Type of distribution.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type;
+
     /*
      * The name to be used for the associated RunOutput.
      */
@@ -45,6 +53,16 @@ public class ImageTemplateDistributor {
      * Creates an instance of ImageTemplateDistributor class.
      */
     public ImageTemplateDistributor() {
+        this.type = "ImageTemplateDistributor";
+    }
+
+    /**
+     * Get the type property: Type of distribution.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -96,8 +114,9 @@ public class ImageTemplateDistributor {
      */
     public void validate() {
         if (runOutputName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property runOutputName in model ImageTemplateDistributor"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property runOutputName in model ImageTemplateDistributor"));
         }
     }
 

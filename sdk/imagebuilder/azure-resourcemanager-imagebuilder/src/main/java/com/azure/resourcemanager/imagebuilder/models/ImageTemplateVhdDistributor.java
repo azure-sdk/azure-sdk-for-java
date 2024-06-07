@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -13,13 +14,23 @@ import java.util.Map;
 /**
  * Distribute via VHD in a storage account.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateVhdDistributor.class,
+    visible = true)
 @JsonTypeName("VHD")
 @Fluent
 public final class ImageTemplateVhdDistributor extends ImageTemplateDistributor {
     /*
-     * Optional Azure Storage URI for the distributed VHD blob. Omit to use the default (empty string) in which case
-     * VHD would be published to the storage account in the staging resource group.
+     * Type of distribution.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "VHD";
+
+    /*
+     * Optional Azure Storage URI for the distributed VHD blob. Omit to use the default (empty string) in which case VHD would be published to the storage account in the staging resource group.
      */
     @JsonProperty(value = "uri")
     private String uri;
@@ -28,6 +39,16 @@ public final class ImageTemplateVhdDistributor extends ImageTemplateDistributor 
      * Creates an instance of ImageTemplateVhdDistributor class.
      */
     public ImageTemplateVhdDistributor() {
+    }
+
+    /**
+     * Get the type property: Type of distribution.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**

@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Generates version number based on version number of source image.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scheme")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "scheme",
+    defaultImpl = DistributeVersionerSource.class,
+    visible = true)
 @JsonTypeName("Source")
 @Immutable
 public final class DistributeVersionerSource extends DistributeVersioner {
+    /*
+     * Version numbering scheme to be used.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scheme", required = true)
+    private String scheme = "Source";
+
     /**
      * Creates an instance of DistributeVersionerSource class.
      */
     public DistributeVersionerSource() {
+    }
+
+    /**
+     * Get the scheme property: Version numbering scheme to be used.
+     * 
+     * @return the scheme value.
+     */
+    @Override
+    public String scheme() {
+        return this.scheme;
     }
 
     /**
