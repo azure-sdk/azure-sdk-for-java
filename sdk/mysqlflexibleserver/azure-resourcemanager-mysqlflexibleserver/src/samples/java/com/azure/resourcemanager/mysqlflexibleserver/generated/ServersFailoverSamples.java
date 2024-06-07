@@ -9,7 +9,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
  */
 public final class ServersFailoverSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerFailover.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-02-01-preview/examples/ServerFailover.json
      */
     /**
      * Sample code: Restart a server.

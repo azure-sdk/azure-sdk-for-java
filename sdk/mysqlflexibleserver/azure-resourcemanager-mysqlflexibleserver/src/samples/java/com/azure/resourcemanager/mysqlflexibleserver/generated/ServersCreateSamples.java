@@ -19,6 +19,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerSkuTier;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
+import com.azure.resourcemanager.mysqlflexibleserver.models.StorageRedundancyEnum;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ import java.util.Map;
  */
 public final class ServersCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateReplica.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-02-01-preview/examples/ServerCreateReplica.json
      */
     /**
      * Sample code: Create a replica server.
@@ -48,7 +49,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreate.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-02-01-preview/examples/ServerCreate.json
      */
     /**
      * Sample code: Create a new server.
@@ -67,7 +68,10 @@ public final class ServersCreateSamples {
             .withVersion(ServerVersion.FIVE_SEVEN)
             .withAvailabilityZone("1")
             .withCreateMode(CreateMode.DEFAULT)
-            .withStorage(new Storage().withStorageSizeGB(100).withIops(600).withAutoGrow(EnableStatusEnum.DISABLED))
+            .withStorage(new Storage().withStorageSizeGB(100)
+                .withIops(600)
+                .withAutoGrow(EnableStatusEnum.DISABLED)
+                .withStorageRedundancy(StorageRedundancyEnum.LOCAL_REDUNDANCY))
             .withBackup(new Backup().withBackupRetentionDays(7)
                 .withBackupIntervalHours(24)
                 .withGeoRedundantBackup(EnableStatusEnum.DISABLED))
@@ -77,7 +81,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateWithBYOK.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-02-01-preview/examples/ServerCreateWithBYOK.json
      */
     /**
      * Sample code: Create a server with byok.
@@ -109,7 +113,10 @@ public final class ServersCreateSamples {
                     "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/test-geo-identity")
                 .withGeoBackupKeyUri("fakeTokenPlaceholder")
                 .withType(DataEncryptionType.AZURE_KEY_VAULT))
-            .withStorage(new Storage().withStorageSizeGB(100).withIops(600).withAutoGrow(EnableStatusEnum.DISABLED))
+            .withStorage(new Storage().withStorageSizeGB(100)
+                .withIops(600)
+                .withAutoGrow(EnableStatusEnum.DISABLED)
+                .withStorageRedundancy(StorageRedundancyEnum.LOCAL_REDUNDANCY))
             .withBackup(new Backup().withBackupRetentionDays(7)
                 .withBackupIntervalHours(24)
                 .withGeoRedundantBackup(EnableStatusEnum.DISABLED))
@@ -119,7 +126,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateWithPointInTimeRestore.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-02-01-preview/examples/ServerCreateWithPointInTimeRestore.json
      */
     /**
      * Sample code: Create a server as a point in time restore.
