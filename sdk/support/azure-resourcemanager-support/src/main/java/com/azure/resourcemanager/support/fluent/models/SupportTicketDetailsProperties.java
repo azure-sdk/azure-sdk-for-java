@@ -69,7 +69,7 @@ public final class SupportTicketDetailsProperties {
     /*
      * Advanced diagnostic consent to be updated on the support ticket.
      */
-    @JsonProperty(value = "advancedDiagnosticConsent", required = true)
+    @JsonProperty(value = "advancedDiagnosticConsent")
     private Consent advancedDiagnosticConsent;
 
     /*
@@ -676,11 +676,6 @@ public final class SupportTicketDetailsProperties {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property severity in model SupportTicketDetailsProperties"));
-        }
-        if (advancedDiagnosticConsent() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property advancedDiagnosticConsent in model SupportTicketDetailsProperties"));
         }
         if (contactDetails() == null) {
             throw LOGGER.atError()

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.support.models;
 
 import com.azure.resourcemanager.support.fluent.models.ServiceInner;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An immutable client-side representation of Service.
@@ -45,6 +46,13 @@ public interface Service {
      * @return the resourceTypes value.
      */
     List<String> resourceTypes();
+
+    /**
+     * Gets the metadata property: Metadata about the service, only visible for 1P clients.
+     * 
+     * @return the metadata value.
+     */
+    Map<String, String> metadata();
 
     /**
      * Gets the inner com.azure.resourcemanager.support.fluent.models.ServiceInner object.

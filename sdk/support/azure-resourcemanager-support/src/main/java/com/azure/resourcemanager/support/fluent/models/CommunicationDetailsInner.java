@@ -6,7 +6,6 @@ package com.azure.resourcemanager.support.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.support.models.CommunicationDirection;
 import com.azure.resourcemanager.support.models.CommunicationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,8 +19,8 @@ public final class CommunicationDetailsInner extends ProxyResource {
     /*
      * Properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private CommunicationDetailsProperties innerProperties = new CommunicationDetailsProperties();
+    @JsonProperty(value = "properties")
+    private CommunicationDetailsProperties innerProperties;
 
     /**
      * Creates an instance of CommunicationDetailsInner class.
@@ -140,14 +139,8 @@ public final class CommunicationDetailsInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property innerProperties in model CommunicationDetailsInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CommunicationDetailsInner.class);
 }
