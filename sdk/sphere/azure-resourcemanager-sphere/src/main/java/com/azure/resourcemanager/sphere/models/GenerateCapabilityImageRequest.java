@@ -53,8 +53,9 @@ public final class GenerateCapabilityImageRequest {
      */
     public void validate() {
         if (capabilities() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property capabilities in model GenerateCapabilityImageRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property capabilities in model GenerateCapabilityImageRequest"));
         }
     }
 

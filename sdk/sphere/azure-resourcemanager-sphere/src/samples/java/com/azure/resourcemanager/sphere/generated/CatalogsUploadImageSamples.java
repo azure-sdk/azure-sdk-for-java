@@ -12,9 +12,7 @@ import com.azure.resourcemanager.sphere.models.ImageProperties;
  */
 public final class CatalogsUploadImageSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostUploadImageCatalog.
-     * json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostUploadImageCatalog.json
      */
     /**
      * Sample code: Catalogs_UploadImage.
@@ -22,8 +20,9 @@ public final class CatalogsUploadImageSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void catalogsUploadImage(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.catalogs().uploadImage("MyResourceGroup1", "MyCatalog1",
-            new ImageInner().withProperties(new ImageProperties().withImage("bXliYXNlNjRzdHJpbmc=")),
-            com.azure.core.util.Context.NONE);
+        manager.catalogs()
+            .uploadImage("MyResourceGroup1", "MyCatalog1",
+                new ImageInner().withProperties(new ImageProperties().withImage("bXliYXNlNjRzdHJpbmc=")),
+                com.azure.core.util.Context.NONE);
     }
 }

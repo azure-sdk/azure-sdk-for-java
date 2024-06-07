@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class CatalogsListDeploymentsSamples {
     /*
-     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/
-     * PostListDeploymentsByCatalog.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostListDeploymentsByCatalog.json
      */
     /**
      * Sample code: Catalogs_ListDeployments.
@@ -18,7 +17,8 @@ public final class CatalogsListDeploymentsSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void catalogsListDeployments(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.catalogs().listDeployments("MyResourceGroup1", "MyCatalog1", null, null, null, null,
-            com.azure.core.util.Context.NONE);
+        manager.catalogs()
+            .listDeployments("MyResourceGroup1", "MyCatalog1", null, null, null, null,
+                com.azure.core.util.Context.NONE);
     }
 }

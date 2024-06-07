@@ -53,8 +53,9 @@ public final class ClaimDevicesRequest {
      */
     public void validate() {
         if (deviceIdentifiers() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property deviceIdentifiers in model ClaimDevicesRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property deviceIdentifiers in model ClaimDevicesRequest"));
         }
     }
 

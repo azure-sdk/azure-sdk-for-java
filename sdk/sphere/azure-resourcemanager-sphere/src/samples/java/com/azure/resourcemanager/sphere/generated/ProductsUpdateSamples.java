@@ -11,8 +11,7 @@ import com.azure.resourcemanager.sphere.models.Product;
  */
 public final class ProductsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchProduct.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchProduct.json
      */
     /**
      * Sample code: Products_Update.
