@@ -6,47 +6,146 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
+import java.time.OffsetDateTime;
+import java.util.List;
 
-/** An immutable client-side representation of ReportResource. */
+/**
+ * An immutable client-side representation of ReportResource.
+ */
 public interface ReportResource {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the properties property: Report property.
-     *
-     * @return the properties value.
-     */
-    ReportProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
+     * Gets the triggerTime property: Report collection trigger time.
+     * 
+     * @return the triggerTime value.
+     */
+    OffsetDateTime triggerTime();
+
+    /**
+     * Gets the timeZone property: Report collection trigger time's time zone, the available list can be obtained by
+     * executing "Get-TimeZone -ListAvailable" in PowerShell.
+     * An example of valid timezone id is "Pacific Standard Time".
+     * 
+     * @return the timeZone value.
+     */
+    String timeZone();
+
+    /**
+     * Gets the resources property: List of resource data.
+     * 
+     * @return the resources value.
+     */
+    List<ResourceMetadata> resources();
+
+    /**
+     * Gets the status property: Report status.
+     * 
+     * @return the status value.
+     */
+    ReportStatus status();
+
+    /**
+     * Gets the errors property: List of report error codes.
+     * 
+     * @return the errors value.
+     */
+    List<String> errors();
+
+    /**
+     * Gets the tenantId property: Report's tenant id.
+     * 
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
+     * Gets the offerGuid property: A list of comma-separated offerGuids indicates a series of offerGuids that map to
+     * the report. For example, "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002" and
+     * "00000000-0000-0000-0000-000000000003".
+     * 
+     * @return the offerGuid value.
+     */
+    String offerGuid();
+
+    /**
+     * Gets the nextTriggerTime property: Report next collection trigger time.
+     * 
+     * @return the nextTriggerTime value.
+     */
+    OffsetDateTime nextTriggerTime();
+
+    /**
+     * Gets the lastTriggerTime property: Report last collection trigger time.
+     * 
+     * @return the lastTriggerTime value.
+     */
+    OffsetDateTime lastTriggerTime();
+
+    /**
+     * Gets the subscriptions property: List of subscription Ids.
+     * 
+     * @return the subscriptions value.
+     */
+    List<String> subscriptions();
+
+    /**
+     * Gets the complianceStatus property: Report compliance status.
+     * 
+     * @return the complianceStatus value.
+     */
+    ReportComplianceStatus complianceStatus();
+
+    /**
+     * Gets the storageInfo property: The information of 'bring your own storage' binding to the report.
+     * 
+     * @return the storageInfo value.
+     */
+    StorageInfo storageInfo();
+
+    /**
+     * Gets the certRecords property: List of synchronized certification records.
+     * 
+     * @return the certRecords value.
+     */
+    List<CertSyncRecord> certRecords();
+
+    /**
+     * Gets the provisioningState property: Azure lifecycle management.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
      * Gets the inner com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner object.
-     *
+     * 
      * @return the inner object.
      */
     ReportResourceInner innerModel();
