@@ -4,37 +4,53 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The overview of the compliance result for one report. */
-@Fluent
+/**
+ * The overview of the compliance result for one report.
+ */
+@Immutable
 public final class OverviewStatus {
     /*
-     * The count of all passed full automation control.
+     * The count of all passed control.
      */
-    @JsonProperty(value = "passedCount")
+    @JsonProperty(value = "passedCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer passedCount;
 
     /*
-     * The count of all failed full automation control.
+     * The count of all failed control.
      */
-    @JsonProperty(value = "failedCount")
+    @JsonProperty(value = "failedCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer failedCount;
 
     /*
      * The count of all manual control.
      */
-    @JsonProperty(value = "manualCount")
+    @JsonProperty(value = "manualCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer manualCount;
 
-    /** Creates an instance of OverviewStatus class. */
+    /*
+     * The count of all not applicable control.
+     */
+    @JsonProperty(value = "notApplicableCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer notApplicableCount;
+
+    /*
+     * The count of all pending for approval control.
+     */
+    @JsonProperty(value = "pendingCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer pendingCount;
+
+    /**
+     * Creates an instance of OverviewStatus class.
+     */
     public OverviewStatus() {
     }
 
     /**
-     * Get the passedCount property: The count of all passed full automation control.
-     *
+     * Get the passedCount property: The count of all passed control.
+     * 
      * @return the passedCount value.
      */
     public Integer passedCount() {
@@ -42,19 +58,8 @@ public final class OverviewStatus {
     }
 
     /**
-     * Set the passedCount property: The count of all passed full automation control.
-     *
-     * @param passedCount the passedCount value to set.
-     * @return the OverviewStatus object itself.
-     */
-    public OverviewStatus withPassedCount(Integer passedCount) {
-        this.passedCount = passedCount;
-        return this;
-    }
-
-    /**
-     * Get the failedCount property: The count of all failed full automation control.
-     *
+     * Get the failedCount property: The count of all failed control.
+     * 
      * @return the failedCount value.
      */
     public Integer failedCount() {
@@ -62,19 +67,8 @@ public final class OverviewStatus {
     }
 
     /**
-     * Set the failedCount property: The count of all failed full automation control.
-     *
-     * @param failedCount the failedCount value to set.
-     * @return the OverviewStatus object itself.
-     */
-    public OverviewStatus withFailedCount(Integer failedCount) {
-        this.failedCount = failedCount;
-        return this;
-    }
-
-    /**
      * Get the manualCount property: The count of all manual control.
-     *
+     * 
      * @return the manualCount value.
      */
     public Integer manualCount() {
@@ -82,19 +76,26 @@ public final class OverviewStatus {
     }
 
     /**
-     * Set the manualCount property: The count of all manual control.
-     *
-     * @param manualCount the manualCount value to set.
-     * @return the OverviewStatus object itself.
+     * Get the notApplicableCount property: The count of all not applicable control.
+     * 
+     * @return the notApplicableCount value.
      */
-    public OverviewStatus withManualCount(Integer manualCount) {
-        this.manualCount = manualCount;
-        return this;
+    public Integer notApplicableCount() {
+        return this.notApplicableCount;
+    }
+
+    /**
+     * Get the pendingCount property: The count of all pending for approval control.
+     * 
+     * @return the pendingCount value.
+     */
+    public Integer pendingCount() {
+        return this.pendingCount;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
