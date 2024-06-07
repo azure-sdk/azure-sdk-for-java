@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the delete checkpoint action properties. */
+/**
+ * Defines the delete checkpoint action properties.
+ */
 @Fluent
 public final class VirtualMachineDeleteCheckpoint {
     /*
@@ -17,8 +19,14 @@ public final class VirtualMachineDeleteCheckpoint {
     private String id;
 
     /**
+     * Creates an instance of VirtualMachineDeleteCheckpoint class.
+     */
+    public VirtualMachineDeleteCheckpoint() {
+    }
+
+    /**
      * Get the id property: ID of the checkpoint to be deleted.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -27,7 +35,7 @@ public final class VirtualMachineDeleteCheckpoint {
 
     /**
      * Set the id property: ID of the checkpoint to be deleted.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineDeleteCheckpoint object itself.
      */
@@ -38,7 +46,7 @@ public final class VirtualMachineDeleteCheckpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

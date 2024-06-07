@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class Checkpoint {
     /*
@@ -35,8 +37,14 @@ public final class Checkpoint {
     private String description;
 
     /**
+     * Creates an instance of Checkpoint class.
+     */
+    public Checkpoint() {
+    }
+
+    /**
      * Get the parentCheckpointId property: Gets ID of parent of the checkpoint.
-     *
+     * 
      * @return the parentCheckpointId value.
      */
     public String parentCheckpointId() {
@@ -45,7 +53,7 @@ public final class Checkpoint {
 
     /**
      * Set the parentCheckpointId property: Gets ID of parent of the checkpoint.
-     *
+     * 
      * @param parentCheckpointId the parentCheckpointId value to set.
      * @return the Checkpoint object itself.
      */
@@ -56,7 +64,7 @@ public final class Checkpoint {
 
     /**
      * Get the checkpointId property: Gets ID of the checkpoint.
-     *
+     * 
      * @return the checkpointId value.
      */
     public String checkpointId() {
@@ -65,7 +73,7 @@ public final class Checkpoint {
 
     /**
      * Set the checkpointId property: Gets ID of the checkpoint.
-     *
+     * 
      * @param checkpointId the checkpointId value to set.
      * @return the Checkpoint object itself.
      */
@@ -76,7 +84,7 @@ public final class Checkpoint {
 
     /**
      * Get the name property: Gets name of the checkpoint.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -85,7 +93,7 @@ public final class Checkpoint {
 
     /**
      * Set the name property: Gets name of the checkpoint.
-     *
+     * 
      * @param name the name value to set.
      * @return the Checkpoint object itself.
      */
@@ -96,7 +104,7 @@ public final class Checkpoint {
 
     /**
      * Get the description property: Gets description of the checkpoint.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -105,7 +113,7 @@ public final class Checkpoint {
 
     /**
      * Set the description property: Gets description of the checkpoint.
-     *
+     * 
      * @param description the description value to set.
      * @return the Checkpoint object itself.
      */
@@ -116,7 +124,7 @@ public final class Checkpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

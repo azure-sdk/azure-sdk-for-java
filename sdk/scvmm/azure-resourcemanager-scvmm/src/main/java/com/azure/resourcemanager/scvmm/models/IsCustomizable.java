@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IsCustomizable. */
+/**
+ * Customizable.
+ */
 public final class IsCustomizable extends ExpandableStringEnum<IsCustomizable> {
-    /** Static value false for IsCustomizable. */
-    public static final IsCustomizable FALSE = fromString("false");
-
-    /** Static value true for IsCustomizable. */
+    /**
+     * Static value true for IsCustomizable.
+     */
     public static final IsCustomizable TRUE = fromString("true");
 
     /**
+     * Static value false for IsCustomizable.
+     */
+    public static final IsCustomizable FALSE = fromString("false");
+
+    /**
+     * Creates a new instance of IsCustomizable value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IsCustomizable() {
+    }
+
+    /**
      * Creates or finds a IsCustomizable from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IsCustomizable.
      */
@@ -29,7 +44,7 @@ public final class IsCustomizable extends ExpandableStringEnum<IsCustomizable> {
 
     /**
      * Gets known IsCustomizable values.
-     *
+     * 
      * @return known IsCustomizable values.
      */
     public static Collection<IsCustomizable> values() {

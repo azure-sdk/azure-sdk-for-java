@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the restore checkpoint action properties. */
+/**
+ * Defines the restore checkpoint action properties.
+ */
 @Fluent
 public final class VirtualMachineRestoreCheckpoint {
     /*
@@ -17,8 +19,14 @@ public final class VirtualMachineRestoreCheckpoint {
     private String id;
 
     /**
+     * Creates an instance of VirtualMachineRestoreCheckpoint class.
+     */
+    public VirtualMachineRestoreCheckpoint() {
+    }
+
+    /**
      * Get the id property: ID of the checkpoint to be restored to.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -27,7 +35,7 @@ public final class VirtualMachineRestoreCheckpoint {
 
     /**
      * Set the id property: ID of the checkpoint to be restored to.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineRestoreCheckpoint object itself.
      */
@@ -38,7 +46,7 @@ public final class VirtualMachineRestoreCheckpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

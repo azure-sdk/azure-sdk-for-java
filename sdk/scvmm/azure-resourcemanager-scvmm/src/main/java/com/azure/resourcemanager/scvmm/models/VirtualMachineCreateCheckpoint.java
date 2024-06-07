@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the create checkpoint action properties. */
+/**
+ * Defines the create checkpoint action properties.
+ */
 @Fluent
 public final class VirtualMachineCreateCheckpoint {
     /*
@@ -23,8 +25,14 @@ public final class VirtualMachineCreateCheckpoint {
     private String description;
 
     /**
+     * Creates an instance of VirtualMachineCreateCheckpoint class.
+     */
+    public VirtualMachineCreateCheckpoint() {
+    }
+
+    /**
      * Get the name property: Name of the checkpoint.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -33,7 +41,7 @@ public final class VirtualMachineCreateCheckpoint {
 
     /**
      * Set the name property: Name of the checkpoint.
-     *
+     * 
      * @param name the name value to set.
      * @return the VirtualMachineCreateCheckpoint object itself.
      */
@@ -44,7 +52,7 @@ public final class VirtualMachineCreateCheckpoint {
 
     /**
      * Get the description property: Description of the checkpoint.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -53,7 +61,7 @@ public final class VirtualMachineCreateCheckpoint {
 
     /**
      * Set the description property: Description of the checkpoint.
-     *
+     * 
      * @param description the description value to set.
      * @return the VirtualMachineCreateCheckpoint object itself.
      */
@@ -64,7 +72,7 @@ public final class VirtualMachineCreateCheckpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
