@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of virtual machine instances. */
+/**
+ * The observed state of virtual machine instances.
+ */
 @Fluent
 public final class VirtualMachineInstanceStatus {
     /*
@@ -34,13 +36,15 @@ public final class VirtualMachineInstanceStatus {
     @JsonProperty(value = "provisioningStatus")
     private VirtualMachineInstanceStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of VirtualMachineInstanceStatus class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceStatus class.
+     */
     public VirtualMachineInstanceStatus() {
     }
 
     /**
      * Get the errorCode property: VirtualMachine provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -49,7 +53,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Set the errorCode property: VirtualMachine provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the VirtualMachineInstanceStatus object itself.
      */
@@ -60,7 +64,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -69,7 +73,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the VirtualMachineInstanceStatus object itself.
      */
@@ -80,7 +84,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Get the powerState property: The power state of the virtual machine instance.
-     *
+     * 
      * @return the powerState value.
      */
     public PowerStateEnum powerState() {
@@ -89,7 +93,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Set the powerState property: The power state of the virtual machine instance.
-     *
+     * 
      * @param powerState the powerState value to set.
      * @return the VirtualMachineInstanceStatus object itself.
      */
@@ -100,7 +104,7 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public VirtualMachineInstanceStatusProvisioningStatus provisioningStatus() {
@@ -109,19 +113,19 @@ public final class VirtualMachineInstanceStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the VirtualMachineInstanceStatus object itself.
      */
-    public VirtualMachineInstanceStatus withProvisioningStatus(
-        VirtualMachineInstanceStatusProvisioningStatus provisioningStatus) {
+    public VirtualMachineInstanceStatus
+        withProvisioningStatus(VirtualMachineInstanceStatusProvisioningStatus provisioningStatus) {
         this.provisioningStatus = provisioningStatus;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
