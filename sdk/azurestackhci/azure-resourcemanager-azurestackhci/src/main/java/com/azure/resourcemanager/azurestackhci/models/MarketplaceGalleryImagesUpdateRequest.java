@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The marketplace gallery image resource patch definition. */
+/**
+ * The marketplace gallery image resource patch definition.
+ */
 @Fluent
 public final class MarketplaceGalleryImagesUpdateRequest {
     /*
@@ -19,13 +21,15 @@ public final class MarketplaceGalleryImagesUpdateRequest {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of MarketplaceGalleryImagesUpdateRequest class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImagesUpdateRequest class.
+     */
     public MarketplaceGalleryImagesUpdateRequest() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class MarketplaceGalleryImagesUpdateRequest {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the MarketplaceGalleryImagesUpdateRequest object itself.
      */
@@ -45,7 +49,7 @@ public final class MarketplaceGalleryImagesUpdateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

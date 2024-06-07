@@ -13,28 +13,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class SshPublicKey {
     /*
-     * Specifies the full path on the created VM where ssh public key is stored. If the file already exists, the
-     * specified key is appended to the file. Example: /home/user/.ssh/authorized_keys
+     * Specifies the full path on the created VM where ssh public key is stored. If the file already exists, the specified key is appended to the file. Example: /home/user/.ssh/authorized_keys
      */
     @JsonProperty(value = "path")
     private String path;
 
     /*
-     * SSH public key certificate used to authenticate with the VM through ssh. The key needs to be at least 2048-bit
-     * and in ssh-rsa format. <br><br> For creating ssh keys, see [Create SSH keys on Linux and Mac for Linux VMs in
-     * Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed).
+     * SSH public key certificate used to authenticate with the VM through ssh. The key needs to be at least 2048-bit and in ssh-rsa format. <br><br> For creating ssh keys, see [Create SSH keys on Linux and Mac for Linux VMs in Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed).
      */
     @JsonProperty(value = "keyData")
     private String keyData;
 
-    /** Creates an instance of SshPublicKey class. */
+    /**
+     * Creates an instance of SshPublicKey class.
+     */
     public SshPublicKey() {
     }
 
     /**
      * Get the path property: Specifies the full path on the created VM where ssh public key is stored. If the file
      * already exists, the specified key is appended to the file. Example: /home/user/.ssh/authorized_keys.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -44,7 +43,7 @@ public final class SshPublicKey {
     /**
      * Set the path property: Specifies the full path on the created VM where ssh public key is stored. If the file
      * already exists, the specified key is appended to the file. Example: /home/user/.ssh/authorized_keys.
-     *
+     * 
      * @param path the path value to set.
      * @return the SshPublicKey object itself.
      */
@@ -58,7 +57,7 @@ public final class SshPublicKey {
      * to be at least 2048-bit and in ssh-rsa format. &lt;br&gt;&lt;br&gt; For creating ssh keys, see [Create SSH keys
      * on Linux and Mac for Linux VMs in
      * Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed).
-     *
+     * 
      * @return the keyData value.
      */
     public String keyData() {
@@ -70,7 +69,7 @@ public final class SshPublicKey {
      * to be at least 2048-bit and in ssh-rsa format. &lt;br&gt;&lt;br&gt; For creating ssh keys, see [Create SSH keys
      * on Linux and Mac for Linux VMs in
      * Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed).
-     *
+     * 
      * @param keyData the keyData value to set.
      * @return the SshPublicKey object itself.
      */
@@ -81,7 +80,7 @@ public final class SshPublicKey {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

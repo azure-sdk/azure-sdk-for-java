@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LogicalNetworkStatusProvisioningStatus model. */
+/**
+ * The LogicalNetworkStatusProvisioningStatus model.
+ */
 @Fluent
 public final class LogicalNetworkStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class LogicalNetworkStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of LogicalNetworkStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of LogicalNetworkStatusProvisioningStatus class.
+     */
     public LogicalNetworkStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the logical network.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class LogicalNetworkStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the logical network.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the LogicalNetworkStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class LogicalNetworkStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the logical network [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class LogicalNetworkStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the logical network [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the LogicalNetworkStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class LogicalNetworkStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

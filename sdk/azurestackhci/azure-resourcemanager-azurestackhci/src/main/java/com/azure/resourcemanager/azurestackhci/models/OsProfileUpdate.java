@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** OsProfile - describes the update configuration of the operating system. */
+/**
+ * OsProfile - describes the update configuration of the operating system.
+ */
 @Fluent
 public final class OsProfileUpdate {
     /*
@@ -28,13 +30,15 @@ public final class OsProfileUpdate {
     @JsonProperty(value = "windowsConfiguration")
     private OsProfileUpdateWindowsConfiguration windowsConfiguration;
 
-    /** Creates an instance of OsProfileUpdate class. */
+    /**
+     * Creates an instance of OsProfileUpdate class.
+     */
     public OsProfileUpdate() {
     }
 
     /**
      * Get the computerName property: ComputerName - name of the computer.
-     *
+     * 
      * @return the computerName value.
      */
     public String computerName() {
@@ -43,7 +47,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the computerName property: ComputerName - name of the computer.
-     *
+     * 
      * @param computerName the computerName value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -54,7 +58,7 @@ public final class OsProfileUpdate {
 
     /**
      * Get the linuxConfiguration property: The linuxConfiguration property.
-     *
+     * 
      * @return the linuxConfiguration value.
      */
     public OsProfileUpdateLinuxConfiguration linuxConfiguration() {
@@ -63,7 +67,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the linuxConfiguration property: The linuxConfiguration property.
-     *
+     * 
      * @param linuxConfiguration the linuxConfiguration value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -74,7 +78,7 @@ public final class OsProfileUpdate {
 
     /**
      * Get the windowsConfiguration property: The windowsConfiguration property.
-     *
+     * 
      * @return the windowsConfiguration value.
      */
     public OsProfileUpdateWindowsConfiguration windowsConfiguration() {
@@ -83,7 +87,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the windowsConfiguration property: The windowsConfiguration property.
-     *
+     * 
      * @param windowsConfiguration the windowsConfiguration value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -94,7 +98,7 @@ public final class OsProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

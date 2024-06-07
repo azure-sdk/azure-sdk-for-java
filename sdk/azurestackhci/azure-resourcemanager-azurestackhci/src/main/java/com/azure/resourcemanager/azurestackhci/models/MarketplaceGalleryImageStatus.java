@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of marketplace gallery images. */
+/**
+ * The observed state of marketplace gallery images.
+ */
 @Fluent
 public final class MarketplaceGalleryImageStatus {
     /*
@@ -40,13 +42,15 @@ public final class MarketplaceGalleryImageStatus {
     @JsonProperty(value = "progressPercentage")
     private Long progressPercentage;
 
-    /** Creates an instance of MarketplaceGalleryImageStatus class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImageStatus class.
+     */
     public MarketplaceGalleryImageStatus() {
     }
 
     /**
      * Get the errorCode property: MarketplaceGalleryImage provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -55,7 +59,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Set the errorCode property: MarketplaceGalleryImage provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the MarketplaceGalleryImageStatus object itself.
      */
@@ -66,7 +70,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -75,7 +79,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the MarketplaceGalleryImageStatus object itself.
      */
@@ -86,7 +90,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public MarketplaceGalleryImageStatusProvisioningStatus provisioningStatus() {
@@ -95,19 +99,19 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the MarketplaceGalleryImageStatus object itself.
      */
-    public MarketplaceGalleryImageStatus withProvisioningStatus(
-        MarketplaceGalleryImageStatusProvisioningStatus provisioningStatus) {
+    public MarketplaceGalleryImageStatus
+        withProvisioningStatus(MarketplaceGalleryImageStatusProvisioningStatus provisioningStatus) {
         this.provisioningStatus = provisioningStatus;
         return this;
     }
 
     /**
      * Get the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @return the downloadStatus value.
      */
     public MarketplaceGalleryImageStatusDownloadStatus downloadStatus() {
@@ -116,19 +120,19 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Set the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @param downloadStatus the downloadStatus value to set.
      * @return the MarketplaceGalleryImageStatus object itself.
      */
-    public MarketplaceGalleryImageStatus withDownloadStatus(
-        MarketplaceGalleryImageStatusDownloadStatus downloadStatus) {
+    public MarketplaceGalleryImageStatus
+        withDownloadStatus(MarketplaceGalleryImageStatusDownloadStatus downloadStatus) {
         this.downloadStatus = downloadStatus;
         return this;
     }
 
     /**
      * Get the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @return the progressPercentage value.
      */
     public Long progressPercentage() {
@@ -137,7 +141,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Set the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @param progressPercentage the progressPercentage value to set.
      * @return the MarketplaceGalleryImageStatus object itself.
      */
@@ -148,7 +152,7 @@ public final class MarketplaceGalleryImageStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

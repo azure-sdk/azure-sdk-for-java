@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.RouteTablePropertie
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Route table resource. */
+/**
+ * Route table resource.
+ */
 @Fluent
 public final class RouteTable {
     /*
@@ -36,13 +38,15 @@ public final class RouteTable {
     @JsonProperty(value = "properties")
     private RouteTablePropertiesFormat innerProperties;
 
-    /** Creates an instance of RouteTable class. */
+    /**
+     * Creates an instance of RouteTable class.
+     */
     public RouteTable() {
     }
 
     /**
      * Get the etag property: A unique read-only string that changes whenever the resource is updated.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -51,7 +55,7 @@ public final class RouteTable {
 
     /**
      * Get the name property: Resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -60,7 +64,7 @@ public final class RouteTable {
 
     /**
      * Get the type property: Resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -69,7 +73,7 @@ public final class RouteTable {
 
     /**
      * Get the innerProperties property: Properties of the route table.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RouteTablePropertiesFormat innerProperties() {
@@ -78,7 +82,7 @@ public final class RouteTable {
 
     /**
      * Get the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @return the routes value.
      */
     public List<Route> routes() {
@@ -87,7 +91,7 @@ public final class RouteTable {
 
     /**
      * Set the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @param routes the routes value to set.
      * @return the RouteTable object itself.
      */
@@ -101,7 +105,7 @@ public final class RouteTable {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
