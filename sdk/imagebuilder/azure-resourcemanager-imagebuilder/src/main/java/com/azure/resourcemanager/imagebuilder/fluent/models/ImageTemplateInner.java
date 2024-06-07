@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateAutoRun;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
@@ -372,6 +373,56 @@ public final class ImageTemplateInner extends Resource {
     }
 
     /**
+     * Get the autoRun property: Indicates whether or not to automatically run the image template build on template
+     * creation or update.
+     * 
+     * @return the autoRun value.
+     */
+    public ImageTemplateAutoRun autoRun() {
+        return this.innerProperties() == null ? null : this.innerProperties().autoRun();
+    }
+
+    /**
+     * Set the autoRun property: Indicates whether or not to automatically run the image template build on template
+     * creation or update.
+     * 
+     * @param autoRun the autoRun value to set.
+     * @return the ImageTemplateInner object itself.
+     */
+    public ImageTemplateInner withAutoRun(ImageTemplateAutoRun autoRun) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withAutoRun(autoRun);
+        return this;
+    }
+
+    /**
+     * Get the managedResourceTags property: Tags that will be applied to the resource group and/or resources created by
+     * the service.
+     * 
+     * @return the managedResourceTags value.
+     */
+    public Map<String, String> managedResourceTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedResourceTags();
+    }
+
+    /**
+     * Set the managedResourceTags property: Tags that will be applied to the resource group and/or resources created by
+     * the service.
+     * 
+     * @param managedResourceTags the managedResourceTags value to set.
+     * @return the ImageTemplateInner object itself.
+     */
+    public ImageTemplateInner withManagedResourceTags(Map<String, String> managedResourceTags) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withManagedResourceTags(managedResourceTags);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -381,8 +432,8 @@ public final class ImageTemplateInner extends Resource {
             innerProperties().validate();
         }
         if (identity() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property identity in model ImageTemplateInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property identity in model ImageTemplateInner"));
         } else {
             identity().validate();
         }
