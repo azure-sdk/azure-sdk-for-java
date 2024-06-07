@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.GalleryImagesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of gallery images. */
+/**
+ * List of gallery images.
+ */
 @Fluent
 public final class GalleryImagesListResult {
     /*
@@ -24,13 +26,15 @@ public final class GalleryImagesListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of GalleryImagesListResult class. */
+    /**
+     * Creates an instance of GalleryImagesListResult class.
+     */
     public GalleryImagesListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<GalleryImagesInner> value() {
@@ -39,7 +43,7 @@ public final class GalleryImagesListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the GalleryImagesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class GalleryImagesListResult {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class GalleryImagesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

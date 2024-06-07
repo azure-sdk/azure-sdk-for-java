@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HardwareProfile - Specifies the hardware settings for the virtual machine instance. */
+/**
+ * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesHardwareProfile {
     /*
@@ -34,13 +36,15 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
     @JsonProperty(value = "dynamicMemoryConfig")
     private VirtualMachineInstancePropertiesHardwareProfileDynamicMemoryConfig dynamicMemoryConfig;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesHardwareProfile class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesHardwareProfile class.
+     */
     public VirtualMachineInstancePropertiesHardwareProfile() {
     }
 
     /**
      * Get the vmSize property: The vmSize property.
-     *
+     * 
      * @return the vmSize value.
      */
     public VmSizeEnum vmSize() {
@@ -49,7 +53,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the vmSize property: The vmSize property.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -60,7 +64,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @return the processors value.
      */
     public Integer processors() {
@@ -69,7 +73,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @param processors the processors value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -80,7 +84,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -89,7 +93,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -100,7 +104,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the dynamicMemoryConfig property: The dynamicMemoryConfig property.
-     *
+     * 
      * @return the dynamicMemoryConfig value.
      */
     public VirtualMachineInstancePropertiesHardwareProfileDynamicMemoryConfig dynamicMemoryConfig() {
@@ -109,7 +113,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the dynamicMemoryConfig property: The dynamicMemoryConfig property.
-     *
+     * 
      * @param dynamicMemoryConfig the dynamicMemoryConfig value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -121,7 +125,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

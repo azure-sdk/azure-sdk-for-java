@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The InterfaceDnsSettings model. */
+/**
+ * The InterfaceDnsSettings model.
+ */
 @Fluent
 public final class InterfaceDnsSettings {
     /*
@@ -17,13 +19,15 @@ public final class InterfaceDnsSettings {
     @JsonProperty(value = "dnsServers")
     private List<String> dnsServers;
 
-    /** Creates an instance of InterfaceDnsSettings class. */
+    /**
+     * Creates an instance of InterfaceDnsSettings class.
+     */
     public InterfaceDnsSettings() {
     }
 
     /**
      * Get the dnsServers property: List of DNS server IP Addresses for the interface.
-     *
+     * 
      * @return the dnsServers value.
      */
     public List<String> dnsServers() {
@@ -32,7 +36,7 @@ public final class InterfaceDnsSettings {
 
     /**
      * Set the dnsServers property: List of DNS server IP Addresses for the interface.
-     *
+     * 
      * @param dnsServers the dnsServers value to set.
      * @return the InterfaceDnsSettings object itself.
      */
@@ -43,7 +47,7 @@ public final class InterfaceDnsSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

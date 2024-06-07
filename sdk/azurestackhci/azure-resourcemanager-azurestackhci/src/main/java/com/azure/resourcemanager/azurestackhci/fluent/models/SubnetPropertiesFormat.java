@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestackhci.models.SubnetPropertiesFormatIpCo
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of the subnet. */
+/**
+ * Properties of the subnet.
+ */
 @Fluent
 public final class SubnetPropertiesFormat {
     /*
@@ -57,13 +59,15 @@ public final class SubnetPropertiesFormat {
     @JsonProperty(value = "vlan")
     private Integer vlan;
 
-    /** Creates an instance of SubnetPropertiesFormat class. */
+    /**
+     * Creates an instance of SubnetPropertiesFormat class.
+     */
     public SubnetPropertiesFormat() {
     }
 
     /**
      * Get the addressPrefix property: The address prefix for the subnet: Cidr for this subnet - IPv4, IPv6.
-     *
+     * 
      * @return the addressPrefix value.
      */
     public String addressPrefix() {
@@ -72,7 +76,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the addressPrefix property: The address prefix for the subnet: Cidr for this subnet - IPv4, IPv6.
-     *
+     * 
      * @param addressPrefix the addressPrefix value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -83,7 +87,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the addressPrefixes property: List of address prefixes for the subnet.
-     *
+     * 
      * @return the addressPrefixes value.
      */
     public List<String> addressPrefixes() {
@@ -92,7 +96,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the addressPrefixes property: List of address prefixes for the subnet.
-     *
+     * 
      * @param addressPrefixes the addressPrefixes value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -104,7 +108,7 @@ public final class SubnetPropertiesFormat {
     /**
      * Get the ipAllocationMethod property: IPAllocationMethod - The IP address allocation method. Possible values
      * include: 'Static', 'Dynamic'.
-     *
+     * 
      * @return the ipAllocationMethod value.
      */
     public IpAllocationMethodEnum ipAllocationMethod() {
@@ -114,7 +118,7 @@ public final class SubnetPropertiesFormat {
     /**
      * Set the ipAllocationMethod property: IPAllocationMethod - The IP address allocation method. Possible values
      * include: 'Static', 'Dynamic'.
-     *
+     * 
      * @param ipAllocationMethod the ipAllocationMethod value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -125,7 +129,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the ipConfigurationReferences property: IPConfigurationReferences - list of IPConfigurationReferences.
-     *
+     * 
      * @return the ipConfigurationReferences value.
      */
     public List<SubnetPropertiesFormatIpConfigurationReferencesItem> ipConfigurationReferences() {
@@ -134,7 +138,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the ipConfigurationReferences property: IPConfigurationReferences - list of IPConfigurationReferences.
-     *
+     * 
      * @param ipConfigurationReferences the ipConfigurationReferences value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -146,7 +150,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the routeTable property: Route table resource.
-     *
+     * 
      * @return the routeTable value.
      */
     public RouteTable routeTable() {
@@ -155,7 +159,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the routeTable property: Route table resource.
-     *
+     * 
      * @param routeTable the routeTable value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -166,7 +170,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the ipPools property: network associated pool of IP Addresses.
-     *
+     * 
      * @return the ipPools value.
      */
     public List<IpPool> ipPools() {
@@ -175,7 +179,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the ipPools property: network associated pool of IP Addresses.
-     *
+     * 
      * @param ipPools the ipPools value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -186,7 +190,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the vlan property: Vlan to use for the subnet.
-     *
+     * 
      * @return the vlan value.
      */
     public Integer vlan() {
@@ -195,7 +199,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the vlan property: Vlan to use for the subnet.
-     *
+     * 
      * @param vlan the vlan value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -206,7 +210,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

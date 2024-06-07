@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.VirtualMachineInsta
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The VirtualMachineInstanceListResult model. */
+/**
+ * The VirtualMachineInstanceListResult model.
+ */
 @Fluent
 public final class VirtualMachineInstanceListResult {
     /*
@@ -24,13 +26,15 @@ public final class VirtualMachineInstanceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of VirtualMachineInstanceListResult class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceListResult class.
+     */
     public VirtualMachineInstanceListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class VirtualMachineInstanceListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineInstanceListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class VirtualMachineInstanceListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class VirtualMachineInstanceListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VirtualMachineInstanceListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class VirtualMachineInstanceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

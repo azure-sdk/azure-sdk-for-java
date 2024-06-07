@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineInstancePropertiesStorageProfileDataDisksItem model. */
+/**
+ * The VirtualMachineInstancePropertiesStorageProfileDataDisksItem model.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
     /*
@@ -16,13 +18,15 @@ public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem class.
+     */
     public VirtualMachineInstancePropertiesStorageProfileDataDisksItem() {
     }
 
     /**
      * Get the id property: Resource ID of the data disk.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
 
     /**
      * Set the id property: Resource ID of the data disk.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileDataDisksItem object itself.
      */
@@ -42,7 +46,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.MarketplaceGalleryI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The MarketplaceGalleryImagesListResult model. */
+/**
+ * The MarketplaceGalleryImagesListResult model.
+ */
 @Fluent
 public final class MarketplaceGalleryImagesListResult {
     /*
@@ -24,13 +26,15 @@ public final class MarketplaceGalleryImagesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of MarketplaceGalleryImagesListResult class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImagesListResult class.
+     */
     public MarketplaceGalleryImagesListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<MarketplaceGalleryImagesInner> value() {
@@ -39,7 +43,7 @@ public final class MarketplaceGalleryImagesListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the MarketplaceGalleryImagesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class MarketplaceGalleryImagesListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class MarketplaceGalleryImagesListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the MarketplaceGalleryImagesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class MarketplaceGalleryImagesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

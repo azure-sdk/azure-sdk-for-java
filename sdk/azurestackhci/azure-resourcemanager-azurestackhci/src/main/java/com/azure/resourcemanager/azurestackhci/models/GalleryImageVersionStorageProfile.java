@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** This is the storage profile of a Gallery Image Version. */
+/**
+ * This is the storage profile of a Gallery Image Version.
+ */
 @Fluent
 public final class GalleryImageVersionStorageProfile {
     /*
@@ -16,13 +18,15 @@ public final class GalleryImageVersionStorageProfile {
     @JsonProperty(value = "osDiskImage")
     private GalleryOSDiskImage osDiskImage;
 
-    /** Creates an instance of GalleryImageVersionStorageProfile class. */
+    /**
+     * Creates an instance of GalleryImageVersionStorageProfile class.
+     */
     public GalleryImageVersionStorageProfile() {
     }
 
     /**
      * Get the osDiskImage property: This is the OS disk image.
-     *
+     * 
      * @return the osDiskImage value.
      */
     public GalleryOSDiskImage osDiskImage() {
@@ -31,7 +35,7 @@ public final class GalleryImageVersionStorageProfile {
 
     /**
      * Set the osDiskImage property: This is the OS disk image.
-     *
+     * 
      * @param osDiskImage the osDiskImage value to set.
      * @return the GalleryImageVersionStorageProfile object itself.
      */
@@ -42,7 +46,7 @@ public final class GalleryImageVersionStorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

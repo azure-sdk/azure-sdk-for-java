@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The StorageContainerStatusProvisioningStatus model. */
+/**
+ * The StorageContainerStatusProvisioningStatus model.
+ */
 @Fluent
 public final class StorageContainerStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class StorageContainerStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of StorageContainerStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of StorageContainerStatusProvisioningStatus class.
+     */
     public StorageContainerStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the storage container.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class StorageContainerStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the storage container.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the StorageContainerStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class StorageContainerStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the storage container [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class StorageContainerStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the storage container [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the StorageContainerStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class StorageContainerStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

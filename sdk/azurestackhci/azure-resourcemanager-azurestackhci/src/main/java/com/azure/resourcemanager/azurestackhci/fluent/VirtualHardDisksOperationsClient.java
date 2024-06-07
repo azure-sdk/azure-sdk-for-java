@@ -14,11 +14,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurestackhci.fluent.models.VirtualHardDisksInner;
 import com.azure.resourcemanager.azurestackhci.models.VirtualHardDisksUpdateRequest;
 
-/** An instance of this class provides access to all the operations defined in VirtualHardDisksOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualHardDisksOperationsClient.
+ */
 public interface VirtualHardDisksOperationsClient {
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -28,12 +30,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return a virtual hard disk along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualHardDisksInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualHardDiskName, Context context);
+    Response<VirtualHardDisksInner> getByResourceGroupWithResponse(String resourceGroupName, String virtualHardDiskName,
+        Context context);
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface VirtualHardDisksOperationsClient {
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -57,13 +59,13 @@ public interface VirtualHardDisksOperationsClient {
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks);
+    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks);
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -74,13 +76,13 @@ public interface VirtualHardDisksOperationsClient {
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context);
+    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context);
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -90,13 +92,13 @@ public interface VirtualHardDisksOperationsClient {
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualHardDisksInner createOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks);
+    VirtualHardDisksInner createOrUpdate(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks);
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -107,12 +109,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualHardDisksInner createOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context);
+    VirtualHardDisksInner createOrUpdate(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks, Context context);
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -125,7 +127,7 @@ public interface VirtualHardDisksOperationsClient {
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -135,12 +137,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualHardDiskName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualHardDiskName,
+        Context context);
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -152,7 +154,7 @@ public interface VirtualHardDisksOperationsClient {
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -165,7 +167,7 @@ public interface VirtualHardDisksOperationsClient {
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -175,12 +177,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks);
+    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks);
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -191,15 +193,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context);
+    SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks, Context context);
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -209,12 +208,12 @@ public interface VirtualHardDisksOperationsClient {
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualHardDisksInner update(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks);
+    VirtualHardDisksInner update(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks);
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -225,16 +224,13 @@ public interface VirtualHardDisksOperationsClient {
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualHardDisksInner update(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context);
+    VirtualHardDisksInner update(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks, Context context);
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -247,7 +243,7 @@ public interface VirtualHardDisksOperationsClient {
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -261,7 +257,7 @@ public interface VirtualHardDisksOperationsClient {
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -272,7 +268,7 @@ public interface VirtualHardDisksOperationsClient {
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

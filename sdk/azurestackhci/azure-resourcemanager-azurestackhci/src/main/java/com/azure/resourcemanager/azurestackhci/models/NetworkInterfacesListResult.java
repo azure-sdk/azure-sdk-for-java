@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.NetworkInterfacesIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The NetworkInterfacesListResult model. */
+/**
+ * The NetworkInterfacesListResult model.
+ */
 @Fluent
 public final class NetworkInterfacesListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkInterfacesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkInterfacesListResult class. */
+    /**
+     * Creates an instance of NetworkInterfacesListResult class.
+     */
     public NetworkInterfacesListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkInterfacesInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkInterfacesListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkInterfacesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkInterfacesListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkInterfacesListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkInterfacesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkInterfacesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

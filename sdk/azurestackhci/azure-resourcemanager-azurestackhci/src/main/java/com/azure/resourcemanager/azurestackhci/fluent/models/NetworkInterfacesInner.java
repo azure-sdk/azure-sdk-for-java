@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The network interface resource definition. */
+/**
+ * The network interface resource definition.
+ */
 @Fluent
 public final class NetworkInterfacesInner extends Resource {
     /*
@@ -37,13 +39,15 @@ public final class NetworkInterfacesInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkInterfacesInner class. */
+    /**
+     * Creates an instance of NetworkInterfacesInner class.
+     */
     public NetworkInterfacesInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the network interface resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkInterfaceProperties innerProperties() {
@@ -52,7 +56,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,7 +65,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -72,21 +76,25 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfacesInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfacesInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -95,7 +103,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -104,7 +112,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -118,7 +126,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -127,7 +135,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @param macAddress the macAddress value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -141,7 +149,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @return the dnsSettings value.
      */
     public InterfaceDnsSettings dnsSettings() {
@@ -150,7 +158,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @param dnsSettings the dnsSettings value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -164,7 +172,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the network interface.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -173,7 +181,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the status property: The observed state of network interfaces.
-     *
+     * 
      * @return the status value.
      */
     public NetworkInterfaceStatus status() {
@@ -182,7 +190,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

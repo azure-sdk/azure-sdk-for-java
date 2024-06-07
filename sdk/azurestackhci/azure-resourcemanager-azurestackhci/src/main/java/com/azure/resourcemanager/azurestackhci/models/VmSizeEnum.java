@@ -8,80 +8,128 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VmSizeEnum. */
+/**
+ * Defines values for VmSizeEnum.
+ */
 public final class VmSizeEnum extends ExpandableStringEnum<VmSizeEnum> {
-    /** Static value Default for VmSizeEnum. */
+    /**
+     * Static value Default for VmSizeEnum.
+     */
     public static final VmSizeEnum DEFAULT = fromString("Default");
 
-    /** Static value Standard_A2_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_A2_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_A2_V2 = fromString("Standard_A2_v2");
 
-    /** Static value Standard_A4_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_A4_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_A4_V2 = fromString("Standard_A4_v2");
 
-    /** Static value Standard_D2s_v3 for VmSizeEnum. */
+    /**
+     * Static value Standard_D2s_v3 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_D2S_V3 = fromString("Standard_D2s_v3");
 
-    /** Static value Standard_D4s_v3 for VmSizeEnum. */
+    /**
+     * Static value Standard_D4s_v3 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_D4S_V3 = fromString("Standard_D4s_v3");
 
-    /** Static value Standard_D8s_v3 for VmSizeEnum. */
+    /**
+     * Static value Standard_D8s_v3 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_D8S_V3 = fromString("Standard_D8s_v3");
 
-    /** Static value Standard_D16s_v3 for VmSizeEnum. */
+    /**
+     * Static value Standard_D16s_v3 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_D16S_V3 = fromString("Standard_D16s_v3");
 
-    /** Static value Standard_D32s_v3 for VmSizeEnum. */
+    /**
+     * Static value Standard_D32s_v3 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_D32S_V3 = fromString("Standard_D32s_v3");
 
-    /** Static value Standard_DS2_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_DS2_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_DS2_V2 = fromString("Standard_DS2_v2");
 
-    /** Static value Standard_DS3_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_DS3_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_DS3_V2 = fromString("Standard_DS3_v2");
 
-    /** Static value Standard_DS4_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_DS4_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_DS4_V2 = fromString("Standard_DS4_v2");
 
-    /** Static value Standard_DS5_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_DS5_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_DS5_V2 = fromString("Standard_DS5_v2");
 
-    /** Static value Standard_DS13_v2 for VmSizeEnum. */
+    /**
+     * Static value Standard_DS13_v2 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_DS13_V2 = fromString("Standard_DS13_v2");
 
-    /** Static value Standard_K8S_v1 for VmSizeEnum. */
+    /**
+     * Static value Standard_K8S_v1 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_K8S_V1 = fromString("Standard_K8S_v1");
 
-    /** Static value Standard_K8S2_v1 for VmSizeEnum. */
+    /**
+     * Static value Standard_K8S2_v1 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_K8S2_V1 = fromString("Standard_K8S2_v1");
 
-    /** Static value Standard_K8S3_v1 for VmSizeEnum. */
+    /**
+     * Static value Standard_K8S3_v1 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_K8S3_V1 = fromString("Standard_K8S3_v1");
 
-    /** Static value Standard_K8S4_v1 for VmSizeEnum. */
+    /**
+     * Static value Standard_K8S4_v1 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_K8S4_V1 = fromString("Standard_K8S4_v1");
 
-    /** Static value Standard_NK6 for VmSizeEnum. */
+    /**
+     * Static value Standard_NK6 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_NK6 = fromString("Standard_NK6");
 
-    /** Static value Standard_NK12 for VmSizeEnum. */
+    /**
+     * Static value Standard_NK12 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_NK12 = fromString("Standard_NK12");
 
-    /** Static value Standard_NV6 for VmSizeEnum. */
+    /**
+     * Static value Standard_NV6 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_NV6 = fromString("Standard_NV6");
 
-    /** Static value Standard_NV12 for VmSizeEnum. */
+    /**
+     * Static value Standard_NV12 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_NV12 = fromString("Standard_NV12");
 
-    /** Static value Standard_K8S5_v1 for VmSizeEnum. */
+    /**
+     * Static value Standard_K8S5_v1 for VmSizeEnum.
+     */
     public static final VmSizeEnum STANDARD_K8S5_V1 = fromString("Standard_K8S5_v1");
 
-    /** Static value Custom for VmSizeEnum. */
+    /**
+     * Static value Custom for VmSizeEnum.
+     */
     public static final VmSizeEnum CUSTOM = fromString("Custom");
 
     /**
      * Creates a new instance of VmSizeEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -90,7 +138,7 @@ public final class VmSizeEnum extends ExpandableStringEnum<VmSizeEnum> {
 
     /**
      * Creates or finds a VmSizeEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VmSizeEnum.
      */
@@ -101,7 +149,7 @@ public final class VmSizeEnum extends ExpandableStringEnum<VmSizeEnum> {
 
     /**
      * Gets known VmSizeEnum values.
-     *
+     * 
      * @return known VmSizeEnum values.
      */
     public static Collection<VmSizeEnum> values() {
