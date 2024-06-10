@@ -5,55 +5,90 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** uri-file data version entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataType")
+/**
+ * uri-file data version entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "dataType", defaultImpl = UriFileDataVersion.class, visible = true)
 @JsonTypeName("uri_file")
 @Fluent
 public final class UriFileDataVersion extends DataVersionBaseProperties {
-    /** Creates an instance of UriFileDataVersion class. */
+    /*
+     * [Required] Specifies the type of data.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "dataType", required = true)
+    private DataType dataType = DataType.URI_FILE;
+
+    /**
+     * Creates an instance of UriFileDataVersion class.
+     */
     public UriFileDataVersion() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the dataType property: [Required] Specifies the type of data.
+     * 
+     * @return the dataType value.
+     */
+    @Override
+    public DataType dataType() {
+        return this.dataType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withDataUri(String dataUri) {
         super.withDataUri(dataUri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileDataVersion withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -62,7 +97,7 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

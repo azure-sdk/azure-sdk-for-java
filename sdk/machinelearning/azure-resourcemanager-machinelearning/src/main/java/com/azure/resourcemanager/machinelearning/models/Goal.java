@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines supported metric goals for hyperparameter tuning. */
+/**
+ * Defines supported metric goals for hyperparameter tuning.
+ */
 public final class Goal extends ExpandableStringEnum<Goal> {
-    /** Static value Minimize for Goal. */
+    /**
+     * Static value Minimize for Goal.
+     */
     public static final Goal MINIMIZE = fromString("Minimize");
 
-    /** Static value Maximize for Goal. */
+    /**
+     * Static value Maximize for Goal.
+     */
     public static final Goal MAXIMIZE = fromString("Maximize");
 
     /**
      * Creates a new instance of Goal value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Goal extends ExpandableStringEnum<Goal> {
 
     /**
      * Creates or finds a Goal from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Goal.
      */
@@ -38,7 +44,7 @@ public final class Goal extends ExpandableStringEnum<Goal> {
 
     /**
      * Gets known Goal values.
-     *
+     * 
      * @return known Goal values.
      */
     public static Collection<Goal> values() {
