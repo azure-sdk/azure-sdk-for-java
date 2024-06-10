@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Azure service impacted by the service health event. */
+/**
+ * Azure service impacted by the service health event.
+ */
 @Fluent
 public final class Impact {
     /*
@@ -23,13 +25,15 @@ public final class Impact {
     @JsonProperty(value = "impactedRegions")
     private List<ImpactedServiceRegion> impactedRegions;
 
-    /** Creates an instance of Impact class. */
+    /**
+     * Creates an instance of Impact class.
+     */
     public Impact() {
     }
 
     /**
      * Get the impactedService property: Impacted service name.
-     *
+     * 
      * @return the impactedService value.
      */
     public String impactedService() {
@@ -38,7 +42,7 @@ public final class Impact {
 
     /**
      * Set the impactedService property: Impacted service name.
-     *
+     * 
      * @param impactedService the impactedService value to set.
      * @return the Impact object itself.
      */
@@ -49,7 +53,7 @@ public final class Impact {
 
     /**
      * Get the impactedRegions property: List regions impacted by the service health event.
-     *
+     * 
      * @return the impactedRegions value.
      */
     public List<ImpactedServiceRegion> impactedRegions() {
@@ -58,7 +62,7 @@ public final class Impact {
 
     /**
      * Set the impactedRegions property: List regions impacted by the service health event.
-     *
+     * 
      * @param impactedRegions the impactedRegions value to set.
      * @return the Impact object itself.
      */
@@ -69,7 +73,7 @@ public final class Impact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

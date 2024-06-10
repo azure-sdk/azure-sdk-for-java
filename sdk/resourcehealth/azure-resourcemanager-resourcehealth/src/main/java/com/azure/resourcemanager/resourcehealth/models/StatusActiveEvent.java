@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Active event type of emerging issue. */
+/**
+ * Active event type of emerging issue.
+ */
 @Fluent
 public final class StatusActiveEvent {
     /*
@@ -72,13 +74,15 @@ public final class StatusActiveEvent {
     @JsonProperty(value = "impacts")
     private List<EmergingIssueImpact> impacts;
 
-    /** Creates an instance of StatusActiveEvent class. */
+    /**
+     * Creates an instance of StatusActiveEvent class.
+     */
     public StatusActiveEvent() {
     }
 
     /**
      * Get the title property: The active event title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -87,7 +91,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the title property: The active event title.
-     *
+     * 
      * @param title the title value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -98,7 +102,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the description property: The details of active event.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -107,7 +111,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the description property: The details of active event.
-     *
+     * 
      * @param description the description value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -118,7 +122,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the trackingId property: The tracking id of this active event.
-     *
+     * 
      * @return the trackingId value.
      */
     public String trackingId() {
@@ -127,7 +131,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the trackingId property: The tracking id of this active event.
-     *
+     * 
      * @param trackingId the trackingId value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -138,7 +142,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the startTime property: The impact start time on this active event.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -147,7 +151,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the startTime property: The impact start time on this active event.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -158,7 +162,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the cloud property: The cloud type of this active event.
-     *
+     * 
      * @return the cloud value.
      */
     public String cloud() {
@@ -167,7 +171,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the cloud property: The cloud type of this active event.
-     *
+     * 
      * @param cloud the cloud value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -178,7 +182,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the severity property: The severity level of this active event.
-     *
+     * 
      * @return the severity value.
      */
     public SeverityValues severity() {
@@ -187,7 +191,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the severity property: The severity level of this active event.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -198,7 +202,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the stage property: The stage of this active event.
-     *
+     * 
      * @return the stage value.
      */
     public StageValues stage() {
@@ -207,7 +211,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the stage property: The stage of this active event.
-     *
+     * 
      * @param stage the stage value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -218,7 +222,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the published property: The boolean value of this active event if published or not.
-     *
+     * 
      * @return the published value.
      */
     public Boolean published() {
@@ -227,7 +231,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the published property: The boolean value of this active event if published or not.
-     *
+     * 
      * @param published the published value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -238,7 +242,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the lastModifiedTime property: The last time modified on this banner.
-     *
+     * 
      * @return the lastModifiedTime value.
      */
     public OffsetDateTime lastModifiedTime() {
@@ -247,7 +251,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the lastModifiedTime property: The last time modified on this banner.
-     *
+     * 
      * @param lastModifiedTime the lastModifiedTime value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -258,7 +262,7 @@ public final class StatusActiveEvent {
 
     /**
      * Get the impacts property: The list of emerging issues impacts.
-     *
+     * 
      * @return the impacts value.
      */
     public List<EmergingIssueImpact> impacts() {
@@ -267,7 +271,7 @@ public final class StatusActiveEvent {
 
     /**
      * Set the impacts property: The list of emerging issues impacts.
-     *
+     * 
      * @param impacts the impacts value to set.
      * @return the StatusActiveEvent object itself.
      */
@@ -278,7 +282,7 @@ public final class StatusActiveEvent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

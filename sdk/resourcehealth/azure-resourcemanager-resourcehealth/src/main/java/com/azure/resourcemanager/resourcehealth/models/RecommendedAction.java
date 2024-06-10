@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Lists actions the user can take based on the current availabilityState of the resource. */
+/**
+ * Lists actions the user can take based on the current availabilityState of the resource.
+ */
 @Fluent
 public final class RecommendedAction {
     /*
@@ -34,13 +36,15 @@ public final class RecommendedAction {
     @JsonProperty(value = "actionUrlText")
     private String actionUrlText;
 
-    /** Creates an instance of RecommendedAction class. */
+    /**
+     * Creates an instance of RecommendedAction class.
+     */
     public RecommendedAction() {
     }
 
     /**
      * Get the action property: Recommended action.
-     *
+     * 
      * @return the action value.
      */
     public String action() {
@@ -49,7 +53,7 @@ public final class RecommendedAction {
 
     /**
      * Set the action property: Recommended action.
-     *
+     * 
      * @param action the action value to set.
      * @return the RecommendedAction object itself.
      */
@@ -60,7 +64,7 @@ public final class RecommendedAction {
 
     /**
      * Get the actionUrl property: Link to the action.
-     *
+     * 
      * @return the actionUrl value.
      */
     public String actionUrl() {
@@ -69,7 +73,7 @@ public final class RecommendedAction {
 
     /**
      * Set the actionUrl property: Link to the action.
-     *
+     * 
      * @param actionUrl the actionUrl value to set.
      * @return the RecommendedAction object itself.
      */
@@ -80,7 +84,7 @@ public final class RecommendedAction {
 
     /**
      * Get the actionUrlComment property: the comment for the Action.
-     *
+     * 
      * @return the actionUrlComment value.
      */
     public String actionUrlComment() {
@@ -89,7 +93,7 @@ public final class RecommendedAction {
 
     /**
      * Set the actionUrlComment property: the comment for the Action.
-     *
+     * 
      * @param actionUrlComment the actionUrlComment value to set.
      * @return the RecommendedAction object itself.
      */
@@ -100,7 +104,7 @@ public final class RecommendedAction {
 
     /**
      * Get the actionUrlText property: Substring of action, it describes which text should host the action URL.
-     *
+     * 
      * @return the actionUrlText value.
      */
     public String actionUrlText() {
@@ -109,7 +113,7 @@ public final class RecommendedAction {
 
     /**
      * Set the actionUrlText property: Substring of action, it describes which text should host the action URL.
-     *
+     * 
      * @param actionUrlText the actionUrlText value to set.
      * @return the RecommendedAction object itself.
      */
@@ -120,7 +124,7 @@ public final class RecommendedAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The Get EmergingIssues operation response. */
+/**
+ * The Get EmergingIssues operation response.
+ */
 @Fluent
 public final class EmergingIssuesGetResultInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of EmergingIssuesGetResultInner class. */
+    /**
+     * Creates an instance of EmergingIssuesGetResultInner class.
+     */
     public EmergingIssuesGetResultInner() {
     }
 
     /**
      * Get the innerProperties property: The emerging issue entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EmergingIssue innerProperties() {
@@ -43,7 +47,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -52,7 +56,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Get the refreshTimestamp property: Timestamp for when last time refreshed for ongoing emerging issue.
-     *
+     * 
      * @return the refreshTimestamp value.
      */
     public OffsetDateTime refreshTimestamp() {
@@ -61,7 +65,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Set the refreshTimestamp property: Timestamp for when last time refreshed for ongoing emerging issue.
-     *
+     * 
      * @param refreshTimestamp the refreshTimestamp value to set.
      * @return the EmergingIssuesGetResultInner object itself.
      */
@@ -75,7 +79,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Get the statusBanners property: The list of emerging issues of banner type.
-     *
+     * 
      * @return the statusBanners value.
      */
     public List<StatusBanner> statusBanners() {
@@ -84,7 +88,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Set the statusBanners property: The list of emerging issues of banner type.
-     *
+     * 
      * @param statusBanners the statusBanners value to set.
      * @return the EmergingIssuesGetResultInner object itself.
      */
@@ -98,7 +102,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Get the statusActiveEvents property: The list of emerging issues of active event type.
-     *
+     * 
      * @return the statusActiveEvents value.
      */
     public List<StatusActiveEvent> statusActiveEvents() {
@@ -107,7 +111,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Set the statusActiveEvents property: The list of emerging issues of active event type.
-     *
+     * 
      * @param statusActiveEvents the statusActiveEvents value to set.
      * @return the EmergingIssuesGetResultInner object itself.
      */
@@ -121,7 +125,7 @@ public final class EmergingIssuesGetResultInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -21,7 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of event. */
+/**
+ * Properties of event.
+ */
 @Fluent
 public final class EventProperties {
     /*
@@ -163,9 +165,7 @@ public final class EventProperties {
     private Boolean enableChatWithUs;
 
     /*
-     * Priority level of the event. Has value from 0 to 23. 0 is the highest priority. Service issue events have higher
-     * priority followed by planned maintenance and health advisory. Critical events have higher priority followed by
-     * error, warning and informational. Furthermore, active events have higher priority than resolved.
+     * Priority level of the event. Has value from 0 to 23. 0 is the highest priority. Service issue events have higher priority followed by planned maintenance and health advisory. Critical events have higher priority followed by error, warning and informational. Furthermore, active events have higher priority than resolved.
      */
     @JsonProperty(value = "priority")
     private Integer priority;
@@ -218,13 +218,15 @@ public final class EventProperties {
     @JsonProperty(value = "argQuery")
     private String argQuery;
 
-    /** Creates an instance of EventProperties class. */
+    /**
+     * Creates an instance of EventProperties class.
+     */
     public EventProperties() {
     }
 
     /**
      * Get the eventType property: Type of event.
-     *
+     * 
      * @return the eventType value.
      */
     public EventTypeValues eventType() {
@@ -233,7 +235,7 @@ public final class EventProperties {
 
     /**
      * Set the eventType property: Type of event.
-     *
+     * 
      * @param eventType the eventType value to set.
      * @return the EventProperties object itself.
      */
@@ -245,7 +247,7 @@ public final class EventProperties {
     /**
      * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
      * health advisory events.
-     *
+     * 
      * @return the eventSubType value.
      */
     public EventSubTypeValues eventSubType() {
@@ -255,7 +257,7 @@ public final class EventProperties {
     /**
      * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
      * health advisory events.
-     *
+     * 
      * @param eventSubType the eventSubType value to set.
      * @return the EventProperties object itself.
      */
@@ -266,7 +268,7 @@ public final class EventProperties {
 
     /**
      * Get the eventSource property: Source of event.
-     *
+     * 
      * @return the eventSource value.
      */
     public EventSourceValues eventSource() {
@@ -275,7 +277,7 @@ public final class EventProperties {
 
     /**
      * Set the eventSource property: Source of event.
-     *
+     * 
      * @param eventSource the eventSource value to set.
      * @return the EventProperties object itself.
      */
@@ -286,7 +288,7 @@ public final class EventProperties {
 
     /**
      * Get the status property: Current status of event.
-     *
+     * 
      * @return the status value.
      */
     public EventStatusValues status() {
@@ -295,7 +297,7 @@ public final class EventProperties {
 
     /**
      * Set the status property: Current status of event.
-     *
+     * 
      * @param status the status value to set.
      * @return the EventProperties object itself.
      */
@@ -306,7 +308,7 @@ public final class EventProperties {
 
     /**
      * Get the title property: Title text of event.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -315,7 +317,7 @@ public final class EventProperties {
 
     /**
      * Set the title property: Title text of event.
-     *
+     * 
      * @param title the title value to set.
      * @return the EventProperties object itself.
      */
@@ -326,7 +328,7 @@ public final class EventProperties {
 
     /**
      * Get the summary property: Summary text of event.
-     *
+     * 
      * @return the summary value.
      */
     public String summary() {
@@ -335,7 +337,7 @@ public final class EventProperties {
 
     /**
      * Set the summary property: Summary text of event.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the EventProperties object itself.
      */
@@ -346,7 +348,7 @@ public final class EventProperties {
 
     /**
      * Get the headerProperty property: Header text of event.
-     *
+     * 
      * @return the headerProperty value.
      */
     public String headerProperty() {
@@ -355,7 +357,7 @@ public final class EventProperties {
 
     /**
      * Set the headerProperty property: Header text of event.
-     *
+     * 
      * @param headerProperty the headerProperty value to set.
      * @return the EventProperties object itself.
      */
@@ -366,7 +368,7 @@ public final class EventProperties {
 
     /**
      * Get the level property: Level of insight.
-     *
+     * 
      * @return the level value.
      */
     public LevelValues level() {
@@ -375,7 +377,7 @@ public final class EventProperties {
 
     /**
      * Set the level property: Level of insight.
-     *
+     * 
      * @param level the level value to set.
      * @return the EventProperties object itself.
      */
@@ -386,7 +388,7 @@ public final class EventProperties {
 
     /**
      * Get the eventLevel property: Level of event.
-     *
+     * 
      * @return the eventLevel value.
      */
     public EventLevelValues eventLevel() {
@@ -395,7 +397,7 @@ public final class EventProperties {
 
     /**
      * Set the eventLevel property: Level of event.
-     *
+     * 
      * @param eventLevel the eventLevel value to set.
      * @return the EventProperties object itself.
      */
@@ -406,7 +408,7 @@ public final class EventProperties {
 
     /**
      * Get the externalIncidentId property: The id of the Incident.
-     *
+     * 
      * @return the externalIncidentId value.
      */
     public String externalIncidentId() {
@@ -415,7 +417,7 @@ public final class EventProperties {
 
     /**
      * Set the externalIncidentId property: The id of the Incident.
-     *
+     * 
      * @param externalIncidentId the externalIncidentId value to set.
      * @return the EventProperties object itself.
      */
@@ -426,7 +428,7 @@ public final class EventProperties {
 
     /**
      * Get the reason property: The reason for the Incident.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -435,7 +437,7 @@ public final class EventProperties {
 
     /**
      * Set the reason property: The reason for the Incident.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the EventProperties object itself.
      */
@@ -446,7 +448,7 @@ public final class EventProperties {
 
     /**
      * Get the article property: Article of event.
-     *
+     * 
      * @return the article value.
      */
     public EventPropertiesArticle article() {
@@ -455,7 +457,7 @@ public final class EventProperties {
 
     /**
      * Set the article property: Article of event.
-     *
+     * 
      * @param article the article value to set.
      * @return the EventProperties object itself.
      */
@@ -466,7 +468,7 @@ public final class EventProperties {
 
     /**
      * Get the links property: Useful links of event.
-     *
+     * 
      * @return the links value.
      */
     public List<Link> links() {
@@ -475,7 +477,7 @@ public final class EventProperties {
 
     /**
      * Set the links property: Useful links of event.
-     *
+     * 
      * @param links the links value to set.
      * @return the EventProperties object itself.
      */
@@ -486,7 +488,7 @@ public final class EventProperties {
 
     /**
      * Get the impactStartTime property: It provides the Timestamp for when the health impacting event started.
-     *
+     * 
      * @return the impactStartTime value.
      */
     public OffsetDateTime impactStartTime() {
@@ -495,7 +497,7 @@ public final class EventProperties {
 
     /**
      * Set the impactStartTime property: It provides the Timestamp for when the health impacting event started.
-     *
+     * 
      * @param impactStartTime the impactStartTime value to set.
      * @return the EventProperties object itself.
      */
@@ -506,7 +508,7 @@ public final class EventProperties {
 
     /**
      * Get the impactMitigationTime property: It provides the Timestamp for when the health impacting event resolved.
-     *
+     * 
      * @return the impactMitigationTime value.
      */
     public OffsetDateTime impactMitigationTime() {
@@ -515,7 +517,7 @@ public final class EventProperties {
 
     /**
      * Set the impactMitigationTime property: It provides the Timestamp for when the health impacting event resolved.
-     *
+     * 
      * @param impactMitigationTime the impactMitigationTime value to set.
      * @return the EventProperties object itself.
      */
@@ -526,7 +528,7 @@ public final class EventProperties {
 
     /**
      * Get the impact property: List services impacted by the service health event.
-     *
+     * 
      * @return the impact value.
      */
     public List<Impact> impact() {
@@ -535,7 +537,7 @@ public final class EventProperties {
 
     /**
      * Set the impact property: List services impacted by the service health event.
-     *
+     * 
      * @param impact the impact value to set.
      * @return the EventProperties object itself.
      */
@@ -546,7 +548,7 @@ public final class EventProperties {
 
     /**
      * Get the recommendedActions property: Recommended actions of event.
-     *
+     * 
      * @return the recommendedActions value.
      */
     public EventPropertiesRecommendedActions recommendedActions() {
@@ -555,7 +557,7 @@ public final class EventProperties {
 
     /**
      * Set the recommendedActions property: Recommended actions of event.
-     *
+     * 
      * @param recommendedActions the recommendedActions value to set.
      * @return the EventProperties object itself.
      */
@@ -566,7 +568,7 @@ public final class EventProperties {
 
     /**
      * Get the faqs property: Frequently asked questions for the service health event.
-     *
+     * 
      * @return the faqs value.
      */
     public List<Faq> faqs() {
@@ -575,7 +577,7 @@ public final class EventProperties {
 
     /**
      * Set the faqs property: Frequently asked questions for the service health event.
-     *
+     * 
      * @param faqs the faqs value to set.
      * @return the EventProperties object itself.
      */
@@ -586,7 +588,7 @@ public final class EventProperties {
 
     /**
      * Get the isHir property: It provides information if the event is High incident rate event or not.
-     *
+     * 
      * @return the isHir value.
      */
     public Boolean isHir() {
@@ -595,7 +597,7 @@ public final class EventProperties {
 
     /**
      * Set the isHir property: It provides information if the event is High incident rate event or not.
-     *
+     * 
      * @param isHir the isHir value to set.
      * @return the EventProperties object itself.
      */
@@ -606,7 +608,7 @@ public final class EventProperties {
 
     /**
      * Get the enableMicrosoftSupport property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @return the enableMicrosoftSupport value.
      */
     public Boolean enableMicrosoftSupport() {
@@ -615,7 +617,7 @@ public final class EventProperties {
 
     /**
      * Set the enableMicrosoftSupport property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @param enableMicrosoftSupport the enableMicrosoftSupport value to set.
      * @return the EventProperties object itself.
      */
@@ -627,7 +629,7 @@ public final class EventProperties {
     /**
      * Get the description property: Contains the communication message for the event, that could include summary, root
      * cause and other details.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -637,7 +639,7 @@ public final class EventProperties {
     /**
      * Set the description property: Contains the communication message for the event, that could include summary, root
      * cause and other details.
-     *
+     * 
      * @param description the description value to set.
      * @return the EventProperties object itself.
      */
@@ -648,7 +650,7 @@ public final class EventProperties {
 
     /**
      * Get the platformInitiated property: Is true if the event is platform initiated.
-     *
+     * 
      * @return the platformInitiated value.
      */
     public Boolean platformInitiated() {
@@ -657,7 +659,7 @@ public final class EventProperties {
 
     /**
      * Set the platformInitiated property: Is true if the event is platform initiated.
-     *
+     * 
      * @param platformInitiated the platformInitiated value to set.
      * @return the EventProperties object itself.
      */
@@ -668,7 +670,7 @@ public final class EventProperties {
 
     /**
      * Get the enableChatWithUs property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @return the enableChatWithUs value.
      */
     public Boolean enableChatWithUs() {
@@ -677,7 +679,7 @@ public final class EventProperties {
 
     /**
      * Set the enableChatWithUs property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @param enableChatWithUs the enableChatWithUs value to set.
      * @return the EventProperties object itself.
      */
@@ -691,7 +693,7 @@ public final class EventProperties {
      * Service issue events have higher priority followed by planned maintenance and health advisory. Critical events
      * have higher priority followed by error, warning and informational. Furthermore, active events have higher
      * priority than resolved.
-     *
+     * 
      * @return the priority value.
      */
     public Integer priority() {
@@ -703,7 +705,7 @@ public final class EventProperties {
      * Service issue events have higher priority followed by planned maintenance and health advisory. Critical events
      * have higher priority followed by error, warning and informational. Furthermore, active events have higher
      * priority than resolved.
-     *
+     * 
      * @param priority the priority value to set.
      * @return the EventProperties object itself.
      */
@@ -714,7 +716,7 @@ public final class EventProperties {
 
     /**
      * Get the lastUpdateTime property: It provides the Timestamp for when the health impacting event was last updated.
-     *
+     * 
      * @return the lastUpdateTime value.
      */
     public OffsetDateTime lastUpdateTime() {
@@ -723,7 +725,7 @@ public final class EventProperties {
 
     /**
      * Set the lastUpdateTime property: It provides the Timestamp for when the health impacting event was last updated.
-     *
+     * 
      * @param lastUpdateTime the lastUpdateTime value to set.
      * @return the EventProperties object itself.
      */
@@ -734,7 +736,7 @@ public final class EventProperties {
 
     /**
      * Get the hirStage property: Stage for HIR Document.
-     *
+     * 
      * @return the hirStage value.
      */
     public String hirStage() {
@@ -743,7 +745,7 @@ public final class EventProperties {
 
     /**
      * Set the hirStage property: Stage for HIR Document.
-     *
+     * 
      * @param hirStage the hirStage value to set.
      * @return the EventProperties object itself.
      */
@@ -754,7 +756,7 @@ public final class EventProperties {
 
     /**
      * Get the additionalInformation property: Additional information.
-     *
+     * 
      * @return the additionalInformation value.
      */
     public EventPropertiesAdditionalInformation additionalInformation() {
@@ -763,7 +765,7 @@ public final class EventProperties {
 
     /**
      * Set the additionalInformation property: Additional information.
-     *
+     * 
      * @param additionalInformation the additionalInformation value to set.
      * @return the EventProperties object itself.
      */
@@ -774,7 +776,7 @@ public final class EventProperties {
 
     /**
      * Get the duration property: duration in seconds.
-     *
+     * 
      * @return the duration value.
      */
     public Integer duration() {
@@ -783,7 +785,7 @@ public final class EventProperties {
 
     /**
      * Set the duration property: duration in seconds.
-     *
+     * 
      * @param duration the duration value to set.
      * @return the EventProperties object itself.
      */
@@ -794,7 +796,7 @@ public final class EventProperties {
 
     /**
      * Get the impactType property: The type of the impact.
-     *
+     * 
      * @return the impactType value.
      */
     public String impactType() {
@@ -803,7 +805,7 @@ public final class EventProperties {
 
     /**
      * Set the impactType property: The type of the impact.
-     *
+     * 
      * @param impactType the impactType value to set.
      * @return the EventProperties object itself.
      */
@@ -814,7 +816,7 @@ public final class EventProperties {
 
     /**
      * Get the maintenanceId property: Unique identifier for planned maintenance event.
-     *
+     * 
      * @return the maintenanceId value.
      */
     public String maintenanceId() {
@@ -823,7 +825,7 @@ public final class EventProperties {
 
     /**
      * Set the maintenanceId property: Unique identifier for planned maintenance event.
-     *
+     * 
      * @param maintenanceId the maintenanceId value to set.
      * @return the EventProperties object itself.
      */
@@ -834,7 +836,7 @@ public final class EventProperties {
 
     /**
      * Get the maintenanceType property: The type of planned maintenance event.
-     *
+     * 
      * @return the maintenanceType value.
      */
     public String maintenanceType() {
@@ -843,7 +845,7 @@ public final class EventProperties {
 
     /**
      * Set the maintenanceType property: The type of planned maintenance event.
-     *
+     * 
      * @param maintenanceType the maintenanceType value to set.
      * @return the EventProperties object itself.
      */
@@ -855,7 +857,7 @@ public final class EventProperties {
     /**
      * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
      * Resource Graph locations.
-     *
+     * 
      * @return the argQuery value.
      */
     public String argQuery() {
@@ -865,7 +867,7 @@ public final class EventProperties {
     /**
      * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
      * Resource Graph locations.
-     *
+     * 
      * @param argQuery the argQuery value to set.
      * @return the EventProperties object itself.
      */
@@ -876,7 +878,7 @@ public final class EventProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

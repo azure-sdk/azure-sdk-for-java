@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Object of impacted region. */
+/**
+ * Object of impacted region.
+ */
 @Fluent
 public final class ImpactedRegion {
     /*
@@ -22,13 +24,15 @@ public final class ImpactedRegion {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of ImpactedRegion class. */
+    /**
+     * Creates an instance of ImpactedRegion class.
+     */
     public ImpactedRegion() {
     }
 
     /**
      * Get the id property: The impacted region id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -37,7 +41,7 @@ public final class ImpactedRegion {
 
     /**
      * Set the id property: The impacted region id.
-     *
+     * 
      * @param id the id value to set.
      * @return the ImpactedRegion object itself.
      */
@@ -48,7 +52,7 @@ public final class ImpactedRegion {
 
     /**
      * Get the name property: The impacted region name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class ImpactedRegion {
 
     /**
      * Set the name property: The impacted region name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ImpactedRegion object itself.
      */
@@ -68,7 +72,7 @@ public final class ImpactedRegion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcehealth.models.KeyValueItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of impacted resource. */
+/**
+ * Properties of impacted resource.
+ */
 @Fluent
 public final class EventImpactedResourceProperties {
     /*
@@ -66,13 +68,15 @@ public final class EventImpactedResourceProperties {
     @JsonProperty(value = "info")
     private List<KeyValueItem> info;
 
-    /** Creates an instance of EventImpactedResourceProperties class. */
+    /**
+     * Creates an instance of EventImpactedResourceProperties class.
+     */
     public EventImpactedResourceProperties() {
     }
 
     /**
      * Get the targetResourceType property: Resource type within Microsoft cloud.
-     *
+     * 
      * @return the targetResourceType value.
      */
     public String targetResourceType() {
@@ -81,7 +85,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the targetResourceId property: Identity for resource within Microsoft cloud.
-     *
+     * 
      * @return the targetResourceId value.
      */
     public String targetResourceId() {
@@ -90,7 +94,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the targetRegion property: Impacted resource region name.
-     *
+     * 
      * @return the targetRegion value.
      */
     public String targetRegion() {
@@ -99,7 +103,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the resourceName property: Resource name of the impacted resource.
-     *
+     * 
      * @return the resourceName value.
      */
     public String resourceName() {
@@ -108,7 +112,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the resourceGroup property: Resource group name of the impacted resource.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -117,7 +121,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the status property: Status of the impacted resource.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -126,7 +130,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the maintenanceStartTime property: Start time of maintenance for the impacted resource.
-     *
+     * 
      * @return the maintenanceStartTime value.
      */
     public String maintenanceStartTime() {
@@ -135,7 +139,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the maintenanceEndTime property: End time of maintenance for the impacted resource.
-     *
+     * 
      * @return the maintenanceEndTime value.
      */
     public String maintenanceEndTime() {
@@ -144,7 +148,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Get the info property: Additional information.
-     *
+     * 
      * @return the info value.
      */
     public List<KeyValueItem> info() {
@@ -153,7 +157,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Set the info property: Additional information.
-     *
+     * 
      * @param info the info value to set.
      * @return the EventImpactedResourceProperties object itself.
      */
@@ -164,7 +168,7 @@ public final class EventImpactedResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

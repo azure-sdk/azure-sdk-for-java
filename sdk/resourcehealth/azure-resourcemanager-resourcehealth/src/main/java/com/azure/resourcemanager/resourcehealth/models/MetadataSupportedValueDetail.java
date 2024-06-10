@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The metadata supported value detail. */
+/**
+ * The metadata supported value detail.
+ */
 @Fluent
 public final class MetadataSupportedValueDetail {
     /*
@@ -29,13 +31,15 @@ public final class MetadataSupportedValueDetail {
     @JsonProperty(value = "resourceTypes")
     private List<String> resourceTypes;
 
-    /** Creates an instance of MetadataSupportedValueDetail class. */
+    /**
+     * Creates an instance of MetadataSupportedValueDetail class.
+     */
     public MetadataSupportedValueDetail() {
     }
 
     /**
      * Get the id property: The id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -44,7 +48,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Set the id property: The id.
-     *
+     * 
      * @param id the id value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -55,7 +59,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Get the displayName property: The display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -64,7 +68,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Set the displayName property: The display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -75,7 +79,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Get the resourceTypes property: The list of associated resource types.
-     *
+     * 
      * @return the resourceTypes value.
      */
     public List<String> resourceTypes() {
@@ -84,7 +88,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Set the resourceTypes property: The list of associated resource types.
-     *
+     * 
      * @param resourceTypes the resourceTypes value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -95,7 +99,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

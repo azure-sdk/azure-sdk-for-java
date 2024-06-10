@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Recommended action for the service health event. */
+/**
+ * Recommended action for the service health event.
+ */
 @Fluent
 public final class EventPropertiesRecommendedActionsItem {
     /*
@@ -22,13 +24,15 @@ public final class EventPropertiesRecommendedActionsItem {
     @JsonProperty(value = "actionText")
     private String actionText;
 
-    /** Creates an instance of EventPropertiesRecommendedActionsItem class. */
+    /**
+     * Creates an instance of EventPropertiesRecommendedActionsItem class.
+     */
     public EventPropertiesRecommendedActionsItem() {
     }
 
     /**
      * Get the groupId property: Recommended action group Id for the service health event.
-     *
+     * 
      * @return the groupId value.
      */
     public Integer groupId() {
@@ -37,7 +41,7 @@ public final class EventPropertiesRecommendedActionsItem {
 
     /**
      * Set the groupId property: Recommended action group Id for the service health event.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the EventPropertiesRecommendedActionsItem object itself.
      */
@@ -48,7 +52,7 @@ public final class EventPropertiesRecommendedActionsItem {
 
     /**
      * Get the actionText property: Recommended action text.
-     *
+     * 
      * @return the actionText value.
      */
     public String actionText() {
@@ -57,7 +61,7 @@ public final class EventPropertiesRecommendedActionsItem {
 
     /**
      * Set the actionText property: Recommended action text.
-     *
+     * 
      * @param actionText the actionText value to set.
      * @return the EventPropertiesRecommendedActionsItem object itself.
      */
@@ -68,7 +72,7 @@ public final class EventPropertiesRecommendedActionsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Status of the service impacting event. */
+/**
+ * Status of the service impacting event.
+ */
 @Fluent
 public final class ServiceImpactingEventStatus {
     /*
@@ -16,13 +18,15 @@ public final class ServiceImpactingEventStatus {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of ServiceImpactingEventStatus class. */
+    /**
+     * Creates an instance of ServiceImpactingEventStatus class.
+     */
     public ServiceImpactingEventStatus() {
     }
 
     /**
      * Get the value property: Current status of the event.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -31,7 +35,7 @@ public final class ServiceImpactingEventStatus {
 
     /**
      * Set the value property: Current status of the event.
-     *
+     * 
      * @param value the value value to set.
      * @return the ServiceImpactingEventStatus object itself.
      */
@@ -42,7 +46,7 @@ public final class ServiceImpactingEventStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

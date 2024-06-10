@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** On-going emerging issue from azure status. */
+/**
+ * On-going emerging issue from azure status.
+ */
 @Fluent
 public final class EmergingIssue {
     /*
@@ -32,13 +34,15 @@ public final class EmergingIssue {
     @JsonProperty(value = "statusActiveEvents")
     private List<StatusActiveEvent> statusActiveEvents;
 
-    /** Creates an instance of EmergingIssue class. */
+    /**
+     * Creates an instance of EmergingIssue class.
+     */
     public EmergingIssue() {
     }
 
     /**
      * Get the refreshTimestamp property: Timestamp for when last time refreshed for ongoing emerging issue.
-     *
+     * 
      * @return the refreshTimestamp value.
      */
     public OffsetDateTime refreshTimestamp() {
@@ -47,7 +51,7 @@ public final class EmergingIssue {
 
     /**
      * Set the refreshTimestamp property: Timestamp for when last time refreshed for ongoing emerging issue.
-     *
+     * 
      * @param refreshTimestamp the refreshTimestamp value to set.
      * @return the EmergingIssue object itself.
      */
@@ -58,7 +62,7 @@ public final class EmergingIssue {
 
     /**
      * Get the statusBanners property: The list of emerging issues of banner type.
-     *
+     * 
      * @return the statusBanners value.
      */
     public List<StatusBanner> statusBanners() {
@@ -67,7 +71,7 @@ public final class EmergingIssue {
 
     /**
      * Set the statusBanners property: The list of emerging issues of banner type.
-     *
+     * 
      * @param statusBanners the statusBanners value to set.
      * @return the EmergingIssue object itself.
      */
@@ -78,7 +82,7 @@ public final class EmergingIssue {
 
     /**
      * Get the statusActiveEvents property: The list of emerging issues of active event type.
-     *
+     * 
      * @return the statusActiveEvents value.
      */
     public List<StatusActiveEvent> statusActiveEvents() {
@@ -87,7 +91,7 @@ public final class EmergingIssue {
 
     /**
      * Set the statusActiveEvents property: The list of emerging issues of active event type.
-     *
+     * 
      * @param statusActiveEvents the statusActiveEvents value to set.
      * @return the EmergingIssue object itself.
      */
@@ -98,7 +102,7 @@ public final class EmergingIssue {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

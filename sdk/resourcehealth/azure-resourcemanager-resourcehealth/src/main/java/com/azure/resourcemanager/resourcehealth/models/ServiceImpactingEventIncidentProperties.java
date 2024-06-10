@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the service impacting event. */
+/**
+ * Properties of the service impacting event.
+ */
 @Fluent
 public final class ServiceImpactingEventIncidentProperties {
     /*
@@ -34,13 +36,15 @@ public final class ServiceImpactingEventIncidentProperties {
     @JsonProperty(value = "incidentType")
     private String incidentType;
 
-    /** Creates an instance of ServiceImpactingEventIncidentProperties class. */
+    /**
+     * Creates an instance of ServiceImpactingEventIncidentProperties class.
+     */
     public ServiceImpactingEventIncidentProperties() {
     }
 
     /**
      * Get the title property: Title of the incident.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -49,7 +53,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Set the title property: Title of the incident.
-     *
+     * 
      * @param title the title value to set.
      * @return the ServiceImpactingEventIncidentProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Get the service property: Service impacted by the event.
-     *
+     * 
      * @return the service value.
      */
     public String service() {
@@ -69,7 +73,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Set the service property: Service impacted by the event.
-     *
+     * 
      * @param service the service value to set.
      * @return the ServiceImpactingEventIncidentProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Get the region property: Region impacted by the event.
-     *
+     * 
      * @return the region value.
      */
     public String region() {
@@ -89,7 +93,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Set the region property: Region impacted by the event.
-     *
+     * 
      * @param region the region value to set.
      * @return the ServiceImpactingEventIncidentProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Get the incidentType property: Type of Event.
-     *
+     * 
      * @return the incidentType value.
      */
     public String incidentType() {
@@ -109,7 +113,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Set the incidentType property: Type of Event.
-     *
+     * 
      * @param incidentType the incidentType value to set.
      * @return the ServiceImpactingEventIncidentProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class ServiceImpactingEventIncidentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
