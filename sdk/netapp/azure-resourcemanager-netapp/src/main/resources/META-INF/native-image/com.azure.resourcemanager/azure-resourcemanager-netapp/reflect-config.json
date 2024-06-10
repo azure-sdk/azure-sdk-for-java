@@ -169,6 +169,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.netapp.models.EncryptionMigrationRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.models.ChangeKeyVault",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.models.KeyVaultPrivateEndpoint",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.netapp.models.CapacityPoolList",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -235,6 +250,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.netapp.models.ReplicationObject",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.models.RemotePath",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -320,6 +340,21 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.netapp.models.AuthorizeRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.models.PeerClusterForVolumeMigrationRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.fluent.models.ClusterPeerCommandResponseInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.fluent.models.SvmPeerCommandResponseInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -669,6 +704,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.netapp.models.AcceptGrowCapacityPoolForShortTermCloneSplit",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.netapp.models.SecurityStyle",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -705,6 +745,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.netapp.models.EnableSubvolumes",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.netapp.models.VolumeLanguage",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

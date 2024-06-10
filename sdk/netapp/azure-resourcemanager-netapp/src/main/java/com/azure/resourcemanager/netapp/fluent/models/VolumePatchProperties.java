@@ -12,6 +12,7 @@ import com.azure.resourcemanager.netapp.models.SmbNonBrowsable;
 import com.azure.resourcemanager.netapp.models.VolumePatchPropertiesDataProtection;
 import com.azure.resourcemanager.netapp.models.VolumePatchPropertiesExportPolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Patchable volume properties.
@@ -41,6 +42,14 @@ public final class VolumePatchProperties {
      */
     @JsonProperty(value = "exportPolicy")
     private VolumePatchPropertiesExportPolicy exportPolicy;
+
+    /*
+     * protocolTypes
+     * 
+     * Set of protocol types, default NFSv3, CIFS for SMB protocol
+     */
+    @JsonProperty(value = "protocolTypes")
+    private List<String> protocolTypes;
 
     /*
      * Maximum throughput in MiB/s that can be achieved by this volume and this will be accepted as input only for manual qosType volume
@@ -202,6 +211,30 @@ public final class VolumePatchProperties {
      */
     public VolumePatchProperties withExportPolicy(VolumePatchPropertiesExportPolicy exportPolicy) {
         this.exportPolicy = exportPolicy;
+        return this;
+    }
+
+    /**
+     * Get the protocolTypes property: protocolTypes
+     * 
+     * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+     * 
+     * @return the protocolTypes value.
+     */
+    public List<String> protocolTypes() {
+        return this.protocolTypes;
+    }
+
+    /**
+     * Set the protocolTypes property: protocolTypes
+     * 
+     * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+     * 
+     * @param protocolTypes the protocolTypes value to set.
+     * @return the VolumePatchProperties object itself.
+     */
+    public VolumePatchProperties withProtocolTypes(List<String> protocolTypes) {
+        this.protocolTypes = protocolTypes;
         return this;
     }
 

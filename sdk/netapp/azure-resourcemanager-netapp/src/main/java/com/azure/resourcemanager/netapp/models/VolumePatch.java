@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.resourcemanager.netapp.fluent.models.VolumePatchProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -136,6 +137,33 @@ public final class VolumePatch extends Resource {
             this.innerProperties = new VolumePatchProperties();
         }
         this.innerProperties().withExportPolicy(exportPolicy);
+        return this;
+    }
+
+    /**
+     * Get the protocolTypes property: protocolTypes
+     * 
+     * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+     * 
+     * @return the protocolTypes value.
+     */
+    public List<String> protocolTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().protocolTypes();
+    }
+
+    /**
+     * Set the protocolTypes property: protocolTypes
+     * 
+     * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+     * 
+     * @param protocolTypes the protocolTypes value to set.
+     * @return the VolumePatch object itself.
+     */
+    public VolumePatch withProtocolTypes(List<String> protocolTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumePatchProperties();
+        }
+        this.innerProperties().withProtocolTypes(protocolTypes);
         return this;
     }
 

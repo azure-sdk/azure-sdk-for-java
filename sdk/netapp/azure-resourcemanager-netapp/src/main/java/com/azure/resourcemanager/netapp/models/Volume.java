@@ -217,7 +217,7 @@ public interface Volume {
 
     /**
      * Gets the volumeType property: What type of volume is this. For destination volumes in Cross Region Replication,
-     * set type to DataProtection.
+     * set type to DataProtection. For creating clone volume, set type to ShortTermClone.
      * 
      * @return the volumeType value.
      */
@@ -231,6 +231,17 @@ public interface Volume {
      * @return the dataProtection value.
      */
     VolumePropertiesDataProtection dataProtection();
+
+    /**
+     * Gets the acceptGrowCapacityPoolForShortTermCloneSplit property: acceptGrowCapacityPoolForShortTermCloneSplit
+     * 
+     * While auto splitting the short term clone volume, if the parent pool does not have enough space to accommodate
+     * the volume after split, it will be automatically resized, which will lead to increased billing. To accept
+     * capacity pool size auto grow and create a short term clone volume, set the property as accepted.
+     * 
+     * @return the acceptGrowCapacityPoolForShortTermCloneSplit value.
+     */
+    AcceptGrowCapacityPoolForShortTermCloneSplit acceptGrowCapacityPoolForShortTermCloneSplit();
 
     /**
      * Gets the isRestoring property: Restoring.
@@ -532,6 +543,24 @@ public interface Volume {
     String originatingResourceId();
 
     /**
+     * Gets the inheritedSizeInBytes property: inheritedSizeInBytes
+     * 
+     * Space shared by short term clone volume with parent volume in bytes.
+     * 
+     * @return the inheritedSizeInBytes value.
+     */
+    Long inheritedSizeInBytes();
+
+    /**
+     * Gets the language property: VolumeLanguage
+     * 
+     * Language supported for volume.
+     * 
+     * @return the language value.
+     */
+    VolumeLanguage language();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -674,19 +703,19 @@ public interface Volume {
             DefinitionStages.WithServiceLevel, DefinitionStages.WithExportPolicy, DefinitionStages.WithProtocolTypes,
             DefinitionStages.WithSnapshotId, DefinitionStages.WithDeleteBaseSnapshot, DefinitionStages.WithBackupId,
             DefinitionStages.WithNetworkFeatures, DefinitionStages.WithVolumeType, DefinitionStages.WithDataProtection,
-            DefinitionStages.WithIsRestoring, DefinitionStages.WithSnapshotDirectoryVisible,
-            DefinitionStages.WithKerberosEnabled, DefinitionStages.WithSecurityStyle,
-            DefinitionStages.WithSmbEncryption, DefinitionStages.WithSmbAccessBasedEnumeration,
-            DefinitionStages.WithSmbNonBrowsable, DefinitionStages.WithSmbContinuouslyAvailable,
-            DefinitionStages.WithThroughputMibps, DefinitionStages.WithEncryptionKeySource,
-            DefinitionStages.WithKeyVaultPrivateEndpointResourceId, DefinitionStages.WithLdapEnabled,
-            DefinitionStages.WithCoolAccess, DefinitionStages.WithCoolnessPeriod,
+            DefinitionStages.WithAcceptGrowCapacityPoolForShortTermCloneSplit, DefinitionStages.WithIsRestoring,
+            DefinitionStages.WithSnapshotDirectoryVisible, DefinitionStages.WithKerberosEnabled,
+            DefinitionStages.WithSecurityStyle, DefinitionStages.WithSmbEncryption,
+            DefinitionStages.WithSmbAccessBasedEnumeration, DefinitionStages.WithSmbNonBrowsable,
+            DefinitionStages.WithSmbContinuouslyAvailable, DefinitionStages.WithThroughputMibps,
+            DefinitionStages.WithEncryptionKeySource, DefinitionStages.WithKeyVaultPrivateEndpointResourceId,
+            DefinitionStages.WithLdapEnabled, DefinitionStages.WithCoolAccess, DefinitionStages.WithCoolnessPeriod,
             DefinitionStages.WithCoolAccessRetrievalPolicy, DefinitionStages.WithUnixPermissions,
             DefinitionStages.WithAvsDataStore, DefinitionStages.WithIsDefaultQuotaEnabled,
             DefinitionStages.WithDefaultUserQuotaInKiBs, DefinitionStages.WithDefaultGroupQuotaInKiBs,
             DefinitionStages.WithCapacityPoolResourceId, DefinitionStages.WithProximityPlacementGroup,
             DefinitionStages.WithVolumeSpecName, DefinitionStages.WithPlacementRules,
-            DefinitionStages.WithEnableSubvolumes, DefinitionStages.WithIsLargeVolume {
+            DefinitionStages.WithEnableSubvolumes, DefinitionStages.WithIsLargeVolume, DefinitionStages.WithLanguage {
             /**
              * Executes the create request.
              * 
@@ -852,10 +881,10 @@ public interface Volume {
         interface WithVolumeType {
             /**
              * Specifies the volumeType property: What type of volume is this. For destination volumes in Cross Region
-             * Replication, set type to DataProtection.
+             * Replication, set type to DataProtection. For creating clone volume, set type to ShortTermClone.
              * 
              * @param volumeType What type of volume is this. For destination volumes in Cross Region Replication, set
-             * type to DataProtection.
+             * type to DataProtection. For creating clone volume, set type to ShortTermClone.
              * @return the next definition stage.
              */
             WithCreate withVolumeType(String volumeType);
@@ -876,6 +905,31 @@ public interface Volume {
              * @return the next definition stage.
              */
             WithCreate withDataProtection(VolumePropertiesDataProtection dataProtection);
+        }
+
+        /**
+         * The stage of the Volume definition allowing to specify acceptGrowCapacityPoolForShortTermCloneSplit.
+         */
+        interface WithAcceptGrowCapacityPoolForShortTermCloneSplit {
+            /**
+             * Specifies the acceptGrowCapacityPoolForShortTermCloneSplit property:
+             * acceptGrowCapacityPoolForShortTermCloneSplit
+             * 
+             * While auto splitting the short term clone volume, if the parent pool does not have enough space to
+             * accommodate the volume after split, it will be automatically resized, which will lead to increased
+             * billing. To accept capacity pool size auto grow and create a short term clone volume, set the property as
+             * accepted..
+             * 
+             * @param acceptGrowCapacityPoolForShortTermCloneSplit acceptGrowCapacityPoolForShortTermCloneSplit
+             * 
+             * While auto splitting the short term clone volume, if the parent pool does not have enough space to
+             * accommodate the volume after split, it will be automatically resized, which will lead to increased
+             * billing. To accept capacity pool size auto grow and create a short term clone volume, set the property as
+             * accepted.
+             * @return the next definition stage.
+             */
+            WithCreate withAcceptGrowCapacityPoolForShortTermCloneSplit(
+                AcceptGrowCapacityPoolForShortTermCloneSplit acceptGrowCapacityPoolForShortTermCloneSplit);
         }
 
         /**
@@ -1288,6 +1342,23 @@ public interface Volume {
              */
             WithCreate withIsLargeVolume(Boolean isLargeVolume);
         }
+
+        /**
+         * The stage of the Volume definition allowing to specify language.
+         */
+        interface WithLanguage {
+            /**
+             * Specifies the language property: VolumeLanguage
+             * 
+             * Language supported for volume..
+             * 
+             * @param language VolumeLanguage
+             * 
+             * Language supported for volume.
+             * @return the next definition stage.
+             */
+            WithCreate withLanguage(VolumeLanguage language);
+        }
     }
 
     /**
@@ -1301,12 +1372,12 @@ public interface Volume {
      * The template for Volume update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithServiceLevel, UpdateStages.WithUsageThreshold,
-        UpdateStages.WithExportPolicy, UpdateStages.WithThroughputMibps, UpdateStages.WithDataProtection,
-        UpdateStages.WithIsDefaultQuotaEnabled, UpdateStages.WithDefaultUserQuotaInKiBs,
-        UpdateStages.WithDefaultGroupQuotaInKiBs, UpdateStages.WithUnixPermissions, UpdateStages.WithCoolAccess,
-        UpdateStages.WithCoolnessPeriod, UpdateStages.WithCoolAccessRetrievalPolicy,
-        UpdateStages.WithSnapshotDirectoryVisible, UpdateStages.WithSmbAccessBasedEnumeration,
-        UpdateStages.WithSmbNonBrowsable {
+        UpdateStages.WithExportPolicy, UpdateStages.WithProtocolTypes, UpdateStages.WithThroughputMibps,
+        UpdateStages.WithDataProtection, UpdateStages.WithIsDefaultQuotaEnabled,
+        UpdateStages.WithDefaultUserQuotaInKiBs, UpdateStages.WithDefaultGroupQuotaInKiBs,
+        UpdateStages.WithUnixPermissions, UpdateStages.WithCoolAccess, UpdateStages.WithCoolnessPeriod,
+        UpdateStages.WithCoolAccessRetrievalPolicy, UpdateStages.WithSnapshotDirectoryVisible,
+        UpdateStages.WithSmbAccessBasedEnumeration, UpdateStages.WithSmbNonBrowsable {
         /**
          * Executes the update request.
          * 
@@ -1393,6 +1464,23 @@ public interface Volume {
              * @return the next definition stage.
              */
             Update withExportPolicy(VolumePatchPropertiesExportPolicy exportPolicy);
+        }
+
+        /**
+         * The stage of the Volume update allowing to specify protocolTypes.
+         */
+        interface WithProtocolTypes {
+            /**
+             * Specifies the protocolTypes property: protocolTypes
+             * 
+             * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+             * 
+             * @param protocolTypes protocolTypes
+             * 
+             * Set of protocol types, default NFSv3, CIFS for SMB protocol.
+             * @return the next definition stage.
+             */
+            Update withProtocolTypes(List<String> protocolTypes);
         }
 
         /**
@@ -1685,6 +1773,28 @@ public interface Volume {
     void resetCifsPassword(Context context);
 
     /**
+     * Split clone from parent volume
+     * 
+     * Split operation to convert clone volume to an independent volume.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void splitCloneFromParent();
+
+    /**
+     * Split clone from parent volume
+     * 
+     * Split operation to convert clone volume to an independent volume.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void splitCloneFromParent(Context context);
+
+    /**
      * Break file locks
      * 
      * Break all the file locks on a volume.
@@ -1901,6 +2011,106 @@ public interface Volume {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void reInitializeReplication(Context context);
+
+    /**
+     * Start Cluster peering
+     * 
+     * Starts peering the cluster for this migration volume.
+     * 
+     * @param body Cluster peer request object supplied in the body of the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about cluster peering process.
+     */
+    ClusterPeerCommandResponse peerClusterForOnPremMigration(PeerClusterForVolumeMigrationRequest body);
+
+    /**
+     * Start Cluster peering
+     * 
+     * Starts peering the cluster for this migration volume.
+     * 
+     * @param body Cluster peer request object supplied in the body of the operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about cluster peering process.
+     */
+    ClusterPeerCommandResponse peerClusterForOnPremMigration(PeerClusterForVolumeMigrationRequest body,
+        Context context);
+
+    /**
+     * Start migration process
+     * 
+     * Starts SVM peering and returns a command to be run on the external ONTAP to accept it. Once the SVMs have been
+     * peered a SnapMirror will be created.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about SVM peering process.
+     */
+    SvmPeerCommandResponse createOnPremMigrationReplication();
+
+    /**
+     * Start migration process
+     * 
+     * Starts SVM peering and returns a command to be run on the external ONTAP to accept it. Once the SVMs have been
+     * peered a SnapMirror will be created.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about SVM peering process.
+     */
+    SvmPeerCommandResponse createOnPremMigrationReplication(Context context);
+
+    /**
+     * Finalize migration process
+     * 
+     * Finalizes the migration of a volume by performing a final sync on the replication, breaking and releasing the
+     * replication, and breaking the cluster peering if no other migration is active.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void finalizeOnPremMigration();
+
+    /**
+     * Finalize migration process
+     * 
+     * Finalizes the migration of a volume by performing a final sync on the replication, breaking and releasing the
+     * replication, and breaking the cluster peering if no other migration is active.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void finalizeOnPremMigration(Context context);
+
+    /**
+     * Perform a replication transfer
+     * 
+     * Performs an adhoc replication transfer on a volume with volumeType Migration.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void performReplicationTransfer();
+
+    /**
+     * Perform a replication transfer
+     * 
+     * Performs an adhoc replication transfer on a volume with volumeType Migration.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void performReplicationTransfer(Context context);
 
     /**
      * Change pool for volume

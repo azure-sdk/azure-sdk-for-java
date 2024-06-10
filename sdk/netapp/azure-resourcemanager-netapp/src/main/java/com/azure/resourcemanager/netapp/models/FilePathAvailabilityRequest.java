@@ -25,6 +25,14 @@ public final class FilePathAvailabilityRequest {
     @JsonProperty(value = "subnetId", required = true)
     private String subnetId;
 
+    /*
+     * Logical availability zone
+     * 
+     * The Azure Resource logical availability zone which is used within zone mapping lookup for the subscription and region. The lookup will retrieve the physical zone where volume is placed.
+     */
+    @JsonProperty(value = "availabilityZone")
+    private String availabilityZone;
+
     /**
      * Creates an instance of FilePathAvailabilityRequest class.
      */
@@ -70,6 +78,32 @@ public final class FilePathAvailabilityRequest {
      */
     public FilePathAvailabilityRequest withSubnetId(String subnetId) {
         this.subnetId = subnetId;
+        return this;
+    }
+
+    /**
+     * Get the availabilityZone property: Logical availability zone
+     * 
+     * The Azure Resource logical availability zone which is used within zone mapping lookup for the subscription and
+     * region. The lookup will retrieve the physical zone where volume is placed.
+     * 
+     * @return the availabilityZone value.
+     */
+    public String availabilityZone() {
+        return this.availabilityZone;
+    }
+
+    /**
+     * Set the availabilityZone property: Logical availability zone
+     * 
+     * The Azure Resource logical availability zone which is used within zone mapping lookup for the subscription and
+     * region. The lookup will retrieve the physical zone where volume is placed.
+     * 
+     * @param availabilityZone the availabilityZone value to set.
+     * @return the FilePathAvailabilityRequest object itself.
+     */
+    public FilePathAvailabilityRequest withAvailabilityZone(String availabilityZone) {
+        this.availabilityZone = availabilityZone;
         return this;
     }
 

@@ -16,6 +16,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ReplicationInner {
     /*
+     * UUID v4 used to identify the replication.
+     */
+    @JsonProperty(value = "replicationId", access = JsonProperty.Access.WRITE_ONLY)
+    private String replicationId;
+
+    /*
      * Indicates whether the local volume is the source or destination for the Volume Replication
      */
     @JsonProperty(value = "endpointType")
@@ -43,6 +49,15 @@ public final class ReplicationInner {
      * Creates an instance of ReplicationInner class.
      */
     public ReplicationInner() {
+    }
+
+    /**
+     * Get the replicationId property: UUID v4 used to identify the replication.
+     * 
+     * @return the replicationId value.
+     */
+    public String replicationId() {
+        return this.replicationId;
     }
 
     /**
