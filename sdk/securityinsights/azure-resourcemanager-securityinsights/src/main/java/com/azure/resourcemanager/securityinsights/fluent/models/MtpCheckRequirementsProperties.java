@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** MTP (Microsoft Threat Protection) requirements check properties. */
+/**
+ * MTP (Microsoft Threat Protection) requirements check properties.
+ */
 @Fluent
 public final class MtpCheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of MtpCheckRequirementsProperties class.
+     */
+    public MtpCheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MtpCheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class MtpCheckRequirementsProperties extends DataConnectorTenantId 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

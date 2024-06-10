@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resource provider permissions required for the connector. */
+/**
+ * Resource provider permissions required for the connector.
+ */
 @Fluent
 public class ResourceProvider {
     /*
@@ -41,8 +43,14 @@ public class ResourceProvider {
     private RequiredPermissions requiredPermissions;
 
     /**
+     * Creates an instance of ResourceProvider class.
+     */
+    public ResourceProvider() {
+    }
+
+    /**
      * Get the provider property: Provider name.
-     *
+     * 
      * @return the provider value.
      */
     public ProviderName provider() {
@@ -51,7 +59,7 @@ public class ResourceProvider {
 
     /**
      * Set the provider property: Provider name.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the ResourceProvider object itself.
      */
@@ -62,7 +70,7 @@ public class ResourceProvider {
 
     /**
      * Get the permissionsDisplayText property: Permission description text.
-     *
+     * 
      * @return the permissionsDisplayText value.
      */
     public String permissionsDisplayText() {
@@ -71,7 +79,7 @@ public class ResourceProvider {
 
     /**
      * Set the permissionsDisplayText property: Permission description text.
-     *
+     * 
      * @param permissionsDisplayText the permissionsDisplayText value to set.
      * @return the ResourceProvider object itself.
      */
@@ -82,7 +90,7 @@ public class ResourceProvider {
 
     /**
      * Get the providerDisplayName property: Permission provider display name.
-     *
+     * 
      * @return the providerDisplayName value.
      */
     public String providerDisplayName() {
@@ -91,7 +99,7 @@ public class ResourceProvider {
 
     /**
      * Set the providerDisplayName property: Permission provider display name.
-     *
+     * 
      * @param providerDisplayName the providerDisplayName value to set.
      * @return the ResourceProvider object itself.
      */
@@ -102,7 +110,7 @@ public class ResourceProvider {
 
     /**
      * Get the scope property: Permission provider scope.
-     *
+     * 
      * @return the scope value.
      */
     public PermissionProviderScope scope() {
@@ -111,7 +119,7 @@ public class ResourceProvider {
 
     /**
      * Set the scope property: Permission provider scope.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the ResourceProvider object itself.
      */
@@ -122,7 +130,7 @@ public class ResourceProvider {
 
     /**
      * Get the requiredPermissions property: Required permissions for the connector.
-     *
+     * 
      * @return the requiredPermissions value.
      */
     public RequiredPermissions requiredPermissions() {
@@ -131,7 +139,7 @@ public class ResourceProvider {
 
     /**
      * Set the requiredPermissions property: Required permissions for the connector.
-     *
+     * 
      * @param requiredPermissions the requiredPermissions value to set.
      * @return the ResourceProvider object itself.
      */
@@ -142,7 +150,7 @@ public class ResourceProvider {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

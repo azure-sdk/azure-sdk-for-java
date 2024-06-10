@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Describes team information. */
+/**
+ * Describes team information.
+ */
 @Immutable
 public final class TeamInformationInner {
     /*
@@ -42,8 +44,14 @@ public final class TeamInformationInner {
     private String description;
 
     /**
+     * Creates an instance of TeamInformationInner class.
+     */
+    public TeamInformationInner() {
+    }
+
+    /**
      * Get the teamId property: Team ID.
-     *
+     * 
      * @return the teamId value.
      */
     public String teamId() {
@@ -52,7 +60,7 @@ public final class TeamInformationInner {
 
     /**
      * Get the primaryChannelUrl property: The primary channel URL of the team.
-     *
+     * 
      * @return the primaryChannelUrl value.
      */
     public String primaryChannelUrl() {
@@ -61,7 +69,7 @@ public final class TeamInformationInner {
 
     /**
      * Get the teamCreationTimeUtc property: The time the team was created.
-     *
+     * 
      * @return the teamCreationTimeUtc value.
      */
     public OffsetDateTime teamCreationTimeUtc() {
@@ -70,7 +78,7 @@ public final class TeamInformationInner {
 
     /**
      * Get the name property: The name of the team.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -79,7 +87,7 @@ public final class TeamInformationInner {
 
     /**
      * Get the description property: The description of the team.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -88,7 +96,7 @@ public final class TeamInformationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
