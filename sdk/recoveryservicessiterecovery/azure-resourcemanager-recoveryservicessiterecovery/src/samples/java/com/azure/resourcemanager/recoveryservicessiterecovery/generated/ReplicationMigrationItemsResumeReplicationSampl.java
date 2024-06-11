@@ -13,9 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtRe
  */
 public final class ReplicationMigrationItemsResumeReplicationSampl {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_ResumeReplication.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationMigrationItems_ResumeReplication.json
      */
     /**
      * Sample code: Resume replication.
@@ -24,11 +22,12 @@ public final class ReplicationMigrationItemsResumeReplicationSampl {
      */
     public static void
         resumeReplication(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().resumeReplication("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new ResumeReplicationInput()
-                .withProperties(new ResumeReplicationInputProperties().withProviderSpecificDetails(
-                    new VMwareCbtResumeReplicationInput().withDeleteMigrationResources("false"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .resumeReplication("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1",
+                "virtualmachine1",
+                new ResumeReplicationInput()
+                    .withProperties(new ResumeReplicationInputProperties().withProviderSpecificDetails(
+                        new VMwareCbtResumeReplicationInput().withDeleteMigrationResources("false"))),
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2A Cross-Cluster Migration enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ACrossClusterMigrationEnableProtectionInput.class,
+    visible = true)
 @JsonTypeName("A2ACrossClusterMigration")
 @Fluent
 public final class A2ACrossClusterMigrationEnableProtectionInput extends EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2ACrossClusterMigration";
+
     /*
      * The fabric specific object Id of the virtual machine.
      */
@@ -32,6 +44,16 @@ public final class A2ACrossClusterMigrationEnableProtectionInput extends EnableP
      * Creates an instance of A2ACrossClusterMigrationEnableProtectionInput class.
      */
     public A2ACrossClusterMigrationEnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

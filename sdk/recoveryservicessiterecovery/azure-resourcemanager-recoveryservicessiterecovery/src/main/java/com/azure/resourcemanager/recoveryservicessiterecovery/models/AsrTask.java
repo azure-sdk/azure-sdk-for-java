@@ -57,8 +57,7 @@ public final class AsrTask {
     private String state;
 
     /*
-     * The description of the task state. For example - For Succeeded state, description can be Completed,
-     * PartiallySucceeded, CompletedWithInformation or Skipped.
+     * The description of the task state. For example - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped.
      */
     @JsonProperty(value = "stateDescription")
     private String stateDescription;
@@ -76,8 +75,7 @@ public final class AsrTask {
     private TaskTypeDetails customDetails;
 
     /*
-     * The custom task details based on the task type, if the task type is GroupTaskDetails or one of the types derived
-     * from it.
+     * The custom task details based on the task type, if the task type is GroupTaskDetails or one of the types derived from it.
      */
     @JsonProperty(value = "groupTaskCustomDetails")
     private GroupTaskDetails groupTaskCustomDetails;

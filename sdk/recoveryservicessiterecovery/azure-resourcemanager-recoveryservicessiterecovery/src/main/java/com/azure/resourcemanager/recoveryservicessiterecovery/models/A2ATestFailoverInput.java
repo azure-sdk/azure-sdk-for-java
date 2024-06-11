@@ -6,19 +6,30 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2A provider specific input for test failover.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ATestFailoverInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2ATestFailoverInput extends TestFailoverProviderSpecificInput {
     /*
-     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery
-     * point, null should be passed.
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
+    /*
+     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery point, null should be passed.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -33,6 +44,16 @@ public final class A2ATestFailoverInput extends TestFailoverProviderSpecificInpu
      * Creates an instance of A2ATestFailoverInput class.
      */
     public A2ATestFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

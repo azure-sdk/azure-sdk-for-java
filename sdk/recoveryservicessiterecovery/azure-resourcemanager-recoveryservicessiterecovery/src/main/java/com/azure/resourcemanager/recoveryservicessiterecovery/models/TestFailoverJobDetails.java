@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.Map;
 /**
  * This class represents the details for a test failover job.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = TestFailoverJobDetails.class,
+    visible = true)
 @JsonTypeName("TestFailoverJobDetails")
 @Fluent
 public final class TestFailoverJobDetails extends JobDetails {
+    /*
+     * Gets the type of job details (see JobDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "TestFailoverJobDetails";
+
     /*
      * The test failover status.
      */
@@ -58,6 +70,16 @@ public final class TestFailoverJobDetails extends JobDetails {
      * Creates an instance of TestFailoverJobDetails class.
      */
     public TestFailoverJobDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of job details (see JobDetailsTypes enum for possible values).
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

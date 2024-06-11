@@ -25,7 +25,7 @@ public final class InMageAzureV2DiskInputDetails {
     private String logStorageAccountId;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -83,7 +83,7 @@ public final class InMageAzureV2DiskInputDetails {
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -92,7 +92,7 @@ public final class InMageAzureV2DiskInputDetails {
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the InMageAzureV2DiskInputDetails object itself.

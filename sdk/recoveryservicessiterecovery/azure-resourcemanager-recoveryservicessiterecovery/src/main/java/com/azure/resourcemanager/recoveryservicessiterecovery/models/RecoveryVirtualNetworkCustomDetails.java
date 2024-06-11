@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "resourceType",
-    defaultImpl = RecoveryVirtualNetworkCustomDetails.class)
+    defaultImpl = RecoveryVirtualNetworkCustomDetails.class,
+    visible = true)
 @JsonTypeName("RecoveryVirtualNetworkCustomDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Existing", value = ExistingRecoveryVirtualNetwork.class),
     @JsonSubTypes.Type(name = "New", value = NewRecoveryVirtualNetwork.class) })
 @Immutable
 public class RecoveryVirtualNetworkCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType;
+
     /**
      * Creates an instance of RecoveryVirtualNetworkCustomDetails class.
      */
     public RecoveryVirtualNetworkCustomDetails() {
+        this.resourceType = "RecoveryVirtualNetworkCustomDetails";
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**

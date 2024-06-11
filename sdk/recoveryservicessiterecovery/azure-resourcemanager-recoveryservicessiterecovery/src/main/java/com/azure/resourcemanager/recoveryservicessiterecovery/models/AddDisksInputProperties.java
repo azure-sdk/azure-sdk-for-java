@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class AddDisksInputProperties {
     /*
-     * The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For
-     * San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null.
+     * The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null.
      */
     @JsonProperty(value = "providerSpecificDetails", required = true)
     private AddDisksProviderSpecificInput providerSpecificDetails;
@@ -57,8 +56,9 @@ public final class AddDisksInputProperties {
      */
     public void validate() {
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model AddDisksInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model AddDisksInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

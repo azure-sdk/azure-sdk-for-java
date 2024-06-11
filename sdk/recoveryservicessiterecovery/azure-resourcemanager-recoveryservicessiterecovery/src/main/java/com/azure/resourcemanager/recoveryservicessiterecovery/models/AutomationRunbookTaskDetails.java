@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * This class represents the task details for an automation runbook.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = AutomationRunbookTaskDetails.class,
+    visible = true)
 @JsonTypeName("AutomationRunbookTaskDetails")
 @Fluent
 public final class AutomationRunbookTaskDetails extends TaskTypeDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AutomationRunbookTaskDetails";
+
     /*
      * The recovery plan task name.
      */
@@ -74,6 +86,16 @@ public final class AutomationRunbookTaskDetails extends TaskTypeDetails {
      * Creates an instance of AutomationRunbookTaskDetails class.
      */
     public AutomationRunbookTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

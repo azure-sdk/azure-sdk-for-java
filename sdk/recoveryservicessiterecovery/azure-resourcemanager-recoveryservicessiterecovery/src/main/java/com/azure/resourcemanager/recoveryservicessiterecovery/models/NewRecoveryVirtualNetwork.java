@@ -6,19 +6,30 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery virtual network input to create new virtual network from given source network.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = NewRecoveryVirtualNetwork.class,
+    visible = true)
 @JsonTypeName("New")
 @Fluent
 public final class NewRecoveryVirtualNetwork extends RecoveryVirtualNetworkCustomDetails {
     /*
-     * The name of the resource group to be used to create the recovery virtual network. If absent, target network
-     * would be created in the same resource group as target VM.
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "New";
+
+    /*
+     * The name of the resource group to be used to create the recovery virtual network. If absent, target network would be created in the same resource group as target VM.
      */
     @JsonProperty(value = "recoveryVirtualNetworkResourceGroupName")
     private String recoveryVirtualNetworkResourceGroupName;
@@ -36,9 +47,18 @@ public final class NewRecoveryVirtualNetwork extends RecoveryVirtualNetworkCusto
     }
 
     /**
-     * Get the recoveryVirtualNetworkResourceGroupName property: The name of the resource group to be used to create
-     * the recovery virtual network. If absent, target network would be created in the same resource group as target
-     * VM.
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
+    }
+
+    /**
+     * Get the recoveryVirtualNetworkResourceGroupName property: The name of the resource group to be used to create the
+     * recovery virtual network. If absent, target network would be created in the same resource group as target VM.
      * 
      * @return the recoveryVirtualNetworkResourceGroupName value.
      */
@@ -47,9 +67,8 @@ public final class NewRecoveryVirtualNetwork extends RecoveryVirtualNetworkCusto
     }
 
     /**
-     * Set the recoveryVirtualNetworkResourceGroupName property: The name of the resource group to be used to create
-     * the recovery virtual network. If absent, target network would be created in the same resource group as target
-     * VM.
+     * Set the recoveryVirtualNetworkResourceGroupName property: The name of the resource group to be used to create the
+     * recovery virtual network. If absent, target network would be created in the same resource group as target VM.
      * 
      * @param recoveryVirtualNetworkResourceGroupName the recoveryVirtualNetworkResourceGroupName value to set.
      * @return the NewRecoveryVirtualNetwork object itself.

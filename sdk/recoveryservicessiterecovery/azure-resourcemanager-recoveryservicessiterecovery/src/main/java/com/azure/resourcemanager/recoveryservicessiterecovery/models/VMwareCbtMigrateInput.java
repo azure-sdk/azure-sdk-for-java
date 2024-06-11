@@ -7,16 +7,29 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /**
  * VMwareCbt specific migrate input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtMigrateInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * A value indicating whether VM is to be shutdown.
      */
@@ -29,10 +42,26 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
     @JsonProperty(value = "osUpgradeVersion")
     private String osUpgradeVersion;
 
+    /*
+     * The managed run command script input.
+     */
+    @JsonProperty(value = "postMigrationSteps")
+    private List<ManagedRunCommandScriptInput> postMigrationSteps;
+
     /**
      * Creates an instance of VMwareCbtMigrateInput class.
      */
     public VMwareCbtMigrateInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -76,6 +105,26 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
     }
 
     /**
+     * Get the postMigrationSteps property: The managed run command script input.
+     * 
+     * @return the postMigrationSteps value.
+     */
+    public List<ManagedRunCommandScriptInput> postMigrationSteps() {
+        return this.postMigrationSteps;
+    }
+
+    /**
+     * Set the postMigrationSteps property: The managed run command script input.
+     * 
+     * @param postMigrationSteps the postMigrationSteps value to set.
+     * @return the VMwareCbtMigrateInput object itself.
+     */
+    public VMwareCbtMigrateInput withPostMigrationSteps(List<ManagedRunCommandScriptInput> postMigrationSteps) {
+        this.postMigrationSteps = postMigrationSteps;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -84,8 +133,12 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
     public void validate() {
         super.validate();
         if (performShutdown() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property performShutdown in model VMwareCbtMigrateInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property performShutdown in model VMwareCbtMigrateInput"));
+        }
+        if (postMigrationSteps() != null) {
+            postMigrationSteps().forEach(e -> e.validate());
         }
     }
 

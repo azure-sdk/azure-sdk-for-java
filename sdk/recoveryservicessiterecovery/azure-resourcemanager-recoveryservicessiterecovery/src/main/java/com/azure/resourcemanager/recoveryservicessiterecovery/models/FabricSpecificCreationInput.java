@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = FabricSpecificCreationInput.class)
+    defaultImpl = FabricSpecificCreationInput.class,
+    visible = true)
 @JsonTypeName("FabricSpecificCreationInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Azure", value = AzureFabricCreationInput.class),
@@ -24,10 +26,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VMwareV2", value = VMwareV2FabricCreationInput.class) })
 @Immutable
 public class FabricSpecificCreationInput {
+    /*
+     * Gets the class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of FabricSpecificCreationInput class.
      */
     public FabricSpecificCreationInput() {
+        this.instanceType = "FabricSpecificCreationInput";
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

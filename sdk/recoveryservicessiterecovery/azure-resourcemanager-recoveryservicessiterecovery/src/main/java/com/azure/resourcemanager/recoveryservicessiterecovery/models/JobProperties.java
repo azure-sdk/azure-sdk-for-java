@@ -33,15 +33,13 @@ public final class JobProperties {
     private String friendlyName;
 
     /*
-     * The status of the Job. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled,
-     * Suspended or Other.
+     * The status of the Job. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled, Suspended or Other.
      */
     @JsonProperty(value = "state")
     private String state;
 
     /*
-     * The description of the state of the Job. For e.g. - For Succeeded state, description can be Completed,
-     * PartiallySucceeded, CompletedWithInformation or Skipped.
+     * The description of the state of the Job. For e.g. - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped.
      */
     @JsonProperty(value = "stateDescription")
     private String stateDescription;

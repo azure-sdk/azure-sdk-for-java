@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = PlannedFailoverProviderSpecificFailoverInput.class)
+    defaultImpl = PlannedFailoverProviderSpecificFailoverInput.class,
+    visible = true)
 @JsonTypeName("PlannedFailoverProviderSpecificFailoverInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "HyperVReplicaAzureFailback", value = HyperVReplicaAzureFailbackProviderInput.class),
@@ -24,10 +26,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "InMageRcmFailback", value = InMageRcmFailbackPlannedFailoverProviderInput.class) })
 @Immutable
 public class PlannedFailoverProviderSpecificFailoverInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of PlannedFailoverProviderSpecificFailoverInput class.
      */
     public PlannedFailoverProviderSpecificFailoverInput() {
+        this.instanceType = "PlannedFailoverProviderSpecificFailoverInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

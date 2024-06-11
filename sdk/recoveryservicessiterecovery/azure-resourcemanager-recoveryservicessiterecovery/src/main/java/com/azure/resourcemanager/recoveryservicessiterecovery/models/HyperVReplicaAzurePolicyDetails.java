@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Hyper-V Replica Azure specific protection profile details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzurePolicyDetails.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * The duration (in hours) to which point the recovery history needs to be maintained.
      */
@@ -35,8 +47,7 @@ public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecifi
     private Integer replicationInterval;
 
     /*
-     * The scheduled start time for the initial replication. If this parameter is Null, the initial replication starts
-     * immediately.
+     * The scheduled start time for the initial replication. If this parameter is Null, the initial replication starts immediately.
      */
     @JsonProperty(value = "onlineReplicationStartTime")
     private String onlineReplicationStartTime;
@@ -60,8 +71,18 @@ public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecifi
     }
 
     /**
-     * Get the recoveryPointHistoryDurationInHours property: The duration (in hours) to which point the recovery
-     * history needs to be maintained.
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
+     * Get the recoveryPointHistoryDurationInHours property: The duration (in hours) to which point the recovery history
+     * needs to be maintained.
      * 
      * @return the recoveryPointHistoryDurationInHours value.
      */
@@ -70,8 +91,8 @@ public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecifi
     }
 
     /**
-     * Set the recoveryPointHistoryDurationInHours property: The duration (in hours) to which point the recovery
-     * history needs to be maintained.
+     * Set the recoveryPointHistoryDurationInHours property: The duration (in hours) to which point the recovery history
+     * needs to be maintained.
      * 
      * @param recoveryPointHistoryDurationInHours the recoveryPointHistoryDurationInHours value to set.
      * @return the HyperVReplicaAzurePolicyDetails object itself.
@@ -149,8 +170,7 @@ public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecifi
     }
 
     /**
-     * Get the encryption property: A value indicating whether encryption is enabled for virtual machines in this
-     * cloud.
+     * Get the encryption property: A value indicating whether encryption is enabled for virtual machines in this cloud.
      * 
      * @return the encryption value.
      */
@@ -159,8 +179,7 @@ public final class HyperVReplicaAzurePolicyDetails extends PolicyProviderSpecifi
     }
 
     /**
-     * Set the encryption property: A value indicating whether encryption is enabled for virtual machines in this
-     * cloud.
+     * Set the encryption property: A value indicating whether encryption is enabled for virtual machines in this cloud.
      * 
      * @param encryption the encryption value to set.
      * @return the HyperVReplicaAzurePolicyDetails object itself.

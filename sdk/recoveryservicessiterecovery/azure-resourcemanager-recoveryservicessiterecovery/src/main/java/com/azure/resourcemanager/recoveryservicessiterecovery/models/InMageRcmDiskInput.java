@@ -37,6 +37,12 @@ public final class InMageRcmDiskInput {
     @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
 
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    @JsonProperty(value = "sectorSizeInBytes")
+    private Integer sectorSizeInBytes;
+
     /**
      * Creates an instance of InMageRcmDiskInput class.
      */
@@ -124,22 +130,43 @@ public final class InMageRcmDiskInput {
     }
 
     /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmDiskInput object itself.
+     */
+    public InMageRcmDiskInput withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (diskId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskId in model InMageRcmDiskInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property diskId in model InMageRcmDiskInput"));
         }
         if (logStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property logStorageAccountId in model InMageRcmDiskInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property logStorageAccountId in model InMageRcmDiskInput"));
         }
         if (diskType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskType in model InMageRcmDiskInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property diskType in model InMageRcmDiskInput"));
         }
     }
 

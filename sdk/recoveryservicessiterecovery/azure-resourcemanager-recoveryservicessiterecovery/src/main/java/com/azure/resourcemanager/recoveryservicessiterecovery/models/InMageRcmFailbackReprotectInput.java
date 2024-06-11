@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcmFailback specific provider input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmFailbackReprotectInput.class,
+    visible = true)
 @JsonTypeName("InMageRcmFailback")
 @Fluent
 public final class InMageRcmFailbackReprotectInput extends ReverseReplicationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcmFailback";
+
     /*
      * The process server Id.
      */
@@ -39,6 +51,16 @@ public final class InMageRcmFailbackReprotectInput extends ReverseReplicationPro
      * Creates an instance of InMageRcmFailbackReprotectInput class.
      */
     public InMageRcmFailbackReprotectInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,12 +132,14 @@ public final class InMageRcmFailbackReprotectInput extends ReverseReplicationPro
     public void validate() {
         super.validate();
         if (processServerId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property processServerId in model InMageRcmFailbackReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property processServerId in model InMageRcmFailbackReprotectInput"));
         }
         if (policyId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property policyId in model InMageRcmFailbackReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property policyId in model InMageRcmFailbackReprotectInput"));
         }
     }
 

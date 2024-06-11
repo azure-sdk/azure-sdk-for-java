@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * A2A provider specific recovery point details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ARecoveryPointDetails.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2ARecoveryPointDetails extends ProviderSpecificRecoveryPointDetails {
+    /*
+     * Gets the provider type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * A value indicating whether the recovery point is multi VM consistent.
      */
@@ -33,6 +45,16 @@ public final class A2ARecoveryPointDetails extends ProviderSpecificRecoveryPoint
      * Creates an instance of A2ARecoveryPointDetails class.
      */
     public A2ARecoveryPointDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the provider type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

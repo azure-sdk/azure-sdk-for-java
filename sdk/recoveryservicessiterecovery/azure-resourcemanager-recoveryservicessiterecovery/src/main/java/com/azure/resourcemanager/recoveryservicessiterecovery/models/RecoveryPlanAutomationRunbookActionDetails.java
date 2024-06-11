@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan Automation runbook action details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanAutomationRunbookActionDetails.class,
+    visible = true)
 @JsonTypeName("AutomationRunbookActionDetails")
 @Fluent
 public final class RecoveryPlanAutomationRunbookActionDetails extends RecoveryPlanActionDetails {
+    /*
+     * Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AutomationRunbookActionDetails";
+
     /*
      * The runbook ARM Id.
      */
@@ -39,6 +51,17 @@ public final class RecoveryPlanAutomationRunbookActionDetails extends RecoveryPl
      * Creates an instance of RecoveryPlanAutomationRunbookActionDetails class.
      */
     public RecoveryPlanAutomationRunbookActionDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for
+     * possible values).
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,8 +133,9 @@ public final class RecoveryPlanAutomationRunbookActionDetails extends RecoveryPl
     public void validate() {
         super.validate();
         if (fabricLocation() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property fabricLocation in model RecoveryPlanAutomationRunbookActionDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fabricLocation in model RecoveryPlanAutomationRunbookActionDetails"));
         }
     }
 

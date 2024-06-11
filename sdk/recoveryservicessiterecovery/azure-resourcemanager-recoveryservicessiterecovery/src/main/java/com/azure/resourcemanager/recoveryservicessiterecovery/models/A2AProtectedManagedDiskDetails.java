@@ -50,8 +50,7 @@ public final class A2AProtectedManagedDiskDetails {
     private String recoveryReplicaDiskAccountType;
 
     /*
-     * The target disk type after failover. Its an optional value and will be same as source disk type if not user
-     * provided.
+     * The target disk type after failover. Its an optional value and will be same as source disk type if not user provided.
      */
     @JsonProperty(value = "recoveryTargetDiskAccountType")
     private String recoveryTargetDiskAccountType;
@@ -289,8 +288,8 @@ public final class A2AProtectedManagedDiskDetails {
     }
 
     /**
-     * Get the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same
-     * as source disk type if not user provided.
+     * Get the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same as
+     * source disk type if not user provided.
      * 
      * @return the recoveryReplicaDiskAccountType value.
      */
@@ -299,8 +298,8 @@ public final class A2AProtectedManagedDiskDetails {
     }
 
     /**
-     * Set the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same
-     * as source disk type if not user provided.
+     * Set the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same as
+     * source disk type if not user provided.
      * 
      * @param recoveryReplicaDiskAccountType the recoveryReplicaDiskAccountType value to set.
      * @return the A2AProtectedManagedDiskDetails object itself.
@@ -474,8 +473,8 @@ public final class A2AProtectedManagedDiskDetails {
     }
 
     /**
-     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @return the monitoringPercentageCompletion value.
      */
@@ -484,8 +483,8 @@ public final class A2AProtectedManagedDiskDetails {
     }
 
     /**
-     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @param monitoringPercentageCompletion the monitoringPercentageCompletion value to set.
      * @return the A2AProtectedManagedDiskDetails object itself.

@@ -12,9 +12,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.IdentityPro
  */
 public final class ReplicationRecoveryServicesProvidersCreateSampl {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationRecoveryServicesProviders_Create.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationRecoveryServicesProviders_Create.json
      */
     /**
      * Sample code: Adds a recovery services provider.
@@ -23,7 +21,8 @@ public final class ReplicationRecoveryServicesProvidersCreateSampl {
      */
     public static void addsARecoveryServicesProvider(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().define("vmwareprovider1")
+        manager.replicationRecoveryServicesProviders()
+            .define("vmwareprovider1")
             .withExistingReplicationFabric("migrationvault", "resourcegroup1", "vmwarefabric1")
             .withProperties(new AddRecoveryServicesProviderInputProperties().withMachineName("vmwareprovider1")
                 .withAuthenticationIdentityInput(

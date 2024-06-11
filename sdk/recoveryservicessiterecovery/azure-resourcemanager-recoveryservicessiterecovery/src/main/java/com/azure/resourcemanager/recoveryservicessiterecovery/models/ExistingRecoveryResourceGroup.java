@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Existing recovery resource group input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = ExistingRecoveryResourceGroup.class,
+    visible = true)
 @JsonTypeName("Existing")
 @Fluent
 public final class ExistingRecoveryResourceGroup extends RecoveryResourceGroupCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "Existing";
+
     /*
      * The recovery resource group Id. Valid for V2 scenarios.
      */
@@ -26,6 +38,16 @@ public final class ExistingRecoveryResourceGroup extends RecoveryResourceGroupCu
      * Creates an instance of ExistingRecoveryResourceGroup class.
      */
     public ExistingRecoveryResourceGroup() {
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**

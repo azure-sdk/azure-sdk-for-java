@@ -81,8 +81,9 @@ public final class RecoveryPlanPlannedFailoverInputProperties {
      */
     public void validate() {
         if (failoverDirection() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property failoverDirection in model RecoveryPlanPlannedFailoverInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property failoverDirection in model RecoveryPlanPlannedFailoverInputProperties"));
         }
         if (providerSpecificDetails() != null) {
             providerSpecificDetails().forEach(e -> e.validate());

@@ -149,8 +149,7 @@ public final class InMageRcmFailbackProtectedDiskDetails {
     }
 
     /**
-     * Get the isInitialReplicationComplete property: A value indicating whether initial replication is complete or
-     * not.
+     * Get the isInitialReplicationComplete property: A value indicating whether initial replication is complete or not.
      * 
      * @return the isInitialReplicationComplete value.
      */

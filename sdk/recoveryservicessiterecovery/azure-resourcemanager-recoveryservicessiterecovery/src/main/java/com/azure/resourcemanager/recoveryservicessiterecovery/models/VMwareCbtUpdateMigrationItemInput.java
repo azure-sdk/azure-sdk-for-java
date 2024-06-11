@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,10 +16,21 @@ import java.util.Map;
 /**
  * VMwareCbt specific update migration item input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtUpdateMigrationItemInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtUpdateMigrationItemInput extends UpdateMigrationItemProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * The target VM name.
      */
@@ -98,6 +110,12 @@ public final class VMwareCbtUpdateMigrationItemInput extends UpdateMigrationItem
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
+     * The license type for Linux VM's.
+     */
+    @JsonProperty(value = "linuxLicenseType")
+    private LinuxLicenseType linuxLicenseType;
+
+    /*
      * A value indicating whether auto resync is to be done.
      */
     @JsonProperty(value = "performAutoResync")
@@ -128,6 +146,16 @@ public final class VMwareCbtUpdateMigrationItemInput extends UpdateMigrationItem
      * Creates an instance of VMwareCbtUpdateMigrationItemInput class.
      */
     public VMwareCbtUpdateMigrationItemInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -389,6 +417,26 @@ public final class VMwareCbtUpdateMigrationItemInput extends UpdateMigrationItem
      */
     public VMwareCbtUpdateMigrationItemInput withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType) {
         this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the VMwareCbtUpdateMigrationItemInput object itself.
+     */
+    public VMwareCbtUpdateMigrationItemInput withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
         return this;
     }
 

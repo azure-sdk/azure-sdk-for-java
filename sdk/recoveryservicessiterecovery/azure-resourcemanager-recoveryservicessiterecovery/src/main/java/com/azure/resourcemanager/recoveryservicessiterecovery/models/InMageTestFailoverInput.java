@@ -6,26 +6,36 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Provider specific input for InMage test failover.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageTestFailoverInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMageTestFailoverInput extends TestFailoverProviderSpecificInput {
     /*
-     * The recovery point type. Values from LatestTime, LatestTag or Custom. In the case of custom, the recovery point
-     * provided by RecoveryPointId will be used. In the other two cases, recovery point id will be ignored.
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
+    /*
+     * The recovery point type. Values from LatestTime, LatestTag or Custom. In the case of custom, the recovery point provided by RecoveryPointId will be used. In the other two cases, recovery point id will be ignored.
      */
     @JsonProperty(value = "recoveryPointType")
     private RecoveryPointType recoveryPointType;
 
     /*
-     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery
-     * point, null should be passed.
+     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery point, null should be passed.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -34,6 +44,16 @@ public final class InMageTestFailoverInput extends TestFailoverProviderSpecificI
      * Creates an instance of InMageTestFailoverInput class.
      */
     public InMageTestFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

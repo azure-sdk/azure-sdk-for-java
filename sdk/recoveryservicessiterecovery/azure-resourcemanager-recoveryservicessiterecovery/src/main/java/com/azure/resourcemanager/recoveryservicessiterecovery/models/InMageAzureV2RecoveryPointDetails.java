@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMage Azure V2 provider specific recovery point details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2RecoveryPointDetails.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2RecoveryPointDetails extends ProviderSpecificRecoveryPointDetails {
+    /*
+     * Gets the provider type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * A value indicating whether the recovery point is multi VM consistent.
      */
@@ -26,6 +38,16 @@ public final class InMageAzureV2RecoveryPointDetails extends ProviderSpecificRec
      * Creates an instance of InMageAzureV2RecoveryPointDetails class.
      */
     public InMageAzureV2RecoveryPointDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the provider type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

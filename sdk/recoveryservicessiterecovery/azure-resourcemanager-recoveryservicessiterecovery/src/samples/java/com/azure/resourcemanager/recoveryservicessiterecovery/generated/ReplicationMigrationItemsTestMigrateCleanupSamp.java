@@ -12,9 +12,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.TestMigrate
  */
 public final class ReplicationMigrationItemsTestMigrateCleanupSamp {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_TestMigrateCleanup.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationMigrationItems_TestMigrateCleanup.json
      */
     /**
      * Sample code: Test migrate cleanup.
@@ -23,10 +21,11 @@ public final class ReplicationMigrationItemsTestMigrateCleanupSamp {
      */
     public static void
         testMigrateCleanup(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().testMigrateCleanup("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new TestMigrateCleanupInput()
-                .withProperties(new TestMigrateCleanupInputProperties().withComments("Test Failover Cleanup")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .testMigrateCleanup("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1",
+                "virtualmachine1",
+                new TestMigrateCleanupInput()
+                    .withProperties(new TestMigrateCleanupInputProperties().withComments("Test Failover Cleanup")),
+                com.azure.core.util.Context.NONE);
     }
 }

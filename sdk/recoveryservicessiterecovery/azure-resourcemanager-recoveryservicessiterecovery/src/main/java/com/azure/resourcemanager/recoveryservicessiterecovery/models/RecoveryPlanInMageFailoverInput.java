@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan InMage failover input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanInMageFailoverInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class RecoveryPlanInMageFailoverInput extends RecoveryPlanProviderSpecificFailoverInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * The recovery point type.
      */
@@ -27,6 +39,16 @@ public final class RecoveryPlanInMageFailoverInput extends RecoveryPlanProviderS
      * Creates an instance of RecoveryPlanInMageFailoverInput class.
      */
     public RecoveryPlanInMageFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class RecoveryPlanInMageFailoverInput extends RecoveryPlanProviderS
     public void validate() {
         super.validate();
         if (recoveryPointType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryPointType in model RecoveryPlanInMageFailoverInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryPointType in model RecoveryPlanInMageFailoverInput"));
         }
     }
 

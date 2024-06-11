@@ -38,8 +38,7 @@ public final class A2AVmManagedDiskInputDetails {
     private String recoveryReplicaDiskAccountType;
 
     /*
-     * The target disk type after failover. Its an optional value and will be same as source disk type if not user
-     * provided.
+     * The target disk type after failover. Its an optional value and will be same as source disk type if not user provided.
      */
     @JsonProperty(value = "recoveryTargetDiskAccountType")
     private String recoveryTargetDiskAccountType;
@@ -124,8 +123,8 @@ public final class A2AVmManagedDiskInputDetails {
     }
 
     /**
-     * Get the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same
-     * as source disk type if not user provided.
+     * Get the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same as
+     * source disk type if not user provided.
      * 
      * @return the recoveryReplicaDiskAccountType value.
      */
@@ -134,8 +133,8 @@ public final class A2AVmManagedDiskInputDetails {
     }
 
     /**
-     * Set the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same
-     * as source disk type if not user provided.
+     * Set the recoveryReplicaDiskAccountType property: The replica disk type. Its an optional value and will be same as
+     * source disk type if not user provided.
      * 
      * @param recoveryReplicaDiskAccountType the recoveryReplicaDiskAccountType value to set.
      * @return the A2AVmManagedDiskInputDetails object itself.
@@ -214,16 +213,19 @@ public final class A2AVmManagedDiskInputDetails {
      */
     public void validate() {
         if (diskId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskId in model A2AVmManagedDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property diskId in model A2AVmManagedDiskInputDetails"));
         }
         if (primaryStagingAzureStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property primaryStagingAzureStorageAccountId in model A2AVmManagedDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property primaryStagingAzureStorageAccountId in model A2AVmManagedDiskInputDetails"));
         }
         if (recoveryResourceGroupId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryResourceGroupId in model A2AVmManagedDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryResourceGroupId in model A2AVmManagedDiskInputDetails"));
         }
         if (diskEncryptionInfo() != null) {
             diskEncryptionInfo().validate();

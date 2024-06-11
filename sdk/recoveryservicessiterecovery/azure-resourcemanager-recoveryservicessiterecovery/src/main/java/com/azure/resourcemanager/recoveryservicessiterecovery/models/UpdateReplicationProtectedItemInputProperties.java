@@ -44,8 +44,7 @@ public final class UpdateReplicationProtectedItemInputProperties {
     private String selectedSourceNicId;
 
     /*
-     * The selected option to enable RDP\SSH on target vm after failover. String value of
-     * SrsDataContract.EnableRDPOnTargetOption enum.
+     * The selected option to enable RDP\SSH on target vm after failover. String value of SrsDataContract.EnableRDPOnTargetOption enum.
      */
     @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;

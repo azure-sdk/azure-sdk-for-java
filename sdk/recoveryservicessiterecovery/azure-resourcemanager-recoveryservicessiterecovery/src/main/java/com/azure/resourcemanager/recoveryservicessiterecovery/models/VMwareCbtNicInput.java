@@ -234,12 +234,12 @@ public final class VMwareCbtNicInput {
      */
     public void validate() {
         if (nicId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property nicId in model VMwareCbtNicInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property nicId in model VMwareCbtNicInput"));
         }
         if (isPrimaryNic() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property isPrimaryNic in model VMwareCbtNicInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property isPrimaryNic in model VMwareCbtNicInput"));
         }
     }
 

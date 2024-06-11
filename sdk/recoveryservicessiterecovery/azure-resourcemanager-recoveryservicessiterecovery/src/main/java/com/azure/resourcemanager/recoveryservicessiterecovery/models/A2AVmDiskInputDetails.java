@@ -104,16 +104,18 @@ public final class A2AVmDiskInputDetails {
      */
     public void validate() {
         if (diskUri() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskUri in model A2AVmDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property diskUri in model A2AVmDiskInputDetails"));
         }
         if (recoveryAzureStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryAzureStorageAccountId in model A2AVmDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryAzureStorageAccountId in model A2AVmDiskInputDetails"));
         }
         if (primaryStagingAzureStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property primaryStagingAzureStorageAccountId in model A2AVmDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property primaryStagingAzureStorageAccountId in model A2AVmDiskInputDetails"));
         }
     }
 

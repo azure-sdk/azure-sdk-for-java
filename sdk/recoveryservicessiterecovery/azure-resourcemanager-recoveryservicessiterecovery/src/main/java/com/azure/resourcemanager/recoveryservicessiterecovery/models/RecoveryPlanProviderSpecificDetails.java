@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = RecoveryPlanProviderSpecificDetails.class)
+    defaultImpl = RecoveryPlanProviderSpecificDetails.class,
+    visible = true)
 @JsonTypeName("RecoveryPlanProviderSpecificDetails")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "A2A", value = RecoveryPlanA2ADetails.class) })
 @Immutable
 public class RecoveryPlanProviderSpecificDetails {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of RecoveryPlanProviderSpecificDetails class.
      */
     public RecoveryPlanProviderSpecificDetails() {
+        this.instanceType = "RecoveryPlanProviderSpecificDetails";
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

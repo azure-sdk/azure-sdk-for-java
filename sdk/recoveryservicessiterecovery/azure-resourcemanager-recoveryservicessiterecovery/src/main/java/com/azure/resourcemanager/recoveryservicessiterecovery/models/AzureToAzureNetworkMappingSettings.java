@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2A Network Mapping fabric specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = AzureToAzureNetworkMappingSettings.class,
+    visible = true)
 @JsonTypeName("AzureToAzure")
 @Fluent
 public final class AzureToAzureNetworkMappingSettings extends NetworkMappingFabricSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AzureToAzure";
+
     /*
      * The primary fabric location.
      */
@@ -32,6 +44,16 @@ public final class AzureToAzureNetworkMappingSettings extends NetworkMappingFabr
      * Creates an instance of AzureToAzureNetworkMappingSettings class.
      */
     public AzureToAzureNetworkMappingSettings() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

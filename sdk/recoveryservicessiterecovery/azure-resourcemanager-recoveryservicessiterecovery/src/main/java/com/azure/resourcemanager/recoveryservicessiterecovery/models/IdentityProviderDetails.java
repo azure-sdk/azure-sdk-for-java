@@ -13,29 +13,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class IdentityProviderDetails {
     /*
-     * The tenant Id for the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The tenant Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "tenantId")
     private String tenantId;
 
     /*
-     * The application/client Id for the service principal with which the on-premise management/data plane components
-     * would communicate with our Azure services.
+     * The application/client Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "applicationId")
     private String applicationId;
 
     /*
-     * The object Id of the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The object Id of the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "objectId")
     private String objectId;
 
     /*
-     * The intended Audience of the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The intended Audience of the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "audience")
     private String audience;
@@ -97,8 +93,8 @@ public final class IdentityProviderDetails {
     }
 
     /**
-     * Get the objectId property: The object Id of the service principal with which the on-premise management/data
-     * plane components would communicate with our Azure services.
+     * Get the objectId property: The object Id of the service principal with which the on-premise management/data plane
+     * components would communicate with our Azure services.
      * 
      * @return the objectId value.
      */
@@ -107,8 +103,8 @@ public final class IdentityProviderDetails {
     }
 
     /**
-     * Set the objectId property: The object Id of the service principal with which the on-premise management/data
-     * plane components would communicate with our Azure services.
+     * Set the objectId property: The object Id of the service principal with which the on-premise management/data plane
+     * components would communicate with our Azure services.
      * 
      * @param objectId the objectId value to set.
      * @return the IdentityProviderDetails object itself.

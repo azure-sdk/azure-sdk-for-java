@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationRecoveryPlansFailoverCancelSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationRecoveryPlans_FailoverCancel.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationRecoveryPlans_FailoverCancel.json
      */
     /**
      * Sample code: Execute cancel failover of the recovery plan.
@@ -20,7 +18,7 @@ public final class ReplicationRecoveryPlansFailoverCancelSamples {
      */
     public static void executeCancelFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().failoverCancel("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .failoverCancel("vault1", "resourceGroupPS1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }

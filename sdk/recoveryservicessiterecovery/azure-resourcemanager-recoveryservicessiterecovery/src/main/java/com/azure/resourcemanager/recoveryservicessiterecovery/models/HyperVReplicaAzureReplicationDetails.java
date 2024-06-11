@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -16,10 +17,21 @@ import java.util.Map;
 /**
  * Hyper V Replica Azure provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzureReplicationDetails.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzureReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * Azure VM Disk details.
      */
@@ -45,8 +57,7 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     private String recoveryAzureStorageAccount;
 
     /*
-     * The ARM id of the log storage account used for replication. This will be set to null if no log storage account
-     * was provided during enable protection.
+     * The ARM id of the log storage account used for replication. This will be set to null if no log storage account was provided during enable protection.
      */
     @JsonProperty(value = "recoveryAzureLogStorageAccountId")
     private String recoveryAzureLogStorageAccountId;
@@ -136,8 +147,7 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     private Integer sourceVmCpuCount;
 
     /*
-     * The selected option to enable RDP\SSH on target vm after failover. String value of
-     * SrsDataContract.EnableRDPOnTargetOption enum.
+     * The selected option to enable RDP\SSH on target vm after failover. String value of SrsDataContract.EnableRDPOnTargetOption enum.
      */
     @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;
@@ -230,10 +240,26 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     @JsonProperty(value = "allAvailableOSUpgradeConfigurations")
     private List<OSUpgradeSupportedVersions> allAvailableOSUpgradeConfigurations;
 
+    /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
+
     /**
      * Creates an instance of HyperVReplicaAzureReplicationDetails class.
      */
     public HyperVReplicaAzureReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -920,6 +946,27 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     }
 
     /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the HyperVReplicaAzureReplicationDetails object itself.
+     */
+    public HyperVReplicaAzureReplicationDetails
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -944,6 +991,9 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
         }
         if (allAvailableOSUpgradeConfigurations() != null) {
             allAvailableOSUpgradeConfigurations().forEach(e -> e.validate());
+        }
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
         }
     }
 }

@@ -131,20 +131,23 @@ public final class RecoveryPlanAction {
      */
     public void validate() {
         if (actionName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property actionName in model RecoveryPlanAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property actionName in model RecoveryPlanAction"));
         }
         if (failoverTypes() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property failoverTypes in model RecoveryPlanAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property failoverTypes in model RecoveryPlanAction"));
         }
         if (failoverDirections() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property failoverDirections in model RecoveryPlanAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property failoverDirections in model RecoveryPlanAction"));
         }
         if (customDetails() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property customDetails in model RecoveryPlanAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property customDetails in model RecoveryPlanAction"));
         } else {
             customDetails().validate();
         }

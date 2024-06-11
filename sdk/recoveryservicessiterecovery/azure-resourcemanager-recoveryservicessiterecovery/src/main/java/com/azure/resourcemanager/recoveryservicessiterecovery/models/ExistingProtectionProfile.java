@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Existing storage account input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = ExistingProtectionProfile.class,
+    visible = true)
 @JsonTypeName("Existing")
 @Fluent
 public final class ExistingProtectionProfile extends ProtectionProfileCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "Existing";
+
     /*
      * The protection profile Arm Id. Throw error, if resource does not exists.
      */
@@ -27,6 +39,16 @@ public final class ExistingProtectionProfile extends ProtectionProfileCustomDeta
      * Creates an instance of ExistingProtectionProfile class.
      */
     public ExistingProtectionProfile() {
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class ExistingProtectionProfile extends ProtectionProfileCustomDeta
     public void validate() {
         super.validate();
         if (protectionProfileId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property protectionProfileId in model ExistingProtectionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property protectionProfileId in model ExistingProtectionProfile"));
         }
     }
 

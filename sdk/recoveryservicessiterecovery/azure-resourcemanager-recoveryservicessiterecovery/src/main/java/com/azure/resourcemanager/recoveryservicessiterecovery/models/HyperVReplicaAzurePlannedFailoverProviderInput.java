@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * HyperVReplicaAzure specific planned failover input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzurePlannedFailoverProviderInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzurePlannedFailoverProviderInput extends PlannedFailoverProviderSpecificFailoverInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * Primary kek certificate pfx.
      */
@@ -29,8 +41,7 @@ public final class HyperVReplicaAzurePlannedFailoverProviderInput extends Planne
     private String secondaryKekCertificatePfx;
 
     /*
-     * The recovery point id to be passed to failover to a particular recovery point. In case of latest recovery point,
-     * null should be passed.
+     * The recovery point id to be passed to failover to a particular recovery point. In case of latest recovery point, null should be passed.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -45,6 +56,16 @@ public final class HyperVReplicaAzurePlannedFailoverProviderInput extends Planne
      * Creates an instance of HyperVReplicaAzurePlannedFailoverProviderInput class.
      */
     public HyperVReplicaAzurePlannedFailoverProviderInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

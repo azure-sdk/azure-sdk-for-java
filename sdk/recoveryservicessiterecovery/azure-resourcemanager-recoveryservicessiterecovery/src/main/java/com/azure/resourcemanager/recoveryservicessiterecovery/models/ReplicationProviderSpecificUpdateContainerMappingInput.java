@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = ReplicationProviderSpecificUpdateContainerMappingInput.class)
+    defaultImpl = ReplicationProviderSpecificUpdateContainerMappingInput.class,
+    visible = true)
 @JsonTypeName("ReplicationProviderSpecificUpdateContainerMappingInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "A2A", value = A2AUpdateContainerMappingInput.class),
     @JsonSubTypes.Type(name = "InMageRcm", value = InMageRcmUpdateContainerMappingInput.class) })
 @Immutable
 public class ReplicationProviderSpecificUpdateContainerMappingInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of ReplicationProviderSpecificUpdateContainerMappingInput class.
      */
     public ReplicationProviderSpecificUpdateContainerMappingInput() {
+        this.instanceType = "ReplicationProviderSpecificUpdateContainerMappingInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

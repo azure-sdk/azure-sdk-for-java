@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * This class contains monitoring details of all the inconsistent Protected Entities in Vmm.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = ConsistencyCheckTaskDetails.class,
+    visible = true)
 @JsonTypeName("ConsistencyCheckTaskDetails")
 @Fluent
 public final class ConsistencyCheckTaskDetails extends TaskTypeDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "ConsistencyCheckTaskDetails";
+
     /*
      * The list of inconsistent Vm details.
      */
@@ -27,6 +39,16 @@ public final class ConsistencyCheckTaskDetails extends TaskTypeDetails {
      * Creates an instance of ConsistencyCheckTaskDetails class.
      */
     public ConsistencyCheckTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

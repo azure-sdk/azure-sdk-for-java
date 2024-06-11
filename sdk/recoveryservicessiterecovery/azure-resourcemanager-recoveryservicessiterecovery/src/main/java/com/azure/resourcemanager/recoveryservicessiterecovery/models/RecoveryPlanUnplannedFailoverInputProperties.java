@@ -108,12 +108,14 @@ public final class RecoveryPlanUnplannedFailoverInputProperties {
      */
     public void validate() {
         if (failoverDirection() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property failoverDirection in model RecoveryPlanUnplannedFailoverInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property failoverDirection in model RecoveryPlanUnplannedFailoverInputProperties"));
         }
         if (sourceSiteOperations() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sourceSiteOperations in model RecoveryPlanUnplannedFailoverInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceSiteOperations in model RecoveryPlanUnplannedFailoverInputProperties"));
         }
         if (providerSpecificDetails() != null) {
             providerSpecificDetails().forEach(e -> e.validate());

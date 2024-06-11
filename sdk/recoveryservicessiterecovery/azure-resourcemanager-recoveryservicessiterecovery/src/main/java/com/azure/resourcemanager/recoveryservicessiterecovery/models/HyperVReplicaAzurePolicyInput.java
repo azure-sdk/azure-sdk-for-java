@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * Hyper-V Replica Azure specific input for creating a protection profile.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzurePolicyInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzurePolicyInput extends PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * The duration (in hours) to which point the recovery history needs to be maintained.
      */
@@ -36,8 +48,7 @@ public final class HyperVReplicaAzurePolicyInput extends PolicyProviderSpecificI
     private Integer replicationInterval;
 
     /*
-     * The scheduled start time for the initial replication. If this parameter is Null, the initial replication starts
-     * immediately.
+     * The scheduled start time for the initial replication. If this parameter is Null, the initial replication starts immediately.
      */
     @JsonProperty(value = "onlineReplicationStartTime")
     private String onlineReplicationStartTime;
@@ -52,6 +63,16 @@ public final class HyperVReplicaAzurePolicyInput extends PolicyProviderSpecificI
      * Creates an instance of HyperVReplicaAzurePolicyInput class.
      */
     public HyperVReplicaAzurePolicyInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

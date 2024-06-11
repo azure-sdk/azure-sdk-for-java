@@ -13,9 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtUp
  */
 public final class ReplicationMigrationItemsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_Update.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationMigrationItems_Update.json
      */
     /**
      * Sample code: Updates migration item.
@@ -24,9 +22,13 @@ public final class ReplicationMigrationItemsUpdateSamples {
      */
     public static void
         updatesMigrationItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        MigrationItem resource = manager.replicationMigrationItems().getWithResponse("migrationvault", "resourcegroup1",
-            "vmwarefabric1", "vmwareContainer1", "virtualmachine1", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withProperties(new UpdateMigrationItemInputProperties()
-            .withProviderSpecificDetails(new VMwareCbtUpdateMigrationItemInput())).apply();
+        MigrationItem resource = manager.replicationMigrationItems()
+            .getWithResponse("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new UpdateMigrationItemInputProperties()
+                .withProviderSpecificDetails(new VMwareCbtUpdateMigrationItemInput()))
+            .apply();
     }
 }

@@ -14,9 +14,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UpdateProte
  */
 public final class ReplicationProtectionContainerMappingsUpdateSam {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationProtectionContainerMappings_Update.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationProtectionContainerMappings_Update.json
      */
     /**
      * Sample code: Update protection container mapping.
@@ -29,10 +27,11 @@ public final class ReplicationProtectionContainerMappingsUpdateSam {
             .getWithResponse("vault1", "resourceGroupPS1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
                 "cloud1protectionprofile1", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withProperties(new UpdateProtectionContainerMappingInputProperties()
-            .withProviderSpecificInput(new A2AUpdateContainerMappingInput()
-                .withAgentAutoUpdateStatus(AgentAutoUpdateStatus.ENABLED).withAutomationAccountArmId(
-                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/automationrg1/providers/Microsoft.Automation/automationAccounts/automationaccount1")))
+        resource.update()
+            .withProperties(new UpdateProtectionContainerMappingInputProperties().withProviderSpecificInput(
+                new A2AUpdateContainerMappingInput().withAgentAutoUpdateStatus(AgentAutoUpdateStatus.ENABLED)
+                    .withAutomationAccountArmId(
+                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/automationrg1/providers/Microsoft.Automation/automationAccounts/automationaccount1")))
             .apply();
     }
 }

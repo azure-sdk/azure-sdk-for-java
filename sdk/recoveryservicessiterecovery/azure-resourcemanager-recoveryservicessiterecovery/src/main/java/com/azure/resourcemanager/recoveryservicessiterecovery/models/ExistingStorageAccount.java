@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Existing storage account input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = ExistingStorageAccount.class,
+    visible = true)
 @JsonTypeName("Existing")
 @Fluent
 public final class ExistingStorageAccount extends StorageAccountCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "Existing";
+
     /*
      * The storage account Arm Id. Throw error, if resource does not exists.
      */
@@ -27,6 +39,16 @@ public final class ExistingStorageAccount extends StorageAccountCustomDetails {
      * Creates an instance of ExistingStorageAccount class.
      */
     public ExistingStorageAccount() {
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class ExistingStorageAccount extends StorageAccountCustomDetails {
     public void validate() {
         super.validate();
         if (azureStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property azureStorageAccountId in model ExistingStorageAccount"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property azureStorageAccountId in model ExistingStorageAccount"));
         }
     }
 

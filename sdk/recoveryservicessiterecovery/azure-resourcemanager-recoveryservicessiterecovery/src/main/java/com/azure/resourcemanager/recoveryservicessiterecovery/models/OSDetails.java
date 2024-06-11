@@ -48,6 +48,12 @@ public final class OSDetails {
     @JsonProperty(value = "oSMinorVersion")
     private String oSMinorVersion;
 
+    /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
+
     /**
      * Creates an instance of OSDetails class.
      */
@@ -171,6 +177,26 @@ public final class OSDetails {
      */
     public OSDetails withOSMinorVersion(String oSMinorVersion) {
         this.oSMinorVersion = oSMinorVersion;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the OSDetails object itself.
+     */
+    public OSDetails withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
         return this;
     }
 

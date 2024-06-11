@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,15 +17,22 @@ import java.util.List;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = GroupTaskDetails.class)
+    defaultImpl = GroupTaskDetails.class,
+    visible = true)
 @JsonTypeName("GroupTaskDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "InlineWorkflowTaskDetails", value = InlineWorkflowTaskDetails.class),
     @JsonSubTypes.Type(name = "RecoveryPlanGroupTaskDetails", value = RecoveryPlanGroupTaskDetails.class) })
 @Fluent
 public class GroupTaskDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /*
      * The child tasks.
      */
@@ -35,6 +43,16 @@ public class GroupTaskDetails {
      * Creates an instance of GroupTaskDetails class.
      */
     public GroupTaskDetails() {
+        this.instanceType = "GroupTaskDetails";
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

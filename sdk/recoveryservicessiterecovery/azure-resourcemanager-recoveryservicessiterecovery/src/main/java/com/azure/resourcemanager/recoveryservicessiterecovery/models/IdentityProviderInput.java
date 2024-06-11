@@ -14,29 +14,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class IdentityProviderInput {
     /*
-     * The tenant Id for the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The tenant Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "tenantId", required = true)
     private String tenantId;
 
     /*
-     * The application/client Id for the service principal with which the on-premise management/data plane components
-     * would communicate with our Azure services.
+     * The application/client Id for the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "applicationId", required = true)
     private String applicationId;
 
     /*
-     * The object Id of the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The object Id of the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "objectId", required = true)
     private String objectId;
 
     /*
-     * The intended Audience of the service principal with which the on-premise management/data plane components would
-     * communicate with our Azure services.
+     * The intended Audience of the service principal with which the on-premise management/data plane components would communicate with our Azure services.
      */
     @JsonProperty(value = "audience", required = true)
     private String audience;
@@ -98,8 +94,8 @@ public final class IdentityProviderInput {
     }
 
     /**
-     * Get the objectId property: The object Id of the service principal with which the on-premise management/data
-     * plane components would communicate with our Azure services.
+     * Get the objectId property: The object Id of the service principal with which the on-premise management/data plane
+     * components would communicate with our Azure services.
      * 
      * @return the objectId value.
      */
@@ -108,8 +104,8 @@ public final class IdentityProviderInput {
     }
 
     /**
-     * Set the objectId property: The object Id of the service principal with which the on-premise management/data
-     * plane components would communicate with our Azure services.
+     * Set the objectId property: The object Id of the service principal with which the on-premise management/data plane
+     * components would communicate with our Azure services.
      * 
      * @param objectId the objectId value to set.
      * @return the IdentityProviderInput object itself.
@@ -168,24 +164,26 @@ public final class IdentityProviderInput {
      */
     public void validate() {
         if (tenantId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property tenantId in model IdentityProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property tenantId in model IdentityProviderInput"));
         }
         if (applicationId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property applicationId in model IdentityProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property applicationId in model IdentityProviderInput"));
         }
         if (objectId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property objectId in model IdentityProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property objectId in model IdentityProviderInput"));
         }
         if (audience() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property audience in model IdentityProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property audience in model IdentityProviderInput"));
         }
         if (aadAuthority() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property aadAuthority in model IdentityProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property aadAuthority in model IdentityProviderInput"));
         }
     }
 

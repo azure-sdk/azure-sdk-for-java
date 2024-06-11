@@ -13,9 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtRe
  */
 public final class ReplicationMigrationItemsResyncSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_Resync.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationMigrationItems_Resync.json
      */
     /**
      * Sample code: Resynchronizes replication.
@@ -24,10 +22,10 @@ public final class ReplicationMigrationItemsResyncSamples {
      */
     public static void
         resynchronizesReplication(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().resync("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new ResyncInput().withProperties(new ResyncInputProperties()
-                .withProviderSpecificDetails(new VMwareCbtResyncInput().withSkipCbtReset("true"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .resync("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                new ResyncInput().withProperties(new ResyncInputProperties()
+                    .withProviderSpecificDetails(new VMwareCbtResyncInput().withSkipCbtReset("true"))),
+                com.azure.core.util.Context.NONE);
     }
 }

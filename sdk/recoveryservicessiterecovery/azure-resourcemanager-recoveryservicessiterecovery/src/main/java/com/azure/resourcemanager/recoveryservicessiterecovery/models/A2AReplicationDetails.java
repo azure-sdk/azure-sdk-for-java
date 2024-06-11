@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * A2A provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2AReplicationDetails.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2AReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The fabric specific object Id of the virtual machine.
      */
@@ -83,6 +95,18 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
      */
     @JsonProperty(value = "managementId")
     private String managementId;
+
+    /*
+     * The replication protection cluster Id.
+     */
+    @JsonProperty(value = "protectionClusterId")
+    private String protectionClusterId;
+
+    /*
+     * A value indicating if the cluster infra is ready or not.
+     */
+    @JsonProperty(value = "isClusterInfraReady")
+    private Boolean isClusterInfraReady;
 
     /*
      * The list of protected disks.
@@ -247,9 +271,7 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     private String vmProtectionStateDescription;
 
     /*
-     * An id associated with the PE that survives actions like switch protection which change the backing PE/CPE
-     * objects internally.The lifecycle id gets carried forward to have a link/continuity in being able to have an Id
-     * that denotes the "same" protected item even though other internal Ids/ARM Id might be changing.
+     * An id associated with the PE that survives actions like switch protection which change the backing PE/CPE objects internally.The lifecycle id gets carried forward to have a link/continuity in being able to have an Id that denotes the "same" protected item even though other internal Ids/ARM Id might be changing.
      */
     @JsonProperty(value = "lifecycleId")
     private String lifecycleId;
@@ -348,6 +370,16 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
      * Creates an instance of A2AReplicationDetails class.
      */
     public A2AReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -523,6 +555,46 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
      */
     public A2AReplicationDetails withManagementId(String managementId) {
         this.managementId = managementId;
+        return this;
+    }
+
+    /**
+     * Get the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @return the protectionClusterId value.
+     */
+    public String protectionClusterId() {
+        return this.protectionClusterId;
+    }
+
+    /**
+     * Set the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @param protectionClusterId the protectionClusterId value to set.
+     * @return the A2AReplicationDetails object itself.
+     */
+    public A2AReplicationDetails withProtectionClusterId(String protectionClusterId) {
+        this.protectionClusterId = protectionClusterId;
+        return this;
+    }
+
+    /**
+     * Get the isClusterInfraReady property: A value indicating if the cluster infra is ready or not.
+     * 
+     * @return the isClusterInfraReady value.
+     */
+    public Boolean isClusterInfraReady() {
+        return this.isClusterInfraReady;
+    }
+
+    /**
+     * Set the isClusterInfraReady property: A value indicating if the cluster infra is ready or not.
+     * 
+     * @param isClusterInfraReady the isClusterInfraReady value to set.
+     * @return the A2AReplicationDetails object itself.
+     */
+    public A2AReplicationDetails withIsClusterInfraReady(Boolean isClusterInfraReady) {
+        this.isClusterInfraReady = isClusterInfraReady;
         return this;
     }
 
@@ -847,8 +919,8 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     }
 
     /**
-     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @return the monitoringPercentageCompletion value.
      */
@@ -857,8 +929,8 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     }
 
     /**
-     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @param monitoringPercentageCompletion the monitoringPercentageCompletion value to set.
      * @return the A2AReplicationDetails object itself.
@@ -982,8 +1054,8 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     }
 
     /**
-     * Get the isReplicationAgentCertificateUpdateRequired property: A value indicating whether agent certificate
-     * update is required.
+     * Get the isReplicationAgentCertificateUpdateRequired property: A value indicating whether agent certificate update
+     * is required.
      * 
      * @return the isReplicationAgentCertificateUpdateRequired value.
      */
@@ -992,8 +1064,8 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     }
 
     /**
-     * Set the isReplicationAgentCertificateUpdateRequired property: A value indicating whether agent certificate
-     * update is required.
+     * Set the isReplicationAgentCertificateUpdateRequired property: A value indicating whether agent certificate update
+     * is required.
      * 
      * @param isReplicationAgentCertificateUpdateRequired the isReplicationAgentCertificateUpdateRequired value to set.
      * @return the A2AReplicationDetails object itself.

@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "resourceType",
-    defaultImpl = ProtectionProfileCustomDetails.class)
+    defaultImpl = ProtectionProfileCustomDetails.class,
+    visible = true)
 @JsonTypeName("ProtectionProfileCustomDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Existing", value = ExistingProtectionProfile.class),
     @JsonSubTypes.Type(name = "New", value = NewProtectionProfile.class) })
 @Immutable
 public class ProtectionProfileCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType;
+
     /**
      * Creates an instance of ProtectionProfileCustomDetails class.
      */
     public ProtectionProfileCustomDetails() {
+        this.resourceType = "ProtectionProfileCustomDetails";
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**

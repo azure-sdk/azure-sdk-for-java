@@ -12,9 +12,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.PauseReplic
  */
 public final class ReplicationMigrationItemsPauseReplicationSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_PauseReplication.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationMigrationItems_PauseReplication.json
      */
     /**
      * Sample code: Pause replication.

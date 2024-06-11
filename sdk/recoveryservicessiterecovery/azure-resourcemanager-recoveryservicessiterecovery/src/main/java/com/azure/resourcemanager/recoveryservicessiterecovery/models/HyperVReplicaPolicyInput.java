@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,13 +16,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = HyperVReplicaPolicyInput.class)
+    defaultImpl = HyperVReplicaPolicyInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplica2012")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "HyperVReplica2012R2", value = HyperVReplicaBluePolicyInput.class) })
 @Fluent
 public class HyperVReplicaPolicyInput extends PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplica2012";
+
     /*
      * A value indicating the number of recovery points.
      */
@@ -86,6 +94,16 @@ public class HyperVReplicaPolicyInput extends PolicyProviderSpecificInput {
      * Creates an instance of HyperVReplicaPolicyInput class.
      */
     public HyperVReplicaPolicyInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

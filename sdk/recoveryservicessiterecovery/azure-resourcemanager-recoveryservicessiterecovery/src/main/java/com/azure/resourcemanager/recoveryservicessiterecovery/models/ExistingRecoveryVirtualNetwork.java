@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Existing recovery virtual network input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = ExistingRecoveryVirtualNetwork.class,
+    visible = true)
 @JsonTypeName("Existing")
 @Fluent
 public final class ExistingRecoveryVirtualNetwork extends RecoveryVirtualNetworkCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "Existing";
+
     /*
      * The recovery virtual network Id. Will throw error, if resource does not exist.
      */
@@ -33,6 +45,16 @@ public final class ExistingRecoveryVirtualNetwork extends RecoveryVirtualNetwork
      * Creates an instance of ExistingRecoveryVirtualNetwork class.
      */
     public ExistingRecoveryVirtualNetwork() {
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**
@@ -86,8 +108,9 @@ public final class ExistingRecoveryVirtualNetwork extends RecoveryVirtualNetwork
     public void validate() {
         super.validate();
         if (recoveryVirtualNetworkId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryVirtualNetworkId in model ExistingRecoveryVirtualNetwork"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryVirtualNetworkId in model ExistingRecoveryVirtualNetwork"));
         }
     }
 

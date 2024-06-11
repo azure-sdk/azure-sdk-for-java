@@ -19,9 +19,7 @@ public final class InMageVolumeExclusionOptions {
     private String volumeLabel;
 
     /*
-     * The value indicating whether to exclude multi volume disk or not. If a disk has multiple volumes and one of the
-     * volume has label matching with VolumeLabel this disk will be excluded from replication if
-     * OnlyExcludeIfSingleVolume is false.
+     * The value indicating whether to exclude multi volume disk or not. If a disk has multiple volumes and one of the volume has label matching with VolumeLabel this disk will be excluded from replication if OnlyExcludeIfSingleVolume is false.
      */
     @JsonProperty(value = "onlyExcludeIfSingleVolume")
     private String onlyExcludeIfSingleVolume;

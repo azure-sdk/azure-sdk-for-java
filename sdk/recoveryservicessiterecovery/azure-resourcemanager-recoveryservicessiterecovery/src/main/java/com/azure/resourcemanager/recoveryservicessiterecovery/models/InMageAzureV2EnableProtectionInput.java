@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,10 +16,21 @@ import java.util.Map;
 /**
  * VMware Azure specific enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2EnableProtectionInput.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2EnableProtectionInput extends EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * The Master target Id.
      */
@@ -74,8 +86,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     private String targetAzureSubnetId;
 
     /*
-     * The selected option to enable RDP\SSH on target VM after failover. String value of
-     * SrsDataContract.EnableRDPOnTargetOption enum.
+     * The selected option to enable RDP\SSH on target VM after failover. String value of SrsDataContract.EnableRDPOnTargetOption enum.
      */
     @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;
@@ -105,7 +116,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     private String targetAzureV2ResourceGroupId;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -184,6 +195,16 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
      * Creates an instance of InMageAzureV2EnableProtectionInput class.
      */
     public InMageAzureV2EnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -473,7 +494,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -482,7 +503,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the InMageAzureV2EnableProtectionInput object itself.

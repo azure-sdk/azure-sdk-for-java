@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -15,14 +16,13 @@ import java.util.Map;
 /**
  * Job details based on specific job type.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "instanceType",
-    defaultImpl = JobDetails.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "instanceType", defaultImpl = JobDetails.class, visible = true)
 @JsonTypeName("JobDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AsrJobDetails", value = AsrJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterFailoverJobDetails", value = ClusterFailoverJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterSwitchProtectionJobDetails", value = ClusterSwitchProtectionJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterTestFailoverJobDetails", value = ClusterTestFailoverJobDetails.class),
     @JsonSubTypes.Type(name = "ExportJobDetails", value = ExportJobDetails.class),
     @JsonSubTypes.Type(name = "FailoverJobDetails", value = FailoverJobDetails.class),
     @JsonSubTypes.Type(name = "SwitchProtectionJobDetails", value = SwitchProtectionJobDetails.class),
@@ -30,8 +30,14 @@ import java.util.Map;
 @Fluent
 public class JobDetails {
     /*
-     * The affected object properties like source server, source cloud, target server, target cloud etc. based on the
-     * workflow object details.
+     * Gets the type of job details (see JobDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
+    /*
+     * The affected object properties like source server, source cloud, target server, target cloud etc. based on the workflow object details.
      */
     @JsonProperty(value = "affectedObjectDetails")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -41,6 +47,16 @@ public class JobDetails {
      * Creates an instance of JobDetails class.
      */
     public JobDetails() {
+        this.instanceType = "JobDetails";
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of job details (see JobDetailsTypes enum for possible values).
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

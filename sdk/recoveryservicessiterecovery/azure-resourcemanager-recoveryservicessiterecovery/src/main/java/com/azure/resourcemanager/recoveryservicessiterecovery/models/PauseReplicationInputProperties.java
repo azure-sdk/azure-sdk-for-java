@@ -52,8 +52,9 @@ public final class PauseReplicationInputProperties {
      */
     public void validate() {
         if (instanceType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property instanceType in model PauseReplicationInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property instanceType in model PauseReplicationInputProperties"));
         }
     }
 

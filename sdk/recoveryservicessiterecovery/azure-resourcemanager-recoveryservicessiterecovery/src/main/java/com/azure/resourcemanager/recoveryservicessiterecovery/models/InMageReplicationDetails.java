@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -16,13 +17,23 @@ import java.util.Map;
 /**
  * InMage provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageReplicationDetails.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMageReplicationDetails extends ReplicationProviderSpecificSettings {
     /*
-     * The active location of the VM. If the VM is being protected from Azure, this field will take values from {
-     * Azure, OnPrem }. If the VM is being protected between two data-centers, this field will be OnPrem always.
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
+    /*
+     * The active location of the VM. If the VM is being protected from Azure, this field will take values from { Azure, OnPrem }. If the VM is being protected between two data-centers, this field will be OnPrem always.
      */
     @JsonProperty(value = "activeSiteType")
     private String activeSiteType;
@@ -203,8 +214,7 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
     private String discoveryType;
 
     /*
-     * A value indicating the underlying Azure storage account. If the VM is not running in Azure, this value shall be
-     * set to null.
+     * A value indicating the underlying Azure storage account. If the VM is not running in Azure, this value shall be set to null.
      */
     @JsonProperty(value = "azureStorageAccountId")
     private String azureStorageAccountId;
@@ -267,6 +277,16 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
      * Creates an instance of InMageReplicationDetails class.
      */
     public InMageReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -876,8 +896,8 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
     }
 
     /**
-     * Get the azureStorageAccountId property: A value indicating the underlying Azure storage account. If the VM is
-     * not running in Azure, this value shall be set to null.
+     * Get the azureStorageAccountId property: A value indicating the underlying Azure storage account. If the VM is not
+     * running in Azure, this value shall be set to null.
      * 
      * @return the azureStorageAccountId value.
      */
@@ -886,8 +906,8 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
     }
 
     /**
-     * Set the azureStorageAccountId property: A value indicating the underlying Azure storage account. If the VM is
-     * not running in Azure, this value shall be set to null.
+     * Set the azureStorageAccountId property: A value indicating the underlying Azure storage account. If the VM is not
+     * running in Azure, this value shall be set to null.
      * 
      * @param azureStorageAccountId the azureStorageAccountId value to set.
      * @return the InMageReplicationDetails object itself.
@@ -1022,8 +1042,7 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
     }
 
     /**
-     * Get the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or
-     * not.
+     * Get the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or not.
      * 
      * @return the isAdditionalStatsAvailable value.
      */
@@ -1032,8 +1051,7 @@ public final class InMageReplicationDetails extends ReplicationProviderSpecificS
     }
 
     /**
-     * Set the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or
-     * not.
+     * Set the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or not.
      * 
      * @param isAdditionalStatsAvailable the isAdditionalStatsAvailable value to set.
      * @return the InMageReplicationDetails object itself.

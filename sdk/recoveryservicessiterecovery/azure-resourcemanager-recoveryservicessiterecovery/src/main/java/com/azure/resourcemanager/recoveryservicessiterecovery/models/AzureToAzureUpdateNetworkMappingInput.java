@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Updates network mappings input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = AzureToAzureUpdateNetworkMappingInput.class,
+    visible = true)
 @JsonTypeName("AzureToAzure")
 @Fluent
 public final class AzureToAzureUpdateNetworkMappingInput extends FabricSpecificUpdateNetworkMappingInput {
+    /*
+     * The instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AzureToAzure";
+
     /*
      * The primary azure vnet Id.
      */
@@ -26,6 +38,16 @@ public final class AzureToAzureUpdateNetworkMappingInput extends FabricSpecificU
      * Creates an instance of AzureToAzureUpdateNetworkMappingInput class.
      */
     public AzureToAzureUpdateNetworkMappingInput() {
+    }
+
+    /**
+     * Get the instanceType property: The instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

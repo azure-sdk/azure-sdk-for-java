@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,10 +17,21 @@ import java.util.Map;
 /**
  * VMwareCbt specific enable migration input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtEnableMigrationInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtEnableMigrationInput extends EnableMigrationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * The ARM Id of the VM discovered in VMware.
      */
@@ -43,6 +55,12 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
      */
     @JsonProperty(value = "sqlServerLicenseType")
     private SqlServerLicenseType sqlServerLicenseType;
+
+    /*
+     * The license type for Linux VM's.
+     */
+    @JsonProperty(value = "linuxLicenseType")
+    private LinuxLicenseType linuxLicenseType;
 
     /*
      * A value indicating whether bulk SQL RP registration to be done.
@@ -174,10 +192,26 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetNicTags;
 
+    /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
+
     /**
      * Creates an instance of VMwareCbtEnableMigrationInput class.
      */
     public VMwareCbtEnableMigrationInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -257,6 +291,26 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
      */
     public VMwareCbtEnableMigrationInput withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType) {
         this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the VMwareCbtEnableMigrationInput object itself.
+     */
+    public VMwareCbtEnableMigrationInput withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
         return this;
     }
 
@@ -683,6 +737,26 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
     }
 
     /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the VMwareCbtEnableMigrationInput object itself.
+     */
+    public VMwareCbtEnableMigrationInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -691,30 +765,36 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
     public void validate() {
         super.validate();
         if (vmwareMachineId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property vmwareMachineId in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property vmwareMachineId in model VMwareCbtEnableMigrationInput"));
         }
         if (disksToInclude() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property disksToInclude in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property disksToInclude in model VMwareCbtEnableMigrationInput"));
         } else {
             disksToInclude().forEach(e -> e.validate());
         }
         if (dataMoverRunAsAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataMoverRunAsAccountId in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataMoverRunAsAccountId in model VMwareCbtEnableMigrationInput"));
         }
         if (snapshotRunAsAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property snapshotRunAsAccountId in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property snapshotRunAsAccountId in model VMwareCbtEnableMigrationInput"));
         }
         if (targetResourceGroupId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetResourceGroupId in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetResourceGroupId in model VMwareCbtEnableMigrationInput"));
         }
         if (targetNetworkId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetNetworkId in model VMwareCbtEnableMigrationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetNetworkId in model VMwareCbtEnableMigrationInput"));
         }
         if (targetVmSecurityProfile() != null) {
             targetVmSecurityProfile().validate();

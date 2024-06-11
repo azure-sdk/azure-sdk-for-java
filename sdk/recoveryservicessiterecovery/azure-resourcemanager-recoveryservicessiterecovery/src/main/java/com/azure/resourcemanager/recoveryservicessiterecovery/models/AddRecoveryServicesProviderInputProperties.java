@@ -158,8 +158,7 @@ public final class AddRecoveryServicesProviderInputProperties {
     }
 
     /**
-     * Get the dataPlaneAuthenticationIdentityInput property: The identity provider input for data plane
-     * authentication.
+     * Get the dataPlaneAuthenticationIdentityInput property: The identity provider input for data plane authentication.
      * 
      * @return the dataPlaneAuthenticationIdentityInput value.
      */
@@ -168,8 +167,7 @@ public final class AddRecoveryServicesProviderInputProperties {
     }
 
     /**
-     * Set the dataPlaneAuthenticationIdentityInput property: The identity provider input for data plane
-     * authentication.
+     * Set the dataPlaneAuthenticationIdentityInput property: The identity provider input for data plane authentication.
      * 
      * @param dataPlaneAuthenticationIdentityInput the dataPlaneAuthenticationIdentityInput value to set.
      * @return the AddRecoveryServicesProviderInputProperties object itself.
@@ -187,18 +185,21 @@ public final class AddRecoveryServicesProviderInputProperties {
      */
     public void validate() {
         if (machineName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property machineName in model AddRecoveryServicesProviderInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property machineName in model AddRecoveryServicesProviderInputProperties"));
         }
         if (authenticationIdentityInput() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property authenticationIdentityInput in model AddRecoveryServicesProviderInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property authenticationIdentityInput in model AddRecoveryServicesProviderInputProperties"));
         } else {
             authenticationIdentityInput().validate();
         }
         if (resourceAccessIdentityInput() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property resourceAccessIdentityInput in model AddRecoveryServicesProviderInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property resourceAccessIdentityInput in model AddRecoveryServicesProviderInputProperties"));
         } else {
             resourceAccessIdentityInput().validate();
         }

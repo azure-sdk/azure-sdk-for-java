@@ -6,17 +6,29 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm provider specific container mapping details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmProtectionContainerMappingDetails.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Immutable
 public final class InMageRcmProtectionContainerMappingDetails
     extends ProtectionContainerMappingProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * A value indicating whether the flag for enable agent auto upgrade.
      */
@@ -27,6 +39,16 @@ public final class InMageRcmProtectionContainerMappingDetails
      * Creates an instance of InMageRcmProtectionContainerMappingDetails class.
      */
     public InMageRcmProtectionContainerMappingDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

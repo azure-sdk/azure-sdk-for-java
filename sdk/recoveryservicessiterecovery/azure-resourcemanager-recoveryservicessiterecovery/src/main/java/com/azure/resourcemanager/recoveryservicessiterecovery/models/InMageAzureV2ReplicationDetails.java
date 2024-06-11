@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -16,10 +17,21 @@ import java.util.Map;
 /**
  * InMageAzureV2 provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2ReplicationDetails.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * The infrastructure VM Id.
      */
@@ -219,8 +231,7 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
     private String recoveryAzureStorageAccount;
 
     /*
-     * The ARM id of the log storage account used for replication. This will be set to null if no log storage account
-     * was provided during enable protection.
+     * The ARM id of the log storage account used for replication. This will be set to null if no log storage account was provided during enable protection.
      */
     @JsonProperty(value = "recoveryAzureLogStorageAccountId")
     private String recoveryAzureLogStorageAccountId;
@@ -256,8 +267,7 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
     private String discoveryType;
 
     /*
-     * The selected option to enable RDP\SSH on target vm after failover. String value of
-     * SrsDataContract.EnableRDPOnTargetOption enum.
+     * The selected option to enable RDP\SSH on target vm after failover. String value of SrsDataContract.EnableRDPOnTargetOption enum.
      */
     @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;
@@ -269,8 +279,7 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
     private List<String> datastores;
 
     /*
-     * The ARM Id of the target Azure VM. This value will be null until the VM is failed over. Only after failure it
-     * will be populated with the ARM Id of the Azure VM.
+     * The ARM Id of the target Azure VM. This value will be null until the VM is failed over. Only after failure it will be populated with the ARM Id of the Azure VM.
      */
     @JsonProperty(value = "targetVmId")
     private String targetVmId;
@@ -451,6 +460,16 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
      * Creates an instance of InMageAzureV2ReplicationDetails class.
      */
     public InMageAzureV2ReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -1621,8 +1640,7 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
     }
 
     /**
-     * Get the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or
-     * not.
+     * Get the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or not.
      * 
      * @return the isAdditionalStatsAvailable value.
      */
@@ -1631,8 +1649,7 @@ public final class InMageAzureV2ReplicationDetails extends ReplicationProviderSp
     }
 
     /**
-     * Set the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or
-     * not.
+     * Set the isAdditionalStatsAvailable property: A value indicating whether additional IR stats are available or not.
      * 
      * @param isAdditionalStatsAvailable the isAdditionalStatsAvailable value to set.
      * @return the InMageAzureV2ReplicationDetails object itself.

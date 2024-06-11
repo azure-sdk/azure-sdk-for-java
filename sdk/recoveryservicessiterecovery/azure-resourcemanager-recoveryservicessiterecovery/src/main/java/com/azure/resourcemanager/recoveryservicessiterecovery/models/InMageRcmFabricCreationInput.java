@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm fabric provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmFabricCreationInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmFabricCreationInput extends FabricSpecificCreationInput {
+    /*
+     * Gets the class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * The ARM Id of the VMware site.
      */
@@ -39,6 +51,16 @@ public final class InMageRcmFabricCreationInput extends FabricSpecificCreationIn
      * Creates an instance of InMageRcmFabricCreationInput class.
      */
     public InMageRcmFabricCreationInput() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,16 +132,19 @@ public final class InMageRcmFabricCreationInput extends FabricSpecificCreationIn
     public void validate() {
         super.validate();
         if (vmwareSiteId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property vmwareSiteId in model InMageRcmFabricCreationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property vmwareSiteId in model InMageRcmFabricCreationInput"));
         }
         if (physicalSiteId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property physicalSiteId in model InMageRcmFabricCreationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property physicalSiteId in model InMageRcmFabricCreationInput"));
         }
         if (sourceAgentIdentity() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sourceAgentIdentity in model InMageRcmFabricCreationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceAgentIdentity in model InMageRcmFabricCreationInput"));
         } else {
             sourceAgentIdentity().validate();
         }

@@ -12,9 +12,7 @@ import java.util.Arrays;
  */
 public final class ReplicationAlertSettingsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationAlertSettings_Create.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/ReplicationAlertSettings_Create.json
      */
     /**
      * Sample code: Configures email notifications for this vault.
@@ -23,9 +21,12 @@ public final class ReplicationAlertSettingsCreateSamples {
      */
     public static void configuresEmailNotificationsForThisVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAlertSettings().define("defaultAlertSetting").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationAlertSettings()
+            .define("defaultAlertSetting")
+            .withExistingVault("vault1", "resourceGroupPS1")
             .withProperties(new ConfigureAlertRequestProperties().withSendToOwners("false")
-                .withCustomEmailAddresses(Arrays.asList("ronehr@microsoft.com")).withLocale(""))
+                .withCustomEmailAddresses(Arrays.asList("ronehr@microsoft.com"))
+                .withLocale(""))
             .create();
     }
 }

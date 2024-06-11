@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan manual action details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanManualActionDetails.class,
+    visible = true)
 @JsonTypeName("ManualActionDetails")
 @Fluent
 public final class RecoveryPlanManualActionDetails extends RecoveryPlanActionDetails {
+    /*
+     * Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "ManualActionDetails";
+
     /*
      * The manual action description.
      */
@@ -26,6 +38,17 @@ public final class RecoveryPlanManualActionDetails extends RecoveryPlanActionDet
      * Creates an instance of RecoveryPlanManualActionDetails class.
      */
     public RecoveryPlanManualActionDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for
+     * possible values).
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
