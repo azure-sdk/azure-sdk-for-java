@@ -13,12 +13,14 @@ import java.util.Collection;
  * set to 'Bluefield' when creating/updating a component via the REST API.
  */
 public final class FlowType extends ExpandableStringEnum<FlowType> {
-    /** Static value Bluefield for FlowType. */
+    /**
+     * Static value Bluefield for FlowType.
+     */
     public static final FlowType BLUEFIELD = fromString("Bluefield");
 
     /**
      * Creates a new instance of FlowType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +29,7 @@ public final class FlowType extends ExpandableStringEnum<FlowType> {
 
     /**
      * Creates or finds a FlowType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FlowType.
      */
@@ -38,7 +40,7 @@ public final class FlowType extends ExpandableStringEnum<FlowType> {
 
     /**
      * Gets known FlowType values.
-     *
+     * 
      * @return known FlowType values.
      */
     public static Collection<FlowType> values() {
