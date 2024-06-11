@@ -9,9 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class CatalogsListDevicesSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostListDevicesByCatalog.
-     * json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostListDevicesByCatalog.json
      */
     /**
      * Sample code: Catalogs_ListDevices.
@@ -19,7 +17,7 @@ public final class CatalogsListDevicesSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void catalogsListDevices(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.catalogs().listDevices("MyResourceGroup1", "MyCatalog1", null, null, null, null,
-            com.azure.core.util.Context.NONE);
+        manager.catalogs()
+            .listDevices("MyResourceGroup1", "MyCatalog1", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

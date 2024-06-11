@@ -9,9 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class ProductsCountDevicesSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostCountDevicesProduct.
-     * json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostCountDevicesProduct.json
      */
     /**
      * Sample code: Products_CountDevices.
@@ -19,7 +17,7 @@ public final class ProductsCountDevicesSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void productsCountDevices(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.products().countDevicesWithResponse("MyResourceGroup1", "MyCatalog1", "MyProduct1",
-            com.azure.core.util.Context.NONE);
+        manager.products()
+            .countDevicesWithResponse("MyResourceGroup1", "MyCatalog1", "MyProduct1", com.azure.core.util.Context.NONE);
     }
 }
