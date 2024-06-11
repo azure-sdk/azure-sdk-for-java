@@ -14,13 +14,13 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class GitLabGroupProperties {
     /*
-     * Gets or sets resource status message.
+     * Gets the resource status message.
      */
     @JsonProperty(value = "provisioningStatusMessage", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningStatusMessage;
 
     /*
-     * Gets or sets time when resource was last checked.
+     * Gets the time when resource was last checked.
      */
     @JsonProperty(value = "provisioningStatusUpdateTimeUtc", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime provisioningStatusUpdateTimeUtc;
@@ -36,7 +36,7 @@ public final class GitLabGroupProperties {
      * DeletionSuccess - Deletion successful.
      * DeletionFailure - Deletion failure.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private DevOpsProvisioningState provisioningState;
 
     /*
@@ -79,7 +79,7 @@ public final class GitLabGroupProperties {
     }
 
     /**
-     * Get the provisioningStatusMessage property: Gets or sets resource status message.
+     * Get the provisioningStatusMessage property: Gets the resource status message.
      * 
      * @return the provisioningStatusMessage value.
      */
@@ -88,7 +88,7 @@ public final class GitLabGroupProperties {
     }
 
     /**
-     * Get the provisioningStatusUpdateTimeUtc property: Gets or sets time when resource was last checked.
+     * Get the provisioningStatusUpdateTimeUtc property: Gets the time when resource was last checked.
      * 
      * @return the provisioningStatusUpdateTimeUtc value.
      */
@@ -111,25 +111,6 @@ public final class GitLabGroupProperties {
      */
     public DevOpsProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The provisioning state of the resource.
-     * 
-     * Pending - Provisioning pending.
-     * Failed - Provisioning failed.
-     * Succeeded - Successful provisioning.
-     * Canceled - Provisioning canceled.
-     * PendingDeletion - Deletion pending.
-     * DeletionSuccess - Deletion successful.
-     * DeletionFailure - Deletion failure.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the GitLabGroupProperties object itself.
-     */
-    public GitLabGroupProperties withProvisioningState(DevOpsProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

@@ -4,6 +4,10 @@
 
 package com.azure.resourcemanager.security.generated;
 
+import com.azure.resourcemanager.security.models.DefenderForStorageSettingProperties;
+import com.azure.resourcemanager.security.models.MalwareScanningProperties;
+import com.azure.resourcemanager.security.models.OnUploadProperties;
+import com.azure.resourcemanager.security.models.SensitiveDataDiscoveryProperties;
 import com.azure.resourcemanager.security.models.SettingName;
 
 /**
@@ -24,13 +28,13 @@ public final class DefenderForStorageCreateSamples {
             .define(SettingName.CURRENT)
             .withExistingResourceId(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Storage/storageAccounts/samplestorageaccount")
-            .withIsEnabled(true)
-            .withOverrideSubscriptionLevelSettings(true)
-            .withScanResultsEventGridTopicResourceId(
-                "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.EventGrid/topics/sampletopic")
-            .withIsEnabledMalwareScanningIsEnabled(true)
-            .withCapGBPerMonth(-1)
-            .withIsEnabledSensitiveDataDiscoveryIsEnabled(true)
+            .withProperties(new DefenderForStorageSettingProperties().withIsEnabled(true)
+                .withMalwareScanning(new MalwareScanningProperties()
+                    .withOnUpload(new OnUploadProperties().withIsEnabled(true).withCapGBPerMonth(-1))
+                    .withScanResultsEventGridTopicResourceId(
+                        "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.EventGrid/topics/sampletopic"))
+                .withSensitiveDataDiscovery(new SensitiveDataDiscoveryProperties().withIsEnabled(true))
+                .withOverrideSubscriptionLevelSettings(true))
             .create();
     }
 }
