@@ -6,38 +6,56 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The PermissionsResourceProviderItem model. */
+/**
+ * The PermissionsResourceProviderItem model.
+ */
 @Fluent
 public final class PermissionsResourceProviderItem extends ResourceProvider {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of PermissionsResourceProviderItem class.
+     */
+    public PermissionsResourceProviderItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsResourceProviderItem withProvider(ProviderName provider) {
         super.withProvider(provider);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsResourceProviderItem withPermissionsDisplayText(String permissionsDisplayText) {
         super.withPermissionsDisplayText(permissionsDisplayText);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsResourceProviderItem withProviderDisplayName(String providerDisplayName) {
         super.withProviderDisplayName(providerDisplayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsResourceProviderItem withScope(PermissionProviderScope scope) {
         super.withScope(scope);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsResourceProviderItem withRequiredPermissions(RequiredPermissions requiredPermissions) {
         super.withRequiredPermissions(requiredPermissions);
@@ -46,7 +64,7 @@ public final class PermissionsResourceProviderItem extends ResourceProvider {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,14 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MstiDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Microsoft Threat Intelligence data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Microsoft Threat Intelligence data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = MstiDataConnector.class, visible = true)
 @JsonTypeName("MicrosoftThreatIntelligence")
 @Fluent
 public final class MstiDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.MICROSOFT_THREAT_INTELLIGENCE;
+
     /*
      * Microsoft Threat Intelligence data connector properties.
      */
@@ -23,15 +33,33 @@ public final class MstiDataConnector extends DataConnectorInner {
     private MstiDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of MstiDataConnector class.
+     */
+    public MstiDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Microsoft Threat Intelligence data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MstiDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MstiDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +68,7 @@ public final class MstiDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public MstiDataConnectorDataTypes dataTypes() {
@@ -49,7 +77,7 @@ public final class MstiDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the MstiDataConnector object itself.
      */
@@ -63,7 +91,7 @@ public final class MstiDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +100,7 @@ public final class MstiDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the MstiDataConnector object itself.
      */
@@ -86,7 +114,7 @@ public final class MstiDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

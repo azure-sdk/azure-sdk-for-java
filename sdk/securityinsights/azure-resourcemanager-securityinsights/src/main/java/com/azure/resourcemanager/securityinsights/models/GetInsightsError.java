@@ -8,14 +8,27 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** the query kind. */
+/**
+ * the query kind.
+ */
 public final class GetInsightsError extends ExpandableStringEnum<GetInsightsError> {
-    /** Static value Insight for GetInsightsError. */
+    /**
+     * Static value Insight for GetInsightsError.
+     */
     public static final GetInsightsError INSIGHT = fromString("Insight");
 
     /**
+     * Creates a new instance of GetInsightsError value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public GetInsightsError() {
+    }
+
+    /**
      * Creates or finds a GetInsightsError from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding GetInsightsError.
      */
@@ -26,7 +39,7 @@ public final class GetInsightsError extends ExpandableStringEnum<GetInsightsErro
 
     /**
      * Gets known GetInsightsError values.
-     *
+     * 
      * @return known GetInsightsError values.
      */
     public static Collection<GetInsightsError> values() {

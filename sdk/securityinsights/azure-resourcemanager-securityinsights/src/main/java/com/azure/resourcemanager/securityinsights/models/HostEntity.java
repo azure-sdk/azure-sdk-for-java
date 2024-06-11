@@ -8,15 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.HostEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Represents a host entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a host entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = HostEntity.class, visible = true)
 @JsonTypeName("Host")
 @Fluent
 public final class HostEntity extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.HOST;
+
     /*
      * Host entity properties
      */
@@ -24,8 +34,24 @@ public final class HostEntity extends EntityInner {
     private HostEntityProperties innerProperties;
 
     /**
+     * Creates an instance of HostEntity class.
+     */
+    public HostEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Host entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HostEntityProperties innerProperties() {
@@ -34,7 +60,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the azureId property: The azure resource id of the VM.
-     *
+     * 
      * @return the azureId value.
      */
     public String azureId() {
@@ -44,7 +70,7 @@ public final class HostEntity extends EntityInner {
     /**
      * Get the dnsDomain property: The DNS domain that this host belongs to. Should contain the compete DNS suffix for
      * the domain.
-     *
+     * 
      * @return the dnsDomain value.
      */
     public String dnsDomain() {
@@ -53,7 +79,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the hostname property: The hostname without the domain suffix.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -62,7 +88,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the isDomainJoined property: Determines whether this host belongs to a domain.
-     *
+     * 
      * @return the isDomainJoined value.
      */
     public Boolean isDomainJoined() {
@@ -71,7 +97,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the netBiosName property: The host name (pre-windows2000).
-     *
+     * 
      * @return the netBiosName value.
      */
     public String netBiosName() {
@@ -80,7 +106,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the ntDomain property: The NT domain that this host belongs to.
-     *
+     * 
      * @return the ntDomain value.
      */
     public String ntDomain() {
@@ -89,7 +115,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the omsAgentId property: The OMS agent id, if the host has OMS agent installed.
-     *
+     * 
      * @return the omsAgentId value.
      */
     public String omsAgentId() {
@@ -98,7 +124,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Get the osFamily property: The operating system type.
-     *
+     * 
      * @return the osFamily value.
      */
     public OSFamily osFamily() {
@@ -107,7 +133,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Set the osFamily property: The operating system type.
-     *
+     * 
      * @param osFamily the osFamily value to set.
      * @return the HostEntity object itself.
      */
@@ -122,7 +148,7 @@ public final class HostEntity extends EntityInner {
     /**
      * Get the osVersion property: A free text representation of the operating system. This field is meant to hold
      * specific versions the are more fine grained than OSFamily or future values not supported by OSFamily enumeration.
-     *
+     * 
      * @return the osVersion value.
      */
     public String osVersion() {
@@ -132,7 +158,7 @@ public final class HostEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -142,7 +168,7 @@ public final class HostEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -151,7 +177,7 @@ public final class HostEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

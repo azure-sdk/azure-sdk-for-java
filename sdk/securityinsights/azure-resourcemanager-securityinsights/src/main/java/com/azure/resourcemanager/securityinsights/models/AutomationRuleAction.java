@@ -7,22 +7,32 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule action. */
+/**
+ * Describes an automation rule action.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "actionType",
-    defaultImpl = AutomationRuleAction.class)
+    defaultImpl = AutomationRuleAction.class,
+    visible = true)
 @JsonTypeName("AutomationRuleAction")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "AddIncidentTask", value = AutomationRuleAddIncidentTaskAction.class),
     @JsonSubTypes.Type(name = "ModifyProperties", value = AutomationRuleModifyPropertiesAction.class),
-    @JsonSubTypes.Type(name = "RunPlaybook", value = AutomationRuleRunPlaybookAction.class)
-})
+    @JsonSubTypes.Type(name = "RunPlaybook", value = AutomationRuleRunPlaybookAction.class) })
 @Fluent
 public class AutomationRuleAction {
+    /*
+     * The type of the automation rule action.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "actionType", required = true)
+    private ActionType actionType;
+
     /*
      * The order property.
      */
@@ -30,8 +40,24 @@ public class AutomationRuleAction {
     private int order;
 
     /**
+     * Creates an instance of AutomationRuleAction class.
+     */
+    public AutomationRuleAction() {
+        this.actionType = ActionType.fromString("AutomationRuleAction");
+    }
+
+    /**
+     * Get the actionType property: The type of the automation rule action.
+     * 
+     * @return the actionType value.
+     */
+    public ActionType actionType() {
+        return this.actionType;
+    }
+
+    /**
      * Get the order property: The order property.
-     *
+     * 
      * @return the order value.
      */
     public int order() {
@@ -40,7 +66,7 @@ public class AutomationRuleAction {
 
     /**
      * Set the order property: The order property.
-     *
+     * 
      * @param order the order value to set.
      * @return the AutomationRuleAction object itself.
      */
@@ -51,7 +77,7 @@ public class AutomationRuleAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
