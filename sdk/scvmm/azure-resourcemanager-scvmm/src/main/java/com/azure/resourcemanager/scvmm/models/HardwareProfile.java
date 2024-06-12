@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class HardwareProfile {
     /*
@@ -23,8 +25,7 @@ public final class HardwareProfile {
     private Integer cpuCount;
 
     /*
-     * Gets or sets a value indicating whether to enable processor
-     * compatibility mode for live migration of VMs.
+     * Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs.
      */
     @JsonProperty(value = "limitCpuForMigration")
     private LimitCpuForMigration limitCpuForMigration;
@@ -50,12 +51,18 @@ public final class HardwareProfile {
     /*
      * Gets highly available property.
      */
-    @JsonProperty(value = "isHighlyAvailable")
-    private String isHighlyAvailable;
+    @JsonProperty(value = "isHighlyAvailable", access = JsonProperty.Access.WRITE_ONLY)
+    private IsHighlyAvailable isHighlyAvailable;
+
+    /**
+     * Creates an instance of HardwareProfile class.
+     */
+    public HardwareProfile() {
+    }
 
     /**
      * Get the memoryMB property: MemoryMB is the size of a virtual machine's memory, in MB.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Integer memoryMB() {
@@ -64,7 +71,7 @@ public final class HardwareProfile {
 
     /**
      * Set the memoryMB property: MemoryMB is the size of a virtual machine's memory, in MB.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the HardwareProfile object itself.
      */
@@ -75,7 +82,7 @@ public final class HardwareProfile {
 
     /**
      * Get the cpuCount property: Gets or sets the number of vCPUs for the vm.
-     *
+     * 
      * @return the cpuCount value.
      */
     public Integer cpuCount() {
@@ -84,7 +91,7 @@ public final class HardwareProfile {
 
     /**
      * Set the cpuCount property: Gets or sets the number of vCPUs for the vm.
-     *
+     * 
      * @param cpuCount the cpuCount value to set.
      * @return the HardwareProfile object itself.
      */
@@ -96,7 +103,7 @@ public final class HardwareProfile {
     /**
      * Get the limitCpuForMigration property: Gets or sets a value indicating whether to enable processor compatibility
      * mode for live migration of VMs.
-     *
+     * 
      * @return the limitCpuForMigration value.
      */
     public LimitCpuForMigration limitCpuForMigration() {
@@ -106,7 +113,7 @@ public final class HardwareProfile {
     /**
      * Set the limitCpuForMigration property: Gets or sets a value indicating whether to enable processor compatibility
      * mode for live migration of VMs.
-     *
+     * 
      * @param limitCpuForMigration the limitCpuForMigration value to set.
      * @return the HardwareProfile object itself.
      */
@@ -117,7 +124,7 @@ public final class HardwareProfile {
 
     /**
      * Get the dynamicMemoryEnabled property: Gets or sets a value indicating whether to enable dynamic memory or not.
-     *
+     * 
      * @return the dynamicMemoryEnabled value.
      */
     public DynamicMemoryEnabled dynamicMemoryEnabled() {
@@ -126,7 +133,7 @@ public final class HardwareProfile {
 
     /**
      * Set the dynamicMemoryEnabled property: Gets or sets a value indicating whether to enable dynamic memory or not.
-     *
+     * 
      * @param dynamicMemoryEnabled the dynamicMemoryEnabled value to set.
      * @return the HardwareProfile object itself.
      */
@@ -137,7 +144,7 @@ public final class HardwareProfile {
 
     /**
      * Get the dynamicMemoryMaxMB property: Gets or sets the max dynamic memory for the vm.
-     *
+     * 
      * @return the dynamicMemoryMaxMB value.
      */
     public Integer dynamicMemoryMaxMB() {
@@ -146,7 +153,7 @@ public final class HardwareProfile {
 
     /**
      * Set the dynamicMemoryMaxMB property: Gets or sets the max dynamic memory for the vm.
-     *
+     * 
      * @param dynamicMemoryMaxMB the dynamicMemoryMaxMB value to set.
      * @return the HardwareProfile object itself.
      */
@@ -157,7 +164,7 @@ public final class HardwareProfile {
 
     /**
      * Get the dynamicMemoryMinMB property: Gets or sets the min dynamic memory for the vm.
-     *
+     * 
      * @return the dynamicMemoryMinMB value.
      */
     public Integer dynamicMemoryMinMB() {
@@ -166,7 +173,7 @@ public final class HardwareProfile {
 
     /**
      * Set the dynamicMemoryMinMB property: Gets or sets the min dynamic memory for the vm.
-     *
+     * 
      * @param dynamicMemoryMinMB the dynamicMemoryMinMB value to set.
      * @return the HardwareProfile object itself.
      */
@@ -177,27 +184,16 @@ public final class HardwareProfile {
 
     /**
      * Get the isHighlyAvailable property: Gets highly available property.
-     *
+     * 
      * @return the isHighlyAvailable value.
      */
-    public String isHighlyAvailable() {
+    public IsHighlyAvailable isHighlyAvailable() {
         return this.isHighlyAvailable;
     }
 
     /**
-     * Set the isHighlyAvailable property: Gets highly available property.
-     *
-     * @param isHighlyAvailable the isHighlyAvailable value to set.
-     * @return the HardwareProfile object itself.
-     */
-    public HardwareProfile withIsHighlyAvailable(String isHighlyAvailable) {
-        this.isHighlyAvailable = isHighlyAvailable;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
