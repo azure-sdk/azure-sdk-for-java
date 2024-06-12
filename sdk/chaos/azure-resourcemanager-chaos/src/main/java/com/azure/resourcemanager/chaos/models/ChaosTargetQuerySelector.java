@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * Model that represents a query selector.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ChaosTargetQuerySelector.class,
+    visible = true)
 @JsonTypeName("Query")
 @Fluent
 public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
+    /*
+     * Enum of the selector type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private SelectorType type = SelectorType.QUERY;
+
     /*
      * Azure Resource Graph (ARG) Query Language query for target resources.
      */
@@ -34,6 +46,16 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
      * Creates an instance of ChaosTargetQuerySelector class.
      */
     public ChaosTargetQuerySelector() {
+    }
+
+    /**
+     * Get the type property: Enum of the selector type.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public SelectorType type() {
+        return this.type;
     }
 
     /**
@@ -103,12 +125,14 @@ public final class ChaosTargetQuerySelector extends ChaosTargetSelector {
     public void validate() {
         super.validate();
         if (queryString() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property queryString in model ChaosTargetQuerySelector"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property queryString in model ChaosTargetQuerySelector"));
         }
         if (subscriptionIds() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property subscriptionIds in model ChaosTargetQuerySelector"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property subscriptionIds in model ChaosTargetQuerySelector"));
         }
     }
 

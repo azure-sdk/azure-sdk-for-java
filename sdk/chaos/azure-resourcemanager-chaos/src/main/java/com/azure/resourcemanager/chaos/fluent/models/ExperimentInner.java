@@ -10,8 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
+import com.azure.resourcemanager.chaos.models.ExperimentIdentity;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -22,22 +23,22 @@ import java.util.Map;
 @Fluent
 public final class ExperimentInner extends Resource {
     /*
-     * The system metadata of the experiment resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * The identity of the experiment resource.
      */
     @JsonProperty(value = "identity")
-    private ResourceIdentity identity;
+    private ExperimentIdentity identity;
 
     /*
      * The properties of the experiment resource.
      */
     @JsonProperty(value = "properties", required = true)
     private ExperimentProperties innerProperties = new ExperimentProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
      * Creates an instance of ExperimentInner class.
@@ -46,20 +47,11 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata of the experiment resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the identity property: The identity of the experiment resource.
      * 
      * @return the identity value.
      */
-    public ResourceIdentity identity() {
+    public ExperimentIdentity identity() {
         return this.identity;
     }
 
@@ -69,7 +61,7 @@ public final class ExperimentInner extends Resource {
      * @param identity the identity value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withIdentity(ResourceIdentity identity) {
+    public ExperimentInner withIdentity(ExperimentIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -81,6 +73,15 @@ public final class ExperimentInner extends Resource {
      */
     private ExperimentProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -157,6 +158,31 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDataStorage();
+    }
+
+    /**
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @param customerDataStorage the customerDataStorage value to set.
+     * @return the ExperimentInner object itself.
+     */
+    public ExperimentInner withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExperimentProperties();
+        }
+        this.innerProperties().withCustomerDataStorage(customerDataStorage);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -166,8 +192,9 @@ public final class ExperimentInner extends Resource {
             identity().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
         } else {
             innerProperties().validate();
         }

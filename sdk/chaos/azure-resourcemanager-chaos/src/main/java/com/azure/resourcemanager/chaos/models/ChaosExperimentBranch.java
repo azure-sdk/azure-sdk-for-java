@@ -79,12 +79,12 @@ public final class ChaosExperimentBranch {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model ChaosExperimentBranch"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model ChaosExperimentBranch"));
         }
         if (actions() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property actions in model ChaosExperimentBranch"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property actions in model ChaosExperimentBranch"));
         } else {
             actions().forEach(e -> e.validate());
         }

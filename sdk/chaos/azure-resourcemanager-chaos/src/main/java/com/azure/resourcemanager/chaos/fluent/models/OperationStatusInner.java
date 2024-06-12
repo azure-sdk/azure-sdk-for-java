@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 
 /**
  * The status of operation.
@@ -28,14 +29,14 @@ public final class OperationStatusInner {
     /*
      * The start time of the operation.
      */
-    @JsonProperty(value = "startTime")
-    private String startTime;
+    @JsonProperty(value = "startTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime startTime;
 
     /*
      * The end time of the operation.
      */
-    @JsonProperty(value = "endTime")
-    private String endTime;
+    @JsonProperty(value = "endTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime endTime;
 
     /*
      * The status of the operation.
@@ -100,19 +101,8 @@ public final class OperationStatusInner {
      * 
      * @return the startTime value.
      */
-    public String startTime() {
+    public OffsetDateTime startTime() {
         return this.startTime;
-    }
-
-    /**
-     * Set the startTime property: The start time of the operation.
-     * 
-     * @param startTime the startTime value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withStartTime(String startTime) {
-        this.startTime = startTime;
-        return this;
     }
 
     /**
@@ -120,19 +110,8 @@ public final class OperationStatusInner {
      * 
      * @return the endTime value.
      */
-    public String endTime() {
+    public OffsetDateTime endTime() {
         return this.endTime;
-    }
-
-    /**
-     * Set the endTime property: The end time of the operation.
-     * 
-     * @param endTime the endTime value to set.
-     * @return the OperationStatusInner object itself.
-     */
-    public OperationStatusInner withEndTime(String endTime) {
-        this.endTime = endTime;
-        return this;
     }
 
     /**
