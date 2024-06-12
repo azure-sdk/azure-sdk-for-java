@@ -7,11 +7,13 @@ package com.azure.resourcemanager.sqlvirtualmachine.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.sqlvirtualmachine.models.AdditionalOsPatch;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoBackupSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoPatchingSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.KeyVaultCredentialSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.LeastPrivilegeMode;
+import com.azure.resourcemanager.sqlvirtualmachine.models.OsType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.ResourceIdentity;
 import com.azure.resourcemanager.sqlvirtualmachine.models.ServerConfigurationsManagementSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlImageSku;
@@ -19,15 +21,18 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.SqlManagementMode;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlServerLicenseType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.StorageConfigurationSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.TroubleshootingStatus;
+import com.azure.resourcemanager.sqlvirtualmachine.models.VirtualMachineIdentity;
 import com.azure.resourcemanager.sqlvirtualmachine.models.WsfcDomainCredentials;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** A SQL virtual machine. */
+/**
+ * A SQL virtual machine.
+ */
 @Fluent
 public final class SqlVirtualMachineInner extends Resource {
     /*
-     * Azure Active Directory identity of the server.
+     * DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server.
      */
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
@@ -44,13 +49,16 @@ public final class SqlVirtualMachineInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SqlVirtualMachineInner class. */
+    /**
+     * Creates an instance of SqlVirtualMachineInner class.
+     */
     public SqlVirtualMachineInner() {
     }
 
     /**
-     * Get the identity property: Azure Active Directory identity of the server.
-     *
+     * Get the identity property: DO NOT USE. This value will be deprecated. Azure Active Directory identity of the
+     * server.
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -58,8 +66,9 @@ public final class SqlVirtualMachineInner extends Resource {
     }
 
     /**
-     * Set the identity property: Azure Active Directory identity of the server.
-     *
+     * Set the identity property: DO NOT USE. This value will be deprecated. Azure Active Directory identity of the
+     * server.
+     * 
      * @param identity the identity value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -70,7 +79,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SqlVirtualMachineProperties innerProperties() {
@@ -79,21 +88,25 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlVirtualMachineInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlVirtualMachineInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -103,7 +116,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Get the virtualMachineResourceId property: ARM Resource id of underlying virtual machine created from SQL
      * marketplace image.
-     *
+     * 
      * @return the virtualMachineResourceId value.
      */
     public String virtualMachineResourceId() {
@@ -113,7 +126,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Set the virtualMachineResourceId property: ARM Resource id of underlying virtual machine created from SQL
      * marketplace image.
-     *
+     * 
      * @param virtualMachineResourceId the virtualMachineResourceId value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -127,7 +140,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state to track the async operation status.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -136,7 +149,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the sqlImageOffer property: SQL image offer. Examples include SQL2016-WS2016, SQL2017-WS2016.
-     *
+     * 
      * @return the sqlImageOffer value.
      */
     public String sqlImageOffer() {
@@ -145,7 +158,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the sqlImageOffer property: SQL image offer. Examples include SQL2016-WS2016, SQL2017-WS2016.
-     *
+     * 
      * @param sqlImageOffer the sqlImageOffer value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -159,7 +172,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the sqlServerLicenseType property: SQL Server license type.
-     *
+     * 
      * @return the sqlServerLicenseType value.
      */
     public SqlServerLicenseType sqlServerLicenseType() {
@@ -168,7 +181,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the sqlServerLicenseType property: SQL Server license type.
-     *
+     * 
      * @param sqlServerLicenseType the sqlServerLicenseType value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -181,8 +194,9 @@ public final class SqlVirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the sqlManagement property: SQL Server Management type.
-     *
+     * Get the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
+     * 
      * @return the sqlManagement value.
      */
     public SqlManagementMode sqlManagement() {
@@ -190,8 +204,9 @@ public final class SqlVirtualMachineInner extends Resource {
     }
 
     /**
-     * Set the sqlManagement property: SQL Server Management type.
-     *
+     * Set the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
+     * 
      * @param sqlManagement the sqlManagement value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -205,7 +220,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the leastPrivilegeMode property: SQL IaaS Agent least privilege mode.
-     *
+     * 
      * @return the leastPrivilegeMode value.
      */
     public LeastPrivilegeMode leastPrivilegeMode() {
@@ -214,7 +229,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the leastPrivilegeMode property: SQL IaaS Agent least privilege mode.
-     *
+     * 
      * @param leastPrivilegeMode the leastPrivilegeMode value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -228,7 +243,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the sqlImageSku property: SQL Server edition type.
-     *
+     * 
      * @return the sqlImageSku value.
      */
     public SqlImageSku sqlImageSku() {
@@ -237,7 +252,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the sqlImageSku property: SQL Server edition type.
-     *
+     * 
      * @param sqlImageSku the sqlImageSku value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -252,7 +267,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Get the sqlVirtualMachineGroupResourceId property: ARM resource id of the SQL virtual machine group this SQL
      * virtual machine is or will be part of.
-     *
+     * 
      * @return the sqlVirtualMachineGroupResourceId value.
      */
     public String sqlVirtualMachineGroupResourceId() {
@@ -262,7 +277,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Set the sqlVirtualMachineGroupResourceId property: ARM resource id of the SQL virtual machine group this SQL
      * virtual machine is or will be part of.
-     *
+     * 
      * @param sqlVirtualMachineGroupResourceId the sqlVirtualMachineGroupResourceId value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -277,7 +292,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Get the wsfcDomainCredentials property: Domain credentials for setting up Windows Server Failover Cluster for SQL
      * availability group.
-     *
+     * 
      * @return the wsfcDomainCredentials value.
      */
     public WsfcDomainCredentials wsfcDomainCredentials() {
@@ -287,7 +302,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Set the wsfcDomainCredentials property: Domain credentials for setting up Windows Server Failover Cluster for SQL
      * availability group.
-     *
+     * 
      * @param wsfcDomainCredentials the wsfcDomainCredentials value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -302,7 +317,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Get the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster for SQL
      * availability group.
-     *
+     * 
      * @return the wsfcStaticIp value.
      */
     public String wsfcStaticIp() {
@@ -312,7 +327,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Set the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster for SQL
      * availability group.
-     *
+     * 
      * @param wsfcStaticIp the wsfcStaticIp value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -327,7 +342,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Get the autoPatchingSettings property: Auto patching settings for applying critical security updates to SQL
      * virtual machine.
-     *
+     * 
      * @return the autoPatchingSettings value.
      */
     public AutoPatchingSettings autoPatchingSettings() {
@@ -337,7 +352,7 @@ public final class SqlVirtualMachineInner extends Resource {
     /**
      * Set the autoPatchingSettings property: Auto patching settings for applying critical security updates to SQL
      * virtual machine.
-     *
+     * 
      * @param autoPatchingSettings the autoPatchingSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -351,7 +366,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the autoBackupSettings property: Auto backup settings for SQL Server.
-     *
+     * 
      * @return the autoBackupSettings value.
      */
     public AutoBackupSettings autoBackupSettings() {
@@ -360,7 +375,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the autoBackupSettings property: Auto backup settings for SQL Server.
-     *
+     * 
      * @param autoBackupSettings the autoBackupSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -374,7 +389,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the keyVaultCredentialSettings property: Key vault credential settings.
-     *
+     * 
      * @return the keyVaultCredentialSettings value.
      */
     public KeyVaultCredentialSettings keyVaultCredentialSettings() {
@@ -383,12 +398,12 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the keyVaultCredentialSettings property: Key vault credential settings.
-     *
+     * 
      * @param keyVaultCredentialSettings the keyVaultCredentialSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
-    public SqlVirtualMachineInner withKeyVaultCredentialSettings(
-        KeyVaultCredentialSettings keyVaultCredentialSettings) {
+    public SqlVirtualMachineInner
+        withKeyVaultCredentialSettings(KeyVaultCredentialSettings keyVaultCredentialSettings) {
         if (this.innerProperties() == null) {
             this.innerProperties = new SqlVirtualMachineProperties();
         }
@@ -398,7 +413,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the serverConfigurationsManagementSettings property: SQL Server configuration management settings.
-     *
+     * 
      * @return the serverConfigurationsManagementSettings value.
      */
     public ServerConfigurationsManagementSettings serverConfigurationsManagementSettings() {
@@ -407,7 +422,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the serverConfigurationsManagementSettings property: SQL Server configuration management settings.
-     *
+     * 
      * @param serverConfigurationsManagementSettings the serverConfigurationsManagementSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -422,7 +437,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the storageConfigurationSettings property: Storage Configuration Settings.
-     *
+     * 
      * @return the storageConfigurationSettings value.
      */
     public StorageConfigurationSettings storageConfigurationSettings() {
@@ -431,12 +446,12 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the storageConfigurationSettings property: Storage Configuration Settings.
-     *
+     * 
      * @param storageConfigurationSettings the storageConfigurationSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
-    public SqlVirtualMachineInner withStorageConfigurationSettings(
-        StorageConfigurationSettings storageConfigurationSettings) {
+    public SqlVirtualMachineInner
+        withStorageConfigurationSettings(StorageConfigurationSettings storageConfigurationSettings) {
         if (this.innerProperties() == null) {
             this.innerProperties = new SqlVirtualMachineProperties();
         }
@@ -446,7 +461,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the troubleshootingStatus property: Troubleshooting status.
-     *
+     * 
      * @return the troubleshootingStatus value.
      */
     public TroubleshootingStatus troubleshootingStatus() {
@@ -455,7 +470,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the assessmentSettings property: SQL best practices Assessment Settings.
-     *
+     * 
      * @return the assessmentSettings value.
      */
     public AssessmentSettings assessmentSettings() {
@@ -464,7 +479,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the assessmentSettings property: SQL best practices Assessment Settings.
-     *
+     * 
      * @param assessmentSettings the assessmentSettings value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -478,7 +493,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Get the enableAutomaticUpgrade property: Enable automatic upgrade of Sql IaaS extension Agent.
-     *
+     * 
      * @return the enableAutomaticUpgrade value.
      */
     public Boolean enableAutomaticUpgrade() {
@@ -487,7 +502,7 @@ public final class SqlVirtualMachineInner extends Resource {
 
     /**
      * Set the enableAutomaticUpgrade property: Enable automatic upgrade of Sql IaaS extension Agent.
-     *
+     * 
      * @param enableAutomaticUpgrade the enableAutomaticUpgrade value to set.
      * @return the SqlVirtualMachineInner object itself.
      */
@@ -500,8 +515,52 @@ public final class SqlVirtualMachineInner extends Resource {
     }
 
     /**
+     * Get the additionalVmPatch property: Additional VM Patching solution enabled on the Virtual Machine.
+     * 
+     * @return the additionalVmPatch value.
+     */
+    public AdditionalOsPatch additionalVmPatch() {
+        return this.innerProperties() == null ? null : this.innerProperties().additionalVmPatch();
+    }
+
+    /**
+     * Get the virtualMachineIdentitySettings property: Virtual Machine Identity details used for Sql IaaS extension
+     * configurations.
+     * 
+     * @return the virtualMachineIdentitySettings value.
+     */
+    public VirtualMachineIdentity virtualMachineIdentitySettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().virtualMachineIdentitySettings();
+    }
+
+    /**
+     * Set the virtualMachineIdentitySettings property: Virtual Machine Identity details used for Sql IaaS extension
+     * configurations.
+     * 
+     * @param virtualMachineIdentitySettings the virtualMachineIdentitySettings value to set.
+     * @return the SqlVirtualMachineInner object itself.
+     */
+    public SqlVirtualMachineInner
+        withVirtualMachineIdentitySettings(VirtualMachineIdentity virtualMachineIdentitySettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlVirtualMachineProperties();
+        }
+        this.innerProperties().withVirtualMachineIdentitySettings(virtualMachineIdentitySettings);
+        return this;
+    }
+
+    /**
+     * Get the osType property: Operating System of the current SQL Virtual Machine.
+     * 
+     * @return the osType value.
+     */
+    public OsType osType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osType();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

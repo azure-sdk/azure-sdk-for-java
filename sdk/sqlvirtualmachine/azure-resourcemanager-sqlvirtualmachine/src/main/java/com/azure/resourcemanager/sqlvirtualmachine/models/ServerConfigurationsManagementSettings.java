@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set the connectivity, storage and workload settings. */
+/**
+ * Set the connectivity, storage and workload settings.
+ */
 @Fluent
 public final class ServerConfigurationsManagementSettings {
     /*
@@ -46,13 +48,15 @@ public final class ServerConfigurationsManagementSettings {
     @JsonProperty(value = "azureAdAuthenticationSettings")
     private AadAuthenticationSettings azureAdAuthenticationSettings;
 
-    /** Creates an instance of ServerConfigurationsManagementSettings class. */
+    /**
+     * Creates an instance of ServerConfigurationsManagementSettings class.
+     */
     public ServerConfigurationsManagementSettings() {
     }
 
     /**
      * Get the sqlConnectivityUpdateSettings property: SQL connectivity type settings.
-     *
+     * 
      * @return the sqlConnectivityUpdateSettings value.
      */
     public SqlConnectivityUpdateSettings sqlConnectivityUpdateSettings() {
@@ -61,19 +65,19 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the sqlConnectivityUpdateSettings property: SQL connectivity type settings.
-     *
+     * 
      * @param sqlConnectivityUpdateSettings the sqlConnectivityUpdateSettings value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
-    public ServerConfigurationsManagementSettings withSqlConnectivityUpdateSettings(
-        SqlConnectivityUpdateSettings sqlConnectivityUpdateSettings) {
+    public ServerConfigurationsManagementSettings
+        withSqlConnectivityUpdateSettings(SqlConnectivityUpdateSettings sqlConnectivityUpdateSettings) {
         this.sqlConnectivityUpdateSettings = sqlConnectivityUpdateSettings;
         return this;
     }
 
     /**
      * Get the sqlWorkloadTypeUpdateSettings property: SQL workload type settings.
-     *
+     * 
      * @return the sqlWorkloadTypeUpdateSettings value.
      */
     public SqlWorkloadTypeUpdateSettings sqlWorkloadTypeUpdateSettings() {
@@ -82,19 +86,19 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the sqlWorkloadTypeUpdateSettings property: SQL workload type settings.
-     *
+     * 
      * @param sqlWorkloadTypeUpdateSettings the sqlWorkloadTypeUpdateSettings value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
-    public ServerConfigurationsManagementSettings withSqlWorkloadTypeUpdateSettings(
-        SqlWorkloadTypeUpdateSettings sqlWorkloadTypeUpdateSettings) {
+    public ServerConfigurationsManagementSettings
+        withSqlWorkloadTypeUpdateSettings(SqlWorkloadTypeUpdateSettings sqlWorkloadTypeUpdateSettings) {
         this.sqlWorkloadTypeUpdateSettings = sqlWorkloadTypeUpdateSettings;
         return this;
     }
 
     /**
      * Get the sqlStorageUpdateSettings property: SQL storage update settings.
-     *
+     * 
      * @return the sqlStorageUpdateSettings value.
      */
     public SqlStorageUpdateSettings sqlStorageUpdateSettings() {
@@ -103,19 +107,19 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the sqlStorageUpdateSettings property: SQL storage update settings.
-     *
+     * 
      * @param sqlStorageUpdateSettings the sqlStorageUpdateSettings value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
-    public ServerConfigurationsManagementSettings withSqlStorageUpdateSettings(
-        SqlStorageUpdateSettings sqlStorageUpdateSettings) {
+    public ServerConfigurationsManagementSettings
+        withSqlStorageUpdateSettings(SqlStorageUpdateSettings sqlStorageUpdateSettings) {
         this.sqlStorageUpdateSettings = sqlStorageUpdateSettings;
         return this;
     }
 
     /**
      * Get the additionalFeaturesServerConfigurations property: Additional SQL feature settings.
-     *
+     * 
      * @return the additionalFeaturesServerConfigurations value.
      */
     public AdditionalFeaturesServerConfigurations additionalFeaturesServerConfigurations() {
@@ -124,7 +128,7 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the additionalFeaturesServerConfigurations property: Additional SQL feature settings.
-     *
+     * 
      * @param additionalFeaturesServerConfigurations the additionalFeaturesServerConfigurations value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
@@ -136,7 +140,7 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Get the sqlInstanceSettings property: SQL Instance settings.
-     *
+     * 
      * @return the sqlInstanceSettings value.
      */
     public SqlInstanceSettings sqlInstanceSettings() {
@@ -145,7 +149,7 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the sqlInstanceSettings property: SQL Instance settings.
-     *
+     * 
      * @param sqlInstanceSettings the sqlInstanceSettings value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
@@ -156,7 +160,7 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Get the azureAdAuthenticationSettings property: Azure AD authentication Settings.
-     *
+     * 
      * @return the azureAdAuthenticationSettings value.
      */
     public AadAuthenticationSettings azureAdAuthenticationSettings() {
@@ -165,19 +169,19 @@ public final class ServerConfigurationsManagementSettings {
 
     /**
      * Set the azureAdAuthenticationSettings property: Azure AD authentication Settings.
-     *
+     * 
      * @param azureAdAuthenticationSettings the azureAdAuthenticationSettings value to set.
      * @return the ServerConfigurationsManagementSettings object itself.
      */
-    public ServerConfigurationsManagementSettings withAzureAdAuthenticationSettings(
-        AadAuthenticationSettings azureAdAuthenticationSettings) {
+    public ServerConfigurationsManagementSettings
+        withAzureAdAuthenticationSettings(AadAuthenticationSettings azureAdAuthenticationSettings) {
         this.azureAdAuthenticationSettings = azureAdAuthenticationSettings;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

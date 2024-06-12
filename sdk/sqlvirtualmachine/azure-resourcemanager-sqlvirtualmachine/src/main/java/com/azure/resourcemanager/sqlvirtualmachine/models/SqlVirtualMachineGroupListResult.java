@@ -9,7 +9,9 @@ import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachi
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of SQL virtual machine groups. */
+/**
+ * A list of SQL virtual machine groups.
+ */
 @Immutable
 public final class SqlVirtualMachineGroupListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlVirtualMachineGroupListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlVirtualMachineGroupListResult class. */
+    /**
+     * Creates an instance of SqlVirtualMachineGroupListResult class.
+     */
     public SqlVirtualMachineGroupListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlVirtualMachineGroupInner> value() {
@@ -39,7 +43,7 @@ public final class SqlVirtualMachineGroupListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlVirtualMachineGroupListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

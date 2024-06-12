@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** SQL IaaS Agent least privilege mode. */
+/**
+ * SQL IaaS Agent least privilege mode.
+ */
 public final class LeastPrivilegeMode extends ExpandableStringEnum<LeastPrivilegeMode> {
-    /** Static value Enabled for LeastPrivilegeMode. */
+    /**
+     * Static value Enabled for LeastPrivilegeMode.
+     */
     public static final LeastPrivilegeMode ENABLED = fromString("Enabled");
 
-    /** Static value NotSet for LeastPrivilegeMode. */
+    /**
+     * Static value NotSet for LeastPrivilegeMode.
+     */
     public static final LeastPrivilegeMode NOT_SET = fromString("NotSet");
 
     /**
      * Creates a new instance of LeastPrivilegeMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class LeastPrivilegeMode extends ExpandableStringEnum<LeastPrivileg
 
     /**
      * Creates or finds a LeastPrivilegeMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LeastPrivilegeMode.
      */
@@ -38,7 +44,7 @@ public final class LeastPrivilegeMode extends ExpandableStringEnum<LeastPrivileg
 
     /**
      * Gets known LeastPrivilegeMode values.
-     *
+     * 
      * @return known LeastPrivilegeMode values.
      */
     public static Collection<LeastPrivilegeMode> values() {

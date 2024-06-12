@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Availability group replica configuration. */
+/**
+ * Availability group replica configuration.
+ */
 @Fluent
 public final class AgReplica {
     /*
@@ -40,13 +42,15 @@ public final class AgReplica {
     @JsonProperty(value = "readableSecondary")
     private ReadableSecondary readableSecondary;
 
-    /** Creates an instance of AgReplica class. */
+    /**
+     * Creates an instance of AgReplica class.
+     */
     public AgReplica() {
     }
 
     /**
      * Get the sqlVirtualMachineInstanceId property: Sql VirtualMachine Instance Id.
-     *
+     * 
      * @return the sqlVirtualMachineInstanceId value.
      */
     public String sqlVirtualMachineInstanceId() {
@@ -55,7 +59,7 @@ public final class AgReplica {
 
     /**
      * Set the sqlVirtualMachineInstanceId property: Sql VirtualMachine Instance Id.
-     *
+     * 
      * @param sqlVirtualMachineInstanceId the sqlVirtualMachineInstanceId value to set.
      * @return the AgReplica object itself.
      */
@@ -66,7 +70,7 @@ public final class AgReplica {
 
     /**
      * Get the role property: Replica Role in availability group.
-     *
+     * 
      * @return the role value.
      */
     public Role role() {
@@ -75,7 +79,7 @@ public final class AgReplica {
 
     /**
      * Set the role property: Replica Role in availability group.
-     *
+     * 
      * @param role the role value to set.
      * @return the AgReplica object itself.
      */
@@ -86,7 +90,7 @@ public final class AgReplica {
 
     /**
      * Get the commit property: Replica commit mode in availability group.
-     *
+     * 
      * @return the commit value.
      */
     public Commit commit() {
@@ -95,7 +99,7 @@ public final class AgReplica {
 
     /**
      * Set the commit property: Replica commit mode in availability group.
-     *
+     * 
      * @param commit the commit value to set.
      * @return the AgReplica object itself.
      */
@@ -106,7 +110,7 @@ public final class AgReplica {
 
     /**
      * Get the failover property: Replica failover mode in availability group.
-     *
+     * 
      * @return the failover value.
      */
     public Failover failover() {
@@ -115,7 +119,7 @@ public final class AgReplica {
 
     /**
      * Set the failover property: Replica failover mode in availability group.
-     *
+     * 
      * @param failover the failover value to set.
      * @return the AgReplica object itself.
      */
@@ -126,7 +130,7 @@ public final class AgReplica {
 
     /**
      * Get the readableSecondary property: Replica readable secondary mode in availability group.
-     *
+     * 
      * @return the readableSecondary value.
      */
     public ReadableSecondary readableSecondary() {
@@ -135,7 +139,7 @@ public final class AgReplica {
 
     /**
      * Set the readableSecondary property: Replica readable secondary mode in availability group.
-     *
+     * 
      * @param readableSecondary the readableSecondary value to set.
      * @return the AgReplica object itself.
      */
@@ -146,7 +150,7 @@ public final class AgReplica {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

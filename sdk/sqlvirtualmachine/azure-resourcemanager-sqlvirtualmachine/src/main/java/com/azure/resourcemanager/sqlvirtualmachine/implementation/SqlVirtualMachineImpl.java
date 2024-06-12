@@ -8,11 +8,14 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineInner;
+import com.azure.resourcemanager.sqlvirtualmachine.models.AdditionalOsPatch;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoBackupSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoPatchingSettings;
+import com.azure.resourcemanager.sqlvirtualmachine.models.DiskConfigAssessmentRequest;
 import com.azure.resourcemanager.sqlvirtualmachine.models.KeyVaultCredentialSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.LeastPrivilegeMode;
+import com.azure.resourcemanager.sqlvirtualmachine.models.OsType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.ResourceIdentity;
 import com.azure.resourcemanager.sqlvirtualmachine.models.ServerConfigurationsManagementSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlImageSku;
@@ -22,6 +25,7 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.SqlVirtualMachine;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlVirtualMachineUpdate;
 import com.azure.resourcemanager.sqlvirtualmachine.models.StorageConfigurationSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.TroubleshootingStatus;
+import com.azure.resourcemanager.sqlvirtualmachine.models.VirtualMachineIdentity;
 import com.azure.resourcemanager.sqlvirtualmachine.models.WsfcDomainCredentials;
 import java.util.Collections;
 import java.util.Map;
@@ -137,6 +141,18 @@ public final class SqlVirtualMachineImpl
         return this.innerModel().enableAutomaticUpgrade();
     }
 
+    public AdditionalOsPatch additionalVmPatch() {
+        return this.innerModel().additionalVmPatch();
+    }
+
+    public VirtualMachineIdentity virtualMachineIdentitySettings() {
+        return this.innerModel().virtualMachineIdentitySettings();
+    }
+
+    public OsType osType() {
+        return this.innerModel().osType();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -169,25 +185,21 @@ public final class SqlVirtualMachineImpl
     }
 
     public SqlVirtualMachine create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .createOrUpdate(resourceGroupName, sqlVirtualMachineName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .createOrUpdate(resourceGroupName, sqlVirtualMachineName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SqlVirtualMachine create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .createOrUpdate(resourceGroupName, sqlVirtualMachineName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .createOrUpdate(resourceGroupName, sqlVirtualMachineName, this.innerModel(), context);
         return this;
     }
 
-    SqlVirtualMachineImpl(
-        String name, com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
+    SqlVirtualMachineImpl(String name,
+        com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
         this.innerObject = new SqlVirtualMachineInner();
         this.serviceManager = serviceManager;
         this.sqlVirtualMachineName = name;
@@ -199,51 +211,42 @@ public final class SqlVirtualMachineImpl
     }
 
     public SqlVirtualMachine apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .update(resourceGroupName, sqlVirtualMachineName, updateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .update(resourceGroupName, sqlVirtualMachineName, updateParameters, Context.NONE);
         return this;
     }
 
     public SqlVirtualMachine apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .update(resourceGroupName, sqlVirtualMachineName, updateParameters, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .update(resourceGroupName, sqlVirtualMachineName, updateParameters, context);
         return this;
     }
 
-    SqlVirtualMachineImpl(
-        SqlVirtualMachineInner innerObject,
+    SqlVirtualMachineImpl(SqlVirtualMachineInner innerObject,
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.sqlVirtualMachineName = Utils.getValueFromIdByName(innerObject.id(), "sqlVirtualMachines");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.sqlVirtualMachineName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "sqlVirtualMachines");
     }
 
     public SqlVirtualMachine refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .getByResourceGroupWithResponse(resourceGroupName, sqlVirtualMachineName, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .getByResourceGroupWithResponse(resourceGroupName, sqlVirtualMachineName, localExpand, Context.NONE)
+            .getValue();
         return this;
     }
 
     public SqlVirtualMachine refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlVirtualMachines()
-                .getByResourceGroupWithResponse(resourceGroupName, sqlVirtualMachineName, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlVirtualMachines()
+            .getByResourceGroupWithResponse(resourceGroupName, sqlVirtualMachineName, localExpand, context)
+            .getValue();
         return this;
     }
 
@@ -253,6 +256,15 @@ public final class SqlVirtualMachineImpl
 
     public void startAssessment(Context context) {
         serviceManager.sqlVirtualMachines().startAssessment(resourceGroupName, sqlVirtualMachineName, context);
+    }
+
+    public void fetchDCAssessment(DiskConfigAssessmentRequest parameters) {
+        serviceManager.sqlVirtualMachines().fetchDCAssessment(resourceGroupName, sqlVirtualMachineName, parameters);
+    }
+
+    public void fetchDCAssessment(DiskConfigAssessmentRequest parameters, Context context) {
+        serviceManager.sqlVirtualMachines()
+            .fetchDCAssessment(resourceGroupName, sqlVirtualMachineName, parameters, context);
     }
 
     public void redeploy() {
@@ -349,8 +361,8 @@ public final class SqlVirtualMachineImpl
         return this;
     }
 
-    public SqlVirtualMachineImpl withStorageConfigurationSettings(
-        StorageConfigurationSettings storageConfigurationSettings) {
+    public SqlVirtualMachineImpl
+        withStorageConfigurationSettings(StorageConfigurationSettings storageConfigurationSettings) {
         this.innerModel().withStorageConfigurationSettings(storageConfigurationSettings);
         return this;
     }
@@ -362,6 +374,12 @@ public final class SqlVirtualMachineImpl
 
     public SqlVirtualMachineImpl withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
         this.innerModel().withEnableAutomaticUpgrade(enableAutomaticUpgrade);
+        return this;
+    }
+
+    public SqlVirtualMachineImpl
+        withVirtualMachineIdentitySettings(VirtualMachineIdentity virtualMachineIdentitySettings) {
+        this.innerModel().withVirtualMachineIdentitySettings(virtualMachineIdentitySettings);
         return this;
     }
 

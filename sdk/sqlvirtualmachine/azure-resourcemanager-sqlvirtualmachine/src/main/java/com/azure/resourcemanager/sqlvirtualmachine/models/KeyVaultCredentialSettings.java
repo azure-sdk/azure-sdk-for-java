@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configure your SQL virtual machine to be able to connect to the Azure Key Vault service. */
+/**
+ * Configure your SQL virtual machine to be able to connect to the Azure Key Vault service.
+ */
 @Fluent
 public final class KeyVaultCredentialSettings {
     /*
@@ -40,13 +42,15 @@ public final class KeyVaultCredentialSettings {
     @JsonProperty(value = "servicePrincipalSecret")
     private String servicePrincipalSecret;
 
-    /** Creates an instance of KeyVaultCredentialSettings class. */
+    /**
+     * Creates an instance of KeyVaultCredentialSettings class.
+     */
     public KeyVaultCredentialSettings() {
     }
 
     /**
      * Get the enable property: Enable or disable key vault credential setting.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -55,7 +59,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Set the enable property: Enable or disable key vault credential setting.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the KeyVaultCredentialSettings object itself.
      */
@@ -66,7 +70,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Get the credentialName property: Credential name.
-     *
+     * 
      * @return the credentialName value.
      */
     public String credentialName() {
@@ -75,7 +79,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Set the credentialName property: Credential name.
-     *
+     * 
      * @param credentialName the credentialName value to set.
      * @return the KeyVaultCredentialSettings object itself.
      */
@@ -86,7 +90,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Get the azureKeyVaultUrl property: Azure Key Vault url.
-     *
+     * 
      * @return the azureKeyVaultUrl value.
      */
     public String azureKeyVaultUrl() {
@@ -95,7 +99,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Set the azureKeyVaultUrl property: Azure Key Vault url.
-     *
+     * 
      * @param azureKeyVaultUrl the azureKeyVaultUrl value to set.
      * @return the KeyVaultCredentialSettings object itself.
      */
@@ -106,7 +110,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Get the servicePrincipalName property: Service principal name to access key vault.
-     *
+     * 
      * @return the servicePrincipalName value.
      */
     public String servicePrincipalName() {
@@ -115,7 +119,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Set the servicePrincipalName property: Service principal name to access key vault.
-     *
+     * 
      * @param servicePrincipalName the servicePrincipalName value to set.
      * @return the KeyVaultCredentialSettings object itself.
      */
@@ -126,7 +130,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Get the servicePrincipalSecret property: Service principal name secret to access key vault.
-     *
+     * 
      * @return the servicePrincipalSecret value.
      */
     public String servicePrincipalSecret() {
@@ -135,7 +139,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Set the servicePrincipalSecret property: Service principal name secret to access key vault.
-     *
+     * 
      * @param servicePrincipalSecret the servicePrincipalSecret value to set.
      * @return the KeyVaultCredentialSettings object itself.
      */
@@ -146,7 +150,7 @@ public final class KeyVaultCredentialSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.TroubleshootingScenari
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Details required for SQL VM troubleshooting. */
+/**
+ * Details required for SQL VM troubleshooting.
+ */
 @Fluent
 public final class SqlVmTroubleshootingInner {
     /*
@@ -43,13 +45,15 @@ public final class SqlVmTroubleshootingInner {
     @JsonProperty(value = "virtualMachineResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String virtualMachineResourceId;
 
-    /** Creates an instance of SqlVmTroubleshootingInner class. */
+    /**
+     * Creates an instance of SqlVmTroubleshootingInner class.
+     */
     public SqlVmTroubleshootingInner() {
     }
 
     /**
      * Get the startTimeUtc property: Start time in UTC timezone.
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -58,7 +62,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Set the startTimeUtc property: Start time in UTC timezone.
-     *
+     * 
      * @param startTimeUtc the startTimeUtc value to set.
      * @return the SqlVmTroubleshootingInner object itself.
      */
@@ -69,7 +73,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Get the endTimeUtc property: End time in UTC timezone.
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -78,7 +82,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Set the endTimeUtc property: End time in UTC timezone.
-     *
+     * 
      * @param endTimeUtc the endTimeUtc value to set.
      * @return the SqlVmTroubleshootingInner object itself.
      */
@@ -89,7 +93,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Get the troubleshootingScenario property: SQL VM troubleshooting scenario.
-     *
+     * 
      * @return the troubleshootingScenario value.
      */
     public TroubleshootingScenario troubleshootingScenario() {
@@ -98,7 +102,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Set the troubleshootingScenario property: SQL VM troubleshooting scenario.
-     *
+     * 
      * @param troubleshootingScenario the troubleshootingScenario value to set.
      * @return the SqlVmTroubleshootingInner object itself.
      */
@@ -109,7 +113,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Get the properties property: Troubleshooting properties.
-     *
+     * 
      * @return the properties value.
      */
     public TroubleshootingAdditionalProperties properties() {
@@ -118,7 +122,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Set the properties property: Troubleshooting properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the SqlVmTroubleshootingInner object itself.
      */
@@ -129,7 +133,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Get the virtualMachineResourceId property: Virtual machine resource id for response.
-     *
+     * 
      * @return the virtualMachineResourceId value.
      */
     public String virtualMachineResourceId() {
@@ -138,7 +142,7 @@ public final class SqlVmTroubleshootingInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
