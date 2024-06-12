@@ -32,6 +32,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.implementation.Configu
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.DatabasesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.FirewallRulesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.FlexibleServersImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.GetAutoMigrationFreeSlotsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.GetPrivateDnsZoneSuffixesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.LocationBasedCapabilitiesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.LogFilesImpl;
@@ -48,6 +49,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.implementation.Resourc
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerCapabilitiesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerThreatProtectionSettingsImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.TuningOptionsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualEndpointsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualNetworkSubnetUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Administrators;
@@ -58,6 +60,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.Configurations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Databases;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.FirewallRules;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.FlexibleServers;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.GetAutoMigrationFreeSlots;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.GetPrivateDnsZoneSuffixes;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.LocationBasedCapabilities;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.LogFiles;
@@ -73,6 +76,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.ResourceProvide
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerCapabilities;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Servers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerThreatProtectionSettings;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.TuningOptions;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualEndpoints;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualNetworkSubnetUsages;
 import java.time.Duration;
@@ -117,6 +121,8 @@ public final class PostgreSqlManager {
 
     private ResourceProviders resourceProviders;
 
+    private GetAutoMigrationFreeSlots getAutoMigrationFreeSlots;
+
     private Operations operations;
 
     private GetPrivateDnsZoneSuffixes getPrivateDnsZoneSuffixes;
@@ -132,6 +138,8 @@ public final class PostgreSqlManager {
     private Replicas replicas;
 
     private LogFiles logFiles;
+
+    private TuningOptions tuningOptions;
 
     private ServerThreatProtectionSettings serverThreatProtectionSettings;
 
@@ -303,7 +311,7 @@ public final class PostgreSqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.postgresqlflexibleserver")
                 .append("/")
-                .append("1.1.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -521,6 +529,19 @@ public final class PostgreSqlManager {
     }
 
     /**
+     * Gets the resource collection API of GetAutoMigrationFreeSlots.
+     * 
+     * @return Resource collection API of GetAutoMigrationFreeSlots.
+     */
+    public GetAutoMigrationFreeSlots getAutoMigrationFreeSlots() {
+        if (this.getAutoMigrationFreeSlots == null) {
+            this.getAutoMigrationFreeSlots
+                = new GetAutoMigrationFreeSlotsImpl(clientObject.getGetAutoMigrationFreeSlots(), this);
+        }
+        return getAutoMigrationFreeSlots;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -617,6 +638,18 @@ public final class PostgreSqlManager {
             this.logFiles = new LogFilesImpl(clientObject.getLogFiles(), this);
         }
         return logFiles;
+    }
+
+    /**
+     * Gets the resource collection API of TuningOptions.
+     * 
+     * @return Resource collection API of TuningOptions.
+     */
+    public TuningOptions tuningOptions() {
+        if (this.tuningOptions == null) {
+            this.tuningOptions = new TuningOptionsImpl(clientObject.getTuningOptions(), this);
+        }
+        return tuningOptions;
     }
 
     /**

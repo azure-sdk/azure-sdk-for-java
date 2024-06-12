@@ -90,6 +90,12 @@ public final class FlexibleServerCapabilityInner extends CapabilityBase {
     @JsonProperty(value = "restricted", access = JsonProperty.Access.WRITE_ONLY)
     private RestrictedEnum restricted;
 
+    /*
+     * A value indicating whether in this region for the given subscription or server sku/version/replica-role has index tuning supported. "Enabled" means index tuning is supported. "Disabled" stands for index tuning is not supported.
+     */
+    @JsonProperty(value = "indexTuningSupported", access = JsonProperty.Access.WRITE_ONLY)
+    private FastProvisioningSupportedEnum indexTuningSupported;
+
     /**
      * Creates an instance of FlexibleServerCapabilityInner class.
      */
@@ -213,6 +219,17 @@ public final class FlexibleServerCapabilityInner extends CapabilityBase {
      */
     public RestrictedEnum restricted() {
         return this.restricted;
+    }
+
+    /**
+     * Get the indexTuningSupported property: A value indicating whether in this region for the given subscription or
+     * server sku/version/replica-role has index tuning supported. "Enabled" means index tuning is supported. "Disabled"
+     * stands for index tuning is not supported.
+     * 
+     * @return the indexTuningSupported value.
+     */
+    public FastProvisioningSupportedEnum indexTuningSupported() {
+        return this.indexTuningSupported;
     }
 
     /**

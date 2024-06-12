@@ -98,6 +98,10 @@ public final class FlexibleServerCapabilityImpl implements FlexibleServerCapabil
         return this.innerModel().restricted();
     }
 
+    public FastProvisioningSupportedEnum indexTuningSupported() {
+        return this.innerModel().indexTuningSupported();
+    }
+
     public FlexibleServerCapabilityInner innerModel() {
         return this.innerObject;
     }
