@@ -112,6 +112,15 @@ public interface FlexibleServerCapability {
     RestrictedEnum restricted();
 
     /**
+     * Gets the indexTuningSupported property: A value indicating whether in this region for the given subscription or
+     * server sku/version/replica-role has index tuning supported. "Enabled" means index tuning is supported. "Disabled"
+     * stands for index tuning is not supported.
+     * 
+     * @return the indexTuningSupported value.
+     */
+    FastProvisioningSupportedEnum indexTuningSupported();
+
+    /**
      * Gets the inner com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.FlexibleServerCapabilityInner
      * object.
      * 

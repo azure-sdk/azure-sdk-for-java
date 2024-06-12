@@ -9,7 +9,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.AutoMigrationScheduleResourceInner;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.MigrationNameAvailabilityResourceInner;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.AutoMigrationScheduleResource;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationNameAvailabilityResource;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ResourceProviders;
 
@@ -46,6 +48,52 @@ public final class ResourceProvidersImpl implements ResourceProviders {
             .checkMigrationNameAvailability(subscriptionId, resourceGroupName, targetDbServerName, parameters);
         if (inner != null) {
             return new MigrationNameAvailabilityResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AutoMigrationScheduleResource> getLatestAutoMigrationScheduleWithResponse(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        Response<AutoMigrationScheduleResourceInner> inner = this.serviceClient()
+            .getLatestAutoMigrationScheduleWithResponse(subscriptionId, locationName, migrationScheduleResource,
+                context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AutoMigrationScheduleResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AutoMigrationScheduleResource getLatestAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        AutoMigrationScheduleResourceInner inner = this.serviceClient()
+            .getLatestAutoMigrationSchedule(subscriptionId, locationName, migrationScheduleResource);
+        if (inner != null) {
+            return new AutoMigrationScheduleResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AutoMigrationScheduleResource updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        AutoMigrationScheduleResourceInner inner
+            = this.serviceClient().updateAutoMigrationSchedule(subscriptionId, locationName, migrationScheduleResource);
+        if (inner != null) {
+            return new AutoMigrationScheduleResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AutoMigrationScheduleResource updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        AutoMigrationScheduleResourceInner inner = this.serviceClient()
+            .updateAutoMigrationSchedule(subscriptionId, locationName, migrationScheduleResource, context);
+        if (inner != null) {
+            return new AutoMigrationScheduleResourceImpl(inner, this.manager());
         } else {
             return null;
         }

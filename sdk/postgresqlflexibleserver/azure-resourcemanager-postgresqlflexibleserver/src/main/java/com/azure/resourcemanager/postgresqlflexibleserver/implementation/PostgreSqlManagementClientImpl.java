@@ -31,6 +31,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ConfigurationsC
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.DatabasesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.FirewallRulesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.FlexibleServersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.GetAutoMigrationFreeSlotsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.GetPrivateDnsZoneSuffixesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.LocationBasedCapabilitiesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.LogFilesClient;
@@ -47,6 +48,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ResourceProvide
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerCapabilitiesClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerThreatProtectionSettingsClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.TuningOptionsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualEndpointsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualNetworkSubnetUsagesClient;
 import java.io.IOException;
@@ -344,6 +346,20 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
     }
 
     /**
+     * The GetAutoMigrationFreeSlotsClient object to access its operations.
+     */
+    private final GetAutoMigrationFreeSlotsClient getAutoMigrationFreeSlots;
+
+    /**
+     * Gets the GetAutoMigrationFreeSlotsClient object to access its operations.
+     * 
+     * @return the GetAutoMigrationFreeSlotsClient object.
+     */
+    public GetAutoMigrationFreeSlotsClient getGetAutoMigrationFreeSlots() {
+        return this.getAutoMigrationFreeSlots;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -456,6 +472,20 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
     }
 
     /**
+     * The TuningOptionsClient object to access its operations.
+     */
+    private final TuningOptionsClient tuningOptions;
+
+    /**
+     * Gets the TuningOptionsClient object to access its operations.
+     * 
+     * @return the TuningOptionsClient object.
+     */
+    public TuningOptionsClient getTuningOptions() {
+        return this.tuningOptions;
+    }
+
+    /**
      * The ServerThreatProtectionSettingsClient object to access its operations.
      */
     private final ServerThreatProtectionSettingsClient serverThreatProtectionSettings;
@@ -514,7 +544,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-12-01-preview";
+        this.apiVersion = "2024-03-01-preview";
         this.administrators = new AdministratorsClientImpl(this);
         this.backups = new BackupsClientImpl(this);
         this.locationBasedCapabilities = new LocationBasedCapabilitiesClientImpl(this);
@@ -529,6 +559,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.ltrBackupOperations = new LtrBackupOperationsClientImpl(this);
         this.migrations = new MigrationsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.getAutoMigrationFreeSlots = new GetAutoMigrationFreeSlotsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
@@ -537,6 +568,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.quotaUsages = new QuotaUsagesClientImpl(this);
         this.replicas = new ReplicasClientImpl(this);
         this.logFiles = new LogFilesClientImpl(this);
+        this.tuningOptions = new TuningOptionsClientImpl(this);
         this.serverThreatProtectionSettings = new ServerThreatProtectionSettingsClientImpl(this);
         this.virtualEndpoints = new VirtualEndpointsClientImpl(this);
         this.virtualNetworkSubnetUsages = new VirtualNetworkSubnetUsagesClientImpl(this);

@@ -20,10 +20,16 @@ import com.azure.core.annotation.UnexpectedResponseExceptionType;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.AutoMigrationScheduleResourceInner;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.MigrationNameAvailabilityResourceInner;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -68,6 +74,26 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("targetDbServerName") String targetDbServerName,
             @BodyParam("application/json") MigrationNameAvailabilityResourceInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/getLatestAutoMigrationSchedule")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AutoMigrationScheduleResourceInner>> getLatestAutoMigrationSchedule(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("locationName") String locationName,
+            @BodyParam("application/json") AutoMigrationScheduleResourceInner migrationScheduleResource,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/updateAutoMigrationSchedule")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> updateAutoMigrationSchedule(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationName") String locationName,
+            @BodyParam("application/json") AutoMigrationScheduleResourceInner migrationScheduleResource,
             @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -227,5 +253,427 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
         String resourceGroupName, String targetDbServerName, MigrationNameAvailabilityResourceInner parameters) {
         return checkMigrationNameAvailabilityWithResponse(subscriptionId, resourceGroupName, targetDbServerName,
             parameters, Context.NONE).getValue();
+    }
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<AutoMigrationScheduleResourceInner>> getLatestAutoMigrationScheduleWithResponseAsync(
+        String subscriptionId, String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (locationName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        }
+        if (migrationScheduleResource == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter migrationScheduleResource is required and cannot be null."));
+        } else {
+            migrationScheduleResource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getLatestAutoMigrationSchedule(this.client.getEndpoint(),
+                this.client.getApiVersion(), subscriptionId, locationName, migrationScheduleResource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AutoMigrationScheduleResourceInner>> getLatestAutoMigrationScheduleWithResponseAsync(
+        String subscriptionId, String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (locationName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        }
+        if (migrationScheduleResource == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter migrationScheduleResource is required and cannot be null."));
+        } else {
+            migrationScheduleResource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getLatestAutoMigrationSchedule(this.client.getEndpoint(), this.client.getApiVersion(),
+            subscriptionId, locationName, migrationScheduleResource, accept, context);
+    }
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AutoMigrationScheduleResourceInner> getLatestAutoMigrationScheduleAsync(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        return getLatestAutoMigrationScheduleWithResponseAsync(subscriptionId, locationName, migrationScheduleResource)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AutoMigrationScheduleResourceInner> getLatestAutoMigrationScheduleWithResponse(
+        String subscriptionId, String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource,
+        Context context) {
+        return getLatestAutoMigrationScheduleWithResponseAsync(subscriptionId, locationName, migrationScheduleResource,
+            context).block();
+    }
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutoMigrationScheduleResourceInner getLatestAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        return getLatestAutoMigrationScheduleWithResponse(subscriptionId, locationName, migrationScheduleResource,
+            Context.NONE).getValue();
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Flux<ByteBuffer>>> updateAutoMigrationScheduleWithResponseAsync(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (locationName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        }
+        if (migrationScheduleResource == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter migrationScheduleResource is required and cannot be null."));
+        } else {
+            migrationScheduleResource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.updateAutoMigrationSchedule(this.client.getEndpoint(),
+                this.client.getApiVersion(), subscriptionId, locationName, migrationScheduleResource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateAutoMigrationScheduleWithResponseAsync(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (locationName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        }
+        if (migrationScheduleResource == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter migrationScheduleResource is required and cannot be null."));
+        } else {
+            migrationScheduleResource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.updateAutoMigrationSchedule(this.client.getEndpoint(), this.client.getApiVersion(),
+            subscriptionId, locationName, migrationScheduleResource, accept, context);
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the schedule details containing source server details to fetch the
+     * latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<PollResult<AutoMigrationScheduleResourceInner>, AutoMigrationScheduleResourceInner>
+        beginUpdateAutoMigrationScheduleAsync(String subscriptionId, String locationName,
+            AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateAutoMigrationScheduleWithResponseAsync(subscriptionId, locationName, migrationScheduleResource);
+        return this.client.<AutoMigrationScheduleResourceInner, AutoMigrationScheduleResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AutoMigrationScheduleResourceInner.class,
+            AutoMigrationScheduleResourceInner.class, this.client.getContext());
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the schedule details containing source server details to fetch the
+     * latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<AutoMigrationScheduleResourceInner>, AutoMigrationScheduleResourceInner>
+        beginUpdateAutoMigrationScheduleAsync(String subscriptionId, String locationName,
+            AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateAutoMigrationScheduleWithResponseAsync(subscriptionId,
+            locationName, migrationScheduleResource, context);
+        return this.client.<AutoMigrationScheduleResourceInner, AutoMigrationScheduleResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), AutoMigrationScheduleResourceInner.class,
+            AutoMigrationScheduleResourceInner.class, context);
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the schedule details containing source server details to fetch the
+     * latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<AutoMigrationScheduleResourceInner>, AutoMigrationScheduleResourceInner>
+        beginUpdateAutoMigrationSchedule(String subscriptionId, String locationName,
+            AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        return this.beginUpdateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource)
+            .getSyncPoller();
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the schedule details containing source server details to fetch the
+     * latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<AutoMigrationScheduleResourceInner>, AutoMigrationScheduleResourceInner>
+        beginUpdateAutoMigrationSchedule(String subscriptionId, String locationName,
+            AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        return this
+            .beginUpdateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AutoMigrationScheduleResourceInner> updateAutoMigrationScheduleAsync(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        return beginUpdateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AutoMigrationScheduleResourceInner> updateAutoMigrationScheduleAsync(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        return beginUpdateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutoMigrationScheduleResourceInner updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource) {
+        return updateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource).block();
+    }
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutoMigrationScheduleResourceInner updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource, Context context) {
+        return updateAutoMigrationScheduleAsync(subscriptionId, locationName, migrationScheduleResource, context)
+            .block();
     }
 }

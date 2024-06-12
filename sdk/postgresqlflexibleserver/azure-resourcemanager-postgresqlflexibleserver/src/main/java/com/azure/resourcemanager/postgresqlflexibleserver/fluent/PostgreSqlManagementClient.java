@@ -145,6 +145,13 @@ public interface PostgreSqlManagementClient {
     ResourceProvidersClient getResourceProviders();
 
     /**
+     * Gets the GetAutoMigrationFreeSlotsClient object to access its operations.
+     * 
+     * @return the GetAutoMigrationFreeSlotsClient object.
+     */
+    GetAutoMigrationFreeSlotsClient getGetAutoMigrationFreeSlots();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
@@ -199,6 +206,13 @@ public interface PostgreSqlManagementClient {
      * @return the LogFilesClient object.
      */
     LogFilesClient getLogFiles();
+
+    /**
+     * Gets the TuningOptionsClient object to access its operations.
+     * 
+     * @return the TuningOptionsClient object.
+     */
+    TuningOptionsClient getTuningOptions();
 
     /**
      * Gets the ServerThreatProtectionSettingsClient object to access its operations.
