@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface ContainerServiceFleetManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */

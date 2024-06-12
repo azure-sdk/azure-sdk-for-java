@@ -44,12 +44,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = ContainerServiceFleetManagementClientBuilder.class)
 public final class ContainerServiceFleetManagementClientImpl implements ContainerServiceFleetManagementClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -204,7 +204,7 @@ public final class ContainerServiceFleetManagementClientImpl implements Containe
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     ContainerServiceFleetManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
