@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Model asset version details. */
+/**
+ * Model asset version details.
+ */
 @Fluent
 public final class ModelVersionProperties extends AssetBase {
     /*
@@ -37,13 +39,27 @@ public final class ModelVersionProperties extends AssetBase {
     @JsonProperty(value = "modelUri")
     private String modelUri;
 
-    /** Creates an instance of ModelVersionProperties class. */
+    /*
+     * Provisioning state for the model version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the model lifecycle assigned to this model
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
+
+    /**
+     * Creates an instance of ModelVersionProperties class.
+     */
     public ModelVersionProperties() {
     }
 
     /**
      * Get the flavors property: Mapping of model flavors to their properties.
-     *
+     * 
      * @return the flavors value.
      */
     public Map<String, FlavorData> flavors() {
@@ -52,7 +68,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Set the flavors property: Mapping of model flavors to their properties.
-     *
+     * 
      * @param flavors the flavors value to set.
      * @return the ModelVersionProperties object itself.
      */
@@ -63,7 +79,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Get the jobName property: Name of the training job which produced this model.
-     *
+     * 
      * @return the jobName value.
      */
     public String jobName() {
@@ -72,7 +88,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Set the jobName property: Name of the training job which produced this model.
-     *
+     * 
      * @param jobName the jobName value to set.
      * @return the ModelVersionProperties object itself.
      */
@@ -83,7 +99,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Get the modelType property: The storage format for this entity. Used for NCD.
-     *
+     * 
      * @return the modelType value.
      */
     public String modelType() {
@@ -92,7 +108,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Set the modelType property: The storage format for this entity. Used for NCD.
-     *
+     * 
      * @param modelType the modelType value to set.
      * @return the ModelVersionProperties object itself.
      */
@@ -103,7 +119,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Get the modelUri property: The URI path to the model contents.
-     *
+     * 
      * @return the modelUri value.
      */
     public String modelUri() {
@@ -112,7 +128,7 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Set the modelUri property: The URI path to the model contents.
-     *
+     * 
      * @param modelUri the modelUri value to set.
      * @return the ModelVersionProperties object itself.
      */
@@ -121,35 +137,74 @@ public final class ModelVersionProperties extends AssetBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the model version.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the model lifecycle assigned to this model.
+     * 
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the model lifecycle assigned to this model.
+     * 
+     * @param stage the stage value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModelVersionProperties withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModelVersionProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModelVersionProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModelVersionProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModelVersionProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -158,21 +213,18 @@ public final class ModelVersionProperties extends AssetBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (flavors() != null) {
-            flavors()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            flavors().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

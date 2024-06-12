@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Image model size. */
+/**
+ * Image model size.
+ */
 public final class ModelSize extends ExpandableStringEnum<ModelSize> {
-    /** Static value None for ModelSize. */
+    /**
+     * Static value None for ModelSize.
+     */
     public static final ModelSize NONE = fromString("None");
 
-    /** Static value Small for ModelSize. */
+    /**
+     * Static value Small for ModelSize.
+     */
     public static final ModelSize SMALL = fromString("Small");
 
-    /** Static value Medium for ModelSize. */
+    /**
+     * Static value Medium for ModelSize.
+     */
     public static final ModelSize MEDIUM = fromString("Medium");
 
-    /** Static value Large for ModelSize. */
+    /**
+     * Static value Large for ModelSize.
+     */
     public static final ModelSize LARGE = fromString("Large");
 
-    /** Static value ExtraLarge for ModelSize. */
+    /**
+     * Static value ExtraLarge for ModelSize.
+     */
     public static final ModelSize EXTRA_LARGE = fromString("ExtraLarge");
 
     /**
      * Creates a new instance of ModelSize value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class ModelSize extends ExpandableStringEnum<ModelSize> {
 
     /**
      * Creates or finds a ModelSize from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ModelSize.
      */
@@ -47,7 +59,7 @@ public final class ModelSize extends ExpandableStringEnum<ModelSize> {
 
     /**
      * Gets known ModelSize values.
-     *
+     * 
      * @return known ModelSize values.
      */
     public static Collection<ModelSize> values() {

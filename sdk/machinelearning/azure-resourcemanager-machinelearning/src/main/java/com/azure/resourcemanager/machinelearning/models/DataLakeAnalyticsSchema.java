@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DataLakeAnalyticsSchema model. */
+/**
+ * The DataLakeAnalyticsSchema model.
+ */
 @Fluent
 public class DataLakeAnalyticsSchema {
     /*
@@ -16,13 +18,15 @@ public class DataLakeAnalyticsSchema {
     @JsonProperty(value = "properties")
     private DataLakeAnalyticsSchemaProperties properties;
 
-    /** Creates an instance of DataLakeAnalyticsSchema class. */
+    /**
+     * Creates an instance of DataLakeAnalyticsSchema class.
+     */
     public DataLakeAnalyticsSchema() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public DataLakeAnalyticsSchemaProperties properties() {
@@ -31,7 +35,7 @@ public class DataLakeAnalyticsSchema {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DataLakeAnalyticsSchema object itself.
      */
@@ -42,7 +46,7 @@ public class DataLakeAnalyticsSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
