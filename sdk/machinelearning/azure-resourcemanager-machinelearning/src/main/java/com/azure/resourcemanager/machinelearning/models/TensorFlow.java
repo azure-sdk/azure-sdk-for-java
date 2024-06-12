@@ -6,14 +6,24 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** TensorFlow distribution configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "distributionType")
+/**
+ * TensorFlow distribution configuration.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "distributionType", defaultImpl = TensorFlow.class, visible = true)
 @JsonTypeName("TensorFlow")
 @Fluent
 public final class TensorFlow extends DistributionConfiguration {
+    /*
+     * [Required] Specifies the type of distribution framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "distributionType", required = true)
+    private DistributionType distributionType = DistributionType.TENSOR_FLOW;
+
     /*
      * Number of parameter server tasks.
      */
@@ -26,13 +36,25 @@ public final class TensorFlow extends DistributionConfiguration {
     @JsonProperty(value = "workerCount")
     private Integer workerCount;
 
-    /** Creates an instance of TensorFlow class. */
+    /**
+     * Creates an instance of TensorFlow class.
+     */
     public TensorFlow() {
     }
 
     /**
+     * Get the distributionType property: [Required] Specifies the type of distribution framework.
+     * 
+     * @return the distributionType value.
+     */
+    @Override
+    public DistributionType distributionType() {
+        return this.distributionType;
+    }
+
+    /**
      * Get the parameterServerCount property: Number of parameter server tasks.
-     *
+     * 
      * @return the parameterServerCount value.
      */
     public Integer parameterServerCount() {
@@ -41,7 +63,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Set the parameterServerCount property: Number of parameter server tasks.
-     *
+     * 
      * @param parameterServerCount the parameterServerCount value to set.
      * @return the TensorFlow object itself.
      */
@@ -52,7 +74,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Get the workerCount property: Number of workers. If not specified, will default to the instance count.
-     *
+     * 
      * @return the workerCount value.
      */
     public Integer workerCount() {
@@ -61,7 +83,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Set the workerCount property: Number of workers. If not specified, will default to the instance count.
-     *
+     * 
      * @param workerCount the workerCount value to set.
      * @return the TensorFlow object itself.
      */
@@ -72,7 +94,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

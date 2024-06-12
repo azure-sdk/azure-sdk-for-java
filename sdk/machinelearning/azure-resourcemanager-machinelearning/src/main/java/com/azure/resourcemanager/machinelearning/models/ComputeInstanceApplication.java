@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines an Aml Instance application and its connectivity endpoint URI. */
+/**
+ * Defines an Aml Instance application and its connectivity endpoint URI.
+ */
 @Fluent
 public final class ComputeInstanceApplication {
     /*
@@ -22,13 +24,15 @@ public final class ComputeInstanceApplication {
     @JsonProperty(value = "endpointUri")
     private String endpointUri;
 
-    /** Creates an instance of ComputeInstanceApplication class. */
+    /**
+     * Creates an instance of ComputeInstanceApplication class.
+     */
     public ComputeInstanceApplication() {
     }
 
     /**
      * Get the displayName property: Name of the ComputeInstance application.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -37,7 +41,7 @@ public final class ComputeInstanceApplication {
 
     /**
      * Set the displayName property: Name of the ComputeInstance application.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ComputeInstanceApplication object itself.
      */
@@ -48,7 +52,7 @@ public final class ComputeInstanceApplication {
 
     /**
      * Get the endpointUri property: Application' endpoint URI.
-     *
+     * 
      * @return the endpointUri value.
      */
     public String endpointUri() {
@@ -57,7 +61,7 @@ public final class ComputeInstanceApplication {
 
     /**
      * Set the endpointUri property: Application' endpoint URI.
-     *
+     * 
      * @param endpointUri the endpointUri value to set.
      * @return the ComputeInstanceApplication object itself.
      */
@@ -68,7 +72,7 @@ public final class ComputeInstanceApplication {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

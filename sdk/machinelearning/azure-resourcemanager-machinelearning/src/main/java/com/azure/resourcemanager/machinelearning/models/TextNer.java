@@ -6,14 +6,26 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Text-NER task in AutoML NLP vertical. NER - Named Entity Recognition. NLP - Natural Language Processing. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
+/**
+ * Text-NER task in AutoML NLP vertical.
+ * NER - Named Entity Recognition.
+ * NLP - Natural Language Processing.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "taskType", defaultImpl = TextNer.class, visible = true)
 @JsonTypeName("TextNER")
 @Fluent
 public final class TextNer extends AutoMLVertical {
+    /*
+     * [Required] Task type for AutoMLJob.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "taskType", required = true)
+    private TaskType taskType = TaskType.TEXT_NER;
+
     /*
      * Primary metric for Text-NER task.
      * Only 'Accuracy' is supported for Text-NER, so user need not set this explicitly.
@@ -39,14 +51,26 @@ public final class TextNer extends AutoMLVertical {
     @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of TextNer class. */
+    /**
+     * Creates an instance of TextNer class.
+     */
     public TextNer() {
     }
 
     /**
-     * Get the primaryMetric property: Primary metric for Text-NER task. Only 'Accuracy' is supported for Text-NER, so
-     * user need not set this explicitly.
-     *
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    @Override
+    public TaskType taskType() {
+        return this.taskType;
+    }
+
+    /**
+     * Get the primaryMetric property: Primary metric for Text-NER task.
+     * Only 'Accuracy' is supported for Text-NER, so user need not set this explicitly.
+     * 
      * @return the primaryMetric value.
      */
     public ClassificationPrimaryMetrics primaryMetric() {
@@ -55,7 +79,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -64,7 +88,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TextNer object itself.
      */
@@ -75,7 +99,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -84,7 +108,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TextNer object itself.
      */
@@ -95,7 +119,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -104,7 +128,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TextNer object itself.
      */
@@ -113,21 +137,27 @@ public final class TextNer extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextNer withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextNer withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextNer withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -136,7 +166,7 @@ public final class TextNer extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

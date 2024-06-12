@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineSecretsSchema model. */
+/**
+ * The VirtualMachineSecretsSchema model.
+ */
 @Fluent
 public class VirtualMachineSecretsSchema {
     /*
@@ -16,13 +18,15 @@ public class VirtualMachineSecretsSchema {
     @JsonProperty(value = "administratorAccount")
     private VirtualMachineSshCredentials administratorAccount;
 
-    /** Creates an instance of VirtualMachineSecretsSchema class. */
+    /**
+     * Creates an instance of VirtualMachineSecretsSchema class.
+     */
     public VirtualMachineSecretsSchema() {
     }
 
     /**
      * Get the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @return the administratorAccount value.
      */
     public VirtualMachineSshCredentials administratorAccount() {
@@ -31,7 +35,7 @@ public class VirtualMachineSecretsSchema {
 
     /**
      * Set the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @param administratorAccount the administratorAccount value to set.
      * @return the VirtualMachineSecretsSchema object itself.
      */
@@ -42,7 +46,7 @@ public class VirtualMachineSecretsSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,33 +6,56 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.machinelearning.models.AksComputeSecrets;
+import com.azure.resourcemanager.machinelearning.models.ComputeType;
 import com.azure.resourcemanager.machinelearning.models.DatabricksComputeSecrets;
 import com.azure.resourcemanager.machinelearning.models.VirtualMachineSecrets;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute. Might differ for every type of compute. */
+/**
+ * Secrets related to a Machine Learning compute. Might differ for every type of compute.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "computeType",
-    defaultImpl = ComputeSecretsInner.class)
+    defaultImpl = ComputeSecretsInner.class,
+    visible = true)
 @JsonTypeName("ComputeSecrets")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKS", value = AksComputeSecrets.class),
     @JsonSubTypes.Type(name = "VirtualMachine", value = VirtualMachineSecrets.class),
-    @JsonSubTypes.Type(name = "Databricks", value = DatabricksComputeSecrets.class)
-})
+    @JsonSubTypes.Type(name = "Databricks", value = DatabricksComputeSecrets.class) })
 @Immutable
 public class ComputeSecretsInner {
-    /** Creates an instance of ComputeSecretsInner class. */
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType;
+
+    /**
+     * Creates an instance of ComputeSecretsInner class.
+     */
     public ComputeSecretsInner() {
+        this.computeType = ComputeType.fromString("ComputeSecrets");
+    }
+
+    /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    public ComputeType computeType() {
+        return this.computeType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

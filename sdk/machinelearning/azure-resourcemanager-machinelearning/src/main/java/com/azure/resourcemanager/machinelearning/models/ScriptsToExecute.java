@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Customized setup scripts. */
+/**
+ * Customized setup scripts.
+ */
 @Fluent
 public final class ScriptsToExecute {
     /*
@@ -22,13 +24,15 @@ public final class ScriptsToExecute {
     @JsonProperty(value = "creationScript")
     private ScriptReference creationScript;
 
-    /** Creates an instance of ScriptsToExecute class. */
+    /**
+     * Creates an instance of ScriptsToExecute class.
+     */
     public ScriptsToExecute() {
     }
 
     /**
      * Get the startupScript property: Script that's run every time the machine starts.
-     *
+     * 
      * @return the startupScript value.
      */
     public ScriptReference startupScript() {
@@ -37,7 +41,7 @@ public final class ScriptsToExecute {
 
     /**
      * Set the startupScript property: Script that's run every time the machine starts.
-     *
+     * 
      * @param startupScript the startupScript value to set.
      * @return the ScriptsToExecute object itself.
      */
@@ -48,7 +52,7 @@ public final class ScriptsToExecute {
 
     /**
      * Get the creationScript property: Script that's run only once during provision of the compute.
-     *
+     * 
      * @return the creationScript value.
      */
     public ScriptReference creationScript() {
@@ -57,7 +61,7 @@ public final class ScriptsToExecute {
 
     /**
      * Set the creationScript property: Script that's run only once during provision of the compute.
-     *
+     * 
      * @param creationScript the creationScript value to set.
      * @return the ScriptsToExecute object itself.
      */
@@ -68,7 +72,7 @@ public final class ScriptsToExecute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

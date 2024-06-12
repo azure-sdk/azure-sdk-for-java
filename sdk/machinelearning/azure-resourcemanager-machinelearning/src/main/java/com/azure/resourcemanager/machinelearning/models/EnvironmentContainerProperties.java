@@ -5,37 +5,65 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Container for environment specification versions. */
+/**
+ * Container for environment specification versions.
+ */
 @Fluent
 public final class EnvironmentContainerProperties extends AssetContainer {
-    /** Creates an instance of EnvironmentContainerProperties class. */
+    /*
+     * Provisioning state for the environment container.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of EnvironmentContainerProperties class.
+     */
     public EnvironmentContainerProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the environment container.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentContainerProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentContainerProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentContainerProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentContainerProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -44,7 +72,7 @@ public final class EnvironmentContainerProperties extends AssetContainer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

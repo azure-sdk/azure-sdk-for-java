@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ResourceQuotaInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List WorkspaceQuotasByVMFamily operation response. */
+/**
+ * The List WorkspaceQuotasByVMFamily operation response.
+ */
 @Immutable
 public final class ListWorkspaceQuotas {
     /*
@@ -19,19 +21,20 @@ public final class ListWorkspaceQuotas {
     private List<ResourceQuotaInner> value;
 
     /*
-     * The URI to fetch the next page of workspace quota information by VM Family. Call ListNext() with this to fetch
-     * the next page of Workspace Quota information.
+     * The URI to fetch the next page of workspace quota information by VM Family. Call ListNext() with this to fetch the next page of Workspace Quota information.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ListWorkspaceQuotas class. */
+    /**
+     * Creates an instance of ListWorkspaceQuotas class.
+     */
     public ListWorkspaceQuotas() {
     }
 
     /**
      * Get the value property: The list of Workspace Quotas by VM Family.
-     *
+     * 
      * @return the value value.
      */
     public List<ResourceQuotaInner> value() {
@@ -41,7 +44,7 @@ public final class ListWorkspaceQuotas {
     /**
      * Get the nextLink property: The URI to fetch the next page of workspace quota information by VM Family. Call
      * ListNext() with this to fetch the next page of Workspace Quota information.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -50,7 +53,7 @@ public final class ListWorkspaceQuotas {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

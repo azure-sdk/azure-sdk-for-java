@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of Databricks. */
+/**
+ * Properties of Databricks.
+ */
 @Fluent
 public final class DatabricksProperties {
     /*
@@ -22,13 +24,15 @@ public final class DatabricksProperties {
     @JsonProperty(value = "workspaceUrl")
     private String workspaceUrl;
 
-    /** Creates an instance of DatabricksProperties class. */
+    /**
+     * Creates an instance of DatabricksProperties class.
+     */
     public DatabricksProperties() {
     }
 
     /**
      * Get the databricksAccessToken property: Databricks access token.
-     *
+     * 
      * @return the databricksAccessToken value.
      */
     public String databricksAccessToken() {
@@ -37,7 +41,7 @@ public final class DatabricksProperties {
 
     /**
      * Set the databricksAccessToken property: Databricks access token.
-     *
+     * 
      * @param databricksAccessToken the databricksAccessToken value to set.
      * @return the DatabricksProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class DatabricksProperties {
 
     /**
      * Get the workspaceUrl property: Workspace Url.
-     *
+     * 
      * @return the workspaceUrl value.
      */
     public String workspaceUrl() {
@@ -57,7 +61,7 @@ public final class DatabricksProperties {
 
     /**
      * Set the workspaceUrl property: Workspace Url.
-     *
+     * 
      * @param workspaceUrl the workspaceUrl value to set.
      * @return the DatabricksProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class DatabricksProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

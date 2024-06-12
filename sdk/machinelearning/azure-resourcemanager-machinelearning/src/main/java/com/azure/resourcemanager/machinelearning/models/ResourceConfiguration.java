@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The ResourceConfiguration model. */
+/**
+ * The ResourceConfiguration model.
+ */
 @Fluent
 public class ResourceConfiguration {
     /*
@@ -31,13 +33,15 @@ public class ResourceConfiguration {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> properties;
 
-    /** Creates an instance of ResourceConfiguration class. */
+    /**
+     * Creates an instance of ResourceConfiguration class.
+     */
     public ResourceConfiguration() {
     }
 
     /**
      * Get the instanceCount property: Optional number of instances or nodes used by the compute target.
-     *
+     * 
      * @return the instanceCount value.
      */
     public Integer instanceCount() {
@@ -46,7 +50,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the instanceCount property: Optional number of instances or nodes used by the compute target.
-     *
+     * 
      * @param instanceCount the instanceCount value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -57,7 +61,7 @@ public class ResourceConfiguration {
 
     /**
      * Get the instanceType property: Optional type of VM used as supported by the compute target.
-     *
+     * 
      * @return the instanceType value.
      */
     public String instanceType() {
@@ -66,7 +70,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the instanceType property: Optional type of VM used as supported by the compute target.
-     *
+     * 
      * @param instanceType the instanceType value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -77,7 +81,7 @@ public class ResourceConfiguration {
 
     /**
      * Get the properties property: Additional properties bag.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, Object> properties() {
@@ -86,7 +90,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the properties property: Additional properties bag.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -97,7 +101,7 @@ public class ResourceConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

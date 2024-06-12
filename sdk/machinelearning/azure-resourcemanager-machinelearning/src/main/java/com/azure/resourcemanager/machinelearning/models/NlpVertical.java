@@ -7,7 +7,10 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Abstract class for NLP related AutoML tasks. NLP - Natural Language Processing. */
+/**
+ * Abstract class for NLP related AutoML tasks.
+ * NLP - Natural Language Processing.
+ */
 @Fluent
 public class NlpVertical {
     /*
@@ -28,13 +31,15 @@ public class NlpVertical {
     @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of NlpVertical class. */
+    /**
+     * Creates an instance of NlpVertical class.
+     */
     public NlpVertical() {
     }
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -43,7 +48,7 @@ public class NlpVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the NlpVertical object itself.
      */
@@ -54,7 +59,7 @@ public class NlpVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -63,7 +68,7 @@ public class NlpVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the NlpVertical object itself.
      */
@@ -74,7 +79,7 @@ public class NlpVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -83,7 +88,7 @@ public class NlpVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the NlpVertical object itself.
      */
@@ -94,7 +99,7 @@ public class NlpVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

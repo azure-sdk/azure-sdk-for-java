@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The FqdnEndpointsProperties model. */
+/**
+ * The FqdnEndpointsProperties model.
+ */
 @Fluent
 public final class FqdnEndpointsProperties {
     /*
@@ -23,13 +25,15 @@ public final class FqdnEndpointsProperties {
     @JsonProperty(value = "endpoints")
     private List<FqdnEndpoint> endpoints;
 
-    /** Creates an instance of FqdnEndpointsProperties class. */
+    /**
+     * Creates an instance of FqdnEndpointsProperties class.
+     */
     public FqdnEndpointsProperties() {
     }
 
     /**
      * Get the category property: The category property.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -38,7 +42,7 @@ public final class FqdnEndpointsProperties {
 
     /**
      * Set the category property: The category property.
-     *
+     * 
      * @param category the category value to set.
      * @return the FqdnEndpointsProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class FqdnEndpointsProperties {
 
     /**
      * Get the endpoints property: The endpoints property.
-     *
+     * 
      * @return the endpoints value.
      */
     public List<FqdnEndpoint> endpoints() {
@@ -58,7 +62,7 @@ public final class FqdnEndpointsProperties {
 
     /**
      * Set the endpoints property: The endpoints property.
-     *
+     * 
      * @param endpoints the endpoints value to set.
      * @return the FqdnEndpointsProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class FqdnEndpointsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

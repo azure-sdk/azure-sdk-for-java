@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The RegistryListCredentialsResult model. */
+/**
+ * The RegistryListCredentialsResult model.
+ */
 @Fluent
 public final class RegistryListCredentialsResult {
     /*
@@ -29,13 +31,15 @@ public final class RegistryListCredentialsResult {
     @JsonProperty(value = "passwords")
     private List<Password> passwords;
 
-    /** Creates an instance of RegistryListCredentialsResult class. */
+    /**
+     * Creates an instance of RegistryListCredentialsResult class.
+     */
     public RegistryListCredentialsResult() {
     }
 
     /**
      * Get the location property: The location property.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -44,7 +48,7 @@ public final class RegistryListCredentialsResult {
 
     /**
      * Get the username property: The username property.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -53,7 +57,7 @@ public final class RegistryListCredentialsResult {
 
     /**
      * Get the passwords property: The passwords property.
-     *
+     * 
      * @return the passwords value.
      */
     public List<Password> passwords() {
@@ -62,7 +66,7 @@ public final class RegistryListCredentialsResult {
 
     /**
      * Set the passwords property: The passwords property.
-     *
+     * 
      * @param passwords the passwords value to set.
      * @return the RegistryListCredentialsResult object itself.
      */
@@ -73,7 +77,7 @@ public final class RegistryListCredentialsResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

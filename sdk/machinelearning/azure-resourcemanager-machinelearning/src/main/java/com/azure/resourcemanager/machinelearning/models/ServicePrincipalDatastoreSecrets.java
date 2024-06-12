@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore Service Principal secrets. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
+/**
+ * Datastore Service Principal secrets.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "secretsType",
+    defaultImpl = ServicePrincipalDatastoreSecrets.class,
+    visible = true)
 @JsonTypeName("ServicePrincipal")
 @Fluent
 public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInner {
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretsType", required = true)
+    private SecretsType secretsType = SecretsType.SERVICE_PRINCIPAL;
+
     /*
      * Service principal secret.
      */
     @JsonProperty(value = "clientSecret")
     private String clientSecret;
 
-    /** Creates an instance of ServicePrincipalDatastoreSecrets class. */
+    /**
+     * Creates an instance of ServicePrincipalDatastoreSecrets class.
+     */
     public ServicePrincipalDatastoreSecrets() {
     }
 
     /**
+     * Get the secretsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the secretsType value.
+     */
+    @Override
+    public SecretsType secretsType() {
+        return this.secretsType;
+    }
+
+    /**
      * Get the clientSecret property: Service principal secret.
-     *
+     * 
      * @return the clientSecret value.
      */
     public String clientSecret() {
@@ -36,7 +62,7 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
 
     /**
      * Set the clientSecret property: Service principal secret.
-     *
+     * 
      * @param clientSecret the clientSecret value to set.
      * @return the ServicePrincipalDatastoreSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

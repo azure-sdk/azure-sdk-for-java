@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AutoSeasonality model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The AutoSeasonality model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = AutoSeasonality.class, visible = true)
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoSeasonality extends Seasonality {
-    /** Creates an instance of AutoSeasonality class. */
+    /*
+     * [Required] Seasonality mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private SeasonalityMode mode = SeasonalityMode.AUTO;
+
+    /**
+     * Creates an instance of AutoSeasonality class.
+     */
     public AutoSeasonality() {
     }
 
     /**
+     * Get the mode property: [Required] Seasonality mode.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public SeasonalityMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

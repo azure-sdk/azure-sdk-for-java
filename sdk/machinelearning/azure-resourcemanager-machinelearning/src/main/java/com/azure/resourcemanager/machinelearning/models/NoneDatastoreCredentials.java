@@ -5,21 +5,48 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Empty/none datastore credentials. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
+/**
+ * Empty/none datastore credentials.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "credentialsType",
+    defaultImpl = NoneDatastoreCredentials.class,
+    visible = true)
 @JsonTypeName("None")
 @Immutable
 public final class NoneDatastoreCredentials extends DatastoreCredentials {
-    /** Creates an instance of NoneDatastoreCredentials class. */
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialsType", required = true)
+    private CredentialsType credentialsType = CredentialsType.NONE;
+
+    /**
+     * Creates an instance of NoneDatastoreCredentials class.
+     */
     public NoneDatastoreCredentials() {
     }
 
     /**
+     * Get the credentialsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the credentialsType value.
+     */
+    @Override
+    public CredentialsType credentialsType() {
+        return this.credentialsType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

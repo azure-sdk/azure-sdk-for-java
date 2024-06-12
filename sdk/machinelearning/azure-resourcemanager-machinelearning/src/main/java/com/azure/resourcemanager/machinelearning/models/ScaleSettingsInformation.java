@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Desired scale settings for the amlCompute. */
+/**
+ * Desired scale settings for the amlCompute.
+ */
 @Fluent
 public final class ScaleSettingsInformation {
     /*
@@ -16,13 +18,15 @@ public final class ScaleSettingsInformation {
     @JsonProperty(value = "scaleSettings")
     private ScaleSettings scaleSettings;
 
-    /** Creates an instance of ScaleSettingsInformation class. */
+    /**
+     * Creates an instance of ScaleSettingsInformation class.
+     */
     public ScaleSettingsInformation() {
     }
 
     /**
      * Get the scaleSettings property: scale settings for AML Compute.
-     *
+     * 
      * @return the scaleSettings value.
      */
     public ScaleSettings scaleSettings() {
@@ -31,7 +35,7 @@ public final class ScaleSettingsInformation {
 
     /**
      * Set the scaleSettings property: scale settings for AML Compute.
-     *
+     * 
      * @param scaleSettings the scaleSettings value to set.
      * @return the ScaleSettingsInformation object itself.
      */
@@ -42,7 +46,7 @@ public final class ScaleSettingsInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

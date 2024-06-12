@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Retry settings for a batch inference operation. */
+/**
+ * Retry settings for a batch inference operation.
+ */
 @Fluent
 public final class BatchRetrySettings {
     /*
@@ -23,13 +25,15 @@ public final class BatchRetrySettings {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of BatchRetrySettings class. */
+    /**
+     * Creates an instance of BatchRetrySettings class.
+     */
     public BatchRetrySettings() {
     }
 
     /**
      * Get the maxRetries property: Maximum retry count for a mini-batch.
-     *
+     * 
      * @return the maxRetries value.
      */
     public Integer maxRetries() {
@@ -38,7 +42,7 @@ public final class BatchRetrySettings {
 
     /**
      * Set the maxRetries property: Maximum retry count for a mini-batch.
-     *
+     * 
      * @param maxRetries the maxRetries value to set.
      * @return the BatchRetrySettings object itself.
      */
@@ -49,7 +53,7 @@ public final class BatchRetrySettings {
 
     /**
      * Get the timeout property: Invocation timeout for a mini-batch, in ISO 8601 format.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -58,7 +62,7 @@ public final class BatchRetrySettings {
 
     /**
      * Set the timeout property: Invocation timeout for a mini-batch, in ISO 8601 format.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the BatchRetrySettings object itself.
      */
@@ -69,7 +73,7 @@ public final class BatchRetrySettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

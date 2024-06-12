@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The FlavorData model. */
+/**
+ * The FlavorData model.
+ */
 @Fluent
 public final class FlavorData {
     /*
@@ -19,13 +21,15 @@ public final class FlavorData {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> data;
 
-    /** Creates an instance of FlavorData class. */
+    /**
+     * Creates an instance of FlavorData class.
+     */
     public FlavorData() {
     }
 
     /**
      * Get the data property: Model flavor-specific data.
-     *
+     * 
      * @return the data value.
      */
     public Map<String, String> data() {
@@ -34,7 +38,7 @@ public final class FlavorData {
 
     /**
      * Set the data property: Model flavor-specific data.
-     *
+     * 
      * @param data the data value to set.
      * @return the FlavorData object itself.
      */
@@ -45,7 +49,7 @@ public final class FlavorData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

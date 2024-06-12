@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties(top level) of ComputeInstance. */
+/**
+ * Properties(top level) of ComputeInstance.
+ */
 @Fluent
 public class ComputeInstanceSchema {
     /*
@@ -16,13 +18,15 @@ public class ComputeInstanceSchema {
     @JsonProperty(value = "properties")
     private ComputeInstanceProperties properties;
 
-    /** Creates an instance of ComputeInstanceSchema class. */
+    /**
+     * Creates an instance of ComputeInstanceSchema class.
+     */
     public ComputeInstanceSchema() {
     }
 
     /**
      * Get the properties property: Properties of ComputeInstance.
-     *
+     * 
      * @return the properties value.
      */
     public ComputeInstanceProperties properties() {
@@ -31,7 +35,7 @@ public class ComputeInstanceSchema {
 
     /**
      * Set the properties property: Properties of ComputeInstance.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ComputeInstanceSchema object itself.
      */
@@ -42,7 +46,7 @@ public class ComputeInstanceSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,33 +5,55 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for datastore credentials. */
+/**
+ * Base definition for datastore credentials.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "credentialsType",
-    defaultImpl = DatastoreCredentials.class)
+    defaultImpl = DatastoreCredentials.class,
+    visible = true)
 @JsonTypeName("DatastoreCredentials")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AccountKey", value = AccountKeyDatastoreCredentials.class),
     @JsonSubTypes.Type(name = "Certificate", value = CertificateDatastoreCredentials.class),
     @JsonSubTypes.Type(name = "None", value = NoneDatastoreCredentials.class),
     @JsonSubTypes.Type(name = "Sas", value = SasDatastoreCredentials.class),
-    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreCredentials.class)
-})
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreCredentials.class) })
 @Immutable
 public class DatastoreCredentials {
-    /** Creates an instance of DatastoreCredentials class. */
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialsType", required = true)
+    private CredentialsType credentialsType;
+
+    /**
+     * Creates an instance of DatastoreCredentials class.
+     */
     public DatastoreCredentials() {
+        this.credentialsType = CredentialsType.fromString("DatastoreCredentials");
+    }
+
+    /**
+     * Get the credentialsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the credentialsType value.
+     */
+    public CredentialsType credentialsType() {
+        return this.credentialsType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

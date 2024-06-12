@@ -8,15 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** AutoML vertical class. Base class for AutoML verticals - TableVertical/ImageVertical/NLPVertical. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "taskType",
-    defaultImpl = AutoMLVertical.class)
+/**
+ * AutoML vertical class.
+ * Base class for AutoML verticals - TableVertical/ImageVertical/NLPVertical.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "taskType", defaultImpl = AutoMLVertical.class, visible = true)
 @JsonTypeName("AutoMLVertical")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Classification", value = Classification.class),
@@ -28,10 +28,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "Regression", value = Regression.class),
     @JsonSubTypes.Type(name = "TextClassification", value = TextClassification.class),
     @JsonSubTypes.Type(name = "TextClassificationMultilabel", value = TextClassificationMultilabel.class),
-    @JsonSubTypes.Type(name = "TextNER", value = TextNer.class)
-})
+    @JsonSubTypes.Type(name = "TextNER", value = TextNer.class) })
 @Fluent
 public class AutoMLVertical {
+    /*
+     * [Required] Task type for AutoMLJob.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "taskType", required = true)
+    private TaskType taskType;
+
     /*
      * Log verbosity for the job.
      */
@@ -51,13 +57,25 @@ public class AutoMLVertical {
     @JsonProperty(value = "trainingData", required = true)
     private MLTableJobInput trainingData;
 
-    /** Creates an instance of AutoMLVertical class. */
+    /**
+     * Creates an instance of AutoMLVertical class.
+     */
     public AutoMLVertical() {
+        this.taskType = TaskType.fromString("AutoMLVertical");
+    }
+
+    /**
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    public TaskType taskType() {
+        return this.taskType;
     }
 
     /**
      * Get the logVerbosity property: Log verbosity for the job.
-     *
+     * 
      * @return the logVerbosity value.
      */
     public LogVerbosity logVerbosity() {
@@ -66,7 +84,7 @@ public class AutoMLVertical {
 
     /**
      * Set the logVerbosity property: Log verbosity for the job.
-     *
+     * 
      * @param logVerbosity the logVerbosity value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -76,9 +94,9 @@ public class AutoMLVertical {
     }
 
     /**
-     * Get the targetColumnName property: Target column name: This is prediction values column. Also known as label
-     * column name in context of classification tasks.
-     *
+     * Get the targetColumnName property: Target column name: This is prediction values column.
+     * Also known as label column name in context of classification tasks.
+     * 
      * @return the targetColumnName value.
      */
     public String targetColumnName() {
@@ -86,9 +104,9 @@ public class AutoMLVertical {
     }
 
     /**
-     * Set the targetColumnName property: Target column name: This is prediction values column. Also known as label
-     * column name in context of classification tasks.
-     *
+     * Set the targetColumnName property: Target column name: This is prediction values column.
+     * Also known as label column name in context of classification tasks.
+     * 
      * @param targetColumnName the targetColumnName value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -99,7 +117,7 @@ public class AutoMLVertical {
 
     /**
      * Get the trainingData property: [Required] Training data input.
-     *
+     * 
      * @return the trainingData value.
      */
     public MLTableJobInput trainingData() {
@@ -108,7 +126,7 @@ public class AutoMLVertical {
 
     /**
      * Set the trainingData property: [Required] Training data input.
-     *
+     * 
      * @param trainingData the trainingData value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -119,14 +137,13 @@ public class AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (trainingData() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property trainingData in model AutoMLVertical"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property trainingData in model AutoMLVertical"));
         } else {
             trainingData().validate();
         }
