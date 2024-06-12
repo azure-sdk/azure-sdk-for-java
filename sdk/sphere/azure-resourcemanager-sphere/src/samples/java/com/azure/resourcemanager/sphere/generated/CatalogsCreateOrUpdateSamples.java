@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class CatalogsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutCatalog.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutCatalog.json
      */
     /**
      * Sample code: Catalogs_CreateOrUpdate.
@@ -18,7 +17,10 @@ public final class CatalogsCreateOrUpdateSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void catalogsCreateOrUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.catalogs().define("MyCatalog1").withRegion("global").withExistingResourceGroup("MyResourceGroup1")
+        manager.catalogs()
+            .define("MyCatalog1")
+            .withRegion("global")
+            .withExistingResourceGroup("MyResourceGroup1")
             .create();
     }
 }
