@@ -105,16 +105,19 @@ public final class DataProductInformation {
      */
     public void validate() {
         if (dataProductName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataProductName in model DataProductInformation"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataProductName in model DataProductInformation"));
         }
         if (description() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property description in model DataProductInformation"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property description in model DataProductInformation"));
         }
         if (dataProductVersions() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataProductVersions in model DataProductInformation"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataProductVersions in model DataProductInformation"));
         } else {
             dataProductVersions().forEach(e -> e.validate());
         }
