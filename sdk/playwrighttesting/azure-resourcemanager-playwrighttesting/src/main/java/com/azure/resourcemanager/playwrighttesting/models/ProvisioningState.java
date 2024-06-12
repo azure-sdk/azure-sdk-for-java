@@ -28,6 +28,11 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
     /**
+     * Static value Creating for ProvisioningState.
+     */
+    public static final ProvisioningState CREATING = fromString("Creating");
+
+    /**
      * Static value Deleting for ProvisioningState.
      */
     public static final ProvisioningState DELETING = fromString("Deleting");

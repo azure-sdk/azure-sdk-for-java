@@ -11,9 +11,7 @@ import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
  */
 public final class QuotasGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
-     * examples/Quotas_Get.json
+     * x-ms-original-file: specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-02-01-preview/examples/Quotas_Get.json
      */
     /**
      * Sample code: Quotas_Get.
