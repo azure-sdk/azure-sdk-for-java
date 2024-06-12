@@ -5,31 +5,53 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for identity configuration. */
+/**
+ * Base definition for identity configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "identityType",
-    defaultImpl = IdentityConfiguration.class)
+    defaultImpl = IdentityConfiguration.class,
+    visible = true)
 @JsonTypeName("IdentityConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AMLToken", value = AmlToken.class),
     @JsonSubTypes.Type(name = "Managed", value = ManagedIdentity.class),
-    @JsonSubTypes.Type(name = "UserIdentity", value = UserIdentity.class)
-})
+    @JsonSubTypes.Type(name = "UserIdentity", value = UserIdentity.class) })
 @Immutable
 public class IdentityConfiguration {
-    /** Creates an instance of IdentityConfiguration class. */
+    /*
+     * [Required] Specifies the type of identity framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "identityType", required = true)
+    private IdentityConfigurationType identityType;
+
+    /**
+     * Creates an instance of IdentityConfiguration class.
+     */
     public IdentityConfiguration() {
+        this.identityType = IdentityConfigurationType.fromString("IdentityConfiguration");
+    }
+
+    /**
+     * Get the identityType property: [Required] Specifies the type of identity framework.
+     * 
+     * @return the identityType value.
+     */
+    public IdentityConfigurationType identityType() {
+        return this.identityType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

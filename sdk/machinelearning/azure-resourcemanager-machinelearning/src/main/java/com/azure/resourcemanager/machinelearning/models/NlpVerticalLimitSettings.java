@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Job execution constraints. */
+/**
+ * Job execution constraints.
+ */
 @Fluent
 public final class NlpVerticalLimitSettings {
     /*
@@ -29,13 +31,15 @@ public final class NlpVerticalLimitSettings {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of NlpVerticalLimitSettings class. */
+    /**
+     * Creates an instance of NlpVerticalLimitSettings class.
+     */
     public NlpVerticalLimitSettings() {
     }
 
     /**
      * Get the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
-     *
+     * 
      * @return the maxConcurrentTrials value.
      */
     public Integer maxConcurrentTrials() {
@@ -44,7 +48,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
-     *
+     * 
      * @param maxConcurrentTrials the maxConcurrentTrials value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Get the maxTrials property: Number of AutoML iterations.
-     *
+     * 
      * @return the maxTrials value.
      */
     public Integer maxTrials() {
@@ -64,7 +68,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the maxTrials property: Number of AutoML iterations.
-     *
+     * 
      * @param maxTrials the maxTrials value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -75,7 +79,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Get the timeout property: AutoML job timeout.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -84,7 +88,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the timeout property: AutoML job timeout.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -95,7 +99,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

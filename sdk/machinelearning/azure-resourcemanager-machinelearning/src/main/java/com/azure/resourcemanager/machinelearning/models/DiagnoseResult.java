@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Result of Diagnose. */
+/**
+ * Result of Diagnose.
+ */
 @Immutable
 public final class DiagnoseResult {
     /*
@@ -28,13 +30,15 @@ public final class DiagnoseResult {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
-    /** Creates an instance of DiagnoseResult class. */
+    /**
+     * Creates an instance of DiagnoseResult class.
+     */
     public DiagnoseResult() {
     }
 
     /**
      * Get the code property: Code for workspace setup error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -43,7 +47,7 @@ public final class DiagnoseResult {
 
     /**
      * Get the level property: Level of workspace setup error.
-     *
+     * 
      * @return the level value.
      */
     public DiagnoseResultLevel level() {
@@ -52,7 +56,7 @@ public final class DiagnoseResult {
 
     /**
      * Get the message property: Message of workspace setup error.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -61,7 +65,7 @@ public final class DiagnoseResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
