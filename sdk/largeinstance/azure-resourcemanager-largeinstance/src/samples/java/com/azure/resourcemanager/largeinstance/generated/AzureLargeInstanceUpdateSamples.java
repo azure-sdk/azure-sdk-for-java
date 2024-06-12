@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_PatchTags.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_PatchTags.json
      */
     /**
      * Sample code: AzureLargeInstance_Update_Tag.
@@ -20,14 +18,12 @@ public final class AzureLargeInstanceUpdateSamples {
      */
     public static void
         azureLargeInstanceUpdateTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().updateWithResponse("myResourceGroup", "myALInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .updateWithResponse("myResourceGroup", "myALInstance", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_PatchTags_Delete.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_PatchTags_Delete.json
      */
     /**
      * Sample code: AzureLargeInstance_Delete_Tag.
@@ -36,7 +32,7 @@ public final class AzureLargeInstanceUpdateSamples {
      */
     public static void
         azureLargeInstanceDeleteTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().updateWithResponse("myResourceGroup", "myALInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .updateWithResponse("myResourceGroup", "myALInstance", null, com.azure.core.util.Context.NONE);
     }
 }
