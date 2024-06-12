@@ -5,14 +5,22 @@
 package com.azure.resourcemanager.loadtesting.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.loadtesting.fluent.models.LoadTestResourcePatchRequestBodyProperties;
+import com.azure.resourcemanager.loadtesting.fluent.models.LoadTestResourceUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** LoadTest resource patch request body. */
+/**
+ * The type used for update operations of the LoadTestResource.
+ */
 @Fluent
-public final class LoadTestResourcePatchRequestBody {
+public final class LoadTestResourceUpdate {
+    /*
+     * The managed service identities assigned to this resource.
+     */
+    @JsonProperty(value = "identity")
+    private ManagedServiceIdentity identity;
+
     /*
      * Resource tags.
      */
@@ -21,24 +29,40 @@ public final class LoadTestResourcePatchRequestBody {
     private Map<String, String> tags;
 
     /*
-     * The type of identity used for the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
-     * Load Test resource properties
+     * The updatable properties of the LoadTestResource.
      */
     @JsonProperty(value = "properties")
-    private LoadTestResourcePatchRequestBodyProperties innerProperties;
+    private LoadTestResourceUpdateProperties innerProperties;
 
-    /** Creates an instance of LoadTestResourcePatchRequestBody class. */
-    public LoadTestResourcePatchRequestBody() {
+    /**
+     * Creates an instance of LoadTestResourceUpdate class.
+     */
+    public LoadTestResourceUpdate() {
+    }
+
+    /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the LoadTestResourceUpdate object itself.
+     */
+    public LoadTestResourceUpdate withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -47,47 +71,27 @@ public final class LoadTestResourcePatchRequestBody {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
-     * @return the LoadTestResourcePatchRequestBody object itself.
+     * @return the LoadTestResourceUpdate object itself.
      */
-    public LoadTestResourcePatchRequestBody withTags(Map<String, String> tags) {
+    public LoadTestResourceUpdate withTags(Map<String, String> tags) {
         this.tags = tags;
         return this;
     }
 
     /**
-     * Get the identity property: The type of identity used for the resource.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The type of identity used for the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the LoadTestResourcePatchRequestBody object itself.
-     */
-    public LoadTestResourcePatchRequestBody withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: Load Test resource properties.
-     *
+     * Get the innerProperties property: The updatable properties of the LoadTestResource.
+     * 
      * @return the innerProperties value.
      */
-    private LoadTestResourcePatchRequestBodyProperties innerProperties() {
+    private LoadTestResourceUpdateProperties innerProperties() {
         return this.innerProperties;
     }
 
     /**
      * Get the description property: Description of the resource.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -96,13 +100,13 @@ public final class LoadTestResourcePatchRequestBody {
 
     /**
      * Set the description property: Description of the resource.
-     *
+     * 
      * @param description the description value to set.
-     * @return the LoadTestResourcePatchRequestBody object itself.
+     * @return the LoadTestResourceUpdate object itself.
      */
-    public LoadTestResourcePatchRequestBody withDescription(String description) {
+    public LoadTestResourceUpdate withDescription(String description) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new LoadTestResourcePatchRequestBodyProperties();
+            this.innerProperties = new LoadTestResourceUpdateProperties();
         }
         this.innerProperties().withDescription(description);
         return this;
@@ -110,7 +114,7 @@ public final class LoadTestResourcePatchRequestBody {
 
     /**
      * Get the encryption property: CMK Encryption property.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -119,13 +123,13 @@ public final class LoadTestResourcePatchRequestBody {
 
     /**
      * Set the encryption property: CMK Encryption property.
-     *
+     * 
      * @param encryption the encryption value to set.
-     * @return the LoadTestResourcePatchRequestBody object itself.
+     * @return the LoadTestResourceUpdate object itself.
      */
-    public LoadTestResourcePatchRequestBody withEncryption(EncryptionProperties encryption) {
+    public LoadTestResourceUpdate withEncryption(EncryptionProperties encryption) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new LoadTestResourcePatchRequestBodyProperties();
+            this.innerProperties = new LoadTestResourceUpdateProperties();
         }
         this.innerProperties().withEncryption(encryption);
         return this;
@@ -133,7 +137,7 @@ public final class LoadTestResourcePatchRequestBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
