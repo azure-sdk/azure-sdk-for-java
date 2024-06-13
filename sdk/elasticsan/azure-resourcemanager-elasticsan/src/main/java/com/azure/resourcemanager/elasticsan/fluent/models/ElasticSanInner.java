@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
 import com.azure.resourcemanager.elasticsan.models.Sku;
@@ -255,14 +256,38 @@ public final class ElasticSanInner extends Resource {
     }
 
     /**
+     * Get the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @return the autoScaleProperties value.
+     */
+    public AutoScaleProperties autoScaleProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().autoScaleProperties();
+    }
+
+    /**
+     * Set the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @param autoScaleProperties the autoScaleProperties value to set.
+     * @return the ElasticSanInner object itself.
+     */
+    public ElasticSanInner withAutoScaleProperties(AutoScaleProperties autoScaleProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ElasticSanProperties();
+        }
+        this.innerProperties().withAutoScaleProperties(autoScaleProperties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ElasticSanInner"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property innerProperties in model ElasticSanInner"));
         } else {
             innerProperties().validate();
         }

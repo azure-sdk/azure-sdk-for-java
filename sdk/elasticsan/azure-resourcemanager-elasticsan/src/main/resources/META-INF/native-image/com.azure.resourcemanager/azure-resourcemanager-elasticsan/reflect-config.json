@@ -74,6 +74,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.AutoScaleProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.ScaleUpProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -255,6 +265,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.elasticsan.models.PolicyEnforcement",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

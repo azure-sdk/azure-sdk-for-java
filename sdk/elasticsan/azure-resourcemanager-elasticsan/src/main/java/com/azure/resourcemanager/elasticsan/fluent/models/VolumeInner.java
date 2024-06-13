@@ -158,8 +158,8 @@ public final class VolumeInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
         } else {
             innerProperties().validate();
         }

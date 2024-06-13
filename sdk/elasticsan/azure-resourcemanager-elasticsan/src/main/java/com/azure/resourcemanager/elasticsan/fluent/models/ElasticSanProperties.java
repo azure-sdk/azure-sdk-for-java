@@ -6,6 +6,7 @@ package com.azure.resourcemanager.elasticsan.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
 import com.azure.resourcemanager.elasticsan.models.Sku;
@@ -84,11 +85,16 @@ public final class ElasticSanProperties {
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
-     * Allow or disallow public network access to ElasticSan. Value is optional but if passed in, must be 'Enabled' or
-     * 'Disabled'.
+     * Allow or disallow public network access to ElasticSan. Value is optional but if passed in, must be 'Enabled' or 'Disabled'.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /*
+     * Auto Scale Properties for Elastic San Appliance.
+     */
+    @JsonProperty(value = "autoScaleProperties")
+    private AutoScaleProperties autoScaleProperties;
 
     /**
      * Creates an instance of ElasticSanProperties class.
@@ -262,19 +268,42 @@ public final class ElasticSanProperties {
     }
 
     /**
+     * Get the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @return the autoScaleProperties value.
+     */
+    public AutoScaleProperties autoScaleProperties() {
+        return this.autoScaleProperties;
+    }
+
+    /**
+     * Set the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @param autoScaleProperties the autoScaleProperties value to set.
+     * @return the ElasticSanProperties object itself.
+     */
+    public ElasticSanProperties withAutoScaleProperties(AutoScaleProperties autoScaleProperties) {
+        this.autoScaleProperties = autoScaleProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sku in model ElasticSanProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sku in model ElasticSanProperties"));
         } else {
             sku().validate();
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
+        }
+        if (autoScaleProperties() != null) {
+            autoScaleProperties().validate();
         }
     }
 

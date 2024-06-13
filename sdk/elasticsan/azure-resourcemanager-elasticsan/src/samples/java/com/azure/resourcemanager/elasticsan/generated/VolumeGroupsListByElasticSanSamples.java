@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class VolumeGroupsListByElasticSanSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * VolumeGroups_ListByElasticSan_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/VolumeGroups_ListByElasticSan_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_ListByElasticSan_MinimumSet_Gen.
@@ -19,13 +18,12 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void
         volumeGroupsListByElasticSanMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("resourcegroupname", "elasticsanname",
-            com.azure.core.util.Context.NONE);
+        manager.volumeGroups()
+            .listByElasticSan("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * VolumeGroups_ListByElasticSan_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/VolumeGroups_ListByElasticSan_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_ListByElasticSan_MaximumSet_Gen.
@@ -34,7 +32,6 @@ public final class VolumeGroupsListByElasticSanSamples {
      */
     public static void
         volumeGroupsListByElasticSanMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().listByElasticSan("resourcegroupname", "elasticsanname",
-            com.azure.core.util.Context.NONE);
+        manager.volumeGroups().listByElasticSan("rgelasticsan", "elasticsanname", com.azure.core.util.Context.NONE);
     }
 }

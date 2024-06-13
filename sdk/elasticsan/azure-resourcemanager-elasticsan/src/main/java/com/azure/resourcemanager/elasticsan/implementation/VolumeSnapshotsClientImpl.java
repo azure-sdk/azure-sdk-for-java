@@ -540,7 +540,8 @@ public final class VolumeSnapshotsClientImpl implements VolumeSnapshotsClient {
     private Mono<SnapshotInner> createAsync(String resourceGroupName, String elasticSanName, String volumeGroupName,
         String snapshotName, SnapshotInner parameters, Context context) {
         return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, parameters, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**

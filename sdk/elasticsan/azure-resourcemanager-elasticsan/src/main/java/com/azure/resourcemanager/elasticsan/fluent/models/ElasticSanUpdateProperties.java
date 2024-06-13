@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.elasticsan.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,11 +27,16 @@ public final class ElasticSanUpdateProperties {
     private Long extendedCapacitySizeTiB;
 
     /*
-     * Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be
-     * 'Enabled' or 'Disabled'.
+     * Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be 'Enabled' or 'Disabled'.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /*
+     * Auto Scale Properties for Elastic San Appliance.
+     */
+    @JsonProperty(value = "autoScaleProperties")
+    private AutoScaleProperties autoScaleProperties;
 
     /**
      * Creates an instance of ElasticSanUpdateProperties class.
@@ -101,10 +107,33 @@ public final class ElasticSanUpdateProperties {
     }
 
     /**
+     * Get the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @return the autoScaleProperties value.
+     */
+    public AutoScaleProperties autoScaleProperties() {
+        return this.autoScaleProperties;
+    }
+
+    /**
+     * Set the autoScaleProperties property: Auto Scale Properties for Elastic San Appliance.
+     * 
+     * @param autoScaleProperties the autoScaleProperties value to set.
+     * @return the ElasticSanUpdateProperties object itself.
+     */
+    public ElasticSanUpdateProperties withAutoScaleProperties(AutoScaleProperties autoScaleProperties) {
+        this.autoScaleProperties = autoScaleProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (autoScaleProperties() != null) {
+            autoScaleProperties().validate();
+        }
     }
 }

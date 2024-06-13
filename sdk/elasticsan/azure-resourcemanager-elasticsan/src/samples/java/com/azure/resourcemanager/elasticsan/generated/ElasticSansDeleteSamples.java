@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class ElasticSansDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/ElasticSans_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Delete_MinimumSet_Gen.
@@ -22,8 +21,7 @@ public final class ElasticSansDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/ElasticSans_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Delete_MaximumSet_Gen.
@@ -31,6 +29,6 @@ public final class ElasticSansDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void elasticSansDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.elasticSans().delete("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
+        manager.elasticSans().delete("rgelasticsan", "elasticsanname", com.azure.core.util.Context.NONE);
     }
 }

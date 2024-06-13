@@ -366,7 +366,8 @@ public final class VolumesClientImpl implements VolumesClient {
     private Mono<VolumeInner> createAsync(String resourceGroupName, String elasticSanName, String volumeGroupName,
         String volumeName, VolumeInner parameters, Context context) {
         return beginCreateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -635,7 +636,8 @@ public final class VolumesClientImpl implements VolumesClient {
     private Mono<VolumeInner> updateAsync(String resourceGroupName, String elasticSanName, String volumeGroupName,
         String volumeName, VolumeUpdate parameters, Context context) {
         return beginUpdateAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, parameters, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -871,8 +873,10 @@ public final class VolumesClientImpl implements VolumesClient {
         String volumeGroupName, String volumeName) {
         final XMsDeleteSnapshots xMsDeleteSnapshots = null;
         final XMsForceDelete xMsForceDelete = null;
-        return this.beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots,
-            xMsForceDelete).getSyncPoller();
+        return this
+            .beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots,
+                xMsForceDelete)
+            .getSyncPoller();
     }
 
     /**
@@ -896,8 +900,10 @@ public final class VolumesClientImpl implements VolumesClient {
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String elasticSanName,
         String volumeGroupName, String volumeName, XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete,
         Context context) {
-        return this.beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots,
-            xMsForceDelete, context).getSyncPoller();
+        return this
+            .beginDeleteAsync(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots,
+                xMsForceDelete, context)
+            .getSyncPoller();
     }
 
     /**
