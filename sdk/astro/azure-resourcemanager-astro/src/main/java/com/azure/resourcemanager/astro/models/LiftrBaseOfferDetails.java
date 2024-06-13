@@ -182,16 +182,17 @@ public final class LiftrBaseOfferDetails {
      */
     public void validate() {
         if (publisherId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property publisherId in model LiftrBaseOfferDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property publisherId in model LiftrBaseOfferDetails"));
         }
         if (offerId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property offerId in model LiftrBaseOfferDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property offerId in model LiftrBaseOfferDetails"));
         }
         if (planId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property planId in model LiftrBaseOfferDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property planId in model LiftrBaseOfferDetails"));
         }
     }
 
