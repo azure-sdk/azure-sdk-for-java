@@ -13,17 +13,19 @@ import com.azure.resourcemanager.loadtesting.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** LoadTest details. */
+/**
+ * LoadTest details.
+ */
 @Fluent
 public final class LoadTestResourceInner extends Resource {
     /*
-     * Load Test resource properties
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private LoadTestProperties innerProperties;
 
     /*
-     * The type of identity used for the resource.
+     * The managed service identities assigned to this resource.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -34,13 +36,15 @@ public final class LoadTestResourceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of LoadTestResourceInner class. */
+    /**
+     * Creates an instance of LoadTestResourceInner class.
+     */
     public LoadTestResourceInner() {
     }
 
     /**
-     * Get the innerProperties property: Load Test resource properties.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
      * @return the innerProperties value.
      */
     private LoadTestProperties innerProperties() {
@@ -48,8 +52,8 @@ public final class LoadTestResourceInner extends Resource {
     }
 
     /**
-     * Get the identity property: The type of identity used for the resource.
-     *
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -57,8 +61,8 @@ public final class LoadTestResourceInner extends Resource {
     }
 
     /**
-     * Set the identity property: The type of identity used for the resource.
-     *
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
      * @param identity the identity value to set.
      * @return the LoadTestResourceInner object itself.
      */
@@ -69,21 +73,25 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadTestResourceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadTestResourceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -92,7 +100,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Get the description property: Description of the resource.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -101,7 +109,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Set the description property: Description of the resource.
-     *
+     * 
      * @param description the description value to set.
      * @return the LoadTestResourceInner object itself.
      */
@@ -115,7 +123,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceState provisioningState() {
@@ -124,7 +132,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Get the dataPlaneUri property: Resource data plane URI.
-     *
+     * 
      * @return the dataPlaneUri value.
      */
     public String dataPlaneUri() {
@@ -133,7 +141,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Get the encryption property: CMK Encryption property.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -142,7 +150,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Set the encryption property: CMK Encryption property.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the LoadTestResourceInner object itself.
      */
@@ -156,7 +164,7 @@ public final class LoadTestResourceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
