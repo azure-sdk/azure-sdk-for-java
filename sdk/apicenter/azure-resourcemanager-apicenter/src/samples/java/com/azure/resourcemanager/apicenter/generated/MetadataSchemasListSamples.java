@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class MetadataSchemasListSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_List.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/MetadataSchemas_List.json
      */
     /**
      * Sample code: MetadataSchemas_ListByService.

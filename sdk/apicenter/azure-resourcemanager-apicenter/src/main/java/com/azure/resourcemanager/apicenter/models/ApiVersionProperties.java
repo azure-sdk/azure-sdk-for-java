@@ -78,12 +78,13 @@ public final class ApiVersionProperties {
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property title in model ApiVersionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property title in model ApiVersionProperties"));
         }
         if (lifecycleStage() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property lifecycleStage in model ApiVersionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property lifecycleStage in model ApiVersionProperties"));
         }
     }
 

@@ -79,8 +79,9 @@ public final class MetadataSchemaProperties {
      */
     public void validate() {
         if (schema() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property schema in model MetadataSchemaProperties"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property schema in model MetadataSchemaProperties"));
         }
         if (assignedTo() != null) {
             assignedTo().forEach(e -> e.validate());

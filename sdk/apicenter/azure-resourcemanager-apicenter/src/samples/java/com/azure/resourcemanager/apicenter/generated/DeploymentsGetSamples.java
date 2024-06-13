@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class DeploymentsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Get.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Deployments_Get.json
      */
     /**
      * Sample code: Deployments_Get.
@@ -18,7 +17,8 @@ public final class DeploymentsGetSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void deploymentsGet(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.deployments().getWithResponse("contoso-resources", "contoso", "default", "echo-api", "production",
-            com.azure.core.util.Context.NONE);
+        manager.deployments()
+            .getWithResponse("contoso-resources", "contoso", "default", "echo-api", "production",
+                com.azure.core.util.Context.NONE);
     }
 }

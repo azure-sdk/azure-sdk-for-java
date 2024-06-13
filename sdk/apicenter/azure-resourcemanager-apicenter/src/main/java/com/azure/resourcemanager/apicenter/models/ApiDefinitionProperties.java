@@ -93,8 +93,8 @@ public final class ApiDefinitionProperties {
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property title in model ApiDefinitionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property title in model ApiDefinitionProperties"));
         }
         if (specification() != null) {
             specification().validate();

@@ -182,12 +182,12 @@ public final class EnvironmentProperties {
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property title in model EnvironmentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property title in model EnvironmentProperties"));
         }
         if (kind() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property kind in model EnvironmentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property kind in model EnvironmentProperties"));
         }
         if (server() != null) {
             server().validate();

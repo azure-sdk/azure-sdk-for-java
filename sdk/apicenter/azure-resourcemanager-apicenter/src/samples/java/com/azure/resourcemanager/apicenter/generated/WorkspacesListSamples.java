@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_List.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Workspaces_List.json
      */
     /**
      * Sample code: Workspaces_ListByService.

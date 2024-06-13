@@ -62,8 +62,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
-     * The interface defining all the services for AzureApiCenterEnvironments to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for AzureApiCenterEnvironments to be used by the proxy service to perform
+     * REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureApiCenterEnviro")

@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class DeploymentsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Delete.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Deployments_Delete.json
      */
     /**
      * Sample code: Deployments_Delete.
@@ -18,7 +17,8 @@ public final class DeploymentsDeleteSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void deploymentsDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.deployments().deleteWithResponse("contoso-resources", "contoso", "default", "echo-api", "production",
-            com.azure.core.util.Context.NONE);
+        manager.deployments()
+            .deleteWithResponse("contoso-resources", "contoso", "default", "echo-api", "production",
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class EnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
-     * Environments_CreateOrUpdate.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Environments_CreateOrUpdate.json
      */
     /**
      * Sample code: Environments_CreateOrUpdate.
@@ -18,7 +17,9 @@ public final class EnvironmentsCreateOrUpdateSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void environmentsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.environments().define("public").withExistingWorkspace("contoso-resources", "contoso", "default")
+        manager.environments()
+            .define("public")
+            .withExistingWorkspace("contoso-resources", "contoso", "default")
             .create();
     }
 }
