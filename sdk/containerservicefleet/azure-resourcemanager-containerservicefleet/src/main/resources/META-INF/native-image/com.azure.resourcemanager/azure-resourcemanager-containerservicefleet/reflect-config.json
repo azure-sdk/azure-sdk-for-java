@@ -59,6 +59,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.containerservicefleet.models.AzureResourceManagerLegacyManagedServiceIdentityV4",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.containerservicefleet.fluent.models.FleetCredentialResultsInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
