@@ -5,103 +5,103 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
 /**
  * ScalingPlan
- *
- * <p>Represents a scaling plan definition.
+ * 
+ * Represents a scaling plan definition.
  */
 @Fluent
 public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet {
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
     /*
      * Detailed properties for scaling plan.
      */
     @JsonProperty(value = "properties", required = true)
     private ScalingPlanProperties innerProperties = new ScalingPlanProperties();
 
-    /** Creates an instance of ScalingPlanInner class. */
+    /**
+     * Creates an instance of ScalingPlanInner class.
+     */
     public ScalingPlanInner() {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the innerProperties property: Detailed properties for scaling plan.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScalingPlanProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScalingPlanInner withManagedBy(String managedBy) {
         super.withManagedBy(managedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScalingPlanInner withKind(String kind) {
         super.withKind(kind);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ScalingPlanInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public ScalingPlanInner withIdentity(ManagedServiceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ScalingPlanInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public ScalingPlanInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ScalingPlanInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ScalingPlanInner withPlan(Plan plan) {
         super.withPlan(plan);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScalingPlanInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScalingPlanInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -110,7 +110,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the objectId property: ObjectId of scaling plan. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -119,7 +119,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the description property: Description of scaling plan.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -128,7 +128,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the description property: Description of scaling plan.
-     *
+     * 
      * @param description the description value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -142,7 +142,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -151,7 +151,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -165,7 +165,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -174,7 +174,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -188,7 +188,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @return the hostPoolType value.
      */
     public ScalingHostPoolType hostPoolType() {
@@ -197,7 +197,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @param hostPoolType the hostPoolType value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -211,7 +211,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @return the exclusionTag value.
      */
     public String exclusionTag() {
@@ -220,7 +220,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @param exclusionTag the exclusionTag value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -234,7 +234,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the schedules property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @return the schedules value.
      */
     public List<ScalingSchedule> schedules() {
@@ -243,7 +243,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the schedules property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -257,7 +257,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @return the hostPoolReferences value.
      */
     public List<ScalingHostPoolReference> hostPoolReferences() {
@@ -266,7 +266,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Set the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @param hostPoolReferences the hostPoolReferences value to set.
      * @return the ScalingPlanInner object itself.
      */
@@ -280,17 +280,16 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ScalingPlanInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model ScalingPlanInner"));
         } else {
             innerProperties().validate();
         }

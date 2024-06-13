@@ -6,12 +6,15 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPatchProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** HostPool properties that can be patched. */
+/**
+ * HostPool properties that can be patched.
+ */
 @Fluent
 public final class HostPoolPatch extends ProxyResource {
     /*
@@ -27,13 +30,21 @@ public final class HostPoolPatch extends ProxyResource {
     @JsonProperty(value = "properties")
     private HostPoolPatchProperties innerProperties;
 
-    /** Creates an instance of HostPoolPatch class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of HostPoolPatch class.
+     */
     public HostPoolPatch() {
     }
 
     /**
      * Get the tags property: tags to be updated.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -42,7 +53,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the tags property: tags to be updated.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -53,7 +64,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the innerProperties property: HostPool properties that can be patched.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HostPoolPatchProperties innerProperties() {
@@ -61,8 +72,17 @@ public final class HostPoolPatch extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -71,7 +91,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -85,7 +105,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the description property: Description of HostPool.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -94,7 +114,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the description property: Description of HostPool.
-     *
+     * 
      * @param description the description value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -108,7 +128,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @return the customRdpProperty value.
      */
     public String customRdpProperty() {
@@ -117,7 +137,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @param customRdpProperty the customRdpProperty value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -131,7 +151,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @return the maxSessionLimit value.
      */
     public Integer maxSessionLimit() {
@@ -140,7 +160,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @param maxSessionLimit the maxSessionLimit value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -154,7 +174,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @return the personalDesktopAssignmentType value.
      */
     public PersonalDesktopAssignmentType personalDesktopAssignmentType() {
@@ -163,12 +183,12 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @param personalDesktopAssignmentType the personalDesktopAssignmentType value to set.
      * @return the HostPoolPatch object itself.
      */
-    public HostPoolPatch withPersonalDesktopAssignmentType(
-        PersonalDesktopAssignmentType personalDesktopAssignmentType) {
+    public HostPoolPatch
+        withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType personalDesktopAssignmentType) {
         if (this.innerProperties() == null) {
             this.innerProperties = new HostPoolPatchProperties();
         }
@@ -178,7 +198,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @return the loadBalancerType value.
      */
     public LoadBalancerType loadBalancerType() {
@@ -187,7 +207,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @param loadBalancerType the loadBalancerType value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -201,7 +221,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the ring property: The ring number of HostPool.
-     *
+     * 
      * @return the ring value.
      */
     public Integer ring() {
@@ -210,7 +230,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the ring property: The ring number of HostPool.
-     *
+     * 
      * @param ring the ring value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -224,7 +244,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @return the validationEnvironment value.
      */
     public Boolean validationEnvironment() {
@@ -233,7 +253,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @param validationEnvironment the validationEnvironment value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -247,7 +267,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @return the registrationInfo value.
      */
     public RegistrationInfoPatch registrationInfo() {
@@ -256,7 +276,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -270,7 +290,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @return the vmTemplate value.
      */
     public String vmTemplate() {
@@ -279,7 +299,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @param vmTemplate the vmTemplate value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -293,7 +313,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @return the ssoadfsAuthority value.
      */
     public String ssoadfsAuthority() {
@@ -302,7 +322,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @param ssoadfsAuthority the ssoadfsAuthority value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -316,7 +336,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @return the ssoClientId value.
      */
     public String ssoClientId() {
@@ -325,7 +345,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @param ssoClientId the ssoClientId value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -340,7 +360,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Get the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
      * ADFS.
-     *
+     * 
      * @return the ssoClientSecretKeyVaultPath value.
      */
     public String ssoClientSecretKeyVaultPath() {
@@ -350,7 +370,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Set the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
      * ADFS.
-     *
+     * 
      * @param ssoClientSecretKeyVaultPath the ssoClientSecretKeyVaultPath value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -364,7 +384,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @return the ssoSecretType value.
      */
     public SsoSecretType ssoSecretType() {
@@ -373,7 +393,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @param ssoSecretType the ssoSecretType value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -388,7 +408,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Get the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @return the preferredAppGroupType value.
      */
     public PreferredAppGroupType preferredAppGroupType() {
@@ -398,7 +418,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Set the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @param preferredAppGroupType the preferredAppGroupType value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -412,7 +432,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @return the startVMOnConnect value.
      */
     public Boolean startVMOnConnect() {
@@ -421,7 +441,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @param startVMOnConnect the startVMOnConnect value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -435,7 +455,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public HostpoolPublicNetworkAccess publicNetworkAccess() {
@@ -444,7 +464,7 @@ public final class HostPoolPatch extends ProxyResource {
 
     /**
      * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -459,7 +479,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Get the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @return the agentUpdate value.
      */
     public AgentUpdatePatchProperties agentUpdate() {
@@ -469,7 +489,7 @@ public final class HostPoolPatch extends ProxyResource {
     /**
      * Set the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @param agentUpdate the agentUpdate value to set.
      * @return the HostPoolPatch object itself.
      */
@@ -482,8 +502,124 @@ public final class HostPoolPatch extends ProxyResource {
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedPrivateUdp();
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withManagedPrivateUdp(managedPrivateUdp);
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().directUdp();
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withDirectUdp(DirectUdp directUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withDirectUdp(directUdp);
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicUdp();
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withPublicUdp(PublicUdp publicUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withPublicUdp(publicUdp);
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().relayUdp();
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolPatch object itself.
+     */
+    public HostPoolPatch withRelayUdp(RelayUdp relayUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPatchProperties();
+        }
+        this.innerProperties().withRelayUdp(relayUdp);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

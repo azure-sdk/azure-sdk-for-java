@@ -8,11 +8,11 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatch;
 import java.util.Collections;
@@ -61,15 +61,15 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
+    public Sku sku() {
         return this.innerModel().sku();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
     }
 
@@ -147,27 +147,23 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public Workspace create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
-    WorkspaceImpl(
-        String name, com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
+    WorkspaceImpl(String name,
+        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = new WorkspaceInner();
         this.serviceManager = serviceManager;
         this.workspaceName = name;
@@ -179,51 +175,42 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Workspace apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .updateWithResponse(resourceGroupName, workspaceName, updateWorkspace, context)
+            .getValue();
         return this;
     }
 
-    WorkspaceImpl(
-        WorkspaceInner innerObject,
+    WorkspaceImpl(WorkspaceInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
     }
 
     public Workspace refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .getByResourceGroupWithResponse(resourceGroupName, workspaceName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getByResourceGroupWithResponse(resourceGroupName, workspaceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Workspace refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaces()
-                .getByResourceGroupWithResponse(resourceGroupName, workspaceName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getByResourceGroupWithResponse(resourceGroupName, workspaceName, context)
+            .getValue();
         return this;
     }
 
@@ -257,17 +244,17 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public WorkspaceImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public WorkspaceImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public WorkspaceImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public WorkspaceImpl withSku(Sku sku) {
         this.innerModel().withSku(sku);
         return this;
     }
 
-    public WorkspaceImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public WorkspaceImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Resource Type of Application. */
+/**
+ * Resource Type of Application.
+ */
 public final class RemoteApplicationType extends ExpandableStringEnum<RemoteApplicationType> {
-    /** Static value InBuilt for RemoteApplicationType. */
+    /**
+     * Static value InBuilt for RemoteApplicationType.
+     */
     public static final RemoteApplicationType IN_BUILT = fromString("InBuilt");
 
-    /** Static value MsixApplication for RemoteApplicationType. */
+    /**
+     * Static value MsixApplication for RemoteApplicationType.
+     */
     public static final RemoteApplicationType MSIX_APPLICATION = fromString("MsixApplication");
 
     /**
      * Creates a new instance of RemoteApplicationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class RemoteApplicationType extends ExpandableStringEnum<RemoteAppl
 
     /**
      * Creates or finds a RemoteApplicationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RemoteApplicationType.
      */
@@ -38,7 +44,7 @@ public final class RemoteApplicationType extends ExpandableStringEnum<RemoteAppl
 
     /**
      * Gets known RemoteApplicationType values.
-     *
+     * 
      * @return known RemoteApplicationType values.
      */
     public static Collection<RemoteApplicationType> values() {
