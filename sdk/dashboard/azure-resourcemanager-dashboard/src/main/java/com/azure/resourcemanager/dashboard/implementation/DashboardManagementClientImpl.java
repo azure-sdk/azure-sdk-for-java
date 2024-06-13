@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.dashboard.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -25,7 +26,6 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
 import com.azure.resourcemanager.dashboard.fluent.ManagedPrivateEndpointsClient;
-import com.azure.resourcemanager.dashboard.fluent.OperationsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateLinkResourcesClient;
 import java.io.IOException;
@@ -127,20 +127,6 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * The GrafanasClient object to access its operations.
      */
     private final GrafanasClient grafanas;
@@ -214,7 +200,6 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2023-09-01";
-        this.operations = new OperationsClientImpl(this);
         this.grafanas = new GrafanasClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
@@ -281,8 +266,8 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -323,7 +308,7 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

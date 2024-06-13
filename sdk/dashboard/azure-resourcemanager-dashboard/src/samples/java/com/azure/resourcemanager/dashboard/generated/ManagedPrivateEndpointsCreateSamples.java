@@ -11,8 +11,7 @@ import java.util.Arrays;
  */
 public final class ManagedPrivateEndpointsCreateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * ManagedPrivateEndpoints_Create.json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/ManagedPrivateEndpoints_Create.json
      */
     /**
      * Sample code: ManagedPrivateEndpoint_Create.
@@ -20,12 +19,16 @@ public final class ManagedPrivateEndpointsCreateSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void managedPrivateEndpointCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().define("myMPEName").withRegion("West US")
+        manager.managedPrivateEndpoints()
+            .define("myMPEName")
+            .withRegion("West US")
             .withExistingGrafana("myResourceGroup", "myWorkspace")
             .withPrivateLinkResourceId(
                 "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-000000000000/resourceGroups/xx-rg/providers/Microsoft.Kusto/Clusters/sampleKustoResource")
-            .withPrivateLinkResourceRegion("West US").withGroupIds(Arrays.asList("grafana"))
+            .withPrivateLinkResourceRegion("West US")
+            .withGroupIds(Arrays.asList("grafana"))
             .withRequestMessage("Example Request Message")
-            .withPrivateLinkServiceUrl("my-self-hosted-influxdb.westus.mydomain.com").create();
+            .withPrivateLinkServiceUrl("my-self-hosted-influxdb.westus.mydomain.com")
+            .create();
     }
 }

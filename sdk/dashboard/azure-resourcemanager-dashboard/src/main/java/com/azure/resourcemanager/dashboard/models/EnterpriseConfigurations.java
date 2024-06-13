@@ -31,8 +31,7 @@ public final class EnterpriseConfigurations {
     }
 
     /**
-     * Get the marketplacePlanId property: The Plan Id of the Azure Marketplace subscription for the Enterprise
-     * plugins.
+     * Get the marketplacePlanId property: The Plan Id of the Azure Marketplace subscription for the Enterprise plugins.
      * 
      * @return the marketplacePlanId value.
      */
@@ -41,8 +40,7 @@ public final class EnterpriseConfigurations {
     }
 
     /**
-     * Set the marketplacePlanId property: The Plan Id of the Azure Marketplace subscription for the Enterprise
-     * plugins.
+     * Set the marketplacePlanId property: The Plan Id of the Azure Marketplace subscription for the Enterprise plugins.
      * 
      * @param marketplacePlanId the marketplacePlanId value to set.
      * @return the EnterpriseConfigurations object itself.

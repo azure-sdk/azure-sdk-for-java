@@ -21,10 +21,6 @@
 - [Refresh](#managedprivateendpoints_refresh)
 - [Update](#managedprivateendpoints_update)
 
-## Operations
-
-- [List](#operations_list)
-
 ## PrivateEndpointConnections
 
 - [Approve](#privateendpointconnections_approve)
@@ -52,7 +48,8 @@ public final class GrafanaCheckEnterpriseDetailsSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void enterpriseDetailsPost(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().checkEnterpriseDetailsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+        manager.grafanas()
+            .checkEnterpriseDetailsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -79,7 +76,6 @@ import com.azure.resourcemanager.dashboard.models.ZoneRedundancy;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for Grafana Create.
@@ -94,7 +90,33 @@ public final class GrafanaCreateSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().define("myWorkspace").withRegion("West US").withExistingResourceGroup("myResourceGroup").withTags(mapOf("Environment", "Dev")).withSku(new ResourceSku().withName("Standard")).withProperties(new ManagedGrafanaProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED).withZoneRedundancy(ZoneRedundancy.ENABLED).withApiKey(ApiKey.ENABLED).withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED).withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace")))).withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId").withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED)).withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true).withHost("smtp.sendemail.com:587").withUser("username").withPassword("fakeTokenPlaceholder").withFromAddress("test@sendemail.com").withFromName("emailsender").withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS).withSkipVerify(true))).withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin())).withGrafanaMajorVersion("9")).withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)).create();
+        manager.grafanas()
+            .define("myWorkspace")
+            .withRegion("West US")
+            .withExistingResourceGroup("myResourceGroup")
+            .withTags(mapOf("Environment", "Dev"))
+            .withSku(new ResourceSku().withName("Standard"))
+            .withProperties(new ManagedGrafanaProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                .withZoneRedundancy(ZoneRedundancy.ENABLED)
+                .withApiKey(ApiKey.ENABLED)
+                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
+                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
+                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
+                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
+                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
+                .withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true)
+                    .withHost("smtp.sendemail.com:587")
+                    .withUser("username")
+                    .withPassword("fakeTokenPlaceholder")
+                    .withFromAddress("test@sendemail.com")
+                    .withFromName("emailsender")
+                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                    .withSkipVerify(true)))
+                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
+                .withGrafanaMajorVersion("9"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .create();
     }
 
     // Use "Map.of" if available
@@ -148,7 +170,8 @@ public final class GrafanaFetchAvailablePluginsSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaFetchAvailablePlugins(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+        manager.grafanas()
+            .fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -169,7 +192,8 @@ public final class GrafanaGetByResourceGroupSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+        manager.grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -235,7 +259,6 @@ import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for Grafana Update.
@@ -250,8 +273,30 @@ public final class GrafanaUpdateSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaUpdate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        ManagedGrafana resource = manager.grafanas().getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("Environment", "Dev 2")).withSku(new ResourceSku().withName("Standard")).withProperties(new ManagedGrafanaPropertiesUpdateParameters().withApiKey(ApiKey.ENABLED).withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED).withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace")))).withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId").withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED)).withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true).withHost("smtp.sendemail.com:587").withUser("username").withPassword("fakeTokenPlaceholder").withFromAddress("test@sendemail.com").withFromName("emailsender").withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS).withSkipVerify(true))).withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin())).withGrafanaMajorVersion("9")).apply();
+        ManagedGrafana resource = manager.grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("Environment", "Dev 2"))
+            .withSku(new ResourceSku().withName("Standard"))
+            .withProperties(new ManagedGrafanaPropertiesUpdateParameters().withApiKey(ApiKey.ENABLED)
+                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
+                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
+                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
+                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
+                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
+                .withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true)
+                    .withHost("smtp.sendemail.com:587")
+                    .withUser("username")
+                    .withPassword("fakeTokenPlaceholder")
+                    .withFromAddress("test@sendemail.com")
+                    .withFromName("emailsender")
+                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                    .withSkipVerify(true)))
+                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
+                .withGrafanaMajorVersion("9"))
+            .apply();
     }
 
     // Use "Map.of" if available
@@ -286,7 +331,17 @@ public final class ManagedPrivateEndpointsCreateSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void managedPrivateEndpointCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().define("myMPEName").withRegion("West US").withExistingGrafana("myResourceGroup", "myWorkspace").withPrivateLinkResourceId("/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-000000000000/resourceGroups/xx-rg/providers/Microsoft.Kusto/Clusters/sampleKustoResource").withPrivateLinkResourceRegion("West US").withGroupIds(Arrays.asList("grafana")).withRequestMessage("Example Request Message").withPrivateLinkServiceUrl("my-self-hosted-influxdb.westus.mydomain.com").create();
+        manager.managedPrivateEndpoints()
+            .define("myMPEName")
+            .withRegion("West US")
+            .withExistingGrafana("myResourceGroup", "myWorkspace")
+            .withPrivateLinkResourceId(
+                "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-000000000000/resourceGroups/xx-rg/providers/Microsoft.Kusto/Clusters/sampleKustoResource")
+            .withPrivateLinkResourceRegion("West US")
+            .withGroupIds(Arrays.asList("grafana"))
+            .withRequestMessage("Example Request Message")
+            .withPrivateLinkServiceUrl("my-self-hosted-influxdb.westus.mydomain.com")
+            .create();
     }
 }
 ```
@@ -307,7 +362,8 @@ public final class ManagedPrivateEndpointsDeleteSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void managedPrivateEndpointDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().delete("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
+        manager.managedPrivateEndpoints()
+            .delete("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -328,7 +384,8 @@ public final class ManagedPrivateEndpointsGetSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void managedPrivateEndpointGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
+        manager.managedPrivateEndpoints()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -395,7 +452,9 @@ public final class ManagedPrivateEndpointsUpdateSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void managedPrivateEndpointsPatch(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        ManagedPrivateEndpointModel resource = manager.managedPrivateEndpoints().getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE).getValue();
+        ManagedPrivateEndpointModel resource = manager.managedPrivateEndpoints()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("Environment", "Dev 2")).apply();
     }
 
@@ -409,27 +468,6 @@ public final class ManagedPrivateEndpointsUpdateSamples {
             map.put(key, value);
         }
         return map;
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -450,7 +488,10 @@ public final class PrivateEndpointConnectionsApproveSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsApprove(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().define("myConnection").withExistingGrafana("myResourceGroup", "myWorkspace").create();
+        manager.privateEndpointConnections()
+            .define("myConnection")
+            .withExistingGrafana("myResourceGroup", "myWorkspace")
+            .create();
     }
 }
 ```
@@ -471,7 +512,8 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().delete("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .delete("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -492,7 +534,8 @@ public final class PrivateEndpointConnectionsGetSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -534,7 +577,8 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateLinkResourcesGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources().getWithResponse("myResourceGroup", "myWorkspace", "grafana", com.azure.core.util.Context.NONE);
+        manager.privateLinkResources()
+            .getWithResponse("myResourceGroup", "myWorkspace", "grafana", com.azure.core.util.Context.NONE);
     }
 }
 ```
