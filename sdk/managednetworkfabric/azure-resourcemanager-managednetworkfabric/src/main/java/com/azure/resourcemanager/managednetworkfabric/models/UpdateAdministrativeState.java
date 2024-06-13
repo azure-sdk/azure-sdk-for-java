@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Update administrative state on list of resources. */
+/**
+ * Update administrative state on list of resources.
+ */
 @Fluent
 public final class UpdateAdministrativeState extends EnableDisableOnResources {
     /*
@@ -17,13 +19,15 @@ public final class UpdateAdministrativeState extends EnableDisableOnResources {
     @JsonProperty(value = "state")
     private EnableDisableState state;
 
-    /** Creates an instance of UpdateAdministrativeState class. */
+    /**
+     * Creates an instance of UpdateAdministrativeState class.
+     */
     public UpdateAdministrativeState() {
     }
 
     /**
      * Get the state property: Administrative state.
-     *
+     * 
      * @return the state value.
      */
     public EnableDisableState state() {
@@ -32,7 +36,7 @@ public final class UpdateAdministrativeState extends EnableDisableOnResources {
 
     /**
      * Set the state property: Administrative state.
-     *
+     * 
      * @param state the state value to set.
      * @return the UpdateAdministrativeState object itself.
      */
@@ -41,7 +45,9 @@ public final class UpdateAdministrativeState extends EnableDisableOnResources {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UpdateAdministrativeState withResourceIds(List<String> resourceIds) {
         super.withResourceIds(resourceIds);
@@ -50,7 +56,7 @@ public final class UpdateAdministrativeState extends EnableDisableOnResources {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

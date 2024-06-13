@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network device interface properties. */
+/**
+ * Network device interface properties.
+ */
 @Fluent
 public final class DeviceInterfaceProperties {
     /*
@@ -29,13 +31,15 @@ public final class DeviceInterfaceProperties {
     @JsonProperty(value = "supportedConnectorTypes")
     private List<SupportedConnectorProperties> supportedConnectorTypes;
 
-    /** Creates an instance of DeviceInterfaceProperties class. */
+    /**
+     * Creates an instance of DeviceInterfaceProperties class.
+     */
     public DeviceInterfaceProperties() {
     }
 
     /**
      * Get the identifier property: Interface identifier. Example: HundredGigE0/0.
-     *
+     * 
      * @return the identifier value.
      */
     public String identifier() {
@@ -44,7 +48,7 @@ public final class DeviceInterfaceProperties {
 
     /**
      * Set the identifier property: Interface identifier. Example: HundredGigE0/0.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the DeviceInterfaceProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class DeviceInterfaceProperties {
 
     /**
      * Get the interfaceType property: Interface type.
-     *
+     * 
      * @return the interfaceType value.
      */
     public String interfaceType() {
@@ -64,7 +68,7 @@ public final class DeviceInterfaceProperties {
 
     /**
      * Set the interfaceType property: Interface type.
-     *
+     * 
      * @param interfaceType the interfaceType value to set.
      * @return the DeviceInterfaceProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class DeviceInterfaceProperties {
 
     /**
      * Get the supportedConnectorTypes property: List of supported connector types.
-     *
+     * 
      * @return the supportedConnectorTypes value.
      */
     public List<SupportedConnectorProperties> supportedConnectorTypes() {
@@ -84,19 +88,19 @@ public final class DeviceInterfaceProperties {
 
     /**
      * Set the supportedConnectorTypes property: List of supported connector types.
-     *
+     * 
      * @param supportedConnectorTypes the supportedConnectorTypes value to set.
      * @return the DeviceInterfaceProperties object itself.
      */
-    public DeviceInterfaceProperties withSupportedConnectorTypes(
-        List<SupportedConnectorProperties> supportedConnectorTypes) {
+    public DeviceInterfaceProperties
+        withSupportedConnectorTypes(List<SupportedConnectorProperties> supportedConnectorTypes) {
         this.supportedConnectorTypes = supportedConnectorTypes;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

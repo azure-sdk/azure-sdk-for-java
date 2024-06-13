@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkRackI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Network Racks. */
+/**
+ * List of Network Racks.
+ */
 @Fluent
 public final class NetworkRacksListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkRacksListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkRacksListResult class. */
+    /**
+     * Creates an instance of NetworkRacksListResult class.
+     */
     public NetworkRacksListResult() {
     }
 
     /**
      * Get the value property: List of Network Rack resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkRackInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkRacksListResult {
 
     /**
      * Set the value property: List of Network Rack resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkRacksListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkRacksListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkRacksListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkRacksListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkRacksListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

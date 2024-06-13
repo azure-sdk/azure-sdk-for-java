@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The IP Community patch resource definition. */
+/**
+ * The IP Community patch resource definition.
+ */
 @Fluent
 public final class IpCommunityPatch extends TagsUpdate {
     /*
@@ -19,20 +21,24 @@ public final class IpCommunityPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private IpCommunityPatchableProperties innerProperties;
 
-    /** Creates an instance of IpCommunityPatch class. */
+    /**
+     * Creates an instance of IpCommunityPatch class.
+     */
     public IpCommunityPatch() {
     }
 
     /**
      * Get the innerProperties property: IP Community patchable properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpCommunityPatchableProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpCommunityPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -41,7 +47,7 @@ public final class IpCommunityPatch extends TagsUpdate {
 
     /**
      * Get the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @return the ipCommunityRules value.
      */
     public List<IpCommunityRule> ipCommunityRules() {
@@ -50,7 +56,7 @@ public final class IpCommunityPatch extends TagsUpdate {
 
     /**
      * Set the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @param ipCommunityRules the ipCommunityRules value to set.
      * @return the IpCommunityPatch object itself.
      */
@@ -64,7 +70,7 @@ public final class IpCommunityPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

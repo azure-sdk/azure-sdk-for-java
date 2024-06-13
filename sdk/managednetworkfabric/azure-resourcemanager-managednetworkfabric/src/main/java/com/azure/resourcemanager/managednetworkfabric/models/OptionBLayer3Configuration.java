@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** OptionB Layer3 Configuration properties. */
+/**
+ * OptionB Layer3 Configuration properties.
+ */
 @Fluent
 public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
     /*
@@ -28,13 +30,15 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
     @JsonProperty(value = "fabricASN", access = JsonProperty.Access.WRITE_ONLY)
     private Long fabricAsn;
 
-    /** Creates an instance of OptionBLayer3Configuration class. */
+    /**
+     * Creates an instance of OptionBLayer3Configuration class.
+     */
     public OptionBLayer3Configuration() {
     }
 
     /**
      * Get the peerAsn property: ASN of PE devices for CE/PE connectivity.Example : 28.
-     *
+     * 
      * @return the peerAsn value.
      */
     public Long peerAsn() {
@@ -43,7 +47,7 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
 
     /**
      * Set the peerAsn property: ASN of PE devices for CE/PE connectivity.Example : 28.
-     *
+     * 
      * @param peerAsn the peerAsn value to set.
      * @return the OptionBLayer3Configuration object itself.
      */
@@ -54,7 +58,7 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
 
     /**
      * Get the vlanId property: VLAN for CE/PE Layer 3 connectivity.Example : 501.
-     *
+     * 
      * @return the vlanId value.
      */
     public Integer vlanId() {
@@ -63,7 +67,7 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
 
     /**
      * Set the vlanId property: VLAN for CE/PE Layer 3 connectivity.Example : 501.
-     *
+     * 
      * @param vlanId the vlanId value to set.
      * @return the OptionBLayer3Configuration object itself.
      */
@@ -74,35 +78,43 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
 
     /**
      * Get the fabricAsn property: ASN of CE devices for CE/PE connectivity.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public Long fabricAsn() {
         return this.fabricAsn;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OptionBLayer3Configuration withPrimaryIpv4Prefix(String primaryIpv4Prefix) {
         super.withPrimaryIpv4Prefix(primaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OptionBLayer3Configuration withPrimaryIpv6Prefix(String primaryIpv6Prefix) {
         super.withPrimaryIpv6Prefix(primaryIpv6Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OptionBLayer3Configuration withSecondaryIpv4Prefix(String secondaryIpv4Prefix) {
         super.withSecondaryIpv4Prefix(secondaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OptionBLayer3Configuration withSecondaryIpv6Prefix(String secondaryIpv6Prefix) {
         super.withSecondaryIpv6Prefix(secondaryIpv6Prefix);
@@ -111,7 +123,7 @@ public class OptionBLayer3Configuration extends Layer3IpPrefixProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.IpPrefixInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IP Prefixes. */
+/**
+ * List of IP Prefixes.
+ */
 @Fluent
 public final class IpPrefixesListResult {
     /*
@@ -24,13 +26,15 @@ public final class IpPrefixesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of IpPrefixesListResult class. */
+    /**
+     * Creates an instance of IpPrefixesListResult class.
+     */
     public IpPrefixesListResult() {
     }
 
     /**
      * Get the value property: List of IP Prefix resources.
-     *
+     * 
      * @return the value value.
      */
     public List<IpPrefixInner> value() {
@@ -39,7 +43,7 @@ public final class IpPrefixesListResult {
 
     /**
      * Set the value property: List of IP Prefix resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the IpPrefixesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class IpPrefixesListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class IpPrefixesListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the IpPrefixesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class IpPrefixesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

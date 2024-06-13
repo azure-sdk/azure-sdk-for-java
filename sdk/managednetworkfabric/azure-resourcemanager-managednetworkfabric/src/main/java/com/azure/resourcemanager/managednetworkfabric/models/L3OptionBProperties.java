@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Option B configuration. */
+/**
+ * Option B configuration.
+ */
 @Fluent
 public final class L3OptionBProperties {
     /*
@@ -29,13 +31,15 @@ public final class L3OptionBProperties {
     @JsonProperty(value = "routeTargets")
     private RouteTargetInformation routeTargets;
 
-    /** Creates an instance of L3OptionBProperties class. */
+    /**
+     * Creates an instance of L3OptionBProperties class.
+     */
     public L3OptionBProperties() {
     }
 
     /**
      * Get the importRouteTargets property: RouteTargets to be applied. This is used for the backward compatibility.
-     *
+     * 
      * @return the importRouteTargets value.
      */
     public List<String> importRouteTargets() {
@@ -44,7 +48,7 @@ public final class L3OptionBProperties {
 
     /**
      * Set the importRouteTargets property: RouteTargets to be applied. This is used for the backward compatibility.
-     *
+     * 
      * @param importRouteTargets the importRouteTargets value to set.
      * @return the L3OptionBProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class L3OptionBProperties {
 
     /**
      * Get the exportRouteTargets property: RouteTargets to be applied. This is used for the backward compatibility.
-     *
+     * 
      * @return the exportRouteTargets value.
      */
     public List<String> exportRouteTargets() {
@@ -64,7 +68,7 @@ public final class L3OptionBProperties {
 
     /**
      * Set the exportRouteTargets property: RouteTargets to be applied. This is used for the backward compatibility.
-     *
+     * 
      * @param exportRouteTargets the exportRouteTargets value to set.
      * @return the L3OptionBProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class L3OptionBProperties {
 
     /**
      * Get the routeTargets property: RouteTargets to be applied.
-     *
+     * 
      * @return the routeTargets value.
      */
     public RouteTargetInformation routeTargets() {
@@ -84,7 +88,7 @@ public final class L3OptionBProperties {
 
     /**
      * Set the routeTargets property: RouteTargets to be applied.
-     *
+     * 
      * @param routeTargets the routeTargets value to set.
      * @return the L3OptionBProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class L3OptionBProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

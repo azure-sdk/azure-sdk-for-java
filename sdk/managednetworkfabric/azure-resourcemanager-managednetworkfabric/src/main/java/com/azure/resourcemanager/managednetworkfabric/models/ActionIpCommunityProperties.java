@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Community Properties. */
+/**
+ * IP Community Properties.
+ */
 @Fluent
 public final class ActionIpCommunityProperties extends IpCommunityAddOperationProperties {
     /*
@@ -22,13 +24,15 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
     @JsonProperty(value = "set")
     private IpCommunityIdList set;
 
-    /** Creates an instance of ActionIpCommunityProperties class. */
+    /**
+     * Creates an instance of ActionIpCommunityProperties class.
+     */
     public ActionIpCommunityProperties() {
     }
 
     /**
      * Get the delete property: List of IP Community IDs.
-     *
+     * 
      * @return the delete value.
      */
     public IpCommunityIdList delete() {
@@ -37,7 +41,7 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
 
     /**
      * Set the delete property: List of IP Community IDs.
-     *
+     * 
      * @param delete the delete value to set.
      * @return the ActionIpCommunityProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
 
     /**
      * Get the set property: List of IP Community IDs.
-     *
+     * 
      * @return the set value.
      */
     public IpCommunityIdList set() {
@@ -57,7 +61,7 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
 
     /**
      * Set the set property: List of IP Community IDs.
-     *
+     * 
      * @param set the set value to set.
      * @return the ActionIpCommunityProperties object itself.
      */
@@ -66,7 +70,9 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActionIpCommunityProperties withAdd(IpCommunityIdList add) {
         super.withAdd(add);
@@ -75,7 +81,7 @@ public final class ActionIpCommunityProperties extends IpCommunityAddOperationPr
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

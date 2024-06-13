@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkInterfacePatchProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NetworkInterfacePatch resource definition. */
+/**
+ * The NetworkInterfacePatch resource definition.
+ */
 @Fluent
 public final class NetworkInterfacePatch {
     /*
@@ -17,13 +19,15 @@ public final class NetworkInterfacePatch {
     @JsonProperty(value = "properties")
     private NetworkInterfacePatchProperties innerProperties;
 
-    /** Creates an instance of NetworkInterfacePatch class. */
+    /**
+     * Creates an instance of NetworkInterfacePatch class.
+     */
     public NetworkInterfacePatch() {
     }
 
     /**
      * Get the innerProperties property: Network Interface Patch properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkInterfacePatchProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class NetworkInterfacePatch {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -41,7 +45,7 @@ public final class NetworkInterfacePatch {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkInterfacePatch object itself.
      */
@@ -55,7 +59,7 @@ public final class NetworkInterfacePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,14 +7,20 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** The NetworkPacketBroker patch resource definition. */
+/**
+ * The NetworkPacketBroker patch resource definition.
+ */
 @Fluent
 public final class NetworkPacketBrokerPatch extends TagsUpdate {
-    /** Creates an instance of NetworkPacketBrokerPatch class. */
+    /**
+     * Creates an instance of NetworkPacketBrokerPatch class.
+     */
     public NetworkPacketBrokerPatch() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkPacketBrokerPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class NetworkPacketBrokerPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

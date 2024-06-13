@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Extended Community Id list properties. */
+/**
+ * IP Extended Community Id list properties.
+ */
 @Fluent
 public class IpExtendedCommunityIdList {
     /*
@@ -17,13 +19,15 @@ public class IpExtendedCommunityIdList {
     @JsonProperty(value = "ipExtendedCommunityIds")
     private List<String> ipExtendedCommunityIds;
 
-    /** Creates an instance of IpExtendedCommunityIdList class. */
+    /**
+     * Creates an instance of IpExtendedCommunityIdList class.
+     */
     public IpExtendedCommunityIdList() {
     }
 
     /**
      * Get the ipExtendedCommunityIds property: List of IP Extended Community resource IDs.
-     *
+     * 
      * @return the ipExtendedCommunityIds value.
      */
     public List<String> ipExtendedCommunityIds() {
@@ -32,7 +36,7 @@ public class IpExtendedCommunityIdList {
 
     /**
      * Set the ipExtendedCommunityIds property: List of IP Extended Community resource IDs.
-     *
+     * 
      * @param ipExtendedCommunityIds the ipExtendedCommunityIds value to set.
      * @return the IpExtendedCommunityIdList object itself.
      */
@@ -43,7 +47,7 @@ public class IpExtendedCommunityIdList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

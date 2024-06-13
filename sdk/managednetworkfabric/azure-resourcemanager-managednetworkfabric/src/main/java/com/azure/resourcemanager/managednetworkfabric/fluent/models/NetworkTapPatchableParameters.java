@@ -11,7 +11,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.PollingType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Network Tap resource patch definition. */
+/**
+ * The Network Tap resource patch definition.
+ */
 @Fluent
 public final class NetworkTapPatchableParameters extends AnnotationResource {
     /*
@@ -26,13 +28,15 @@ public final class NetworkTapPatchableParameters extends AnnotationResource {
     @JsonProperty(value = "destinations")
     private List<NetworkTapPatchableParametersDestinationsItem> destinations;
 
-    /** Creates an instance of NetworkTapPatchableParameters class. */
+    /**
+     * Creates an instance of NetworkTapPatchableParameters class.
+     */
     public NetworkTapPatchableParameters() {
     }
 
     /**
      * Get the pollingType property: Polling type.
-     *
+     * 
      * @return the pollingType value.
      */
     public PollingType pollingType() {
@@ -41,7 +45,7 @@ public final class NetworkTapPatchableParameters extends AnnotationResource {
 
     /**
      * Set the pollingType property: Polling type.
-     *
+     * 
      * @param pollingType the pollingType value to set.
      * @return the NetworkTapPatchableParameters object itself.
      */
@@ -52,7 +56,7 @@ public final class NetworkTapPatchableParameters extends AnnotationResource {
 
     /**
      * Get the destinations property: List of destination properties to send the filter traffic.
-     *
+     * 
      * @return the destinations value.
      */
     public List<NetworkTapPatchableParametersDestinationsItem> destinations() {
@@ -61,17 +65,19 @@ public final class NetworkTapPatchableParameters extends AnnotationResource {
 
     /**
      * Set the destinations property: List of destination properties to send the filter traffic.
-     *
+     * 
      * @param destinations the destinations value to set.
      * @return the NetworkTapPatchableParameters object itself.
      */
-    public NetworkTapPatchableParameters withDestinations(
-        List<NetworkTapPatchableParametersDestinationsItem> destinations) {
+    public NetworkTapPatchableParameters
+        withDestinations(List<NetworkTapPatchableParametersDestinationsItem> destinations) {
         this.destinations = destinations;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatchableParameters withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -80,7 +86,7 @@ public final class NetworkTapPatchableParameters extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

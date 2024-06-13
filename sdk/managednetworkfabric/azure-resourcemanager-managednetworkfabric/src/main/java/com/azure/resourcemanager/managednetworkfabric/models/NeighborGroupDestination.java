@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An array of destination IPv4 Addresses or IPv6 Addresses. */
+/**
+ * An array of destination IPv4 Addresses or IPv6 Addresses.
+ */
 @Fluent
 public final class NeighborGroupDestination {
     /*
@@ -23,13 +25,15 @@ public final class NeighborGroupDestination {
     @JsonProperty(value = "ipv6Addresses")
     private List<String> ipv6Addresses;
 
-    /** Creates an instance of NeighborGroupDestination class. */
+    /**
+     * Creates an instance of NeighborGroupDestination class.
+     */
     public NeighborGroupDestination() {
     }
 
     /**
      * Get the ipv4Addresses property: Array of IPv4 Addresses.
-     *
+     * 
      * @return the ipv4Addresses value.
      */
     public List<String> ipv4Addresses() {
@@ -38,7 +42,7 @@ public final class NeighborGroupDestination {
 
     /**
      * Set the ipv4Addresses property: Array of IPv4 Addresses.
-     *
+     * 
      * @param ipv4Addresses the ipv4Addresses value to set.
      * @return the NeighborGroupDestination object itself.
      */
@@ -49,7 +53,7 @@ public final class NeighborGroupDestination {
 
     /**
      * Get the ipv6Addresses property: Array of IPv6 Addresses.
-     *
+     * 
      * @return the ipv6Addresses value.
      */
     public List<String> ipv6Addresses() {
@@ -58,7 +62,7 @@ public final class NeighborGroupDestination {
 
     /**
      * Set the ipv6Addresses property: Array of IPv6 Addresses.
-     *
+     * 
      * @param ipv6Addresses the ipv6Addresses value to set.
      * @return the NeighborGroupDestination object itself.
      */
@@ -69,7 +73,7 @@ public final class NeighborGroupDestination {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

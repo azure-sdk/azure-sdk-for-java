@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Import Route Policy either IPv4 or IPv6. */
+/**
+ * Import Route Policy either IPv4 or IPv6.
+ */
 @Fluent
 public final class ImportRoutePolicy {
     /*
@@ -22,13 +24,15 @@ public final class ImportRoutePolicy {
     @JsonProperty(value = "importIpv6RoutePolicyId")
     private String importIpv6RoutePolicyId;
 
-    /** Creates an instance of ImportRoutePolicy class. */
+    /**
+     * Creates an instance of ImportRoutePolicy class.
+     */
     public ImportRoutePolicy() {
     }
 
     /**
      * Get the importIpv4RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @return the importIpv4RoutePolicyId value.
      */
     public String importIpv4RoutePolicyId() {
@@ -37,7 +41,7 @@ public final class ImportRoutePolicy {
 
     /**
      * Set the importIpv4RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @param importIpv4RoutePolicyId the importIpv4RoutePolicyId value to set.
      * @return the ImportRoutePolicy object itself.
      */
@@ -48,7 +52,7 @@ public final class ImportRoutePolicy {
 
     /**
      * Get the importIpv6RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @return the importIpv6RoutePolicyId value.
      */
     public String importIpv6RoutePolicyId() {
@@ -57,7 +61,7 @@ public final class ImportRoutePolicy {
 
     /**
      * Set the importIpv6RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @param importIpv6RoutePolicyId the importIpv6RoutePolicyId value to set.
      * @return the ImportRoutePolicy object itself.
      */
@@ -68,7 +72,7 @@ public final class ImportRoutePolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

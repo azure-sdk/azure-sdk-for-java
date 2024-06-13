@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** State defined to represent administrative actions or post actions on a particular resource. */
+/**
+ * State defined to represent administrative actions or post actions on a particular resource.
+ */
 public final class AdministrativeState extends ExpandableStringEnum<AdministrativeState> {
-    /** Static value Enabled for AdministrativeState. */
+    /**
+     * Static value Enabled for AdministrativeState.
+     */
     public static final AdministrativeState ENABLED = fromString("Enabled");
 
-    /** Static value Disabled for AdministrativeState. */
+    /**
+     * Static value Disabled for AdministrativeState.
+     */
     public static final AdministrativeState DISABLED = fromString("Disabled");
 
-    /** Static value MAT for AdministrativeState. */
+    /**
+     * Static value MAT for AdministrativeState.
+     */
     public static final AdministrativeState MAT = fromString("MAT");
 
-    /** Static value RMA for AdministrativeState. */
+    /**
+     * Static value RMA for AdministrativeState.
+     */
     public static final AdministrativeState RMA = fromString("RMA");
 
     /**
      * Creates a new instance of AdministrativeState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class AdministrativeState extends ExpandableStringEnum<Administrati
 
     /**
      * Creates or finds a AdministrativeState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AdministrativeState.
      */
@@ -44,7 +54,7 @@ public final class AdministrativeState extends ExpandableStringEnum<Administrati
 
     /**
      * Gets known AdministrativeState values.
-     *
+     * 
      * @return known AdministrativeState values.
      */
     public static Collection<AdministrativeState> values() {

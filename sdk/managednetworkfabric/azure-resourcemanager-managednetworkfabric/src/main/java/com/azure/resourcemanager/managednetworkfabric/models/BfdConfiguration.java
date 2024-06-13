@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** BFD configuration properties. */
+/**
+ * BFD configuration properties.
+ */
 @Fluent
 public final class BfdConfiguration {
     /*
@@ -28,13 +30,15 @@ public final class BfdConfiguration {
     @JsonProperty(value = "multiplier")
     private Integer multiplier;
 
-    /** Creates an instance of BfdConfiguration class. */
+    /**
+     * Creates an instance of BfdConfiguration class.
+     */
     public BfdConfiguration() {
     }
 
     /**
      * Get the administrativeState property: Administrative state of the BfdConfiguration. Example: Enabled | Disabled.
-     *
+     * 
      * @return the administrativeState value.
      */
     public BfdAdministrativeState administrativeState() {
@@ -43,7 +47,7 @@ public final class BfdConfiguration {
 
     /**
      * Get the intervalInMilliSeconds property: Interval in milliseconds. Example: 300.
-     *
+     * 
      * @return the intervalInMilliSeconds value.
      */
     public Integer intervalInMilliSeconds() {
@@ -52,7 +56,7 @@ public final class BfdConfiguration {
 
     /**
      * Set the intervalInMilliSeconds property: Interval in milliseconds. Example: 300.
-     *
+     * 
      * @param intervalInMilliSeconds the intervalInMilliSeconds value to set.
      * @return the BfdConfiguration object itself.
      */
@@ -63,7 +67,7 @@ public final class BfdConfiguration {
 
     /**
      * Get the multiplier property: Multiplier for the Bfd Configuration. Example: 5.
-     *
+     * 
      * @return the multiplier value.
      */
     public Integer multiplier() {
@@ -72,7 +76,7 @@ public final class BfdConfiguration {
 
     /**
      * Set the multiplier property: Multiplier for the Bfd Configuration. Example: 5.
-     *
+     * 
      * @param multiplier the multiplier value to set.
      * @return the BfdConfiguration object itself.
      */
@@ -83,7 +87,7 @@ public final class BfdConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

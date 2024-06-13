@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Option B configuration to be used for Management VPN. */
+/**
+ * Option B configuration to be used for Management VPN.
+ */
 @Fluent
 public final class OptionBProperties {
     /*
@@ -29,14 +31,16 @@ public final class OptionBProperties {
     @JsonProperty(value = "routeTargets")
     private RouteTargetInformation routeTargets;
 
-    /** Creates an instance of OptionBProperties class. */
+    /**
+     * Creates an instance of OptionBProperties class.
+     */
     public OptionBProperties() {
     }
 
     /**
      * Get the importRouteTargets property: Route Targets to be applied for incoming routes into CE. This is for
      * backward compatibility.
-     *
+     * 
      * @return the importRouteTargets value.
      */
     public List<String> importRouteTargets() {
@@ -46,7 +50,7 @@ public final class OptionBProperties {
     /**
      * Set the importRouteTargets property: Route Targets to be applied for incoming routes into CE. This is for
      * backward compatibility.
-     *
+     * 
      * @param importRouteTargets the importRouteTargets value to set.
      * @return the OptionBProperties object itself.
      */
@@ -58,7 +62,7 @@ public final class OptionBProperties {
     /**
      * Get the exportRouteTargets property: Route Targets to be applied for outgoing routes from CE. This is for
      * backward compatibility.
-     *
+     * 
      * @return the exportRouteTargets value.
      */
     public List<String> exportRouteTargets() {
@@ -68,7 +72,7 @@ public final class OptionBProperties {
     /**
      * Set the exportRouteTargets property: Route Targets to be applied for outgoing routes from CE. This is for
      * backward compatibility.
-     *
+     * 
      * @param exportRouteTargets the exportRouteTargets value to set.
      * @return the OptionBProperties object itself.
      */
@@ -79,7 +83,7 @@ public final class OptionBProperties {
 
     /**
      * Get the routeTargets property: Route Targets to be applied.
-     *
+     * 
      * @return the routeTargets value.
      */
     public RouteTargetInformation routeTargets() {
@@ -88,7 +92,7 @@ public final class OptionBProperties {
 
     /**
      * Set the routeTargets property: Route Targets to be applied.
-     *
+     * 
      * @param routeTargets the routeTargets value to set.
      * @return the OptionBProperties object itself.
      */
@@ -99,7 +103,7 @@ public final class OptionBProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

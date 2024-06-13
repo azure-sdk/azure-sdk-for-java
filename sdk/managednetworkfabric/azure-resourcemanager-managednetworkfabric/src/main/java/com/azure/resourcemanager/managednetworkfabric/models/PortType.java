@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Port type that needs to be matched. */
+/**
+ * Port type that needs to be matched.
+ */
 public final class PortType extends ExpandableStringEnum<PortType> {
-    /** Static value SourcePort for PortType. */
+    /**
+     * Static value SourcePort for PortType.
+     */
     public static final PortType SOURCE_PORT = fromString("SourcePort");
 
-    /** Static value DestinationPort for PortType. */
+    /**
+     * Static value DestinationPort for PortType.
+     */
     public static final PortType DESTINATION_PORT = fromString("DestinationPort");
 
     /**
      * Creates a new instance of PortType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class PortType extends ExpandableStringEnum<PortType> {
 
     /**
      * Creates or finds a PortType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PortType.
      */
@@ -38,7 +44,7 @@ public final class PortType extends ExpandableStringEnum<PortType> {
 
     /**
      * Gets known PortType values.
-     *
+     * 
      * @return known PortType values.
      */
     public static Collection<PortType> values() {
