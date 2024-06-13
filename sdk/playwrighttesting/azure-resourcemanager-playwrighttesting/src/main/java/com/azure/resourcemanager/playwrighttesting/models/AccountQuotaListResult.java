@@ -6,20 +6,20 @@ package com.azure.resourcemanager.playwrighttesting.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountInner;
+import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountQuotaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a Account list operation.
+ * The response of a AccountQuota list operation.
  */
 @Fluent
-public final class AccountListResult {
+public final class AccountQuotaListResult {
     /*
-     * The Account items on this page
+     * The AccountQuota items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<AccountInner> value;
+    private List<AccountQuotaInner> value;
 
     /*
      * The link to the next page of items
@@ -28,27 +28,27 @@ public final class AccountListResult {
     private String nextLink;
 
     /**
-     * Creates an instance of AccountListResult class.
+     * Creates an instance of AccountQuotaListResult class.
      */
-    public AccountListResult() {
+    public AccountQuotaListResult() {
     }
 
     /**
-     * Get the value property: The Account items on this page.
+     * Get the value property: The AccountQuota items on this page.
      * 
      * @return the value value.
      */
-    public List<AccountInner> value() {
+    public List<AccountQuotaInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The Account items on this page.
+     * Set the value property: The AccountQuota items on this page.
      * 
      * @param value the value value to set.
-     * @return the AccountListResult object itself.
+     * @return the AccountQuotaListResult object itself.
      */
-    public AccountListResult withValue(List<AccountInner> value) {
+    public AccountQuotaListResult withValue(List<AccountQuotaInner> value) {
         this.value = value;
         return this;
     }
@@ -66,9 +66,9 @@ public final class AccountListResult {
      * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the AccountListResult object itself.
+     * @return the AccountQuotaListResult object itself.
      */
-    public AccountListResult withNextLink(String nextLink) {
+    public AccountQuotaListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -81,11 +81,11 @@ public final class AccountListResult {
     public void validate() {
         if (value() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property value in model AccountListResult"));
+                .log(new IllegalArgumentException("Missing required property value in model AccountQuotaListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(AccountListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AccountQuotaListResult.class);
 }
