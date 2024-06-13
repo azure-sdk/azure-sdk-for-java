@@ -309,7 +309,7 @@ public interface Fleet {
              * @param identity Managed identity.
              * @return the next definition stage.
              */
-            Update withIdentity(ManagedServiceIdentity identity);
+            Update withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4 identity);
         }
 
         /**

@@ -25,7 +25,7 @@ public final class FleetPatch {
      * Managed identity.
      */
     @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
+    private AzureResourceManagerLegacyManagedServiceIdentityV4 identity;
 
     /**
      * Creates an instance of FleetPatch class.
@@ -58,7 +58,7 @@ public final class FleetPatch {
      * 
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
+    public AzureResourceManagerLegacyManagedServiceIdentityV4 identity() {
         return this.identity;
     }
 
@@ -68,7 +68,7 @@ public final class FleetPatch {
      * @param identity the identity value to set.
      * @return the FleetPatch object itself.
      */
-    public FleetPatch withIdentity(ManagedServiceIdentity identity) {
+    public FleetPatch withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4 identity) {
         this.identity = identity;
         return this;
     }
