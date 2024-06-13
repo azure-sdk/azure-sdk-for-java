@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.loadtesting {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.loadtesting;
     exports com.azure.resourcemanager.loadtesting.fluent;
     exports com.azure.resourcemanager.loadtesting.fluent.models;
     exports com.azure.resourcemanager.loadtesting.models;
-
-    opens com.azure.resourcemanager.loadtesting.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.loadtesting.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.loadtesting.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.loadtesting.models to com.azure.core, com.fasterxml.jackson.databind;
 }
