@@ -276,12 +276,12 @@ public final class ApiProperties {
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property title in model ApiProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property title in model ApiProperties"));
         }
         if (kind() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property kind in model ApiProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property kind in model ApiProperties"));
         }
         if (termsOfService() != null) {
             termsOfService().validate();

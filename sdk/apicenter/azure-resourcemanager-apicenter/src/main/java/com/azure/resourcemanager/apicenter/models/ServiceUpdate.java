@@ -18,7 +18,7 @@ public final class ServiceUpdate {
      * The managed service identities assigned to this resource.
      */
     @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
+    private AzureResourceManagerCommonTypesManagedServiceIdentity identity;
 
     /*
      * Resource tags.
@@ -26,6 +26,12 @@ public final class ServiceUpdate {
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /*
+     * The updatable properties of the Service.
+     */
+    @JsonProperty(value = "properties")
+    private ServiceUpdateProperties properties;
 
     /**
      * Creates an instance of ServiceUpdate class.
@@ -38,7 +44,7 @@ public final class ServiceUpdate {
      * 
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
+    public AzureResourceManagerCommonTypesManagedServiceIdentity identity() {
         return this.identity;
     }
 
@@ -48,7 +54,7 @@ public final class ServiceUpdate {
      * @param identity the identity value to set.
      * @return the ServiceUpdate object itself.
      */
-    public ServiceUpdate withIdentity(ManagedServiceIdentity identity) {
+    public ServiceUpdate withIdentity(AzureResourceManagerCommonTypesManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -74,6 +80,26 @@ public final class ServiceUpdate {
     }
 
     /**
+     * Get the properties property: The updatable properties of the Service.
+     * 
+     * @return the properties value.
+     */
+    public ServiceUpdateProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The updatable properties of the Service.
+     * 
+     * @param properties the properties value to set.
+     * @return the ServiceUpdate object itself.
+     */
+    public ServiceUpdate withProperties(ServiceUpdateProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -81,6 +107,9 @@ public final class ServiceUpdate {
     public void validate() {
         if (identity() != null) {
             identity().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

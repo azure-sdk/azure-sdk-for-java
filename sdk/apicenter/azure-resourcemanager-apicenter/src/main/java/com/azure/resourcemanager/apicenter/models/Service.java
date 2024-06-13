@@ -221,7 +221,7 @@ public interface Service {
     /**
      * The template for Service update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -265,7 +265,20 @@ public interface Service {
              * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            Update withIdentity(ManagedServiceIdentity identity);
+            Update withIdentity(AzureResourceManagerCommonTypesManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the Service update allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The updatable properties of the Service..
+             * 
+             * @param properties The updatable properties of the Service.
+             * @return the next definition stage.
+             */
+            Update withProperties(ServiceUpdateProperties properties);
         }
     }
 
