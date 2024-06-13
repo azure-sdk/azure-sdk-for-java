@@ -52,8 +52,7 @@ public final class ManagedPrivateEndpointModelProperties {
     private ManagedPrivateEndpointConnectionState connectionState;
 
     /*
-     * The URL of the data store behind the private link service. It would be the URL in the Grafana data source
-     * configuration page without the protocol and port.
+     * The URL of the data store behind the private link service. It would be the URL in the Grafana data source configuration page without the protocol and port.
      */
     @JsonProperty(value = "privateLinkServiceUrl")
     private String privateLinkServiceUrl;
@@ -195,8 +194,8 @@ public final class ManagedPrivateEndpointModelProperties {
     }
 
     /**
-     * Get the privateLinkServicePrivateIp property: The private IP of private endpoint after approval. This property
-     * is empty before connection is approved.
+     * Get the privateLinkServicePrivateIp property: The private IP of private endpoint after approval. This property is
+     * empty before connection is approved.
      * 
      * @return the privateLinkServicePrivateIp value.
      */

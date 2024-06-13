@@ -212,8 +212,8 @@ public final class ManagedPrivateEndpointModelInner extends Resource {
     }
 
     /**
-     * Get the privateLinkServicePrivateIp property: The private IP of private endpoint after approval. This property
-     * is empty before connection is approved.
+     * Get the privateLinkServicePrivateIp property: The private IP of private endpoint after approval. This property is
+     * empty before connection is approved.
      * 
      * @return the privateLinkServicePrivateIp value.
      */

@@ -39,8 +39,7 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
-     * GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana
-     * dashboards, alerting defaults) for common monitoring scenarios.
+     * GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana dashboards, alerting defaults) for common monitoring scenarios.
      */
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
@@ -58,8 +57,7 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     private GrafanaConfigurations grafanaConfigurations;
 
     /*
-     * Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin
-     * with given plugin id will be removed. Otherwise, given plugin will be installed.
+     * Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be installed.
      */
     @JsonProperty(value = "grafanaPlugins")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -139,8 +137,7 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     }
 
     /**
-     * Get the publicNetworkAccess property: Indicate the state for enable or disable traffic over the public
-     * interface.
+     * Get the publicNetworkAccess property: Indicate the state for enable or disable traffic over the public interface.
      * 
      * @return the publicNetworkAccess value.
      */
@@ -149,8 +146,7 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     }
 
     /**
-     * Set the publicNetworkAccess property: Indicate the state for enable or disable traffic over the public
-     * interface.
+     * Set the publicNetworkAccess property: Indicate the state for enable or disable traffic over the public interface.
      * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ManagedGrafanaPropertiesUpdateParameters object itself.

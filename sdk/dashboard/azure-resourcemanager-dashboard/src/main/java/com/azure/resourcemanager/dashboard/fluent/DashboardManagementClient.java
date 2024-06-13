@@ -47,13 +47,6 @@ public interface DashboardManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the GrafanasClient object to access its operations.
      * 
      * @return the GrafanasClient object.

@@ -9,8 +9,7 @@ package com.azure.resourcemanager.dashboard.generated;
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * PrivateEndpointConnections_List.json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/PrivateEndpointConnections_List.json
      */
     /**
      * Sample code: PrivateEndpointConnections_List.

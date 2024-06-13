@@ -13,8 +13,7 @@ import java.util.Map;
  */
 public final class ManagedPrivateEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * ManagedPrivateEndpoints_Patch.json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/ManagedPrivateEndpoints_Patch.json
      */
     /**
      * Sample code: ManagedPrivateEndpoints_Patch.
