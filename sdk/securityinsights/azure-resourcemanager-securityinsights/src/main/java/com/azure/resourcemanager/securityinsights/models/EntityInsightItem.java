@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Entity insight Item. */
+/**
+ * Entity insight Item.
+ */
 @Fluent
 public final class EntityInsightItem {
     /*
@@ -36,8 +38,14 @@ public final class EntityInsightItem {
     private List<InsightsTableResult> chartQueryResults;
 
     /**
+     * Creates an instance of EntityInsightItem class.
+     */
+    public EntityInsightItem() {
+    }
+
+    /**
      * Get the queryId property: The query id of the insight.
-     *
+     * 
      * @return the queryId value.
      */
     public String queryId() {
@@ -46,7 +54,7 @@ public final class EntityInsightItem {
 
     /**
      * Set the queryId property: The query id of the insight.
-     *
+     * 
      * @param queryId the queryId value to set.
      * @return the EntityInsightItem object itself.
      */
@@ -57,7 +65,7 @@ public final class EntityInsightItem {
 
     /**
      * Get the queryTimeInterval property: The Time interval that the query actually executed on.
-     *
+     * 
      * @return the queryTimeInterval value.
      */
     public EntityInsightItemQueryTimeInterval queryTimeInterval() {
@@ -66,7 +74,7 @@ public final class EntityInsightItem {
 
     /**
      * Set the queryTimeInterval property: The Time interval that the query actually executed on.
-     *
+     * 
      * @param queryTimeInterval the queryTimeInterval value to set.
      * @return the EntityInsightItem object itself.
      */
@@ -77,7 +85,7 @@ public final class EntityInsightItem {
 
     /**
      * Get the tableQueryResults property: Query results for table insights query.
-     *
+     * 
      * @return the tableQueryResults value.
      */
     public InsightsTableResult tableQueryResults() {
@@ -86,7 +94,7 @@ public final class EntityInsightItem {
 
     /**
      * Set the tableQueryResults property: Query results for table insights query.
-     *
+     * 
      * @param tableQueryResults the tableQueryResults value to set.
      * @return the EntityInsightItem object itself.
      */
@@ -97,7 +105,7 @@ public final class EntityInsightItem {
 
     /**
      * Get the chartQueryResults property: Query results for table insights query.
-     *
+     * 
      * @return the chartQueryResults value.
      */
     public List<InsightsTableResult> chartQueryResults() {
@@ -106,7 +114,7 @@ public final class EntityInsightItem {
 
     /**
      * Set the chartQueryResults property: Query results for table insights query.
-     *
+     * 
      * @param chartQueryResults the chartQueryResults value to set.
      * @return the EntityInsightItem object itself.
      */
@@ -117,7 +125,7 @@ public final class EntityInsightItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

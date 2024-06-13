@@ -7,17 +7,31 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.ActivityEntityQueriesProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Represents Activity entity query. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Activity entity query.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = ActivityCustomEntityQuery.class,
+    visible = true)
 @JsonTypeName("Activity")
 @Fluent
 public final class ActivityCustomEntityQuery extends CustomEntityQuery {
+    /*
+     * the entity query kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private CustomEntityQueryKind kind = CustomEntityQueryKind.ACTIVITY;
+
     /*
      * Activity entity query properties
      */
@@ -25,15 +39,33 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
     private ActivityEntityQueriesProperties innerProperties;
 
     /**
+     * Creates an instance of ActivityCustomEntityQuery class.
+     */
+    public ActivityCustomEntityQuery() {
+    }
+
+    /**
+     * Get the kind property: the entity query kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public CustomEntityQueryKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Activity entity query properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ActivityEntityQueriesProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActivityCustomEntityQuery withEtag(String etag) {
         super.withEtag(etag);
@@ -42,7 +74,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the title property: The entity query title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -51,7 +83,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the title property: The entity query title.
-     *
+     * 
      * @param title the title value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -65,7 +97,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the content property: The entity query content to display in timeline.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -74,7 +106,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the content property: The entity query content to display in timeline.
-     *
+     * 
      * @param content the content value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -88,7 +120,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the description property: The entity query description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -97,7 +129,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the description property: The entity query description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -111,7 +143,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @return the queryDefinitions value.
      */
     public ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions() {
@@ -120,12 +152,12 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @param queryDefinitions the queryDefinitions value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
-    public ActivityCustomEntityQuery withQueryDefinitions(
-        ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions) {
+    public ActivityCustomEntityQuery
+        withQueryDefinitions(ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ActivityEntityQueriesProperties();
         }
@@ -135,7 +167,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @return the inputEntityType value.
      */
     public EntityType inputEntityType() {
@@ -144,7 +176,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @param inputEntityType the inputEntityType value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -159,7 +191,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
     /**
      * Get the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @return the requiredInputFieldsSets value.
      */
     public List<List<String>> requiredInputFieldsSets() {
@@ -169,7 +201,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
     /**
      * Set the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @param requiredInputFieldsSets the requiredInputFieldsSets value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -183,7 +215,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @return the entitiesFilter value.
      */
     public Map<String, List<String>> entitiesFilter() {
@@ -192,7 +224,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @param entitiesFilter the entitiesFilter value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -206,7 +238,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the templateName property: The template id this activity was created from.
-     *
+     * 
      * @return the templateName value.
      */
     public String templateName() {
@@ -215,7 +247,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the templateName property: The template id this activity was created from.
-     *
+     * 
      * @param templateName the templateName value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -229,7 +261,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the enabled property: Determines whether this activity is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -238,7 +270,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Set the enabled property: Determines whether this activity is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ActivityCustomEntityQuery object itself.
      */
@@ -252,7 +284,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the createdTimeUtc property: The time the activity was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -261,7 +293,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Get the lastModifiedTimeUtc property: The last time the activity was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -270,7 +302,7 @@ public final class ActivityCustomEntityQuery extends CustomEntityQuery {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

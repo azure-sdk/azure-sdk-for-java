@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The insight chart query. */
+/**
+ * The insight chart query.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesReferenceTimeRange {
     /*
@@ -17,8 +19,14 @@ public final class InsightQueryItemPropertiesReferenceTimeRange {
     private String beforeRange;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesReferenceTimeRange class.
+     */
+    public InsightQueryItemPropertiesReferenceTimeRange() {
+    }
+
+    /**
      * Get the beforeRange property: Additional query time for looking back.
-     *
+     * 
      * @return the beforeRange value.
      */
     public String beforeRange() {
@@ -27,7 +35,7 @@ public final class InsightQueryItemPropertiesReferenceTimeRange {
 
     /**
      * Set the beforeRange property: Additional query time for looking back.
-     *
+     * 
      * @param beforeRange the beforeRange value to set.
      * @return the InsightQueryItemPropertiesReferenceTimeRange object itself.
      */
@@ -38,7 +46,7 @@ public final class InsightQueryItemPropertiesReferenceTimeRange {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

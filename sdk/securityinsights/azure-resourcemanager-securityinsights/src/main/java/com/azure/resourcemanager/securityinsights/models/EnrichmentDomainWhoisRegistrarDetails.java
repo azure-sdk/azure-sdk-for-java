@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The registrar associated with this domain. */
+/**
+ * The registrar associated with this domain.
+ */
 @Fluent
 public final class EnrichmentDomainWhoisRegistrarDetails {
     /*
@@ -47,8 +49,14 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
     private String whoisServer;
 
     /**
+     * Creates an instance of EnrichmentDomainWhoisRegistrarDetails class.
+     */
+    public EnrichmentDomainWhoisRegistrarDetails() {
+    }
+
+    /**
      * Get the name property: The name of this registrar.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +65,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the name property: The name of this registrar.
-     *
+     * 
      * @param name the name value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -68,7 +76,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Get the abuseContactEmail property: This registrar's abuse contact email.
-     *
+     * 
      * @return the abuseContactEmail value.
      */
     public String abuseContactEmail() {
@@ -77,7 +85,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the abuseContactEmail property: This registrar's abuse contact email.
-     *
+     * 
      * @param abuseContactEmail the abuseContactEmail value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -88,7 +96,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Get the abuseContactPhone property: This registrar's abuse contact phone number.
-     *
+     * 
      * @return the abuseContactPhone value.
      */
     public String abuseContactPhone() {
@@ -97,7 +105,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the abuseContactPhone property: This registrar's abuse contact phone number.
-     *
+     * 
      * @param abuseContactPhone the abuseContactPhone value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -108,7 +116,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Get the ianaId property: This registrar's Internet Assigned Numbers Authority id.
-     *
+     * 
      * @return the ianaId value.
      */
     public String ianaId() {
@@ -117,7 +125,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the ianaId property: This registrar's Internet Assigned Numbers Authority id.
-     *
+     * 
      * @param ianaId the ianaId value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -128,7 +136,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Get the url property: This registrar's URL.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -137,7 +145,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the url property: This registrar's URL.
-     *
+     * 
      * @param url the url value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -148,7 +156,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Get the whoisServer property: The hostname of this registrar's whois server.
-     *
+     * 
      * @return the whoisServer value.
      */
     public String whoisServer() {
@@ -157,7 +165,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Set the whoisServer property: The hostname of this registrar's whois server.
-     *
+     * 
      * @param whoisServer the whoisServer value to set.
      * @return the EnrichmentDomainWhoisRegistrarDetails object itself.
      */
@@ -168,7 +176,7 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
