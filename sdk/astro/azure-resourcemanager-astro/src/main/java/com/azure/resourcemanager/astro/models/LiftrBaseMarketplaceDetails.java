@@ -104,12 +104,14 @@ public final class LiftrBaseMarketplaceDetails {
      */
     public void validate() {
         if (subscriptionId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property subscriptionId in model LiftrBaseMarketplaceDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property subscriptionId in model LiftrBaseMarketplaceDetails"));
         }
         if (offerDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property offerDetails in model LiftrBaseMarketplaceDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property offerDetails in model LiftrBaseMarketplaceDetails"));
         } else {
             offerDetails().validate();
         }

@@ -21,8 +21,7 @@ import java.util.Map;
  */
 public final class OrganizationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
-     * Organizations_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/Organizations_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Organizations_Update.
@@ -31,20 +30,28 @@ public final class OrganizationsUpdateSamples {
      */
     public static void organizationsUpdate(com.azure.resourcemanager.astro.AstroManager manager) {
         OrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgastronomer", "6.", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("key1474", "fakeTokenPlaceholder"))
+            .getByResourceGroupWithResponse("rgastronomer", "6.", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key1474", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
                 .withUserAssignedIdentities(mapOf()))
             .withProperties(new OrganizationResourceUpdateProperties()
                 .withUser(new LiftrBaseUserDetailsUpdate().withFirstName("qeuofehzypzljgcuysugefbgxde")
-                    .withLastName("g").withEmailAddress(".K_@e7N-g1.xjqnbPs").withUpn("uwtprzdfpsqmktx")
+                    .withLastName("g")
+                    .withEmailAddress(".K_@e7N-g1.xjqnbPs")
+                    .withUpn("uwtprzdfpsqmktx")
                     .withPhoneNumber("aqpyxznvqpgkzohevynofrjdfgoo"))
                 .withPartnerOrganizationProperties(new LiftrBaseDataPartnerOrganizationPropertiesUpdate()
-                    .withOrganizationId("lrtmbkvyvvoszhjevohkmyjhfyty").withWorkspaceId("xsepuskdhejaadusyxq")
-                    .withOrganizationName("U2P_").withWorkspaceName("L.-y_--:")
-                    .withSingleSignOnProperties(new LiftrBaseSingleSignOnProperties()
-                        .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("mklfypyujwumgwdzae")
-                        .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr").withAadDomains(Arrays.asList("kfbleh")))))
+                    .withOrganizationId("lrtmbkvyvvoszhjevohkmyjhfyty")
+                    .withWorkspaceId("xsepuskdhejaadusyxq")
+                    .withOrganizationName("U2P_")
+                    .withWorkspaceName("L.-y_--:")
+                    .withSingleSignOnProperties(
+                        new LiftrBaseSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                            .withEnterpriseAppId("mklfypyujwumgwdzae")
+                            .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr")
+                            .withAadDomains(Arrays.asList("kfbleh")))))
             .apply();
     }
 
