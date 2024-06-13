@@ -44,6 +44,12 @@ public final class SnowflakeExportCopyCommand extends ExportSettings {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> additionalFormatOptions;
 
+    /*
+     * The name of the snowflake storage integration to use for the copy operation. Type: string (or Expression with resultType string).
+     */
+    @JsonProperty(value = "storageIntegration")
+    private Object storageIntegration;
+
     /**
      * Creates an instance of SnowflakeExportCopyCommand class.
      */
@@ -105,6 +111,28 @@ public final class SnowflakeExportCopyCommand extends ExportSettings {
      */
     public SnowflakeExportCopyCommand withAdditionalFormatOptions(Map<String, Object> additionalFormatOptions) {
         this.additionalFormatOptions = additionalFormatOptions;
+        return this;
+    }
+
+    /**
+     * Get the storageIntegration property: The name of the snowflake storage integration to use for the copy operation.
+     * Type: string (or Expression with resultType string).
+     * 
+     * @return the storageIntegration value.
+     */
+    public Object storageIntegration() {
+        return this.storageIntegration;
+    }
+
+    /**
+     * Set the storageIntegration property: The name of the snowflake storage integration to use for the copy operation.
+     * Type: string (or Expression with resultType string).
+     * 
+     * @param storageIntegration the storageIntegration value to set.
+     * @return the SnowflakeExportCopyCommand object itself.
+     */
+    public SnowflakeExportCopyCommand withStorageIntegration(Object storageIntegration) {
+        this.storageIntegration = storageIntegration;
         return this;
     }
 

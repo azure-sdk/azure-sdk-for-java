@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.datafactory.models.ContinuationSettingsReference;
 import com.azure.resourcemanager.datafactory.models.DataFlowReference;
 import com.azure.resourcemanager.datafactory.models.DataFlowStagingInfo;
 import com.azure.resourcemanager.datafactory.models.ExecuteDataFlowActivityTypePropertiesCompute;
@@ -34,6 +35,12 @@ public class ExecuteDataFlowActivityTypeProperties {
      */
     @JsonProperty(value = "integrationRuntime")
     private IntegrationRuntimeReference integrationRuntime;
+
+    /*
+     * Continuation settings for execute data flow activity.
+     */
+    @JsonProperty(value = "continuationSettings")
+    private ContinuationSettingsReference continuationSettings;
 
     /*
      * Compute properties for data flow activity.
@@ -129,6 +136,27 @@ public class ExecuteDataFlowActivityTypeProperties {
     public ExecuteDataFlowActivityTypeProperties
         withIntegrationRuntime(IntegrationRuntimeReference integrationRuntime) {
         this.integrationRuntime = integrationRuntime;
+        return this;
+    }
+
+    /**
+     * Get the continuationSettings property: Continuation settings for execute data flow activity.
+     * 
+     * @return the continuationSettings value.
+     */
+    public ContinuationSettingsReference continuationSettings() {
+        return this.continuationSettings;
+    }
+
+    /**
+     * Set the continuationSettings property: Continuation settings for execute data flow activity.
+     * 
+     * @param continuationSettings the continuationSettings value to set.
+     * @return the ExecuteDataFlowActivityTypeProperties object itself.
+     */
+    public ExecuteDataFlowActivityTypeProperties
+        withContinuationSettings(ContinuationSettingsReference continuationSettings) {
+        this.continuationSettings = continuationSettings;
         return this;
     }
 
@@ -258,6 +286,9 @@ public class ExecuteDataFlowActivityTypeProperties {
         }
         if (integrationRuntime() != null) {
             integrationRuntime().validate();
+        }
+        if (continuationSettings() != null) {
+            continuationSettings().validate();
         }
         if (compute() != null) {
             compute().validate();
