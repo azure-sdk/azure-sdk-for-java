@@ -210,32 +210,38 @@ public final class RoleAssignmentDetailInner {
      */
     public void validate() {
         if (roleId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property roleId in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property roleId in model RoleAssignmentDetailInner"));
         }
         if (principalId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property principalId in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property principalId in model RoleAssignmentDetailInner"));
         }
         if (username() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property username in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property username in model RoleAssignmentDetailInner"));
         }
         if (dataTypeScope() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataTypeScope in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataTypeScope in model RoleAssignmentDetailInner"));
         }
         if (principalType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property principalType in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property principalType in model RoleAssignmentDetailInner"));
         }
         if (role() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property role in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property role in model RoleAssignmentDetailInner"));
         }
         if (roleAssignmentId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property roleAssignmentId in model RoleAssignmentDetailInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property roleAssignmentId in model RoleAssignmentDetailInner"));
         }
     }
 

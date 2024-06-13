@@ -13,9 +13,7 @@ import java.io.IOException;
  */
 public final class DataTypesDeleteDataSamples {
     /*
-     * x-ms-original-file:
-     * specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/
-     * DataTypes_DeleteData_MinimumSet_Gen.json
+     * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataTypes_DeleteData_MinimumSet_Gen.json
      */
     /**
      * Sample code: DataTypes_DeleteData_MinimumSet_Gen.
@@ -25,15 +23,14 @@ public final class DataTypesDeleteDataSamples {
     public static void dataTypesDeleteDataMinimumSetGen(
         com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
         manager.dataTypes()
-            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory
-                .createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON),
+            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/
-     * DataTypes_DeleteData_MaximumSet_Gen.json
+     * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataTypes_DeleteData_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataTypes_DeleteData_MaximumSet_Gen.
@@ -43,8 +40,9 @@ public final class DataTypesDeleteDataSamples {
     public static void dataTypesDeleteDataMaximumSetGen(
         com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
         manager.dataTypes()
-            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory
-                .createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON),
+            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
                 com.azure.core.util.Context.NONE);
     }
 }
