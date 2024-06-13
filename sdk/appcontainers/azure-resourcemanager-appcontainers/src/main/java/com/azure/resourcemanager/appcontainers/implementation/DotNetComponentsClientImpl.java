@@ -641,7 +641,8 @@ public final class DotNetComponentsClientImpl implements DotNetComponentsClient 
     private Mono<DotNetComponentInner> createOrUpdateAsync(String resourceGroupName, String environmentName,
         String name, DotNetComponentInner dotNetComponentEnvelope, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, environmentName, name, dotNetComponentEnvelope, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**

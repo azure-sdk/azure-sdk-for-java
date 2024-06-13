@@ -100,8 +100,9 @@ public final class BuilderProperties {
      */
     public void validate() {
         if (environmentId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property environmentId in model BuilderProperties"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property environmentId in model BuilderProperties"));
         }
         if (containerRegistries() != null) {
             containerRegistries().forEach(e -> e.validate());

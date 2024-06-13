@@ -69,8 +69,9 @@ public final class WorkloadProfileStatesCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property value in model WorkloadProfileStatesCollection"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model WorkloadProfileStatesCollection"));
         } else {
             value().forEach(e -> e.validate());
         }

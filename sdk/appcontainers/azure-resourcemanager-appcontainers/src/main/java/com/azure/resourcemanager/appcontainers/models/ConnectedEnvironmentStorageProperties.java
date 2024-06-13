@@ -18,6 +18,12 @@ public final class ConnectedEnvironmentStorageProperties {
     @JsonProperty(value = "azureFile")
     private AzureFileProperties azureFile;
 
+    /*
+     * SMB storage properties
+     */
+    @JsonProperty(value = "smb")
+    private SmbStorage smb;
+
     /**
      * Creates an instance of ConnectedEnvironmentStorageProperties class.
      */
@@ -45,6 +51,26 @@ public final class ConnectedEnvironmentStorageProperties {
     }
 
     /**
+     * Get the smb property: SMB storage properties.
+     * 
+     * @return the smb value.
+     */
+    public SmbStorage smb() {
+        return this.smb;
+    }
+
+    /**
+     * Set the smb property: SMB storage properties.
+     * 
+     * @param smb the smb value to set.
+     * @return the ConnectedEnvironmentStorageProperties object itself.
+     */
+    public ConnectedEnvironmentStorageProperties withSmb(SmbStorage smb) {
+        this.smb = smb;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -52,6 +78,9 @@ public final class ConnectedEnvironmentStorageProperties {
     public void validate() {
         if (azureFile() != null) {
             azureFile().validate();
+        }
+        if (smb() != null) {
+            smb().validate();
         }
     }
 }

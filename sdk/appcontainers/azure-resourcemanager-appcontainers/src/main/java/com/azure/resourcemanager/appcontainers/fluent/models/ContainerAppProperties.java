@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppPropertiesPatchingConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,6 +40,12 @@ public final class ContainerAppProperties {
      */
     @JsonProperty(value = "workloadProfileName")
     private String workloadProfileName;
+
+    /*
+     * Container App auto patch configuration.
+     */
+    @JsonProperty(value = "patchingConfiguration")
+    private ContainerAppPropertiesPatchingConfiguration patchingConfiguration;
 
     /*
      * Name of the latest revision of the Container App.
@@ -164,6 +171,27 @@ public final class ContainerAppProperties {
     }
 
     /**
+     * Get the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @return the patchingConfiguration value.
+     */
+    public ContainerAppPropertiesPatchingConfiguration patchingConfiguration() {
+        return this.patchingConfiguration;
+    }
+
+    /**
+     * Set the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @param patchingConfiguration the patchingConfiguration value to set.
+     * @return the ContainerAppProperties object itself.
+     */
+    public ContainerAppProperties
+        withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration) {
+        this.patchingConfiguration = patchingConfiguration;
+        return this;
+    }
+
+    /**
      * Get the latestRevisionName property: Name of the latest revision of the Container App.
      * 
      * @return the latestRevisionName value.
@@ -263,6 +291,9 @@ public final class ContainerAppProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (patchingConfiguration() != null) {
+            patchingConfiguration().validate();
+        }
         if (configuration() != null) {
             configuration().validate();
         }
