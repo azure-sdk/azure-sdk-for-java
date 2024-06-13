@@ -5,33 +5,29 @@
 package com.azure.resourcemanager.loadtesting.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.loadtesting.fluent.models.QuotaBucketRequestProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request object of new quota for a quota bucket. */
+/**
+ * Request object of new quota for a quota bucket.
+ */
 @Fluent
-public final class QuotaBucketRequest extends ProxyResource {
+public final class QuotaBucketRequest {
     /*
-     * New quota request request properties.
+     * Request object of new quota for a quota bucket.
      */
     @JsonProperty(value = "properties")
     private QuotaBucketRequestProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+    /**
+     * Creates an instance of QuotaBucketRequest class.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /** Creates an instance of QuotaBucketRequest class. */
     public QuotaBucketRequest() {
     }
 
     /**
-     * Get the innerProperties property: New quota request request properties.
-     *
+     * Get the innerProperties property: Request object of new quota for a quota bucket.
+     * 
      * @return the innerProperties value.
      */
     private QuotaBucketRequestProperties innerProperties() {
@@ -39,17 +35,8 @@ public final class QuotaBucketRequest extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the currentUsage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @return the currentUsage value.
      */
     public Integer currentUsage() {
@@ -58,7 +45,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Set the currentUsage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @param currentUsage the currentUsage value to set.
      * @return the QuotaBucketRequest object itself.
      */
@@ -72,7 +59,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Get the currentQuota property: Current quota limit of the quota bucket.
-     *
+     * 
      * @return the currentQuota value.
      */
     public Integer currentQuota() {
@@ -81,7 +68,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Set the currentQuota property: Current quota limit of the quota bucket.
-     *
+     * 
      * @param currentQuota the currentQuota value to set.
      * @return the QuotaBucketRequest object itself.
      */
@@ -95,7 +82,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Get the newQuota property: New quota limit of the quota bucket.
-     *
+     * 
      * @return the newQuota value.
      */
     public Integer newQuota() {
@@ -104,7 +91,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Set the newQuota property: New quota limit of the quota bucket.
-     *
+     * 
      * @param newQuota the newQuota value to set.
      * @return the QuotaBucketRequest object itself.
      */
@@ -118,7 +105,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Get the dimensions property: Dimensions for new quota request.
-     *
+     * 
      * @return the dimensions value.
      */
     public QuotaBucketRequestPropertiesDimensions dimensions() {
@@ -127,7 +114,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Set the dimensions property: Dimensions for new quota request.
-     *
+     * 
      * @param dimensions the dimensions value to set.
      * @return the QuotaBucketRequest object itself.
      */
@@ -141,7 +128,7 @@ public final class QuotaBucketRequest extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

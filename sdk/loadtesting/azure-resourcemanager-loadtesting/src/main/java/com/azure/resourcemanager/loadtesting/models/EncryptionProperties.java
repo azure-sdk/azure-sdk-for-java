@@ -7,32 +7,33 @@ package com.azure.resourcemanager.loadtesting.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Key and identity details for Customer Managed Key encryption of load test resource. */
+/**
+ * Key and identity details for Customer Managed Key encryption of load test resource.
+ */
 @Fluent
 public final class EncryptionProperties {
     /*
-     * All identity configuration for Customer-managed key settings defining which identity should be used to auth to
-     * Key Vault.
+     * All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault.
      */
     @JsonProperty(value = "identity")
     private EncryptionPropertiesIdentity identity;
 
     /*
-     * key encryption key Url, versioned. Ex:
-     * https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or
-     * https://contosovault.vault.azure.net/keys/contosokek.
+     * key encryption key Url, versioned. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or https://contosovault.vault.azure.net/keys/contosokek.
      */
     @JsonProperty(value = "keyUrl")
     private String keyUrl;
 
-    /** Creates an instance of EncryptionProperties class. */
+    /**
+     * Creates an instance of EncryptionProperties class.
+     */
     public EncryptionProperties() {
     }
 
     /**
      * Get the identity property: All identity configuration for Customer-managed key settings defining which identity
      * should be used to auth to Key Vault.
-     *
+     * 
      * @return the identity value.
      */
     public EncryptionPropertiesIdentity identity() {
@@ -42,7 +43,7 @@ public final class EncryptionProperties {
     /**
      * Set the identity property: All identity configuration for Customer-managed key settings defining which identity
      * should be used to auth to Key Vault.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the EncryptionProperties object itself.
      */
@@ -55,7 +56,7 @@ public final class EncryptionProperties {
      * Get the keyUrl property: key encryption key Url, versioned. Ex:
      * https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or
      * https://contosovault.vault.azure.net/keys/contosokek.
-     *
+     * 
      * @return the keyUrl value.
      */
     public String keyUrl() {
@@ -66,7 +67,7 @@ public final class EncryptionProperties {
      * Set the keyUrl property: key encryption key Url, versioned. Ex:
      * https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or
      * https://contosovault.vault.azure.net/keys/contosokek.
-     *
+     * 
      * @param keyUrl the keyUrl value to set.
      * @return the EncryptionProperties object itself.
      */
@@ -77,7 +78,7 @@ public final class EncryptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

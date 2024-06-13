@@ -10,11 +10,13 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.loadtesting.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Quota bucket details object. */
+/**
+ * Quota bucket details object.
+ */
 @Fluent
 public final class QuotaResourceInner extends ProxyResource {
     /*
-     * Quota bucket resource properties.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private QuotaResourceProperties innerProperties;
@@ -25,13 +27,15 @@ public final class QuotaResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of QuotaResourceInner class. */
+    /**
+     * Creates an instance of QuotaResourceInner class.
+     */
     public QuotaResourceInner() {
     }
 
     /**
-     * Get the innerProperties property: Quota bucket resource properties.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
      * @return the innerProperties value.
      */
     private QuotaResourceProperties innerProperties() {
@@ -40,7 +44,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -49,7 +53,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Get the limit property: Current quota limit of the quota bucket.
-     *
+     * 
      * @return the limit value.
      */
     public Integer limit() {
@@ -58,7 +62,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Set the limit property: Current quota limit of the quota bucket.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the QuotaResourceInner object itself.
      */
@@ -72,7 +76,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Get the usage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @return the usage value.
      */
     public Integer usage() {
@@ -81,7 +85,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Set the usage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @param usage the usage value to set.
      * @return the QuotaResourceInner object itself.
      */
@@ -95,7 +99,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceState provisioningState() {
@@ -104,7 +108,7 @@ public final class QuotaResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
