@@ -1,5 +1,5 @@
 [ {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.ImageVersionInner",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OperationListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -9,17 +9,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OperationDisplay",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.ResourceDetailsObjectInner",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -29,132 +24,67 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.ImageVersionListResult",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.PagedOperation",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuLocationInfo",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.PoolListResult",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuZoneDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.QuotaListResult",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuCapabilities",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.ResourceDetailsObjectListResult",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictions",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.implementation.models.ResourceSkuListResult",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionInfo",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ActionType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.QuotaListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AgentProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AutomaticResourcePredictionsProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.QuotaProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsOrganizationProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.QuotaName",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsPermissionProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PoolListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsPermissionType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.CachingType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.DataDisk",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.DevOpsAzureSku",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.FabricProfile",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.GitHubOrganization",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.GitHubOrganizationProfile",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ImageVersionProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.LogonType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManagedServiceIdentity",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManagedServiceIdentityType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManualResourcePredictionsProfile",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.NetworkProfile",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OperationDisplay",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.Organization",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PoolProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -164,27 +94,42 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.Origin",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AgentProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OsDiskStorageAccountType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourcePredictionsProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OsProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.FabricProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PoolImage",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManagedServiceIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PoolProperties",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.UserAssignedIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ImageVersionListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.ImageVersionInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ImageVersionProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -199,22 +144,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PredictionPreference",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AgentProfileUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ProvisioningState",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourcePredictionsProfileUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.QuotaName",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceDetailsObjectListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.QuotaProperties",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.fluent.models.ResourceDetailsObjectInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -224,57 +169,67 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourcePredictionsProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AutomaticResourcePredictionsProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourcePredictionsProfileType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AutomaticResourcePredictionsProfileUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuCapabilities",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsOrganizationProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuLocationInfo",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.Organization",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuProperties",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsPermissionProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionInfo",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.DataDisk",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictions",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.DevOpsAzureSku",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionsReasonCode",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.GitHubOrganization",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionsType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.GitHubOrganizationProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuZoneDetails",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManualResourcePredictionsProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceStatus",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManualResourcePredictionsProfileUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.NetworkProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OsProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -284,7 +239,17 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PoolImage",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.devopsinfrastructure.models.Stateful",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.StatefulUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -294,7 +259,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.StorageAccountType",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.StatelessAgentProfileUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -304,12 +269,77 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.UserAssignedIdentity",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.VmssFabricProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.VmssFabricProfile",
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.Origin",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ActionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionsType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceSkuRestrictionsReasonCode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourcePredictionsProfileType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ManagedServiceIdentityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.ResourceStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.PredictionPreference",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.AzureDevOpsPermissionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.CachingType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.StorageAccountType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.LogonType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devopsinfrastructure.models.OsDiskStorageAccountType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
