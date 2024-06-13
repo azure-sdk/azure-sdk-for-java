@@ -133,24 +133,27 @@ public final class DataProductNetworkAcls {
      */
     public void validate() {
         if (virtualNetworkRule() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property virtualNetworkRule in model DataProductNetworkAcls"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property virtualNetworkRule in model DataProductNetworkAcls"));
         } else {
             virtualNetworkRule().forEach(e -> e.validate());
         }
         if (ipRules() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ipRules in model DataProductNetworkAcls"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ipRules in model DataProductNetworkAcls"));
         } else {
             ipRules().forEach(e -> e.validate());
         }
         if (allowedQueryIpRangeList() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property allowedQueryIpRangeList in model DataProductNetworkAcls"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property allowedQueryIpRangeList in model DataProductNetworkAcls"));
         }
         if (defaultAction() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property defaultAction in model DataProductNetworkAcls"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property defaultAction in model DataProductNetworkAcls"));
         }
     }
 

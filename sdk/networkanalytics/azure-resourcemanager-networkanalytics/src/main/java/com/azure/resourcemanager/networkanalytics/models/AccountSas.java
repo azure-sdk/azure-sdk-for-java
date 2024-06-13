@@ -105,16 +105,16 @@ public final class AccountSas {
      */
     public void validate() {
         if (startTimestamp() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property startTimestamp in model AccountSas"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property startTimestamp in model AccountSas"));
         }
         if (expiryTimestamp() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property expiryTimestamp in model AccountSas"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property expiryTimestamp in model AccountSas"));
         }
         if (ipAddress() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ipAddress in model AccountSas"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ipAddress in model AccountSas"));
         }
     }
 

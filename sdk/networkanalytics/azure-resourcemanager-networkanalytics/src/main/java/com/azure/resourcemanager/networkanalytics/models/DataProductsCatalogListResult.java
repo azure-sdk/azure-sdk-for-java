@@ -80,8 +80,9 @@ public final class DataProductsCatalogListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model DataProductsCatalogListResult"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model DataProductsCatalogListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

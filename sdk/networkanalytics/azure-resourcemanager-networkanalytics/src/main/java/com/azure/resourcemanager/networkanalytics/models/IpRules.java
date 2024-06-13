@@ -78,8 +78,8 @@ public final class IpRules {
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property action in model IpRules"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property action in model IpRules"));
         }
     }
 

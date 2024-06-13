@@ -18,7 +18,7 @@ public final class DataProductUpdate {
      * The managed service identities assigned to this resource.
      */
     @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
+    private AzureResourceManagerLegacyManagedServiceIdentityV4 identity;
 
     /*
      * Resource tags.
@@ -44,7 +44,7 @@ public final class DataProductUpdate {
      * 
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
+    public AzureResourceManagerLegacyManagedServiceIdentityV4 identity() {
         return this.identity;
     }
 
@@ -54,7 +54,7 @@ public final class DataProductUpdate {
      * @param identity the identity value to set.
      * @return the DataProductUpdate object itself.
      */
-    public DataProductUpdate withIdentity(ManagedServiceIdentity identity) {
+    public DataProductUpdate withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4 identity) {
         this.identity = identity;
         return this;
     }

@@ -52,8 +52,8 @@ public final class KeyVaultInfo {
      */
     public void validate() {
         if (keyVaultUrl() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyVaultUrl in model KeyVaultInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property keyVaultUrl in model KeyVaultInfo"));
         }
     }
 

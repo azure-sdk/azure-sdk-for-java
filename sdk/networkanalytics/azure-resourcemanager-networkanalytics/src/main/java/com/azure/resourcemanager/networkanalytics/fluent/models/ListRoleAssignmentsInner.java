@@ -79,8 +79,9 @@ public final class ListRoleAssignmentsInner {
      */
     public void validate() {
         if (roleAssignmentResponse() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property roleAssignmentResponse in model ListRoleAssignmentsInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property roleAssignmentResponse in model ListRoleAssignmentsInner"));
         } else {
             roleAssignmentResponse().forEach(e -> e.validate());
         }
