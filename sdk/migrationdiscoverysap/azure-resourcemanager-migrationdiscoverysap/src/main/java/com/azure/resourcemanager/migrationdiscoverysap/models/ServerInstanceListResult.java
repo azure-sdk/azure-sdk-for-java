@@ -80,8 +80,8 @@ public final class ServerInstanceListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model ServerInstanceListResult"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ServerInstanceListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
