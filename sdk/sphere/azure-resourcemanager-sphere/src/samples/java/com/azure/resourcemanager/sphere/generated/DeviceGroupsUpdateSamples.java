@@ -11,8 +11,7 @@ import com.azure.resourcemanager.sphere.models.DeviceGroup;
  */
 public final class DeviceGroupsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchDeviceGroup.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchDeviceGroup.json
      */
     /**
      * Sample code: DeviceGroups_Update.
@@ -20,8 +19,10 @@ public final class DeviceGroupsUpdateSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void deviceGroupsUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        DeviceGroup resource = manager.deviceGroups().getWithResponse("MyResourceGroup1", "MyCatalog1", "MyProduct1",
-            "MyDeviceGroup1", com.azure.core.util.Context.NONE).getValue();
+        DeviceGroup resource = manager.deviceGroups()
+            .getWithResponse("MyResourceGroup1", "MyCatalog1", "MyProduct1", "MyDeviceGroup1",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().apply();
     }
 }
