@@ -9,9 +9,7 @@ package com.azure.resourcemanager.networkanalytics.generated;
  */
 public final class DataProductsCatalogsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/
-     * DataProductsCatalogs_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataProductsCatalogs_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataProductsCatalogs_ListBySubscription_MaximumSet_Gen.
@@ -24,9 +22,7 @@ public final class DataProductsCatalogsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/
-     * DataProductsCatalogs_ListBySubscription_MinimumSet_Gen.json
+     * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataProductsCatalogs_ListBySubscription_MinimumSet_Gen.json
      */
     /**
      * Sample code: DataProductsCatalogs_ListBySubscription_MinimumSet_Gen.

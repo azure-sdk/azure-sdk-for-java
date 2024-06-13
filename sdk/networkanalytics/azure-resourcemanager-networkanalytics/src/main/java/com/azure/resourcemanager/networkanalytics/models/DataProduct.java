@@ -267,7 +267,7 @@ public interface DataProduct {
              * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            Update withIdentity(ManagedServiceIdentity identity);
+            Update withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4 identity);
         }
 
         /**

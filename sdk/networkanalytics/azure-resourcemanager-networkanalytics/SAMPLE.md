@@ -40,7 +40,6 @@
 import com.azure.resourcemanager.networkanalytics.models.DataProductUserRole;
 import com.azure.resourcemanager.networkanalytics.models.RoleAssignmentCommonProperties;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataProducts AddUserRole.
@@ -54,8 +53,17 @@ public final class DataProductsAddUserRoleSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsAddUserRoleMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().addUserRoleWithResponse("aoiresourceGroupName", "dataproduct01", new RoleAssignmentCommonProperties().withRoleId("00000000-0000-0000-0000-00000000000").withPrincipalId("00000000-0000-0000-0000-00000000000").withUsername("userName").withDataTypeScope(Arrays.asList("scope")).withPrincipalType("User").withRole(DataProductUserRole.READER), com.azure.core.util.Context.NONE);
+    public static void dataProductsAddUserRoleMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .addUserRoleWithResponse("aoiresourceGroupName", "dataproduct01",
+                new RoleAssignmentCommonProperties().withRoleId("00000000-0000-0000-0000-00000000000")
+                    .withPrincipalId("00000000-0000-0000-0000-00000000000")
+                    .withUsername("userName")
+                    .withDataTypeScope(Arrays.asList("scope"))
+                    .withPrincipalType("User")
+                    .withRole(DataProductUserRole.READER),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -66,8 +74,17 @@ public final class DataProductsAddUserRoleSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsAddUserRoleMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().addUserRoleWithResponse("aoiresourceGroupName", "dataproduct01", new RoleAssignmentCommonProperties().withRoleId("00000000-0000-0000-0000-00000000000").withPrincipalId("00000000-0000-0000-0000-00000000000").withUsername("UserName").withDataTypeScope(Arrays.asList("scope")).withPrincipalType("User").withRole(DataProductUserRole.READER), com.azure.core.util.Context.NONE);
+    public static void dataProductsAddUserRoleMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .addUserRoleWithResponse("aoiresourceGroupName", "dataproduct01",
+                new RoleAssignmentCommonProperties().withRoleId("00000000-0000-0000-0000-00000000000")
+                    .withPrincipalId("00000000-0000-0000-0000-00000000000")
+                    .withUsername("UserName")
+                    .withDataTypeScope(Arrays.asList("scope"))
+                    .withPrincipalType("User")
+                    .withRole(DataProductUserRole.READER),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -89,7 +106,6 @@ import com.azure.resourcemanager.networkanalytics.models.VirtualNetworkRule;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataProducts Create.
@@ -103,8 +119,42 @@ public final class DataProductsCreateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCreateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().define("dataproduct01").withRegion("eastus").withExistingResourceGroup("aoiresourceGroupName").withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder")).withProperties(new DataProductProperties().withPublisher("Microsoft").withProduct("MCC").withMajorVersion("1.0.0").withOwners(Arrays.asList("abc@micros.com")).withRedundancy(ControlState.DISABLED).withPurviewAccount("testpurview").withPurviewCollection("134567890").withPrivateLinksEnabled(ControlState.DISABLED).withPublicNetworkAccess(ControlState.ENABLED).withCustomerManagedKeyEncryptionEnabled(ControlState.ENABLED).withCustomerEncryptionKey(new EncryptionKeyDetails().withKeyVaultUri("fakeTokenPlaceholder").withKeyName("fakeTokenPlaceholder").withKeyVersion("fakeTokenPlaceholder")).withNetworkacls(new DataProductNetworkAcls().withVirtualNetworkRule(Arrays.asList(new VirtualNetworkRule().withId("/subscriptions/subscriptionId/resourcegroups/resourceGroupName/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/subnets/subnetName").withAction("Allow").withState(""))).withIpRules(Arrays.asList(new IpRules().withValue("1.1.1.1").withAction("Allow"))).withAllowedQueryIpRangeList(Arrays.asList("1.1.1.1")).withDefaultAction(DefaultAction.ALLOW)).withManagedResourceGroupConfiguration(new ManagedResourceGroupConfiguration().withName("managedResourceGroupName").withLocation("eastus")).withCurrentMinorVersion("1.0.1")).withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED).withUserAssignedIdentities(mapOf("/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1", new UserAssignedIdentity()))).create();
+    public static void
+        dataProductsCreateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .define("dataproduct01")
+            .withRegion("eastus")
+            .withExistingResourceGroup("aoiresourceGroupName")
+            .withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder"))
+            .withProperties(new DataProductProperties().withPublisher("Microsoft")
+                .withProduct("MCC")
+                .withMajorVersion("1.0.0")
+                .withOwners(Arrays.asList("abc@micros.com"))
+                .withRedundancy(ControlState.DISABLED)
+                .withPurviewAccount("testpurview")
+                .withPurviewCollection("134567890")
+                .withPrivateLinksEnabled(ControlState.DISABLED)
+                .withPublicNetworkAccess(ControlState.ENABLED)
+                .withCustomerManagedKeyEncryptionEnabled(ControlState.ENABLED)
+                .withCustomerEncryptionKey(new EncryptionKeyDetails().withKeyVaultUri("fakeTokenPlaceholder")
+                    .withKeyName("fakeTokenPlaceholder")
+                    .withKeyVersion("fakeTokenPlaceholder"))
+                .withNetworkacls(new DataProductNetworkAcls()
+                    .withVirtualNetworkRule(Arrays.asList(new VirtualNetworkRule().withId(
+                        "/subscriptions/subscriptionId/resourcegroups/resourceGroupName/providers/Microsoft.Network/virtualNetworks/virtualNetworkName/subnets/subnetName")
+                        .withAction("Allow")
+                        .withState("")))
+                    .withIpRules(Arrays.asList(new IpRules().withValue("1.1.1.1").withAction("Allow")))
+                    .withAllowedQueryIpRangeList(Arrays.asList("1.1.1.1"))
+                    .withDefaultAction(DefaultAction.ALLOW))
+                .withManagedResourceGroupConfiguration(
+                    new ManagedResourceGroupConfiguration().withName("managedResourceGroupName").withLocation("eastus"))
+                .withCurrentMinorVersion("1.0.1"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
+                    new UserAssignedIdentity())))
+            .create();
     }
 
     /*
@@ -115,8 +165,16 @@ public final class DataProductsCreateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().define("dataproduct01").withRegion("eastus").withExistingResourceGroup("aoiresourceGroupName").withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder")).withProperties(new DataProductProperties().withPublisher("Microsoft").withProduct("MCC").withMajorVersion("1.0.0")).create();
+    public static void dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .define("dataproduct01")
+            .withRegion("eastus")
+            .withExistingResourceGroup("aoiresourceGroupName")
+            .withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder"))
+            .withProperties(
+                new DataProductProperties().withPublisher("Microsoft").withProduct("MCC").withMajorVersion("1.0.0"))
+            .create();
     }
 
     // Use "Map.of" if available
@@ -148,7 +206,8 @@ public final class DataProductsDeleteSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsDeleteMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void
+        dataProductsDeleteMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().delete("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 
@@ -160,7 +219,8 @@ public final class DataProductsDeleteSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().delete("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 }
@@ -171,7 +231,6 @@ public final class DataProductsDeleteSamples {
 ```java
 import com.azure.resourcemanager.networkanalytics.models.AccountSas;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Samples for DataProducts GenerateStorageAccountSasToken.
@@ -181,12 +240,19 @@ public final class DataProductsGenerateStorageAccountSasTokenSamples {
      * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataProducts_GenerateStorageAccountSasToken_MinimumSet_Gen.json
      */
     /**
-     * Sample code: DataProducts_GenerateStorageAccountSasToken_MaximumSet_Gen - generated by [MinimumSet] rule_MinimumSet_Gen.
+     * Sample code: DataProducts_GenerateStorageAccountSasToken_MaximumSet_Gen - generated by [MinimumSet]
+     * rule_MinimumSet_Gen.
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().generateStorageAccountSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", new AccountSas().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:35:17.051Z")).withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:35:17.051Z")).withIpAddress("1.1.1.1"), com.azure.core.util.Context.NONE);
+    public static void dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .generateStorageAccountSasTokenWithResponse("aoiresourceGroupName", "dataproduct01",
+                new AccountSas().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:35:17.051Z"))
+                    .withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:35:17.051Z"))
+                    .withIpAddress("1.1.1.1"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -197,8 +263,14 @@ public final class DataProductsGenerateStorageAccountSasTokenSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsGenerateStorageAccountSasTokenMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().generateStorageAccountSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", new AccountSas().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.151Z")).withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.151Z")).withIpAddress("1.1.1.1"), com.azure.core.util.Context.NONE);
+    public static void dataProductsGenerateStorageAccountSasTokenMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .generateStorageAccountSasTokenWithResponse("aoiresourceGroupName", "dataproduct01",
+                new AccountSas().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.151Z"))
+                    .withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.151Z"))
+                    .withIpAddress("1.1.1.1"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -218,8 +290,10 @@ public final class DataProductsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsGetMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
+    public static void
+        dataProductsGetMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -230,8 +304,10 @@ public final class DataProductsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
+    public static void dataProductsGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -251,7 +327,8 @@ public final class DataProductsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListBySubscriptionMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsListBySubscriptionMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().list(com.azure.core.util.Context.NONE);
     }
 
@@ -263,7 +340,8 @@ public final class DataProductsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListBySubscriptionMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsListBySubscriptionMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -284,7 +362,8 @@ public final class DataProductsListByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 
@@ -296,7 +375,8 @@ public final class DataProductsListByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListByResourceGroupMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsListByResourceGroupMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProducts().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 }
@@ -321,8 +401,13 @@ public final class DataProductsListRolesAssignmentsSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
-        manager.dataProducts().listRolesAssignmentsWithResponse("aoiresourceGroupName", "dataproduct01", SerializerFactory.createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON), com.azure.core.util.Context.NONE);
+    public static void dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        manager.dataProducts()
+            .listRolesAssignmentsWithResponse("aoiresourceGroupName", "dataproduct01",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -333,8 +418,13 @@ public final class DataProductsListRolesAssignmentsSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsListRolesAssignmentsMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
-        manager.dataProducts().listRolesAssignmentsWithResponse("aoiresourceGroupName", "dataproduct01", SerializerFactory.createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON), com.azure.core.util.Context.NONE);
+    public static void dataProductsListRolesAssignmentsMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        manager.dataProducts()
+            .listRolesAssignmentsWithResponse("aoiresourceGroupName", "dataproduct01",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -345,7 +435,6 @@ public final class DataProductsListRolesAssignmentsSamples {
 import com.azure.resourcemanager.networkanalytics.fluent.models.RoleAssignmentDetailInner;
 import com.azure.resourcemanager.networkanalytics.models.DataProductUserRole;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataProducts RemoveUserRole.
@@ -359,8 +448,18 @@ public final class DataProductsRemoveUserRoleSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsRemoveUserRoleMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().removeUserRoleWithResponse("aoiresourceGroupName", "dataproduct01", new RoleAssignmentDetailInner().withRoleId("00000000-0000-0000-0000-00000000000").withPrincipalId("00000000-0000-0000-0000-00000000000").withUsername("UserName").withDataTypeScope(Arrays.asList("scope")).withPrincipalType("User").withRole(DataProductUserRole.READER).withRoleAssignmentId("00000000-0000-0000-0000-00000000000"), com.azure.core.util.Context.NONE);
+    public static void dataProductsRemoveUserRoleMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .removeUserRoleWithResponse("aoiresourceGroupName", "dataproduct01",
+                new RoleAssignmentDetailInner().withRoleId("00000000-0000-0000-0000-00000000000")
+                    .withPrincipalId("00000000-0000-0000-0000-00000000000")
+                    .withUsername("UserName")
+                    .withDataTypeScope(Arrays.asList("scope"))
+                    .withPrincipalType("User")
+                    .withRole(DataProductUserRole.READER)
+                    .withRoleAssignmentId("00000000-0000-0000-0000-00000000000"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -371,8 +470,18 @@ public final class DataProductsRemoveUserRoleSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsRemoveUserRoleMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().removeUserRoleWithResponse("aoiresourceGroupName", "dataproduct01", new RoleAssignmentDetailInner().withRoleId("00000000-0000-0000-0000-00000000000").withPrincipalId("00000000-0000-0000-0000-00000000000").withUsername("UserName").withDataTypeScope(Arrays.asList("scope")).withPrincipalType("User").withRole(DataProductUserRole.READER).withRoleAssignmentId("00000000-0000-0000-0000-00000000000"), com.azure.core.util.Context.NONE);
+    public static void dataProductsRemoveUserRoleMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .removeUserRoleWithResponse("aoiresourceGroupName", "dataproduct01",
+                new RoleAssignmentDetailInner().withRoleId("00000000-0000-0000-0000-00000000000")
+                    .withPrincipalId("00000000-0000-0000-0000-00000000000")
+                    .withUsername("UserName")
+                    .withDataTypeScope(Arrays.asList("scope"))
+                    .withPrincipalType("User")
+                    .withRole(DataProductUserRole.READER)
+                    .withRoleAssignmentId("00000000-0000-0000-0000-00000000000"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -394,8 +503,11 @@ public final class DataProductsRotateKeySamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsRotateKeyMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().rotateKeyWithResponse("aoiresourceGroupName", "dataproduct01", new KeyVaultInfo().withKeyVaultUrl("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
+    public static void
+        dataProductsRotateKeyMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .rotateKeyWithResponse("aoiresourceGroupName", "dataproduct01",
+                new KeyVaultInfo().withKeyVaultUrl("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -406,8 +518,11 @@ public final class DataProductsRotateKeySamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsRotateKeyMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProducts().rotateKeyWithResponse("aoiresourceGroupName", "dataproduct01", new KeyVaultInfo().withKeyVaultUrl("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
+    public static void dataProductsRotateKeyMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProducts()
+            .rotateKeyWithResponse("aoiresourceGroupName", "dataproduct01",
+                new KeyVaultInfo().withKeyVaultUrl("fakeTokenPlaceholder"), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -415,16 +530,15 @@ public final class DataProductsRotateKeySamples {
 ### DataProducts_Update
 
 ```java
+import com.azure.resourcemanager.networkanalytics.models.AzureResourceManagerLegacyManagedServiceIdentityV4;
 import com.azure.resourcemanager.networkanalytics.models.ControlState;
 import com.azure.resourcemanager.networkanalytics.models.DataProduct;
 import com.azure.resourcemanager.networkanalytics.models.DataProductUpdateProperties;
-import com.azure.resourcemanager.networkanalytics.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.networkanalytics.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.networkanalytics.models.UserAssignedIdentity;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataProducts Update.
@@ -438,9 +552,25 @@ public final class DataProductsUpdateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsUpdateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        DataProduct resource = manager.dataProducts().getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder")).withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED).withUserAssignedIdentities(mapOf("/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1", new UserAssignedIdentity()))).withProperties(new DataProductUpdateProperties().withOwners(Arrays.asList("abc@micros.com", "def@micros.com")).withPurviewAccount("testpurview").withPurviewCollection("134567890").withPrivateLinksEnabled(ControlState.DISABLED).withCurrentMinorVersion("1.0.1")).apply();
+    public static void
+        dataProductsUpdateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        DataProduct resource = manager.dataProducts()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder"))
+            .withIdentity(new AzureResourceManagerLegacyManagedServiceIdentityV4()
+                .withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
+                    new UserAssignedIdentity())))
+            .withProperties(
+                new DataProductUpdateProperties().withOwners(Arrays.asList("abc@micros.com", "def@micros.com"))
+                    .withPurviewAccount("testpurview")
+                    .withPurviewCollection("134567890")
+                    .withPrivateLinksEnabled(ControlState.DISABLED)
+                    .withCurrentMinorVersion("1.0.1"))
+            .apply();
     }
 
     /*
@@ -451,8 +581,11 @@ public final class DataProductsUpdateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        DataProduct resource = manager.dataProducts().getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE).getValue();
+    public static void dataProductsUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        DataProduct resource = manager.dataProducts()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().apply();
     }
 
@@ -485,8 +618,10 @@ public final class DataProductsCatalogsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProductsCatalogs().getByResourceGroupWithResponse("aoiresourceGroupName", com.azure.core.util.Context.NONE);
+    public static void dataProductsCatalogsGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProductsCatalogs()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -497,8 +632,10 @@ public final class DataProductsCatalogsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsGetMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataProductsCatalogs().getByResourceGroupWithResponse("aoiresourceGroupName", com.azure.core.util.Context.NONE);
+    public static void dataProductsCatalogsGetMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataProductsCatalogs()
+            .getByResourceGroupWithResponse("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -518,7 +655,8 @@ public final class DataProductsCatalogsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsListBySubscriptionMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsCatalogsListBySubscriptionMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProductsCatalogs().list(com.azure.core.util.Context.NONE);
     }
 
@@ -530,7 +668,8 @@ public final class DataProductsCatalogsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsListBySubscriptionMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsCatalogsListBySubscriptionMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProductsCatalogs().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -551,7 +690,8 @@ public final class DataProductsCatalogsListByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsListByResourceGroupMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsCatalogsListByResourceGroupMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProductsCatalogs().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 
@@ -563,7 +703,8 @@ public final class DataProductsCatalogsListByResourceGroupSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataProductsCatalogsListByResourceGroupMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void dataProductsCatalogsListByResourceGroupMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.dataProductsCatalogs().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 }
@@ -574,7 +715,6 @@ public final class DataProductsCatalogsListByResourceGroupSamples {
 ```java
 import com.azure.resourcemanager.networkanalytics.models.DataTypeProperties;
 import com.azure.resourcemanager.networkanalytics.models.DataTypeState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataTypes Create.
@@ -588,8 +728,16 @@ public final class DataTypesCreateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesCreateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().define("datatypename").withExistingDataProduct("aoiresourceGroupName", "dataproduct01").withProperties(new DataTypeProperties().withState(DataTypeState.fromString("STARTED")).withStorageOutputRetention(27).withDatabaseCacheRetention(23).withDatabaseRetention(6)).create();
+    public static void
+        dataTypesCreateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .define("datatypename")
+            .withExistingDataProduct("aoiresourceGroupName", "dataproduct01")
+            .withProperties(new DataTypeProperties().withState(DataTypeState.fromString("STARTED"))
+                .withStorageOutputRetention(27)
+                .withDatabaseCacheRetention(23)
+                .withDatabaseRetention(6))
+            .create();
     }
 
     /*
@@ -600,8 +748,12 @@ public final class DataTypesCreateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().define("datatypename").withExistingDataProduct("aoiresourceGroupName", "dataproduct01").create();
+    public static void dataTypesCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .define("datatypename")
+            .withExistingDataProduct("aoiresourceGroupName", "dataproduct01")
+            .create();
     }
 }
 ```
@@ -621,8 +773,10 @@ public final class DataTypesDeleteSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().delete("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
+    public static void dataTypesDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .delete("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -633,8 +787,10 @@ public final class DataTypesDeleteSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesDeleteMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().delete("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
+    public static void
+        dataTypesDeleteMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .delete("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -658,8 +814,13 @@ public final class DataTypesDeleteDataSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesDeleteDataMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
-        manager.dataTypes().deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory.createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON), com.azure.core.util.Context.NONE);
+    public static void dataTypesDeleteDataMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        manager.dataTypes()
+            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -670,8 +831,13 @@ public final class DataTypesDeleteDataSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesDeleteDataMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
-        manager.dataTypes().deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory.createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON), com.azure.core.util.Context.NONE);
+    public static void dataTypesDeleteDataMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        manager.dataTypes()
+            .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename",
+                SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -681,7 +847,6 @@ public final class DataTypesDeleteDataSamples {
 ```java
 import com.azure.resourcemanager.networkanalytics.models.ContainerSaS;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Samples for DataTypes GenerateStorageContainerSasToken.
@@ -695,20 +860,33 @@ public final class DataTypesGenerateStorageContainerSasTokenSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesGenerateStorageContainerSasTokenMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().generateStorageContainerSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", new ContainerSaS().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.039Z")).withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.039Z")).withIpAddress("1.1.1.1"), com.azure.core.util.Context.NONE);
+    public static void dataTypesGenerateStorageContainerSasTokenMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .generateStorageContainerSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename",
+                new ContainerSaS().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.039Z"))
+                    .withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:34:58.039Z"))
+                    .withIpAddress("1.1.1.1"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file: specification/networkanalytics/resource-manager/Microsoft.NetworkAnalytics/stable/2023-11-15/examples/DataTypes_GenerateStorageContainerSasToken_MinimumSet_Gen.json
      */
     /**
-     * Sample code: DataTypes_GenerateStorageContainerSasToken_MaximumSet_Gen - generated by [MinimumSet] rule_MinimumSet_Gen.
+     * Sample code: DataTypes_GenerateStorageContainerSasToken_MaximumSet_Gen - generated by [MinimumSet]
+     * rule_MinimumSet_Gen.
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesGenerateStorageContainerSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().generateStorageContainerSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", new ContainerSaS().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:35:16.887Z")).withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:35:16.887Z")).withIpAddress("1.1.1.1"), com.azure.core.util.Context.NONE);
+    public static void dataTypesGenerateStorageContainerSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .generateStorageContainerSasTokenWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename",
+                new ContainerSaS().withStartTimestamp(OffsetDateTime.parse("2023-08-24T05:35:16.887Z"))
+                    .withExpiryTimestamp(OffsetDateTime.parse("2023-08-24T05:35:16.887Z"))
+                    .withIpAddress("1.1.1.1"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -728,8 +906,10 @@ public final class DataTypesGetSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
+    public static void dataTypesGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -740,8 +920,10 @@ public final class DataTypesGetSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesGetMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
+    public static void
+        dataTypesGetMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -761,8 +943,10 @@ public final class DataTypesListByDataProductSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesListByDataProductMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().listByDataProduct("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
+    public static void dataTypesListByDataProductMaximumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .listByDataProduct("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -773,8 +957,10 @@ public final class DataTypesListByDataProductSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesListByDataProductMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        manager.dataTypes().listByDataProduct("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
+    public static void dataTypesListByDataProductMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        manager.dataTypes()
+            .listByDataProduct("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -785,7 +971,6 @@ public final class DataTypesListByDataProductSamples {
 import com.azure.resourcemanager.networkanalytics.models.DataType;
 import com.azure.resourcemanager.networkanalytics.models.DataTypeState;
 import com.azure.resourcemanager.networkanalytics.models.DataTypeUpdateProperties;
-import java.util.stream.Collectors;
 
 /**
  * Samples for DataTypes Update.
@@ -799,8 +984,11 @@ public final class DataTypesUpdateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        DataType resource = manager.dataTypes().getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE).getValue();
+    public static void dataTypesUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        DataType resource = manager.dataTypes()
+            .getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().apply();
     }
 
@@ -812,9 +1000,17 @@ public final class DataTypesUpdateSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void dataTypesUpdateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
-        DataType resource = manager.dataTypes().getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withProperties(new DataTypeUpdateProperties().withState(DataTypeState.fromString("STARTED")).withStorageOutputRetention(30).withDatabaseCacheRetention(16).withDatabaseRetention(9)).apply();
+    public static void
+        dataTypesUpdateMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        DataType resource = manager.dataTypes()
+            .getWithResponse("aoiresourceGroupName", "dataproduct01", "datatypename", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new DataTypeUpdateProperties().withState(DataTypeState.fromString("STARTED"))
+                .withStorageOutputRetention(30)
+                .withDatabaseCacheRetention(16)
+                .withDatabaseRetention(9))
+            .apply();
     }
 }
 ```
@@ -834,7 +1030,8 @@ public final class OperationsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(
+        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 
@@ -846,7 +1043,8 @@ public final class OperationsListSamples {
      * 
      * @param manager Entry point to NetworkAnalyticsManager.
      */
-    public static void operationsListMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+    public static void
+        operationsListMaximumSetGen(com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

@@ -21,7 +21,7 @@ public final class DataProductProperties {
     private String resourceGuid;
 
     /*
-     * Latest provisioning state of data product.
+     * Latest provisioning state  of data product.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -485,16 +485,18 @@ public final class DataProductProperties {
      */
     public void validate() {
         if (publisher() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property publisher in model DataProductProperties"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property publisher in model DataProductProperties"));
         }
         if (product() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property product in model DataProductProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property product in model DataProductProperties"));
         }
         if (majorVersion() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property majorVersion in model DataProductProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property majorVersion in model DataProductProperties"));
         }
         if (customerEncryptionKey() != null) {
             customerEncryptionKey().validate();

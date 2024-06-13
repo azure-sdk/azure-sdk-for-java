@@ -104,6 +104,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.networkanalytics.models.AzureResourceManagerLegacyManagedServiceIdentityV4",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.networkanalytics.models.DataProductUpdateProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
