@@ -563,6 +563,81 @@ public final class AzureDatabricksLinkedService extends LinkedService {
     }
 
     /**
+     * Get the newClusterAttributes property: A set of optional, user-specified cluster attributes key-value pairs.
+     * 
+     * @return the newClusterAttributes value.
+     */
+    public Map<String, Object> newClusterAttributes() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().newClusterAttributes();
+    }
+
+    /**
+     * Set the newClusterAttributes property: A set of optional, user-specified cluster attributes key-value pairs.
+     * 
+     * @param newClusterAttributes the newClusterAttributes value to set.
+     * @return the AzureDatabricksLinkedService object itself.
+     */
+    public AzureDatabricksLinkedService withNewClusterAttributes(Map<String, Object> newClusterAttributes) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new AzureDatabricksLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withNewClusterAttributes(newClusterAttributes);
+        return this;
+    }
+
+    /**
+     * Get the clusterOption property: Cluster option (Fixed / Autoscaling / Single Node) to enables the cluster nodes
+     * to be fixed or automatically scale between the minimum and maximum number of nodes, based on load. Single node
+     * clusters consists of a driver but no workers. Type: string (or Expression with resultType string).
+     * 
+     * @return the clusterOption value.
+     */
+    public Object clusterOption() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().clusterOption();
+    }
+
+    /**
+     * Set the clusterOption property: Cluster option (Fixed / Autoscaling / Single Node) to enables the cluster nodes
+     * to be fixed or automatically scale between the minimum and maximum number of nodes, based on load. Single node
+     * clusters consists of a driver but no workers. Type: string (or Expression with resultType string).
+     * 
+     * @param clusterOption the clusterOption value to set.
+     * @return the AzureDatabricksLinkedService object itself.
+     */
+    public AzureDatabricksLinkedService withClusterOption(Object clusterOption) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new AzureDatabricksLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withClusterOption(clusterOption);
+        return this;
+    }
+
+    /**
+     * Get the dataSecurityMode property: Access mode for data secured in unity catalog. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @return the dataSecurityMode value.
+     */
+    public Object dataSecurityMode() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().dataSecurityMode();
+    }
+
+    /**
+     * Set the dataSecurityMode property: Access mode for data secured in unity catalog. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @param dataSecurityMode the dataSecurityMode value to set.
+     * @return the AzureDatabricksLinkedService object itself.
+     */
+    public AzureDatabricksLinkedService withDataSecurityMode(Object dataSecurityMode) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new AzureDatabricksLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withDataSecurityMode(dataSecurityMode);
+        return this;
+    }
+
+    /**
      * Get the credential property: The credential reference containing authentication information.
      * 
      * @return the credential value.
