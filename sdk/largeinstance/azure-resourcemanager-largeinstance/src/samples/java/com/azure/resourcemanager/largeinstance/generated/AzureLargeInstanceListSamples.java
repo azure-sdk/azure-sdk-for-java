@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceListSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_ListBySubscription.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_ListBySubscription.json
      */
     /**
      * Sample code: AzureLargeInstance_ListBySubscription.

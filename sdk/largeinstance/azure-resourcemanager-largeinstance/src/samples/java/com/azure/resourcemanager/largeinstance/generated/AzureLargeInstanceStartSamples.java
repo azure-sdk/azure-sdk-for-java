@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceStartSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Start.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Start.json
      */
     /**
      * Sample code: AzureLargeInstance_Start.
