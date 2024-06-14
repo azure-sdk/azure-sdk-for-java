@@ -5,22 +5,21 @@
 package com.azure.resourcemanager.playwrighttesting.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.playwrighttesting.models.AccountProperties;
+import com.azure.resourcemanager.playwrighttesting.models.AccountQuotaProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
- * A Playwright service account resource.
+ * A quota resource for a Playwright service account.
  */
 @Fluent
-public final class AccountInner extends Resource {
+public final class AccountQuotaInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
-    private AccountProperties properties;
+    private AccountQuotaProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -29,9 +28,9 @@ public final class AccountInner extends Resource {
     private SystemData systemData;
 
     /**
-     * Creates an instance of AccountInner class.
+     * Creates an instance of AccountQuotaInner class.
      */
-    public AccountInner() {
+    public AccountQuotaInner() {
     }
 
     /**
@@ -39,7 +38,7 @@ public final class AccountInner extends Resource {
      * 
      * @return the properties value.
      */
-    public AccountProperties properties() {
+    public AccountQuotaProperties properties() {
         return this.properties;
     }
 
@@ -47,9 +46,9 @@ public final class AccountInner extends Resource {
      * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
-     * @return the AccountInner object itself.
+     * @return the AccountQuotaInner object itself.
      */
-    public AccountInner withProperties(AccountProperties properties) {
+    public AccountQuotaInner withProperties(AccountQuotaProperties properties) {
         this.properties = properties;
         return this;
     }
@@ -61,24 +60,6 @@ public final class AccountInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AccountInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AccountInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
     }
 
     /**

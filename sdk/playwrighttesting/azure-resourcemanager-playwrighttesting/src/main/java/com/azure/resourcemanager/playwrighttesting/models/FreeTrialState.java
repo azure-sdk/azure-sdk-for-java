@@ -23,6 +23,16 @@ public final class FreeTrialState extends ExpandableStringEnum<FreeTrialState> {
     public static final FreeTrialState EXPIRED = fromString("Expired");
 
     /**
+     * Static value NotEligible for FreeTrialState.
+     */
+    public static final FreeTrialState NOT_ELIGIBLE = fromString("NotEligible");
+
+    /**
+     * Static value NotRegistered for FreeTrialState.
+     */
+    public static final FreeTrialState NOT_REGISTERED = fromString("NotRegistered");
+
+    /**
      * Creates a new instance of FreeTrialState value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

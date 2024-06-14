@@ -9,9 +9,7 @@ package com.azure.resourcemanager.playwrighttesting.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
-     * examples/Operations_List.json
+     * x-ms-original-file: specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-02-01-preview/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
