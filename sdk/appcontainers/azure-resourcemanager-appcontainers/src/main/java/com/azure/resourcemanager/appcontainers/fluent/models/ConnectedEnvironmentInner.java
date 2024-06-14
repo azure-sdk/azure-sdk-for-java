@@ -149,8 +149,8 @@ public final class ConnectedEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @return the daprAIConnectionString value.
      */
@@ -159,8 +159,8 @@ public final class ConnectedEnvironmentInner extends Resource {
     }
 
     /**
-     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @param daprAIConnectionString the daprAIConnectionString value to set.
      * @return the ConnectedEnvironmentInner object itself.

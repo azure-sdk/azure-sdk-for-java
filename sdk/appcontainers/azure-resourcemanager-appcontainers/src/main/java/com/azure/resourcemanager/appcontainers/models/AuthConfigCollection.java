@@ -69,8 +69,8 @@ public final class AuthConfigCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model AuthConfigCollection"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model AuthConfigCollection"));
         } else {
             value().forEach(e -> e.validate());
         }

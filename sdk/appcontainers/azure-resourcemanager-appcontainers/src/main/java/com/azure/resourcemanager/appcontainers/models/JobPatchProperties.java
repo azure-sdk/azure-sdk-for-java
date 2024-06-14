@@ -15,14 +15,7 @@ import java.util.Map;
 @Fluent
 public final class JobPatchProperties {
     /*
-     * The complex type of the extended location.
-     */
-    @JsonProperty(value = "extendedLocation")
-    private ExtendedLocation extendedLocation;
-
-    /*
-     * Managed identities needed by a container app job to interact with other Azure services to not maintain any
-     * secrets or credentials in code.
+     * Managed identities needed by a container app job to interact with other Azure services to not maintain any secrets or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -47,28 +40,8 @@ public final class JobPatchProperties {
     }
 
     /**
-     * Get the extendedLocation property: The complex type of the extended location.
-     * 
-     * @return the extendedLocation value.
-     */
-    public ExtendedLocation extendedLocation() {
-        return this.extendedLocation;
-    }
-
-    /**
-     * Set the extendedLocation property: The complex type of the extended location.
-     * 
-     * @param extendedLocation the extendedLocation value to set.
-     * @return the JobPatchProperties object itself.
-     */
-    public JobPatchProperties withExtendedLocation(ExtendedLocation extendedLocation) {
-        this.extendedLocation = extendedLocation;
-        return this;
-    }
-
-    /**
-     * Get the identity property: Managed identities needed by a container app job to interact with other Azure
-     * services to not maintain any secrets or credentials in code.
+     * Get the identity property: Managed identities needed by a container app job to interact with other Azure services
+     * to not maintain any secrets or credentials in code.
      * 
      * @return the identity value.
      */
@@ -77,8 +50,8 @@ public final class JobPatchProperties {
     }
 
     /**
-     * Set the identity property: Managed identities needed by a container app job to interact with other Azure
-     * services to not maintain any secrets or credentials in code.
+     * Set the identity property: Managed identities needed by a container app job to interact with other Azure services
+     * to not maintain any secrets or credentials in code.
      * 
      * @param identity the identity value to set.
      * @return the JobPatchProperties object itself.
@@ -134,9 +107,6 @@ public final class JobPatchProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (extendedLocation() != null) {
-            extendedLocation().validate();
-        }
         if (identity() != null) {
             identity().validate();
         }

@@ -36,8 +36,7 @@ import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorE
 import reactor.core.publisher.Mono;
 
 /**
- * An instance of this class provides access to all the operations defined in
- * ConnectedEnvironmentsDaprComponentsClient.
+ * An instance of this class provides access to all the operations defined in ConnectedEnvironmentsDaprComponentsClient.
  */
 public final class ConnectedEnvironmentsDaprComponentsClientImpl implements ConnectedEnvironmentsDaprComponentsClient {
     /**

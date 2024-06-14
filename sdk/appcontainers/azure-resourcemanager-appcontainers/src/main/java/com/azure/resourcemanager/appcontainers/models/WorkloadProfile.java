@@ -130,12 +130,13 @@ public final class WorkloadProfile {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model WorkloadProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model WorkloadProfile"));
         }
         if (workloadProfileType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property workloadProfileType in model WorkloadProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property workloadProfileType in model WorkloadProfile"));
         }
     }
 

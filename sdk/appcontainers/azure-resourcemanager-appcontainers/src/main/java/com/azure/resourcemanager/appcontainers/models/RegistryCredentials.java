@@ -31,8 +31,7 @@ public final class RegistryCredentials {
     private String passwordSecretRef;
 
     /*
-     * A Managed Identity to use to authenticate with Azure Container Registry. For user-assigned identities, use the
-     * full user-assigned identity Resource ID. For system-assigned identities, use 'system'
+     * A Managed Identity to use to authenticate with Azure Container Registry. For user-assigned identities, use the full user-assigned identity Resource ID. For system-assigned identities, use 'system'
      */
     @JsonProperty(value = "identity")
     private String identity;

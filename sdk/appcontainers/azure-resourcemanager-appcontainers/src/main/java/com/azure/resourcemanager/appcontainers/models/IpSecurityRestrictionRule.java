@@ -134,16 +134,18 @@ public final class IpSecurityRestrictionRule {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model IpSecurityRestrictionRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model IpSecurityRestrictionRule"));
         }
         if (ipAddressRange() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property ipAddressRange in model IpSecurityRestrictionRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property ipAddressRange in model IpSecurityRestrictionRule"));
         }
         if (action() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property action in model IpSecurityRestrictionRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property action in model IpSecurityRestrictionRule"));
         }
     }
 
