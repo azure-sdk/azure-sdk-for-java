@@ -7,6 +7,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = ImageTemplateCustomizer.class)
+    defaultImpl = ImageTemplateCustomizer.class,
+    visible = true)
 @JsonTypeName("ImageTemplateCustomizer")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Shell", value = ImageTemplateShellCustomizer.class),
@@ -28,6 +29,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public class ImageTemplateCustomizer {
     /*
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type;
+
+    /*
      * Friendly Name to provide context on what this customization step does
      */
     @JsonProperty(value = "name")
@@ -37,6 +45,17 @@ public class ImageTemplateCustomizer {
      * Creates an instance of ImageTemplateCustomizer class.
      */
     public ImageTemplateCustomizer() {
+        this.type = "ImageTemplateCustomizer";
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**

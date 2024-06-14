@@ -6,18 +6,30 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
- * Runs the specified shell script during the validation phase (Linux). Corresponds to Packer shell provisioner.
- * Exactly one of 'scriptUri' or 'inline' can be specified.
+ * Runs the specified shell script during the validation phase (Linux). Corresponds to Packer shell provisioner. Exactly
+ * one of 'scriptUri' or 'inline' can be specified.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateShellValidator.class,
+    visible = true)
 @JsonTypeName("Shell")
 @Fluent
 public final class ImageTemplateShellValidator extends ImageTemplateInVMValidator {
+    /*
+     * The type of validation you want to use on the Image. For example, "Shell" can be shell validation
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "Shell";
+
     /*
      * URI of the shell script to be run for validation. It can be a github link, Azure Storage URI, etc
      */
@@ -40,6 +52,17 @@ public final class ImageTemplateShellValidator extends ImageTemplateInVMValidato
      * Creates an instance of ImageTemplateShellValidator class.
      */
     public ImageTemplateShellValidator() {
+    }
+
+    /**
+     * Get the type property: The type of validation you want to use on the Image. For example, "Shell" can be shell
+     * validation.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**

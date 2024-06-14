@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Properties of SourceImage kind of trigger.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = SourceImageTriggerProperties.class,
+    visible = true)
 @JsonTypeName("SourceImage")
 @Immutable
 public final class SourceImageTriggerProperties extends TriggerProperties {
+    /*
+     * The kind of trigger.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private String kind = "SourceImage";
+
     /**
      * Creates an instance of SourceImageTriggerProperties class.
      */
     public SourceImageTriggerProperties() {
+    }
+
+    /**
+     * Get the kind property: The kind of trigger.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public String kind() {
+        return this.kind;
     }
 
     /**

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
  * Runs the specified PowerShell script during the validation phase (Windows). Corresponds to Packer powershell
  * provisioner. Exactly one of 'scriptUri' or 'inline' can be specified.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplatePowerShellValidator.class,
+    visible = true)
 @JsonTypeName("PowerShell")
 @Fluent
 public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMValidator {
+    /*
+     * The type of validation you want to use on the Image. For example, "Shell" can be shell validation
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "PowerShell";
+
     /*
      * URI of the PowerShell script to be run for validation. It can be a github link, Azure Storage URI, etc
      */
@@ -43,8 +55,7 @@ public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMVal
     private Boolean runElevated;
 
     /*
-     * If specified, the PowerShell script will be run with elevated privileges using the Local System user. Can only
-     * be true when the runElevated field above is set to true.
+     * If specified, the PowerShell script will be run with elevated privileges using the Local System user. Can only be true when the runElevated field above is set to true.
      */
     @JsonProperty(value = "runAsSystem")
     private Boolean runAsSystem;
@@ -62,8 +73,19 @@ public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMVal
     }
 
     /**
-     * Get the scriptUri property: URI of the PowerShell script to be run for validation. It can be a github link,
-     * Azure Storage URI, etc.
+     * Get the type property: The type of validation you want to use on the Image. For example, "Shell" can be shell
+     * validation.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the scriptUri property: URI of the PowerShell script to be run for validation. It can be a github link, Azure
+     * Storage URI, etc.
      * 
      * @return the scriptUri value.
      */
@@ -72,8 +94,8 @@ public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMVal
     }
 
     /**
-     * Set the scriptUri property: URI of the PowerShell script to be run for validation. It can be a github link,
-     * Azure Storage URI, etc.
+     * Set the scriptUri property: URI of the PowerShell script to be run for validation. It can be a github link, Azure
+     * Storage URI, etc.
      * 
      * @param scriptUri the scriptUri value to set.
      * @return the ImageTemplatePowerShellValidator object itself.
@@ -84,8 +106,7 @@ public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMVal
     }
 
     /**
-     * Get the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field
-     * above.
+     * Get the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field above.
      * 
      * @return the sha256Checksum value.
      */
@@ -94,8 +115,7 @@ public final class ImageTemplatePowerShellValidator extends ImageTemplateInVMVal
     }
 
     /**
-     * Set the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field
-     * above.
+     * Set the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field above.
      * 
      * @param sha256Checksum the sha256Checksum value to set.
      * @return the ImageTemplatePowerShellValidator object itself.

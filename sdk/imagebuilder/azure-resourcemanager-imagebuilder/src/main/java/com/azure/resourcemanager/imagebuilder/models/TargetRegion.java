@@ -26,8 +26,7 @@ public final class TargetRegion {
     private Integer replicaCount;
 
     /*
-     * Specifies the storage account type to be used to store the image in this region. Omit to use the default
-     * (Standard_LRS).
+     * Specifies the storage account type to be used to store the image in this region. Omit to use the default (Standard_LRS).
      */
     @JsonProperty(value = "storageAccountType")
     private SharedImageStorageAccountType storageAccountType;
@@ -109,8 +108,8 @@ public final class TargetRegion {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model TargetRegion"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model TargetRegion"));
         }
     }
 

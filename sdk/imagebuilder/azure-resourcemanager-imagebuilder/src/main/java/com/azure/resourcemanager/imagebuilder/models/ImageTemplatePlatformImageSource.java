@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -13,43 +14,47 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Describes an image source from [Azure Gallery
  * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplatePlatformImageSource.class,
+    visible = true)
 @JsonTypeName("PlatformImage")
 @Fluent
 public final class ImageTemplatePlatformImageSource extends ImageTemplateSource {
     /*
-     * Image Publisher in [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
+     * Specifies the type of source image you want to start with.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "PlatformImage";
+
+    /*
+     * Image Publisher in [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
      */
     @JsonProperty(value = "publisher")
     private String publisher;
 
     /*
-     * Image offer from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
+     * Image offer from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
      */
     @JsonProperty(value = "offer")
     private String offer;
 
     /*
-     * Image sku from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
+     * Image sku from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
      */
     @JsonProperty(value = "sku")
     private String sku;
 
     /*
-     * Image version from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). If 'latest' is specified here,
-     * the version is evaluated when the image build takes place, not when the template is submitted.
+     * Image version from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). If 'latest' is specified here, the version is evaluated when the image build takes place, not when the template is submitted.
      */
     @JsonProperty(value = "version")
     private String version;
 
     /*
-     * Image version from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). This readonly field differs
-     * from 'version', only if the value specified in 'version' field is 'latest'.
+     * Image version from the [Azure Gallery Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
      */
     @JsonProperty(value = "exactVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String exactVersion;
@@ -64,6 +69,16 @@ public final class ImageTemplatePlatformImageSource extends ImageTemplateSource 
      * Creates an instance of ImageTemplatePlatformImageSource class.
      */
     public ImageTemplatePlatformImageSource() {
+    }
+
+    /**
+     * Get the type property: Specifies the type of source image you want to start with.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -158,8 +173,8 @@ public final class ImageTemplatePlatformImageSource extends ImageTemplateSource 
 
     /**
      * Get the exactVersion property: Image version from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). This readonly field differs
-     * from 'version', only if the value specified in 'version' field is 'latest'.
+     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). This readonly field differs from
+     * 'version', only if the value specified in 'version' field is 'latest'.
      * 
      * @return the exactVersion value.
      */

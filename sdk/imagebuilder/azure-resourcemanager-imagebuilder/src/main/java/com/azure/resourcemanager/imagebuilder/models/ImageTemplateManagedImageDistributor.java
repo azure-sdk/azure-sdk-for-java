@@ -7,6 +7,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -14,10 +15,21 @@ import java.util.Map;
 /**
  * Distribute as a Managed Disk Image.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateManagedImageDistributor.class,
+    visible = true)
 @JsonTypeName("ManagedImage")
 @Fluent
 public final class ImageTemplateManagedImageDistributor extends ImageTemplateDistributor {
+    /*
+     * Type of distribution.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "ManagedImage";
+
     /*
      * Resource Id of the Managed Disk Image
      */
@@ -34,6 +46,16 @@ public final class ImageTemplateManagedImageDistributor extends ImageTemplateDis
      * Creates an instance of ImageTemplateManagedImageDistributor class.
      */
     public ImageTemplateManagedImageDistributor() {
+    }
+
+    /**
+     * Get the type property: Type of distribution.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -103,12 +125,14 @@ public final class ImageTemplateManagedImageDistributor extends ImageTemplateDis
     public void validate() {
         super.validate();
         if (imageId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property imageId in model ImageTemplateManagedImageDistributor"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property imageId in model ImageTemplateManagedImageDistributor"));
         }
         if (location() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property location in model ImageTemplateManagedImageDistributor"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property location in model ImageTemplateManagedImageDistributor"));
         }
     }
 

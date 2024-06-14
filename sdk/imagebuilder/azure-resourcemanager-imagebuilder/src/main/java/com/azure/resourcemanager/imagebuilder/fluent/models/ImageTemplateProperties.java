@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateAutoRun;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
@@ -16,8 +17,10 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
 import com.azure.resourcemanager.imagebuilder.models.ProvisioningError;
 import com.azure.resourcemanager.imagebuilder.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Describes the properties of an image template.
@@ -79,8 +82,7 @@ public final class ImageTemplateProperties {
     private ImageTemplateLastRunStatus lastRunStatus;
 
     /*
-     * Maximum duration to wait while building the image template (includes all customizations, optimization,
-     * validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     * Maximum duration to wait while building the image template (includes all customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
      */
     @JsonProperty(value = "buildTimeoutInMinutes")
     private Integer buildTimeoutInMinutes;
@@ -92,24 +94,29 @@ public final class ImageTemplateProperties {
     private ImageTemplateVmProfile vmProfile;
 
     /*
-     * The staging resource group id in the same subscription as the image template that will be used to build the
-     * image. If this field is empty, a resource group with a random name will be created. If the resource group
-     * specified in this field doesn't exist, it will be created with the same name. If the resource group specified
-     * exists, it must be empty and in the same region as the image template. The resource group created will be
-     * deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if
-     * the resource group specified exists the resources created in the resource group will be deleted during template
-     * deletion and the resource group itself will remain.
+     * The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain.
      */
     @JsonProperty(value = "stagingResourceGroup")
     private String stagingResourceGroup;
 
     /*
-     * The staging resource group id in the same subscription as the image template that will be used to build the
-     * image. This read-only field differs from 'stagingResourceGroup' only if the value specified in the
-     * 'stagingResourceGroup' field is empty.
+     * The staging resource group id in the same subscription as the image template that will be used to build the image. This read-only field differs from 'stagingResourceGroup' only if the value specified in the 'stagingResourceGroup' field is empty.
      */
     @JsonProperty(value = "exactStagingResourceGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String exactStagingResourceGroup;
+
+    /*
+     * Indicates whether or not to automatically run the image template build on template creation or update.
+     */
+    @JsonProperty(value = "autoRun")
+    private ImageTemplateAutoRun autoRun;
+
+    /*
+     * Tags that will be applied to the resource group and/or resources created by the service.
+     */
+    @JsonProperty(value = "managedResourceTags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> managedResourceTags;
 
     /**
      * Creates an instance of ImageTemplateProperties class.
@@ -354,14 +361,58 @@ public final class ImageTemplateProperties {
     }
 
     /**
+     * Get the autoRun property: Indicates whether or not to automatically run the image template build on template
+     * creation or update.
+     * 
+     * @return the autoRun value.
+     */
+    public ImageTemplateAutoRun autoRun() {
+        return this.autoRun;
+    }
+
+    /**
+     * Set the autoRun property: Indicates whether or not to automatically run the image template build on template
+     * creation or update.
+     * 
+     * @param autoRun the autoRun value to set.
+     * @return the ImageTemplateProperties object itself.
+     */
+    public ImageTemplateProperties withAutoRun(ImageTemplateAutoRun autoRun) {
+        this.autoRun = autoRun;
+        return this;
+    }
+
+    /**
+     * Get the managedResourceTags property: Tags that will be applied to the resource group and/or resources created by
+     * the service.
+     * 
+     * @return the managedResourceTags value.
+     */
+    public Map<String, String> managedResourceTags() {
+        return this.managedResourceTags;
+    }
+
+    /**
+     * Set the managedResourceTags property: Tags that will be applied to the resource group and/or resources created by
+     * the service.
+     * 
+     * @param managedResourceTags the managedResourceTags value to set.
+     * @return the ImageTemplateProperties object itself.
+     */
+    public ImageTemplateProperties withManagedResourceTags(Map<String, String> managedResourceTags) {
+        this.managedResourceTags = managedResourceTags;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (source() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property source in model ImageTemplateProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property source in model ImageTemplateProperties"));
         } else {
             source().validate();
         }
@@ -375,8 +426,9 @@ public final class ImageTemplateProperties {
             validation().validate();
         }
         if (distribute() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property distribute in model ImageTemplateProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property distribute in model ImageTemplateProperties"));
         } else {
             distribute().forEach(e -> e.validate());
         }
@@ -391,6 +443,9 @@ public final class ImageTemplateProperties {
         }
         if (vmProfile() != null) {
             vmProfile().validate();
+        }
+        if (autoRun() != null) {
+            autoRun().validate();
         }
     }
 

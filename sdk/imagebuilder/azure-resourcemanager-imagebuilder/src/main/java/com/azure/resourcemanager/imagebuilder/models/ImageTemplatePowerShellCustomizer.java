@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
  * Runs the specified PowerShell on the VM (Windows). Corresponds to Packer powershell provisioner. Exactly one of
  * 'scriptUri' or 'inline' can be specified.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplatePowerShellCustomizer.class,
+    visible = true)
 @JsonTypeName("PowerShell")
 @Fluent
 public final class ImageTemplatePowerShellCustomizer extends ImageTemplateCustomizer {
+    /*
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "PowerShell";
+
     /*
      * URI of the PowerShell script to be run for customizing. It can be a github link, SAS URI for Azure Storage, etc
      */
@@ -43,8 +55,7 @@ public final class ImageTemplatePowerShellCustomizer extends ImageTemplateCustom
     private Boolean runElevated;
 
     /*
-     * If specified, the PowerShell script will be run with elevated privileges using the Local System user. Can only
-     * be true when the runElevated field above is set to true.
+     * If specified, the PowerShell script will be run with elevated privileges using the Local System user. Can only be true when the runElevated field above is set to true.
      */
     @JsonProperty(value = "runAsSystem")
     private Boolean runAsSystem;
@@ -59,6 +70,17 @@ public final class ImageTemplatePowerShellCustomizer extends ImageTemplateCustom
      * Creates an instance of ImageTemplatePowerShellCustomizer class.
      */
     public ImageTemplatePowerShellCustomizer() {
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -84,8 +106,7 @@ public final class ImageTemplatePowerShellCustomizer extends ImageTemplateCustom
     }
 
     /**
-     * Get the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field
-     * above.
+     * Get the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field above.
      * 
      * @return the sha256Checksum value.
      */
@@ -94,8 +115,7 @@ public final class ImageTemplatePowerShellCustomizer extends ImageTemplateCustom
     }
 
     /**
-     * Set the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field
-     * above.
+     * Set the sha256Checksum property: SHA256 checksum of the power shell script provided in the scriptUri field above.
      * 
      * @param sha256Checksum the sha256Checksum value to set.
      * @return the ImageTemplatePowerShellCustomizer object itself.

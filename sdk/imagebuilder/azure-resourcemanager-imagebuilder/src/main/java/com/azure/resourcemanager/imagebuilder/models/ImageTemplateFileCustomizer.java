@@ -6,19 +6,30 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Uploads files to VMs (Linux, Windows). Corresponds to Packer file provisioner.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateFileCustomizer.class,
+    visible = true)
 @JsonTypeName("File")
 @Fluent
 public final class ImageTemplateFileCustomizer extends ImageTemplateCustomizer {
     /*
-     * The URI of the file to be uploaded for customizing the VM. It can be a github link, SAS URI for Azure Storage,
-     * etc
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "File";
+
+    /*
+     * The URI of the file to be uploaded for customizing the VM. It can be a github link, SAS URI for Azure Storage, etc
      */
     @JsonProperty(value = "sourceUri")
     private String sourceUri;
@@ -30,8 +41,7 @@ public final class ImageTemplateFileCustomizer extends ImageTemplateCustomizer {
     private String sha256Checksum;
 
     /*
-     * The absolute path to a file (with nested directory structures already created) where the file (from sourceUri)
-     * will be uploaded to in the VM
+     * The absolute path to a file (with nested directory structures already created) where the file (from sourceUri) will be uploaded to in the VM
      */
     @JsonProperty(value = "destination")
     private String destination;
@@ -40,6 +50,17 @@ public final class ImageTemplateFileCustomizer extends ImageTemplateCustomizer {
      * Creates an instance of ImageTemplateFileCustomizer class.
      */
     public ImageTemplateFileCustomizer() {
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**

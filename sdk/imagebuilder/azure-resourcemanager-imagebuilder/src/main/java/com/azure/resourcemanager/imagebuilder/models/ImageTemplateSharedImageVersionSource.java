@@ -7,26 +7,36 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Describes an image source that is an image version in an Azure Compute Gallery or a Direct Shared Gallery.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateSharedImageVersionSource.class,
+    visible = true)
 @JsonTypeName("SharedImageVersion")
 @Fluent
 public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSource {
     /*
-     * ARM resource id of the image version. When image version name is 'latest', the version is evaluated when the
-     * image build takes place.
+     * Specifies the type of source image you want to start with.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "SharedImageVersion";
+
+    /*
+     * ARM resource id of the image version. When image version name is 'latest', the version is evaluated when the image build takes place.
      */
     @JsonProperty(value = "imageVersionId", required = true)
     private String imageVersionId;
 
     /*
-     * Exact ARM resource id of the image version. This readonly field differs from the image version Id in
-     * 'imageVersionId' only if the version name specified in 'imageVersionId' field is 'latest'.
+     * Exact ARM resource id of the image version. This readonly field differs from the image version Id in 'imageVersionId' only if the version name specified in 'imageVersionId' field is 'latest'.
      */
     @JsonProperty(value = "exactVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String exactVersion;
@@ -35,6 +45,16 @@ public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSo
      * Creates an instance of ImageTemplateSharedImageVersionSource class.
      */
     public ImageTemplateSharedImageVersionSource() {
+    }
+
+    /**
+     * Get the type property: Specifies the type of source image you want to start with.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -78,8 +98,9 @@ public final class ImageTemplateSharedImageVersionSource extends ImageTemplateSo
     public void validate() {
         super.validate();
         if (imageVersionId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property imageVersionId in model ImageTemplateSharedImageVersionSource"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property imageVersionId in model ImageTemplateSharedImageVersionSource"));
         }
     }
 

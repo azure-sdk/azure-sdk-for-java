@@ -13,17 +13,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ImageTemplatePropertiesErrorHandling {
     /*
-     * If there is a customizer error and this field is set to 'cleanup', the build VM and associated network resources
-     * will be cleaned up. This is the default behavior. If there is a customizer error and this field is set to
-     * 'abort', the build VM will be preserved.
+     * If there is a customizer error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a customizer error and this field is set to 'abort', the build VM will be preserved.
      */
     @JsonProperty(value = "onCustomizerError")
     private OnBuildError onCustomizerError;
 
     /*
-     * If there is a validation error and this field is set to 'cleanup', the build VM and associated network resources
-     * will be cleaned up. This is the default behavior. If there is a validation error and this field is set to
-     * 'abort', the build VM will be preserved.
+     * If there is a validation error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a validation error and this field is set to 'abort', the build VM will be preserved.
      */
     @JsonProperty(value = "onValidationError")
     private OnBuildError onValidationError;

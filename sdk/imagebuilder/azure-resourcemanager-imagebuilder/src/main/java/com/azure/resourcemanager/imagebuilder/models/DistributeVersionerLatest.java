@@ -6,19 +6,30 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Generates version number that will be latest based on existing version numbers.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scheme")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "scheme",
+    defaultImpl = DistributeVersionerLatest.class,
+    visible = true)
 @JsonTypeName("Latest")
 @Fluent
 public final class DistributeVersionerLatest extends DistributeVersioner {
     /*
-     * Major version for the generated version number. Determine what is "latest" based on versions with this value as
-     * the major version. -1 is equivalent to leaving it unset.
+     * Version numbering scheme to be used.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scheme", required = true)
+    private String scheme = "Latest";
+
+    /*
+     * Major version for the generated version number. Determine what is "latest" based on versions with this value as the major version. -1 is equivalent to leaving it unset.
      */
     @JsonProperty(value = "major")
     private Integer major;
@@ -27,6 +38,16 @@ public final class DistributeVersionerLatest extends DistributeVersioner {
      * Creates an instance of DistributeVersionerLatest class.
      */
     public DistributeVersionerLatest() {
+    }
+
+    /**
+     * Get the scheme property: Version numbering scheme to be used.
+     * 
+     * @return the scheme value.
+     */
+    @Override
+    public String scheme() {
+        return this.scheme;
     }
 
     /**

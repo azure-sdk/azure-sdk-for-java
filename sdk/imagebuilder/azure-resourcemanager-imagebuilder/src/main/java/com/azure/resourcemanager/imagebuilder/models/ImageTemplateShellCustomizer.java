@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
  * Runs a shell script during the customization phase (Linux). Corresponds to Packer shell provisioner. Exactly one of
  * 'scriptUri' or 'inline' can be specified.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateShellCustomizer.class,
+    visible = true)
 @JsonTypeName("Shell")
 @Fluent
 public final class ImageTemplateShellCustomizer extends ImageTemplateCustomizer {
+    /*
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "Shell";
+
     /*
      * URI of the shell script to be run for customizing. It can be a github link, SAS URI for Azure Storage, etc
      */
@@ -40,6 +52,17 @@ public final class ImageTemplateShellCustomizer extends ImageTemplateCustomizer 
      * Creates an instance of ImageTemplateShellCustomizer class.
      */
     public ImageTemplateShellCustomizer() {
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**

@@ -74,6 +74,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.imagebuilder.models.ImageTemplateAutoRun",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -275,6 +280,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.imagebuilder.models.RunSubState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.imagebuilder.models.AutoRunState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

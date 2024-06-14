@@ -104,16 +104,19 @@ public final class PlatformImagePurchasePlan {
      */
     public void validate() {
         if (planName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property planName in model PlatformImagePurchasePlan"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property planName in model PlatformImagePurchasePlan"));
         }
         if (planProduct() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property planProduct in model PlatformImagePurchasePlan"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property planProduct in model PlatformImagePurchasePlan"));
         }
         if (planPublisher() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property planPublisher in model PlatformImagePurchasePlan"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property planPublisher in model PlatformImagePurchasePlan"));
         }
     }
 
