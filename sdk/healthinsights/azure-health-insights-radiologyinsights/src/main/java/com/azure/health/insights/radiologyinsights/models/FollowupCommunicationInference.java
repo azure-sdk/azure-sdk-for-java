@@ -35,35 +35,21 @@ public final class FollowupCommunicationInference extends RadiologyInsightsInfer
     private RadiologyInsightsInferenceType kind = RadiologyInsightsInferenceType.FOLLOWUP_COMMUNICATION;
 
     /*
-     * Communication date and time.
-     */
-    @Generated
-    @JsonProperty(value = "dateTime")
-    private List<OffsetDateTime> dateTime;
-
-    /*
      * Recipient of the communication.
      */
     @Generated
     @JsonProperty(value = "recipient")
     private List<MedicalProfessionalType> recipient;
 
-    /*
-     * Communication was acknowledged.
-     */
-    @Generated
-    @JsonProperty(value = "wasAcknowledged")
-    private final boolean wasAcknowledged;
-
     /**
      * Creates an instance of FollowupCommunicationInference class.
      *
-     * @param wasAcknowledged the wasAcknowledged value to set.
+     * @param acknowledged the acknowledged value to set.
      */
     @Generated
     @JsonCreator
-    private FollowupCommunicationInference(@JsonProperty(value = "wasAcknowledged") boolean wasAcknowledged) {
-        this.wasAcknowledged = wasAcknowledged;
+    private FollowupCommunicationInference(@JsonProperty(value = "wasAcknowledged") boolean acknowledged) {
+        this.acknowledged = acknowledged;
     }
 
     /**
@@ -78,16 +64,6 @@ public final class FollowupCommunicationInference extends RadiologyInsightsInfer
     }
 
     /**
-     * Get the dateTime property: Communication date and time.
-     *
-     * @return the dateTime value.
-     */
-    @Generated
-    public List<OffsetDateTime> getDateTime() {
-        return this.dateTime;
-    }
-
-    /**
      * Get the recipient property: Recipient of the communication.
      *
      * @return the recipient value.
@@ -97,13 +73,37 @@ public final class FollowupCommunicationInference extends RadiologyInsightsInfer
         return this.recipient;
     }
 
-    /**
-     * Get the wasAcknowledged property: Communication was acknowledged.
-     *
-     * @return the wasAcknowledged value.
+    /*
+     * Communication date and time.
      */
     @Generated
-    public boolean isWasAcknowledged() {
-        return this.wasAcknowledged;
+    @JsonProperty(value = "communicatedAt")
+    private List<OffsetDateTime> communicatedAt;
+
+    /*
+     * Communication was acknowledged.
+     */
+    @Generated
+    @JsonProperty(value = "wasAcknowledged")
+    private final boolean acknowledged;
+
+    /**
+     * Get the communicatedAt property: Communication date and time.
+     *
+     * @return the communicatedAt value.
+     */
+    @Generated
+    public List<OffsetDateTime> getCommunicatedAt() {
+        return this.communicatedAt;
+    }
+
+    /**
+     * Get the acknowledged property: Communication was acknowledged.
+     *
+     * @return the acknowledged value.
+     */
+    @Generated
+    public boolean isAcknowledged() {
+        return this.acknowledged;
     }
 }
