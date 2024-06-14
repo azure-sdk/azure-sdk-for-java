@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The TrafficRegions model. */
+/**
+ * The TrafficRegions model.
+ */
 @Fluent
 public class TrafficRegions {
     /*
@@ -17,13 +19,15 @@ public class TrafficRegions {
     @JsonProperty(value = "regions")
     private List<String> regions;
 
-    /** Creates an instance of TrafficRegions class. */
+    /**
+     * Creates an instance of TrafficRegions class.
+     */
     public TrafficRegions() {
     }
 
     /**
      * Get the regions property: The regions property.
-     *
+     * 
      * @return the regions value.
      */
     public List<String> regions() {
@@ -32,7 +36,7 @@ public class TrafficRegions {
 
     /**
      * Set the regions property: The regions property.
-     *
+     * 
      * @param regions the regions value to set.
      * @return the TrafficRegions object itself.
      */
@@ -43,7 +47,7 @@ public class TrafficRegions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

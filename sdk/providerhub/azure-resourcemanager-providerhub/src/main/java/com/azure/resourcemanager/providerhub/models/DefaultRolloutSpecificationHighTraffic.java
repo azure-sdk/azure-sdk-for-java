@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationHighTraffic model. */
+/**
+ * The DefaultRolloutSpecificationHighTraffic model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationHighTraffic extends TrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationHighTraffic class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationHighTraffic class.
+     */
     public DefaultRolloutSpecificationHighTraffic() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationHighTraffic withWaitDuration(Duration waitDuration) {
         super.withWaitDuration(waitDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationHighTraffic withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -31,7 +39,7 @@ public final class DefaultRolloutSpecificationHighTraffic extends TrafficRegionR
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

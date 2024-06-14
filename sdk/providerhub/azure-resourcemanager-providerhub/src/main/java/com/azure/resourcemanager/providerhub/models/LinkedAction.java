@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LinkedAction. */
+/**
+ * Defines values for LinkedAction.
+ */
 public final class LinkedAction extends ExpandableStringEnum<LinkedAction> {
-    /** Static value NotSpecified for LinkedAction. */
+    /**
+     * Static value NotSpecified for LinkedAction.
+     */
     public static final LinkedAction NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Blocked for LinkedAction. */
+    /**
+     * Static value Blocked for LinkedAction.
+     */
     public static final LinkedAction BLOCKED = fromString("Blocked");
 
-    /** Static value Validate for LinkedAction. */
+    /**
+     * Static value Validate for LinkedAction.
+     */
     public static final LinkedAction VALIDATE = fromString("Validate");
 
-    /** Static value Enabled for LinkedAction. */
+    /**
+     * Static value Enabled for LinkedAction.
+     */
     public static final LinkedAction ENABLED = fromString("Enabled");
 
     /**
      * Creates a new instance of LinkedAction value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class LinkedAction extends ExpandableStringEnum<LinkedAction> {
 
     /**
      * Creates or finds a LinkedAction from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LinkedAction.
      */
@@ -44,7 +54,7 @@ public final class LinkedAction extends ExpandableStringEnum<LinkedAction> {
 
     /**
      * Gets known LinkedAction values.
-     *
+     * 
      * @return known LinkedAction values.
      */
     public static Collection<LinkedAction> values() {

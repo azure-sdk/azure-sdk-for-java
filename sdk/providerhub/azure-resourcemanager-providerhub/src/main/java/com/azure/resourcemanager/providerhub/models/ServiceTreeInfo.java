@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ServiceTreeInfo model. */
+/**
+ * The ServiceTreeInfo model.
+ */
 @Fluent
 public final class ServiceTreeInfo {
     /*
@@ -22,13 +24,15 @@ public final class ServiceTreeInfo {
     @JsonProperty(value = "componentId")
     private String componentId;
 
-    /** Creates an instance of ServiceTreeInfo class. */
+    /**
+     * Creates an instance of ServiceTreeInfo class.
+     */
     public ServiceTreeInfo() {
     }
 
     /**
      * Get the serviceId property: The serviceId property.
-     *
+     * 
      * @return the serviceId value.
      */
     public String serviceId() {
@@ -37,7 +41,7 @@ public final class ServiceTreeInfo {
 
     /**
      * Set the serviceId property: The serviceId property.
-     *
+     * 
      * @param serviceId the serviceId value to set.
      * @return the ServiceTreeInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class ServiceTreeInfo {
 
     /**
      * Get the componentId property: The componentId property.
-     *
+     * 
      * @return the componentId value.
      */
     public String componentId() {
@@ -57,7 +61,7 @@ public final class ServiceTreeInfo {
 
     /**
      * Set the componentId property: The componentId property.
-     *
+     * 
      * @param componentId the componentId value to set.
      * @return the ServiceTreeInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class ServiceTreeInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

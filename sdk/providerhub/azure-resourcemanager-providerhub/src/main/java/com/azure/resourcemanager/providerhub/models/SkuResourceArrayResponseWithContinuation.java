@@ -9,7 +9,9 @@ import com.azure.resourcemanager.providerhub.fluent.models.SkuResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SkuResourceArrayResponseWithContinuation model. */
+/**
+ * The SkuResourceArrayResponseWithContinuation model.
+ */
 @Fluent
 public final class SkuResourceArrayResponseWithContinuation {
     /*
@@ -24,13 +26,15 @@ public final class SkuResourceArrayResponseWithContinuation {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SkuResourceArrayResponseWithContinuation class. */
+    /**
+     * Creates an instance of SkuResourceArrayResponseWithContinuation class.
+     */
     public SkuResourceArrayResponseWithContinuation() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<SkuResourceInner> value() {
@@ -39,7 +43,7 @@ public final class SkuResourceArrayResponseWithContinuation {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the SkuResourceArrayResponseWithContinuation object itself.
      */
@@ -50,7 +54,7 @@ public final class SkuResourceArrayResponseWithContinuation {
 
     /**
      * Get the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class SkuResourceArrayResponseWithContinuation {
 
     /**
      * Set the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SkuResourceArrayResponseWithContinuation object itself.
      */
@@ -70,7 +74,7 @@ public final class SkuResourceArrayResponseWithContinuation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

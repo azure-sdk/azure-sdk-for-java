@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.providerhub.models.NotificationRegistrationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The notification registration definition. */
+/**
+ * The notification registration definition.
+ */
 @Fluent
 public final class NotificationRegistrationInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class NotificationRegistrationInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private NotificationRegistrationProperties properties;
 
-    /** Creates an instance of NotificationRegistrationInner class. */
+    /**
+     * Creates an instance of NotificationRegistrationInner class.
+     */
     public NotificationRegistrationInner() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public NotificationRegistrationProperties properties() {
@@ -33,7 +37,7 @@ public final class NotificationRegistrationInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the NotificationRegistrationInner object itself.
      */
@@ -44,7 +48,7 @@ public final class NotificationRegistrationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

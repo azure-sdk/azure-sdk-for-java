@@ -8,39 +8,49 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.providerhub.fluent.models.ResourceTypeRegistrationInner;
 import java.util.List;
 
-/** The CustomRolloutPropertiesSpecification model. */
+/**
+ * The CustomRolloutPropertiesSpecification model.
+ */
 @Fluent
 public final class CustomRolloutPropertiesSpecification extends CustomRolloutSpecification {
-    /** Creates an instance of CustomRolloutPropertiesSpecification class. */
+    /**
+     * Creates an instance of CustomRolloutPropertiesSpecification class.
+     */
     public CustomRolloutPropertiesSpecification() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomRolloutPropertiesSpecification withCanary(CustomRolloutSpecificationCanary canary) {
         super.withCanary(canary);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public CustomRolloutPropertiesSpecification withProviderRegistration(
-        CustomRolloutSpecificationProviderRegistration providerRegistration) {
+    public CustomRolloutPropertiesSpecification
+        withProviderRegistration(CustomRolloutSpecificationProviderRegistration providerRegistration) {
         super.withProviderRegistration(providerRegistration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public CustomRolloutPropertiesSpecification withResourceTypeRegistrations(
-        List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
+    public CustomRolloutPropertiesSpecification
+        withResourceTypeRegistrations(List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
         super.withResourceTypeRegistrations(resourceTypeRegistrations);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

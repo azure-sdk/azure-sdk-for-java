@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The ResourceTypeExtension model. */
+/**
+ * The ResourceTypeExtension model.
+ */
 @Fluent
 public final class ResourceTypeExtension {
     /*
@@ -30,13 +32,15 @@ public final class ResourceTypeExtension {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of ResourceTypeExtension class. */
+    /**
+     * Creates an instance of ResourceTypeExtension class.
+     */
     public ResourceTypeExtension() {
     }
 
     /**
      * Get the endpointUri property: The endpointUri property.
-     *
+     * 
      * @return the endpointUri value.
      */
     public String endpointUri() {
@@ -45,7 +49,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Set the endpointUri property: The endpointUri property.
-     *
+     * 
      * @param endpointUri the endpointUri value to set.
      * @return the ResourceTypeExtension object itself.
      */
@@ -56,7 +60,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Get the extensionCategories property: The extensionCategories property.
-     *
+     * 
      * @return the extensionCategories value.
      */
     public List<ExtensionCategory> extensionCategories() {
@@ -65,7 +69,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Set the extensionCategories property: The extensionCategories property.
-     *
+     * 
      * @param extensionCategories the extensionCategories value to set.
      * @return the ResourceTypeExtension object itself.
      */
@@ -76,7 +80,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Get the timeout property: The timeout property.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -85,7 +89,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Set the timeout property: The timeout property.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ResourceTypeExtension object itself.
      */
@@ -96,7 +100,7 @@ public final class ResourceTypeExtension {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

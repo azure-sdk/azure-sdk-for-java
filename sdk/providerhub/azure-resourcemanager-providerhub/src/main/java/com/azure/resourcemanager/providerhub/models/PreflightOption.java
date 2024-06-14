@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PreflightOption. */
+/**
+ * Defines values for PreflightOption.
+ */
 public final class PreflightOption extends ExpandableStringEnum<PreflightOption> {
-    /** Static value None for PreflightOption. */
+    /**
+     * Static value None for PreflightOption.
+     */
     public static final PreflightOption NONE = fromString("None");
 
-    /** Static value ContinueDeploymentOnFailure for PreflightOption. */
+    /**
+     * Static value ContinueDeploymentOnFailure for PreflightOption.
+     */
     public static final PreflightOption CONTINUE_DEPLOYMENT_ON_FAILURE = fromString("ContinueDeploymentOnFailure");
 
-    /** Static value DefaultValidationOnly for PreflightOption. */
+    /**
+     * Static value DefaultValidationOnly for PreflightOption.
+     */
     public static final PreflightOption DEFAULT_VALIDATION_ONLY = fromString("DefaultValidationOnly");
 
     /**
      * Creates a new instance of PreflightOption value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class PreflightOption extends ExpandableStringEnum<PreflightOption>
 
     /**
      * Creates or finds a PreflightOption from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PreflightOption.
      */
@@ -41,7 +49,7 @@ public final class PreflightOption extends ExpandableStringEnum<PreflightOption>
 
     /**
      * Gets known PreflightOption values.
-     *
+     * 
      * @return known PreflightOption values.
      */
     public static Collection<PreflightOption> values() {

@@ -7,14 +7,20 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.providerhub.fluent.models.ProviderRegistrationInner;
 
-/** The DefaultRolloutSpecificationProviderRegistration model. */
+/**
+ * The DefaultRolloutSpecificationProviderRegistration model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationProviderRegistration extends ProviderRegistrationInner {
-    /** Creates an instance of DefaultRolloutSpecificationProviderRegistration class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationProviderRegistration class.
+     */
     public DefaultRolloutSpecificationProviderRegistration() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationProviderRegistration withProperties(ProviderRegistrationProperties properties) {
         super.withProperties(properties);
@@ -23,7 +29,7 @@ public final class DefaultRolloutSpecificationProviderRegistration extends Provi
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

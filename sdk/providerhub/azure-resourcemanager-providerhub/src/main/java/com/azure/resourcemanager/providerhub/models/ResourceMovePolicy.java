@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ResourceMovePolicy model. */
+/**
+ * The ResourceMovePolicy model.
+ */
 @Fluent
 public class ResourceMovePolicy {
     /*
@@ -28,13 +30,15 @@ public class ResourceMovePolicy {
     @JsonProperty(value = "crossSubscriptionMoveEnabled")
     private Boolean crossSubscriptionMoveEnabled;
 
-    /** Creates an instance of ResourceMovePolicy class. */
+    /**
+     * Creates an instance of ResourceMovePolicy class.
+     */
     public ResourceMovePolicy() {
     }
 
     /**
      * Get the validationRequired property: The validationRequired property.
-     *
+     * 
      * @return the validationRequired value.
      */
     public Boolean validationRequired() {
@@ -43,7 +47,7 @@ public class ResourceMovePolicy {
 
     /**
      * Set the validationRequired property: The validationRequired property.
-     *
+     * 
      * @param validationRequired the validationRequired value to set.
      * @return the ResourceMovePolicy object itself.
      */
@@ -54,7 +58,7 @@ public class ResourceMovePolicy {
 
     /**
      * Get the crossResourceGroupMoveEnabled property: The crossResourceGroupMoveEnabled property.
-     *
+     * 
      * @return the crossResourceGroupMoveEnabled value.
      */
     public Boolean crossResourceGroupMoveEnabled() {
@@ -63,7 +67,7 @@ public class ResourceMovePolicy {
 
     /**
      * Set the crossResourceGroupMoveEnabled property: The crossResourceGroupMoveEnabled property.
-     *
+     * 
      * @param crossResourceGroupMoveEnabled the crossResourceGroupMoveEnabled value to set.
      * @return the ResourceMovePolicy object itself.
      */
@@ -74,7 +78,7 @@ public class ResourceMovePolicy {
 
     /**
      * Get the crossSubscriptionMoveEnabled property: The crossSubscriptionMoveEnabled property.
-     *
+     * 
      * @return the crossSubscriptionMoveEnabled value.
      */
     public Boolean crossSubscriptionMoveEnabled() {
@@ -83,7 +87,7 @@ public class ResourceMovePolicy {
 
     /**
      * Set the crossSubscriptionMoveEnabled property: The crossSubscriptionMoveEnabled property.
-     *
+     * 
      * @param crossSubscriptionMoveEnabled the crossSubscriptionMoveEnabled value to set.
      * @return the ResourceMovePolicy object itself.
      */
@@ -94,7 +98,7 @@ public class ResourceMovePolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

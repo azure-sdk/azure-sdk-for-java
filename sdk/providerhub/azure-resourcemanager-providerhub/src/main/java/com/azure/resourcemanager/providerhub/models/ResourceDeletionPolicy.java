@@ -8,21 +8,29 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceDeletionPolicy. */
+/**
+ * Defines values for ResourceDeletionPolicy.
+ */
 public final class ResourceDeletionPolicy extends ExpandableStringEnum<ResourceDeletionPolicy> {
-    /** Static value NotSpecified for ResourceDeletionPolicy. */
+    /**
+     * Static value NotSpecified for ResourceDeletionPolicy.
+     */
     public static final ResourceDeletionPolicy NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value CascadeDeleteAll for ResourceDeletionPolicy. */
+    /**
+     * Static value CascadeDeleteAll for ResourceDeletionPolicy.
+     */
     public static final ResourceDeletionPolicy CASCADE_DELETE_ALL = fromString("CascadeDeleteAll");
 
-    /** Static value CascadeDeleteProxyOnlyChildren for ResourceDeletionPolicy. */
-    public static final ResourceDeletionPolicy CASCADE_DELETE_PROXY_ONLY_CHILDREN =
-        fromString("CascadeDeleteProxyOnlyChildren");
+    /**
+     * Static value CascadeDeleteProxyOnlyChildren for ResourceDeletionPolicy.
+     */
+    public static final ResourceDeletionPolicy CASCADE_DELETE_PROXY_ONLY_CHILDREN
+        = fromString("CascadeDeleteProxyOnlyChildren");
 
     /**
      * Creates a new instance of ResourceDeletionPolicy value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +39,7 @@ public final class ResourceDeletionPolicy extends ExpandableStringEnum<ResourceD
 
     /**
      * Creates or finds a ResourceDeletionPolicy from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ResourceDeletionPolicy.
      */
@@ -42,7 +50,7 @@ public final class ResourceDeletionPolicy extends ExpandableStringEnum<ResourceD
 
     /**
      * Gets known ResourceDeletionPolicy values.
-     *
+     * 
      * @return known ResourceDeletionPolicy values.
      */
     public static Collection<ResourceDeletionPolicy> values() {

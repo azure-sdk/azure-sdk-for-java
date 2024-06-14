@@ -7,30 +7,40 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ProviderRegistrationPropertiesProviderHubMetadata model. */
+/**
+ * The ProviderRegistrationPropertiesProviderHubMetadata model.
+ */
 @Fluent
 public final class ProviderRegistrationPropertiesProviderHubMetadata extends ProviderHubMetadata {
-    /** Creates an instance of ProviderRegistrationPropertiesProviderHubMetadata class. */
+    /**
+     * Creates an instance of ProviderRegistrationPropertiesProviderHubMetadata class.
+     */
     public ProviderRegistrationPropertiesProviderHubMetadata() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProviderRegistrationPropertiesProviderHubMetadata withProviderAuthorizations(
-        List<ResourceProviderAuthorization> providerAuthorizations) {
+    public ProviderRegistrationPropertiesProviderHubMetadata
+        withProviderAuthorizations(List<ResourceProviderAuthorization> providerAuthorizations) {
         super.withProviderAuthorizations(providerAuthorizations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProviderRegistrationPropertiesProviderHubMetadata withProviderAuthentication(
-        ProviderHubMetadataProviderAuthentication providerAuthentication) {
+    public ProviderRegistrationPropertiesProviderHubMetadata
+        withProviderAuthentication(ProviderHubMetadataProviderAuthentication providerAuthentication) {
         super.withProviderAuthentication(providerAuthentication);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProviderRegistrationPropertiesProviderHubMetadata withThirdPartyProviderAuthorization(
         ProviderHubMetadataThirdPartyProviderAuthorization thirdPartyProviderAuthorization) {
@@ -40,7 +50,7 @@ public final class ProviderRegistrationPropertiesProviderHubMetadata extends Pro
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

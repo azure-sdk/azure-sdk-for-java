@@ -6,21 +6,29 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceProviderManifestReRegisterSubscriptionMetadata model. */
+/**
+ * The ResourceProviderManifestReRegisterSubscriptionMetadata model.
+ */
 @Fluent
 public final class ResourceProviderManifestReRegisterSubscriptionMetadata extends ReRegisterSubscriptionMetadata {
-    /** Creates an instance of ResourceProviderManifestReRegisterSubscriptionMetadata class. */
+    /**
+     * Creates an instance of ResourceProviderManifestReRegisterSubscriptionMetadata class.
+     */
     public ResourceProviderManifestReRegisterSubscriptionMetadata() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestReRegisterSubscriptionMetadata withEnabled(boolean enabled) {
         super.withEnabled(enabled);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestReRegisterSubscriptionMetadata withConcurrencyLimit(Integer concurrencyLimit) {
         super.withConcurrencyLimit(concurrencyLimit);
@@ -29,7 +37,7 @@ public final class ResourceProviderManifestReRegisterSubscriptionMetadata extend
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,14 +7,20 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ProviderHubMetadataProviderAuthentication model. */
+/**
+ * The ProviderHubMetadataProviderAuthentication model.
+ */
 @Fluent
 public final class ProviderHubMetadataProviderAuthentication extends ResourceProviderAuthentication {
-    /** Creates an instance of ProviderHubMetadataProviderAuthentication class. */
+    /**
+     * Creates an instance of ProviderHubMetadataProviderAuthentication class.
+     */
     public ProviderHubMetadataProviderAuthentication() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProviderHubMetadataProviderAuthentication withAllowedAudiences(List<String> allowedAudiences) {
         super.withAllowedAudiences(allowedAudiences);
@@ -23,7 +29,7 @@ public final class ProviderHubMetadataProviderAuthentication extends ResourcePro
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

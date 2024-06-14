@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The NotificationEndpoint model. */
+/**
+ * The NotificationEndpoint model.
+ */
 @Fluent
 public final class NotificationEndpoint {
     /*
@@ -23,13 +25,15 @@ public final class NotificationEndpoint {
     @JsonProperty(value = "locations")
     private List<String> locations;
 
-    /** Creates an instance of NotificationEndpoint class. */
+    /**
+     * Creates an instance of NotificationEndpoint class.
+     */
     public NotificationEndpoint() {
     }
 
     /**
      * Get the notificationDestination property: The notificationDestination property.
-     *
+     * 
      * @return the notificationDestination value.
      */
     public String notificationDestination() {
@@ -38,7 +42,7 @@ public final class NotificationEndpoint {
 
     /**
      * Set the notificationDestination property: The notificationDestination property.
-     *
+     * 
      * @param notificationDestination the notificationDestination value to set.
      * @return the NotificationEndpoint object itself.
      */
@@ -49,7 +53,7 @@ public final class NotificationEndpoint {
 
     /**
      * Get the locations property: The locations property.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -58,7 +62,7 @@ public final class NotificationEndpoint {
 
     /**
      * Set the locations property: The locations property.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the NotificationEndpoint object itself.
      */
@@ -69,7 +73,7 @@ public final class NotificationEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

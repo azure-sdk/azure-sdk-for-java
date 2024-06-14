@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ExtendedLocationOptions model. */
+/**
+ * The ExtendedLocationOptions model.
+ */
 @Fluent
 public final class ExtendedLocationOptions {
     /*
@@ -22,13 +24,15 @@ public final class ExtendedLocationOptions {
     @JsonProperty(value = "supportedPolicy")
     private String supportedPolicy;
 
-    /** Creates an instance of ExtendedLocationOptions class. */
+    /**
+     * Creates an instance of ExtendedLocationOptions class.
+     */
     public ExtendedLocationOptions() {
     }
 
     /**
      * Get the type property: The type property.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -37,7 +41,7 @@ public final class ExtendedLocationOptions {
 
     /**
      * Set the type property: The type property.
-     *
+     * 
      * @param type the type value to set.
      * @return the ExtendedLocationOptions object itself.
      */
@@ -48,7 +52,7 @@ public final class ExtendedLocationOptions {
 
     /**
      * Get the supportedPolicy property: The supportedPolicy property.
-     *
+     * 
      * @return the supportedPolicy value.
      */
     public String supportedPolicy() {
@@ -57,7 +61,7 @@ public final class ExtendedLocationOptions {
 
     /**
      * Set the supportedPolicy property: The supportedPolicy property.
-     *
+     * 
      * @param supportedPolicy the supportedPolicy value to set.
      * @return the ExtendedLocationOptions object itself.
      */
@@ -68,7 +72,7 @@ public final class ExtendedLocationOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

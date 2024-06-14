@@ -7,63 +7,83 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceProviderManifestManagement model. */
+/**
+ * The ResourceProviderManifestManagement model.
+ */
 @Fluent
 public final class ResourceProviderManifestManagement extends ResourceProviderManagement {
-    /** Creates an instance of ResourceProviderManifestManagement class. */
+    /**
+     * Creates an instance of ResourceProviderManifestManagement class.
+     */
     public ResourceProviderManifestManagement() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withSchemaOwners(List<String> schemaOwners) {
         super.withSchemaOwners(schemaOwners);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withManifestOwners(List<String> manifestOwners) {
         super.withManifestOwners(manifestOwners);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withIncidentRoutingService(String incidentRoutingService) {
         super.withIncidentRoutingService(incidentRoutingService);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withIncidentRoutingTeam(String incidentRoutingTeam) {
         super.withIncidentRoutingTeam(incidentRoutingTeam);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withIncidentContactEmail(String incidentContactEmail) {
         super.withIncidentContactEmail(incidentContactEmail);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withServiceTreeInfos(List<ServiceTreeInfo> serviceTreeInfos) {
         super.withServiceTreeInfos(serviceTreeInfos);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withResourceAccessPolicy(ResourceAccessPolicy resourceAccessPolicy) {
         super.withResourceAccessPolicy(resourceAccessPolicy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestManagement withResourceAccessRoles(List<Object> resourceAccessRoles) {
         super.withResourceAccessRoles(resourceAccessRoles);
@@ -72,7 +92,7 @@ public final class ResourceProviderManifestManagement extends ResourceProviderMa
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

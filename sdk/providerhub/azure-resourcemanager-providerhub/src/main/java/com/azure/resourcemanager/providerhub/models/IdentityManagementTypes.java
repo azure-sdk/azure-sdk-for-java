@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IdentityManagementTypes. */
+/**
+ * Defines values for IdentityManagementTypes.
+ */
 public final class IdentityManagementTypes extends ExpandableStringEnum<IdentityManagementTypes> {
-    /** Static value NotSpecified for IdentityManagementTypes. */
+    /**
+     * Static value NotSpecified for IdentityManagementTypes.
+     */
     public static final IdentityManagementTypes NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value SystemAssigned for IdentityManagementTypes. */
+    /**
+     * Static value SystemAssigned for IdentityManagementTypes.
+     */
     public static final IdentityManagementTypes SYSTEM_ASSIGNED = fromString("SystemAssigned");
 
-    /** Static value UserAssigned for IdentityManagementTypes. */
+    /**
+     * Static value UserAssigned for IdentityManagementTypes.
+     */
     public static final IdentityManagementTypes USER_ASSIGNED = fromString("UserAssigned");
 
-    /** Static value Actor for IdentityManagementTypes. */
+    /**
+     * Static value Actor for IdentityManagementTypes.
+     */
     public static final IdentityManagementTypes ACTOR = fromString("Actor");
 
-    /** Static value DelegatedResourceIdentity for IdentityManagementTypes. */
+    /**
+     * Static value DelegatedResourceIdentity for IdentityManagementTypes.
+     */
     public static final IdentityManagementTypes DELEGATED_RESOURCE_IDENTITY = fromString("DelegatedResourceIdentity");
 
     /**
      * Creates a new instance of IdentityManagementTypes value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class IdentityManagementTypes extends ExpandableStringEnum<Identity
 
     /**
      * Creates or finds a IdentityManagementTypes from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IdentityManagementTypes.
      */
@@ -47,7 +59,7 @@ public final class IdentityManagementTypes extends ExpandableStringEnum<Identity
 
     /**
      * Gets known IdentityManagementTypes values.
-     *
+     * 
      * @return known IdentityManagementTypes values.
      */
     public static Collection<IdentityManagementTypes> values() {

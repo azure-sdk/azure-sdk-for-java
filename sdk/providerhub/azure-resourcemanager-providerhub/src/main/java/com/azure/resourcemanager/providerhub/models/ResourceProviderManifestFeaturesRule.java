@@ -6,14 +6,20 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceProviderManifestFeaturesRule model. */
+/**
+ * The ResourceProviderManifestFeaturesRule model.
+ */
 @Fluent
 public final class ResourceProviderManifestFeaturesRule extends FeaturesRule {
-    /** Creates an instance of ResourceProviderManifestFeaturesRule class. */
+    /**
+     * Creates an instance of ResourceProviderManifestFeaturesRule class.
+     */
     public ResourceProviderManifestFeaturesRule() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestFeaturesRule withRequiredFeaturesPolicy(FeaturesPolicy requiredFeaturesPolicy) {
         super.withRequiredFeaturesPolicy(requiredFeaturesPolicy);
@@ -22,7 +28,7 @@ public final class ResourceProviderManifestFeaturesRule extends FeaturesRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

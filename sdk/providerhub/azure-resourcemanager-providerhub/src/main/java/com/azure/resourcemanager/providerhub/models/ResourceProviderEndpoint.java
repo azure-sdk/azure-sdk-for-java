@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The ResourceProviderEndpoint model. */
+/**
+ * The ResourceProviderEndpoint model.
+ */
 @Fluent
 public final class ResourceProviderEndpoint {
     /*
@@ -54,13 +56,15 @@ public final class ResourceProviderEndpoint {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of ResourceProviderEndpoint class. */
+    /**
+     * Creates an instance of ResourceProviderEndpoint class.
+     */
     public ResourceProviderEndpoint() {
     }
 
     /**
      * Get the enabled property: The enabled property.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -69,7 +73,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the enabled property: The enabled property.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -80,7 +84,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the apiVersions property: The apiVersions property.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -89,7 +93,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the apiVersions property: The apiVersions property.
-     *
+     * 
      * @param apiVersions the apiVersions value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -100,7 +104,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the endpointUri property: The endpointUri property.
-     *
+     * 
      * @return the endpointUri value.
      */
     public String endpointUri() {
@@ -109,7 +113,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the endpointUri property: The endpointUri property.
-     *
+     * 
      * @param endpointUri the endpointUri value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -120,7 +124,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the locations property: The locations property.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -129,7 +133,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the locations property: The locations property.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -140,7 +144,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -149,7 +153,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -160,7 +164,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the featuresRule property: The featuresRule property.
-     *
+     * 
      * @return the featuresRule value.
      */
     public ResourceProviderEndpointFeaturesRule featuresRule() {
@@ -169,7 +173,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the featuresRule property: The featuresRule property.
-     *
+     * 
      * @param featuresRule the featuresRule value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -180,7 +184,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Get the timeout property: The timeout property.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -189,7 +193,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Set the timeout property: The timeout property.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ResourceProviderEndpoint object itself.
      */
@@ -200,7 +204,7 @@ public final class ResourceProviderEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

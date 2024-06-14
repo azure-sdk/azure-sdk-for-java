@@ -6,24 +6,30 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeRegistrationPropertiesExtensionOptions model. */
+/**
+ * The ResourceTypeRegistrationPropertiesExtensionOptions model.
+ */
 @Fluent
 public final class ResourceTypeRegistrationPropertiesExtensionOptions extends ResourceTypeExtensionOptions {
-    /** Creates an instance of ResourceTypeRegistrationPropertiesExtensionOptions class. */
+    /**
+     * Creates an instance of ResourceTypeRegistrationPropertiesExtensionOptions class.
+     */
     public ResourceTypeRegistrationPropertiesExtensionOptions() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesExtensionOptions withResourceCreationBegin(
-        ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin) {
+    public ResourceTypeRegistrationPropertiesExtensionOptions
+        withResourceCreationBegin(ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin) {
         super.withResourceCreationBegin(resourceCreationBegin);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

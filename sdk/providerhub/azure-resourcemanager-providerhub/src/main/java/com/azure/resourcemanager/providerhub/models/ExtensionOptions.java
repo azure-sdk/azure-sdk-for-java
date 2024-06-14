@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ExtensionOptions model. */
+/**
+ * The ExtensionOptions model.
+ */
 @Fluent
 public class ExtensionOptions {
     /*
@@ -23,13 +25,15 @@ public class ExtensionOptions {
     @JsonProperty(value = "response")
     private List<ExtensionOptionType> response;
 
-    /** Creates an instance of ExtensionOptions class. */
+    /**
+     * Creates an instance of ExtensionOptions class.
+     */
     public ExtensionOptions() {
     }
 
     /**
      * Get the request property: The request property.
-     *
+     * 
      * @return the request value.
      */
     public List<ExtensionOptionType> request() {
@@ -38,7 +42,7 @@ public class ExtensionOptions {
 
     /**
      * Set the request property: The request property.
-     *
+     * 
      * @param request the request value to set.
      * @return the ExtensionOptions object itself.
      */
@@ -49,7 +53,7 @@ public class ExtensionOptions {
 
     /**
      * Get the response property: The response property.
-     *
+     * 
      * @return the response value.
      */
     public List<ExtensionOptionType> response() {
@@ -58,7 +62,7 @@ public class ExtensionOptions {
 
     /**
      * Set the response property: The response property.
-     *
+     * 
      * @param response the response value to set.
      * @return the ExtensionOptions object itself.
      */
@@ -69,7 +73,7 @@ public class ExtensionOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

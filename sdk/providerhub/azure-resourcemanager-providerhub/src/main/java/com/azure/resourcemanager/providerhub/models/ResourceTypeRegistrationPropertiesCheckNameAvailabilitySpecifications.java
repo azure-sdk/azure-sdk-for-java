@@ -7,33 +7,41 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications model. */
+/**
+ * The ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications model.
+ */
 @Fluent
 public final class ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications
     extends CheckNameAvailabilitySpecifications {
-    /** Creates an instance of ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications class. */
+    /**
+     * Creates an instance of ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications class.
+     */
     public ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications withEnableDefaultValidation(
-        Boolean enableDefaultValidation) {
+    public ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications
+        withEnableDefaultValidation(Boolean enableDefaultValidation) {
         super.withEnableDefaultValidation(enableDefaultValidation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications withResourceTypesWithCustomValidation(
-        List<String> resourceTypesWithCustomValidation) {
+    public ResourceTypeRegistrationPropertiesCheckNameAvailabilitySpecifications
+        withResourceTypesWithCustomValidation(List<String> resourceTypesWithCustomValidation) {
         super.withResourceTypesWithCustomValidation(resourceTypesWithCustomValidation);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

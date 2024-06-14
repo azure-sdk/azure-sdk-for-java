@@ -7,21 +7,29 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The LoggingRuleHiddenPropertyPaths model. */
+/**
+ * The LoggingRuleHiddenPropertyPaths model.
+ */
 @Fluent
 public final class LoggingRuleHiddenPropertyPaths extends LoggingHiddenPropertyPath {
-    /** Creates an instance of LoggingRuleHiddenPropertyPaths class. */
+    /**
+     * Creates an instance of LoggingRuleHiddenPropertyPaths class.
+     */
     public LoggingRuleHiddenPropertyPaths() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoggingRuleHiddenPropertyPaths withHiddenPathsOnRequest(List<String> hiddenPathsOnRequest) {
         super.withHiddenPathsOnRequest(hiddenPathsOnRequest);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoggingRuleHiddenPropertyPaths withHiddenPathsOnResponse(List<String> hiddenPathsOnResponse) {
         super.withHiddenPathsOnResponse(hiddenPathsOnResponse);
@@ -30,7 +38,7 @@ public final class LoggingRuleHiddenPropertyPaths extends LoggingHiddenPropertyP
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

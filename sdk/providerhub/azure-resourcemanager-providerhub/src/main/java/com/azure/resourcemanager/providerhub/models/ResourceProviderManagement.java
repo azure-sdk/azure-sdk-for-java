@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceProviderManagement model. */
+/**
+ * The ResourceProviderManagement model.
+ */
 @Fluent
 public class ResourceProviderManagement {
     /*
@@ -59,13 +61,15 @@ public class ResourceProviderManagement {
     @JsonProperty(value = "resourceAccessRoles")
     private List<Object> resourceAccessRoles;
 
-    /** Creates an instance of ResourceProviderManagement class. */
+    /**
+     * Creates an instance of ResourceProviderManagement class.
+     */
     public ResourceProviderManagement() {
     }
 
     /**
      * Get the schemaOwners property: The schemaOwners property.
-     *
+     * 
      * @return the schemaOwners value.
      */
     public List<String> schemaOwners() {
@@ -74,7 +78,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the schemaOwners property: The schemaOwners property.
-     *
+     * 
      * @param schemaOwners the schemaOwners value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -85,7 +89,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the manifestOwners property: The manifestOwners property.
-     *
+     * 
      * @return the manifestOwners value.
      */
     public List<String> manifestOwners() {
@@ -94,7 +98,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the manifestOwners property: The manifestOwners property.
-     *
+     * 
      * @param manifestOwners the manifestOwners value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -105,7 +109,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the incidentRoutingService property: The incidentRoutingService property.
-     *
+     * 
      * @return the incidentRoutingService value.
      */
     public String incidentRoutingService() {
@@ -114,7 +118,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the incidentRoutingService property: The incidentRoutingService property.
-     *
+     * 
      * @param incidentRoutingService the incidentRoutingService value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -125,7 +129,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the incidentRoutingTeam property: The incidentRoutingTeam property.
-     *
+     * 
      * @return the incidentRoutingTeam value.
      */
     public String incidentRoutingTeam() {
@@ -134,7 +138,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the incidentRoutingTeam property: The incidentRoutingTeam property.
-     *
+     * 
      * @param incidentRoutingTeam the incidentRoutingTeam value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -145,7 +149,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the incidentContactEmail property: The incidentContactEmail property.
-     *
+     * 
      * @return the incidentContactEmail value.
      */
     public String incidentContactEmail() {
@@ -154,7 +158,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the incidentContactEmail property: The incidentContactEmail property.
-     *
+     * 
      * @param incidentContactEmail the incidentContactEmail value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -165,7 +169,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the serviceTreeInfos property: The serviceTreeInfos property.
-     *
+     * 
      * @return the serviceTreeInfos value.
      */
     public List<ServiceTreeInfo> serviceTreeInfos() {
@@ -174,7 +178,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the serviceTreeInfos property: The serviceTreeInfos property.
-     *
+     * 
      * @param serviceTreeInfos the serviceTreeInfos value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -185,7 +189,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the resourceAccessPolicy property: The resourceAccessPolicy property.
-     *
+     * 
      * @return the resourceAccessPolicy value.
      */
     public ResourceAccessPolicy resourceAccessPolicy() {
@@ -194,7 +198,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the resourceAccessPolicy property: The resourceAccessPolicy property.
-     *
+     * 
      * @param resourceAccessPolicy the resourceAccessPolicy value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -205,7 +209,7 @@ public class ResourceProviderManagement {
 
     /**
      * Get the resourceAccessRoles property: The resourceAccessRoles property.
-     *
+     * 
      * @return the resourceAccessRoles value.
      */
     public List<Object> resourceAccessRoles() {
@@ -214,7 +218,7 @@ public class ResourceProviderManagement {
 
     /**
      * Set the resourceAccessRoles property: The resourceAccessRoles property.
-     *
+     * 
      * @param resourceAccessRoles the resourceAccessRoles value to set.
      * @return the ResourceProviderManagement object itself.
      */
@@ -225,7 +229,7 @@ public class ResourceProviderManagement {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

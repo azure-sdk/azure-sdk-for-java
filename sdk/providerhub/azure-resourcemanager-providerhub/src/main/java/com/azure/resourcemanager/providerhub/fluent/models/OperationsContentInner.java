@@ -11,7 +11,9 @@ import com.azure.resourcemanager.providerhub.models.OperationOrigins;
 import com.azure.resourcemanager.providerhub.models.OperationsDefinitionDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The OperationsContent model. */
+/**
+ * The OperationsContent model.
+ */
 @Fluent
 public final class OperationsContentInner extends ProxyResource {
     /*
@@ -20,13 +22,15 @@ public final class OperationsContentInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private OperationsDefinitionInner innerProperties;
 
-    /** Creates an instance of OperationsContentInner class. */
+    /**
+     * Creates an instance of OperationsContentInner class.
+     */
     public OperationsContentInner() {
     }
 
     /**
      * Get the innerProperties property: Operations content.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OperationsDefinitionInner innerProperties() {
@@ -35,7 +39,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the name property: Name of the operation.
-     *
+     * 
      * @return the name value.
      */
     public String namePropertiesName() {
@@ -44,7 +48,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the name property: Name of the operation.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -58,7 +62,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the isDataAction property: Indicates whether the operation applies to data-plane.
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -67,7 +71,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the isDataAction property: Indicates whether the operation applies to data-plane.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -81,7 +85,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the origin property: The origin property.
-     *
+     * 
      * @return the origin value.
      */
     public OperationOrigins origin() {
@@ -90,7 +94,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the origin property: The origin property.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -104,7 +108,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the display property: Display information of the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationsDefinitionDisplay display() {
@@ -113,7 +117,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the display property: Display information of the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -127,7 +131,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the actionType property: The actionType property.
-     *
+     * 
      * @return the actionType value.
      */
     public OperationActionType actionType() {
@@ -136,7 +140,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the actionType property: The actionType property.
-     *
+     * 
      * @param actionType the actionType value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -150,7 +154,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Get the properties property: Anything.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -159,7 +163,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Set the properties property: Anything.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationsContentInner object itself.
      */
@@ -173,7 +177,7 @@ public final class OperationsContentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

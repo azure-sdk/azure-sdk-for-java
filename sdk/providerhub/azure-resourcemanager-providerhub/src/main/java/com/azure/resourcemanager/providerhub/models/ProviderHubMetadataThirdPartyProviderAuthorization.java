@@ -7,22 +7,30 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ProviderHubMetadataThirdPartyProviderAuthorization model. */
+/**
+ * The ProviderHubMetadataThirdPartyProviderAuthorization model.
+ */
 @Fluent
 public final class ProviderHubMetadataThirdPartyProviderAuthorization extends ThirdPartyProviderAuthorization {
-    /** Creates an instance of ProviderHubMetadataThirdPartyProviderAuthorization class. */
+    /**
+     * Creates an instance of ProviderHubMetadataThirdPartyProviderAuthorization class.
+     */
     public ProviderHubMetadataThirdPartyProviderAuthorization() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProviderHubMetadataThirdPartyProviderAuthorization withAuthorizations(
-        List<LightHouseAuthorization> authorizations) {
+    public ProviderHubMetadataThirdPartyProviderAuthorization
+        withAuthorizations(List<LightHouseAuthorization> authorizations) {
         super.withAuthorizations(authorizations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProviderHubMetadataThirdPartyProviderAuthorization withManagedByTenantId(String managedByTenantId) {
         super.withManagedByTenantId(managedByTenantId);
@@ -31,7 +39,7 @@ public final class ProviderHubMetadataThirdPartyProviderAuthorization extends Th
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

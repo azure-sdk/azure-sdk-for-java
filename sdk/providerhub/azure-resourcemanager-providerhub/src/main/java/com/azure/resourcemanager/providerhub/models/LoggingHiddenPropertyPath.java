@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The LoggingHiddenPropertyPath model. */
+/**
+ * The LoggingHiddenPropertyPath model.
+ */
 @Fluent
 public class LoggingHiddenPropertyPath {
     /*
@@ -23,13 +25,15 @@ public class LoggingHiddenPropertyPath {
     @JsonProperty(value = "hiddenPathsOnResponse")
     private List<String> hiddenPathsOnResponse;
 
-    /** Creates an instance of LoggingHiddenPropertyPath class. */
+    /**
+     * Creates an instance of LoggingHiddenPropertyPath class.
+     */
     public LoggingHiddenPropertyPath() {
     }
 
     /**
      * Get the hiddenPathsOnRequest property: The hiddenPathsOnRequest property.
-     *
+     * 
      * @return the hiddenPathsOnRequest value.
      */
     public List<String> hiddenPathsOnRequest() {
@@ -38,7 +42,7 @@ public class LoggingHiddenPropertyPath {
 
     /**
      * Set the hiddenPathsOnRequest property: The hiddenPathsOnRequest property.
-     *
+     * 
      * @param hiddenPathsOnRequest the hiddenPathsOnRequest value to set.
      * @return the LoggingHiddenPropertyPath object itself.
      */
@@ -49,7 +53,7 @@ public class LoggingHiddenPropertyPath {
 
     /**
      * Get the hiddenPathsOnResponse property: The hiddenPathsOnResponse property.
-     *
+     * 
      * @return the hiddenPathsOnResponse value.
      */
     public List<String> hiddenPathsOnResponse() {
@@ -58,7 +62,7 @@ public class LoggingHiddenPropertyPath {
 
     /**
      * Set the hiddenPathsOnResponse property: The hiddenPathsOnResponse property.
-     *
+     * 
      * @param hiddenPathsOnResponse the hiddenPathsOnResponse value to set.
      * @return the LoggingHiddenPropertyPath object itself.
      */
@@ -69,7 +73,7 @@ public class LoggingHiddenPropertyPath {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

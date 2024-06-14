@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ExtendedErrorInfo model. */
+/**
+ * The ExtendedErrorInfo model.
+ */
 @Fluent
 public final class ExtendedErrorInfo {
     /*
@@ -41,13 +43,15 @@ public final class ExtendedErrorInfo {
     @JsonProperty(value = "additionalInfo")
     private List<TypedErrorInfo> additionalInfo;
 
-    /** Creates an instance of ExtendedErrorInfo class. */
+    /**
+     * Creates an instance of ExtendedErrorInfo class.
+     */
     public ExtendedErrorInfo() {
     }
 
     /**
      * Get the code property: The code property.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -56,7 +60,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Set the code property: The code property.
-     *
+     * 
      * @param code the code value to set.
      * @return the ExtendedErrorInfo object itself.
      */
@@ -67,7 +71,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Get the target property: The target property.
-     *
+     * 
      * @return the target value.
      */
     public String target() {
@@ -76,7 +80,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Set the target property: The target property.
-     *
+     * 
      * @param target the target value to set.
      * @return the ExtendedErrorInfo object itself.
      */
@@ -87,7 +91,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Get the message property: The message property.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -96,7 +100,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Set the message property: The message property.
-     *
+     * 
      * @param message the message value to set.
      * @return the ExtendedErrorInfo object itself.
      */
@@ -107,7 +111,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Get the details property: The details property.
-     *
+     * 
      * @return the details value.
      */
     public List<ExtendedErrorInfo> details() {
@@ -116,7 +120,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Set the details property: The details property.
-     *
+     * 
      * @param details the details value to set.
      * @return the ExtendedErrorInfo object itself.
      */
@@ -127,7 +131,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Get the additionalInfo property: The additionalInfo property.
-     *
+     * 
      * @return the additionalInfo value.
      */
     public List<TypedErrorInfo> additionalInfo() {
@@ -136,7 +140,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Set the additionalInfo property: The additionalInfo property.
-     *
+     * 
      * @param additionalInfo the additionalInfo value to set.
      * @return the ExtendedErrorInfo object itself.
      */
@@ -147,7 +151,7 @@ public final class ExtendedErrorInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

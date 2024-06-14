@@ -7,21 +7,29 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceTypeExtensionOptionsResourceCreationBegin model. */
+/**
+ * The ResourceTypeExtensionOptionsResourceCreationBegin model.
+ */
 @Fluent
 public final class ResourceTypeExtensionOptionsResourceCreationBegin extends ExtensionOptions {
-    /** Creates an instance of ResourceTypeExtensionOptionsResourceCreationBegin class. */
+    /**
+     * Creates an instance of ResourceTypeExtensionOptionsResourceCreationBegin class.
+     */
     public ResourceTypeExtensionOptionsResourceCreationBegin() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeExtensionOptionsResourceCreationBegin withRequest(List<ExtensionOptionType> request) {
         super.withRequest(request);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeExtensionOptionsResourceCreationBegin withResponse(List<ExtensionOptionType> response) {
         super.withResponse(response);
@@ -30,7 +38,7 @@ public final class ResourceTypeExtensionOptionsResourceCreationBegin extends Ext
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

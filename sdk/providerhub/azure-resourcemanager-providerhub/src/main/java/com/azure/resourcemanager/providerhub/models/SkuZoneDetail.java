@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SkuZoneDetail model. */
+/**
+ * The SkuZoneDetail model.
+ */
 @Fluent
 public final class SkuZoneDetail {
     /*
@@ -23,13 +25,15 @@ public final class SkuZoneDetail {
     @JsonProperty(value = "capabilities")
     private List<SkuCapability> capabilities;
 
-    /** Creates an instance of SkuZoneDetail class. */
+    /**
+     * Creates an instance of SkuZoneDetail class.
+     */
     public SkuZoneDetail() {
     }
 
     /**
      * Get the name property: The name property.
-     *
+     * 
      * @return the name value.
      */
     public List<String> name() {
@@ -38,7 +42,7 @@ public final class SkuZoneDetail {
 
     /**
      * Set the name property: The name property.
-     *
+     * 
      * @param name the name value to set.
      * @return the SkuZoneDetail object itself.
      */
@@ -49,7 +53,7 @@ public final class SkuZoneDetail {
 
     /**
      * Get the capabilities property: The capabilities property.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<SkuCapability> capabilities() {
@@ -58,7 +62,7 @@ public final class SkuZoneDetail {
 
     /**
      * Set the capabilities property: The capabilities property.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the SkuZoneDetail object itself.
      */
@@ -69,7 +73,7 @@ public final class SkuZoneDetail {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

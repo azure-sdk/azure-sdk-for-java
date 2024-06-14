@@ -7,21 +7,29 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The SkuResourceProperties model. */
+/**
+ * The SkuResourceProperties model.
+ */
 @Fluent
 public final class SkuResourceProperties extends ResourceTypeSku {
-    /** Creates an instance of SkuResourceProperties class. */
+    /**
+     * Creates an instance of SkuResourceProperties class.
+     */
     public SkuResourceProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuResourceProperties withSkuSettings(List<SkuSetting> skuSettings) {
         super.withSkuSettings(skuSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuResourceProperties withProvisioningState(ProvisioningState provisioningState) {
         super.withProvisioningState(provisioningState);
@@ -30,7 +38,7 @@ public final class SkuResourceProperties extends ResourceTypeSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

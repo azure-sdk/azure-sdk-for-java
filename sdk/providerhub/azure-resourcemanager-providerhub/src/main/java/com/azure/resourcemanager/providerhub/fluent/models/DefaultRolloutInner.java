@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.providerhub.models.DefaultRolloutProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Default rollout definition. */
+/**
+ * Default rollout definition.
+ */
 @Fluent
 public final class DefaultRolloutInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class DefaultRolloutInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DefaultRolloutProperties properties;
 
-    /** Creates an instance of DefaultRolloutInner class. */
+    /**
+     * Creates an instance of DefaultRolloutInner class.
+     */
     public DefaultRolloutInner() {
     }
 
     /**
      * Get the properties property: Properties of the rollout.
-     *
+     * 
      * @return the properties value.
      */
     public DefaultRolloutProperties properties() {
@@ -33,7 +37,7 @@ public final class DefaultRolloutInner extends ProxyResource {
 
     /**
      * Set the properties property: Properties of the rollout.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DefaultRolloutInner object itself.
      */
@@ -44,7 +48,7 @@ public final class DefaultRolloutInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
