@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.L2IsolationD
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The L2 Isolation Domain patch resource definition. */
+/**
+ * The L2 Isolation Domain patch resource definition.
+ */
 @Fluent
 public final class L2IsolationDomainPatch extends TagsUpdate {
     /*
@@ -18,20 +20,24 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private L2IsolationDomainPatchProperties innerProperties;
 
-    /** Creates an instance of L2IsolationDomainPatch class. */
+    /**
+     * Creates an instance of L2IsolationDomainPatch class.
+     */
     public L2IsolationDomainPatch() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private L2IsolationDomainPatchProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L2IsolationDomainPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -40,7 +46,7 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -49,7 +55,7 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the L2IsolationDomainPatch object itself.
      */
@@ -63,7 +69,7 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -72,7 +78,7 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the L2IsolationDomainPatch object itself.
      */
@@ -86,7 +92,7 @@ public final class L2IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

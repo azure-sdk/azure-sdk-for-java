@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMatchConfiguration;
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPatchableProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Access Control Lists patch properties. */
+/**
+ * Access Control Lists patch properties.
+ */
 @Fluent
 public final class AccessControlListPatchProperties extends AccessControlListPatchableProperties {
     /*
@@ -21,13 +24,15 @@ public final class AccessControlListPatchProperties extends AccessControlListPat
     @JsonProperty(value = "annotation")
     private String annotation;
 
-    /** Creates an instance of AccessControlListPatchProperties class. */
+    /**
+     * Creates an instance of AccessControlListPatchProperties class.
+     */
     public AccessControlListPatchProperties() {
     }
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -36,7 +41,7 @@ public final class AccessControlListPatchProperties extends AccessControlListPat
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the AccessControlListPatchProperties object itself.
      */
@@ -45,39 +50,56 @@ public final class AccessControlListPatchProperties extends AccessControlListPat
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPatchProperties withConfigurationType(ConfigurationType configurationType) {
         super.withConfigurationType(configurationType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPatchProperties withAclsUrl(String aclsUrl) {
         super.withAclsUrl(aclsUrl);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AccessControlListPatchProperties withMatchConfigurations(
-        List<AccessControlListMatchConfiguration> matchConfigurations) {
+    public AccessControlListPatchProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        super.withDefaultAction(defaultAction);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AccessControlListPatchProperties
+        withMatchConfigurations(List<AccessControlListMatchConfiguration> matchConfigurations) {
         super.withMatchConfigurations(matchConfigurations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AccessControlListPatchProperties withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public AccessControlListPatchProperties
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         super.withDynamicMatchConfigurations(dynamicMatchConfigurations);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

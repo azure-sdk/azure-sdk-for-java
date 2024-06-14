@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Port Group properties. */
+/**
+ * Port Group properties.
+ */
 @Fluent
 public final class PortGroupProperties {
     /*
@@ -18,18 +20,20 @@ public final class PortGroupProperties {
     private String name;
 
     /*
-     * List of the ports that needs to be matched.
+     * List of the ports that need to be matched.
      */
     @JsonProperty(value = "ports")
     private List<String> ports;
 
-    /** Creates an instance of PortGroupProperties class. */
+    /**
+     * Creates an instance of PortGroupProperties class.
+     */
     public PortGroupProperties() {
     }
 
     /**
      * Get the name property: The name of the port group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class PortGroupProperties {
 
     /**
      * Set the name property: The name of the port group.
-     *
+     * 
      * @param name the name value to set.
      * @return the PortGroupProperties object itself.
      */
@@ -48,8 +52,8 @@ public final class PortGroupProperties {
     }
 
     /**
-     * Get the ports property: List of the ports that needs to be matched.
-     *
+     * Get the ports property: List of the ports that need to be matched.
+     * 
      * @return the ports value.
      */
     public List<String> ports() {
@@ -57,8 +61,8 @@ public final class PortGroupProperties {
     }
 
     /**
-     * Set the ports property: List of the ports that needs to be matched.
-     *
+     * Set the ports property: List of the ports that need to be matched.
+     * 
      * @param ports the ports value to set.
      * @return the PortGroupProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class PortGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

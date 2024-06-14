@@ -9,7 +9,9 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The response of the action validate configuration. */
+/**
+ * The response of the action validate configuration.
+ */
 @Fluent
 public final class ValidateConfigurationResponseInner {
     /*
@@ -30,13 +32,15 @@ public final class ValidateConfigurationResponseInner {
     @JsonProperty(value = "error")
     private ManagementError error;
 
-    /** Creates an instance of ValidateConfigurationResponseInner class. */
+    /**
+     * Creates an instance of ValidateConfigurationResponseInner class.
+     */
     public ValidateConfigurationResponseInner() {
     }
 
     /**
      * Get the configurationState property: Gets the configuration state.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -45,7 +49,7 @@ public final class ValidateConfigurationResponseInner {
 
     /**
      * Get the url property: URL for the details of the response.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -54,7 +58,7 @@ public final class ValidateConfigurationResponseInner {
 
     /**
      * Set the url property: URL for the details of the response.
-     *
+     * 
      * @param url the url value to set.
      * @return the ValidateConfigurationResponseInner object itself.
      */
@@ -65,7 +69,7 @@ public final class ValidateConfigurationResponseInner {
 
     /**
      * Get the error property: The error object.
-     *
+     * 
      * @return the error value.
      */
     public ManagementError error() {
@@ -74,7 +78,7 @@ public final class ValidateConfigurationResponseInner {
 
     /**
      * Set the error property: The error object.
-     *
+     * 
      * @param error the error value to set.
      * @return the ValidateConfigurationResponseInner object itself.
      */
@@ -85,7 +89,7 @@ public final class ValidateConfigurationResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

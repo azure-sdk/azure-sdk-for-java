@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Prefix patchable properties. */
+/**
+ * IP Prefix patchable properties.
+ */
 @Fluent
 public class IpPrefixPatchableProperties {
     /*
@@ -17,13 +19,15 @@ public class IpPrefixPatchableProperties {
     @JsonProperty(value = "ipPrefixRules")
     private List<IpPrefixRule> ipPrefixRules;
 
-    /** Creates an instance of IpPrefixPatchableProperties class. */
+    /**
+     * Creates an instance of IpPrefixPatchableProperties class.
+     */
     public IpPrefixPatchableProperties() {
     }
 
     /**
      * Get the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @return the ipPrefixRules value.
      */
     public List<IpPrefixRule> ipPrefixRules() {
@@ -32,7 +36,7 @@ public class IpPrefixPatchableProperties {
 
     /**
      * Set the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @param ipPrefixRules the ipPrefixRules value to set.
      * @return the IpPrefixPatchableProperties object itself.
      */
@@ -43,7 +47,7 @@ public class IpPrefixPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

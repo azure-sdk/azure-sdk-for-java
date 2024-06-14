@@ -9,6 +9,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
@@ -16,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Access Control List Properties defines the resource properties. */
+/**
+ * Access Control List Properties defines the resource properties.
+ */
 @Fluent
 public final class AccessControlListProperties extends AnnotationResource {
     /*
@@ -56,6 +59,12 @@ public final class AccessControlListProperties extends AnnotationResource {
     private String aclsUrl;
 
     /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
+
+    /*
      * List of match configurations.
      */
     @JsonProperty(value = "matchConfigurations")
@@ -67,13 +76,15 @@ public final class AccessControlListProperties extends AnnotationResource {
     @JsonProperty(value = "dynamicMatchConfigurations")
     private List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations;
 
-    /** Creates an instance of AccessControlListProperties class. */
+    /**
+     * Creates an instance of AccessControlListProperties class.
+     */
     public AccessControlListProperties() {
     }
 
     /**
      * Get the lastSyncedTime property: The last synced timestamp.
-     *
+     * 
      * @return the lastSyncedTime value.
      */
     public OffsetDateTime lastSyncedTime() {
@@ -82,7 +93,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -91,7 +102,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -100,7 +111,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -109,7 +120,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Get the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @return the configurationType value.
      */
     public ConfigurationType configurationType() {
@@ -118,7 +129,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Set the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @param configurationType the configurationType value to set.
      * @return the AccessControlListProperties object itself.
      */
@@ -129,7 +140,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Get the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @return the aclsUrl value.
      */
     public String aclsUrl() {
@@ -138,7 +149,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Set the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @param aclsUrl the aclsUrl value to set.
      * @return the AccessControlListProperties object itself.
      */
@@ -148,8 +159,30 @@ public final class AccessControlListProperties extends AnnotationResource {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the AccessControlListProperties object itself.
+     */
+    public AccessControlListProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
+        return this;
+    }
+
+    /**
      * Get the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @return the matchConfigurations value.
      */
     public List<AccessControlListMatchConfiguration> matchConfigurations() {
@@ -158,19 +191,19 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Set the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @param matchConfigurations the matchConfigurations value to set.
      * @return the AccessControlListProperties object itself.
      */
-    public AccessControlListProperties withMatchConfigurations(
-        List<AccessControlListMatchConfiguration> matchConfigurations) {
+    public AccessControlListProperties
+        withMatchConfigurations(List<AccessControlListMatchConfiguration> matchConfigurations) {
         this.matchConfigurations = matchConfigurations;
         return this;
     }
 
     /**
      * Get the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @return the dynamicMatchConfigurations value.
      */
     public List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations() {
@@ -179,17 +212,19 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Set the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @param dynamicMatchConfigurations the dynamicMatchConfigurations value to set.
      * @return the AccessControlListProperties object itself.
      */
-    public AccessControlListProperties withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public AccessControlListProperties
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         this.dynamicMatchConfigurations = dynamicMatchConfigurations;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -198,7 +233,7 @@ public final class AccessControlListProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

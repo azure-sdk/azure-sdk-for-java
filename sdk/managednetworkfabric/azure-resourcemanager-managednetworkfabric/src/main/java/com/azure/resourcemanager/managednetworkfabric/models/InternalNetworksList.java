@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.InternalNetw
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Internal Networks. */
+/**
+ * List of Internal Networks.
+ */
 @Fluent
 public final class InternalNetworksList {
     /*
@@ -24,13 +26,15 @@ public final class InternalNetworksList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of InternalNetworksList class. */
+    /**
+     * Creates an instance of InternalNetworksList class.
+     */
     public InternalNetworksList() {
     }
 
     /**
      * Get the value property: List of Internal Network resources.
-     *
+     * 
      * @return the value value.
      */
     public List<InternalNetworkInner> value() {
@@ -39,7 +43,7 @@ public final class InternalNetworksList {
 
     /**
      * Set the value property: List of Internal Network resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the InternalNetworksList object itself.
      */
@@ -50,7 +54,7 @@ public final class InternalNetworksList {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class InternalNetworksList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the InternalNetworksList object itself.
      */
@@ -70,7 +74,7 @@ public final class InternalNetworksList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

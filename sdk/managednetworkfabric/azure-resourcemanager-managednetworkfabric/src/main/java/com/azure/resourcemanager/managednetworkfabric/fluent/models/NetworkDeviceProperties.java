@@ -12,7 +12,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.NetworkDeviceRole;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network Device Properties defines the properties of the resource. */
+/**
+ * Network Device Properties defines the properties of the resource.
+ */
 @Fluent
 public final class NetworkDeviceProperties extends AnnotationResource {
     /*
@@ -81,13 +83,15 @@ public final class NetworkDeviceProperties extends AnnotationResource {
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of NetworkDeviceProperties class. */
+    /**
+     * Creates an instance of NetworkDeviceProperties class.
+     */
     public NetworkDeviceProperties() {
     }
 
     /**
      * Get the version property: Current version of the device as defined in SKU.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -96,7 +100,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the networkDeviceSku property: Network Device SKU name.
-     *
+     * 
      * @return the networkDeviceSku value.
      */
     public String networkDeviceSku() {
@@ -105,7 +109,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Set the networkDeviceSku property: Network Device SKU name.
-     *
+     * 
      * @param networkDeviceSku the networkDeviceSku value to set.
      * @return the NetworkDeviceProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the networkDeviceRole property: NetworkDeviceRole is the device role: Example: CE | ToR.
-     *
+     * 
      * @return the networkDeviceRole value.
      */
     public NetworkDeviceRole networkDeviceRole() {
@@ -125,7 +129,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the networkRackId property: Reference to network rack resource id.
-     *
+     * 
      * @return the networkRackId value.
      */
     public String networkRackId() {
@@ -134,7 +138,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the managementIpv4Address property: Management IPv4 Address.
-     *
+     * 
      * @return the managementIpv4Address value.
      */
     public String managementIpv4Address() {
@@ -143,7 +147,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the managementIpv6Address property: Management IPv6 Address.
-     *
+     * 
      * @return the managementIpv6Address value.
      */
     public String managementIpv6Address() {
@@ -152,7 +156,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -161,7 +165,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -170,7 +174,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -179,7 +183,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Get the hostname property: The host name of the device.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -188,7 +192,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Set the hostname property: The host name of the device.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the NetworkDeviceProperties object itself.
      */
@@ -200,7 +204,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
     /**
      * Get the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -210,7 +214,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
     /**
      * Set the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the NetworkDeviceProperties object itself.
      */
@@ -219,7 +223,9 @@ public final class NetworkDeviceProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkDeviceProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -228,7 +234,7 @@ public final class NetworkDeviceProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

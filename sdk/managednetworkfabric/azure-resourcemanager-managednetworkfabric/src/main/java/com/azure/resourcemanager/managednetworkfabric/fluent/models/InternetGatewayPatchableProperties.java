@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Internet Gateway Patchable Properties defines the patchable properties of the resource. */
+/**
+ * Internet Gateway Patchable Properties defines the patchable properties of the resource.
+ */
 @Fluent
 public class InternetGatewayPatchableProperties {
     /*
@@ -16,13 +18,15 @@ public class InternetGatewayPatchableProperties {
     @JsonProperty(value = "internetGatewayRuleId")
     private String internetGatewayRuleId;
 
-    /** Creates an instance of InternetGatewayPatchableProperties class. */
+    /**
+     * Creates an instance of InternetGatewayPatchableProperties class.
+     */
     public InternetGatewayPatchableProperties() {
     }
 
     /**
      * Get the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @return the internetGatewayRuleId value.
      */
     public String internetGatewayRuleId() {
@@ -31,7 +35,7 @@ public class InternetGatewayPatchableProperties {
 
     /**
      * Set the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @param internetGatewayRuleId the internetGatewayRuleId value to set.
      * @return the InternetGatewayPatchableProperties object itself.
      */
@@ -42,7 +46,7 @@ public class InternetGatewayPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

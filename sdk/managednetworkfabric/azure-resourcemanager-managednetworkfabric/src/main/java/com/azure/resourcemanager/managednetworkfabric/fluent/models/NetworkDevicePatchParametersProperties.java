@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network Device Patch properties. */
+/**
+ * Network Device Patch properties.
+ */
 @Fluent
 public final class NetworkDevicePatchParametersProperties extends AnnotationResource {
     /*
@@ -23,13 +25,15 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of NetworkDevicePatchParametersProperties class. */
+    /**
+     * Creates an instance of NetworkDevicePatchParametersProperties class.
+     */
     public NetworkDevicePatchParametersProperties() {
     }
 
     /**
      * Get the hostname property: The host name of the device.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -38,7 +42,7 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
 
     /**
      * Set the hostname property: The host name of the device.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the NetworkDevicePatchParametersProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
     /**
      * Get the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -60,7 +64,7 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
     /**
      * Set the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the NetworkDevicePatchParametersProperties object itself.
      */
@@ -69,7 +73,9 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkDevicePatchParametersProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -78,7 +84,7 @@ public final class NetworkDevicePatchParametersProperties extends AnnotationReso
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

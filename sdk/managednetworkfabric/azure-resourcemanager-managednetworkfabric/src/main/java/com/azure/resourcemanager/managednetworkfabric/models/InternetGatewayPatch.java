@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.InternetGate
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Internet Gateway patch resource definition. */
+/**
+ * The Internet Gateway patch resource definition.
+ */
 @Fluent
 public final class InternetGatewayPatch extends TagsUpdate {
     /*
@@ -18,20 +20,24 @@ public final class InternetGatewayPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private InternetGatewayPatchableProperties innerProperties;
 
-    /** Creates an instance of InternetGatewayPatch class. */
+    /**
+     * Creates an instance of InternetGatewayPatch class.
+     */
     public InternetGatewayPatch() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private InternetGatewayPatchableProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -40,7 +46,7 @@ public final class InternetGatewayPatch extends TagsUpdate {
 
     /**
      * Get the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @return the internetGatewayRuleId value.
      */
     public String internetGatewayRuleId() {
@@ -49,7 +55,7 @@ public final class InternetGatewayPatch extends TagsUpdate {
 
     /**
      * Set the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @param internetGatewayRuleId the internetGatewayRuleId value to set.
      * @return the InternetGatewayPatch object itself.
      */
@@ -63,7 +69,7 @@ public final class InternetGatewayPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

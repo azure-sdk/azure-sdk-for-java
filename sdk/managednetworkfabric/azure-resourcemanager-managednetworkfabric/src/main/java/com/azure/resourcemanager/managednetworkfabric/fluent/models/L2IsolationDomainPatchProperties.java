@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** L2 Isolation Domain Patch Properties defines the patchable properties of the resource. */
+/**
+ * L2 Isolation Domain Patch Properties defines the patchable properties of the resource.
+ */
 @Fluent
 public final class L2IsolationDomainPatchProperties extends AnnotationResource {
     /*
@@ -17,13 +19,15 @@ public final class L2IsolationDomainPatchProperties extends AnnotationResource {
     @JsonProperty(value = "mtu")
     private Integer mtu;
 
-    /** Creates an instance of L2IsolationDomainPatchProperties class. */
+    /**
+     * Creates an instance of L2IsolationDomainPatchProperties class.
+     */
     public L2IsolationDomainPatchProperties() {
     }
 
     /**
      * Get the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -32,7 +36,7 @@ public final class L2IsolationDomainPatchProperties extends AnnotationResource {
 
     /**
      * Set the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the L2IsolationDomainPatchProperties object itself.
      */
@@ -41,7 +45,9 @@ public final class L2IsolationDomainPatchProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L2IsolationDomainPatchProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -50,7 +56,7 @@ public final class L2IsolationDomainPatchProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

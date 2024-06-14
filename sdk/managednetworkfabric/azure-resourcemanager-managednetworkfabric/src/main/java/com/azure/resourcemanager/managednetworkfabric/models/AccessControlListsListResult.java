@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.AccessContro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Access Control Lists. */
+/**
+ * List of Access Control Lists.
+ */
 @Fluent
 public final class AccessControlListsListResult {
     /*
@@ -24,13 +26,15 @@ public final class AccessControlListsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AccessControlListsListResult class. */
+    /**
+     * Creates an instance of AccessControlListsListResult class.
+     */
     public AccessControlListsListResult() {
     }
 
     /**
      * Get the value property: List of Access Control List resources.
-     *
+     * 
      * @return the value value.
      */
     public List<AccessControlListInner> value() {
@@ -39,7 +43,7 @@ public final class AccessControlListsListResult {
 
     /**
      * Set the value property: List of Access Control List resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the AccessControlListsListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AccessControlListsListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class AccessControlListsListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AccessControlListsListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class AccessControlListsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of actions that can be performed. */
+/**
+ * Type of actions that can be performed.
+ */
 public final class AclActionType extends ExpandableStringEnum<AclActionType> {
-    /** Static value Drop for AclActionType. */
+    /**
+     * Static value Drop for AclActionType.
+     */
     public static final AclActionType DROP = fromString("Drop");
 
-    /** Static value Count for AclActionType. */
+    /**
+     * Static value Count for AclActionType.
+     */
     public static final AclActionType COUNT = fromString("Count");
 
-    /** Static value Log for AclActionType. */
+    /**
+     * Static value Log for AclActionType.
+     */
     public static final AclActionType LOG = fromString("Log");
 
     /**
      * Creates a new instance of AclActionType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class AclActionType extends ExpandableStringEnum<AclActionType> {
 
     /**
      * Creates or finds a AclActionType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AclActionType.
      */
@@ -41,7 +49,7 @@ public final class AclActionType extends ExpandableStringEnum<AclActionType> {
 
     /**
      * Gets known AclActionType values.
-     *
+     * 
      * @return known AclActionType values.
      */
     public static Collection<AclActionType> values() {

@@ -7,80 +7,104 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** BGP configuration properties. */
+/**
+ * BGP configuration properties.
+ */
 @Fluent
 public final class InternalNetworkPropertiesBgpConfiguration extends BgpConfiguration {
-    /** Creates an instance of InternalNetworkPropertiesBgpConfiguration class. */
+    /**
+     * Creates an instance of InternalNetworkPropertiesBgpConfiguration class.
+     */
     public InternalNetworkPropertiesBgpConfiguration() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withBfdConfiguration(BfdConfiguration bfdConfiguration) {
         super.withBfdConfiguration(bfdConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public InternalNetworkPropertiesBgpConfiguration withDefaultRouteOriginate(
-        BooleanEnumProperty defaultRouteOriginate) {
+    public InternalNetworkPropertiesBgpConfiguration
+        withDefaultRouteOriginate(BooleanEnumProperty defaultRouteOriginate) {
         super.withDefaultRouteOriginate(defaultRouteOriginate);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withAllowAS(Integer allowAS) {
         super.withAllowAS(allowAS);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withAllowASOverride(AllowASOverride allowASOverride) {
         super.withAllowASOverride(allowASOverride);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withPeerAsn(Long peerAsn) {
         super.withPeerAsn(peerAsn);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withIpv4ListenRangePrefixes(List<String> ipv4ListenRangePrefixes) {
         super.withIpv4ListenRangePrefixes(ipv4ListenRangePrefixes);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withIpv6ListenRangePrefixes(List<String> ipv6ListenRangePrefixes) {
         super.withIpv6ListenRangePrefixes(ipv6ListenRangePrefixes);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public InternalNetworkPropertiesBgpConfiguration withIpv4NeighborAddress(
-        List<NeighborAddress> ipv4NeighborAddress) {
+    public InternalNetworkPropertiesBgpConfiguration
+        withIpv4NeighborAddress(List<NeighborAddress> ipv4NeighborAddress) {
         super.withIpv4NeighborAddress(ipv4NeighborAddress);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public InternalNetworkPropertiesBgpConfiguration withIpv6NeighborAddress(
-        List<NeighborAddress> ipv6NeighborAddress) {
+    public InternalNetworkPropertiesBgpConfiguration
+        withIpv6NeighborAddress(List<NeighborAddress> ipv6NeighborAddress) {
         super.withIpv6NeighborAddress(ipv6NeighborAddress);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesBgpConfiguration withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -89,7 +113,7 @@ public final class InternalNetworkPropertiesBgpConfiguration extends BgpConfigur
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

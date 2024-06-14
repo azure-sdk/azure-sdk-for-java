@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Common response for device updates. */
+/**
+ * Common response for device updates.
+ */
 @Fluent
 public final class CommonPostActionResponseForDeviceUpdateInner {
     /*
@@ -37,13 +39,15 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
     @JsonProperty(value = "error")
     private ManagementError error;
 
-    /** Creates an instance of CommonPostActionResponseForDeviceUpdateInner class. */
+    /**
+     * Creates an instance of CommonPostActionResponseForDeviceUpdateInner class.
+     */
     public CommonPostActionResponseForDeviceUpdateInner() {
     }
 
     /**
      * Get the configurationState property: Gets the configuration state.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -52,7 +56,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Get the successfulDevices property: List of ARM Resource IDs for which the given action applied successfully.
-     *
+     * 
      * @return the successfulDevices value.
      */
     public List<String> successfulDevices() {
@@ -61,7 +65,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Set the successfulDevices property: List of ARM Resource IDs for which the given action applied successfully.
-     *
+     * 
      * @param successfulDevices the successfulDevices value to set.
      * @return the CommonPostActionResponseForDeviceUpdateInner object itself.
      */
@@ -72,7 +76,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Get the failedDevices property: List of ARM Resource IDs for which the given action failed to apply.
-     *
+     * 
      * @return the failedDevices value.
      */
     public List<String> failedDevices() {
@@ -81,7 +85,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Set the failedDevices property: List of ARM Resource IDs for which the given action failed to apply.
-     *
+     * 
      * @param failedDevices the failedDevices value to set.
      * @return the CommonPostActionResponseForDeviceUpdateInner object itself.
      */
@@ -92,7 +96,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Get the error property: The error object.
-     *
+     * 
      * @return the error value.
      */
     public ManagementError error() {
@@ -101,7 +105,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Set the error property: The error object.
-     *
+     * 
      * @param error the error value to set.
      * @return the CommonPostActionResponseForDeviceUpdateInner object itself.
      */
@@ -112,7 +116,7 @@ public final class CommonPostActionResponseForDeviceUpdateInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

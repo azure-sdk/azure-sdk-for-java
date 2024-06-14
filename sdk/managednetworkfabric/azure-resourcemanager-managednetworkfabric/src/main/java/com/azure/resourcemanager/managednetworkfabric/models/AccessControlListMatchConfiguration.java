@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the match configuration that are supported to filter the traffic. */
+/**
+ * Defines the match configuration that are supported to filter the traffic.
+ */
 @Fluent
 public final class AccessControlListMatchConfiguration {
     /*
@@ -41,13 +43,15 @@ public final class AccessControlListMatchConfiguration {
     @JsonProperty(value = "actions")
     private List<AccessControlListAction> actions;
 
-    /** Creates an instance of AccessControlListMatchConfiguration class. */
+    /**
+     * Creates an instance of AccessControlListMatchConfiguration class.
+     */
     public AccessControlListMatchConfiguration() {
     }
 
     /**
      * Get the matchConfigurationName property: The name of the match configuration.
-     *
+     * 
      * @return the matchConfigurationName value.
      */
     public String matchConfigurationName() {
@@ -56,7 +60,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Set the matchConfigurationName property: The name of the match configuration.
-     *
+     * 
      * @param matchConfigurationName the matchConfigurationName value to set.
      * @return the AccessControlListMatchConfiguration object itself.
      */
@@ -67,7 +71,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Get the sequenceNumber property: Sequence Number of the match configuration.
-     *
+     * 
      * @return the sequenceNumber value.
      */
     public Long sequenceNumber() {
@@ -76,7 +80,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Set the sequenceNumber property: Sequence Number of the match configuration.
-     *
+     * 
      * @param sequenceNumber the sequenceNumber value to set.
      * @return the AccessControlListMatchConfiguration object itself.
      */
@@ -87,7 +91,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Get the ipAddressType property: Type of IP Address. IPv4 or IPv6.
-     *
+     * 
      * @return the ipAddressType value.
      */
     public IpAddressType ipAddressType() {
@@ -96,7 +100,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Set the ipAddressType property: Type of IP Address. IPv4 or IPv6.
-     *
+     * 
      * @param ipAddressType the ipAddressType value to set.
      * @return the AccessControlListMatchConfiguration object itself.
      */
@@ -107,7 +111,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Get the matchConditions property: List of the match conditions.
-     *
+     * 
      * @return the matchConditions value.
      */
     public List<AccessControlListMatchCondition> matchConditions() {
@@ -116,19 +120,19 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Set the matchConditions property: List of the match conditions.
-     *
+     * 
      * @param matchConditions the matchConditions value to set.
      * @return the AccessControlListMatchConfiguration object itself.
      */
-    public AccessControlListMatchConfiguration withMatchConditions(
-        List<AccessControlListMatchCondition> matchConditions) {
+    public AccessControlListMatchConfiguration
+        withMatchConditions(List<AccessControlListMatchCondition> matchConditions) {
         this.matchConditions = matchConditions;
         return this;
     }
 
     /**
      * Get the actions property: List of actions that need to be performed for the matched conditions.
-     *
+     * 
      * @return the actions value.
      */
     public List<AccessControlListAction> actions() {
@@ -137,7 +141,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Set the actions property: List of actions that need to be performed for the matched conditions.
-     *
+     * 
      * @param actions the actions value to set.
      * @return the AccessControlListMatchConfiguration object itself.
      */
@@ -148,7 +152,7 @@ public final class AccessControlListMatchConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

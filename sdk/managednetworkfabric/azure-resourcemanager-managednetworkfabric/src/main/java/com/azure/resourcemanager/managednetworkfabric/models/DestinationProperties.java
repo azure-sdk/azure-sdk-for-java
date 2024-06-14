@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The network tap destination properties. */
+/**
+ * The network tap destination properties.
+ */
 @Fluent
 public class DestinationProperties {
     /*
@@ -40,13 +42,15 @@ public class DestinationProperties {
     @JsonProperty(value = "destinationTapRuleId")
     private String destinationTapRuleId;
 
-    /** Creates an instance of DestinationProperties class. */
+    /**
+     * Creates an instance of DestinationProperties class.
+     */
     public DestinationProperties() {
     }
 
     /**
      * Get the name property: Destination name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public class DestinationProperties {
 
     /**
      * Set the name property: Destination name.
-     *
+     * 
      * @param name the name value to set.
      * @return the DestinationProperties object itself.
      */
@@ -66,7 +70,7 @@ public class DestinationProperties {
 
     /**
      * Get the destinationType property: Type of destination. Input can be IsolationDomain or Direct.
-     *
+     * 
      * @return the destinationType value.
      */
     public DestinationType destinationType() {
@@ -75,7 +79,7 @@ public class DestinationProperties {
 
     /**
      * Set the destinationType property: Type of destination. Input can be IsolationDomain or Direct.
-     *
+     * 
      * @param destinationType the destinationType value to set.
      * @return the DestinationProperties object itself.
      */
@@ -86,7 +90,7 @@ public class DestinationProperties {
 
     /**
      * Get the destinationId property: The destination Id. ARM Resource ID of either NNI or Internal Networks.
-     *
+     * 
      * @return the destinationId value.
      */
     public String destinationId() {
@@ -95,7 +99,7 @@ public class DestinationProperties {
 
     /**
      * Set the destinationId property: The destination Id. ARM Resource ID of either NNI or Internal Networks.
-     *
+     * 
      * @param destinationId the destinationId value to set.
      * @return the DestinationProperties object itself.
      */
@@ -106,7 +110,7 @@ public class DestinationProperties {
 
     /**
      * Get the isolationDomainProperties property: Isolation Domain Properties.
-     *
+     * 
      * @return the isolationDomainProperties value.
      */
     public IsolationDomainProperties isolationDomainProperties() {
@@ -115,7 +119,7 @@ public class DestinationProperties {
 
     /**
      * Set the isolationDomainProperties property: Isolation Domain Properties.
-     *
+     * 
      * @param isolationDomainProperties the isolationDomainProperties value to set.
      * @return the DestinationProperties object itself.
      */
@@ -127,7 +131,7 @@ public class DestinationProperties {
     /**
      * Get the destinationTapRuleId property: ARM Resource ID of destination Tap Rule that contains match
      * configurations.
-     *
+     * 
      * @return the destinationTapRuleId value.
      */
     public String destinationTapRuleId() {
@@ -137,7 +141,7 @@ public class DestinationProperties {
     /**
      * Set the destinationTapRuleId property: ARM Resource ID of destination Tap Rule that contains match
      * configurations.
-     *
+     * 
      * @param destinationTapRuleId the destinationTapRuleId value to set.
      * @return the DestinationProperties object itself.
      */
@@ -148,7 +152,7 @@ public class DestinationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

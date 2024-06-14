@@ -7,14 +7,20 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** The Internet Gateway Rules patch resource definition. */
+/**
+ * The Internet Gateway Rules patch resource definition.
+ */
 @Fluent
 public final class InternetGatewayRulePatch extends TagsUpdate {
-    /** Creates an instance of InternetGatewayRulePatch class. */
+    /**
+     * Creates an instance of InternetGatewayRulePatch class.
+     */
     public InternetGatewayRulePatch() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayRulePatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class InternetGatewayRulePatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

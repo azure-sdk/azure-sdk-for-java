@@ -6,62 +6,78 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Common properties for Layer3Configuration. */
+/**
+ * Common properties for Layer3Configuration.
+ */
 @Fluent
 public final class NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration extends OptionBLayer3Configuration {
-    /** Creates an instance of NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration class. */
+    /**
+     * Creates an instance of NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration class.
+     */
     public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withPeerAsn(Long peerAsn) {
         super.withPeerAsn(peerAsn);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withVlanId(Integer vlanId) {
         super.withVlanId(vlanId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withPrimaryIpv4Prefix(
-        String primaryIpv4Prefix) {
+    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration
+        withPrimaryIpv4Prefix(String primaryIpv4Prefix) {
         super.withPrimaryIpv4Prefix(primaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withPrimaryIpv6Prefix(
-        String primaryIpv6Prefix) {
+    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration
+        withPrimaryIpv6Prefix(String primaryIpv6Prefix) {
         super.withPrimaryIpv6Prefix(primaryIpv6Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withSecondaryIpv4Prefix(
-        String secondaryIpv4Prefix) {
+    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration
+        withSecondaryIpv4Prefix(String secondaryIpv4Prefix) {
         super.withSecondaryIpv4Prefix(secondaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration withSecondaryIpv6Prefix(
-        String secondaryIpv6Prefix) {
+    public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration
+        withSecondaryIpv6Prefix(String secondaryIpv6Prefix) {
         super.withSecondaryIpv6Prefix(secondaryIpv6Prefix);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

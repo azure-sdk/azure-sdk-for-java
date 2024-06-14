@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Update administrative state on list of resources. */
+/**
+ * Update administrative state on list of resources.
+ */
 @Fluent
 public class EnableDisableOnResources {
     /*
@@ -17,13 +19,15 @@ public class EnableDisableOnResources {
     @JsonProperty(value = "resourceIds")
     private List<String> resourceIds;
 
-    /** Creates an instance of EnableDisableOnResources class. */
+    /**
+     * Creates an instance of EnableDisableOnResources class.
+     */
     public EnableDisableOnResources() {
     }
 
     /**
      * Get the resourceIds property: Network Fabrics or Network Rack resource Id.
-     *
+     * 
      * @return the resourceIds value.
      */
     public List<String> resourceIds() {
@@ -32,7 +36,7 @@ public class EnableDisableOnResources {
 
     /**
      * Set the resourceIds property: Network Fabrics or Network Rack resource Id.
-     *
+     * 
      * @param resourceIds the resourceIds value to set.
      * @return the EnableDisableOnResources object itself.
      */
@@ -43,7 +47,7 @@ public class EnableDisableOnResources {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

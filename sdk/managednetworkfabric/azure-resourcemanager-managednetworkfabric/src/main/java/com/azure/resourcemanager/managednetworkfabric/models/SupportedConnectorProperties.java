@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Supported connector properties. */
+/**
+ * Supported connector properties.
+ */
 @Fluent
 public final class SupportedConnectorProperties {
     /*
@@ -22,13 +24,15 @@ public final class SupportedConnectorProperties {
     @JsonProperty(value = "maxSpeedInMbps")
     private Integer maxSpeedInMbps;
 
-    /** Creates an instance of SupportedConnectorProperties class. */
+    /**
+     * Creates an instance of SupportedConnectorProperties class.
+     */
     public SupportedConnectorProperties() {
     }
 
     /**
      * Get the connectorType property: Type of connector used. Example: Optical.
-     *
+     * 
      * @return the connectorType value.
      */
     public String connectorType() {
@@ -37,7 +41,7 @@ public final class SupportedConnectorProperties {
 
     /**
      * Set the connectorType property: Type of connector used. Example: Optical.
-     *
+     * 
      * @param connectorType the connectorType value to set.
      * @return the SupportedConnectorProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class SupportedConnectorProperties {
 
     /**
      * Get the maxSpeedInMbps property: Maximum speed of the connector in Mbps.
-     *
+     * 
      * @return the maxSpeedInMbps value.
      */
     public Integer maxSpeedInMbps() {
@@ -57,7 +61,7 @@ public final class SupportedConnectorProperties {
 
     /**
      * Set the maxSpeedInMbps property: Maximum speed of the connector in Mbps.
-     *
+     * 
      * @param maxSpeedInMbps the maxSpeedInMbps value to set.
      * @return the SupportedConnectorProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class SupportedConnectorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

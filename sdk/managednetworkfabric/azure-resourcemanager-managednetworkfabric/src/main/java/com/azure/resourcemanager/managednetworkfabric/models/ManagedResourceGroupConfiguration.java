@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed Resource Group configuration properties. */
+/**
+ * Managed Resource Group configuration properties.
+ */
 @Fluent
 public final class ManagedResourceGroupConfiguration {
     /*
@@ -22,13 +24,15 @@ public final class ManagedResourceGroupConfiguration {
     @JsonProperty(value = "location")
     private String location;
 
-    /** Creates an instance of ManagedResourceGroupConfiguration class. */
+    /**
+     * Creates an instance of ManagedResourceGroupConfiguration class.
+     */
     public ManagedResourceGroupConfiguration() {
     }
 
     /**
      * Get the name property: The NFC service will be hosted in a Managed resource group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ManagedResourceGroupConfiguration {
 
     /**
      * Set the name property: The NFC service will be hosted in a Managed resource group.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagedResourceGroupConfiguration object itself.
      */
@@ -48,7 +52,7 @@ public final class ManagedResourceGroupConfiguration {
 
     /**
      * Get the location property: Managed resource group location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -57,7 +61,7 @@ public final class ManagedResourceGroupConfiguration {
 
     /**
      * Set the location property: Managed resource group location.
-     *
+     * 
      * @param location the location value to set.
      * @return the ManagedResourceGroupConfiguration object itself.
      */
@@ -68,7 +72,7 @@ public final class ManagedResourceGroupConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** NPB Static Route Configuration properties. */
+/**
+ * NPB Static Route Configuration properties.
+ */
 @Fluent
 public final class NpbStaticRouteConfiguration {
     /*
@@ -29,13 +31,15 @@ public final class NpbStaticRouteConfiguration {
     @JsonProperty(value = "ipv6Routes")
     private List<StaticRouteProperties> ipv6Routes;
 
-    /** Creates an instance of NpbStaticRouteConfiguration class. */
+    /**
+     * Creates an instance of NpbStaticRouteConfiguration class.
+     */
     public NpbStaticRouteConfiguration() {
     }
 
     /**
      * Get the bfdConfiguration property: BFD Configuration properties.
-     *
+     * 
      * @return the bfdConfiguration value.
      */
     public BfdConfiguration bfdConfiguration() {
@@ -44,7 +48,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Set the bfdConfiguration property: BFD Configuration properties.
-     *
+     * 
      * @param bfdConfiguration the bfdConfiguration value to set.
      * @return the NpbStaticRouteConfiguration object itself.
      */
@@ -55,7 +59,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Get the ipv4Routes property: List of IPv4 Routes.
-     *
+     * 
      * @return the ipv4Routes value.
      */
     public List<StaticRouteProperties> ipv4Routes() {
@@ -64,7 +68,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Set the ipv4Routes property: List of IPv4 Routes.
-     *
+     * 
      * @param ipv4Routes the ipv4Routes value to set.
      * @return the NpbStaticRouteConfiguration object itself.
      */
@@ -75,7 +79,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Get the ipv6Routes property: List of IPv6 Routes.
-     *
+     * 
      * @return the ipv6Routes value.
      */
     public List<StaticRouteProperties> ipv6Routes() {
@@ -84,7 +88,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Set the ipv6Routes property: List of IPv6 Routes.
-     *
+     * 
      * @param ipv6Routes the ipv6Routes value to set.
      * @return the NpbStaticRouteConfiguration object itself.
      */
@@ -95,7 +99,7 @@ public final class NpbStaticRouteConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

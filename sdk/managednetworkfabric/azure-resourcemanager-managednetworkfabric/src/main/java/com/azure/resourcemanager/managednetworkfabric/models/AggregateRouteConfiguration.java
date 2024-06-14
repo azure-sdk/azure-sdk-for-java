@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IPv4 and IPv6 aggregate routes. */
+/**
+ * List of IPv4 and IPv6 aggregate routes.
+ */
 @Fluent
 public final class AggregateRouteConfiguration {
     /*
@@ -23,13 +25,15 @@ public final class AggregateRouteConfiguration {
     @JsonProperty(value = "ipv6Routes")
     private List<AggregateRoute> ipv6Routes;
 
-    /** Creates an instance of AggregateRouteConfiguration class. */
+    /**
+     * Creates an instance of AggregateRouteConfiguration class.
+     */
     public AggregateRouteConfiguration() {
     }
 
     /**
      * Get the ipv4Routes property: List of IPv4 Route prefixes.
-     *
+     * 
      * @return the ipv4Routes value.
      */
     public List<AggregateRoute> ipv4Routes() {
@@ -38,7 +42,7 @@ public final class AggregateRouteConfiguration {
 
     /**
      * Set the ipv4Routes property: List of IPv4 Route prefixes.
-     *
+     * 
      * @param ipv4Routes the ipv4Routes value to set.
      * @return the AggregateRouteConfiguration object itself.
      */
@@ -49,7 +53,7 @@ public final class AggregateRouteConfiguration {
 
     /**
      * Get the ipv6Routes property: List of Ipv6Routes prefixes.
-     *
+     * 
      * @return the ipv6Routes value.
      */
     public List<AggregateRoute> ipv6Routes() {
@@ -58,7 +62,7 @@ public final class AggregateRouteConfiguration {
 
     /**
      * Set the ipv6Routes property: List of Ipv6Routes prefixes.
-     *
+     * 
      * @param ipv6Routes the ipv6Routes value to set.
      * @return the AggregateRouteConfiguration object itself.
      */
@@ -69,7 +73,7 @@ public final class AggregateRouteConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

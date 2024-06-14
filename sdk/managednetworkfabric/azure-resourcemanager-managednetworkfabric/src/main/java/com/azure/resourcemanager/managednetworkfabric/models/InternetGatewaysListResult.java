@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.InternetGate
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of InternetGateways. */
+/**
+ * List of InternetGateways.
+ */
 @Fluent
 public final class InternetGatewaysListResult {
     /*
@@ -24,13 +26,15 @@ public final class InternetGatewaysListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of InternetGatewaysListResult class. */
+    /**
+     * Creates an instance of InternetGatewaysListResult class.
+     */
     public InternetGatewaysListResult() {
     }
 
     /**
      * Get the value property: Displays list of Internet Gateway resources.
-     *
+     * 
      * @return the value value.
      */
     public List<InternetGatewayInner> value() {
@@ -39,7 +43,7 @@ public final class InternetGatewaysListResult {
 
     /**
      * Set the value property: Displays list of Internet Gateway resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the InternetGatewaysListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class InternetGatewaysListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class InternetGatewaysListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the InternetGatewaysListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class InternetGatewaysListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

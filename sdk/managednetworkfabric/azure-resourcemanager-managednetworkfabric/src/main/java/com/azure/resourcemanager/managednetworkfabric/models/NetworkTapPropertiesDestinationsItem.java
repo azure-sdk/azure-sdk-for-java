@@ -6,43 +6,57 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Destination. */
+/**
+ * Destination.
+ */
 @Fluent
 public final class NetworkTapPropertiesDestinationsItem extends DestinationProperties {
-    /** Creates an instance of NetworkTapPropertiesDestinationsItem class. */
+    /**
+     * Creates an instance of NetworkTapPropertiesDestinationsItem class.
+     */
     public NetworkTapPropertiesDestinationsItem() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPropertiesDestinationsItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPropertiesDestinationsItem withDestinationType(DestinationType destinationType) {
         super.withDestinationType(destinationType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPropertiesDestinationsItem withDestinationId(String destinationId) {
         super.withDestinationId(destinationId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkTapPropertiesDestinationsItem withIsolationDomainProperties(
-        IsolationDomainProperties isolationDomainProperties) {
+    public NetworkTapPropertiesDestinationsItem
+        withIsolationDomainProperties(IsolationDomainProperties isolationDomainProperties) {
         super.withIsolationDomainProperties(isolationDomainProperties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPropertiesDestinationsItem withDestinationTapRuleId(String destinationTapRuleId) {
         super.withDestinationTapRuleId(destinationTapRuleId);
@@ -51,7 +65,7 @@ public final class NetworkTapPropertiesDestinationsItem extends DestinationPrope
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

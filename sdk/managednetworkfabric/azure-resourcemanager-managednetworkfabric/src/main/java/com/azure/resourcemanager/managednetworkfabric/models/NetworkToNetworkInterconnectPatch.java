@@ -6,10 +6,13 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkToNetworkInterconnectPatchableProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Network To Network Interconnect resource patch definition. */
+/**
+ * The Network To Network Interconnect resource patch definition.
+ */
 @Fluent
 public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
     /*
@@ -18,13 +21,21 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
     @JsonProperty(value = "properties")
     private NetworkToNetworkInterconnectPatchableProperties innerProperties;
 
-    /** Creates an instance of NetworkToNetworkInterconnectPatch class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of NetworkToNetworkInterconnectPatch class.
+     */
     public NetworkToNetworkInterconnectPatch() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkToNetworkInterconnectPatchableProperties innerProperties() {
@@ -32,8 +43,17 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the layer2Configuration property: Common properties for Layer2Configuration.
-     *
+     * 
      * @return the layer2Configuration value.
      */
     public Layer2Configuration layer2Configuration() {
@@ -42,7 +62,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the layer2Configuration property: Common properties for Layer2Configuration.
-     *
+     * 
      * @param layer2Configuration the layer2Configuration value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
@@ -56,7 +76,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @return the optionBLayer3Configuration value.
      */
     public OptionBLayer3Configuration optionBLayer3Configuration() {
@@ -65,12 +85,12 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @param optionBLayer3Configuration the optionBLayer3Configuration value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
-    public NetworkToNetworkInterconnectPatch withOptionBLayer3Configuration(
-        OptionBLayer3Configuration optionBLayer3Configuration) {
+    public NetworkToNetworkInterconnectPatch
+        withOptionBLayer3Configuration(OptionBLayer3Configuration optionBLayer3Configuration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkToNetworkInterconnectPatchableProperties();
         }
@@ -80,7 +100,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @return the npbStaticRouteConfiguration value.
      */
     public NpbStaticRouteConfiguration npbStaticRouteConfiguration() {
@@ -89,12 +109,12 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @param npbStaticRouteConfiguration the npbStaticRouteConfiguration value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
-    public NetworkToNetworkInterconnectPatch withNpbStaticRouteConfiguration(
-        NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
+    public NetworkToNetworkInterconnectPatch
+        withNpbStaticRouteConfiguration(NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkToNetworkInterconnectPatchableProperties();
         }
@@ -104,7 +124,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy information.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicyInformation importRoutePolicy() {
@@ -113,7 +133,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy information.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
@@ -127,7 +147,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy information.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicyInformation exportRoutePolicy() {
@@ -136,7 +156,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy information.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
@@ -150,7 +170,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -159,7 +179,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
@@ -173,7 +193,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -182,7 +202,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the NetworkToNetworkInterconnectPatch object itself.
      */
@@ -196,7 +216,7 @@ public final class NetworkToNetworkInterconnectPatch extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
