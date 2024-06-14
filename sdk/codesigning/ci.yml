@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/codesigning/ci.yml
+      - sdk/codesigning/azure-resourcemanager-codesigning/
+    exclude:
+      - sdk/codesigning/pom.xml
+      - sdk/codesigning/azure-resourcemanager-codesigning/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/codesigning/ci.yml
+      - sdk/codesigning/azure-resourcemanager-codesigning/
+    exclude:
+      - sdk/codesigning/pom.xml
+      - sdk/codesigning/azure-resourcemanager-codesigning/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagercodesigning
+    displayName: azure-resourcemanager-codesigning
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: codesigning
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-codesigning
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercodesigning
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercodesigning }}
