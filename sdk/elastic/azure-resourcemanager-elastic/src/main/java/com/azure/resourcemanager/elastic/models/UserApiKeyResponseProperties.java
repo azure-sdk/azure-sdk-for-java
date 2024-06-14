@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The UserApiKeyResponseProperties model. */
+/**
+ * The UserApiKeyResponseProperties model.
+ */
 @Fluent
 public final class UserApiKeyResponseProperties {
     /*
@@ -16,14 +18,16 @@ public final class UserApiKeyResponseProperties {
     @JsonProperty(value = "apiKey")
     private String apiKey;
 
-    /** Creates an instance of UserApiKeyResponseProperties class. */
+    /**
+     * Creates an instance of UserApiKeyResponseProperties class.
+     */
     public UserApiKeyResponseProperties() {
     }
 
     /**
      * Get the apiKey property: The User Api Key Generated based on GenerateApiKey flag. This is applicable for
      * non-Portal clients only.
-     *
+     * 
      * @return the apiKey value.
      */
     public String apiKey() {
@@ -33,7 +37,7 @@ public final class UserApiKeyResponseProperties {
     /**
      * Set the apiKey property: The User Api Key Generated based on GenerateApiKey flag. This is applicable for
      * non-Portal clients only.
-     *
+     * 
      * @param apiKey the apiKey value to set.
      * @return the UserApiKeyResponseProperties object itself.
      */
@@ -44,7 +48,7 @@ public final class UserApiKeyResponseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

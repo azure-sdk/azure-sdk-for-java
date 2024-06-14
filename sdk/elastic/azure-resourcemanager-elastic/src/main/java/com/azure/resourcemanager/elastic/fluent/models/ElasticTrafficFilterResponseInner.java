@@ -9,7 +9,9 @@ import com.azure.resourcemanager.elastic.models.ElasticTrafficFilter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of elastic traffic filters in the account. */
+/**
+ * List of elastic traffic filters in the account.
+ */
 @Fluent
 public final class ElasticTrafficFilterResponseInner {
     /*
@@ -18,13 +20,15 @@ public final class ElasticTrafficFilterResponseInner {
     @JsonProperty(value = "rulesets")
     private List<ElasticTrafficFilter> rulesets;
 
-    /** Creates an instance of ElasticTrafficFilterResponseInner class. */
+    /**
+     * Creates an instance of ElasticTrafficFilterResponseInner class.
+     */
     public ElasticTrafficFilterResponseInner() {
     }
 
     /**
      * Get the rulesets property: List of elastic traffic filters in the account.
-     *
+     * 
      * @return the rulesets value.
      */
     public List<ElasticTrafficFilter> rulesets() {
@@ -33,7 +37,7 @@ public final class ElasticTrafficFilterResponseInner {
 
     /**
      * Set the rulesets property: List of elastic traffic filters in the account.
-     *
+     * 
      * @param rulesets the rulesets value to set.
      * @return the ElasticTrafficFilterResponseInner object itself.
      */
@@ -44,7 +48,7 @@ public final class ElasticTrafficFilterResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

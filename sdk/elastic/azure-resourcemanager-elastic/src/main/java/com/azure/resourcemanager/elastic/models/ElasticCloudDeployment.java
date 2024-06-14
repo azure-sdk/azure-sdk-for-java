@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the user's elastic deployment associated with the monitor resource. */
+/**
+ * Details of the user's elastic deployment associated with the monitor resource.
+ */
 @Immutable
 public final class ElasticCloudDeployment {
     /*
@@ -52,13 +54,15 @@ public final class ElasticCloudDeployment {
     @JsonProperty(value = "kibanaSsoUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String kibanaSsoUrl;
 
-    /** Creates an instance of ElasticCloudDeployment class. */
+    /**
+     * Creates an instance of ElasticCloudDeployment class.
+     */
     public ElasticCloudDeployment() {
     }
 
     /**
      * Get the name property: Elastic deployment name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -67,7 +71,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the deploymentId property: Elastic deployment Id.
-     *
+     * 
      * @return the deploymentId value.
      */
     public String deploymentId() {
@@ -76,7 +80,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the azureSubscriptionId property: Associated Azure subscription Id for the elastic deployment.
-     *
+     * 
      * @return the azureSubscriptionId value.
      */
     public String azureSubscriptionId() {
@@ -85,7 +89,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the elasticsearchRegion property: Region where Deployment at Elastic side took place.
-     *
+     * 
      * @return the elasticsearchRegion value.
      */
     public String elasticsearchRegion() {
@@ -94,7 +98,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the elasticsearchServiceUrl property: Elasticsearch ingestion endpoint of the Elastic deployment.
-     *
+     * 
      * @return the elasticsearchServiceUrl value.
      */
     public String elasticsearchServiceUrl() {
@@ -103,7 +107,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the kibanaServiceUrl property: Kibana endpoint of the Elastic deployment.
-     *
+     * 
      * @return the kibanaServiceUrl value.
      */
     public String kibanaServiceUrl() {
@@ -112,7 +116,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Get the kibanaSsoUrl property: Kibana dashboard sso URL of the Elastic deployment.
-     *
+     * 
      * @return the kibanaSsoUrl value.
      */
     public String kibanaSsoUrl() {
@@ -121,7 +125,7 @@ public final class ElasticCloudDeployment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

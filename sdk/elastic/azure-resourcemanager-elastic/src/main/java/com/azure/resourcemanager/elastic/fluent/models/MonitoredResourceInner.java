@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.elastic.models.SendingLogs;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a resource currently being monitored by the Elastic monitor resource. */
+/**
+ * The properties of a resource currently being monitored by the Elastic monitor resource.
+ */
 @Fluent
 public final class MonitoredResourceInner {
     /*
@@ -19,7 +21,7 @@ public final class MonitoredResourceInner {
 
     /*
      * SendingLogs
-     *
+     * 
      * Flag indicating the status of the resource for sending logs operation to Elastic.
      */
     @JsonProperty(value = "sendingLogs")
@@ -31,13 +33,15 @@ public final class MonitoredResourceInner {
     @JsonProperty(value = "reasonForLogsStatus")
     private String reasonForLogsStatus;
 
-    /** Creates an instance of MonitoredResourceInner class. */
+    /**
+     * Creates an instance of MonitoredResourceInner class.
+     */
     public MonitoredResourceInner() {
     }
 
     /**
      * Get the id property: The ARM id of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -46,7 +50,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the id property: The ARM id of the resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -57,9 +61,9 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the sendingLogs property: SendingLogs
-     *
-     * <p>Flag indicating the status of the resource for sending logs operation to Elastic.
-     *
+     * 
+     * Flag indicating the status of the resource for sending logs operation to Elastic.
+     * 
      * @return the sendingLogs value.
      */
     public SendingLogs sendingLogs() {
@@ -68,9 +72,9 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the sendingLogs property: SendingLogs
-     *
-     * <p>Flag indicating the status of the resource for sending logs operation to Elastic.
-     *
+     * 
+     * Flag indicating the status of the resource for sending logs operation to Elastic.
+     * 
      * @param sendingLogs the sendingLogs value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -81,7 +85,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the reasonForLogsStatus property: Reason for why the resource is sending logs (or why it is not sending).
-     *
+     * 
      * @return the reasonForLogsStatus value.
      */
     public String reasonForLogsStatus() {
@@ -90,7 +94,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the reasonForLogsStatus property: Reason for why the resource is sending logs (or why it is not sending).
-     *
+     * 
      * @param reasonForLogsStatus the reasonForLogsStatus value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -101,7 +105,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

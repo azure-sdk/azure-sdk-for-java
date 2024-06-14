@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Marketplace Subscription. */
+/**
+ * Marketplace Subscription.
+ */
 @Fluent
 public final class MarketplaceSaaSInfoMarketplaceSubscription {
     /*
@@ -16,13 +18,27 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class. */
+    /*
+     * Publisher Id of the Marketplace offer.
+     */
+    @JsonProperty(value = "publisherId")
+    private String publisherId;
+
+    /*
+     * Offer Id of the Marketplace offer,
+     */
+    @JsonProperty(value = "offerId")
+    private String offerId;
+
+    /**
+     * Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class.
+     */
     public MarketplaceSaaSInfoMarketplaceSubscription() {
     }
 
     /**
      * Get the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +47,7 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
 
     /**
      * Set the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @param id the id value to set.
      * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
      */
@@ -41,8 +57,48 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
     }
 
     /**
+     * Get the publisherId property: Publisher Id of the Marketplace offer.
+     * 
+     * @return the publisherId value.
+     */
+    public String publisherId() {
+        return this.publisherId;
+    }
+
+    /**
+     * Set the publisherId property: Publisher Id of the Marketplace offer.
+     * 
+     * @param publisherId the publisherId value to set.
+     * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
+     */
+    public MarketplaceSaaSInfoMarketplaceSubscription withPublisherId(String publisherId) {
+        this.publisherId = publisherId;
+        return this;
+    }
+
+    /**
+     * Get the offerId property: Offer Id of the Marketplace offer,.
+     * 
+     * @return the offerId value.
+     */
+    public String offerId() {
+        return this.offerId;
+    }
+
+    /**
+     * Set the offerId property: Offer Id of the Marketplace offer,.
+     * 
+     * @param offerId the offerId value to set.
+     * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
+     */
+    public MarketplaceSaaSInfoMarketplaceSubscription withOfferId(String offerId) {
+        this.offerId = offerId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
