@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing an data connection validation. */
+/**
+ * Class representing an data connection validation.
+ */
 @Fluent
 public final class DataConnectionValidationInner {
     /*
@@ -22,13 +24,15 @@ public final class DataConnectionValidationInner {
     @JsonProperty(value = "properties")
     private DataConnectionInner properties;
 
-    /** Creates an instance of DataConnectionValidationInner class. */
+    /**
+     * Creates an instance of DataConnectionValidationInner class.
+     */
     public DataConnectionValidationInner() {
     }
 
     /**
      * Get the dataConnectionName property: The name of the data connection.
-     *
+     * 
      * @return the dataConnectionName value.
      */
     public String dataConnectionName() {
@@ -37,7 +41,7 @@ public final class DataConnectionValidationInner {
 
     /**
      * Set the dataConnectionName property: The name of the data connection.
-     *
+     * 
      * @param dataConnectionName the dataConnectionName value to set.
      * @return the DataConnectionValidationInner object itself.
      */
@@ -48,7 +52,7 @@ public final class DataConnectionValidationInner {
 
     /**
      * Get the properties property: The data connection properties to validate.
-     *
+     * 
      * @return the properties value.
      */
     public DataConnectionInner properties() {
@@ -57,7 +61,7 @@ public final class DataConnectionValidationInner {
 
     /**
      * Set the properties property: The data connection properties to validate.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DataConnectionValidationInner object itself.
      */
@@ -68,7 +72,7 @@ public final class DataConnectionValidationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

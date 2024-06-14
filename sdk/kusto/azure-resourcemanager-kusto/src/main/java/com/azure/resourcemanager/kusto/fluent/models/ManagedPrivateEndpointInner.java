@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing a managed private endpoint. */
+/**
+ * Class representing a managed private endpoint.
+ */
 @Fluent
 public final class ManagedPrivateEndpointInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ManagedPrivateEndpointInner class. */
+    /**
+     * Creates an instance of ManagedPrivateEndpointInner class.
+     */
     public ManagedPrivateEndpointInner() {
     }
 
     /**
      * Get the innerProperties property: A managed private endpoint.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ManagedPrivateEndpointProperties innerProperties() {
@@ -40,7 +44,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
     /**
      * Get the privateLinkResourceId property: The ARM resource ID of the resource for which the managed private
      * endpoint is created.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -60,7 +64,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
     /**
      * Set the privateLinkResourceId property: The ARM resource ID of the resource for which the managed private
      * endpoint is created.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the ManagedPrivateEndpointInner object itself.
      */
@@ -75,7 +79,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
     /**
      * Get the privateLinkResourceRegion property: The region of the resource to which the managed private endpoint is
      * created.
-     *
+     * 
      * @return the privateLinkResourceRegion value.
      */
     public String privateLinkResourceRegion() {
@@ -85,7 +89,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
     /**
      * Set the privateLinkResourceRegion property: The region of the resource to which the managed private endpoint is
      * created.
-     *
+     * 
      * @param privateLinkResourceRegion the privateLinkResourceRegion value to set.
      * @return the ManagedPrivateEndpointInner object itself.
      */
@@ -99,7 +103,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Get the groupId property: The groupId in which the managed private endpoint is created.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -108,7 +112,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Set the groupId property: The groupId in which the managed private endpoint is created.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the ManagedPrivateEndpointInner object itself.
      */
@@ -122,7 +126,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Get the requestMessage property: The user request message.
-     *
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -131,7 +135,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Set the requestMessage property: The user request message.
-     *
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the ManagedPrivateEndpointInner object itself.
      */
@@ -145,7 +149,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -154,7 +158,7 @@ public final class ManagedPrivateEndpointInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

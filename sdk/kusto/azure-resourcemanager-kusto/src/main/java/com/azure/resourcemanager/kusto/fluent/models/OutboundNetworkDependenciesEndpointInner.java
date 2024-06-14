@@ -11,7 +11,9 @@ import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
+/**
+ * Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to.
+ */
 @Fluent
 public final class OutboundNetworkDependenciesEndpointInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
 
-    /** Creates an instance of OutboundNetworkDependenciesEndpointInner class. */
+    /**
+     * Creates an instance of OutboundNetworkDependenciesEndpointInner class.
+     */
     public OutboundNetworkDependenciesEndpointInner() {
     }
 
     /**
      * Get the innerProperties property: The outbound environment endpoint properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OutboundNetworkDependenciesEndpointProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
 
     /**
      * Get the etag property: A unique read-only string that changes whenever the resource is updated.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -51,7 +55,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
     /**
      * Get the category property: The type of service accessed by the Kusto Service Environment, e.g., Azure Storage,
      * Azure SQL Database, and Azure Active Directory.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -61,7 +65,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
     /**
      * Set the category property: The type of service accessed by the Kusto Service Environment, e.g., Azure Storage,
      * Azure SQL Database, and Azure Active Directory.
-     *
+     * 
      * @param category the category value to set.
      * @return the OutboundNetworkDependenciesEndpointInner object itself.
      */
@@ -75,7 +79,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
 
     /**
      * Get the endpoints property: The endpoints that the Kusto Service Environment reaches the service at.
-     *
+     * 
      * @return the endpoints value.
      */
     public List<EndpointDependency> endpoints() {
@@ -84,7 +88,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
 
     /**
      * Set the endpoints property: The endpoints that the Kusto Service Environment reaches the service at.
-     *
+     * 
      * @param endpoints the endpoints value to set.
      * @return the OutboundNetworkDependenciesEndpointInner object itself.
      */
@@ -98,7 +102,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -107,7 +111,7 @@ public final class OutboundNetworkDependenciesEndpointInner extends ProxyResourc
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,12 +11,13 @@ import com.azure.resourcemanager.kusto.models.PrincipalType;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing cluster principal property. */
+/**
+ * A class representing cluster principal property.
+ */
 @Fluent
 public final class ClusterPrincipalProperties {
     /*
-     * The principal ID assigned to the cluster principal. It can be a user email, application ID, or security group
-     * name.
+     * The principal ID assigned to the cluster principal. It can be a user email, application ID, or security group name.
      */
     @JsonProperty(value = "principalId", required = true)
     private String principalId;
@@ -63,14 +64,16 @@ public final class ClusterPrincipalProperties {
     @JsonProperty(value = "aadObjectId", access = JsonProperty.Access.WRITE_ONLY)
     private String aadObjectId;
 
-    /** Creates an instance of ClusterPrincipalProperties class. */
+    /**
+     * Creates an instance of ClusterPrincipalProperties class.
+     */
     public ClusterPrincipalProperties() {
     }
 
     /**
      * Get the principalId property: The principal ID assigned to the cluster principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -80,7 +83,7 @@ public final class ClusterPrincipalProperties {
     /**
      * Set the principalId property: The principal ID assigned to the cluster principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the ClusterPrincipalProperties object itself.
      */
@@ -91,7 +94,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the role property: Cluster principal role.
-     *
+     * 
      * @return the role value.
      */
     public ClusterPrincipalRole role() {
@@ -100,7 +103,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Set the role property: Cluster principal role.
-     *
+     * 
      * @param role the role value to set.
      * @return the ClusterPrincipalProperties object itself.
      */
@@ -111,7 +114,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -120,7 +123,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Set the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ClusterPrincipalProperties object itself.
      */
@@ -131,7 +134,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the principalType property: Principal type.
-     *
+     * 
      * @return the principalType value.
      */
     public PrincipalType principalType() {
@@ -140,7 +143,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Set the principalType property: Principal type.
-     *
+     * 
      * @param principalType the principalType value to set.
      * @return the ClusterPrincipalProperties object itself.
      */
@@ -151,7 +154,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the tenantName property: The tenant name of the principal.
-     *
+     * 
      * @return the tenantName value.
      */
     public String tenantName() {
@@ -160,7 +163,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the principalName property: The principal name.
-     *
+     * 
      * @return the principalName value.
      */
     public String principalName() {
@@ -169,7 +172,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -178,7 +181,7 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Get the aadObjectId property: The service principal object id in AAD (Azure active directory).
-     *
+     * 
      * @return the aadObjectId value.
      */
     public String aadObjectId() {
@@ -187,26 +190,24 @@ public final class ClusterPrincipalProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model ClusterPrincipalProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property principalId in model ClusterPrincipalProperties"));
         }
         if (role() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property role in model ClusterPrincipalProperties"));
         }
         if (principalType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalType in model ClusterPrincipalProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property principalType in model ClusterPrincipalProperties"));
         }
     }
 

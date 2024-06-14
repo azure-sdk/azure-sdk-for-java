@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Class representing the Kusto Iot hub connection properties. */
+/**
+ * Class representing the Kusto Iot hub connection properties.
+ */
 @Fluent
 public final class IotHubConnectionProperties {
     /*
@@ -59,15 +61,13 @@ public final class IotHubConnectionProperties {
     private String sharedAccessPolicyName;
 
     /*
-     * Indication for database routing information from the data connection, by default only database routing
-     * information is allowed
+     * Indication for database routing information from the data connection, by default only database routing information is allowed
      */
     @JsonProperty(value = "databaseRouting")
     private DatabaseRouting databaseRouting;
 
     /*
-     * When defined, the data connection retrieves existing Event hub events created since the Retrieval start date. It
-     * can only retrieve events retained by the Event hub, based on its retention period.
+     * When defined, the data connection retrieves existing Event hub events created since the Retrieval start date. It can only retrieve events retained by the Event hub, based on its retention period.
      */
     @JsonProperty(value = "retrievalStartDate")
     private OffsetDateTime retrievalStartDate;
@@ -78,13 +78,15 @@ public final class IotHubConnectionProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of IotHubConnectionProperties class. */
+    /**
+     * Creates an instance of IotHubConnectionProperties class.
+     */
     public IotHubConnectionProperties() {
     }
 
     /**
      * Get the iotHubResourceId property: The resource ID of the Iot hub to be used to create a data connection.
-     *
+     * 
      * @return the iotHubResourceId value.
      */
     public String iotHubResourceId() {
@@ -93,7 +95,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Set the iotHubResourceId property: The resource ID of the Iot hub to be used to create a data connection.
-     *
+     * 
      * @param iotHubResourceId the iotHubResourceId value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -104,7 +106,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Get the consumerGroup property: The iot hub consumer group.
-     *
+     * 
      * @return the consumerGroup value.
      */
     public String consumerGroup() {
@@ -113,7 +115,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Set the consumerGroup property: The iot hub consumer group.
-     *
+     * 
      * @param consumerGroup the consumerGroup value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -125,7 +127,7 @@ public final class IotHubConnectionProperties {
     /**
      * Get the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @return the tableName value.
      */
     public String tableName() {
@@ -135,7 +137,7 @@ public final class IotHubConnectionProperties {
     /**
      * Set the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @param tableName the tableName value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -147,7 +149,7 @@ public final class IotHubConnectionProperties {
     /**
      * Get the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @return the mappingRuleName value.
      */
     public String mappingRuleName() {
@@ -157,7 +159,7 @@ public final class IotHubConnectionProperties {
     /**
      * Set the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @param mappingRuleName the mappingRuleName value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -169,7 +171,7 @@ public final class IotHubConnectionProperties {
     /**
      * Get the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @return the dataFormat value.
      */
     public IotHubDataFormat dataFormat() {
@@ -179,7 +181,7 @@ public final class IotHubConnectionProperties {
     /**
      * Set the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @param dataFormat the dataFormat value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -190,7 +192,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Get the eventSystemProperties property: System properties of the iot hub.
-     *
+     * 
      * @return the eventSystemProperties value.
      */
     public List<String> eventSystemProperties() {
@@ -199,7 +201,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Set the eventSystemProperties property: System properties of the iot hub.
-     *
+     * 
      * @param eventSystemProperties the eventSystemProperties value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -210,7 +212,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Get the sharedAccessPolicyName property: The name of the share access policy.
-     *
+     * 
      * @return the sharedAccessPolicyName value.
      */
     public String sharedAccessPolicyName() {
@@ -219,7 +221,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Set the sharedAccessPolicyName property: The name of the share access policy.
-     *
+     * 
      * @param sharedAccessPolicyName the sharedAccessPolicyName value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -231,7 +233,7 @@ public final class IotHubConnectionProperties {
     /**
      * Get the databaseRouting property: Indication for database routing information from the data connection, by
      * default only database routing information is allowed.
-     *
+     * 
      * @return the databaseRouting value.
      */
     public DatabaseRouting databaseRouting() {
@@ -241,7 +243,7 @@ public final class IotHubConnectionProperties {
     /**
      * Set the databaseRouting property: Indication for database routing information from the data connection, by
      * default only database routing information is allowed.
-     *
+     * 
      * @param databaseRouting the databaseRouting value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -254,7 +256,7 @@ public final class IotHubConnectionProperties {
      * Get the retrievalStartDate property: When defined, the data connection retrieves existing Event hub events
      * created since the Retrieval start date. It can only retrieve events retained by the Event hub, based on its
      * retention period.
-     *
+     * 
      * @return the retrievalStartDate value.
      */
     public OffsetDateTime retrievalStartDate() {
@@ -265,7 +267,7 @@ public final class IotHubConnectionProperties {
      * Set the retrievalStartDate property: When defined, the data connection retrieves existing Event hub events
      * created since the Retrieval start date. It can only retrieve events retained by the Event hub, based on its
      * retention period.
-     *
+     * 
      * @param retrievalStartDate the retrievalStartDate value to set.
      * @return the IotHubConnectionProperties object itself.
      */
@@ -276,7 +278,7 @@ public final class IotHubConnectionProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -285,27 +287,24 @@ public final class IotHubConnectionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (iotHubResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property iotHubResourceId in model IotHubConnectionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property iotHubResourceId in model IotHubConnectionProperties"));
         }
         if (consumerGroup() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property consumerGroup in model IotHubConnectionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property consumerGroup in model IotHubConnectionProperties"));
         }
         if (sharedAccessPolicyName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sharedAccessPolicyName in model IotHubConnectionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sharedAccessPolicyName in model IotHubConnectionProperties"));
         }
     }
 

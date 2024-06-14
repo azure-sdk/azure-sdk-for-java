@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.SkuDescriptionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of the EngagementFabric SKU descriptions. */
+/**
+ * The list of the EngagementFabric SKU descriptions.
+ */
 @Immutable
 public final class SkuDescriptionList {
     /*
@@ -18,13 +20,15 @@ public final class SkuDescriptionList {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<SkuDescriptionInner> value;
 
-    /** Creates an instance of SkuDescriptionList class. */
+    /**
+     * Creates an instance of SkuDescriptionList class.
+     */
     public SkuDescriptionList() {
     }
 
     /**
      * Get the value property: SKU descriptions.
-     *
+     * 
      * @return the value value.
      */
     public List<SkuDescriptionInner> value() {
@@ -33,7 +37,7 @@ public final class SkuDescriptionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

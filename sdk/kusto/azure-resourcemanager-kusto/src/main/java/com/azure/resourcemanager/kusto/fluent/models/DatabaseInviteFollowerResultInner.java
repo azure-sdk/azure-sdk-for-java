@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a follower invitation generation request. */
+/**
+ * The result returned from a follower invitation generation request.
+ */
 @Fluent
 public final class DatabaseInviteFollowerResultInner {
     /*
@@ -16,13 +18,15 @@ public final class DatabaseInviteFollowerResultInner {
     @JsonProperty(value = "generatedInvitation")
     private String generatedInvitation;
 
-    /** Creates an instance of DatabaseInviteFollowerResultInner class. */
+    /**
+     * Creates an instance of DatabaseInviteFollowerResultInner class.
+     */
     public DatabaseInviteFollowerResultInner() {
     }
 
     /**
      * Get the generatedInvitation property: The generated invitation token.
-     *
+     * 
      * @return the generatedInvitation value.
      */
     public String generatedInvitation() {
@@ -31,7 +35,7 @@ public final class DatabaseInviteFollowerResultInner {
 
     /**
      * Set the generatedInvitation property: The generated invitation token.
-     *
+     * 
      * @param generatedInvitation the generatedInvitation value to set.
      * @return the DatabaseInviteFollowerResultInner object itself.
      */
@@ -42,7 +46,7 @@ public final class DatabaseInviteFollowerResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

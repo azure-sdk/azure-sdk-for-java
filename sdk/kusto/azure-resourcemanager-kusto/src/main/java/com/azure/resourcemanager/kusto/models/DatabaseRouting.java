@@ -13,15 +13,19 @@ import java.util.Collection;
  * allowed.
  */
 public final class DatabaseRouting extends ExpandableStringEnum<DatabaseRouting> {
-    /** Static value Single for DatabaseRouting. */
+    /**
+     * Static value Single for DatabaseRouting.
+     */
     public static final DatabaseRouting SINGLE = fromString("Single");
 
-    /** Static value Multi for DatabaseRouting. */
+    /**
+     * Static value Multi for DatabaseRouting.
+     */
     public static final DatabaseRouting MULTI = fromString("Multi");
 
     /**
      * Creates a new instance of DatabaseRouting value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +34,7 @@ public final class DatabaseRouting extends ExpandableStringEnum<DatabaseRouting>
 
     /**
      * Creates or finds a DatabaseRouting from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DatabaseRouting.
      */
@@ -41,7 +45,7 @@ public final class DatabaseRouting extends ExpandableStringEnum<DatabaseRouting>
 
     /**
      * Gets known DatabaseRouting values.
-     *
+     * 
      * @return known DatabaseRouting values.
      */
     public static Collection<DatabaseRouting> values() {

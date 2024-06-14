@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents an accepted audience trusted by the cluster. */
+/**
+ * Represents an accepted audience trusted by the cluster.
+ */
 @Fluent
 public final class AcceptedAudiences {
     /*
@@ -16,13 +18,15 @@ public final class AcceptedAudiences {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of AcceptedAudiences class. */
+    /**
+     * Creates an instance of AcceptedAudiences class.
+     */
     public AcceptedAudiences() {
     }
 
     /**
      * Get the value property: GUID or valid URL representing an accepted audience.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -31,7 +35,7 @@ public final class AcceptedAudiences {
 
     /**
      * Set the value property: GUID or valid URL representing an accepted audience.
-     *
+     * 
      * @param value the value value to set.
      * @return the AcceptedAudiences object itself.
      */
@@ -42,7 +46,7 @@ public final class AcceptedAudiences {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
