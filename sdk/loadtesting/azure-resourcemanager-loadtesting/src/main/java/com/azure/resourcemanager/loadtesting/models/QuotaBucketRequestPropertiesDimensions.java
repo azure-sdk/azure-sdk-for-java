@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loadtesting.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dimensions for new quota request. */
+/**
+ * Dimensions for new quota request.
+ */
 @Fluent
 public final class QuotaBucketRequestPropertiesDimensions {
     /*
@@ -22,13 +24,15 @@ public final class QuotaBucketRequestPropertiesDimensions {
     @JsonProperty(value = "location")
     private String location;
 
-    /** Creates an instance of QuotaBucketRequestPropertiesDimensions class. */
+    /**
+     * Creates an instance of QuotaBucketRequestPropertiesDimensions class.
+     */
     public QuotaBucketRequestPropertiesDimensions() {
     }
 
     /**
      * Get the subscriptionId property: Subscription Id dimension for new quota request of the quota bucket.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -37,7 +41,7 @@ public final class QuotaBucketRequestPropertiesDimensions {
 
     /**
      * Set the subscriptionId property: Subscription Id dimension for new quota request of the quota bucket.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the QuotaBucketRequestPropertiesDimensions object itself.
      */
@@ -48,7 +52,7 @@ public final class QuotaBucketRequestPropertiesDimensions {
 
     /**
      * Get the location property: Location dimension for new quota request of the quota bucket.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -57,7 +61,7 @@ public final class QuotaBucketRequestPropertiesDimensions {
 
     /**
      * Set the location property: Location dimension for new quota request of the quota bucket.
-     *
+     * 
      * @param location the location value to set.
      * @return the QuotaBucketRequestPropertiesDimensions object itself.
      */
@@ -68,7 +72,7 @@ public final class QuotaBucketRequestPropertiesDimensions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
