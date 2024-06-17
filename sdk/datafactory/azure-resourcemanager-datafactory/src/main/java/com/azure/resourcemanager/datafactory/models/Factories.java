@@ -33,7 +33,7 @@ public interface Factories {
     PagedIterable<Factory> list(Context context);
 
     /**
-     * Updates a factory's repo information.
+     * Updates a factory's repo information. testtest.
      * 
      * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.
@@ -47,7 +47,7 @@ public interface Factories {
         Context context);
 
     /**
-     * Updates a factory's repo information.
+     * Updates a factory's repo information. testtest.
      * 
      * @param locationId The location identifier.
      * @param factoryRepoUpdate Update factory repo request definition.

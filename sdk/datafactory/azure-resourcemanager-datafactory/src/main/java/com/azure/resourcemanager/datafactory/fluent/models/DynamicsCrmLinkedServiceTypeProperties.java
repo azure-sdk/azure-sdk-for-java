@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.datafactory.models.CredentialReference;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -79,6 +80,12 @@ public final class DynamicsCrmLinkedServiceTypeProperties {
      */
     @JsonProperty(value = "servicePrincipalCredential")
     private SecretBase servicePrincipalCredential;
+
+    /*
+     * The credential reference containing authentication information.
+     */
+    @JsonProperty(value = "credential")
+    private CredentialReference credential;
 
     /*
      * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -347,6 +354,26 @@ public final class DynamicsCrmLinkedServiceTypeProperties {
     }
 
     /**
+     * Get the credential property: The credential reference containing authentication information.
+     * 
+     * @return the credential value.
+     */
+    public CredentialReference credential() {
+        return this.credential;
+    }
+
+    /**
+     * Set the credential property: The credential reference containing authentication information.
+     * 
+     * @param credential the credential value to set.
+     * @return the DynamicsCrmLinkedServiceTypeProperties object itself.
+     */
+    public DynamicsCrmLinkedServiceTypeProperties withCredential(CredentialReference credential) {
+        this.credential = credential;
+        return this;
+    }
+
+    /**
      * Get the encryptedCredential property: The encrypted credential used for authentication. Credentials are encrypted
      * using the integration runtime credential manager. Type: string.
      * 
@@ -389,6 +416,9 @@ public final class DynamicsCrmLinkedServiceTypeProperties {
         }
         if (servicePrincipalCredential() != null) {
             servicePrincipalCredential().validate();
+        }
+        if (credential() != null) {
+            credential().validate();
         }
     }
 
