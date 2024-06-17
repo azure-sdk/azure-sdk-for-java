@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Permissions required for the connector. */
+/**
+ * Permissions required for the connector.
+ */
 @Fluent
 public final class Permissions {
     /*
@@ -24,8 +26,14 @@ public final class Permissions {
     private List<PermissionsCustomsItem> customs;
 
     /**
+     * Creates an instance of Permissions class.
+     */
+    public Permissions() {
+    }
+
+    /**
      * Get the resourceProvider property: Resource provider permissions required for the connector.
-     *
+     * 
      * @return the resourceProvider value.
      */
     public List<PermissionsResourceProviderItem> resourceProvider() {
@@ -34,7 +42,7 @@ public final class Permissions {
 
     /**
      * Set the resourceProvider property: Resource provider permissions required for the connector.
-     *
+     * 
      * @param resourceProvider the resourceProvider value to set.
      * @return the Permissions object itself.
      */
@@ -45,7 +53,7 @@ public final class Permissions {
 
     /**
      * Get the customs property: Customs permissions required for the connector.
-     *
+     * 
      * @return the customs value.
      */
     public List<PermissionsCustomsItem> customs() {
@@ -54,7 +62,7 @@ public final class Permissions {
 
     /**
      * Set the customs property: Customs permissions required for the connector.
-     *
+     * 
      * @param customs the customs value to set.
      * @return the Permissions object itself.
      */
@@ -65,7 +73,7 @@ public final class Permissions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

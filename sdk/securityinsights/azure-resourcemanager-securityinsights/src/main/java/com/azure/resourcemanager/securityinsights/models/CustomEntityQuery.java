@@ -5,21 +5,46 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity query that supports put requests. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = CustomEntityQuery.class)
+/**
+ * Specific entity query that supports put requests.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = CustomEntityQuery.class, visible = true)
 @JsonTypeName("CustomEntityQuery")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Activity", value = ActivityCustomEntityQuery.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Activity", value = ActivityCustomEntityQuery.class) })
 @Fluent
 public class CustomEntityQuery extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /*
+     * the entity query kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private CustomEntityQueryKind kind;
+
+    /**
+     * Creates an instance of CustomEntityQuery class.
+     */
+    public CustomEntityQuery() {
+        this.kind = CustomEntityQueryKind.fromString("CustomEntityQuery");
+    }
+
+    /**
+     * Get the kind property: the entity query kind.
+     * 
+     * @return the kind value.
+     */
+    public CustomEntityQueryKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomEntityQuery withEtag(String etag) {
         super.withEtag(etag);
@@ -28,7 +53,7 @@ public class CustomEntityQuery extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

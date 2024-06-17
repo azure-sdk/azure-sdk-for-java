@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes threat kill chain phase entity. */
+/**
+ * Describes threat kill chain phase entity.
+ */
 @Fluent
 public final class ThreatIntelligenceParsedPatternTypeValue {
     /*
@@ -23,8 +25,14 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
     private String value;
 
     /**
+     * Creates an instance of ThreatIntelligenceParsedPatternTypeValue class.
+     */
+    public ThreatIntelligenceParsedPatternTypeValue() {
+    }
+
+    /**
      * Get the valueType property: Type of the value.
-     *
+     * 
      * @return the valueType value.
      */
     public String valueType() {
@@ -33,7 +41,7 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
 
     /**
      * Set the valueType property: Type of the value.
-     *
+     * 
      * @param valueType the valueType value to set.
      * @return the ThreatIntelligenceParsedPatternTypeValue object itself.
      */
@@ -44,7 +52,7 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
 
     /**
      * Get the value property: Value of parsed pattern.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -53,7 +61,7 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
 
     /**
      * Set the value property: Value of parsed pattern.
-     *
+     * 
      * @param value the value value to set.
      * @return the ThreatIntelligenceParsedPatternTypeValue object itself.
      */
@@ -64,7 +72,7 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

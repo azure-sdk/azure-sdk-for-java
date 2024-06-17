@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The insight chart query. */
+/**
+ * The insight chart query.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesDefaultTimeRange {
     /*
@@ -23,8 +25,14 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
     private String afterRange;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesDefaultTimeRange class.
+     */
+    public InsightQueryItemPropertiesDefaultTimeRange() {
+    }
+
+    /**
      * Get the beforeRange property: The padding for the start time of the query.
-     *
+     * 
      * @return the beforeRange value.
      */
     public String beforeRange() {
@@ -33,7 +41,7 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
 
     /**
      * Set the beforeRange property: The padding for the start time of the query.
-     *
+     * 
      * @param beforeRange the beforeRange value to set.
      * @return the InsightQueryItemPropertiesDefaultTimeRange object itself.
      */
@@ -44,7 +52,7 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
 
     /**
      * Get the afterRange property: The padding for the end time of the query.
-     *
+     * 
      * @return the afterRange value.
      */
     public String afterRange() {
@@ -53,7 +61,7 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
 
     /**
      * Set the afterRange property: The padding for the end time of the query.
-     *
+     * 
      * @param afterRange the afterRange value to set.
      * @return the InsightQueryItemPropertiesDefaultTimeRange object itself.
      */
@@ -64,7 +72,7 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

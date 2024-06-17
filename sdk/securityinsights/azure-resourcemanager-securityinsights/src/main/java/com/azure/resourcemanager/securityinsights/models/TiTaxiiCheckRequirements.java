@@ -7,14 +7,28 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.TiTaxiiCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Threat Intelligence TAXII data connector check requirements. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Threat Intelligence TAXII data connector check requirements.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = TiTaxiiCheckRequirements.class,
+    visible = true)
 @JsonTypeName("ThreatIntelligenceTaxii")
 @Fluent
 public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequirements {
+    /*
+     * Describes the kind of connector to be checked.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.THREAT_INTELLIGENCE_TAXII;
+
     /*
      * Threat Intelligence TAXII check required properties.
      */
@@ -22,8 +36,24 @@ public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequireme
     private TiTaxiiCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of TiTaxiiCheckRequirements class.
+     */
+    public TiTaxiiCheckRequirements() {
+    }
+
+    /**
+     * Get the kind property: Describes the kind of connector to be checked.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Threat Intelligence TAXII check required properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private TiTaxiiCheckRequirementsProperties innerProperties() {
@@ -31,8 +61,31 @@ public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequireme
     }
 
     /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the TiTaxiiCheckRequirements object itself.
+     */
+    public TiTaxiiCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TiTaxiiCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

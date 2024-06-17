@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Geodata information for a given IP address. */
+/**
+ * Geodata information for a given IP address.
+ */
 @Fluent
 public final class EnrichmentIpGeodataInner {
     /*
@@ -31,8 +33,8 @@ public final class EnrichmentIpGeodataInner {
     /*
      * A numeric rating of confidence that the value in the 'city' field is correct, on a scale of 0-100
      */
-    @JsonProperty(value = "cityCf")
-    private Integer cityCf;
+    @JsonProperty(value = "cityConfidenceFactor")
+    private Integer cityConfidenceFactor;
 
     /*
      * The continent this IP address is located on
@@ -49,8 +51,8 @@ public final class EnrichmentIpGeodataInner {
     /*
      * A numeric rating of confidence that the value in the 'country' field is correct on a scale of 0-100
      */
-    @JsonProperty(value = "countryCf")
-    private Integer countryCf;
+    @JsonProperty(value = "countryConfidenceFactor")
+    private Integer countryConfidenceFactor;
 
     /*
      * The dotted-decimal or colon-separated string representation of the IP address
@@ -103,8 +105,8 @@ public final class EnrichmentIpGeodataInner {
     /*
      * A numeric rating of confidence that the value in the 'state' field is correct on a scale of 0-100
      */
-    @JsonProperty(value = "stateCf")
-    private Integer stateCf;
+    @JsonProperty(value = "stateConfidenceFactor")
+    private Integer stateConfidenceFactor;
 
     /*
      * The abbreviated name for the state this IP address is located in
@@ -113,8 +115,14 @@ public final class EnrichmentIpGeodataInner {
     private String stateCode;
 
     /**
+     * Creates an instance of EnrichmentIpGeodataInner class.
+     */
+    public EnrichmentIpGeodataInner() {
+    }
+
+    /**
      * Get the asn property: The autonomous system number associated with this IP address.
-     *
+     * 
      * @return the asn value.
      */
     public String asn() {
@@ -123,7 +131,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the asn property: The autonomous system number associated with this IP address.
-     *
+     * 
      * @param asn the asn value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -134,7 +142,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the carrier property: The name of the carrier for this IP address.
-     *
+     * 
      * @return the carrier value.
      */
     public String carrier() {
@@ -143,7 +151,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the carrier property: The name of the carrier for this IP address.
-     *
+     * 
      * @param carrier the carrier value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -154,7 +162,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the city property: The city this IP address is located in.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -163,7 +171,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the city property: The city this IP address is located in.
-     *
+     * 
      * @param city the city value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -173,30 +181,30 @@ public final class EnrichmentIpGeodataInner {
     }
 
     /**
-     * Get the cityCf property: A numeric rating of confidence that the value in the 'city' field is correct, on a scale
-     * of 0-100.
-     *
-     * @return the cityCf value.
+     * Get the cityConfidenceFactor property: A numeric rating of confidence that the value in the 'city' field is
+     * correct, on a scale of 0-100.
+     * 
+     * @return the cityConfidenceFactor value.
      */
-    public Integer cityCf() {
-        return this.cityCf;
+    public Integer cityConfidenceFactor() {
+        return this.cityConfidenceFactor;
     }
 
     /**
-     * Set the cityCf property: A numeric rating of confidence that the value in the 'city' field is correct, on a scale
-     * of 0-100.
-     *
-     * @param cityCf the cityCf value to set.
+     * Set the cityConfidenceFactor property: A numeric rating of confidence that the value in the 'city' field is
+     * correct, on a scale of 0-100.
+     * 
+     * @param cityConfidenceFactor the cityConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withCityCf(Integer cityCf) {
-        this.cityCf = cityCf;
+    public EnrichmentIpGeodataInner withCityConfidenceFactor(Integer cityConfidenceFactor) {
+        this.cityConfidenceFactor = cityConfidenceFactor;
         return this;
     }
 
     /**
      * Get the continent property: The continent this IP address is located on.
-     *
+     * 
      * @return the continent value.
      */
     public String continent() {
@@ -205,7 +213,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the continent property: The continent this IP address is located on.
-     *
+     * 
      * @param continent the continent value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -216,7 +224,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the country property: The county this IP address is located in.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -225,7 +233,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the country property: The county this IP address is located in.
-     *
+     * 
      * @param country the country value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -235,30 +243,30 @@ public final class EnrichmentIpGeodataInner {
     }
 
     /**
-     * Get the countryCf property: A numeric rating of confidence that the value in the 'country' field is correct on a
-     * scale of 0-100.
-     *
-     * @return the countryCf value.
+     * Get the countryConfidenceFactor property: A numeric rating of confidence that the value in the 'country' field is
+     * correct on a scale of 0-100.
+     * 
+     * @return the countryConfidenceFactor value.
      */
-    public Integer countryCf() {
-        return this.countryCf;
+    public Integer countryConfidenceFactor() {
+        return this.countryConfidenceFactor;
     }
 
     /**
-     * Set the countryCf property: A numeric rating of confidence that the value in the 'country' field is correct on a
-     * scale of 0-100.
-     *
-     * @param countryCf the countryCf value to set.
+     * Set the countryConfidenceFactor property: A numeric rating of confidence that the value in the 'country' field is
+     * correct on a scale of 0-100.
+     * 
+     * @param countryConfidenceFactor the countryConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withCountryCf(Integer countryCf) {
-        this.countryCf = countryCf;
+    public EnrichmentIpGeodataInner withCountryConfidenceFactor(Integer countryConfidenceFactor) {
+        this.countryConfidenceFactor = countryConfidenceFactor;
         return this;
     }
 
     /**
      * Get the ipAddr property: The dotted-decimal or colon-separated string representation of the IP address.
-     *
+     * 
      * @return the ipAddr value.
      */
     public String ipAddr() {
@@ -267,7 +275,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the ipAddr property: The dotted-decimal or colon-separated string representation of the IP address.
-     *
+     * 
      * @param ipAddr the ipAddr value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -278,7 +286,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the ipRoutingType property: A description of the connection type of this IP address.
-     *
+     * 
      * @return the ipRoutingType value.
      */
     public String ipRoutingType() {
@@ -287,7 +295,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the ipRoutingType property: A description of the connection type of this IP address.
-     *
+     * 
      * @param ipRoutingType the ipRoutingType value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -298,7 +306,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the latitude property: The latitude of this IP address.
-     *
+     * 
      * @return the latitude value.
      */
     public String latitude() {
@@ -307,7 +315,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the latitude property: The latitude of this IP address.
-     *
+     * 
      * @param latitude the latitude value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -318,7 +326,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the longitude property: The longitude of this IP address.
-     *
+     * 
      * @return the longitude value.
      */
     public String longitude() {
@@ -327,7 +335,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the longitude property: The longitude of this IP address.
-     *
+     * 
      * @param longitude the longitude value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -338,7 +346,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the organization property: The name of the organization for this IP address.
-     *
+     * 
      * @return the organization value.
      */
     public String organization() {
@@ -347,7 +355,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the organization property: The name of the organization for this IP address.
-     *
+     * 
      * @param organization the organization value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -358,7 +366,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the organizationType property: The type of the organization for this IP address.
-     *
+     * 
      * @return the organizationType value.
      */
     public String organizationType() {
@@ -367,7 +375,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the organizationType property: The type of the organization for this IP address.
-     *
+     * 
      * @param organizationType the organizationType value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -378,7 +386,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the region property: The geographic region this IP address is located in.
-     *
+     * 
      * @return the region value.
      */
     public String region() {
@@ -387,7 +395,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the region property: The geographic region this IP address is located in.
-     *
+     * 
      * @param region the region value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -398,7 +406,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Get the state property: The state this IP address is located in.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -407,7 +415,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the state property: The state this IP address is located in.
-     *
+     * 
      * @param state the state value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -417,30 +425,30 @@ public final class EnrichmentIpGeodataInner {
     }
 
     /**
-     * Get the stateCf property: A numeric rating of confidence that the value in the 'state' field is correct on a
-     * scale of 0-100.
-     *
-     * @return the stateCf value.
+     * Get the stateConfidenceFactor property: A numeric rating of confidence that the value in the 'state' field is
+     * correct on a scale of 0-100.
+     * 
+     * @return the stateConfidenceFactor value.
      */
-    public Integer stateCf() {
-        return this.stateCf;
+    public Integer stateConfidenceFactor() {
+        return this.stateConfidenceFactor;
     }
 
     /**
-     * Set the stateCf property: A numeric rating of confidence that the value in the 'state' field is correct on a
-     * scale of 0-100.
-     *
-     * @param stateCf the stateCf value to set.
+     * Set the stateConfidenceFactor property: A numeric rating of confidence that the value in the 'state' field is
+     * correct on a scale of 0-100.
+     * 
+     * @param stateConfidenceFactor the stateConfidenceFactor value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
-    public EnrichmentIpGeodataInner withStateCf(Integer stateCf) {
-        this.stateCf = stateCf;
+    public EnrichmentIpGeodataInner withStateConfidenceFactor(Integer stateConfidenceFactor) {
+        this.stateConfidenceFactor = stateConfidenceFactor;
         return this;
     }
 
     /**
      * Get the stateCode property: The abbreviated name for the state this IP address is located in.
-     *
+     * 
      * @return the stateCode value.
      */
     public String stateCode() {
@@ -449,7 +457,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Set the stateCode property: The abbreviated name for the state this IP address is located in.
-     *
+     * 
      * @param stateCode the stateCode value to set.
      * @return the EnrichmentIpGeodataInner object itself.
      */
@@ -460,7 +468,7 @@ public final class EnrichmentIpGeodataInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

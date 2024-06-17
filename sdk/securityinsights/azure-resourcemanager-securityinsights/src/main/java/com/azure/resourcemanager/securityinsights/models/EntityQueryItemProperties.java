@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An properties abstract Query item for entity. */
+/**
+ * An properties abstract Query item for entity.
+ */
 @Fluent
 public class EntityQueryItemProperties {
     /*
@@ -36,8 +38,14 @@ public class EntityQueryItemProperties {
     private Object entitiesFilter;
 
     /**
+     * Creates an instance of EntityQueryItemProperties class.
+     */
+    public EntityQueryItemProperties() {
+    }
+
+    /**
      * Get the dataTypes property: Data types for template.
-     *
+     * 
      * @return the dataTypes value.
      */
     public List<EntityQueryItemPropertiesDataTypesItem> dataTypes() {
@@ -46,7 +54,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Set the dataTypes property: Data types for template.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the EntityQueryItemProperties object itself.
      */
@@ -57,7 +65,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Get the inputEntityType property: The type of the entity.
-     *
+     * 
      * @return the inputEntityType value.
      */
     public EntityType inputEntityType() {
@@ -66,7 +74,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Set the inputEntityType property: The type of the entity.
-     *
+     * 
      * @param inputEntityType the inputEntityType value to set.
      * @return the EntityQueryItemProperties object itself.
      */
@@ -77,7 +85,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Get the requiredInputFieldsSets property: Data types for template.
-     *
+     * 
      * @return the requiredInputFieldsSets value.
      */
     public List<List<String>> requiredInputFieldsSets() {
@@ -86,7 +94,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Set the requiredInputFieldsSets property: Data types for template.
-     *
+     * 
      * @param requiredInputFieldsSets the requiredInputFieldsSets value to set.
      * @return the EntityQueryItemProperties object itself.
      */
@@ -97,7 +105,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Get the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @return the entitiesFilter value.
      */
     public Object entitiesFilter() {
@@ -106,7 +114,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Set the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @param entitiesFilter the entitiesFilter value to set.
      * @return the EntityQueryItemProperties object itself.
      */
@@ -117,7 +125,7 @@ public class EntityQueryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
