@@ -16,7 +16,7 @@ public final class LiftrBaseMarketplaceDetails {
     /*
      * Azure subscription id for the the marketplace offer is purchased from
      */
-    @JsonProperty(value = "subscriptionId", required = true)
+    @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
     /*
@@ -103,13 +103,10 @@ public final class LiftrBaseMarketplaceDetails {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (subscriptionId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property subscriptionId in model LiftrBaseMarketplaceDetails"));
-        }
         if (offerDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property offerDetails in model LiftrBaseMarketplaceDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property offerDetails in model LiftrBaseMarketplaceDetails"));
         } else {
             offerDetails().validate();
         }
