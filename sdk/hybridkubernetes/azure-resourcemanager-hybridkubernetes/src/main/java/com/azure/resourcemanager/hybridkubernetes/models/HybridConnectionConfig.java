@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hybridkubernetes.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contains the REP (rendezvous endpoint) and “Sender” access token. */
+/**
+ * Contains the REP (rendezvous endpoint) and “Sender” access token.
+ */
 @Immutable
 public final class HybridConnectionConfig {
     /*
@@ -34,13 +36,15 @@ public final class HybridConnectionConfig {
     @JsonProperty(value = "token", access = JsonProperty.Access.WRITE_ONLY)
     private String token;
 
-    /** Creates an instance of HybridConnectionConfig class. */
+    /**
+     * Creates an instance of HybridConnectionConfig class.
+     */
     public HybridConnectionConfig() {
     }
 
     /**
      * Get the expirationTime property: Timestamp when this token will be expired.
-     *
+     * 
      * @return the expirationTime value.
      */
     public Long expirationTime() {
@@ -49,7 +53,7 @@ public final class HybridConnectionConfig {
 
     /**
      * Get the hybridConnectionName property: Name of the connection.
-     *
+     * 
      * @return the hybridConnectionName value.
      */
     public String hybridConnectionName() {
@@ -58,7 +62,7 @@ public final class HybridConnectionConfig {
 
     /**
      * Get the relay property: Name of the relay.
-     *
+     * 
      * @return the relay value.
      */
     public String relay() {
@@ -67,7 +71,7 @@ public final class HybridConnectionConfig {
 
     /**
      * Get the token property: Sender access token.
-     *
+     * 
      * @return the token value.
      */
     public String token() {
@@ -76,7 +80,7 @@ public final class HybridConnectionConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

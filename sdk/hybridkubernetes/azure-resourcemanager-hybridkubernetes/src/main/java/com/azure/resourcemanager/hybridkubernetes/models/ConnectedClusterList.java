@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hybridkubernetes.fluent.models.ConnectedCluster
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The paginated list of connected Clusters. */
+/**
+ * The paginated list of connected Clusters.
+ */
 @Fluent
 public final class ConnectedClusterList {
     /*
@@ -24,13 +26,15 @@ public final class ConnectedClusterList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ConnectedClusterList class. */
+    /**
+     * Creates an instance of ConnectedClusterList class.
+     */
     public ConnectedClusterList() {
     }
 
     /**
      * Get the value property: The list of connected clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<ConnectedClusterInner> value() {
@@ -39,7 +43,7 @@ public final class ConnectedClusterList {
 
     /**
      * Set the value property: The list of connected clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the ConnectedClusterList object itself.
      */
@@ -50,7 +54,7 @@ public final class ConnectedClusterList {
 
     /**
      * Get the nextLink property: The link to fetch the next page of connected cluster.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ConnectedClusterList {
 
     /**
      * Set the nextLink property: The link to fetch the next page of connected cluster.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ConnectedClusterList object itself.
      */
@@ -70,7 +74,7 @@ public final class ConnectedClusterList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,13 +12,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * The type 'None' means no identity is assigned to the connected cluster.
  */
 public enum ResourceIdentityType {
-    /** Enum value None. */
+    /**
+     * Enum value None.
+     */
     NONE("None"),
 
-    /** Enum value SystemAssigned. */
+    /**
+     * Enum value SystemAssigned.
+     */
     SYSTEM_ASSIGNED("SystemAssigned");
 
-    /** The actual serialized value for a ResourceIdentityType instance. */
+    /**
+     * The actual serialized value for a ResourceIdentityType instance.
+     */
     private final String value;
 
     ResourceIdentityType(String value) {
@@ -27,7 +33,7 @@ public enum ResourceIdentityType {
 
     /**
      * Parses a serialized value to a ResourceIdentityType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ResourceIdentityType object, or null if unable to parse.
      */
@@ -45,7 +51,9 @@ public enum ResourceIdentityType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {
