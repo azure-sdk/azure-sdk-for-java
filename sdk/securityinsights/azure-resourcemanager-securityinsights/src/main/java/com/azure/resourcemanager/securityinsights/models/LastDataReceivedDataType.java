@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data type for last data received. */
+/**
+ * Data type for last data received.
+ */
 @Fluent
 public class LastDataReceivedDataType {
     /*
@@ -23,9 +25,15 @@ public class LastDataReceivedDataType {
     private String lastDataReceivedQuery;
 
     /**
+     * Creates an instance of LastDataReceivedDataType class.
+     */
+    public LastDataReceivedDataType() {
+    }
+
+    /**
      * Get the name property: Name of the data type to show in the graph. can be use with {{graphQueriesTableName}}
      * placeholder.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -35,7 +43,7 @@ public class LastDataReceivedDataType {
     /**
      * Set the name property: Name of the data type to show in the graph. can be use with {{graphQueriesTableName}}
      * placeholder.
-     *
+     * 
      * @param name the name value to set.
      * @return the LastDataReceivedDataType object itself.
      */
@@ -46,7 +54,7 @@ public class LastDataReceivedDataType {
 
     /**
      * Get the lastDataReceivedQuery property: Query for indicate last data received.
-     *
+     * 
      * @return the lastDataReceivedQuery value.
      */
     public String lastDataReceivedQuery() {
@@ -55,7 +63,7 @@ public class LastDataReceivedDataType {
 
     /**
      * Set the lastDataReceivedQuery property: Query for indicate last data received.
-     *
+     * 
      * @param lastDataReceivedQuery the lastDataReceivedQuery value to set.
      * @return the LastDataReceivedDataType object itself.
      */
@@ -66,7 +74,7 @@ public class LastDataReceivedDataType {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

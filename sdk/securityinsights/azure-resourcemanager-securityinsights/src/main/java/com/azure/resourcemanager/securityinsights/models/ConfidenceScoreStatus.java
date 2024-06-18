@@ -13,21 +13,38 @@ import java.util.Collection;
  * applicable or final.
  */
 public final class ConfidenceScoreStatus extends ExpandableStringEnum<ConfidenceScoreStatus> {
-    /** Static value NotApplicable for ConfidenceScoreStatus. */
+    /**
+     * Static value NotApplicable for ConfidenceScoreStatus.
+     */
     public static final ConfidenceScoreStatus NOT_APPLICABLE = fromString("NotApplicable");
 
-    /** Static value InProcess for ConfidenceScoreStatus. */
+    /**
+     * Static value InProcess for ConfidenceScoreStatus.
+     */
     public static final ConfidenceScoreStatus IN_PROCESS = fromString("InProcess");
 
-    /** Static value NotFinal for ConfidenceScoreStatus. */
+    /**
+     * Static value NotFinal for ConfidenceScoreStatus.
+     */
     public static final ConfidenceScoreStatus NOT_FINAL = fromString("NotFinal");
 
-    /** Static value Final for ConfidenceScoreStatus. */
+    /**
+     * Static value Final for ConfidenceScoreStatus.
+     */
     public static final ConfidenceScoreStatus FINAL = fromString("Final");
 
     /**
+     * Creates a new instance of ConfidenceScoreStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConfidenceScoreStatus() {
+    }
+
+    /**
      * Creates or finds a ConfidenceScoreStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConfidenceScoreStatus.
      */
@@ -38,7 +55,7 @@ public final class ConfidenceScoreStatus extends ExpandableStringEnum<Confidence
 
     /**
      * Gets known ConfidenceScoreStatus values.
-     *
+     * 
      * @return known ConfidenceScoreStatus values.
      */
     public static Collection<ConfidenceScoreStatus> values() {

@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TriggersOn. */
+/**
+ * Defines values for TriggersOn.
+ */
 public final class TriggersOn extends ExpandableStringEnum<TriggersOn> {
-    /** Static value Incidents for TriggersOn. */
+    /**
+     * Static value Incidents for TriggersOn.
+     */
     public static final TriggersOn INCIDENTS = fromString("Incidents");
 
-    /** Static value Alerts for TriggersOn. */
+    /**
+     * Static value Alerts for TriggersOn.
+     */
     public static final TriggersOn ALERTS = fromString("Alerts");
 
     /**
+     * Creates a new instance of TriggersOn value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public TriggersOn() {
+    }
+
+    /**
      * Creates or finds a TriggersOn from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TriggersOn.
      */
@@ -29,7 +44,7 @@ public final class TriggersOn extends ExpandableStringEnum<TriggersOn> {
 
     /**
      * Gets known TriggersOn values.
-     *
+     * 
      * @return known TriggersOn values.
      */
     public static Collection<TriggersOn> values() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.TimelineResultsMetadata
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The entity timeline result operation response. */
+/**
+ * The entity timeline result operation response.
+ */
 @Fluent
 public final class EntityTimelineResponseInner {
     /*
@@ -26,8 +28,14 @@ public final class EntityTimelineResponseInner {
     private List<EntityTimelineItem> value;
 
     /**
+     * Creates an instance of EntityTimelineResponseInner class.
+     */
+    public EntityTimelineResponseInner() {
+    }
+
+    /**
      * Get the metadata property: The metadata from the timeline operation results.
-     *
+     * 
      * @return the metadata value.
      */
     public TimelineResultsMetadata metadata() {
@@ -36,7 +44,7 @@ public final class EntityTimelineResponseInner {
 
     /**
      * Set the metadata property: The metadata from the timeline operation results.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the EntityTimelineResponseInner object itself.
      */
@@ -47,7 +55,7 @@ public final class EntityTimelineResponseInner {
 
     /**
      * Get the value property: The timeline result values.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityTimelineItem> value() {
@@ -56,7 +64,7 @@ public final class EntityTimelineResponseInner {
 
     /**
      * Set the value property: The timeline result values.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityTimelineResponseInner object itself.
      */
@@ -67,7 +75,7 @@ public final class EntityTimelineResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

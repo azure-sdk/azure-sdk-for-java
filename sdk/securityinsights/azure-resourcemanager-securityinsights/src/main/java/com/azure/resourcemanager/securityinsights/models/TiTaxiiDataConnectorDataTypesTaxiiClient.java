@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Data type for TAXII connector. */
+/**
+ * Data type for TAXII connector.
+ */
 @Fluent
 public final class TiTaxiiDataConnectorDataTypesTaxiiClient extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of TiTaxiiDataConnectorDataTypesTaxiiClient class.
+     */
+    public TiTaxiiDataConnectorDataTypesTaxiiClient() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TiTaxiiDataConnectorDataTypesTaxiiClient withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class TiTaxiiDataConnectorDataTypesTaxiiClient extends DataConnecto
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

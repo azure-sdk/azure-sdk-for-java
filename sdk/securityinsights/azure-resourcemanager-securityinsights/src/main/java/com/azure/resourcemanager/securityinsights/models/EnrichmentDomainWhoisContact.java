@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An individual contact associated with this domain. */
+/**
+ * An individual contact associated with this domain.
+ */
 @Fluent
 public final class EnrichmentDomainWhoisContact {
     /*
@@ -72,8 +74,14 @@ public final class EnrichmentDomainWhoisContact {
     private String email;
 
     /**
+     * Creates an instance of EnrichmentDomainWhoisContact class.
+     */
+    public EnrichmentDomainWhoisContact() {
+    }
+
+    /**
      * Get the name property: The name of this contact.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -82,7 +90,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the name property: The name of this contact.
-     *
+     * 
      * @param name the name value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -93,7 +101,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the org property: The organization for this contact.
-     *
+     * 
      * @return the org value.
      */
     public String org() {
@@ -102,7 +110,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the org property: The organization for this contact.
-     *
+     * 
      * @param org the org value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -113,7 +121,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the street property: A list describing the street address for this contact.
-     *
+     * 
      * @return the street value.
      */
     public List<String> street() {
@@ -122,7 +130,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the street property: A list describing the street address for this contact.
-     *
+     * 
      * @param street the street value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -133,7 +141,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the city property: The city for this contact.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -142,7 +150,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the city property: The city for this contact.
-     *
+     * 
      * @param city the city value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -153,7 +161,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the state property: The state for this contact.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -162,7 +170,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the state property: The state for this contact.
-     *
+     * 
      * @param state the state value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -173,7 +181,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the postal property: The postal code for this contact.
-     *
+     * 
      * @return the postal value.
      */
     public String postal() {
@@ -182,7 +190,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the postal property: The postal code for this contact.
-     *
+     * 
      * @param postal the postal value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -193,7 +201,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the country property: The country for this contact.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -202,7 +210,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the country property: The country for this contact.
-     *
+     * 
      * @param country the country value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -213,7 +221,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the phone property: The phone number for this contact.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -222,7 +230,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the phone property: The phone number for this contact.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -233,7 +241,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the fax property: The fax number for this contact.
-     *
+     * 
      * @return the fax value.
      */
     public String fax() {
@@ -242,7 +250,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the fax property: The fax number for this contact.
-     *
+     * 
      * @param fax the fax value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -253,7 +261,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Get the email property: The email address for this contact.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -262,7 +270,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Set the email property: The email address for this contact.
-     *
+     * 
      * @param email the email value to set.
      * @return the EnrichmentDomainWhoisContact object itself.
      */
@@ -273,7 +281,7 @@ public final class EnrichmentDomainWhoisContact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

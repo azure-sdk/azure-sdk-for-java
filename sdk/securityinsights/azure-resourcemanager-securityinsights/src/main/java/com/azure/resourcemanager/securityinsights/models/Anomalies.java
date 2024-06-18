@@ -8,14 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AnomaliesSettingsProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Settings with single toggle. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Settings with single toggle.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = Anomalies.class, visible = true)
 @JsonTypeName("Anomalies")
 @Fluent
 public final class Anomalies extends SettingsInner {
+    /*
+     * The kind of the setting
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private SettingKind kind = SettingKind.ANOMALIES;
+
     /*
      * Anomalies properties
      */
@@ -23,15 +33,33 @@ public final class Anomalies extends SettingsInner {
     private AnomaliesSettingsProperties innerProperties;
 
     /**
+     * Creates an instance of Anomalies class.
+     */
+    public Anomalies() {
+    }
+
+    /**
+     * Get the kind property: The kind of the setting.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public SettingKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Anomalies properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AnomaliesSettingsProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Anomalies withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +68,7 @@ public final class Anomalies extends SettingsInner {
 
     /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -49,7 +77,7 @@ public final class Anomalies extends SettingsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The data type definition. */
+/**
+ * The data type definition.
+ */
 @Fluent
 public final class DataTypeDefinitions {
     /*
@@ -17,8 +19,14 @@ public final class DataTypeDefinitions {
     private String dataType;
 
     /**
+     * Creates an instance of DataTypeDefinitions class.
+     */
+    public DataTypeDefinitions() {
+    }
+
+    /**
      * Get the dataType property: The data type name.
-     *
+     * 
      * @return the dataType value.
      */
     public String dataType() {
@@ -27,7 +35,7 @@ public final class DataTypeDefinitions {
 
     /**
      * Set the dataType property: The data type name.
-     *
+     * 
      * @param dataType the dataType value to set.
      * @return the DataTypeDefinitions object itself.
      */
@@ -38,7 +46,7 @@ public final class DataTypeDefinitions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

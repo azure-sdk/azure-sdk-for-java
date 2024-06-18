@@ -8,21 +8,32 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.securityinsights.models.ActivityEntityQueryTemplate;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplateKind;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity query template. */
+/**
+ * Specific entity query template.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
-    defaultImpl = EntityQueryTemplateInner.class)
+    defaultImpl = EntityQueryTemplateInner.class,
+    visible = true)
 @JsonTypeName("EntityQueryTemplate")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Activity", value = ActivityEntityQueryTemplate.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Activity", value = ActivityEntityQueryTemplate.class) })
 @Immutable
 public class EntityQueryTemplateInner extends ProxyResource {
+    /*
+     * the entity query template kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityQueryTemplateKind kind;
+
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
@@ -30,8 +41,24 @@ public class EntityQueryTemplateInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of EntityQueryTemplateInner class.
+     */
+    public EntityQueryTemplateInner() {
+        this.kind = EntityQueryTemplateKind.fromString("EntityQueryTemplate");
+    }
+
+    /**
+     * Get the kind property: the entity query template kind.
+     * 
+     * @return the kind value.
+     */
+    public EntityQueryTemplateKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -40,7 +67,7 @@ public class EntityQueryTemplateInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

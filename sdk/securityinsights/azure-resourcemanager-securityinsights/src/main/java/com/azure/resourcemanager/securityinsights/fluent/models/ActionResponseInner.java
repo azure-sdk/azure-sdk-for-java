@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action for alert rule. */
+/**
+ * Action for alert rule.
+ */
 @Fluent
 public final class ActionResponseInner extends ResourceWithEtag {
     /*
@@ -18,15 +20,23 @@ public final class ActionResponseInner extends ResourceWithEtag {
     private ActionResponseProperties innerProperties;
 
     /**
+     * Creates an instance of ActionResponseInner class.
+     */
+    public ActionResponseInner() {
+    }
+
+    /**
      * Get the innerProperties property: Action properties for get request.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ActionResponseProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActionResponseInner withEtag(String etag) {
         super.withEtag(etag);
@@ -35,7 +45,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
 
     /**
      * Get the workflowId property: The name of the logic app's workflow.
-     *
+     * 
      * @return the workflowId value.
      */
     public String workflowId() {
@@ -44,7 +54,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
 
     /**
      * Set the workflowId property: The name of the logic app's workflow.
-     *
+     * 
      * @param workflowId the workflowId value to set.
      * @return the ActionResponseInner object itself.
      */
@@ -59,7 +69,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
     /**
      * Get the logicAppResourceId property: Logic App Resource Id,
      * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.
-     *
+     * 
      * @return the logicAppResourceId value.
      */
     public String logicAppResourceId() {
@@ -69,7 +79,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
     /**
      * Set the logicAppResourceId property: Logic App Resource Id,
      * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.
-     *
+     * 
      * @param logicAppResourceId the logicAppResourceId value to set.
      * @return the ActionResponseInner object itself.
      */
@@ -83,7 +93,7 @@ public final class ActionResponseInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

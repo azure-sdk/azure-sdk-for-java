@@ -5,16 +5,20 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Data connector requirements properties. */
+/**
+ * Data connector requirements properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
-    defaultImpl = DataConnectorsCheckRequirements.class)
+    defaultImpl = DataConnectorsCheckRequirements.class,
+    visible = true)
 @JsonTypeName("DataConnectorsCheckRequirements")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureActiveDirectory", value = AadCheckRequirements.class),
@@ -29,17 +33,42 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "MicrosoftThreatProtection", value = MtpCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficeATP", value = OfficeAtpCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficeIRM", value = OfficeIrmCheckRequirements.class),
+    @JsonSubTypes.Type(
+        name = "MicrosoftPurviewInformationProtection",
+        value = MicrosoftPurviewInformationProtectionCheckRequirements.class),
     @JsonSubTypes.Type(name = "Office365Project", value = Office365ProjectCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficePowerBI", value = OfficePowerBICheckRequirements.class),
     @JsonSubTypes.Type(name = "ThreatIntelligence", value = TICheckRequirements.class),
     @JsonSubTypes.Type(name = "ThreatIntelligenceTaxii", value = TiTaxiiCheckRequirements.class),
-    @JsonSubTypes.Type(name = "IOT", value = IoTCheckRequirements.class)
-})
+    @JsonSubTypes.Type(name = "IOT", value = IoTCheckRequirements.class) })
 @Immutable
 public class DataConnectorsCheckRequirements {
+    /*
+     * Describes the kind of connector to be checked.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind;
+
+    /**
+     * Creates an instance of DataConnectorsCheckRequirements class.
+     */
+    public DataConnectorsCheckRequirements() {
+        this.kind = DataConnectorKind.fromString("DataConnectorsCheckRequirements");
+    }
+
+    /**
+     * Get the kind property: Describes the kind of connector to be checked.
+     * 
+     * @return the kind value.
+     */
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

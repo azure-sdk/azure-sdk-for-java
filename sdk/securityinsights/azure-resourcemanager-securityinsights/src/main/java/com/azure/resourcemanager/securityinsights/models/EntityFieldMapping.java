@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Map identifiers of a single entity. */
+/**
+ * Map identifiers of a single entity.
+ */
 @Fluent
 public final class EntityFieldMapping {
     /*
@@ -23,8 +25,14 @@ public final class EntityFieldMapping {
     private String value;
 
     /**
+     * Creates an instance of EntityFieldMapping class.
+     */
+    public EntityFieldMapping() {
+    }
+
+    /**
      * Get the identifier property: Alert V3 identifier.
-     *
+     * 
      * @return the identifier value.
      */
     public String identifier() {
@@ -33,7 +41,7 @@ public final class EntityFieldMapping {
 
     /**
      * Set the identifier property: Alert V3 identifier.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the EntityFieldMapping object itself.
      */
@@ -44,7 +52,7 @@ public final class EntityFieldMapping {
 
     /**
      * Get the value property: The value of the identifier.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -53,7 +61,7 @@ public final class EntityFieldMapping {
 
     /**
      * Set the value property: The value of the identifier.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityFieldMapping object itself.
      */
@@ -64,7 +72,7 @@ public final class EntityFieldMapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

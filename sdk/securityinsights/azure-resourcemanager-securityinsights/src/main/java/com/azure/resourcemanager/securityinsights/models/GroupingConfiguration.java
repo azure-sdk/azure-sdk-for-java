@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** Grouping configuration property bag. */
+/**
+ * Grouping configuration property bag.
+ */
 @Fluent
 public final class GroupingConfiguration {
     /*
@@ -32,15 +34,13 @@ public final class GroupingConfiguration {
     private Duration lookbackDuration;
 
     /*
-     * Grouping matching method. When method is Selected at least one of groupByEntities, groupByAlertDetails,
-     * groupByCustomDetails must be provided and not empty.
+     * Grouping matching method. When method is Selected at least one of groupByEntities, groupByAlertDetails, groupByCustomDetails must be provided and not empty.
      */
     @JsonProperty(value = "matchingMethod", required = true)
     private MatchingMethod matchingMethod;
 
     /*
-     * A list of entity types to group by (when matchingMethod is Selected). Only entities defined in the current alert
-     * rule may be used.
+     * A list of entity types to group by (when matchingMethod is Selected). Only entities defined in the current alert rule may be used.
      */
     @JsonProperty(value = "groupByEntities")
     private List<EntityMappingType> groupByEntities;
@@ -52,15 +52,20 @@ public final class GroupingConfiguration {
     private List<AlertDetail> groupByAlertDetails;
 
     /*
-     * A list of custom details keys to group by (when matchingMethod is Selected). Only keys defined in the current
-     * alert rule may be used.
+     * A list of custom details keys to group by (when matchingMethod is Selected). Only keys defined in the current alert rule may be used.
      */
     @JsonProperty(value = "groupByCustomDetails")
     private List<String> groupByCustomDetails;
 
     /**
+     * Creates an instance of GroupingConfiguration class.
+     */
+    public GroupingConfiguration() {
+    }
+
+    /**
      * Get the enabled property: Grouping enabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -69,7 +74,7 @@ public final class GroupingConfiguration {
 
     /**
      * Set the enabled property: Grouping enabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -80,7 +85,7 @@ public final class GroupingConfiguration {
 
     /**
      * Get the reopenClosedIncident property: Re-open closed matching incidents.
-     *
+     * 
      * @return the reopenClosedIncident value.
      */
     public boolean reopenClosedIncident() {
@@ -89,7 +94,7 @@ public final class GroupingConfiguration {
 
     /**
      * Set the reopenClosedIncident property: Re-open closed matching incidents.
-     *
+     * 
      * @param reopenClosedIncident the reopenClosedIncident value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -101,7 +106,7 @@ public final class GroupingConfiguration {
     /**
      * Get the lookbackDuration property: Limit the group to alerts created within the lookback duration (in ISO 8601
      * duration format).
-     *
+     * 
      * @return the lookbackDuration value.
      */
     public Duration lookbackDuration() {
@@ -111,7 +116,7 @@ public final class GroupingConfiguration {
     /**
      * Set the lookbackDuration property: Limit the group to alerts created within the lookback duration (in ISO 8601
      * duration format).
-     *
+     * 
      * @param lookbackDuration the lookbackDuration value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -123,7 +128,7 @@ public final class GroupingConfiguration {
     /**
      * Get the matchingMethod property: Grouping matching method. When method is Selected at least one of
      * groupByEntities, groupByAlertDetails, groupByCustomDetails must be provided and not empty.
-     *
+     * 
      * @return the matchingMethod value.
      */
     public MatchingMethod matchingMethod() {
@@ -133,7 +138,7 @@ public final class GroupingConfiguration {
     /**
      * Set the matchingMethod property: Grouping matching method. When method is Selected at least one of
      * groupByEntities, groupByAlertDetails, groupByCustomDetails must be provided and not empty.
-     *
+     * 
      * @param matchingMethod the matchingMethod value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -145,7 +150,7 @@ public final class GroupingConfiguration {
     /**
      * Get the groupByEntities property: A list of entity types to group by (when matchingMethod is Selected). Only
      * entities defined in the current alert rule may be used.
-     *
+     * 
      * @return the groupByEntities value.
      */
     public List<EntityMappingType> groupByEntities() {
@@ -155,7 +160,7 @@ public final class GroupingConfiguration {
     /**
      * Set the groupByEntities property: A list of entity types to group by (when matchingMethod is Selected). Only
      * entities defined in the current alert rule may be used.
-     *
+     * 
      * @param groupByEntities the groupByEntities value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -166,7 +171,7 @@ public final class GroupingConfiguration {
 
     /**
      * Get the groupByAlertDetails property: A list of alert details to group by (when matchingMethod is Selected).
-     *
+     * 
      * @return the groupByAlertDetails value.
      */
     public List<AlertDetail> groupByAlertDetails() {
@@ -175,7 +180,7 @@ public final class GroupingConfiguration {
 
     /**
      * Set the groupByAlertDetails property: A list of alert details to group by (when matchingMethod is Selected).
-     *
+     * 
      * @param groupByAlertDetails the groupByAlertDetails value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -187,7 +192,7 @@ public final class GroupingConfiguration {
     /**
      * Get the groupByCustomDetails property: A list of custom details keys to group by (when matchingMethod is
      * Selected). Only keys defined in the current alert rule may be used.
-     *
+     * 
      * @return the groupByCustomDetails value.
      */
     public List<String> groupByCustomDetails() {
@@ -197,7 +202,7 @@ public final class GroupingConfiguration {
     /**
      * Set the groupByCustomDetails property: A list of custom details keys to group by (when matchingMethod is
      * Selected). Only keys defined in the current alert rule may be used.
-     *
+     * 
      * @param groupByCustomDetails the groupByCustomDetails value to set.
      * @return the GroupingConfiguration object itself.
      */
@@ -208,21 +213,19 @@ public final class GroupingConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (lookbackDuration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property lookbackDuration in model GroupingConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property lookbackDuration in model GroupingConfiguration"));
         }
         if (matchingMethod() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property matchingMethod in model GroupingConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property matchingMethod in model GroupingConfiguration"));
         }
     }
 

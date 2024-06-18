@@ -7,14 +7,24 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AatpCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents AATP (Azure Advanced Threat Protection) requirements check request. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents AATP (Azure Advanced Threat Protection) requirements check request.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = AatpCheckRequirements.class, visible = true)
 @JsonTypeName("AzureAdvancedThreatProtection")
 @Fluent
 public final class AatpCheckRequirements extends DataConnectorsCheckRequirements {
+    /*
+     * Describes the kind of connector to be checked.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.AZURE_ADVANCED_THREAT_PROTECTION;
+
     /*
      * AATP (Azure Advanced Threat Protection) requirements check properties.
      */
@@ -22,8 +32,24 @@ public final class AatpCheckRequirements extends DataConnectorsCheckRequirements
     private AatpCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of AatpCheckRequirements class.
+     */
+    public AatpCheckRequirements() {
+    }
+
+    /**
+     * Get the kind property: Describes the kind of connector to be checked.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) requirements check properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AatpCheckRequirementsProperties innerProperties() {
@@ -31,8 +57,31 @@ public final class AatpCheckRequirements extends DataConnectorsCheckRequirements
     }
 
     /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the AatpCheckRequirements object itself.
+     */
+    public AatpCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AatpCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

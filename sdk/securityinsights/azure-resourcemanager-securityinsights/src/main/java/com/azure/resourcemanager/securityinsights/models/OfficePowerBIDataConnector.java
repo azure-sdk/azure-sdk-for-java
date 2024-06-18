@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficePowerBIDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Office Microsoft PowerBI data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Office Microsoft PowerBI data connector.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = OfficePowerBIDataConnector.class,
+    visible = true)
 @JsonTypeName("OfficePowerBI")
 @Fluent
 public final class OfficePowerBIDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.OFFICE_POWER_BI;
+
     /*
      * Office Microsoft PowerBI data connector properties.
      */
@@ -23,15 +37,33 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
     private OfficePowerBIDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of OfficePowerBIDataConnector class.
+     */
+    public OfficePowerBIDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Office Microsoft PowerBI data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OfficePowerBIDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficePowerBIDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +72,7 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public OfficePowerBIConnectorDataTypes dataTypes() {
@@ -49,7 +81,7 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficePowerBIDataConnector object itself.
      */
@@ -63,7 +95,7 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +104,7 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the OfficePowerBIDataConnector object itself.
      */
@@ -86,7 +118,7 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

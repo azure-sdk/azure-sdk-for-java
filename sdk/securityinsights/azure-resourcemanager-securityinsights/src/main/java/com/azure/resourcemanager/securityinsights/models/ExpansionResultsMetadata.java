@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Expansion result metadata. */
+/**
+ * Expansion result metadata.
+ */
 @Fluent
 public final class ExpansionResultsMetadata {
     /*
@@ -18,8 +20,14 @@ public final class ExpansionResultsMetadata {
     private List<ExpansionResultAggregation> aggregations;
 
     /**
+     * Creates an instance of ExpansionResultsMetadata class.
+     */
+    public ExpansionResultsMetadata() {
+    }
+
+    /**
      * Get the aggregations property: Information of the aggregated nodes in the expansion result.
-     *
+     * 
      * @return the aggregations value.
      */
     public List<ExpansionResultAggregation> aggregations() {
@@ -28,7 +36,7 @@ public final class ExpansionResultsMetadata {
 
     /**
      * Set the aggregations property: Information of the aggregated nodes in the expansion result.
-     *
+     * 
      * @param aggregations the aggregations value to set.
      * @return the ExpansionResultsMetadata object itself.
      */
@@ -39,7 +47,7 @@ public final class ExpansionResultsMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

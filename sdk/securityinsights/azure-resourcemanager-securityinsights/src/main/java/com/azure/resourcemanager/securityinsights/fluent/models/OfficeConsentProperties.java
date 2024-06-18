@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Consent property bag. */
+/**
+ * Consent property bag.
+ */
 @Fluent
 public final class OfficeConsentProperties {
     /*
@@ -23,8 +25,14 @@ public final class OfficeConsentProperties {
     private String consentId;
 
     /**
+     * Creates an instance of OfficeConsentProperties class.
+     */
+    public OfficeConsentProperties() {
+    }
+
+    /**
      * Get the tenantId property: The tenantId of the Office365 with the consent.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -33,7 +41,7 @@ public final class OfficeConsentProperties {
 
     /**
      * Set the tenantId property: The tenantId of the Office365 with the consent.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the OfficeConsentProperties object itself.
      */
@@ -44,7 +52,7 @@ public final class OfficeConsentProperties {
 
     /**
      * Get the consentId property: Help to easily cascade among the data layers.
-     *
+     * 
      * @return the consentId value.
      */
     public String consentId() {
@@ -53,7 +61,7 @@ public final class OfficeConsentProperties {
 
     /**
      * Set the consentId property: Help to easily cascade among the data layers.
-     *
+     * 
      * @param consentId the consentId value to set.
      * @return the OfficeConsentProperties object itself.
      */
@@ -64,7 +72,7 @@ public final class OfficeConsentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

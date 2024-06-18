@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** User information that made some action. */
+/**
+ * User information that made some action.
+ */
 @Fluent
 public final class UserInfo {
     /*
@@ -30,8 +32,14 @@ public final class UserInfo {
     private UUID objectId;
 
     /**
+     * Creates an instance of UserInfo class.
+     */
+    public UserInfo() {
+    }
+
+    /**
      * Get the email property: The email of the user.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -40,7 +48,7 @@ public final class UserInfo {
 
     /**
      * Get the name property: The name of the user.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -49,7 +57,7 @@ public final class UserInfo {
 
     /**
      * Get the objectId property: The object id of the user.
-     *
+     * 
      * @return the objectId value.
      */
     public UUID objectId() {
@@ -58,7 +66,7 @@ public final class UserInfo {
 
     /**
      * Set the objectId property: The object id of the user.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the UserInfo object itself.
      */
@@ -69,7 +77,7 @@ public final class UserInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

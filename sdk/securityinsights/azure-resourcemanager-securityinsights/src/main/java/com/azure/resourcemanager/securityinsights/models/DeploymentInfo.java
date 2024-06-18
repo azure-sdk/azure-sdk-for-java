@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information regarding a deployment. */
+/**
+ * Information regarding a deployment.
+ */
 @Fluent
 public final class DeploymentInfo {
     /*
@@ -29,8 +31,14 @@ public final class DeploymentInfo {
     private String message;
 
     /**
+     * Creates an instance of DeploymentInfo class.
+     */
+    public DeploymentInfo() {
+    }
+
+    /**
      * Get the deploymentFetchStatus property: Status while fetching the last deployment.
-     *
+     * 
      * @return the deploymentFetchStatus value.
      */
     public DeploymentFetchStatus deploymentFetchStatus() {
@@ -39,7 +47,7 @@ public final class DeploymentInfo {
 
     /**
      * Set the deploymentFetchStatus property: Status while fetching the last deployment.
-     *
+     * 
      * @param deploymentFetchStatus the deploymentFetchStatus value to set.
      * @return the DeploymentInfo object itself.
      */
@@ -50,7 +58,7 @@ public final class DeploymentInfo {
 
     /**
      * Get the deployment property: Deployment information.
-     *
+     * 
      * @return the deployment value.
      */
     public Deployment deployment() {
@@ -59,7 +67,7 @@ public final class DeploymentInfo {
 
     /**
      * Set the deployment property: Deployment information.
-     *
+     * 
      * @param deployment the deployment value to set.
      * @return the DeploymentInfo object itself.
      */
@@ -70,7 +78,7 @@ public final class DeploymentInfo {
 
     /**
      * Get the message property: Additional details about the deployment that can be shown to the user.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -79,7 +87,7 @@ public final class DeploymentInfo {
 
     /**
      * Set the message property: Additional details about the deployment that can be shown to the user.
-     *
+     * 
      * @param message the message value to set.
      * @return the DeploymentInfo object itself.
      */
@@ -90,7 +98,7 @@ public final class DeploymentInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

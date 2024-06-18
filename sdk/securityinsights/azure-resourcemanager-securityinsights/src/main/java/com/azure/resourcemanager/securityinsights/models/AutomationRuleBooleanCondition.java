@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRuleBooleanCondition model. */
+/**
+ * The AutomationRuleBooleanCondition model.
+ */
 @Fluent
 public final class AutomationRuleBooleanCondition {
     /*
@@ -24,8 +26,14 @@ public final class AutomationRuleBooleanCondition {
     private List<AutomationRuleCondition> innerConditions;
 
     /**
+     * Creates an instance of AutomationRuleBooleanCondition class.
+     */
+    public AutomationRuleBooleanCondition() {
+    }
+
+    /**
      * Get the operator property: The operator property.
-     *
+     * 
      * @return the operator value.
      */
     public AutomationRuleBooleanConditionSupportedOperator operator() {
@@ -34,7 +42,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Set the operator property: The operator property.
-     *
+     * 
      * @param operator the operator value to set.
      * @return the AutomationRuleBooleanCondition object itself.
      */
@@ -45,7 +53,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Get the innerConditions property: The innerConditions property.
-     *
+     * 
      * @return the innerConditions value.
      */
     public List<AutomationRuleCondition> innerConditions() {
@@ -54,7 +62,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Set the innerConditions property: The innerConditions property.
-     *
+     * 
      * @param innerConditions the innerConditions value to set.
      * @return the AutomationRuleBooleanCondition object itself.
      */
@@ -65,7 +73,7 @@ public final class AutomationRuleBooleanCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

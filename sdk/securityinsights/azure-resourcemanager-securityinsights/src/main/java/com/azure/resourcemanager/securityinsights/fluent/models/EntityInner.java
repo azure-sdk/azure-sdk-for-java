@@ -11,15 +11,16 @@ import com.azure.resourcemanager.securityinsights.models.AccountEntity;
 import com.azure.resourcemanager.securityinsights.models.AzureResourceEntity;
 import com.azure.resourcemanager.securityinsights.models.CloudApplicationEntity;
 import com.azure.resourcemanager.securityinsights.models.DnsEntity;
+import com.azure.resourcemanager.securityinsights.models.EntityKindEnum;
 import com.azure.resourcemanager.securityinsights.models.FileEntity;
 import com.azure.resourcemanager.securityinsights.models.FileHashEntity;
 import com.azure.resourcemanager.securityinsights.models.HostEntity;
 import com.azure.resourcemanager.securityinsights.models.HuntingBookmark;
 import com.azure.resourcemanager.securityinsights.models.IoTDeviceEntity;
 import com.azure.resourcemanager.securityinsights.models.IpEntity;
+import com.azure.resourcemanager.securityinsights.models.MailboxEntity;
 import com.azure.resourcemanager.securityinsights.models.MailClusterEntity;
 import com.azure.resourcemanager.securityinsights.models.MailMessageEntity;
-import com.azure.resourcemanager.securityinsights.models.MailboxEntity;
 import com.azure.resourcemanager.securityinsights.models.MalwareEntity;
 import com.azure.resourcemanager.securityinsights.models.NicEntity;
 import com.azure.resourcemanager.securityinsights.models.ProcessEntity;
@@ -31,15 +32,14 @@ import com.azure.resourcemanager.securityinsights.models.SubmissionMailEntity;
 import com.azure.resourcemanager.securityinsights.models.UrlEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = EntityInner.class)
+/**
+ * Specific entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = EntityInner.class, visible = true)
 @JsonTypeName("Entity")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SecurityAlert", value = SecurityAlert.class),
@@ -63,10 +63,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SecurityGroup", value = SecurityGroupEntity.class),
     @JsonSubTypes.Type(name = "SubmissionMail", value = SubmissionMailEntity.class),
     @JsonSubTypes.Type(name = "Url", value = UrlEntity.class),
-    @JsonSubTypes.Type(name = "Nic", value = NicEntity.class)
-})
+    @JsonSubTypes.Type(name = "Nic", value = NicEntity.class) })
 @Immutable
 public class EntityInner extends ProxyResource {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind;
+
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
@@ -74,8 +80,24 @@ public class EntityInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of EntityInner class.
+     */
+    public EntityInner() {
+        this.kind = EntityKindEnum.fromString("Entity");
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -84,7 +106,7 @@ public class EntityInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

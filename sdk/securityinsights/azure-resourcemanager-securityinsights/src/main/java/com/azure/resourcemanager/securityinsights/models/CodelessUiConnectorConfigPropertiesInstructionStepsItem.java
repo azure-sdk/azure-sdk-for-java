@@ -7,34 +7,48 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The CodelessUiConnectorConfigPropertiesInstructionStepsItem model. */
+/**
+ * The CodelessUiConnectorConfigPropertiesInstructionStepsItem model.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesInstructionStepsItem extends InstructionSteps {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CodelessUiConnectorConfigPropertiesInstructionStepsItem class.
+     */
+    public CodelessUiConnectorConfigPropertiesInstructionStepsItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesInstructionStepsItem withTitle(String title) {
         super.withTitle(title);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesInstructionStepsItem withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public CodelessUiConnectorConfigPropertiesInstructionStepsItem withInstructions(
-        List<InstructionStepsInstructionsItem> instructions) {
+    public CodelessUiConnectorConfigPropertiesInstructionStepsItem
+        withInstructions(List<InstructionStepsInstructionsItem> instructions) {
         super.withInstructions(instructions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

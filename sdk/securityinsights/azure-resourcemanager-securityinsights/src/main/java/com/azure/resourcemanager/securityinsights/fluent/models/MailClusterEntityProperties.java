@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Mail cluster entity property bag. */
+/**
+ * Mail cluster entity property bag.
+ */
 @Immutable
 public final class MailClusterEntityProperties extends EntityCommonProperties {
     /*
@@ -104,8 +106,14 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
     private String clusterGroup;
 
     /**
+     * Creates an instance of MailClusterEntityProperties class.
+     */
+    public MailClusterEntityProperties() {
+    }
+
+    /**
      * Get the networkMessageIds property: The mail message IDs that are part of the mail cluster.
-     *
+     * 
      * @return the networkMessageIds value.
      */
     public List<String> networkMessageIds() {
@@ -114,7 +122,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the countByDeliveryStatus property: Count of mail messages by DeliveryStatus string representation.
-     *
+     * 
      * @return the countByDeliveryStatus value.
      */
     public Object countByDeliveryStatus() {
@@ -123,7 +131,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the countByThreatType property: Count of mail messages by ThreatType string representation.
-     *
+     * 
      * @return the countByThreatType value.
      */
     public Object countByThreatType() {
@@ -132,7 +140,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the countByProtectionStatus property: Count of mail messages by ProtectionStatus string representation.
-     *
+     * 
      * @return the countByProtectionStatus value.
      */
     public Object countByProtectionStatus() {
@@ -141,7 +149,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the threats property: The threats of mail messages that are part of the mail cluster.
-     *
+     * 
      * @return the threats value.
      */
     public List<String> threats() {
@@ -150,7 +158,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the query property: The query that was used to identify the messages of the mail cluster.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -159,7 +167,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the queryTime property: The query time.
-     *
+     * 
      * @return the queryTime value.
      */
     public OffsetDateTime queryTime() {
@@ -168,7 +176,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the mailCount property: The number of mail messages that are part of the mail cluster.
-     *
+     * 
      * @return the mailCount value.
      */
     public Integer mailCount() {
@@ -177,7 +185,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isVolumeAnomaly property: Is this a volume anomaly mail cluster.
-     *
+     * 
      * @return the isVolumeAnomaly value.
      */
     public Boolean isVolumeAnomaly() {
@@ -186,7 +194,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the source property: The source of the mail cluster (default is 'O365 ATP').
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -195,7 +203,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the clusterSourceIdentifier property: The id of the cluster source.
-     *
+     * 
      * @return the clusterSourceIdentifier value.
      */
     public String clusterSourceIdentifier() {
@@ -204,7 +212,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the clusterSourceType property: The type of the cluster source.
-     *
+     * 
      * @return the clusterSourceType value.
      */
     public String clusterSourceType() {
@@ -213,7 +221,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the clusterQueryStartTime property: The cluster query start time.
-     *
+     * 
      * @return the clusterQueryStartTime value.
      */
     public OffsetDateTime clusterQueryStartTime() {
@@ -222,7 +230,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the clusterQueryEndTime property: The cluster query end time.
-     *
+     * 
      * @return the clusterQueryEndTime value.
      */
     public OffsetDateTime clusterQueryEndTime() {
@@ -231,7 +239,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the clusterGroup property: The cluster group.
-     *
+     * 
      * @return the clusterGroup value.
      */
     public String clusterGroup() {
@@ -240,7 +248,7 @@ public final class MailClusterEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

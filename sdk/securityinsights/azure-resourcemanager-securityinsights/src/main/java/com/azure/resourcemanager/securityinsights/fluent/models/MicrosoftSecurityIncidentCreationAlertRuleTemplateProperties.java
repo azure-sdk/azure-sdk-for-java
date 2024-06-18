@@ -13,7 +13,9 @@ import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MicrosoftSecurityIncidentCreation rule template properties. */
+/**
+ * MicrosoftSecurityIncidentCreation rule template properties.
+ */
 @Fluent
 public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
     extends AlertRuleTemplatePropertiesBase {
@@ -42,8 +44,14 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
     private List<AlertSeverity> severitiesFilter;
 
     /**
+     * Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties class.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties() {
+    }
+
+    /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @return the displayNamesFilter value.
      */
     public List<String> displayNamesFilter() {
@@ -52,19 +60,19 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
 
     /**
      * Set the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @param displayNamesFilter the displayNamesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDisplayNamesFilter(
-        List<String> displayNamesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withDisplayNamesFilter(List<String> displayNamesFilter) {
         this.displayNamesFilter = displayNamesFilter;
         return this;
     }
 
     /**
      * Get the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @return the displayNamesExcludeFilter value.
      */
     public List<String> displayNamesExcludeFilter() {
@@ -73,19 +81,19 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
 
     /**
      * Set the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @param displayNamesExcludeFilter the displayNamesExcludeFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDisplayNamesExcludeFilter(
-        List<String> displayNamesExcludeFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withDisplayNamesExcludeFilter(List<String> displayNamesExcludeFilter) {
         this.displayNamesExcludeFilter = displayNamesExcludeFilter;
         return this;
     }
 
     /**
      * Get the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @return the productFilter value.
      */
     public MicrosoftSecurityProductName productFilter() {
@@ -94,19 +102,19 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
 
     /**
      * Set the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @param productFilter the productFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withProductFilter(
-        MicrosoftSecurityProductName productFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withProductFilter(MicrosoftSecurityProductName productFilter) {
         this.productFilter = productFilter;
         return this;
     }
 
     /**
      * Get the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @return the severitiesFilter value.
      */
     public List<AlertSeverity> severitiesFilter() {
@@ -115,47 +123,57 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
 
     /**
      * Set the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @param severitiesFilter the severitiesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withSeveritiesFilter(
-        List<AlertSeverity> severitiesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withSeveritiesFilter(List<AlertSeverity> severitiesFilter) {
         this.severitiesFilter = severitiesFilter;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         super.withRequiredDataConnectors(requiredDataConnectors);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withStatus(TemplateStatus status) {
         super.withStatus(status);
@@ -164,7 +182,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

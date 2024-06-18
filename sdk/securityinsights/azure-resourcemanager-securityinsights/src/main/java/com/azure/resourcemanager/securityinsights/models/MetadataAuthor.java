@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Publisher or creator of the content item. */
+/**
+ * Publisher or creator of the content item.
+ */
 @Fluent
 public final class MetadataAuthor {
     /*
@@ -29,8 +31,14 @@ public final class MetadataAuthor {
     private String link;
 
     /**
+     * Creates an instance of MetadataAuthor class.
+     */
+    public MetadataAuthor() {
+    }
+
+    /**
      * Get the name property: Name of the author. Company or person.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +47,7 @@ public final class MetadataAuthor {
 
     /**
      * Set the name property: Name of the author. Company or person.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetadataAuthor object itself.
      */
@@ -50,7 +58,7 @@ public final class MetadataAuthor {
 
     /**
      * Get the email property: Email of author contact.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -59,7 +67,7 @@ public final class MetadataAuthor {
 
     /**
      * Set the email property: Email of author contact.
-     *
+     * 
      * @param email the email value to set.
      * @return the MetadataAuthor object itself.
      */
@@ -70,7 +78,7 @@ public final class MetadataAuthor {
 
     /**
      * Get the link property: Link for author/vendor page.
-     *
+     * 
      * @return the link value.
      */
     public String link() {
@@ -79,7 +87,7 @@ public final class MetadataAuthor {
 
     /**
      * Set the link property: Link for author/vendor page.
-     *
+     * 
      * @param link the link value to set.
      * @return the MetadataAuthor object itself.
      */
@@ -90,7 +98,7 @@ public final class MetadataAuthor {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

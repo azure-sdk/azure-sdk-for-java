@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.CodelessUiConnectorConfigProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents Codeless UI data connector. */
+/**
+ * Represents Codeless UI data connector.
+ */
 @Fluent
 public final class CodelessParameters {
     /*
@@ -18,8 +20,14 @@ public final class CodelessParameters {
     private CodelessUiConnectorConfigProperties connectorUiConfig;
 
     /**
+     * Creates an instance of CodelessParameters class.
+     */
+    public CodelessParameters() {
+    }
+
+    /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @return the connectorUiConfig value.
      */
     public CodelessUiConnectorConfigProperties connectorUiConfig() {
@@ -28,7 +36,7 @@ public final class CodelessParameters {
 
     /**
      * Set the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @param connectorUiConfig the connectorUiConfig value to set.
      * @return the CodelessParameters object itself.
      */
@@ -39,7 +47,7 @@ public final class CodelessParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

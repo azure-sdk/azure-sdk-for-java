@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a relation between two resources. */
+/**
+ * Represents a relation between two resources.
+ */
 @Fluent
 public final class RelationInner extends ResourceWithEtag {
     /*
@@ -18,15 +20,23 @@ public final class RelationInner extends ResourceWithEtag {
     private RelationProperties innerProperties;
 
     /**
+     * Creates an instance of RelationInner class.
+     */
+    public RelationInner() {
+    }
+
+    /**
      * Get the innerProperties property: Relation properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RelationProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RelationInner withEtag(String etag) {
         super.withEtag(etag);
@@ -35,7 +45,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Get the relatedResourceId property: The resource ID of the related resource.
-     *
+     * 
      * @return the relatedResourceId value.
      */
     public String relatedResourceId() {
@@ -44,7 +54,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Set the relatedResourceId property: The resource ID of the related resource.
-     *
+     * 
      * @param relatedResourceId the relatedResourceId value to set.
      * @return the RelationInner object itself.
      */
@@ -58,7 +68,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Get the relatedResourceName property: The name of the related resource.
-     *
+     * 
      * @return the relatedResourceName value.
      */
     public String relatedResourceName() {
@@ -67,7 +77,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Get the relatedResourceType property: The resource type of the related resource.
-     *
+     * 
      * @return the relatedResourceType value.
      */
     public String relatedResourceType() {
@@ -76,7 +86,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Get the relatedResourceKind property: The resource kind of the related resource.
-     *
+     * 
      * @return the relatedResourceKind value.
      */
     public String relatedResourceKind() {
@@ -85,7 +95,7 @@ public final class RelationInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

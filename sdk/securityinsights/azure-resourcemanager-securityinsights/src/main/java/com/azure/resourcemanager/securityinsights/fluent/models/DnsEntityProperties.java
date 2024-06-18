@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Dns entity property bag. */
+/**
+ * Dns entity property bag.
+ */
 @Immutable
 public final class DnsEntityProperties extends EntityCommonProperties {
     /*
@@ -37,8 +39,14 @@ public final class DnsEntityProperties extends EntityCommonProperties {
     private List<String> ipAddressEntityIds;
 
     /**
+     * Creates an instance of DnsEntityProperties class.
+     */
+    public DnsEntityProperties() {
+    }
+
+    /**
      * Get the dnsServerIpEntityId property: An ip entity id for the dns server resolving the request.
-     *
+     * 
      * @return the dnsServerIpEntityId value.
      */
     public String dnsServerIpEntityId() {
@@ -47,7 +55,7 @@ public final class DnsEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the domainName property: The name of the dns record associated with the alert.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -56,7 +64,7 @@ public final class DnsEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostIpAddressEntityId property: An ip entity id for the dns request client.
-     *
+     * 
      * @return the hostIpAddressEntityId value.
      */
     public String hostIpAddressEntityId() {
@@ -65,7 +73,7 @@ public final class DnsEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the ipAddressEntityIds property: Ip entity identifiers for the resolved ip address.
-     *
+     * 
      * @return the ipAddressEntityIds value.
      */
     public List<String> ipAddressEntityIds() {
@@ -74,7 +82,7 @@ public final class DnsEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

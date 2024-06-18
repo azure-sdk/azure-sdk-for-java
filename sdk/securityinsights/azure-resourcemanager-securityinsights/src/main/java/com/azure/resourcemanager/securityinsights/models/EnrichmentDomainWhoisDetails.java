@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The whois record for a given domain. */
+/**
+ * The whois record for a given domain.
+ */
 @Fluent
 public final class EnrichmentDomainWhoisDetails {
     /*
@@ -36,8 +38,14 @@ public final class EnrichmentDomainWhoisDetails {
     private List<String> statuses;
 
     /**
+     * Creates an instance of EnrichmentDomainWhoisDetails class.
+     */
+    public EnrichmentDomainWhoisDetails() {
+    }
+
+    /**
      * Get the registrar property: The registrar associated with this domain.
-     *
+     * 
      * @return the registrar value.
      */
     public EnrichmentDomainWhoisRegistrarDetails registrar() {
@@ -46,7 +54,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Set the registrar property: The registrar associated with this domain.
-     *
+     * 
      * @param registrar the registrar value to set.
      * @return the EnrichmentDomainWhoisDetails object itself.
      */
@@ -57,7 +65,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Get the contacts property: The set of contacts associated with this domain.
-     *
+     * 
      * @return the contacts value.
      */
     public EnrichmentDomainWhoisContacts contacts() {
@@ -66,7 +74,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Set the contacts property: The set of contacts associated with this domain.
-     *
+     * 
      * @param contacts the contacts value to set.
      * @return the EnrichmentDomainWhoisDetails object itself.
      */
@@ -77,7 +85,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Get the nameServers property: A list of name servers associated with this domain.
-     *
+     * 
      * @return the nameServers value.
      */
     public List<String> nameServers() {
@@ -86,7 +94,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Set the nameServers property: A list of name servers associated with this domain.
-     *
+     * 
      * @param nameServers the nameServers value to set.
      * @return the EnrichmentDomainWhoisDetails object itself.
      */
@@ -97,7 +105,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Get the statuses property: The set of status flags for this whois record.
-     *
+     * 
      * @return the statuses value.
      */
     public List<String> statuses() {
@@ -106,7 +114,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Set the statuses property: The set of status flags for this whois record.
-     *
+     * 
      * @param statuses the statuses value to set.
      * @return the EnrichmentDomainWhoisDetails object itself.
      */
@@ -117,7 +125,7 @@ public final class EnrichmentDomainWhoisDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

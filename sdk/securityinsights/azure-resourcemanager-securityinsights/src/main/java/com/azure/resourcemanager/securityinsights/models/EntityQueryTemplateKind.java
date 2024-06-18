@@ -8,14 +8,57 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The kind of the entity query template. */
+/**
+ * Defines values for EntityQueryTemplateKind.
+ */
 public final class EntityQueryTemplateKind extends ExpandableStringEnum<EntityQueryTemplateKind> {
-    /** Static value Activity for EntityQueryTemplateKind. */
+    /**
+     * Static value Activity for EntityQueryTemplateKind.
+     */
     public static final EntityQueryTemplateKind ACTIVITY = fromString("Activity");
 
     /**
+     * Static value Insight for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind INSIGHT = fromString("Insight");
+
+    /**
+     * Static value SecurityAlert for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind SECURITY_ALERT = fromString("SecurityAlert");
+
+    /**
+     * Static value Bookmark for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind BOOKMARK = fromString("Bookmark");
+
+    /**
+     * Static value Expansion for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind EXPANSION = fromString("Expansion");
+
+    /**
+     * Static value GuidedInsight for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind GUIDED_INSIGHT = fromString("GuidedInsight");
+
+    /**
+     * Static value Anomaly for EntityQueryTemplateKind.
+     */
+    public static final EntityQueryTemplateKind ANOMALY = fromString("Anomaly");
+
+    /**
+     * Creates a new instance of EntityQueryTemplateKind value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityQueryTemplateKind() {
+    }
+
+    /**
      * Creates or finds a EntityQueryTemplateKind from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EntityQueryTemplateKind.
      */
@@ -26,7 +69,7 @@ public final class EntityQueryTemplateKind extends ExpandableStringEnum<EntityQu
 
     /**
      * Gets known EntityQueryTemplateKind values.
-     *
+     * 
      * @return known EntityQueryTemplateKind values.
      */
     public static Collection<EntityQueryTemplateKind> values() {

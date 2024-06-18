@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Status while trying to fetch the deployment information. */
+/**
+ * Status while trying to fetch the deployment information.
+ */
 public final class DeploymentResult extends ExpandableStringEnum<DeploymentResult> {
-    /** Static value Success for DeploymentResult. */
+    /**
+     * Static value Success for DeploymentResult.
+     */
     public static final DeploymentResult SUCCESS = fromString("Success");
 
-    /** Static value Canceled for DeploymentResult. */
+    /**
+     * Static value Canceled for DeploymentResult.
+     */
     public static final DeploymentResult CANCELED = fromString("Canceled");
 
-    /** Static value Failed for DeploymentResult. */
+    /**
+     * Static value Failed for DeploymentResult.
+     */
     public static final DeploymentResult FAILED = fromString("Failed");
 
     /**
+     * Creates a new instance of DeploymentResult value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeploymentResult() {
+    }
+
+    /**
      * Creates or finds a DeploymentResult from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DeploymentResult.
      */
@@ -32,7 +49,7 @@ public final class DeploymentResult extends ExpandableStringEnum<DeploymentResul
 
     /**
      * Gets known DeploymentResult values.
-     *
+     * 
      * @return known DeploymentResult values.
      */
     public static Collection<DeploymentResult> values() {

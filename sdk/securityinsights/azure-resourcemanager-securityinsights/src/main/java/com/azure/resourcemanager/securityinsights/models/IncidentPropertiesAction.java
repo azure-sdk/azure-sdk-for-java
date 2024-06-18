@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The IncidentPropertiesAction model. */
+/**
+ * The IncidentPropertiesAction model.
+ */
 @Fluent
 public final class IncidentPropertiesAction {
     /*
@@ -54,8 +56,14 @@ public final class IncidentPropertiesAction {
     private List<IncidentLabel> labels;
 
     /**
+     * Creates an instance of IncidentPropertiesAction class.
+     */
+    public IncidentPropertiesAction() {
+    }
+
+    /**
      * Get the severity property: The severity of the incident.
-     *
+     * 
      * @return the severity value.
      */
     public IncidentSeverity severity() {
@@ -64,7 +72,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the severity property: The severity of the incident.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -75,7 +83,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the status property: The status of the incident.
-     *
+     * 
      * @return the status value.
      */
     public IncidentStatus status() {
@@ -84,7 +92,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the status property: The status of the incident.
-     *
+     * 
      * @param status the status value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -95,7 +103,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the classification property: The reason the incident was closed.
-     *
+     * 
      * @return the classification value.
      */
     public IncidentClassification classification() {
@@ -104,7 +112,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the classification property: The reason the incident was closed.
-     *
+     * 
      * @param classification the classification value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -115,7 +123,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the classificationReason property: The classification reason the incident was closed with.
-     *
+     * 
      * @return the classificationReason value.
      */
     public IncidentClassificationReason classificationReason() {
@@ -124,7 +132,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the classificationReason property: The classification reason the incident was closed with.
-     *
+     * 
      * @param classificationReason the classificationReason value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -135,7 +143,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the classificationComment property: Describes the reason the incident was closed.
-     *
+     * 
      * @return the classificationComment value.
      */
     public String classificationComment() {
@@ -144,7 +152,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the classificationComment property: Describes the reason the incident was closed.
-     *
+     * 
      * @param classificationComment the classificationComment value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -155,7 +163,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the owner property: Information on the user an incident is assigned to.
-     *
+     * 
      * @return the owner value.
      */
     public IncidentOwnerInfo owner() {
@@ -164,7 +172,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the owner property: Information on the user an incident is assigned to.
-     *
+     * 
      * @param owner the owner value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -175,7 +183,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Get the labels property: List of labels to add to the incident.
-     *
+     * 
      * @return the labels value.
      */
     public List<IncidentLabel> labels() {
@@ -184,7 +192,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Set the labels property: List of labels to add to the incident.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the IncidentPropertiesAction object itself.
      */
@@ -195,7 +203,7 @@ public final class IncidentPropertiesAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

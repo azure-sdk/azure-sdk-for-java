@@ -8,16 +8,30 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.ActivityEntityQueryTemplateProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTemplateInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Represents Activity entity query. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Activity entity query.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = ActivityEntityQueryTemplate.class,
+    visible = true)
 @JsonTypeName("Activity")
 @Fluent
 public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner {
+    /*
+     * the entity query template kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityQueryTemplateKind kind = EntityQueryTemplateKind.ACTIVITY;
+
     /*
      * Activity entity query properties
      */
@@ -25,8 +39,24 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
     private ActivityEntityQueryTemplateProperties innerProperties;
 
     /**
+     * Creates an instance of ActivityEntityQueryTemplate class.
+     */
+    public ActivityEntityQueryTemplate() {
+    }
+
+    /**
+     * Get the kind property: the entity query template kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityQueryTemplateKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Activity entity query properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ActivityEntityQueryTemplateProperties innerProperties() {
@@ -35,7 +65,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the title property: The entity query title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -44,7 +74,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the title property: The entity query title.
-     *
+     * 
      * @param title the title value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -58,7 +88,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the content property: The entity query content to display in timeline.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -67,7 +97,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the content property: The entity query content to display in timeline.
-     *
+     * 
      * @param content the content value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -81,7 +111,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the description property: The entity query description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -90,7 +120,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the description property: The entity query description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -104,7 +134,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @return the queryDefinitions value.
      */
     public ActivityEntityQueryTemplatePropertiesQueryDefinitions queryDefinitions() {
@@ -113,12 +143,12 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @param queryDefinitions the queryDefinitions value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
-    public ActivityEntityQueryTemplate withQueryDefinitions(
-        ActivityEntityQueryTemplatePropertiesQueryDefinitions queryDefinitions) {
+    public ActivityEntityQueryTemplate
+        withQueryDefinitions(ActivityEntityQueryTemplatePropertiesQueryDefinitions queryDefinitions) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ActivityEntityQueryTemplateProperties();
         }
@@ -128,7 +158,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the dataTypes property: List of required data types for the given entity query template.
-     *
+     * 
      * @return the dataTypes value.
      */
     public List<DataTypeDefinitions> dataTypes() {
@@ -137,7 +167,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the dataTypes property: List of required data types for the given entity query template.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -151,7 +181,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @return the inputEntityType value.
      */
     public EntityType inputEntityType() {
@@ -160,7 +190,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @param inputEntityType the inputEntityType value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -175,7 +205,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
     /**
      * Get the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @return the requiredInputFieldsSets value.
      */
     public List<List<String>> requiredInputFieldsSets() {
@@ -185,7 +215,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
     /**
      * Set the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @param requiredInputFieldsSets the requiredInputFieldsSets value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -199,7 +229,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Get the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @return the entitiesFilter value.
      */
     public Map<String, List<String>> entitiesFilter() {
@@ -208,7 +238,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Set the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @param entitiesFilter the entitiesFilter value to set.
      * @return the ActivityEntityQueryTemplate object itself.
      */
@@ -222,7 +252,7 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

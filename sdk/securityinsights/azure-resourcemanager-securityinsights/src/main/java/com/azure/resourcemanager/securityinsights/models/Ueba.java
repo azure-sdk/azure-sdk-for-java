@@ -8,15 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.UebaProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Settings with single toggle. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Settings with single toggle.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = Ueba.class, visible = true)
 @JsonTypeName("Ueba")
 @Fluent
 public final class Ueba extends SettingsInner {
+    /*
+     * The kind of the setting
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private SettingKind kind = SettingKind.UEBA;
+
     /*
      * Ueba properties
      */
@@ -24,15 +34,33 @@ public final class Ueba extends SettingsInner {
     private UebaProperties innerProperties;
 
     /**
+     * Creates an instance of Ueba class.
+     */
+    public Ueba() {
+    }
+
+    /**
+     * Get the kind property: The kind of the setting.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public SettingKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Ueba properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UebaProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Ueba withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +69,7 @@ public final class Ueba extends SettingsInner {
 
     /**
      * Get the dataSources property: The relevant data sources that enriched by ueba.
-     *
+     * 
      * @return the dataSources value.
      */
     public List<UebaDataSources> dataSources() {
@@ -50,7 +78,7 @@ public final class Ueba extends SettingsInner {
 
     /**
      * Set the dataSources property: The relevant data sources that enriched by ueba.
-     *
+     * 
      * @param dataSources the dataSources value to set.
      * @return the Ueba object itself.
      */
@@ -64,7 +92,7 @@ public final class Ueba extends SettingsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

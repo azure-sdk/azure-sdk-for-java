@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the operation. */
+/**
+ * Properties of the operation.
+ */
 @Fluent
 public final class OperationDisplay {
     /*
@@ -35,8 +37,14 @@ public final class OperationDisplay {
     private String resource;
 
     /**
+     * Creates an instance of OperationDisplay class.
+     */
+    public OperationDisplay() {
+    }
+
+    /**
      * Get the description property: Description of the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -45,7 +53,7 @@ public final class OperationDisplay {
 
     /**
      * Set the description property: Description of the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationDisplay object itself.
      */
@@ -56,7 +64,7 @@ public final class OperationDisplay {
 
     /**
      * Get the operation property: Operation name.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -65,7 +73,7 @@ public final class OperationDisplay {
 
     /**
      * Set the operation property: Operation name.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationDisplay object itself.
      */
@@ -76,7 +84,7 @@ public final class OperationDisplay {
 
     /**
      * Get the provider property: Provider name.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -85,7 +93,7 @@ public final class OperationDisplay {
 
     /**
      * Set the provider property: Provider name.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the OperationDisplay object itself.
      */
@@ -96,7 +104,7 @@ public final class OperationDisplay {
 
     /**
      * Get the resource property: Resource name.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -105,7 +113,7 @@ public final class OperationDisplay {
 
     /**
      * Set the resource property: Resource name.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationDisplay object itself.
      */
@@ -116,7 +124,7 @@ public final class OperationDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

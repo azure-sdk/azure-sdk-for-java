@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/** Submission mail entity property bag. */
+/**
+ * Submission mail entity property bag.
+ */
 @Immutable
 public final class SubmissionMailEntityProperties extends EntityCommonProperties {
     /*
@@ -74,8 +76,14 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
     private String reportType;
 
     /**
+     * Creates an instance of SubmissionMailEntityProperties class.
+     */
+    public SubmissionMailEntityProperties() {
+    }
+
+    /**
      * Get the networkMessageId property: The network message id of email to which submission belongs.
-     *
+     * 
      * @return the networkMessageId value.
      */
     public UUID networkMessageId() {
@@ -84,7 +92,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the submissionId property: The submission id.
-     *
+     * 
      * @return the submissionId value.
      */
     public UUID submissionId() {
@@ -93,7 +101,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the submitter property: The submitter.
-     *
+     * 
      * @return the submitter value.
      */
     public String submitter() {
@@ -102,7 +110,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the submissionDate property: The submission date.
-     *
+     * 
      * @return the submissionDate value.
      */
     public OffsetDateTime submissionDate() {
@@ -111,7 +119,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the timestamp property: The Time stamp when the message is received (Mail).
-     *
+     * 
      * @return the timestamp value.
      */
     public OffsetDateTime timestamp() {
@@ -120,7 +128,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the recipient property: The recipient of the mail.
-     *
+     * 
      * @return the recipient value.
      */
     public String recipient() {
@@ -129,7 +137,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the sender property: The sender of the mail.
-     *
+     * 
      * @return the sender value.
      */
     public String sender() {
@@ -138,7 +146,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the senderIp property: The sender's IP.
-     *
+     * 
      * @return the senderIp value.
      */
     public String senderIp() {
@@ -147,7 +155,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Get the subject property: The subject of submission mail.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -157,7 +165,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
     /**
      * Get the reportType property: The submission type for the given instance. This maps to Junk, Phish, Malware or
      * NotJunk.
-     *
+     * 
      * @return the reportType value.
      */
     public String reportType() {
@@ -166,7 +174,7 @@ public final class SubmissionMailEntityProperties extends EntityCommonProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents Insight Query. */
+/**
+ * Represents Insight Query.
+ */
 @Fluent
 public final class InsightQueryItemProperties extends EntityQueryItemProperties {
     /*
@@ -60,8 +62,14 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
     private InsightQueryItemPropertiesReferenceTimeRange referenceTimeRange;
 
     /**
+     * Creates an instance of InsightQueryItemProperties class.
+     */
+    public InsightQueryItemProperties() {
+    }
+
+    /**
      * Get the displayName property: The insight display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -70,7 +78,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the displayName property: The insight display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -81,7 +89,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the description property: The insight description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -90,7 +98,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the description property: The insight description.
-     *
+     * 
      * @param description the description value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -101,7 +109,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the baseQuery property: The base query of the insight.
-     *
+     * 
      * @return the baseQuery value.
      */
     public String baseQuery() {
@@ -110,7 +118,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the baseQuery property: The base query of the insight.
-     *
+     * 
      * @param baseQuery the baseQuery value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -121,7 +129,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the tableQuery property: The insight table query.
-     *
+     * 
      * @return the tableQuery value.
      */
     public InsightQueryItemPropertiesTableQuery tableQuery() {
@@ -130,7 +138,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the tableQuery property: The insight table query.
-     *
+     * 
      * @param tableQuery the tableQuery value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -141,7 +149,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the chartQuery property: The insight chart query.
-     *
+     * 
      * @return the chartQuery value.
      */
     public Object chartQuery() {
@@ -150,7 +158,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the chartQuery property: The insight chart query.
-     *
+     * 
      * @param chartQuery the chartQuery value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -161,7 +169,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the additionalQuery property: The activity query definitions.
-     *
+     * 
      * @return the additionalQuery value.
      */
     public InsightQueryItemPropertiesAdditionalQuery additionalQuery() {
@@ -170,7 +178,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the additionalQuery property: The activity query definitions.
-     *
+     * 
      * @param additionalQuery the additionalQuery value to set.
      * @return the InsightQueryItemProperties object itself.
      */
@@ -181,7 +189,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Get the defaultTimeRange property: The insight chart query.
-     *
+     * 
      * @return the defaultTimeRange value.
      */
     public InsightQueryItemPropertiesDefaultTimeRange defaultTimeRange() {
@@ -190,19 +198,19 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the defaultTimeRange property: The insight chart query.
-     *
+     * 
      * @param defaultTimeRange the defaultTimeRange value to set.
      * @return the InsightQueryItemProperties object itself.
      */
-    public InsightQueryItemProperties withDefaultTimeRange(
-        InsightQueryItemPropertiesDefaultTimeRange defaultTimeRange) {
+    public InsightQueryItemProperties
+        withDefaultTimeRange(InsightQueryItemPropertiesDefaultTimeRange defaultTimeRange) {
         this.defaultTimeRange = defaultTimeRange;
         return this;
     }
 
     /**
      * Get the referenceTimeRange property: The insight chart query.
-     *
+     * 
      * @return the referenceTimeRange value.
      */
     public InsightQueryItemPropertiesReferenceTimeRange referenceTimeRange() {
@@ -211,38 +219,46 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Set the referenceTimeRange property: The insight chart query.
-     *
+     * 
      * @param referenceTimeRange the referenceTimeRange value to set.
      * @return the InsightQueryItemProperties object itself.
      */
-    public InsightQueryItemProperties withReferenceTimeRange(
-        InsightQueryItemPropertiesReferenceTimeRange referenceTimeRange) {
+    public InsightQueryItemProperties
+        withReferenceTimeRange(InsightQueryItemPropertiesReferenceTimeRange referenceTimeRange) {
         this.referenceTimeRange = referenceTimeRange;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItemProperties withDataTypes(List<EntityQueryItemPropertiesDataTypesItem> dataTypes) {
         super.withDataTypes(dataTypes);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItemProperties withInputEntityType(EntityType inputEntityType) {
         super.withInputEntityType(inputEntityType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItemProperties withRequiredInputFieldsSets(List<List<String>> requiredInputFieldsSets) {
         super.withRequiredInputFieldsSets(requiredInputFieldsSets);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItemProperties withEntitiesFilter(Object entitiesFilter) {
         super.withEntitiesFilter(entitiesFilter);
@@ -251,7 +267,7 @@ public final class InsightQueryItemProperties extends EntityQueryItemProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

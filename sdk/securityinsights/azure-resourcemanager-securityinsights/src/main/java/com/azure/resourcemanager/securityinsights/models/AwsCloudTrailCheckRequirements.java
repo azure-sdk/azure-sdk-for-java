@@ -5,17 +5,48 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Amazon Web Services CloudTrail requirements check request. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Amazon Web Services CloudTrail requirements check request.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = AwsCloudTrailCheckRequirements.class,
+    visible = true)
 @JsonTypeName("AmazonWebServicesCloudTrail")
 @Immutable
 public final class AwsCloudTrailCheckRequirements extends DataConnectorsCheckRequirements {
+    /*
+     * Describes the kind of connector to be checked.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.AMAZON_WEB_SERVICES_CLOUD_TRAIL;
+
+    /**
+     * Creates an instance of AwsCloudTrailCheckRequirements class.
+     */
+    public AwsCloudTrailCheckRequirements() {
+    }
+
+    /**
+     * Get the kind property: Describes the kind of connector to be checked.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

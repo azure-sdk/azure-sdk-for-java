@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Query based alert rule template base property bag. */
+/**
+ * Query based alert rule template base property bag.
+ */
 @Fluent
 public class QueryBasedAlertRuleTemplateProperties {
     /*
@@ -56,9 +58,21 @@ public class QueryBasedAlertRuleTemplateProperties {
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /**
+     * Creates an instance of QueryBasedAlertRuleTemplateProperties class.
+     */
+    public QueryBasedAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -67,7 +81,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @param query the query value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -78,7 +92,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -87,7 +101,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -99,7 +113,7 @@ public class QueryBasedAlertRuleTemplateProperties {
     /**
      * Get the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -109,7 +123,7 @@ public class QueryBasedAlertRuleTemplateProperties {
     /**
      * Set the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
-     *
+     * 
      * @param version the version value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -120,7 +134,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Get the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @return the customDetails value.
      */
     public Map<String, String> customDetails() {
@@ -129,7 +143,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @param customDetails the customDetails value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -140,7 +154,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Get the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @return the entityMappings value.
      */
     public List<EntityMapping> entityMappings() {
@@ -149,7 +163,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @param entityMappings the entityMappings value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -160,7 +174,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Get the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @return the alertDetailsOverride value.
      */
     public AlertDetailsOverride alertDetailsOverride() {
@@ -169,7 +183,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @param alertDetailsOverride the alertDetailsOverride value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
@@ -180,7 +194,7 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Get the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @return the eventGroupingSettings value.
      */
     public EventGroupingSettings eventGroupingSettings() {
@@ -189,19 +203,40 @@ public class QueryBasedAlertRuleTemplateProperties {
 
     /**
      * Set the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @param eventGroupingSettings the eventGroupingSettings value to set.
      * @return the QueryBasedAlertRuleTemplateProperties object itself.
      */
-    public QueryBasedAlertRuleTemplateProperties withEventGroupingSettings(
-        EventGroupingSettings eventGroupingSettings) {
+    public QueryBasedAlertRuleTemplateProperties
+        withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
         this.eventGroupingSettings = eventGroupingSettings;
         return this;
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the QueryBasedAlertRuleTemplateProperties object itself.
+     */
+    public QueryBasedAlertRuleTemplateProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -213,6 +248,9 @@ public class QueryBasedAlertRuleTemplateProperties {
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 }

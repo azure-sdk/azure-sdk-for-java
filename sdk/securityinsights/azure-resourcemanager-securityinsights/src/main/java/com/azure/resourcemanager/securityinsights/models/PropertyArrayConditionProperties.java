@@ -6,14 +6,28 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that evaluates an array property's value. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
+/**
+ * Describes an automation rule condition that evaluates an array property's value.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "conditionType",
+    defaultImpl = PropertyArrayConditionProperties.class,
+    visible = true)
 @JsonTypeName("PropertyArray")
 @Fluent
 public final class PropertyArrayConditionProperties extends AutomationRuleCondition {
+    /*
+     * The conditionType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "conditionType", required = true)
+    private ConditionType conditionType = ConditionType.PROPERTY_ARRAY;
+
     /*
      * The conditionProperties property.
      */
@@ -21,8 +35,24 @@ public final class PropertyArrayConditionProperties extends AutomationRuleCondit
     private AutomationRulePropertyArrayValuesCondition conditionProperties;
 
     /**
+     * Creates an instance of PropertyArrayConditionProperties class.
+     */
+    public PropertyArrayConditionProperties() {
+    }
+
+    /**
+     * Get the conditionType property: The conditionType property.
+     * 
+     * @return the conditionType value.
+     */
+    @Override
+    public ConditionType conditionType() {
+        return this.conditionType;
+    }
+
+    /**
      * Get the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRulePropertyArrayValuesCondition conditionProperties() {
@@ -31,19 +61,19 @@ public final class PropertyArrayConditionProperties extends AutomationRuleCondit
 
     /**
      * Set the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the PropertyArrayConditionProperties object itself.
      */
-    public PropertyArrayConditionProperties withConditionProperties(
-        AutomationRulePropertyArrayValuesCondition conditionProperties) {
+    public PropertyArrayConditionProperties
+        withConditionProperties(AutomationRulePropertyArrayValuesCondition conditionProperties) {
         this.conditionProperties = conditionProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

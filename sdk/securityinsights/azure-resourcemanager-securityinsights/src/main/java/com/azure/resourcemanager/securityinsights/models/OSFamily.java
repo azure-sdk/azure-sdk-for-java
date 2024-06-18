@@ -7,24 +7,38 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The operating system type. */
+/**
+ * The operating system type.
+ */
 public enum OSFamily {
-    /** Enum value Linux. */
+    /**
+     * Enum value Linux.
+     */
     LINUX("Linux"),
 
-    /** Enum value Windows. */
+    /**
+     * Enum value Windows.
+     */
     WINDOWS("Windows"),
 
-    /** Enum value Android. */
+    /**
+     * Enum value Android.
+     */
     ANDROID("Android"),
 
-    /** Enum value IOS. */
+    /**
+     * Enum value IOS.
+     */
     IOS("IOS"),
 
-    /** Enum value Unknown. */
+    /**
+     * Enum value Unknown.
+     */
     UNKNOWN("Unknown");
 
-    /** The actual serialized value for a OSFamily instance. */
+    /**
+     * The actual serialized value for a OSFamily instance.
+     */
     private final String value;
 
     OSFamily(String value) {
@@ -33,7 +47,7 @@ public enum OSFamily {
 
     /**
      * Parses a serialized value to a OSFamily instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed OSFamily object, or null if unable to parse.
      */
@@ -51,7 +65,9 @@ public enum OSFamily {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

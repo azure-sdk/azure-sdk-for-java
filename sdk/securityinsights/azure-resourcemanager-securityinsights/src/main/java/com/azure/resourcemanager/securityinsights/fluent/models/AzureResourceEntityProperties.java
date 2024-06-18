@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AzureResource entity property bag. */
+/**
+ * AzureResource entity property bag.
+ */
 @Immutable
 public final class AzureResourceEntityProperties extends EntityCommonProperties {
     /*
@@ -24,8 +26,14 @@ public final class AzureResourceEntityProperties extends EntityCommonProperties 
     private String subscriptionId;
 
     /**
+     * Creates an instance of AzureResourceEntityProperties class.
+     */
+    public AzureResourceEntityProperties() {
+    }
+
+    /**
      * Get the resourceId property: The azure resource id of the resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -34,7 +42,7 @@ public final class AzureResourceEntityProperties extends EntityCommonProperties 
 
     /**
      * Get the subscriptionId property: The subscription id of the resource.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -43,7 +51,7 @@ public final class AzureResourceEntityProperties extends EntityCommonProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

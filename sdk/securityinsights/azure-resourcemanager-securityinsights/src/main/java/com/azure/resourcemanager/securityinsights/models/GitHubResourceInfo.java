@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resources created in GitHub repository. */
+/**
+ * Resources created in GitHub repository.
+ */
 @Fluent
 public final class GitHubResourceInfo {
     /*
@@ -17,8 +19,14 @@ public final class GitHubResourceInfo {
     private String appInstallationId;
 
     /**
+     * Creates an instance of GitHubResourceInfo class.
+     */
+    public GitHubResourceInfo() {
+    }
+
+    /**
      * Get the appInstallationId property: GitHub application installation id.
-     *
+     * 
      * @return the appInstallationId value.
      */
     public String appInstallationId() {
@@ -27,7 +35,7 @@ public final class GitHubResourceInfo {
 
     /**
      * Set the appInstallationId property: GitHub application installation id.
-     *
+     * 
      * @param appInstallationId the appInstallationId value to set.
      * @return the GitHubResourceInfo object itself.
      */
@@ -38,7 +46,7 @@ public final class GitHubResourceInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

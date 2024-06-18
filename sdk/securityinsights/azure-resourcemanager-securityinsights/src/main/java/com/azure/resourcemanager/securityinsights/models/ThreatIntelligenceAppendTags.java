@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Array of tags to be appended to the threat intelligence indicator. */
+/**
+ * Array of tags to be appended to the threat intelligence indicator.
+ */
 @Fluent
 public final class ThreatIntelligenceAppendTags {
     /*
@@ -18,8 +20,14 @@ public final class ThreatIntelligenceAppendTags {
     private List<String> threatIntelligenceTags;
 
     /**
+     * Creates an instance of ThreatIntelligenceAppendTags class.
+     */
+    public ThreatIntelligenceAppendTags() {
+    }
+
+    /**
      * Get the threatIntelligenceTags property: List of tags to be appended.
-     *
+     * 
      * @return the threatIntelligenceTags value.
      */
     public List<String> threatIntelligenceTags() {
@@ -28,7 +36,7 @@ public final class ThreatIntelligenceAppendTags {
 
     /**
      * Set the threatIntelligenceTags property: List of tags to be appended.
-     *
+     * 
      * @param threatIntelligenceTags the threatIntelligenceTags value to set.
      * @return the ThreatIntelligenceAppendTags object itself.
      */
@@ -39,7 +47,7 @@ public final class ThreatIntelligenceAppendTags {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

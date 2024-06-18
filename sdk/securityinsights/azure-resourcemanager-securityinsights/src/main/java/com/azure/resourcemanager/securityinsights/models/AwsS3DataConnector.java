@@ -8,15 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AwsS3DataConnectorProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Represents Amazon Web Services S3 data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Amazon Web Services S3 data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = AwsS3DataConnector.class, visible = true)
 @JsonTypeName("AmazonWebServicesS3")
 @Fluent
 public final class AwsS3DataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.AMAZON_WEB_SERVICES_S3;
+
     /*
      * Amazon Web Services S3 data connector properties.
      */
@@ -24,15 +34,33 @@ public final class AwsS3DataConnector extends DataConnectorInner {
     private AwsS3DataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of AwsS3DataConnector class.
+     */
+    public AwsS3DataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Amazon Web Services S3 data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AwsS3DataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AwsS3DataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +69,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Get the destinationTable property: The logs destination table name in LogAnalytics.
-     *
+     * 
      * @return the destinationTable value.
      */
     public String destinationTable() {
@@ -50,7 +78,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Set the destinationTable property: The logs destination table name in LogAnalytics.
-     *
+     * 
      * @param destinationTable the destinationTable value to set.
      * @return the AwsS3DataConnector object itself.
      */
@@ -64,7 +92,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Get the sqsUrls property: The AWS sqs urls for the connector.
-     *
+     * 
      * @return the sqsUrls value.
      */
     public List<String> sqsUrls() {
@@ -73,7 +101,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Set the sqsUrls property: The AWS sqs urls for the connector.
-     *
+     * 
      * @param sqsUrls the sqsUrls value to set.
      * @return the AwsS3DataConnector object itself.
      */
@@ -87,7 +115,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Get the roleArn property: The Aws Role Arn that is used to access the Aws account.
-     *
+     * 
      * @return the roleArn value.
      */
     public String roleArn() {
@@ -96,7 +124,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Set the roleArn property: The Aws Role Arn that is used to access the Aws account.
-     *
+     * 
      * @param roleArn the roleArn value to set.
      * @return the AwsS3DataConnector object itself.
      */
@@ -110,7 +138,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AwsS3DataConnectorDataTypes dataTypes() {
@@ -119,7 +147,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AwsS3DataConnector object itself.
      */
@@ -133,7 +161,7 @@ public final class AwsS3DataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

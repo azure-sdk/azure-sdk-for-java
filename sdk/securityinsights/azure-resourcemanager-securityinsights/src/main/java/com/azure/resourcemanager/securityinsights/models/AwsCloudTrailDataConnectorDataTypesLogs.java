@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Logs data type. */
+/**
+ * Logs data type.
+ */
 @Fluent
 public final class AwsCloudTrailDataConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of AwsCloudTrailDataConnectorDataTypesLogs class.
+     */
+    public AwsCloudTrailDataConnectorDataTypesLogs() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AwsCloudTrailDataConnectorDataTypesLogs withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class AwsCloudTrailDataConnectorDataTypesLogs extends DataConnector
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

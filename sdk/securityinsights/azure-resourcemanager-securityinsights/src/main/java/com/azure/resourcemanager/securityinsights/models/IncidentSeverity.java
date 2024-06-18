@@ -8,23 +8,42 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The severity of the incident. */
+/**
+ * The severity of the incident.
+ */
 public final class IncidentSeverity extends ExpandableStringEnum<IncidentSeverity> {
-    /** Static value High for IncidentSeverity. */
+    /**
+     * Static value High for IncidentSeverity.
+     */
     public static final IncidentSeverity HIGH = fromString("High");
 
-    /** Static value Medium for IncidentSeverity. */
+    /**
+     * Static value Medium for IncidentSeverity.
+     */
     public static final IncidentSeverity MEDIUM = fromString("Medium");
 
-    /** Static value Low for IncidentSeverity. */
+    /**
+     * Static value Low for IncidentSeverity.
+     */
     public static final IncidentSeverity LOW = fromString("Low");
 
-    /** Static value Informational for IncidentSeverity. */
+    /**
+     * Static value Informational for IncidentSeverity.
+     */
     public static final IncidentSeverity INFORMATIONAL = fromString("Informational");
 
     /**
+     * Creates a new instance of IncidentSeverity value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentSeverity() {
+    }
+
+    /**
      * Creates or finds a IncidentSeverity from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IncidentSeverity.
      */
@@ -35,7 +54,7 @@ public final class IncidentSeverity extends ExpandableStringEnum<IncidentSeverit
 
     /**
      * Gets known IncidentSeverity values.
-     *
+     * 
      * @return known IncidentSeverity values.
      */
     public static Collection<IncidentSeverity> values() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The AutomationRulePropertyArrayChangedValuesCondition model. */
+/**
+ * The AutomationRulePropertyArrayChangedValuesCondition model.
+ */
 @Fluent
 public final class AutomationRulePropertyArrayChangedValuesCondition {
     /*
@@ -23,8 +25,14 @@ public final class AutomationRulePropertyArrayChangedValuesCondition {
     private AutomationRulePropertyArrayChangedConditionSupportedChangeType changeType;
 
     /**
+     * Creates an instance of AutomationRulePropertyArrayChangedValuesCondition class.
+     */
+    public AutomationRulePropertyArrayChangedValuesCondition() {
+    }
+
+    /**
      * Get the arrayType property: The arrayType property.
-     *
+     * 
      * @return the arrayType value.
      */
     public AutomationRulePropertyArrayChangedConditionSupportedArrayType arrayType() {
@@ -33,19 +41,19 @@ public final class AutomationRulePropertyArrayChangedValuesCondition {
 
     /**
      * Set the arrayType property: The arrayType property.
-     *
+     * 
      * @param arrayType the arrayType value to set.
      * @return the AutomationRulePropertyArrayChangedValuesCondition object itself.
      */
-    public AutomationRulePropertyArrayChangedValuesCondition withArrayType(
-        AutomationRulePropertyArrayChangedConditionSupportedArrayType arrayType) {
+    public AutomationRulePropertyArrayChangedValuesCondition
+        withArrayType(AutomationRulePropertyArrayChangedConditionSupportedArrayType arrayType) {
         this.arrayType = arrayType;
         return this;
     }
 
     /**
      * Get the changeType property: The changeType property.
-     *
+     * 
      * @return the changeType value.
      */
     public AutomationRulePropertyArrayChangedConditionSupportedChangeType changeType() {
@@ -54,19 +62,19 @@ public final class AutomationRulePropertyArrayChangedValuesCondition {
 
     /**
      * Set the changeType property: The changeType property.
-     *
+     * 
      * @param changeType the changeType value to set.
      * @return the AutomationRulePropertyArrayChangedValuesCondition object itself.
      */
-    public AutomationRulePropertyArrayChangedValuesCondition withChangeType(
-        AutomationRulePropertyArrayChangedConditionSupportedChangeType changeType) {
+    public AutomationRulePropertyArrayChangedValuesCondition
+        withChangeType(AutomationRulePropertyArrayChangedConditionSupportedChangeType changeType) {
         this.changeType = changeType;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** File entity property bag. */
+/**
+ * File entity property bag.
+ */
 @Immutable
 public final class FileEntityProperties extends EntityCommonProperties {
     /*
@@ -37,8 +39,14 @@ public final class FileEntityProperties extends EntityCommonProperties {
     private String hostEntityId;
 
     /**
+     * Creates an instance of FileEntityProperties class.
+     */
+    public FileEntityProperties() {
+    }
+
+    /**
      * Get the directory property: The full path to the file.
-     *
+     * 
      * @return the directory value.
      */
     public String directory() {
@@ -47,7 +55,7 @@ public final class FileEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the fileHashEntityIds property: The file hash entity identifiers associated with this file.
-     *
+     * 
      * @return the fileHashEntityIds value.
      */
     public List<String> fileHashEntityIds() {
@@ -56,7 +64,7 @@ public final class FileEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the fileName property: The file name without path (some alerts might not include path).
-     *
+     * 
      * @return the fileName value.
      */
     public String fileName() {
@@ -65,7 +73,7 @@ public final class FileEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostEntityId property: The Host entity id which the file belongs to.
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -74,7 +82,7 @@ public final class FileEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.CodelessParameters;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Codeless UI data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Codeless UI data connector.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = CodelessUiDataConnector.class,
+    visible = true)
 @JsonTypeName("GenericUI")
 @Fluent
 public final class CodelessUiDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.GENERIC_UI;
+
     /*
      * Codeless UI data connector properties
      */
@@ -23,15 +37,33 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
     private CodelessParameters innerProperties;
 
     /**
+     * Creates an instance of CodelessUiDataConnector class.
+     */
+    public CodelessUiDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Codeless UI data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CodelessParameters innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +72,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @return the connectorUiConfig value.
      */
     public CodelessUiConnectorConfigProperties connectorUiConfig() {
@@ -49,7 +81,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Set the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @param connectorUiConfig the connectorUiConfig value to set.
      * @return the CodelessUiDataConnector object itself.
      */
@@ -63,7 +95,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

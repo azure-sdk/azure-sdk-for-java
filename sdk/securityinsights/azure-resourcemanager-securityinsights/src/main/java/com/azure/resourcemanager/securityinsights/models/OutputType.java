@@ -8,23 +8,42 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Insights Column type. */
+/**
+ * Insights Column type.
+ */
 public final class OutputType extends ExpandableStringEnum<OutputType> {
-    /** Static value Number for OutputType. */
+    /**
+     * Static value Number for OutputType.
+     */
     public static final OutputType NUMBER = fromString("Number");
 
-    /** Static value String for OutputType. */
+    /**
+     * Static value String for OutputType.
+     */
     public static final OutputType STRING = fromString("String");
 
-    /** Static value Date for OutputType. */
+    /**
+     * Static value Date for OutputType.
+     */
     public static final OutputType DATE = fromString("Date");
 
-    /** Static value Entity for OutputType. */
+    /**
+     * Static value Entity for OutputType.
+     */
     public static final OutputType ENTITY = fromString("Entity");
 
     /**
+     * Creates a new instance of OutputType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public OutputType() {
+    }
+
+    /**
      * Creates or finds a OutputType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding OutputType.
      */
@@ -35,7 +54,7 @@ public final class OutputType extends ExpandableStringEnum<OutputType> {
 
     /**
      * Gets known OutputType values.
-     *
+     * 
      * @return known OutputType values.
      */
     public static Collection<OutputType> values() {

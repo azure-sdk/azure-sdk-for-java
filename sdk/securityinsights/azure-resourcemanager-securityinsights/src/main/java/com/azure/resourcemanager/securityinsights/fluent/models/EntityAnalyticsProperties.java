@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityProviders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** EntityAnalytics property bag. */
+/**
+ * EntityAnalytics property bag.
+ */
 @Fluent
 public final class EntityAnalyticsProperties {
     /*
@@ -19,8 +21,14 @@ public final class EntityAnalyticsProperties {
     private List<EntityProviders> entityProviders;
 
     /**
+     * Creates an instance of EntityAnalyticsProperties class.
+     */
+    public EntityAnalyticsProperties() {
+    }
+
+    /**
      * Get the entityProviders property: The relevant entity providers that are synced.
-     *
+     * 
      * @return the entityProviders value.
      */
     public List<EntityProviders> entityProviders() {
@@ -29,7 +37,7 @@ public final class EntityAnalyticsProperties {
 
     /**
      * Set the entityProviders property: The relevant entity providers that are synced.
-     *
+     * 
      * @param entityProviders the entityProviders value to set.
      * @return the EntityAnalyticsProperties object itself.
      */
@@ -40,7 +48,7 @@ public final class EntityAnalyticsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

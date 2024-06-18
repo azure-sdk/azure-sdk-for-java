@@ -7,15 +7,30 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
+import java.util.List;
 
-/** Represents security alert timeline item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents security alert timeline item.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = SecurityAlertTimelineItem.class,
+    visible = true)
 @JsonTypeName("SecurityAlert")
 @Fluent
 public final class SecurityAlertTimelineItem extends EntityTimelineItem {
+    /*
+     * The entity query kind type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityTimelineKind kind = EntityTimelineKind.SECURITY_ALERT;
+
     /*
      * The alert azure resource id.
      */
@@ -70,9 +85,37 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
     @JsonProperty(value = "alertType", required = true)
     private String alertType;
 
+    /*
+     * The intent of the alert.
+     */
+    @JsonProperty(value = "intent", access = JsonProperty.Access.WRITE_ONLY)
+    private KillChainIntent intent;
+
+    /*
+     * The techniques of the alert.
+     */
+    @JsonProperty(value = "techniques")
+    private List<String> techniques;
+
+    /**
+     * Creates an instance of SecurityAlertTimelineItem class.
+     */
+    public SecurityAlertTimelineItem() {
+    }
+
+    /**
+     * Get the kind property: The entity query kind type.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityTimelineKind kind() {
+        return this.kind;
+    }
+
     /**
      * Get the azureResourceId property: The alert azure resource id.
-     *
+     * 
      * @return the azureResourceId value.
      */
     public String azureResourceId() {
@@ -81,7 +124,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the azureResourceId property: The alert azure resource id.
-     *
+     * 
      * @param azureResourceId the azureResourceId value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -92,7 +135,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the productName property: The alert product name.
-     *
+     * 
      * @return the productName value.
      */
     public String productName() {
@@ -101,7 +144,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the productName property: The alert product name.
-     *
+     * 
      * @param productName the productName value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -112,7 +155,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the description property: The alert description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -121,7 +164,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the description property: The alert description.
-     *
+     * 
      * @param description the description value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -132,7 +175,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the displayName property: The alert name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -141,7 +184,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the displayName property: The alert name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -152,7 +195,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the severity property: The alert severity.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -161,7 +204,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the severity property: The alert severity.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -172,7 +215,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the endTimeUtc property: The alert end time.
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -181,7 +224,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the endTimeUtc property: The alert end time.
-     *
+     * 
      * @param endTimeUtc the endTimeUtc value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -192,7 +235,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the startTimeUtc property: The alert start time.
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -201,7 +244,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the startTimeUtc property: The alert start time.
-     *
+     * 
      * @param startTimeUtc the startTimeUtc value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -212,7 +255,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the timeGenerated property: The alert generated time.
-     *
+     * 
      * @return the timeGenerated value.
      */
     public OffsetDateTime timeGenerated() {
@@ -221,7 +264,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the timeGenerated property: The alert generated time.
-     *
+     * 
      * @param timeGenerated the timeGenerated value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -232,7 +275,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the alertType property: The name of the alert type.
-     *
+     * 
      * @return the alertType value.
      */
     public String alertType() {
@@ -241,7 +284,7 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the alertType property: The name of the alert type.
-     *
+     * 
      * @param alertType the alertType value to set.
      * @return the SecurityAlertTimelineItem object itself.
      */
@@ -251,54 +294,76 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
     }
 
     /**
+     * Get the intent property: The intent of the alert.
+     * 
+     * @return the intent value.
+     */
+    public KillChainIntent intent() {
+        return this.intent;
+    }
+
+    /**
+     * Get the techniques property: The techniques of the alert.
+     * 
+     * @return the techniques value.
+     */
+    public List<String> techniques() {
+        return this.techniques;
+    }
+
+    /**
+     * Set the techniques property: The techniques of the alert.
+     * 
+     * @param techniques the techniques value to set.
+     * @return the SecurityAlertTimelineItem object itself.
+     */
+    public SecurityAlertTimelineItem withTechniques(List<String> techniques) {
+        this.techniques = techniques;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (azureResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureResourceId in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property azureResourceId in model SecurityAlertTimelineItem"));
         }
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property displayName in model SecurityAlertTimelineItem"));
         }
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severity in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property severity in model SecurityAlertTimelineItem"));
         }
         if (endTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property endTimeUtc in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property endTimeUtc in model SecurityAlertTimelineItem"));
         }
         if (startTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property startTimeUtc in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property startTimeUtc in model SecurityAlertTimelineItem"));
         }
         if (timeGenerated() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property timeGenerated in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property timeGenerated in model SecurityAlertTimelineItem"));
         }
         if (alertType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property alertType in model SecurityAlertTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property alertType in model SecurityAlertTimelineItem"));
         }
     }
 

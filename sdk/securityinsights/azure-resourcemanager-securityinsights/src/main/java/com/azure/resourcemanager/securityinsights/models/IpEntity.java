@@ -4,20 +4,30 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IpEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Represents an ip entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents an ip entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = IpEntity.class, visible = true)
 @JsonTypeName("Ip")
-@Fluent
+@Immutable
 public final class IpEntity extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.IP;
+
     /*
      * Ip entity properties
      */
@@ -25,8 +35,24 @@ public final class IpEntity extends EntityInner {
     private IpEntityProperties innerProperties;
 
     /**
+     * Creates an instance of IpEntity class.
+     */
+    public IpEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Ip entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpEntityProperties innerProperties() {
@@ -35,7 +61,7 @@ public final class IpEntity extends EntityInner {
 
     /**
      * Get the address property: The IP address as string, e.g. 127.0.0.1 (either in Ipv4 or Ipv6).
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -44,7 +70,7 @@ public final class IpEntity extends EntityInner {
 
     /**
      * Get the location property: The geo-location context attached to the ip entity.
-     *
+     * 
      * @return the location value.
      */
     public GeoLocation location() {
@@ -53,7 +79,7 @@ public final class IpEntity extends EntityInner {
 
     /**
      * Get the threatIntelligence property: A list of TI contexts attached to the ip entity.
-     *
+     * 
      * @return the threatIntelligence value.
      */
     public List<ThreatIntelligence> threatIntelligence() {
@@ -63,7 +89,7 @@ public final class IpEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -73,7 +99,7 @@ public final class IpEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -82,7 +108,7 @@ public final class IpEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

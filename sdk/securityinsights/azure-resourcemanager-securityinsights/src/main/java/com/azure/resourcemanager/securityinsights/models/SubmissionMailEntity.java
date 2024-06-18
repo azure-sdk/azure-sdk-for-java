@@ -4,21 +4,31 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SubmissionMailEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.UUID;
 
-/** Represents a submission mail entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a submission mail entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = SubmissionMailEntity.class, visible = true)
 @JsonTypeName("SubmissionMail")
-@Fluent
+@Immutable
 public final class SubmissionMailEntity extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.SUBMISSION_MAIL;
+
     /*
      * Submission mail entity properties
      */
@@ -26,8 +36,24 @@ public final class SubmissionMailEntity extends EntityInner {
     private SubmissionMailEntityProperties innerProperties;
 
     /**
+     * Creates an instance of SubmissionMailEntity class.
+     */
+    public SubmissionMailEntity() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Submission mail entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SubmissionMailEntityProperties innerProperties() {
@@ -36,7 +62,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the networkMessageId property: The network message id of email to which submission belongs.
-     *
+     * 
      * @return the networkMessageId value.
      */
     public UUID networkMessageId() {
@@ -45,7 +71,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the submissionId property: The submission id.
-     *
+     * 
      * @return the submissionId value.
      */
     public UUID submissionId() {
@@ -54,7 +80,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the submitter property: The submitter.
-     *
+     * 
      * @return the submitter value.
      */
     public String submitter() {
@@ -63,7 +89,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the submissionDate property: The submission date.
-     *
+     * 
      * @return the submissionDate value.
      */
     public OffsetDateTime submissionDate() {
@@ -72,7 +98,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the timestamp property: The Time stamp when the message is received (Mail).
-     *
+     * 
      * @return the timestamp value.
      */
     public OffsetDateTime timestamp() {
@@ -81,7 +107,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the recipient property: The recipient of the mail.
-     *
+     * 
      * @return the recipient value.
      */
     public String recipient() {
@@ -90,7 +116,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the sender property: The sender of the mail.
-     *
+     * 
      * @return the sender value.
      */
     public String sender() {
@@ -99,7 +125,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the senderIp property: The sender's IP.
-     *
+     * 
      * @return the senderIp value.
      */
     public String senderIp() {
@@ -108,7 +134,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Get the subject property: The subject of submission mail.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -118,7 +144,7 @@ public final class SubmissionMailEntity extends EntityInner {
     /**
      * Get the reportType property: The submission type for the given instance. This maps to Junk, Phish, Malware or
      * NotJunk.
-     *
+     * 
      * @return the reportType value.
      */
     public String reportType() {
@@ -128,7 +154,7 @@ public final class SubmissionMailEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -138,7 +164,7 @@ public final class SubmissionMailEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -147,7 +173,7 @@ public final class SubmissionMailEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes threat kill chain phase entity. */
+/**
+ * Describes threat kill chain phase entity.
+ */
 @Fluent
 public final class ThreatIntelligenceKillChainPhase {
     /*
@@ -23,8 +25,14 @@ public final class ThreatIntelligenceKillChainPhase {
     private String phaseName;
 
     /**
+     * Creates an instance of ThreatIntelligenceKillChainPhase class.
+     */
+    public ThreatIntelligenceKillChainPhase() {
+    }
+
+    /**
      * Get the killChainName property: Kill chainName name.
-     *
+     * 
      * @return the killChainName value.
      */
     public String killChainName() {
@@ -33,7 +41,7 @@ public final class ThreatIntelligenceKillChainPhase {
 
     /**
      * Set the killChainName property: Kill chainName name.
-     *
+     * 
      * @param killChainName the killChainName value to set.
      * @return the ThreatIntelligenceKillChainPhase object itself.
      */
@@ -44,7 +52,7 @@ public final class ThreatIntelligenceKillChainPhase {
 
     /**
      * Get the phaseName property: Phase name.
-     *
+     * 
      * @return the phaseName value.
      */
     public String phaseName() {
@@ -53,7 +61,7 @@ public final class ThreatIntelligenceKillChainPhase {
 
     /**
      * Set the phaseName property: Phase name.
-     *
+     * 
      * @param phaseName the phaseName value to set.
      * @return the ThreatIntelligenceKillChainPhase object itself.
      */
@@ -64,7 +72,7 @@ public final class ThreatIntelligenceKillChainPhase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

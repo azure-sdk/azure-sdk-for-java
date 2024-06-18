@@ -7,21 +7,51 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceResourceInnerKind;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Threat intelligence information object. */
+/**
+ * Threat intelligence information object.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
-    defaultImpl = ThreatIntelligenceInformationInner.class)
+    defaultImpl = ThreatIntelligenceInformationInner.class,
+    visible = true)
 @JsonTypeName("ThreatIntelligenceInformation")
-@JsonSubTypes({@JsonSubTypes.Type(name = "indicator", value = ThreatIntelligenceIndicatorModel.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "indicator", value = ThreatIntelligenceIndicatorModel.class) })
 @Fluent
 public class ThreatIntelligenceInformationInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private ThreatIntelligenceResourceInnerKind kind;
+
+    /**
+     * Creates an instance of ThreatIntelligenceInformationInner class.
+     */
+    public ThreatIntelligenceInformationInner() {
+        this.kind = ThreatIntelligenceResourceInnerKind.fromString("ThreatIntelligenceInformation");
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    public ThreatIntelligenceResourceInnerKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceInformationInner withEtag(String etag) {
         super.withEtag(etag);
@@ -30,7 +60,7 @@ public class ThreatIntelligenceInformationInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

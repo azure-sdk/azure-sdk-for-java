@@ -4,22 +4,56 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.resourcemanager.securityinsights.fluent.models.GetQueriesResponseInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryItemInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of GetQueriesResponse. */
-public interface GetQueriesResponse {
-    /**
-     * Gets the value property: The query result values.
-     *
-     * @return the value value.
+/**
+ * Retrieve queries for entity result operation response.
+ */
+@Fluent
+public final class GetQueriesResponse {
+    /*
+     * The query result values.
      */
-    List<EntityQueryItem> value();
+    @JsonProperty(value = "value")
+    private List<EntityQueryItemInner> value;
 
     /**
-     * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.GetQueriesResponseInner object.
-     *
-     * @return the inner object.
+     * Creates an instance of GetQueriesResponse class.
      */
-    GetQueriesResponseInner innerModel();
+    public GetQueriesResponse() {
+    }
+
+    /**
+     * Get the value property: The query result values.
+     * 
+     * @return the value value.
+     */
+    public List<EntityQueryItemInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: The query result values.
+     * 
+     * @param value the value value to set.
+     * @return the GetQueriesResponse object itself.
+     */
+    public GetQueriesResponse withValue(List<EntityQueryItemInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() != null) {
+            value().forEach(e -> e.validate());
+        }
+    }
 }

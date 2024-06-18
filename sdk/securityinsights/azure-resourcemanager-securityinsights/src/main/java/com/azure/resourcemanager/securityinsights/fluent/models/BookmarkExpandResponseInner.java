@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.BookmarkExpandResponseV
 import com.azure.resourcemanager.securityinsights.models.ExpansionResultsMetadata;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The entity expansion result operation response. */
+/**
+ * The entity expansion result operation response.
+ */
 @Fluent
 public final class BookmarkExpandResponseInner {
     /*
@@ -25,8 +27,14 @@ public final class BookmarkExpandResponseInner {
     private BookmarkExpandResponseValue value;
 
     /**
+     * Creates an instance of BookmarkExpandResponseInner class.
+     */
+    public BookmarkExpandResponseInner() {
+    }
+
+    /**
      * Get the metadata property: The metadata from the expansion operation results.
-     *
+     * 
      * @return the metadata value.
      */
     public ExpansionResultsMetadata metadata() {
@@ -35,7 +43,7 @@ public final class BookmarkExpandResponseInner {
 
     /**
      * Set the metadata property: The metadata from the expansion operation results.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the BookmarkExpandResponseInner object itself.
      */
@@ -46,7 +54,7 @@ public final class BookmarkExpandResponseInner {
 
     /**
      * Get the value property: The expansion result values.
-     *
+     * 
      * @return the value value.
      */
     public BookmarkExpandResponseValue value() {
@@ -55,7 +63,7 @@ public final class BookmarkExpandResponseInner {
 
     /**
      * Set the value property: The expansion result values.
-     *
+     * 
      * @param value the value value to set.
      * @return the BookmarkExpandResponseInner object itself.
      */
@@ -66,7 +74,7 @@ public final class BookmarkExpandResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

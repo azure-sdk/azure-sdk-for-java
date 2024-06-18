@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.AwsCloudTrailDataConnectorProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Amazon Web Services CloudTrail data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Amazon Web Services CloudTrail data connector.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = AwsCloudTrailDataConnector.class,
+    visible = true)
 @JsonTypeName("AmazonWebServicesCloudTrail")
 @Fluent
 public final class AwsCloudTrailDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.AMAZON_WEB_SERVICES_CLOUD_TRAIL;
+
     /*
      * Amazon Web Services CloudTrail data connector properties.
      */
@@ -23,15 +37,33 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
     private AwsCloudTrailDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of AwsCloudTrailDataConnector class.
+     */
+    public AwsCloudTrailDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Amazon Web Services CloudTrail data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AwsCloudTrailDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AwsCloudTrailDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +73,7 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
     /**
      * Get the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
      * account.
-     *
+     * 
      * @return the awsRoleArn value.
      */
     public String awsRoleArn() {
@@ -51,7 +83,7 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
     /**
      * Set the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
      * account.
-     *
+     * 
      * @param awsRoleArn the awsRoleArn value to set.
      * @return the AwsCloudTrailDataConnector object itself.
      */
@@ -65,7 +97,7 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AwsCloudTrailDataConnectorDataTypes dataTypes() {
@@ -74,7 +106,7 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AwsCloudTrailDataConnector object itself.
      */
@@ -88,7 +120,7 @@ public final class AwsCloudTrailDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The alert rule template status. */
+/**
+ * The alert rule template status.
+ */
 public final class TemplateStatus extends ExpandableStringEnum<TemplateStatus> {
-    /** Static value Installed for TemplateStatus. */
+    /**
+     * Static value Installed for TemplateStatus.
+     */
     public static final TemplateStatus INSTALLED = fromString("Installed");
 
-    /** Static value Available for TemplateStatus. */
+    /**
+     * Static value Available for TemplateStatus.
+     */
     public static final TemplateStatus AVAILABLE = fromString("Available");
 
-    /** Static value NotAvailable for TemplateStatus. */
+    /**
+     * Static value NotAvailable for TemplateStatus.
+     */
     public static final TemplateStatus NOT_AVAILABLE = fromString("NotAvailable");
 
     /**
+     * Creates a new instance of TemplateStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public TemplateStatus() {
+    }
+
+    /**
      * Creates or finds a TemplateStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TemplateStatus.
      */
@@ -32,7 +49,7 @@ public final class TemplateStatus extends ExpandableStringEnum<TemplateStatus> {
 
     /**
      * Gets known TemplateStatus values.
-     *
+     * 
      * @return known TemplateStatus values.
      */
     public static Collection<TemplateStatus> values() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** confidence reason item. */
+/**
+ * confidence reason item.
+ */
 @Immutable
 public final class SecurityAlertPropertiesConfidenceReasonsItem {
     /*
@@ -23,8 +25,14 @@ public final class SecurityAlertPropertiesConfidenceReasonsItem {
     private String reasonType;
 
     /**
+     * Creates an instance of SecurityAlertPropertiesConfidenceReasonsItem class.
+     */
+    public SecurityAlertPropertiesConfidenceReasonsItem() {
+    }
+
+    /**
      * Get the reason property: The reason's description.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -33,7 +41,7 @@ public final class SecurityAlertPropertiesConfidenceReasonsItem {
 
     /**
      * Get the reasonType property: The type (category) of the reason.
-     *
+     * 
      * @return the reasonType value.
      */
     public String reasonType() {
@@ -42,7 +50,7 @@ public final class SecurityAlertPropertiesConfidenceReasonsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

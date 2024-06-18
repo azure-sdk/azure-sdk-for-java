@@ -8,17 +8,27 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.HuntingBookmarkProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a Hunting bookmark entity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents a Hunting bookmark entity.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = HuntingBookmark.class, visible = true)
 @JsonTypeName("Bookmark")
 @Fluent
 public final class HuntingBookmark extends EntityInner {
+    /*
+     * The kind of the entity.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityKindEnum kind = EntityKindEnum.BOOKMARK;
+
     /*
      * HuntingBookmark entity properties
      */
@@ -26,8 +36,24 @@ public final class HuntingBookmark extends EntityInner {
     private HuntingBookmarkProperties innerProperties;
 
     /**
+     * Creates an instance of HuntingBookmark class.
+     */
+    public HuntingBookmark() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityKindEnum kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: HuntingBookmark entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HuntingBookmarkProperties innerProperties() {
@@ -36,7 +62,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the created property: The time the bookmark was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -45,7 +71,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the created property: The time the bookmark was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -59,7 +85,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -68,7 +94,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -82,7 +108,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the displayName property: The display name of the bookmark.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -91,7 +117,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the displayName property: The display name of the bookmark.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -105,7 +131,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the eventTime property: The time of the event.
-     *
+     * 
      * @return the eventTime value.
      */
     public OffsetDateTime eventTime() {
@@ -114,7 +140,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the eventTime property: The time of the event.
-     *
+     * 
      * @param eventTime the eventTime value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -128,7 +154,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -137,7 +163,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -151,7 +177,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the notes property: The notes of the bookmark.
-     *
+     * 
      * @return the notes value.
      */
     public String notes() {
@@ -160,7 +186,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the notes property: The notes of the bookmark.
-     *
+     * 
      * @param notes the notes value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -174,7 +200,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the query property: The query of the bookmark.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -183,7 +209,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the query property: The query of the bookmark.
-     *
+     * 
      * @param query the query value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -197,7 +223,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @return the queryResult value.
      */
     public String queryResult() {
@@ -206,7 +232,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @param queryResult the queryResult value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -220,7 +246,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -229,7 +255,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -243,7 +269,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -252,7 +278,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -266,7 +292,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Get the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @return the incidentInfo value.
      */
     public IncidentInfo incidentInfo() {
@@ -275,7 +301,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Set the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @param incidentInfo the incidentInfo value to set.
      * @return the HuntingBookmark object itself.
      */
@@ -290,7 +316,7 @@ public final class HuntingBookmark extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -300,7 +326,7 @@ public final class HuntingBookmark extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -309,7 +335,7 @@ public final class HuntingBookmark extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

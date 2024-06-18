@@ -8,23 +8,42 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Source type of the content. */
+/**
+ * Source type of the content.
+ */
 public final class SourceKind extends ExpandableStringEnum<SourceKind> {
-    /** Static value LocalWorkspace for SourceKind. */
+    /**
+     * Static value LocalWorkspace for SourceKind.
+     */
     public static final SourceKind LOCAL_WORKSPACE = fromString("LocalWorkspace");
 
-    /** Static value Community for SourceKind. */
+    /**
+     * Static value Community for SourceKind.
+     */
     public static final SourceKind COMMUNITY = fromString("Community");
 
-    /** Static value Solution for SourceKind. */
+    /**
+     * Static value Solution for SourceKind.
+     */
     public static final SourceKind SOLUTION = fromString("Solution");
 
-    /** Static value SourceRepository for SourceKind. */
+    /**
+     * Static value SourceRepository for SourceKind.
+     */
     public static final SourceKind SOURCE_REPOSITORY = fromString("SourceRepository");
 
     /**
+     * Creates a new instance of SourceKind value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public SourceKind() {
+    }
+
+    /**
      * Creates or finds a SourceKind from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SourceKind.
      */
@@ -35,7 +54,7 @@ public final class SourceKind extends ExpandableStringEnum<SourceKind> {
 
     /**
      * Gets known SourceKind values.
-     *
+     * 
      * @return known SourceKind values.
      */
     public static Collection<SourceKind> values() {

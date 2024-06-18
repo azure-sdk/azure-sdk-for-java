@@ -8,14 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeAtpDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents OfficeATP (Office 365 Advanced Threat Protection) data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents OfficeATP (Office 365 Advanced Threat Protection) data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = OfficeAtpDataConnector.class, visible = true)
 @JsonTypeName("OfficeATP")
 @Fluent
 public final class OfficeAtpDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.OFFICE_ATP;
+
     /*
      * OfficeATP (Office 365 Advanced Threat Protection) data connector properties.
      */
@@ -23,15 +33,33 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
     private OfficeAtpDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of OfficeAtpDataConnector class.
+     */
+    public OfficeAtpDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: OfficeATP (Office 365 Advanced Threat Protection) data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OfficeAtpDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeAtpDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +68,7 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -49,7 +77,7 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficeAtpDataConnector object itself.
      */
@@ -63,7 +91,7 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +100,7 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the OfficeAtpDataConnector object itself.
      */
@@ -86,7 +114,7 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

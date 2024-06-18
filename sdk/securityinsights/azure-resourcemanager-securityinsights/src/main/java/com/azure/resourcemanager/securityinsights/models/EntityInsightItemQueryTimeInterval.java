@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The Time interval that the query actually executed on. */
+/**
+ * The Time interval that the query actually executed on.
+ */
 @Fluent
 public final class EntityInsightItemQueryTimeInterval {
     /*
@@ -24,8 +26,14 @@ public final class EntityInsightItemQueryTimeInterval {
     private OffsetDateTime endTime;
 
     /**
+     * Creates an instance of EntityInsightItemQueryTimeInterval class.
+     */
+    public EntityInsightItemQueryTimeInterval() {
+    }
+
+    /**
      * Get the startTime property: Insight query start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -34,7 +42,7 @@ public final class EntityInsightItemQueryTimeInterval {
 
     /**
      * Set the startTime property: Insight query start time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the EntityInsightItemQueryTimeInterval object itself.
      */
@@ -45,7 +53,7 @@ public final class EntityInsightItemQueryTimeInterval {
 
     /**
      * Get the endTime property: Insight query end time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -54,7 +62,7 @@ public final class EntityInsightItemQueryTimeInterval {
 
     /**
      * Set the endTime property: Insight query end time.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the EntityInsightItemQueryTimeInterval object itself.
      */
@@ -65,7 +73,7 @@ public final class EntityInsightItemQueryTimeInterval {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

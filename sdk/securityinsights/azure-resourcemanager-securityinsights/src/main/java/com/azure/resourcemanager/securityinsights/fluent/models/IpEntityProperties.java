@@ -11,7 +11,9 @@ import com.azure.resourcemanager.securityinsights.models.ThreatIntelligence;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Ip entity property bag. */
+/**
+ * Ip entity property bag.
+ */
 @Immutable
 public final class IpEntityProperties extends EntityCommonProperties {
     /*
@@ -33,8 +35,14 @@ public final class IpEntityProperties extends EntityCommonProperties {
     private List<ThreatIntelligence> threatIntelligence;
 
     /**
+     * Creates an instance of IpEntityProperties class.
+     */
+    public IpEntityProperties() {
+    }
+
+    /**
      * Get the address property: The IP address as string, e.g. 127.0.0.1 (either in Ipv4 or Ipv6).
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -43,7 +51,7 @@ public final class IpEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the location property: The geo-location context attached to the ip entity.
-     *
+     * 
      * @return the location value.
      */
     public GeoLocation location() {
@@ -52,7 +60,7 @@ public final class IpEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the threatIntelligence property: A list of TI contexts attached to the ip entity.
-     *
+     * 
      * @return the threatIntelligence value.
      */
     public List<ThreatIntelligence> threatIntelligence() {
@@ -61,7 +69,7 @@ public final class IpEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

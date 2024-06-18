@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Description about a deployment. */
+/**
+ * Description about a deployment.
+ */
 @Fluent
 public final class Deployment {
     /*
@@ -42,8 +44,14 @@ public final class Deployment {
     private String deploymentLogsUrl;
 
     /**
+     * Creates an instance of Deployment class.
+     */
+    public Deployment() {
+    }
+
+    /**
      * Get the deploymentId property: Deployment identifier.
-     *
+     * 
      * @return the deploymentId value.
      */
     public String deploymentId() {
@@ -52,7 +60,7 @@ public final class Deployment {
 
     /**
      * Set the deploymentId property: Deployment identifier.
-     *
+     * 
      * @param deploymentId the deploymentId value to set.
      * @return the Deployment object itself.
      */
@@ -63,7 +71,7 @@ public final class Deployment {
 
     /**
      * Get the deploymentState property: Current status of the deployment.
-     *
+     * 
      * @return the deploymentState value.
      */
     public DeploymentState deploymentState() {
@@ -72,7 +80,7 @@ public final class Deployment {
 
     /**
      * Set the deploymentState property: Current status of the deployment.
-     *
+     * 
      * @param deploymentState the deploymentState value to set.
      * @return the Deployment object itself.
      */
@@ -83,7 +91,7 @@ public final class Deployment {
 
     /**
      * Get the deploymentResult property: The outcome of the deployment.
-     *
+     * 
      * @return the deploymentResult value.
      */
     public DeploymentResult deploymentResult() {
@@ -92,7 +100,7 @@ public final class Deployment {
 
     /**
      * Set the deploymentResult property: The outcome of the deployment.
-     *
+     * 
      * @param deploymentResult the deploymentResult value to set.
      * @return the Deployment object itself.
      */
@@ -103,7 +111,7 @@ public final class Deployment {
 
     /**
      * Get the deploymentTime property: The time when the deployment finished.
-     *
+     * 
      * @return the deploymentTime value.
      */
     public OffsetDateTime deploymentTime() {
@@ -112,7 +120,7 @@ public final class Deployment {
 
     /**
      * Set the deploymentTime property: The time when the deployment finished.
-     *
+     * 
      * @param deploymentTime the deploymentTime value to set.
      * @return the Deployment object itself.
      */
@@ -123,7 +131,7 @@ public final class Deployment {
 
     /**
      * Get the deploymentLogsUrl property: Url to access repository action logs.
-     *
+     * 
      * @return the deploymentLogsUrl value.
      */
     public String deploymentLogsUrl() {
@@ -132,7 +140,7 @@ public final class Deployment {
 
     /**
      * Set the deploymentLogsUrl property: Url to access repository action logs.
-     *
+     * 
      * @param deploymentLogsUrl the deploymentLogsUrl value to set.
      * @return the Deployment object itself.
      */
@@ -143,7 +151,7 @@ public final class Deployment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

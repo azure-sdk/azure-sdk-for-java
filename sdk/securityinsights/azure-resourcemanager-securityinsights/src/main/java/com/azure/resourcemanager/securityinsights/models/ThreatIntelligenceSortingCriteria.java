@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** List of available columns for sorting. */
+/**
+ * List of available columns for sorting.
+ */
 @Fluent
 public final class ThreatIntelligenceSortingCriteria {
     /*
@@ -20,11 +22,17 @@ public final class ThreatIntelligenceSortingCriteria {
      * Sorting order (ascending/descending/unsorted).
      */
     @JsonProperty(value = "sortOrder")
-    private ThreatIntelligenceSortingCriteriaEnum sortOrder;
+    private ThreatIntelligenceSortingOrder sortOrder;
+
+    /**
+     * Creates an instance of ThreatIntelligenceSortingCriteria class.
+     */
+    public ThreatIntelligenceSortingCriteria() {
+    }
 
     /**
      * Get the itemKey property: Column name.
-     *
+     * 
      * @return the itemKey value.
      */
     public String itemKey() {
@@ -33,7 +41,7 @@ public final class ThreatIntelligenceSortingCriteria {
 
     /**
      * Set the itemKey property: Column name.
-     *
+     * 
      * @param itemKey the itemKey value to set.
      * @return the ThreatIntelligenceSortingCriteria object itself.
      */
@@ -44,27 +52,27 @@ public final class ThreatIntelligenceSortingCriteria {
 
     /**
      * Get the sortOrder property: Sorting order (ascending/descending/unsorted).
-     *
+     * 
      * @return the sortOrder value.
      */
-    public ThreatIntelligenceSortingCriteriaEnum sortOrder() {
+    public ThreatIntelligenceSortingOrder sortOrder() {
         return this.sortOrder;
     }
 
     /**
      * Set the sortOrder property: Sorting order (ascending/descending/unsorted).
-     *
+     * 
      * @param sortOrder the sortOrder value to set.
      * @return the ThreatIntelligenceSortingCriteria object itself.
      */
-    public ThreatIntelligenceSortingCriteria withSortOrder(ThreatIntelligenceSortingCriteriaEnum sortOrder) {
+    public ThreatIntelligenceSortingCriteria withSortOrder(ThreatIntelligenceSortingOrder sortOrder) {
         this.sortOrder = sortOrder;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRulePropertyValuesCondition model. */
+/**
+ * The AutomationRulePropertyValuesCondition model.
+ */
 @Fluent
 public final class AutomationRulePropertyValuesCondition {
     /*
@@ -30,8 +32,14 @@ public final class AutomationRulePropertyValuesCondition {
     private List<String> propertyValues;
 
     /**
+     * Creates an instance of AutomationRulePropertyValuesCondition class.
+     */
+    public AutomationRulePropertyValuesCondition() {
+    }
+
+    /**
      * Get the propertyName property: The property to evaluate in an automation rule property condition.
-     *
+     * 
      * @return the propertyName value.
      */
     public AutomationRulePropertyConditionSupportedProperty propertyName() {
@@ -40,19 +48,19 @@ public final class AutomationRulePropertyValuesCondition {
 
     /**
      * Set the propertyName property: The property to evaluate in an automation rule property condition.
-     *
+     * 
      * @param propertyName the propertyName value to set.
      * @return the AutomationRulePropertyValuesCondition object itself.
      */
-    public AutomationRulePropertyValuesCondition withPropertyName(
-        AutomationRulePropertyConditionSupportedProperty propertyName) {
+    public AutomationRulePropertyValuesCondition
+        withPropertyName(AutomationRulePropertyConditionSupportedProperty propertyName) {
         this.propertyName = propertyName;
         return this;
     }
 
     /**
      * Get the operator property: The operator property.
-     *
+     * 
      * @return the operator value.
      */
     public AutomationRulePropertyConditionSupportedOperator operator() {
@@ -61,19 +69,19 @@ public final class AutomationRulePropertyValuesCondition {
 
     /**
      * Set the operator property: The operator property.
-     *
+     * 
      * @param operator the operator value to set.
      * @return the AutomationRulePropertyValuesCondition object itself.
      */
-    public AutomationRulePropertyValuesCondition withOperator(
-        AutomationRulePropertyConditionSupportedOperator operator) {
+    public AutomationRulePropertyValuesCondition
+        withOperator(AutomationRulePropertyConditionSupportedOperator operator) {
         this.operator = operator;
         return this;
     }
 
     /**
      * Get the propertyValues property: The propertyValues property.
-     *
+     * 
      * @return the propertyValues value.
      */
     public List<String> propertyValues() {
@@ -82,7 +90,7 @@ public final class AutomationRulePropertyValuesCondition {
 
     /**
      * Set the propertyValues property: The propertyValues property.
-     *
+     * 
      * @param propertyValues the propertyValues value to set.
      * @return the AutomationRulePropertyValuesCondition object itself.
      */
@@ -93,7 +101,7 @@ public final class AutomationRulePropertyValuesCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

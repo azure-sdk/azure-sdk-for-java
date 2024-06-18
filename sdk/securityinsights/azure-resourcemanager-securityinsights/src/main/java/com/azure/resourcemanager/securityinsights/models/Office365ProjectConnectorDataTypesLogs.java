@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Logs data type. */
+/**
+ * Logs data type.
+ */
 @Fluent
 public final class Office365ProjectConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of Office365ProjectConnectorDataTypesLogs class.
+     */
+    public Office365ProjectConnectorDataTypesLogs() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office365ProjectConnectorDataTypesLogs withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class Office365ProjectConnectorDataTypesLogs extends DataConnectorD
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

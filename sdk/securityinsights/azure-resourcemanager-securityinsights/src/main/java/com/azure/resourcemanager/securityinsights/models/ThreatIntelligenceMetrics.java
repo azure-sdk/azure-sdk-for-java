@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Threat intelligence metrics. */
+/**
+ * Threat intelligence metrics.
+ */
 @Fluent
 public final class ThreatIntelligenceMetrics {
     /*
@@ -17,8 +19,14 @@ public final class ThreatIntelligenceMetrics {
     private ThreatIntelligenceMetric properties;
 
     /**
+     * Creates an instance of ThreatIntelligenceMetrics class.
+     */
+    public ThreatIntelligenceMetrics() {
+    }
+
+    /**
      * Get the properties property: Threat intelligence metrics.
-     *
+     * 
      * @return the properties value.
      */
     public ThreatIntelligenceMetric properties() {
@@ -27,7 +35,7 @@ public final class ThreatIntelligenceMetrics {
 
     /**
      * Set the properties property: Threat intelligence metrics.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ThreatIntelligenceMetrics object itself.
      */
@@ -38,7 +46,7 @@ public final class ThreatIntelligenceMetrics {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

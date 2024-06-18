@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.azure.resourcemanager.securityinsights.models.FileHashAlgorithm;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** FileHash entity property bag. */
+/**
+ * FileHash entity property bag.
+ */
 @Immutable
 public final class FileHashEntityProperties extends EntityCommonProperties {
     /*
@@ -25,8 +27,14 @@ public final class FileHashEntityProperties extends EntityCommonProperties {
     private String hashValue;
 
     /**
+     * Creates an instance of FileHashEntityProperties class.
+     */
+    public FileHashEntityProperties() {
+    }
+
+    /**
      * Get the algorithm property: The hash algorithm type.
-     *
+     * 
      * @return the algorithm value.
      */
     public FileHashAlgorithm algorithm() {
@@ -35,7 +43,7 @@ public final class FileHashEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hashValue property: The file hash value.
-     *
+     * 
      * @return the hashValue value.
      */
     public String hashValue() {
@@ -44,7 +52,7 @@ public final class FileHashEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

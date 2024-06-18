@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes parsed pattern entity. */
+/**
+ * Describes parsed pattern entity.
+ */
 @Fluent
 public final class ThreatIntelligenceParsedPattern {
     /*
@@ -24,8 +26,14 @@ public final class ThreatIntelligenceParsedPattern {
     private List<ThreatIntelligenceParsedPatternTypeValue> patternTypeValues;
 
     /**
+     * Creates an instance of ThreatIntelligenceParsedPattern class.
+     */
+    public ThreatIntelligenceParsedPattern() {
+    }
+
+    /**
      * Get the patternTypeKey property: Pattern type key.
-     *
+     * 
      * @return the patternTypeKey value.
      */
     public String patternTypeKey() {
@@ -34,7 +42,7 @@ public final class ThreatIntelligenceParsedPattern {
 
     /**
      * Set the patternTypeKey property: Pattern type key.
-     *
+     * 
      * @param patternTypeKey the patternTypeKey value to set.
      * @return the ThreatIntelligenceParsedPattern object itself.
      */
@@ -45,7 +53,7 @@ public final class ThreatIntelligenceParsedPattern {
 
     /**
      * Get the patternTypeValues property: Pattern type keys.
-     *
+     * 
      * @return the patternTypeValues value.
      */
     public List<ThreatIntelligenceParsedPatternTypeValue> patternTypeValues() {
@@ -54,19 +62,19 @@ public final class ThreatIntelligenceParsedPattern {
 
     /**
      * Set the patternTypeValues property: Pattern type keys.
-     *
+     * 
      * @param patternTypeValues the patternTypeValues value to set.
      * @return the ThreatIntelligenceParsedPattern object itself.
      */
-    public ThreatIntelligenceParsedPattern withPatternTypeValues(
-        List<ThreatIntelligenceParsedPatternTypeValue> patternTypeValues) {
+    public ThreatIntelligenceParsedPattern
+        withPatternTypeValues(List<ThreatIntelligenceParsedPatternTypeValue> patternTypeValues) {
         this.patternTypeValues = patternTypeValues;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

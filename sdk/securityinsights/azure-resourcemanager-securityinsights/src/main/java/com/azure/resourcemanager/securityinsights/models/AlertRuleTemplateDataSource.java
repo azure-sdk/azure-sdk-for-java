@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** alert rule template data sources. */
+/**
+ * alert rule template data sources.
+ */
 @Fluent
 public final class AlertRuleTemplateDataSource {
     /*
@@ -24,8 +26,14 @@ public final class AlertRuleTemplateDataSource {
     private List<String> dataTypes;
 
     /**
+     * Creates an instance of AlertRuleTemplateDataSource class.
+     */
+    public AlertRuleTemplateDataSource() {
+    }
+
+    /**
      * Get the connectorId property: The connector id that provides the following data types.
-     *
+     * 
      * @return the connectorId value.
      */
     public String connectorId() {
@@ -34,7 +42,7 @@ public final class AlertRuleTemplateDataSource {
 
     /**
      * Set the connectorId property: The connector id that provides the following data types.
-     *
+     * 
      * @param connectorId the connectorId value to set.
      * @return the AlertRuleTemplateDataSource object itself.
      */
@@ -45,7 +53,7 @@ public final class AlertRuleTemplateDataSource {
 
     /**
      * Get the dataTypes property: The data types used by the alert rule template.
-     *
+     * 
      * @return the dataTypes value.
      */
     public List<String> dataTypes() {
@@ -54,7 +62,7 @@ public final class AlertRuleTemplateDataSource {
 
     /**
      * Set the dataTypes property: The data types used by the alert rule template.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AlertRuleTemplateDataSource object itself.
      */
@@ -65,7 +73,7 @@ public final class AlertRuleTemplateDataSource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

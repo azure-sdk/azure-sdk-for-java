@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A single field mapping of the mapped entity. */
+/**
+ * A single field mapping of the mapped entity.
+ */
 @Fluent
 public final class FieldMapping {
     /*
@@ -23,8 +25,14 @@ public final class FieldMapping {
     private String columnName;
 
     /**
+     * Creates an instance of FieldMapping class.
+     */
+    public FieldMapping() {
+    }
+
+    /**
      * Get the identifier property: the V3 identifier of the entity.
-     *
+     * 
      * @return the identifier value.
      */
     public String identifier() {
@@ -33,7 +41,7 @@ public final class FieldMapping {
 
     /**
      * Set the identifier property: the V3 identifier of the entity.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the FieldMapping object itself.
      */
@@ -44,7 +52,7 @@ public final class FieldMapping {
 
     /**
      * Get the columnName property: the column name to be mapped to the identifier.
-     *
+     * 
      * @return the columnName value.
      */
     public String columnName() {
@@ -53,7 +61,7 @@ public final class FieldMapping {
 
     /**
      * Set the columnName property: the column name to be mapped to the identifier.
-     *
+     * 
      * @param columnName the columnName value to set.
      * @return the FieldMapping object itself.
      */
@@ -64,7 +72,7 @@ public final class FieldMapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

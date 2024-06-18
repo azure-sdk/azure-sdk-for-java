@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes related incident information for the bookmark. */
+/**
+ * Describes related incident information for the bookmark.
+ */
 @Fluent
 public final class IncidentInfo {
     /*
@@ -35,8 +37,14 @@ public final class IncidentInfo {
     private String relationName;
 
     /**
+     * Creates an instance of IncidentInfo class.
+     */
+    public IncidentInfo() {
+    }
+
+    /**
      * Get the incidentId property: Incident Id.
-     *
+     * 
      * @return the incidentId value.
      */
     public String incidentId() {
@@ -45,7 +53,7 @@ public final class IncidentInfo {
 
     /**
      * Set the incidentId property: Incident Id.
-     *
+     * 
      * @param incidentId the incidentId value to set.
      * @return the IncidentInfo object itself.
      */
@@ -56,7 +64,7 @@ public final class IncidentInfo {
 
     /**
      * Get the severity property: The severity of the incident.
-     *
+     * 
      * @return the severity value.
      */
     public IncidentSeverity severity() {
@@ -65,7 +73,7 @@ public final class IncidentInfo {
 
     /**
      * Set the severity property: The severity of the incident.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the IncidentInfo object itself.
      */
@@ -76,7 +84,7 @@ public final class IncidentInfo {
 
     /**
      * Get the title property: The title of the incident.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -85,7 +93,7 @@ public final class IncidentInfo {
 
     /**
      * Set the title property: The title of the incident.
-     *
+     * 
      * @param title the title value to set.
      * @return the IncidentInfo object itself.
      */
@@ -96,7 +104,7 @@ public final class IncidentInfo {
 
     /**
      * Get the relationName property: Relation Name.
-     *
+     * 
      * @return the relationName value.
      */
     public String relationName() {
@@ -105,7 +113,7 @@ public final class IncidentInfo {
 
     /**
      * Set the relationName property: Relation Name.
-     *
+     * 
      * @param relationName the relationName value to set.
      * @return the IncidentInfo object itself.
      */
@@ -116,7 +124,7 @@ public final class IncidentInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

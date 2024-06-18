@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Sentinel onboarding state properties. */
+/**
+ * The Sentinel onboarding state properties.
+ */
 @Fluent
 public final class SentinelOnboardingStateProperties {
     /*
@@ -17,8 +19,14 @@ public final class SentinelOnboardingStateProperties {
     private Boolean customerManagedKey;
 
     /**
+     * Creates an instance of SentinelOnboardingStateProperties class.
+     */
+    public SentinelOnboardingStateProperties() {
+    }
+
+    /**
      * Get the customerManagedKey property: Flag that indicates the status of the CMK setting.
-     *
+     * 
      * @return the customerManagedKey value.
      */
     public Boolean customerManagedKey() {
@@ -27,7 +35,7 @@ public final class SentinelOnboardingStateProperties {
 
     /**
      * Set the customerManagedKey property: Flag that indicates the status of the CMK setting.
-     *
+     * 
      * @param customerManagedKey the customerManagedKey value to set.
      * @return the SentinelOnboardingStateProperties object itself.
      */
@@ -38,7 +46,7 @@ public final class SentinelOnboardingStateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

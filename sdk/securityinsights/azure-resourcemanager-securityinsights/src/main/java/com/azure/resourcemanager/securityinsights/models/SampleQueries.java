@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The sample queries for the connector. */
+/**
+ * The sample queries for the connector.
+ */
 @Fluent
 public class SampleQueries {
     /*
@@ -23,8 +25,14 @@ public class SampleQueries {
     private String query;
 
     /**
+     * Creates an instance of SampleQueries class.
+     */
+    public SampleQueries() {
+    }
+
+    /**
      * Get the description property: The sample query description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -33,7 +41,7 @@ public class SampleQueries {
 
     /**
      * Set the description property: The sample query description.
-     *
+     * 
      * @param description the description value to set.
      * @return the SampleQueries object itself.
      */
@@ -44,7 +52,7 @@ public class SampleQueries {
 
     /**
      * Get the query property: the sample query.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -53,7 +61,7 @@ public class SampleQueries {
 
     /**
      * Set the query property: the sample query.
-     *
+     * 
      * @param query the query value to set.
      * @return the SampleQueries object itself.
      */
@@ -64,7 +72,7 @@ public class SampleQueries {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

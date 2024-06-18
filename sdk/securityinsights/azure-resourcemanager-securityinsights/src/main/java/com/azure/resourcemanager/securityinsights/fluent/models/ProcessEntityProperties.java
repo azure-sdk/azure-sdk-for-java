@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Process entity property bag. */
+/**
+ * Process entity property bag.
+ */
 @Fluent
 public final class ProcessEntityProperties extends EntityCommonProperties {
     /*
@@ -68,8 +70,14 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
     private String processId;
 
     /**
+     * Creates an instance of ProcessEntityProperties class.
+     */
+    public ProcessEntityProperties() {
+    }
+
+    /**
      * Get the accountEntityId property: The account entity id running the processes.
-     *
+     * 
      * @return the accountEntityId value.
      */
     public String accountEntityId() {
@@ -78,7 +86,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the commandLine property: The command line used to create the process.
-     *
+     * 
      * @return the commandLine value.
      */
     public String commandLine() {
@@ -87,7 +95,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the creationTimeUtc property: The time when the process started to run.
-     *
+     * 
      * @return the creationTimeUtc value.
      */
     public OffsetDateTime creationTimeUtc() {
@@ -96,7 +104,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the elevationToken property: The elevation token associated with the process.
-     *
+     * 
      * @return the elevationToken value.
      */
     public ElevationToken elevationToken() {
@@ -105,7 +113,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the elevationToken property: The elevation token associated with the process.
-     *
+     * 
      * @param elevationToken the elevationToken value to set.
      * @return the ProcessEntityProperties object itself.
      */
@@ -116,7 +124,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostEntityId property: The host entity id on which the process was running.
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -125,7 +133,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostLogonSessionEntityId property: The session entity id in which the process was running.
-     *
+     * 
      * @return the hostLogonSessionEntityId value.
      */
     public String hostLogonSessionEntityId() {
@@ -134,7 +142,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the imageFileEntityId property: Image file entity id.
-     *
+     * 
      * @return the imageFileEntityId value.
      */
     public String imageFileEntityId() {
@@ -143,7 +151,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the parentProcessEntityId property: The parent process entity id.
-     *
+     * 
      * @return the parentProcessEntityId value.
      */
     public String parentProcessEntityId() {
@@ -152,7 +160,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the processId property: The process ID.
-     *
+     * 
      * @return the processId value.
      */
     public String processId() {
@@ -161,7 +169,7 @@ public final class ProcessEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

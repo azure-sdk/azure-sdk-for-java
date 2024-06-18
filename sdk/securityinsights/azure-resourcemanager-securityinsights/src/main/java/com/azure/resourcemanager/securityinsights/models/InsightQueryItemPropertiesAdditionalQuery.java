@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The activity query definitions. */
+/**
+ * The activity query definitions.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesAdditionalQuery {
     /*
@@ -23,8 +25,14 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
     private String text;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesAdditionalQuery class.
+     */
+    public InsightQueryItemPropertiesAdditionalQuery() {
+    }
+
+    /**
      * Get the query property: The insight query.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -33,7 +41,7 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
 
     /**
      * Set the query property: The insight query.
-     *
+     * 
      * @param query the query value to set.
      * @return the InsightQueryItemPropertiesAdditionalQuery object itself.
      */
@@ -44,7 +52,7 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
 
     /**
      * Get the text property: The insight text.
-     *
+     * 
      * @return the text value.
      */
     public String text() {
@@ -53,7 +61,7 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
 
     /**
      * Set the text property: The insight text.
-     *
+     * 
      * @param text the text value to set.
      * @return the InsightQueryItemPropertiesAdditionalQuery object itself.
      */
@@ -64,7 +72,7 @@ public final class InsightQueryItemPropertiesAdditionalQuery {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

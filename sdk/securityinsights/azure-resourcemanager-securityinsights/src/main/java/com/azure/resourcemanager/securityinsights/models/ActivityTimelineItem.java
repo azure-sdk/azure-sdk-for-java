@@ -7,15 +7,25 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** Represents Activity timeline item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Activity timeline item.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = ActivityTimelineItem.class, visible = true)
 @JsonTypeName("Activity")
 @Fluent
 public final class ActivityTimelineItem extends EntityTimelineItem {
+    /*
+     * The entity query kind type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityTimelineKind kind = EntityTimelineKind.ACTIVITY;
+
     /*
      * The activity query id.
      */
@@ -59,8 +69,24 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
     private String title;
 
     /**
+     * Creates an instance of ActivityTimelineItem class.
+     */
+    public ActivityTimelineItem() {
+    }
+
+    /**
+     * Get the kind property: The entity query kind type.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityTimelineKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the queryId property: The activity query id.
-     *
+     * 
      * @return the queryId value.
      */
     public String queryId() {
@@ -69,7 +95,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the queryId property: The activity query id.
-     *
+     * 
      * @param queryId the queryId value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -80,7 +106,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the bucketStartTimeUtc property: The grouping bucket start time.
-     *
+     * 
      * @return the bucketStartTimeUtc value.
      */
     public OffsetDateTime bucketStartTimeUtc() {
@@ -89,7 +115,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the bucketStartTimeUtc property: The grouping bucket start time.
-     *
+     * 
      * @param bucketStartTimeUtc the bucketStartTimeUtc value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -100,7 +126,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the bucketEndTimeUtc property: The grouping bucket end time.
-     *
+     * 
      * @return the bucketEndTimeUtc value.
      */
     public OffsetDateTime bucketEndTimeUtc() {
@@ -109,7 +135,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the bucketEndTimeUtc property: The grouping bucket end time.
-     *
+     * 
      * @param bucketEndTimeUtc the bucketEndTimeUtc value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -120,7 +146,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the firstActivityTimeUtc property: The time of the first activity in the grouping bucket.
-     *
+     * 
      * @return the firstActivityTimeUtc value.
      */
     public OffsetDateTime firstActivityTimeUtc() {
@@ -129,7 +155,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the firstActivityTimeUtc property: The time of the first activity in the grouping bucket.
-     *
+     * 
      * @param firstActivityTimeUtc the firstActivityTimeUtc value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -140,7 +166,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the lastActivityTimeUtc property: The time of the last activity in the grouping bucket.
-     *
+     * 
      * @return the lastActivityTimeUtc value.
      */
     public OffsetDateTime lastActivityTimeUtc() {
@@ -149,7 +175,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the lastActivityTimeUtc property: The time of the last activity in the grouping bucket.
-     *
+     * 
      * @param lastActivityTimeUtc the lastActivityTimeUtc value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -160,7 +186,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the content property: The activity timeline content.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -169,7 +195,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the content property: The activity timeline content.
-     *
+     * 
      * @param content the content value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -180,7 +206,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the title property: The activity timeline title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -189,7 +215,7 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the title property: The activity timeline title.
-     *
+     * 
      * @param title the title value to set.
      * @return the ActivityTimelineItem object itself.
      */
@@ -200,50 +226,43 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (queryId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property queryId in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property queryId in model ActivityTimelineItem"));
         }
         if (bucketStartTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bucketStartTimeUtc in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property bucketStartTimeUtc in model ActivityTimelineItem"));
         }
         if (bucketEndTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bucketEndTimeUtc in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property bucketEndTimeUtc in model ActivityTimelineItem"));
         }
         if (firstActivityTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property firstActivityTimeUtc in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property firstActivityTimeUtc in model ActivityTimelineItem"));
         }
         if (lastActivityTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property lastActivityTimeUtc in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property lastActivityTimeUtc in model ActivityTimelineItem"));
         }
         if (content() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property content in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property content in model ActivityTimelineItem"));
         }
         if (title() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property title in model ActivityTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property title in model ActivityTimelineItem"));
         }
     }
 

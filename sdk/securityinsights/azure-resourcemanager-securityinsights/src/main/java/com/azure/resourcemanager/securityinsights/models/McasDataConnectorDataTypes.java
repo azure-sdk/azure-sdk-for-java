@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for MCAS (Microsoft Cloud App Security) data connector. */
+/**
+ * The available data types for MCAS (Microsoft Cloud App Security) data connector.
+ */
 @Fluent
 public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnector {
     /*
@@ -17,8 +19,14 @@ public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnec
     private DataConnectorDataTypeCommon discoveryLogs;
 
     /**
+     * Creates an instance of McasDataConnectorDataTypes class.
+     */
+    public McasDataConnectorDataTypes() {
+    }
+
+    /**
      * Get the discoveryLogs property: Discovery log data type connection.
-     *
+     * 
      * @return the discoveryLogs value.
      */
     public DataConnectorDataTypeCommon discoveryLogs() {
@@ -27,7 +35,7 @@ public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnec
 
     /**
      * Set the discoveryLogs property: Discovery log data type connection.
-     *
+     * 
      * @param discoveryLogs the discoveryLogs value to set.
      * @return the McasDataConnectorDataTypes object itself.
      */
@@ -36,7 +44,9 @@ public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnec
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public McasDataConnectorDataTypes withAlerts(DataConnectorDataTypeCommon alerts) {
         super.withAlerts(alerts);
@@ -45,7 +55,7 @@ public final class McasDataConnectorDataTypes extends AlertsDataTypeOfDataConnec
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

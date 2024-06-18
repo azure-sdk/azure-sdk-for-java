@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes threat intelligence metric entity. */
+/**
+ * Describes threat intelligence metric entity.
+ */
 @Fluent
 public final class ThreatIntelligenceMetricEntity {
     /*
@@ -23,8 +25,14 @@ public final class ThreatIntelligenceMetricEntity {
     private Integer metricValue;
 
     /**
+     * Creates an instance of ThreatIntelligenceMetricEntity class.
+     */
+    public ThreatIntelligenceMetricEntity() {
+    }
+
+    /**
      * Get the metricName property: Metric name.
-     *
+     * 
      * @return the metricName value.
      */
     public String metricName() {
@@ -33,7 +41,7 @@ public final class ThreatIntelligenceMetricEntity {
 
     /**
      * Set the metricName property: Metric name.
-     *
+     * 
      * @param metricName the metricName value to set.
      * @return the ThreatIntelligenceMetricEntity object itself.
      */
@@ -44,7 +52,7 @@ public final class ThreatIntelligenceMetricEntity {
 
     /**
      * Get the metricValue property: Metric value.
-     *
+     * 
      * @return the metricValue value.
      */
     public Integer metricValue() {
@@ -53,7 +61,7 @@ public final class ThreatIntelligenceMetricEntity {
 
     /**
      * Set the metricValue property: Metric value.
-     *
+     * 
      * @param metricValue the metricValue value to set.
      * @return the ThreatIntelligenceMetricEntity object itself.
      */
@@ -64,7 +72,7 @@ public final class ThreatIntelligenceMetricEntity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

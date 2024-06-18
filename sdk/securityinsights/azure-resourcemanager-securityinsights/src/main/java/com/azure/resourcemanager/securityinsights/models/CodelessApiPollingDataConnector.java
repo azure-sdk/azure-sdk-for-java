@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.ApiPollingParameters;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Codeless API Polling data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Codeless API Polling data connector.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = CodelessApiPollingDataConnector.class,
+    visible = true)
 @JsonTypeName("APIPolling")
 @Fluent
 public final class CodelessApiPollingDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.APIPOLLING;
+
     /*
      * Codeless poling data connector properties
      */
@@ -23,15 +37,33 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
     private ApiPollingParameters innerProperties;
 
     /**
+     * Creates an instance of CodelessApiPollingDataConnector class.
+     */
+    public CodelessApiPollingDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Codeless poling data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ApiPollingParameters innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessApiPollingDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +72,7 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
 
     /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @return the connectorUiConfig value.
      */
     public CodelessUiConnectorConfigProperties connectorUiConfig() {
@@ -49,12 +81,12 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
 
     /**
      * Set the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @param connectorUiConfig the connectorUiConfig value to set.
      * @return the CodelessApiPollingDataConnector object itself.
      */
-    public CodelessApiPollingDataConnector withConnectorUiConfig(
-        CodelessUiConnectorConfigProperties connectorUiConfig) {
+    public CodelessApiPollingDataConnector
+        withConnectorUiConfig(CodelessUiConnectorConfigProperties connectorUiConfig) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ApiPollingParameters();
         }
@@ -64,7 +96,7 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
 
     /**
      * Get the pollingConfig property: Config to describe the polling instructions.
-     *
+     * 
      * @return the pollingConfig value.
      */
     public CodelessConnectorPollingConfigProperties pollingConfig() {
@@ -73,7 +105,7 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
 
     /**
      * Set the pollingConfig property: Config to describe the polling instructions.
-     *
+     * 
      * @param pollingConfig the pollingConfig value to set.
      * @return the CodelessApiPollingDataConnector object itself.
      */
@@ -87,7 +119,7 @@ public final class CodelessApiPollingDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
