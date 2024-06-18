@@ -7,8 +7,11 @@ package com.azure.resourcemanager.oracledatabase.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.oracledatabase.models.GiVersionProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * GiVersion resource definition.
@@ -18,13 +21,11 @@ public final class GiVersionInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties")
     private GiVersionProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /**
@@ -67,9 +68,56 @@ public final class GiVersionInner extends ProxyResource {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (properties() != null) {
             properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GiVersionInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GiVersionInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the GiVersionInner.
+     */
+    public static GiVersionInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GiVersionInner deserializedGiVersionInner = new GiVersionInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedGiVersionInner.withId(reader.getString());
+                } else if ("name".equals(fieldName)) {
+                    deserializedGiVersionInner.withName(reader.getString());
+                } else if ("type".equals(fieldName)) {
+                    deserializedGiVersionInner.withType(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    deserializedGiVersionInner.properties = GiVersionProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedGiVersionInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGiVersionInner;
+        });
     }
 }

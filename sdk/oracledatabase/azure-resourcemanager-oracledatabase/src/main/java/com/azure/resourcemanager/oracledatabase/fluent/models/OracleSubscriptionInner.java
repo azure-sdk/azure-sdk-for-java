@@ -7,9 +7,12 @@ package com.azure.resourcemanager.oracledatabase.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptionProperties;
 import com.azure.resourcemanager.oracledatabase.models.Plan;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * OracleSubscription resource definition.
@@ -19,19 +22,16 @@ public final class OracleSubscriptionInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties")
     private OracleSubscriptionProperties properties;
 
     /*
      * Details of the resource plan.
      */
-    @JsonProperty(value = "plan")
     private Plan plan;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /**
@@ -94,12 +94,62 @@ public final class OracleSubscriptionInner extends ProxyResource {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (properties() != null) {
             properties().validate();
         }
         if (plan() != null) {
             plan().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("plan", this.plan);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OracleSubscriptionInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OracleSubscriptionInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the OracleSubscriptionInner.
+     */
+    public static OracleSubscriptionInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OracleSubscriptionInner deserializedOracleSubscriptionInner = new OracleSubscriptionInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.withId(reader.getString());
+                } else if ("name".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.withName(reader.getString());
+                } else if ("type".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.withType(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.properties = OracleSubscriptionProperties.fromJson(reader);
+                } else if ("plan".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.plan = Plan.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedOracleSubscriptionInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOracleSubscriptionInner;
+        });
     }
 }

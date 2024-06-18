@@ -6,76 +6,61 @@ package com.azure.resourcemanager.oracledatabase.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
  * Autonomous Database clone resource model.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "dataBaseType",
-    defaultImpl = AutonomousDatabaseCloneProperties.class,
-    visible = true)
-@JsonTypeName("Clone")
 @Fluent
 public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseBaseProperties {
     /*
      * Database type to be created.
      */
-    @JsonTypeId
-    @JsonProperty(value = "dataBaseType", required = true)
     private DataBaseType dataBaseType = DataBaseType.CLONE;
 
     /*
      * The source of the database.
      */
-    @JsonProperty(value = "source")
     private SourceType source;
 
     /*
      * The Azure ID of the Autonomous Database that was cloned to create the current Autonomous Database.
      */
-    @JsonProperty(value = "sourceId", required = true)
     private String sourceId;
 
     /*
      * The Autonomous Database clone type.
      */
-    @JsonProperty(value = "cloneType", required = true)
     private CloneType cloneType;
 
     /*
      * Indicates if the refreshable clone can be reconnected to its source database.
      */
-    @JsonProperty(value = "isReconnectCloneEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isReconnectCloneEnabled;
 
     /*
      * Indicates if the Autonomous Database is a refreshable clone.
      */
-    @JsonProperty(value = "isRefreshableClone", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isRefreshableClone;
 
     /*
      * The refresh mode of the clone.
      */
-    @JsonProperty(value = "refreshableModel")
     private RefreshableModelType refreshableModel;
 
     /*
      * The refresh status of the clone.
      */
-    @JsonProperty(value = "refreshableStatus", access = JsonProperty.Access.WRITE_ONLY)
     private RefreshableStatusType refreshableStatus;
 
     /*
      * The time and date as an RFC3339 formatted string, e.g., 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected to its source database.
      */
-    @JsonProperty(value = "timeUntilReconnectCloneEnabled")
     private String timeUntilReconnectCloneEnabled;
 
     /**
@@ -558,4 +543,307 @@ public final class AutonomousDatabaseCloneProperties extends AutonomousDatabaseB
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(AutonomousDatabaseCloneProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("adminPassword", adminPassword());
+        jsonWriter.writeStringField("autonomousMaintenanceScheduleType",
+            autonomousMaintenanceScheduleType() == null ? null : autonomousMaintenanceScheduleType().toString());
+        jsonWriter.writeStringField("characterSet", characterSet());
+        jsonWriter.writeNumberField("computeCount", computeCount());
+        jsonWriter.writeStringField("computeModel", computeModel() == null ? null : computeModel().toString());
+        jsonWriter.writeNumberField("cpuCoreCount", cpuCoreCount());
+        jsonWriter.writeArrayField("customerContacts", customerContacts(),
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeNumberField("dataStorageSizeInTbs", dataStorageSizeInTbs());
+        jsonWriter.writeNumberField("dataStorageSizeInGbs", dataStorageSizeInGbs());
+        jsonWriter.writeStringField("dbVersion", dbVersion());
+        jsonWriter.writeStringField("dbWorkload", dbWorkload() == null ? null : dbWorkload().toString());
+        jsonWriter.writeStringField("displayName", displayName());
+        jsonWriter.writeBooleanField("isAutoScalingEnabled", isAutoScalingEnabled());
+        jsonWriter.writeBooleanField("isAutoScalingForStorageEnabled", isAutoScalingForStorageEnabled());
+        jsonWriter.writeStringField("peerDbId", peerDbId());
+        jsonWriter.writeBooleanField("isLocalDataGuardEnabled", isLocalDataGuardEnabled());
+        jsonWriter.writeBooleanField("isMtlsConnectionRequired", isMtlsConnectionRequired());
+        jsonWriter.writeBooleanField("isPreviewVersionWithServiceTermsAccepted",
+            isPreviewVersionWithServiceTermsAccepted());
+        jsonWriter.writeStringField("licenseModel", licenseModel() == null ? null : licenseModel().toString());
+        jsonWriter.writeStringField("ncharacterSet", ncharacterSet());
+        jsonWriter.writeJsonField("scheduledOperations", scheduledOperations());
+        jsonWriter.writeStringField("privateEndpointIp", privateEndpointIp());
+        jsonWriter.writeStringField("privateEndpointLabel", privateEndpointLabel());
+        jsonWriter.writeStringField("subnetId", subnetId());
+        jsonWriter.writeStringField("vnetId", vnetId());
+        jsonWriter.writeStringField("databaseEdition", databaseEdition() == null ? null : databaseEdition().toString());
+        jsonWriter.writeStringField("autonomousDatabaseId", autonomousDatabaseId());
+        jsonWriter.writeJsonField("longTermBackupSchedule", longTermBackupSchedule());
+        jsonWriter.writeNumberField("localAdgAutoFailoverMaxDataLossLimit", localAdgAutoFailoverMaxDataLossLimit());
+        jsonWriter.writeStringField("openMode", openMode() == null ? null : openMode().toString());
+        jsonWriter.writeStringField("permissionLevel", permissionLevel() == null ? null : permissionLevel().toString());
+        jsonWriter.writeStringField("role", role() == null ? null : role().toString());
+        jsonWriter.writeNumberField("backupRetentionPeriodInDays", backupRetentionPeriodInDays());
+        jsonWriter.writeArrayField("whitelistedIps", whitelistedIps(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("sourceId", this.sourceId);
+        jsonWriter.writeStringField("cloneType", this.cloneType == null ? null : this.cloneType.toString());
+        jsonWriter.writeStringField("dataBaseType", this.dataBaseType == null ? null : this.dataBaseType.toString());
+        jsonWriter.writeStringField("source", this.source == null ? null : this.source.toString());
+        jsonWriter.writeStringField("refreshableModel",
+            this.refreshableModel == null ? null : this.refreshableModel.toString());
+        jsonWriter.writeStringField("timeUntilReconnectCloneEnabled", this.timeUntilReconnectCloneEnabled);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AutonomousDatabaseCloneProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AutonomousDatabaseCloneProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the AutonomousDatabaseCloneProperties.
+     */
+    public static AutonomousDatabaseCloneProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AutonomousDatabaseCloneProperties deserializedAutonomousDatabaseCloneProperties
+                = new AutonomousDatabaseCloneProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("adminPassword".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withAdminPassword(reader.getString());
+                } else if ("autonomousMaintenanceScheduleType".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withAutonomousMaintenanceScheduleType(
+                        AutonomousMaintenanceScheduleType.fromString(reader.getString()));
+                } else if ("characterSet".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withCharacterSet(reader.getString());
+                } else if ("computeCount".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withComputeCount(reader.getNullable(JsonReader::getFloat));
+                } else if ("computeModel".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withComputeModel(ComputeModel.fromString(reader.getString()));
+                } else if ("cpuCoreCount".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withCpuCoreCount(reader.getNullable(JsonReader::getInt));
+                } else if ("customerContacts".equals(fieldName)) {
+                    List<CustomerContact> customerContacts
+                        = reader.readArray(reader1 -> CustomerContact.fromJson(reader1));
+                    deserializedAutonomousDatabaseCloneProperties.withCustomerContacts(customerContacts);
+                } else if ("dataStorageSizeInTbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withDataStorageSizeInTbs(reader.getNullable(JsonReader::getInt));
+                } else if ("dataStorageSizeInGbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withDataStorageSizeInGbs(reader.getNullable(JsonReader::getInt));
+                } else if ("dbVersion".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withDbVersion(reader.getString());
+                } else if ("dbWorkload".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withDbWorkload(WorkloadType.fromString(reader.getString()));
+                } else if ("displayName".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withDisplayName(reader.getString());
+                } else if ("isAutoScalingEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsAutoScalingEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isAutoScalingForStorageEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsAutoScalingForStorageEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("peerDbIds".equals(fieldName)) {
+                    List<String> peerDbIds = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAutonomousDatabaseCloneProperties.withPeerDbIds(peerDbIds);
+                } else if ("peerDbId".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withPeerDbId(reader.getString());
+                } else if ("isLocalDataGuardEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsLocalDataGuardEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isRemoteDataGuardEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsRemoteDataGuardEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("localDisasterRecoveryType".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLocalDisasterRecoveryType(DisasterRecoveryType.fromString(reader.getString()));
+                } else if ("localStandbyDb".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLocalStandbyDb(AutonomousDatabaseStandbySummary.fromJson(reader));
+                } else if ("failedDataRecoveryInSeconds".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withFailedDataRecoveryInSeconds(reader.getNullable(JsonReader::getInt));
+                } else if ("isMtlsConnectionRequired".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsMtlsConnectionRequired(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isPreviewVersionWithServiceTermsAccepted".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsPreviewVersionWithServiceTermsAccepted(reader.getNullable(JsonReader::getBoolean));
+                } else if ("licenseModel".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLicenseModel(LicenseModel.fromString(reader.getString()));
+                } else if ("ncharacterSet".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withNcharacterSet(reader.getString());
+                } else if ("lifecycleDetails".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withLifecycleDetails(reader.getString());
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withProvisioningState(AzureResourceProvisioningState.fromString(reader.getString()));
+                } else if ("lifecycleState".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLifecycleState(AutonomousDatabaseLifecycleState.fromString(reader.getString()));
+                } else if ("scheduledOperations".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withScheduledOperations(ScheduledOperationsType.fromJson(reader));
+                } else if ("privateEndpointIp".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointIp(reader.getString());
+                } else if ("privateEndpointLabel".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpointLabel(reader.getString());
+                } else if ("ociUrl".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withOciUrl(reader.getString());
+                } else if ("subnetId".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withSubnetId(reader.getString());
+                } else if ("vnetId".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withVnetId(reader.getString());
+                } else if ("timeCreated".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeCreated(
+                        reader.getNullable(nonNullReader -> OffsetDateTime.parse(nonNullReader.getString())));
+                } else if ("timeMaintenanceBegin".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeMaintenanceBegin(
+                        reader.getNullable(nonNullReader -> OffsetDateTime.parse(nonNullReader.getString())));
+                } else if ("timeMaintenanceEnd".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeMaintenanceEnd(
+                        reader.getNullable(nonNullReader -> OffsetDateTime.parse(nonNullReader.getString())));
+                } else if ("actualUsedDataStorageSizeInTbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withActualUsedDataStorageSizeInTbs(reader.getNullable(JsonReader::getDouble));
+                } else if ("allocatedStorageSizeInTbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withAllocatedStorageSizeInTbs(reader.getNullable(JsonReader::getDouble));
+                } else if ("apexDetails".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withApexDetails(ApexDetailsType.fromJson(reader));
+                } else if ("availableUpgradeVersions".equals(fieldName)) {
+                    List<String> availableUpgradeVersions = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withAvailableUpgradeVersions(availableUpgradeVersions);
+                } else if ("connectionStrings".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withConnectionStrings(ConnectionStringType.fromJson(reader));
+                } else if ("connectionUrls".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withConnectionUrls(ConnectionUrlType.fromJson(reader));
+                } else if ("dataSafeStatus".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withDataSafeStatus(DataSafeStatusType.fromString(reader.getString()));
+                } else if ("databaseEdition".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withDatabaseEdition(DatabaseEditionType.fromString(reader.getString()));
+                } else if ("autonomousDatabaseId".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withAutonomousDatabaseId(reader.getString());
+                } else if ("inMemoryAreaInGbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withInMemoryAreaInGbs(reader.getNullable(JsonReader::getInt));
+                } else if ("nextLongTermBackupTimeStamp".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withNextLongTermBackupTimestamp(
+                        reader.getNullable(nonNullReader -> OffsetDateTime.parse(nonNullReader.getString())));
+                } else if ("longTermBackupSchedule".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLongTermBackupSchedule(LongTermBackUpScheduleDetails.fromJson(reader));
+                } else if ("isPreview".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withIsPreview(reader.getNullable(JsonReader::getBoolean));
+                } else if ("localAdgAutoFailoverMaxDataLossLimit".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withLocalAdgAutoFailoverMaxDataLossLimit(reader.getNullable(JsonReader::getInt));
+                } else if ("memoryPerOracleComputeUnitInGbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withMemoryPerOracleComputeUnitInGbs(reader.getNullable(JsonReader::getInt));
+                } else if ("openMode".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withOpenMode(OpenModeType.fromString(reader.getString()));
+                } else if ("operationsInsightsStatus".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withOperationsInsightsStatus(OperationsInsightsStatusType.fromString(reader.getString()));
+                } else if ("permissionLevel".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withPermissionLevel(PermissionLevelType.fromString(reader.getString()));
+                } else if ("privateEndpoint".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withPrivateEndpoint(reader.getString());
+                } else if ("provisionableCpus".equals(fieldName)) {
+                    List<Integer> provisionableCpus = reader.readArray(reader1 -> reader1.getInt());
+                    deserializedAutonomousDatabaseCloneProperties.withProvisionableCpus(provisionableCpus);
+                } else if ("role".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withRole(RoleType.fromString(reader.getString()));
+                } else if ("serviceConsoleUrl".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withServiceConsoleUrl(reader.getString());
+                } else if ("sqlWebDeveloperUrl".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withSqlWebDeveloperUrl(reader.getString());
+                } else if ("supportedRegionsToCloneTo".equals(fieldName)) {
+                    List<String> supportedRegionsToCloneTo = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withSupportedRegionsToCloneTo(supportedRegionsToCloneTo);
+                } else if ("timeDataGuardRoleChanged".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeDataGuardRoleChanged(reader.getString());
+                } else if ("timeDeletionOfFreeAutonomousDatabase".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withTimeDeletionOfFreeAutonomousDatabase(reader.getString());
+                } else if ("timeLocalDataGuardEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeLocalDataGuardEnabled(reader.getString());
+                } else if ("timeOfLastFailover".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeOfLastFailover(reader.getString());
+                } else if ("timeOfLastRefresh".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeOfLastRefresh(reader.getString());
+                } else if ("timeOfLastRefreshPoint".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeOfLastRefreshPoint(reader.getString());
+                } else if ("timeOfLastSwitchover".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withTimeOfLastSwitchover(reader.getString());
+                } else if ("timeReclamationOfFreeAutonomousDatabase".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withTimeReclamationOfFreeAutonomousDatabase(reader.getString());
+                } else if ("usedDataStorageSizeInGbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withUsedDataStorageSizeInGbs(reader.getNullable(JsonReader::getInt));
+                } else if ("usedDataStorageSizeInTbs".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withUsedDataStorageSizeInTbs(reader.getNullable(JsonReader::getInt));
+                } else if ("ocid".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.withOcid(reader.getString());
+                } else if ("backupRetentionPeriodInDays".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties
+                        .withBackupRetentionPeriodInDays(reader.getNullable(JsonReader::getInt));
+                } else if ("whitelistedIps".equals(fieldName)) {
+                    List<String> whitelistedIps = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAutonomousDatabaseCloneProperties.withWhitelistedIps(whitelistedIps);
+                } else if ("sourceId".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.sourceId = reader.getString();
+                } else if ("cloneType".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.cloneType = CloneType.fromString(reader.getString());
+                } else if ("dataBaseType".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.dataBaseType
+                        = DataBaseType.fromString(reader.getString());
+                } else if ("source".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.source = SourceType.fromString(reader.getString());
+                } else if ("isReconnectCloneEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.isReconnectCloneEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("isRefreshableClone".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.isRefreshableClone
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("refreshableModel".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.refreshableModel
+                        = RefreshableModelType.fromString(reader.getString());
+                } else if ("refreshableStatus".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.refreshableStatus
+                        = RefreshableStatusType.fromString(reader.getString());
+                } else if ("timeUntilReconnectCloneEnabled".equals(fieldName)) {
+                    deserializedAutonomousDatabaseCloneProperties.timeUntilReconnectCloneEnabled = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAutonomousDatabaseCloneProperties;
+        });
+    }
 }

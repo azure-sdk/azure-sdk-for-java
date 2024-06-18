@@ -7,8 +7,11 @@ package com.azure.resourcemanager.oracledatabase.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * AutonomousDatabaseBackup resource definition.
@@ -18,13 +21,11 @@ public final class AutonomousDatabaseBackupInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties")
     private AutonomousDatabaseBackupProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /**
@@ -67,9 +68,58 @@ public final class AutonomousDatabaseBackupInner extends ProxyResource {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (properties() != null) {
             properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AutonomousDatabaseBackupInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AutonomousDatabaseBackupInner if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the AutonomousDatabaseBackupInner.
+     */
+    public static AutonomousDatabaseBackupInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AutonomousDatabaseBackupInner deserializedAutonomousDatabaseBackupInner
+                = new AutonomousDatabaseBackupInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupInner.withId(reader.getString());
+                } else if ("name".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupInner.withName(reader.getString());
+                } else if ("type".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupInner.withType(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupInner.properties
+                        = AutonomousDatabaseBackupProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedAutonomousDatabaseBackupInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAutonomousDatabaseBackupInner;
+        });
     }
 }
