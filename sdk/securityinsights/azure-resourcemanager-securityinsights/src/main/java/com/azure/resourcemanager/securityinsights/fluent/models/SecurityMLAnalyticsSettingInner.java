@@ -7,21 +7,51 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.AnomalySecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSettingsKind;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Security ML Analytics Setting. */
+/**
+ * Security ML Analytics Setting.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
-    defaultImpl = SecurityMLAnalyticsSettingInner.class)
+    defaultImpl = SecurityMLAnalyticsSettingInner.class,
+    visible = true)
 @JsonTypeName("SecurityMLAnalyticsSetting")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Anomaly", value = AnomalySecurityMLAnalyticsSettings.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Anomaly", value = AnomalySecurityMLAnalyticsSettings.class) })
 @Fluent
 public class SecurityMLAnalyticsSettingInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /*
+     * The kind of security ML Analytics Settings
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private SecurityMLAnalyticsSettingsKind kind;
+
+    /**
+     * Creates an instance of SecurityMLAnalyticsSettingInner class.
+     */
+    public SecurityMLAnalyticsSettingInner() {
+        this.kind = SecurityMLAnalyticsSettingsKind.fromString("SecurityMLAnalyticsSetting");
+    }
+
+    /**
+     * Get the kind property: The kind of security ML Analytics Settings.
+     * 
+     * @return the kind value.
+     */
+    public SecurityMLAnalyticsSettingsKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityMLAnalyticsSettingInner withEtag(String etag) {
         super.withEtag(etag);
@@ -30,7 +60,7 @@ public class SecurityMLAnalyticsSettingInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

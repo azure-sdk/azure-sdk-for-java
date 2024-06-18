@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.UebaDataSources;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Ueba property bag. */
+/**
+ * Ueba property bag.
+ */
 @Fluent
 public final class UebaProperties {
     /*
@@ -19,8 +21,14 @@ public final class UebaProperties {
     private List<UebaDataSources> dataSources;
 
     /**
+     * Creates an instance of UebaProperties class.
+     */
+    public UebaProperties() {
+    }
+
+    /**
      * Get the dataSources property: The relevant data sources that enriched by ueba.
-     *
+     * 
      * @return the dataSources value.
      */
     public List<UebaDataSources> dataSources() {
@@ -29,7 +37,7 @@ public final class UebaProperties {
 
     /**
      * Set the dataSources property: The relevant data sources that enriched by ueba.
-     *
+     * 
      * @param dataSources the dataSources value to set.
      * @return the UebaProperties object itself.
      */
@@ -40,7 +48,7 @@ public final class UebaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

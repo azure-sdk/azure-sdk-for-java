@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a file. */
+/**
+ * Represents a file.
+ */
 @Fluent
 public final class FileMetadata {
     /*
@@ -41,8 +43,14 @@ public final class FileMetadata {
     private DeleteStatus deleteStatus;
 
     /**
+     * Creates an instance of FileMetadata class.
+     */
+    public FileMetadata() {
+    }
+
+    /**
      * Get the fileFormat property: The format of the file.
-     *
+     * 
      * @return the fileFormat value.
      */
     public FileFormat fileFormat() {
@@ -51,7 +59,7 @@ public final class FileMetadata {
 
     /**
      * Set the fileFormat property: The format of the file.
-     *
+     * 
      * @param fileFormat the fileFormat value to set.
      * @return the FileMetadata object itself.
      */
@@ -62,7 +70,7 @@ public final class FileMetadata {
 
     /**
      * Get the fileName property: The name of the file.
-     *
+     * 
      * @return the fileName value.
      */
     public String fileName() {
@@ -71,7 +79,7 @@ public final class FileMetadata {
 
     /**
      * Set the fileName property: The name of the file.
-     *
+     * 
      * @param fileName the fileName value to set.
      * @return the FileMetadata object itself.
      */
@@ -82,7 +90,7 @@ public final class FileMetadata {
 
     /**
      * Get the fileSize property: The size of the file.
-     *
+     * 
      * @return the fileSize value.
      */
     public Integer fileSize() {
@@ -91,7 +99,7 @@ public final class FileMetadata {
 
     /**
      * Set the fileSize property: The size of the file.
-     *
+     * 
      * @param fileSize the fileSize value to set.
      * @return the FileMetadata object itself.
      */
@@ -102,7 +110,7 @@ public final class FileMetadata {
 
     /**
      * Get the fileContentUri property: A URI with a valid SAS token to allow uploading / downloading the file.
-     *
+     * 
      * @return the fileContentUri value.
      */
     public String fileContentUri() {
@@ -111,7 +119,7 @@ public final class FileMetadata {
 
     /**
      * Get the deleteStatus property: Indicates whether the file was deleted from the storage account.
-     *
+     * 
      * @return the deleteStatus value.
      */
     public DeleteStatus deleteStatus() {
@@ -120,7 +128,7 @@ public final class FileMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
