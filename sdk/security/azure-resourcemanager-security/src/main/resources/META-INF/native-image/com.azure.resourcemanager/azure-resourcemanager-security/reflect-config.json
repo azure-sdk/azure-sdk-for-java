@@ -754,6 +754,191 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsOrgListResponseInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsOrgInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsOrgProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.ActionableRemediation",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.CategoryConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.TargetBranchConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsProjectListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsProjectInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsProjectProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsRepositoryListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsRepositoryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsRepositoryProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsConfigurationListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.DevOpsConfigurationInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsConfigurationProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.Authorization",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsCapability",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.DevOpsPolicyInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyAssignmentListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.DevOpsPolicyAssignmentInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyAssignmentProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyDescriptor",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubOwnerListResponseInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubOwnerInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitHubOwnerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitHubRepositoryListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubRepositoryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitHubRepositoryProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabGroupListResponseInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabGroupInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitLabGroupProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitLabProjectListResponse",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabProjectInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.GitLabProjectProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.fluent.models.OperationStatusResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.security.models.ComplianceResultList",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1440,156 +1625,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.security.fluent.models.PricingListInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsOrgListResponseInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsOrgInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsOrgProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.ActionableRemediation",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.CategoryConfiguration",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.TargetBranchConfiguration",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsProjectListResponse",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsProjectInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsProjectProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsRepositoryListResponse",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.AzureDevOpsRepositoryInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AzureDevOpsRepositoryProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.DevOpsConfigurationListResponse",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.DevOpsConfigurationInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.DevOpsConfigurationProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.Authorization",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.DevOpsCapability",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubOwnerListResponseInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubOwnerInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitHubOwnerProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitHubRepositoryListResponse",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitHubRepositoryInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitHubRepositoryProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabGroupListResponseInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabGroupInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitLabGroupProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitLabProjectListResponse",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.GitLabProjectInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.GitLabProjectProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.fluent.models.OperationStatusResultInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -2464,6 +2499,56 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.OnboardingState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.ActionableRemediationState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.RuleCategory",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AnnotateDefaultBranchState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.InheritFromParentState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.AutoDiscovery",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicySource",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DevOpsPolicyType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.security.models.DescendantBehavior",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.security.models.ResourceStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2735,41 +2820,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.security.models.Code",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.DevOpsProvisioningState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.OnboardingState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.ActionableRemediationState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.RuleCategory",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AnnotateDefaultBranchState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.InheritFromParentState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.security.models.AutoDiscovery",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
