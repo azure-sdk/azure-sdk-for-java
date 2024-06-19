@@ -6,75 +6,95 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Describes source control properties. */
+/**
+ * Describes source control properties.
+ */
 @Fluent
-public final class SourceControlProperties {
+public final class SourceControlProperties implements JsonSerializable<SourceControlProperties> {
     /*
      * The id (a Guid) of the source control
      */
-    @JsonProperty(value = "id")
     private String id;
 
     /*
      * The version number associated with the source control
      */
-    @JsonProperty(value = "version")
     private Version version;
 
     /*
      * The display name of the source control
      */
-    @JsonProperty(value = "displayName", required = true)
     private String displayName;
 
     /*
      * A description of the source control
      */
-    @JsonProperty(value = "description")
     private String description;
 
     /*
      * The repository type of the source control
      */
-    @JsonProperty(value = "repoType", required = true)
     private RepoType repoType;
 
     /*
      * Array of source control content types.
      */
-    @JsonProperty(value = "contentTypes", required = true)
     private List<ContentType> contentTypes;
 
     /*
      * Repository metadata.
      */
-    @JsonProperty(value = "repository", required = true)
     private Repository repository;
+
+    /*
+     * Service principal metadata.
+     */
+    private ServicePrincipal servicePrincipal;
+
+    /*
+     * Repository access credentials. This is write-only object and it never returns back to a user.
+     */
+    private RepositoryAccess repositoryAccess;
 
     /*
      * Information regarding the resources created in user's repository.
      */
-    @JsonProperty(value = "repositoryResourceInfo")
     private RepositoryResourceInfo repositoryResourceInfo;
 
     /*
      * Information regarding the latest deployment for the source control.
      */
-    @JsonProperty(value = "lastDeploymentInfo")
     private DeploymentInfo lastDeploymentInfo;
+
+    /*
+     * Information regarding the pull request of the source control.
+     */
+    private PullRequest pullRequest;
+
+    /**
+     * Creates an instance of SourceControlProperties class.
+     */
+    public SourceControlProperties() {
+    }
 
     /**
      * Get the id property: The id (a Guid) of the source control.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -82,19 +102,8 @@ public final class SourceControlProperties {
     }
 
     /**
-     * Set the id property: The id (a Guid) of the source control.
-     *
-     * @param id the id value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
      * Get the version property: The version number associated with the source control.
-     *
+     * 
      * @return the version value.
      */
     public Version version() {
@@ -102,19 +111,8 @@ public final class SourceControlProperties {
     }
 
     /**
-     * Set the version property: The version number associated with the source control.
-     *
-     * @param version the version value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withVersion(Version version) {
-        this.version = version;
-        return this;
-    }
-
-    /**
      * Get the displayName property: The display name of the source control.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -123,7 +121,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the displayName property: The display name of the source control.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -134,7 +132,7 @@ public final class SourceControlProperties {
 
     /**
      * Get the description property: A description of the source control.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -143,7 +141,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the description property: A description of the source control.
-     *
+     * 
      * @param description the description value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -154,7 +152,7 @@ public final class SourceControlProperties {
 
     /**
      * Get the repoType property: The repository type of the source control.
-     *
+     * 
      * @return the repoType value.
      */
     public RepoType repoType() {
@@ -163,7 +161,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the repoType property: The repository type of the source control.
-     *
+     * 
      * @param repoType the repoType value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -174,7 +172,7 @@ public final class SourceControlProperties {
 
     /**
      * Get the contentTypes property: Array of source control content types.
-     *
+     * 
      * @return the contentTypes value.
      */
     public List<ContentType> contentTypes() {
@@ -183,7 +181,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the contentTypes property: Array of source control content types.
-     *
+     * 
      * @param contentTypes the contentTypes value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -194,7 +192,7 @@ public final class SourceControlProperties {
 
     /**
      * Get the repository property: Repository metadata.
-     *
+     * 
      * @return the repository value.
      */
     public Repository repository() {
@@ -203,7 +201,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the repository property: Repository metadata.
-     *
+     * 
      * @param repository the repository value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -213,8 +211,50 @@ public final class SourceControlProperties {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     * 
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.servicePrincipal;
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     * 
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.servicePrincipal = servicePrincipal;
+        return this;
+    }
+
+    /**
+     * Get the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @return the repositoryAccess value.
+     */
+    public RepositoryAccess repositoryAccess() {
+        return this.repositoryAccess;
+    }
+
+    /**
+     * Set the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @param repositoryAccess the repositoryAccess value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        this.repositoryAccess = repositoryAccess;
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
-     *
+     * 
      * @return the repositoryResourceInfo value.
      */
     public RepositoryResourceInfo repositoryResourceInfo() {
@@ -223,7 +263,7 @@ public final class SourceControlProperties {
 
     /**
      * Set the repositoryResourceInfo property: Information regarding the resources created in user's repository.
-     *
+     * 
      * @param repositoryResourceInfo the repositoryResourceInfo value to set.
      * @return the SourceControlProperties object itself.
      */
@@ -234,7 +274,7 @@ public final class SourceControlProperties {
 
     /**
      * Get the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
-     *
+     * 
      * @return the lastDeploymentInfo value.
      */
     public DeploymentInfo lastDeploymentInfo() {
@@ -242,47 +282,47 @@ public final class SourceControlProperties {
     }
 
     /**
-     * Set the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
-     *
-     * @param lastDeploymentInfo the lastDeploymentInfo value to set.
-     * @return the SourceControlProperties object itself.
+     * Get the pullRequest property: Information regarding the pull request of the source control.
+     * 
+     * @return the pullRequest value.
      */
-    public SourceControlProperties withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        this.lastDeploymentInfo = lastDeploymentInfo;
-        return this;
+    public PullRequest pullRequest() {
+        return this.pullRequest;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model SourceControlProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property displayName in model SourceControlProperties"));
         }
         if (repoType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property repoType in model SourceControlProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property repoType in model SourceControlProperties"));
         }
         if (contentTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contentTypes in model SourceControlProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property contentTypes in model SourceControlProperties"));
         }
         if (repository() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property repository in model SourceControlProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property repository in model SourceControlProperties"));
         } else {
             repository().validate();
+        }
+        if (servicePrincipal() != null) {
+            servicePrincipal().validate();
+        }
+        if (repositoryAccess() != null) {
+            repositoryAccess().validate();
         }
         if (repositoryResourceInfo() != null) {
             repositoryResourceInfo().validate();
@@ -290,7 +330,80 @@ public final class SourceControlProperties {
         if (lastDeploymentInfo() != null) {
             lastDeploymentInfo().validate();
         }
+        if (pullRequest() != null) {
+            pullRequest().validate();
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SourceControlProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("displayName", this.displayName);
+        jsonWriter.writeStringField("repoType", this.repoType == null ? null : this.repoType.toString());
+        jsonWriter.writeArrayField("contentTypes", this.contentTypes,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeJsonField("repository", this.repository);
+        jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeJsonField("servicePrincipal", this.servicePrincipal);
+        jsonWriter.writeJsonField("repositoryAccess", this.repositoryAccess);
+        jsonWriter.writeJsonField("repositoryResourceInfo", this.repositoryResourceInfo);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SourceControlProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SourceControlProperties if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SourceControlProperties.
+     */
+    public static SourceControlProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SourceControlProperties deserializedSourceControlProperties = new SourceControlProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("displayName".equals(fieldName)) {
+                    deserializedSourceControlProperties.displayName = reader.getString();
+                } else if ("repoType".equals(fieldName)) {
+                    deserializedSourceControlProperties.repoType = RepoType.fromString(reader.getString());
+                } else if ("contentTypes".equals(fieldName)) {
+                    List<ContentType> contentTypes
+                        = reader.readArray(reader1 -> ContentType.fromString(reader1.getString()));
+                    deserializedSourceControlProperties.contentTypes = contentTypes;
+                } else if ("repository".equals(fieldName)) {
+                    deserializedSourceControlProperties.repository = Repository.fromJson(reader);
+                } else if ("id".equals(fieldName)) {
+                    deserializedSourceControlProperties.id = reader.getString();
+                } else if ("version".equals(fieldName)) {
+                    deserializedSourceControlProperties.version = Version.fromString(reader.getString());
+                } else if ("description".equals(fieldName)) {
+                    deserializedSourceControlProperties.description = reader.getString();
+                } else if ("servicePrincipal".equals(fieldName)) {
+                    deserializedSourceControlProperties.servicePrincipal = ServicePrincipal.fromJson(reader);
+                } else if ("repositoryAccess".equals(fieldName)) {
+                    deserializedSourceControlProperties.repositoryAccess = RepositoryAccess.fromJson(reader);
+                } else if ("repositoryResourceInfo".equals(fieldName)) {
+                    deserializedSourceControlProperties.repositoryResourceInfo
+                        = RepositoryResourceInfo.fromJson(reader);
+                } else if ("lastDeploymentInfo".equals(fieldName)) {
+                    deserializedSourceControlProperties.lastDeploymentInfo = DeploymentInfo.fromJson(reader);
+                } else if ("pullRequest".equals(fieldName)) {
+                    deserializedSourceControlProperties.pullRequest = PullRequest.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSourceControlProperties;
+        });
+    }
 }
