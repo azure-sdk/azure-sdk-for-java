@@ -7,22 +7,27 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The TriggerBase model. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "triggerType",
-    defaultImpl = TriggerBase.class)
+/**
+ * The TriggerBase model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "triggerType", defaultImpl = TriggerBase.class, visible = true)
 @JsonTypeName("TriggerBase")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Recurrence", value = RecurrenceTrigger.class),
-    @JsonSubTypes.Type(name = "Cron", value = CronTrigger.class)
-})
+    @JsonSubTypes.Type(name = "Cron", value = CronTrigger.class) })
 @Fluent
 public class TriggerBase {
+    /*
+     * [Required]
+     */
+    @JsonTypeId
+    @JsonProperty(value = "triggerType", required = true)
+    private TriggerType triggerType = TriggerType.fromString("TriggerBase");
+
     /*
      * Specifies end time of schedule in ISO 8601, but without a UTC offset. Refer
      * https://en.wikipedia.org/wiki/ISO_8601.
@@ -46,15 +51,27 @@ public class TriggerBase {
     @JsonProperty(value = "timeZone")
     private String timeZone;
 
-    /** Creates an instance of TriggerBase class. */
+    /**
+     * Creates an instance of TriggerBase class.
+     */
     public TriggerBase() {
     }
 
     /**
+     * Get the triggerType property: [Required].
+     * 
+     * @return the triggerType value.
+     */
+    public TriggerType triggerType() {
+        return this.triggerType;
+    }
+
+    /**
      * Get the endTime property: Specifies end time of schedule in ISO 8601, but without a UTC offset. Refer
-     * https://en.wikipedia.org/wiki/ISO_8601. Recommented format would be "2022-06-01T00:00:01" If not present, the
-     * schedule will run indefinitely.
-     *
+     * https://en.wikipedia.org/wiki/ISO_8601.
+     * Recommented format would be "2022-06-01T00:00:01"
+     * If not present, the schedule will run indefinitely.
+     * 
      * @return the endTime value.
      */
     public String endTime() {
@@ -63,9 +80,10 @@ public class TriggerBase {
 
     /**
      * Set the endTime property: Specifies end time of schedule in ISO 8601, but without a UTC offset. Refer
-     * https://en.wikipedia.org/wiki/ISO_8601. Recommented format would be "2022-06-01T00:00:01" If not present, the
-     * schedule will run indefinitely.
-     *
+     * https://en.wikipedia.org/wiki/ISO_8601.
+     * Recommented format would be "2022-06-01T00:00:01"
+     * If not present, the schedule will run indefinitely.
+     * 
      * @param endTime the endTime value to set.
      * @return the TriggerBase object itself.
      */
@@ -76,7 +94,7 @@ public class TriggerBase {
 
     /**
      * Get the startTime property: Specifies start time of schedule in ISO 8601 format, but without a UTC offset.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -85,7 +103,7 @@ public class TriggerBase {
 
     /**
      * Set the startTime property: Specifies start time of schedule in ISO 8601 format, but without a UTC offset.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the TriggerBase object itself.
      */
@@ -95,10 +113,10 @@ public class TriggerBase {
     }
 
     /**
-     * Get the timeZone property: Specifies time zone in which the schedule runs. TimeZone should follow Windows time
-     * zone format. Refer:
+     * Get the timeZone property: Specifies time zone in which the schedule runs.
+     * TimeZone should follow Windows time zone format. Refer:
      * https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -106,10 +124,10 @@ public class TriggerBase {
     }
 
     /**
-     * Set the timeZone property: Specifies time zone in which the schedule runs. TimeZone should follow Windows time
-     * zone format. Refer:
+     * Set the timeZone property: Specifies time zone in which the schedule runs.
+     * TimeZone should follow Windows time zone format. Refer:
      * https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the TriggerBase object itself.
      */
@@ -120,7 +138,7 @@ public class TriggerBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

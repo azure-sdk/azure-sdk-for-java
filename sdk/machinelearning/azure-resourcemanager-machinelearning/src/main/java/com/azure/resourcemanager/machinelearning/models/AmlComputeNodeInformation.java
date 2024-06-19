@@ -7,36 +7,30 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Compute node information related to a AmlCompute. */
+/**
+ * Compute node information related to a AmlCompute.
+ */
 @Immutable
 public final class AmlComputeNodeInformation {
     /*
-     * Node ID.
-     *
      * ID of the compute node.
      */
     @JsonProperty(value = "nodeId", access = JsonProperty.Access.WRITE_ONLY)
     private String nodeId;
 
     /*
-     * Private IP address.
-     *
      * Private IP address of the compute node.
      */
     @JsonProperty(value = "privateIpAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String privateIpAddress;
 
     /*
-     * Public IP address.
-     *
      * Public IP address of the compute node.
      */
     @JsonProperty(value = "publicIpAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String publicIpAddress;
 
     /*
-     * Port.
-     *
      * SSH port number of the node.
      */
     @JsonProperty(value = "port", access = JsonProperty.Access.WRITE_ONLY)
@@ -49,22 +43,20 @@ public final class AmlComputeNodeInformation {
     private NodeState nodeState;
 
     /*
-     * Run ID.
-     *
      * ID of the Experiment running on the node, if any else null.
      */
     @JsonProperty(value = "runId", access = JsonProperty.Access.WRITE_ONLY)
     private String runId;
 
-    /** Creates an instance of AmlComputeNodeInformation class. */
+    /**
+     * Creates an instance of AmlComputeNodeInformation class.
+     */
     public AmlComputeNodeInformation() {
     }
 
     /**
-     * Get the nodeId property: Node ID.
-     *
-     * <p>ID of the compute node.
-     *
+     * Get the nodeId property: ID of the compute node.
+     * 
      * @return the nodeId value.
      */
     public String nodeId() {
@@ -72,10 +64,8 @@ public final class AmlComputeNodeInformation {
     }
 
     /**
-     * Get the privateIpAddress property: Private IP address.
-     *
-     * <p>Private IP address of the compute node.
-     *
+     * Get the privateIpAddress property: Private IP address of the compute node.
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -83,10 +73,8 @@ public final class AmlComputeNodeInformation {
     }
 
     /**
-     * Get the publicIpAddress property: Public IP address.
-     *
-     * <p>Public IP address of the compute node.
-     *
+     * Get the publicIpAddress property: Public IP address of the compute node.
+     * 
      * @return the publicIpAddress value.
      */
     public String publicIpAddress() {
@@ -94,10 +82,8 @@ public final class AmlComputeNodeInformation {
     }
 
     /**
-     * Get the port property: Port.
-     *
-     * <p>SSH port number of the node.
-     *
+     * Get the port property: SSH port number of the node.
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -107,7 +93,7 @@ public final class AmlComputeNodeInformation {
     /**
      * Get the nodeState property: State of the compute node. Values are idle, running, preparing, unusable, leaving and
      * preempted.
-     *
+     * 
      * @return the nodeState value.
      */
     public NodeState nodeState() {
@@ -115,10 +101,8 @@ public final class AmlComputeNodeInformation {
     }
 
     /**
-     * Get the runId property: Run ID.
-     *
-     * <p>ID of the Experiment running on the node, if any else null.
-     *
+     * Get the runId property: ID of the Experiment running on the node, if any else null.
+     * 
      * @return the runId value.
      */
     public String runId() {
@@ -127,7 +111,7 @@ public final class AmlComputeNodeInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

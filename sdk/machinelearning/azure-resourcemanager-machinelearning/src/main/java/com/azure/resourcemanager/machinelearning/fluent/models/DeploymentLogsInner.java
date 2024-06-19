@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DeploymentLogs model. */
+/**
+ * The DeploymentLogs model.
+ */
 @Fluent
 public final class DeploymentLogsInner {
     /*
@@ -16,13 +18,15 @@ public final class DeploymentLogsInner {
     @JsonProperty(value = "content")
     private String content;
 
-    /** Creates an instance of DeploymentLogsInner class. */
+    /**
+     * Creates an instance of DeploymentLogsInner class.
+     */
     public DeploymentLogsInner() {
     }
 
     /**
      * Get the content property: The retrieved online deployment logs.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -31,7 +35,7 @@ public final class DeploymentLogsInner {
 
     /**
      * Set the content property: The retrieved online deployment logs.
-     *
+     * 
      * @param content the content value to set.
      * @return the DeploymentLogsInner object itself.
      */
@@ -42,7 +46,7 @@ public final class DeploymentLogsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

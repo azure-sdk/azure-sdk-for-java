@@ -7,28 +7,50 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The CustomTargetLags model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The CustomTargetLags model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = CustomTargetLags.class, visible = true)
 @JsonTypeName("Custom")
 @Fluent
 public final class CustomTargetLags extends TargetLags {
+    /*
+     * [Required] Set target lags mode - Auto/Custom
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private TargetLagsMode mode = TargetLagsMode.CUSTOM;
+
     /*
      * [Required] Set target lags values.
      */
     @JsonProperty(value = "values", required = true)
     private List<Integer> values;
 
-    /** Creates an instance of CustomTargetLags class. */
+    /**
+     * Creates an instance of CustomTargetLags class.
+     */
     public CustomTargetLags() {
     }
 
     /**
+     * Get the mode property: [Required] Set target lags mode - Auto/Custom.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public TargetLagsMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Get the values property: [Required] Set target lags values.
-     *
+     * 
      * @return the values value.
      */
     public List<Integer> values() {
@@ -37,7 +59,7 @@ public final class CustomTargetLags extends TargetLags {
 
     /**
      * Set the values property: [Required] Set target lags values.
-     *
+     * 
      * @param values the values value to set.
      * @return the CustomTargetLags object itself.
      */
@@ -48,16 +70,15 @@ public final class CustomTargetLags extends TargetLags {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (values() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property values in model CustomTargetLags"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property values in model CustomTargetLags"));
         }
     }
 

@@ -5,31 +5,52 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for job distribution configuration. */
+/**
+ * Base definition for job distribution configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "distributionType",
-    defaultImpl = DistributionConfiguration.class)
+    defaultImpl = DistributionConfiguration.class,
+    visible = true)
 @JsonTypeName("DistributionConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Mpi", value = Mpi.class),
     @JsonSubTypes.Type(name = "PyTorch", value = PyTorch.class),
-    @JsonSubTypes.Type(name = "TensorFlow", value = TensorFlow.class)
-})
+    @JsonSubTypes.Type(name = "TensorFlow", value = TensorFlow.class) })
 @Immutable
 public class DistributionConfiguration {
-    /** Creates an instance of DistributionConfiguration class. */
+    /*
+     * [Required] Specifies the type of distribution framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "distributionType", required = true)
+    private DistributionType distributionType = DistributionType.fromString("DistributionConfiguration");
+
+    /**
+     * Creates an instance of DistributionConfiguration class.
+     */
     public DistributionConfiguration() {
     }
 
     /**
+     * Get the distributionType property: [Required] Specifies the type of distribution framework.
+     * 
+     * @return the distributionType value.
+     */
+    public DistributionType distributionType() {
+        return this.distributionType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

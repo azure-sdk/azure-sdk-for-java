@@ -5,30 +5,47 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The desired maximum forecast horizon in units of time-series frequency. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "mode",
-    defaultImpl = ForecastHorizon.class)
+/**
+ * The desired maximum forecast horizon in units of time-series frequency.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = ForecastHorizon.class, visible = true)
 @JsonTypeName("ForecastHorizon")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoForecastHorizon.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomForecastHorizon.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomForecastHorizon.class) })
 @Immutable
 public class ForecastHorizon {
-    /** Creates an instance of ForecastHorizon class. */
+    /*
+     * [Required] Set forecast horizon value selection mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private ForecastHorizonMode mode = ForecastHorizonMode.fromString("ForecastHorizon");
+
+    /**
+     * Creates an instance of ForecastHorizon class.
+     */
     public ForecastHorizon() {
     }
 
     /**
+     * Get the mode property: [Required] Set forecast horizon value selection mode.
+     * 
+     * @return the mode value.
+     */
+    public ForecastHorizonMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,31 +5,52 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for asset references. */
+/**
+ * Base definition for asset references.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "referenceType",
-    defaultImpl = AssetReferenceBase.class)
+    defaultImpl = AssetReferenceBase.class,
+    visible = true)
 @JsonTypeName("AssetReferenceBase")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "DataPath", value = DataPathAssetReference.class),
     @JsonSubTypes.Type(name = "Id", value = IdAssetReference.class),
-    @JsonSubTypes.Type(name = "OutputPath", value = OutputPathAssetReference.class)
-})
+    @JsonSubTypes.Type(name = "DataPath", value = DataPathAssetReference.class),
+    @JsonSubTypes.Type(name = "OutputPath", value = OutputPathAssetReference.class) })
 @Immutable
 public class AssetReferenceBase {
-    /** Creates an instance of AssetReferenceBase class. */
+    /*
+     * [Required] Specifies the type of asset reference.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "referenceType", required = true)
+    private ReferenceType referenceType = ReferenceType.fromString("AssetReferenceBase");
+
+    /**
+     * Creates an instance of AssetReferenceBase class.
+     */
     public AssetReferenceBase() {
     }
 
     /**
+     * Get the referenceType property: [Required] Specifies the type of asset reference.
+     * 
+     * @return the referenceType value.
+     */
+    public ReferenceType referenceType() {
+        return this.referenceType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

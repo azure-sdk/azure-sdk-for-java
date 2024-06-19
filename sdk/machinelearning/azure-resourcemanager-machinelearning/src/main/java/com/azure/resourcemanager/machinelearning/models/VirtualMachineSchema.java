@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineSchema model. */
+/**
+ * The VirtualMachineSchema model.
+ */
 @Fluent
 public class VirtualMachineSchema {
     /*
@@ -16,13 +18,15 @@ public class VirtualMachineSchema {
     @JsonProperty(value = "properties")
     private VirtualMachineSchemaProperties properties;
 
-    /** Creates an instance of VirtualMachineSchema class. */
+    /**
+     * Creates an instance of VirtualMachineSchema class.
+     */
     public VirtualMachineSchema() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public VirtualMachineSchemaProperties properties() {
@@ -31,7 +35,7 @@ public class VirtualMachineSchema {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the VirtualMachineSchema object itself.
      */
@@ -42,7 +46,7 @@ public class VirtualMachineSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

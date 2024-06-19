@@ -8,33 +8,55 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.machinelearning.models.AccountKeyDatastoreSecrets;
 import com.azure.resourcemanager.machinelearning.models.CertificateDatastoreSecrets;
 import com.azure.resourcemanager.machinelearning.models.SasDatastoreSecrets;
+import com.azure.resourcemanager.machinelearning.models.SecretsType;
 import com.azure.resourcemanager.machinelearning.models.ServicePrincipalDatastoreSecrets;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for datastore secrets. */
+/**
+ * Base definition for datastore secrets.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "secretsType",
-    defaultImpl = DatastoreSecretsInner.class)
+    defaultImpl = DatastoreSecretsInner.class,
+    visible = true)
 @JsonTypeName("DatastoreSecrets")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AccountKey", value = AccountKeyDatastoreSecrets.class),
     @JsonSubTypes.Type(name = "Certificate", value = CertificateDatastoreSecrets.class),
     @JsonSubTypes.Type(name = "Sas", value = SasDatastoreSecrets.class),
-    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreSecrets.class)
-})
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreSecrets.class) })
 @Immutable
 public class DatastoreSecretsInner {
-    /** Creates an instance of DatastoreSecretsInner class. */
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretsType", required = true)
+    private SecretsType secretsType = SecretsType.fromString("DatastoreSecrets");
+
+    /**
+     * Creates an instance of DatastoreSecretsInner class.
+     */
     public DatastoreSecretsInner() {
     }
 
     /**
+     * Get the secretsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the secretsType value.
+     */
+    public SecretsType secretsType() {
+        return this.secretsType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

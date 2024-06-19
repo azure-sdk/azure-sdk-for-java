@@ -8,39 +8,57 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Data version base definition. */
+/**
+ * Data version base definition.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "dataType",
-    defaultImpl = DataVersionBaseProperties.class)
+    defaultImpl = DataVersionBaseProperties.class,
+    visible = true)
 @JsonTypeName("DataVersionBaseProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "mltable", value = MLTableData.class),
     @JsonSubTypes.Type(name = "uri_file", value = UriFileDataVersion.class),
-    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderDataVersion.class)
-})
+    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderDataVersion.class) })
 @Fluent
 public class DataVersionBaseProperties extends AssetBase {
     /*
-     * [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType
+     * [Required] Specifies the type of data.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "dataType", required = true)
+    private DataType dataType = DataType.fromString("DataVersionBaseProperties");
+
+    /*
+     * [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330
      */
     @JsonProperty(value = "dataUri", required = true)
     private String dataUri;
 
-    /** Creates an instance of DataVersionBaseProperties class. */
+    /**
+     * Creates an instance of DataVersionBaseProperties class.
+     */
     public DataVersionBaseProperties() {
     }
 
     /**
-     * Get the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
-     *
+     * Get the dataType property: [Required] Specifies the type of data.
+     * 
+     * @return the dataType value.
+     */
+    public DataType dataType() {
+        return this.dataType;
+    }
+
+    /**
+     * Get the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
+     * 
      * @return the dataUri value.
      */
     public String dataUri() {
@@ -48,9 +66,8 @@ public class DataVersionBaseProperties extends AssetBase {
     }
 
     /**
-     * Set the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
-     *
+     * Set the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
+     * 
      * @param dataUri the dataUri value to set.
      * @return the DataVersionBaseProperties object itself.
      */
@@ -59,35 +76,45 @@ public class DataVersionBaseProperties extends AssetBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataVersionBaseProperties withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataVersionBaseProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataVersionBaseProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataVersionBaseProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataVersionBaseProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -96,17 +123,16 @@ public class DataVersionBaseProperties extends AssetBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataUri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataUri in model DataVersionBaseProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataUri in model DataVersionBaseProperties"));
         }
     }
 

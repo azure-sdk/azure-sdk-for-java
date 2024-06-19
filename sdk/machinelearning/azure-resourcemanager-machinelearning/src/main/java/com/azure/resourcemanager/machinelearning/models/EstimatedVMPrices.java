@@ -9,42 +9,38 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The estimated price info for using a VM. */
+/**
+ * The estimated price info for using a VM.
+ */
 @Fluent
 public final class EstimatedVMPrices {
     /*
-     * Billing currency
-     *
      * Three lettered code specifying the currency of the VM price. Example: USD
      */
     @JsonProperty(value = "billingCurrency", required = true)
     private BillingCurrency billingCurrency;
 
     /*
-     * Unit of time measure
-     *
      * The unit of time measurement for the specified VM price. Example: OneHour
      */
     @JsonProperty(value = "unitOfMeasure", required = true)
     private UnitOfMeasure unitOfMeasure;
 
     /*
-     * List of estimated VM prices.
-     *
      * The list of estimated prices for using a VM of a particular OS type, tier, etc.
      */
     @JsonProperty(value = "values", required = true)
     private List<EstimatedVMPrice> values;
 
-    /** Creates an instance of EstimatedVMPrices class. */
+    /**
+     * Creates an instance of EstimatedVMPrices class.
+     */
     public EstimatedVMPrices() {
     }
 
     /**
-     * Get the billingCurrency property: Billing currency
-     *
-     * <p>Three lettered code specifying the currency of the VM price. Example: USD.
-     *
+     * Get the billingCurrency property: Three lettered code specifying the currency of the VM price. Example: USD.
+     * 
      * @return the billingCurrency value.
      */
     public BillingCurrency billingCurrency() {
@@ -52,10 +48,8 @@ public final class EstimatedVMPrices {
     }
 
     /**
-     * Set the billingCurrency property: Billing currency
-     *
-     * <p>Three lettered code specifying the currency of the VM price. Example: USD.
-     *
+     * Set the billingCurrency property: Three lettered code specifying the currency of the VM price. Example: USD.
+     * 
      * @param billingCurrency the billingCurrency value to set.
      * @return the EstimatedVMPrices object itself.
      */
@@ -65,10 +59,8 @@ public final class EstimatedVMPrices {
     }
 
     /**
-     * Get the unitOfMeasure property: Unit of time measure
-     *
-     * <p>The unit of time measurement for the specified VM price. Example: OneHour.
-     *
+     * Get the unitOfMeasure property: The unit of time measurement for the specified VM price. Example: OneHour.
+     * 
      * @return the unitOfMeasure value.
      */
     public UnitOfMeasure unitOfMeasure() {
@@ -76,10 +68,8 @@ public final class EstimatedVMPrices {
     }
 
     /**
-     * Set the unitOfMeasure property: Unit of time measure
-     *
-     * <p>The unit of time measurement for the specified VM price. Example: OneHour.
-     *
+     * Set the unitOfMeasure property: The unit of time measurement for the specified VM price. Example: OneHour.
+     * 
      * @param unitOfMeasure the unitOfMeasure value to set.
      * @return the EstimatedVMPrices object itself.
      */
@@ -89,10 +79,8 @@ public final class EstimatedVMPrices {
     }
 
     /**
-     * Get the values property: List of estimated VM prices.
-     *
-     * <p>The list of estimated prices for using a VM of a particular OS type, tier, etc.
-     *
+     * Get the values property: The list of estimated prices for using a VM of a particular OS type, tier, etc.
+     * 
      * @return the values value.
      */
     public List<EstimatedVMPrice> values() {
@@ -100,10 +88,8 @@ public final class EstimatedVMPrices {
     }
 
     /**
-     * Set the values property: List of estimated VM prices.
-     *
-     * <p>The list of estimated prices for using a VM of a particular OS type, tier, etc.
-     *
+     * Set the values property: The list of estimated prices for using a VM of a particular OS type, tier, etc.
+     * 
      * @param values the values value to set.
      * @return the EstimatedVMPrices object itself.
      */
@@ -114,25 +100,23 @@ public final class EstimatedVMPrices {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (billingCurrency() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property billingCurrency in model EstimatedVMPrices"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property billingCurrency in model EstimatedVMPrices"));
         }
         if (unitOfMeasure() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property unitOfMeasure in model EstimatedVMPrices"));
         }
         if (values() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property values in model EstimatedVMPrices"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property values in model EstimatedVMPrices"));
         } else {
             values().forEach(e -> e.validate());
         }

@@ -5,30 +5,51 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Forecasting target rolling window size. */
+/**
+ * Forecasting target rolling window size.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "mode",
-    defaultImpl = TargetRollingWindowSize.class)
+    defaultImpl = TargetRollingWindowSize.class,
+    visible = true)
 @JsonTypeName("TargetRollingWindowSize")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoTargetRollingWindowSize.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomTargetRollingWindowSize.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomTargetRollingWindowSize.class) })
 @Immutable
 public class TargetRollingWindowSize {
-    /** Creates an instance of TargetRollingWindowSize class. */
+    /*
+     * [Required] TargetRollingWindowSiz detection mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private TargetRollingWindowSizeMode mode = TargetRollingWindowSizeMode.fromString("TargetRollingWindowSize");
+
+    /**
+     * Creates an instance of TargetRollingWindowSize class.
+     */
     public TargetRollingWindowSize() {
     }
 
     /**
+     * Get the mode property: [Required] TargetRollingWindowSiz detection mode.
+     * 
+     * @return the mode value.
+     */
+    public TargetRollingWindowSizeMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

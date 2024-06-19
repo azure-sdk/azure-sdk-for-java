@@ -7,66 +7,56 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Counts of various compute node states on the amlCompute. */
+/**
+ * Counts of various compute node states on the amlCompute.
+ */
 @Immutable
 public final class NodeStateCounts {
     /*
-     * Idle node count.
-     *
      * Number of compute nodes in idle state.
      */
     @JsonProperty(value = "idleNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer idleNodeCount;
 
     /*
-     * Running node count.
-     *
      * Number of compute nodes which are running jobs.
      */
     @JsonProperty(value = "runningNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer runningNodeCount;
 
     /*
-     * Preparing node count.
-     *
      * Number of compute nodes which are being prepared.
      */
     @JsonProperty(value = "preparingNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer preparingNodeCount;
 
     /*
-     * Unusable node count.
-     *
      * Number of compute nodes which are in unusable state.
      */
     @JsonProperty(value = "unusableNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer unusableNodeCount;
 
     /*
-     * Leaving node count.
-     *
      * Number of compute nodes which are leaving the amlCompute.
      */
     @JsonProperty(value = "leavingNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer leavingNodeCount;
 
     /*
-     * Preempted node count.
-     *
      * Number of compute nodes which are in preempted state.
      */
     @JsonProperty(value = "preemptedNodeCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer preemptedNodeCount;
 
-    /** Creates an instance of NodeStateCounts class. */
+    /**
+     * Creates an instance of NodeStateCounts class.
+     */
     public NodeStateCounts() {
     }
 
     /**
-     * Get the idleNodeCount property: Idle node count.
-     *
-     * <p>Number of compute nodes in idle state.
-     *
+     * Get the idleNodeCount property: Number of compute nodes in idle state.
+     * 
      * @return the idleNodeCount value.
      */
     public Integer idleNodeCount() {
@@ -74,10 +64,8 @@ public final class NodeStateCounts {
     }
 
     /**
-     * Get the runningNodeCount property: Running node count.
-     *
-     * <p>Number of compute nodes which are running jobs.
-     *
+     * Get the runningNodeCount property: Number of compute nodes which are running jobs.
+     * 
      * @return the runningNodeCount value.
      */
     public Integer runningNodeCount() {
@@ -85,10 +73,8 @@ public final class NodeStateCounts {
     }
 
     /**
-     * Get the preparingNodeCount property: Preparing node count.
-     *
-     * <p>Number of compute nodes which are being prepared.
-     *
+     * Get the preparingNodeCount property: Number of compute nodes which are being prepared.
+     * 
      * @return the preparingNodeCount value.
      */
     public Integer preparingNodeCount() {
@@ -96,10 +82,8 @@ public final class NodeStateCounts {
     }
 
     /**
-     * Get the unusableNodeCount property: Unusable node count.
-     *
-     * <p>Number of compute nodes which are in unusable state.
-     *
+     * Get the unusableNodeCount property: Number of compute nodes which are in unusable state.
+     * 
      * @return the unusableNodeCount value.
      */
     public Integer unusableNodeCount() {
@@ -107,10 +91,8 @@ public final class NodeStateCounts {
     }
 
     /**
-     * Get the leavingNodeCount property: Leaving node count.
-     *
-     * <p>Number of compute nodes which are leaving the amlCompute.
-     *
+     * Get the leavingNodeCount property: Number of compute nodes which are leaving the amlCompute.
+     * 
      * @return the leavingNodeCount value.
      */
     public Integer leavingNodeCount() {
@@ -118,10 +100,8 @@ public final class NodeStateCounts {
     }
 
     /**
-     * Get the preemptedNodeCount property: Preempted node count.
-     *
-     * <p>Number of compute nodes which are in preempted state.
-     *
+     * Get the preemptedNodeCount property: Number of compute nodes which are in preempted state.
+     * 
      * @return the preemptedNodeCount value.
      */
     public Integer preemptedNodeCount() {
@@ -130,7 +110,7 @@ public final class NodeStateCounts {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

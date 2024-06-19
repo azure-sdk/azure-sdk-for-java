@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties for Quota update or retrieval. */
+/**
+ * The properties for Quota update or retrieval.
+ */
 @Fluent
 public final class QuotaBaseProperties {
     /*
@@ -23,8 +25,6 @@ public final class QuotaBaseProperties {
     private String type;
 
     /*
-     * Limit.
-     *
      * The maximum permitted quota of the resource.
      */
     @JsonProperty(value = "limit")
@@ -36,13 +36,15 @@ public final class QuotaBaseProperties {
     @JsonProperty(value = "unit")
     private QuotaUnit unit;
 
-    /** Creates an instance of QuotaBaseProperties class. */
+    /**
+     * Creates an instance of QuotaBaseProperties class.
+     */
     public QuotaBaseProperties() {
     }
 
     /**
      * Get the id property: Specifies the resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -51,7 +53,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Set the id property: Specifies the resource ID.
-     *
+     * 
      * @param id the id value to set.
      * @return the QuotaBaseProperties object itself.
      */
@@ -62,7 +64,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Get the type property: Specifies the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -71,7 +73,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Set the type property: Specifies the resource type.
-     *
+     * 
      * @param type the type value to set.
      * @return the QuotaBaseProperties object itself.
      */
@@ -81,10 +83,8 @@ public final class QuotaBaseProperties {
     }
 
     /**
-     * Get the limit property: Limit.
-     *
-     * <p>The maximum permitted quota of the resource.
-     *
+     * Get the limit property: The maximum permitted quota of the resource.
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -92,10 +92,8 @@ public final class QuotaBaseProperties {
     }
 
     /**
-     * Set the limit property: Limit.
-     *
-     * <p>The maximum permitted quota of the resource.
-     *
+     * Set the limit property: The maximum permitted quota of the resource.
+     * 
      * @param limit the limit value to set.
      * @return the QuotaBaseProperties object itself.
      */
@@ -106,7 +104,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Get the unit property: An enum describing the unit of quota measurement.
-     *
+     * 
      * @return the unit value.
      */
     public QuotaUnit unit() {
@@ -115,7 +113,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Set the unit property: An enum describing the unit of quota measurement.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the QuotaBaseProperties object itself.
      */
@@ -126,7 +124,7 @@ public final class QuotaBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

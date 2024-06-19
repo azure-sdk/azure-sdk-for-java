@@ -7,14 +7,28 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The RecurrenceTrigger model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "triggerType")
+/**
+ * The RecurrenceTrigger model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "triggerType",
+    defaultImpl = RecurrenceTrigger.class,
+    visible = true)
 @JsonTypeName("Recurrence")
 @Fluent
 public final class RecurrenceTrigger extends TriggerBase {
+    /*
+     * [Required]
+     */
+    @JsonTypeId
+    @JsonProperty(value = "triggerType", required = true)
+    private TriggerType triggerType = TriggerType.RECURRENCE;
+
     /*
      * [Required] The frequency to trigger schedule.
      */
@@ -33,13 +47,25 @@ public final class RecurrenceTrigger extends TriggerBase {
     @JsonProperty(value = "schedule")
     private RecurrenceSchedule schedule;
 
-    /** Creates an instance of RecurrenceTrigger class. */
+    /**
+     * Creates an instance of RecurrenceTrigger class.
+     */
     public RecurrenceTrigger() {
     }
 
     /**
+     * Get the triggerType property: [Required].
+     * 
+     * @return the triggerType value.
+     */
+    @Override
+    public TriggerType triggerType() {
+        return this.triggerType;
+    }
+
+    /**
      * Get the frequency property: [Required] The frequency to trigger schedule.
-     *
+     * 
      * @return the frequency value.
      */
     public RecurrenceFrequency frequency() {
@@ -48,7 +74,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the frequency property: [Required] The frequency to trigger schedule.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -59,7 +85,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Get the interval property: [Required] Specifies schedule interval in conjunction with frequency.
-     *
+     * 
      * @return the interval value.
      */
     public int interval() {
@@ -68,7 +94,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the interval property: [Required] Specifies schedule interval in conjunction with frequency.
-     *
+     * 
      * @param interval the interval value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -79,7 +105,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Get the schedule property: The recurrence schedule.
-     *
+     * 
      * @return the schedule value.
      */
     public RecurrenceSchedule schedule() {
@@ -88,7 +114,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the schedule property: The recurrence schedule.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -97,21 +123,27 @@ public final class RecurrenceTrigger extends TriggerBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withEndTime(String endTime) {
         super.withEndTime(endTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withStartTime(String startTime) {
         super.withStartTime(startTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withTimeZone(String timeZone) {
         super.withTimeZone(timeZone);
@@ -120,16 +152,15 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (frequency() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property frequency in model RecurrenceTrigger"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property frequency in model RecurrenceTrigger"));
         }
         if (schedule() != null) {
             schedule().validate();

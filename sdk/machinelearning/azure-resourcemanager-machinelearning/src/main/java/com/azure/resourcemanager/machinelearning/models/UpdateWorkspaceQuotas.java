@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties for update Quota response. */
+/**
+ * The properties for update Quota response.
+ */
 @Fluent
 public final class UpdateWorkspaceQuotas {
     /*
@@ -23,8 +25,6 @@ public final class UpdateWorkspaceQuotas {
     private String type;
 
     /*
-     * Limit.
-     *
      * The maximum permitted quota of the resource.
      */
     @JsonProperty(value = "limit")
@@ -37,20 +37,20 @@ public final class UpdateWorkspaceQuotas {
     private QuotaUnit unit;
 
     /*
-     * Update Workspace Quota Status.
-     *
      * Status of update workspace quota.
      */
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of UpdateWorkspaceQuotas class. */
+    /**
+     * Creates an instance of UpdateWorkspaceQuotas class.
+     */
     public UpdateWorkspaceQuotas() {
     }
 
     /**
      * Get the id property: Specifies the resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -59,7 +59,7 @@ public final class UpdateWorkspaceQuotas {
 
     /**
      * Get the type property: Specifies the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -67,10 +67,8 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Get the limit property: Limit.
-     *
-     * <p>The maximum permitted quota of the resource.
-     *
+     * Get the limit property: The maximum permitted quota of the resource.
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -78,10 +76,8 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Set the limit property: Limit.
-     *
-     * <p>The maximum permitted quota of the resource.
-     *
+     * Set the limit property: The maximum permitted quota of the resource.
+     * 
      * @param limit the limit value to set.
      * @return the UpdateWorkspaceQuotas object itself.
      */
@@ -92,7 +88,7 @@ public final class UpdateWorkspaceQuotas {
 
     /**
      * Get the unit property: An enum describing the unit of quota measurement.
-     *
+     * 
      * @return the unit value.
      */
     public QuotaUnit unit() {
@@ -100,10 +96,8 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Get the status property: Update Workspace Quota Status.
-     *
-     * <p>Status of update workspace quota.
-     *
+     * Get the status property: Status of update workspace quota.
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -111,10 +105,8 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Set the status property: Update Workspace Quota Status.
-     *
-     * <p>Status of update workspace quota.
-     *
+     * Set the status property: Status of update workspace quota.
+     * 
      * @param status the status value to set.
      * @return the UpdateWorkspaceQuotas object itself.
      */
@@ -125,7 +117,7 @@ public final class UpdateWorkspaceQuotas {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
