@@ -10,14 +10,14 @@ package com.azure.resourcemanager.appcomplianceautomation.generated;
 public final class ProviderActionsListInUseStorageAccountsSamples {
     /*
      * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
-     * ListInUseStorageAccountsWithoutSubscriptions.json
+     * ListInUseStorageAccountsWithSubscriptions.json
      */
     /**
-     * Sample code: ListInUseStorageAccountsWithoutSubscriptions.
+     * Sample code: ListInUseStorageAccountsWithSubscriptions.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void listInUseStorageAccountsWithoutSubscriptions(
+    public static void listInUseStorageAccountsWithSubscriptions(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.providerActions().listInUseStorageAccountsWithResponse(null, com.azure.core.util.Context.NONE);
     }
