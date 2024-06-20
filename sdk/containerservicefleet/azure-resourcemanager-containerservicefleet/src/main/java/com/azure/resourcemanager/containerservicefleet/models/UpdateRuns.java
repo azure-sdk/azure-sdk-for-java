@@ -98,12 +98,15 @@ public interface UpdateRuns {
      * @param fleetName The name of the Fleet resource.
      * @param updateRunName The name of the UpdateRun resource.
      * @param body The content of the action request.
+     * @param ifMatch The request should only proceed if an entity matches this string.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
+     * @return a multi-stage process to perform update operations across members of a Fleet along with {@link Response}.
      */
-    UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body);
+    Response<UpdateRun> skipWithResponse(String resourceGroupName, String fleetName, String updateRunName,
+        SkipProperties body, String ifMatch, Context context);
 
     /**
      * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
@@ -112,15 +115,12 @@ public interface UpdateRuns {
      * @param fleetName The name of the Fleet resource.
      * @param updateRunName The name of the UpdateRun resource.
      * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a multi-stage process to perform update operations across members of a Fleet.
      */
-    UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body,
-        String ifMatch, Context context);
+    UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body);
 
     /**
      * Starts an UpdateRun.

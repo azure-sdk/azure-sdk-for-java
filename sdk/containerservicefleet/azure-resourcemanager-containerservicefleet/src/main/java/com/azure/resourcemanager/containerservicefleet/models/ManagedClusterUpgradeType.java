@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.containerservicefleet.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -23,11 +22,6 @@ public final class ManagedClusterUpgradeType extends ExpandableStringEnum<Manage
     public static final ManagedClusterUpgradeType NODE_IMAGE_ONLY = fromString("NodeImageOnly");
 
     /**
-     * Static value ControlPlaneOnly for ManagedClusterUpgradeType.
-     */
-    public static final ManagedClusterUpgradeType CONTROL_PLANE_ONLY = fromString("ControlPlaneOnly");
-
-    /**
      * Creates a new instance of ManagedClusterUpgradeType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -42,7 +36,6 @@ public final class ManagedClusterUpgradeType extends ExpandableStringEnum<Manage
      * @param name a name to look for.
      * @return the corresponding ManagedClusterUpgradeType.
      */
-    @JsonCreator
     public static ManagedClusterUpgradeType fromString(String name) {
         return fromString(name, ManagedClusterUpgradeType.class);
     }

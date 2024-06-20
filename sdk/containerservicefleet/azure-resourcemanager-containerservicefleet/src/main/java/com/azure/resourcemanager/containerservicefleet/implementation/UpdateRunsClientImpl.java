@@ -113,9 +113,9 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/skip")
-        @ExpectedResponses({ 200, 202 })
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> skip(@HostParam("$host") String endpoint,
+        Mono<Response<UpdateRunInner>> skip(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
             @PathParam("fleetName") String fleetName, @PathParam("updateRunName") String updateRunName,
@@ -1039,7 +1039,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> skipWithResponseAsync(String resourceGroupName, String fleetName,
+    private Mono<Response<UpdateRunInner>> skipWithResponseAsync(String resourceGroupName, String fleetName,
         String updateRunName, SkipProperties body, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1088,7 +1088,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> skipWithResponseAsync(String resourceGroupName, String fleetName,
+    private Mono<Response<UpdateRunInner>> skipWithResponseAsync(String resourceGroupName, String fleetName,
         String updateRunName, SkipProperties body, String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1126,139 +1126,6 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @param fleetName The name of the Fleet resource.
      * @param updateRunName The name of the UpdateRun resource.
      * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a multi-stage process to perform update operations across members
-     * of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<UpdateRunInner>, UpdateRunInner> beginSkipAsync(String resourceGroupName,
-        String fleetName, String updateRunName, SkipProperties body, String ifMatch) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = skipWithResponseAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch);
-        return this.client.<UpdateRunInner, UpdateRunInner>getLroResult(mono, this.client.getHttpPipeline(),
-            UpdateRunInner.class, UpdateRunInner.class, this.client.getContext());
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a multi-stage process to perform update operations across members
-     * of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<UpdateRunInner>, UpdateRunInner> beginSkipAsync(String resourceGroupName,
-        String fleetName, String updateRunName, SkipProperties body) {
-        final String ifMatch = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = skipWithResponseAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch);
-        return this.client.<UpdateRunInner, UpdateRunInner>getLroResult(mono, this.client.getHttpPipeline(),
-            UpdateRunInner.class, UpdateRunInner.class, this.client.getContext());
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a multi-stage process to perform update operations across members
-     * of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<UpdateRunInner>, UpdateRunInner> beginSkipAsync(String resourceGroupName,
-        String fleetName, String updateRunName, SkipProperties body, String ifMatch, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = skipWithResponseAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch, context);
-        return this.client.<UpdateRunInner, UpdateRunInner>getLroResult(mono, this.client.getHttpPipeline(),
-            UpdateRunInner.class, UpdateRunInner.class, context);
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a multi-stage process to perform update operations across members
-     * of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<UpdateRunInner>, UpdateRunInner> beginSkip(String resourceGroupName, String fleetName,
-        String updateRunName, SkipProperties body) {
-        final String ifMatch = null;
-        return this.beginSkipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch).getSyncPoller();
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a multi-stage process to perform update operations across members
-     * of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<UpdateRunInner>, UpdateRunInner> beginSkip(String resourceGroupName, String fleetName,
-        String updateRunName, SkipProperties body, String ifMatch, Context context) {
-        return this.beginSkipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch, context).getSyncPoller();
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<UpdateRunInner> skipAsync(String resourceGroupName, String fleetName, String updateRunName,
-        SkipProperties body, String ifMatch) {
-        return beginSkipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1269,8 +1136,8 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     private Mono<UpdateRunInner> skipAsync(String resourceGroupName, String fleetName, String updateRunName,
         SkipProperties body) {
         final String ifMatch = null;
-        return beginSkipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return skipWithResponseAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1285,14 +1152,12 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet on successful completion of
-     * {@link Mono}.
+     * @return a multi-stage process to perform update operations across members of a Fleet along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<UpdateRunInner> skipAsync(String resourceGroupName, String fleetName, String updateRunName,
+    public Response<UpdateRunInner> skipWithResponse(String resourceGroupName, String fleetName, String updateRunName,
         SkipProperties body, String ifMatch, Context context) {
-        return beginSkipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return skipWithResponseAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch, context).block();
     }
 
     /**
@@ -1310,27 +1175,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public UpdateRunInner skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body) {
         final String ifMatch = null;
-        return skipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch).block();
-    }
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UpdateRunInner skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body,
-        String ifMatch, Context context) {
-        return skipAsync(resourceGroupName, fleetName, updateRunName, body, ifMatch, context).block();
+        return skipWithResponse(resourceGroupName, fleetName, updateRunName, body, ifMatch, Context.NONE).getValue();
     }
 
     /**
@@ -1906,9 +1751,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1935,9 +1778,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

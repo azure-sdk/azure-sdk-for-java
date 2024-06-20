@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.containerservicefleet.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.UpdateRunInner;
@@ -422,25 +423,25 @@ public interface UpdateRun {
      * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
      * 
      * @param body The content of the action request.
+     * @param ifMatch The request should only proceed if an entity matches this string.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a multi-stage process to perform update operations across members of a Fleet along with {@link Response}.
+     */
+    Response<UpdateRun> skipWithResponse(SkipProperties body, String ifMatch, Context context);
+
+    /**
+     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
+     * 
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a multi-stage process to perform update operations across members of a Fleet.
      */
     UpdateRun skip(SkipProperties body);
-
-    /**
-     * Skips one or a combination of member/group/stage/afterStageWait(s) of an update run.
-     * 
-     * @param body The content of the action request.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    UpdateRun skip(SkipProperties body, String ifMatch, Context context);
 
     /**
      * Starts an UpdateRun.

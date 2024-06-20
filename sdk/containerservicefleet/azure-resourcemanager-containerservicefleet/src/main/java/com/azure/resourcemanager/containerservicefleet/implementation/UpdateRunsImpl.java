@@ -68,19 +68,20 @@ public final class UpdateRunsImpl implements UpdateRuns {
         this.serviceClient().delete(resourceGroupName, fleetName, updateRunName, ifMatch, context);
     }
 
-    public UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body) {
-        UpdateRunInner inner = this.serviceClient().skip(resourceGroupName, fleetName, updateRunName, body);
+    public Response<UpdateRun> skipWithResponse(String resourceGroupName, String fleetName, String updateRunName,
+        SkipProperties body, String ifMatch, Context context) {
+        Response<UpdateRunInner> inner = this.serviceClient()
+            .skipWithResponse(resourceGroupName, fleetName, updateRunName, body, ifMatch, context);
         if (inner != null) {
-            return new UpdateRunImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new UpdateRunImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body,
-        String ifMatch, Context context) {
-        UpdateRunInner inner
-            = this.serviceClient().skip(resourceGroupName, fleetName, updateRunName, body, ifMatch, context);
+    public UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body) {
+        UpdateRunInner inner = this.serviceClient().skip(resourceGroupName, fleetName, updateRunName, body);
         if (inner != null) {
             return new UpdateRunImpl(inner, this.manager());
         } else {

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.containerservicefleet.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.UpdateRunInner;
@@ -163,12 +164,13 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this;
     }
 
-    public UpdateRun skip(SkipProperties body) {
-        return serviceManager.updateRuns().skip(resourceGroupName, fleetName, updateRunName, body);
+    public Response<UpdateRun> skipWithResponse(SkipProperties body, String ifMatch, Context context) {
+        return serviceManager.updateRuns()
+            .skipWithResponse(resourceGroupName, fleetName, updateRunName, body, ifMatch, context);
     }
 
-    public UpdateRun skip(SkipProperties body, String ifMatch, Context context) {
-        return serviceManager.updateRuns().skip(resourceGroupName, fleetName, updateRunName, body, ifMatch, context);
+    public UpdateRun skip(SkipProperties body) {
+        return serviceManager.updateRuns().skip(resourceGroupName, fleetName, updateRunName, body);
     }
 
     public UpdateRun start() {
