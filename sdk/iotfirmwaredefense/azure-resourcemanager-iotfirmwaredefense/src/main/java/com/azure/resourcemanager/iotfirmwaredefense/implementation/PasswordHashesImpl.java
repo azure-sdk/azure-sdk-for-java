@@ -9,8 +9,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.PasswordHashesClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.PasswordHashResourceInner;
-import com.azure.resourcemanager.iotfirmwaredefense.models.PasswordHashResource;
 import com.azure.resourcemanager.iotfirmwaredefense.models.PasswordHashes;
+import com.azure.resourcemanager.iotfirmwaredefense.models.PasswordHashResource;
 
 public final class PasswordHashesImpl implements PasswordHashes {
     private static final ClientLogger LOGGER = new ClientLogger(PasswordHashesImpl.class);

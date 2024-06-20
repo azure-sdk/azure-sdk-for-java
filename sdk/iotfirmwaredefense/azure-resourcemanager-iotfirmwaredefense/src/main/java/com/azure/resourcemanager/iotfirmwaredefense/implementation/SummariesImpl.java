@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.iotfirmwaredefense.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -26,20 +25,6 @@ public final class SummariesImpl implements Summaries {
         com.azure.resourcemanager.iotfirmwaredefense.IoTFirmwareDefenseManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<SummaryResource> listByFirmware(String resourceGroupName, String workspaceName,
-        String firmwareId) {
-        PagedIterable<SummaryResourceInner> inner
-            = this.serviceClient().listByFirmware(resourceGroupName, workspaceName, firmwareId);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SummaryResource> listByFirmware(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context) {
-        PagedIterable<SummaryResourceInner> inner
-            = this.serviceClient().listByFirmware(resourceGroupName, workspaceName, firmwareId, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryResourceImpl(inner1, this.manager()));
     }
 
     public Response<SummaryResource> getWithResponse(String resourceGroupName, String workspaceName, String firmwareId,

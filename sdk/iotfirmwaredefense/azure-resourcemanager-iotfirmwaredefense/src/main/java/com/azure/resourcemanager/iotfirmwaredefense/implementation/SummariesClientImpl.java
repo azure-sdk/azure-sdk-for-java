@@ -16,10 +16,6 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -27,7 +23,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.SummariesClient;
 import com.azure.resourcemanager.iotfirmwaredefense.fluent.models.SummaryResourceInner;
-import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryListResult;
 import com.azure.resourcemanager.iotfirmwaredefense.models.SummaryName;
 import reactor.core.publisher.Mono;
 
@@ -64,16 +59,6 @@ public final class SummariesClientImpl implements SummariesClient {
     @ServiceInterface(name = "IoTFirmwareDefenseSu")
     public interface SummariesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryListResult>> listByFirmware(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @PathParam("firmwareId") String firmwareId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -82,170 +67,6 @@ public final class SummariesClientImpl implements SummariesClient {
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("firmwareId") String firmwareId, @PathParam("summaryName") SummaryName summaryName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("{nextLink}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryListResult>> listByFirmwareNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
-        String workspaceName, String firmwareId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (firmwareId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter firmwareId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, firmwareId, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<SummaryResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareSinglePageAsync(String resourceGroupName,
-        String workspaceName, String firmwareId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (firmwareId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter firmwareId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByFirmware(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, firmwareId, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SummaryResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
-        String firmwareId) {
-        return new PagedFlux<>(() -> listByFirmwareSinglePageAsync(resourceGroupName, workspaceName, firmwareId),
-            nextLink -> listByFirmwareNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SummaryResourceInner> listByFirmwareAsync(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context) {
-        return new PagedFlux<>(
-            () -> listByFirmwareSinglePageAsync(resourceGroupName, workspaceName, firmwareId, context),
-            nextLink -> listByFirmwareNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
-        String firmwareId) {
-        return new PagedIterable<>(listByFirmwareAsync(resourceGroupName, workspaceName, firmwareId));
-    }
-
-    /**
-     * Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the firmware analysis workspace.
-     * @param firmwareId The id of the firmware.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SummaryResourceInner> listByFirmware(String resourceGroupName, String workspaceName,
-        String firmwareId, Context context) {
-        return new PagedIterable<>(listByFirmwareAsync(resourceGroupName, workspaceName, firmwareId, context));
     }
 
     /**
@@ -391,62 +212,5 @@ public final class SummariesClientImpl implements SummariesClient {
     public SummaryResourceInner get(String resourceGroupName, String workspaceName, String firmwareId,
         SummaryName summaryName) {
         return getWithResponse(resourceGroupName, workspaceName, firmwareId, summaryName, Context.NONE).getValue();
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByFirmwareNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<SummaryResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of analysis summaries along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryResourceInner>> listByFirmwareNextSinglePageAsync(String nextLink,
-        Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByFirmwareNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
