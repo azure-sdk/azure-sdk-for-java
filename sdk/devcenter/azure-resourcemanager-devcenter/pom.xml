@@ -18,7 +18,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for DevCenter Management</name>
-  <description>This package contains Microsoft Azure SDK for DevCenter Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. DevCenter Management API. Package tag package-2024-02.</description>
+  <description>This package contains Microsoft Azure SDK for DevCenter Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. DevCenter Management API. Package tag package-preview-2024-06.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>
@@ -48,6 +48,11 @@
     <revapi.skip>true</revapi.skip>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-json</artifactId>
+      <version>1.1.0</version> <!-- {x-version-update;com.azure:azure-json;dependency} -->
+    </dependency>
     <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-core</artifactId>

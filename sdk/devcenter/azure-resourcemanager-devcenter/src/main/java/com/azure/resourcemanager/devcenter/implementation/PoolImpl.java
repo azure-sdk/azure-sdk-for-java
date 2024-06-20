@@ -13,6 +13,8 @@ import com.azure.resourcemanager.devcenter.models.HealthStatusDetail;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
 import com.azure.resourcemanager.devcenter.models.Pool;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.PoolUpdate;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
@@ -77,8 +79,16 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
         return this.innerModel().provisioningState();
     }
 
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.innerModel().devBoxDefinitionType();
+    }
+
     public String devBoxDefinitionName() {
         return this.innerModel().devBoxDefinitionName();
+    }
+
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.innerModel().devBoxDefinition();
     }
 
     public String networkConnectionName() {
@@ -243,12 +253,32 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
         }
     }
 
+    public PoolImpl withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        if (isInCreateMode()) {
+            this.innerModel().withDevBoxDefinitionType(devBoxDefinitionType);
+            return this;
+        } else {
+            this.updateBody.withDevBoxDefinitionType(devBoxDefinitionType);
+            return this;
+        }
+    }
+
     public PoolImpl withDevBoxDefinitionName(String devBoxDefinitionName) {
         if (isInCreateMode()) {
             this.innerModel().withDevBoxDefinitionName(devBoxDefinitionName);
             return this;
         } else {
             this.updateBody.withDevBoxDefinitionName(devBoxDefinitionName);
+            return this;
+        }
+    }
+
+    public PoolImpl withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        if (isInCreateMode()) {
+            this.innerModel().withDevBoxDefinition(devBoxDefinition);
+            return this;
+        } else {
+            this.updateBody.withDevBoxDefinition(devBoxDefinition);
             return this;
         }
     }

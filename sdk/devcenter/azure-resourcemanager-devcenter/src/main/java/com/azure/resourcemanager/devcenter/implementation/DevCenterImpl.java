@@ -8,7 +8,9 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.DevCenterInner;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenter;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterUpdate;
 import com.azure.resourcemanager.devcenter.models.Encryption;
@@ -63,6 +65,10 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
         return this.innerModel().devCenterUri();
     }
 
+    public String planId() {
+        return this.innerModel().planId();
+    }
+
     public Encryption encryption() {
         return this.innerModel().encryption();
     }
@@ -73,6 +79,14 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
 
     public DevCenterProjectCatalogSettings projectCatalogSettings() {
         return this.innerModel().projectCatalogSettings();
+    }
+
+    public DevCenterNetworkSettings networkSettings() {
+        return this.innerModel().networkSettings();
+    }
+
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.innerModel().devBoxProvisioningSettings();
     }
 
     public Region region() {
@@ -198,6 +212,16 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
         }
     }
 
+    public DevCenterImpl withPlanId(String planId) {
+        if (isInCreateMode()) {
+            this.innerModel().withPlanId(planId);
+            return this;
+        } else {
+            this.updateBody.withPlanId(planId);
+            return this;
+        }
+    }
+
     public DevCenterImpl withEncryption(Encryption encryption) {
         if (isInCreateMode()) {
             this.innerModel().withEncryption(encryption);
@@ -224,6 +248,26 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
             return this;
         } else {
             this.updateBody.withProjectCatalogSettings(projectCatalogSettings);
+            return this;
+        }
+    }
+
+    public DevCenterImpl withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withNetworkSettings(networkSettings);
+            return this;
+        } else {
+            this.updateBody.withNetworkSettings(networkSettings);
+            return this;
+        }
+    }
+
+    public DevCenterImpl withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+            return this;
+        } else {
+            this.updateBody.withDevBoxProvisioningSettings(devBoxProvisioningSettings);
             return this;
         }
     }
