@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.confluent.implementation;
 
 import com.azure.resourcemanager.confluent.fluent.models.SchemaRegistryClusterRecordInner;
-import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
 import com.azure.resourcemanager.confluent.models.SchemaRegistryClusterRecord;
 import com.azure.resourcemanager.confluent.models.SchemaRegistryClusterSpecEntity;
 import com.azure.resourcemanager.confluent.models.SchemaRegistryClusterStatusEntity;
+import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
 
 public final class SchemaRegistryClusterRecordImpl implements SchemaRegistryClusterRecord {
     private SchemaRegistryClusterRecordInner innerObject;
