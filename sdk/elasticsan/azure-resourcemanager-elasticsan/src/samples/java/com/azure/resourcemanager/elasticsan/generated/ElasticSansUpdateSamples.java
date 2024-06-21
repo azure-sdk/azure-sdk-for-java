@@ -14,23 +14,7 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: ElasticSans_Update_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void elasticSansUpdateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        ElasticSan resource = manager.elasticSans()
-            .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2024-05-01/examples/
      * ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
@@ -42,8 +26,12 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource = manager.elasticSans()
             .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("key1931", "fakeTokenPlaceholder")).withBaseSizeTiB(13L)
-            .withExtendedCapacitySizeTiB(29L).withPublicNetworkAccess(PublicNetworkAccess.ENABLED).apply();
+        resource.update()
+            .withTags(mapOf("key6131", "fakeTokenPlaceholder"))
+            .withBaseSizeTiB(28L)
+            .withExtendedCapacitySizeTiB(3L)
+            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .apply();
     }
 
     // Use "Map.of" if available

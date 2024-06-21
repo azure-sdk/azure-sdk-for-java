@@ -47,13 +47,6 @@ public interface ElasticSanManagement {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the SkusClient object to access its operations.
      * 
      * @return the SkusClient object.
