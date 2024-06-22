@@ -5,27 +5,27 @@
 package com.azure.resourcemanager.containerservicefleet.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * Properties of a Fleet that can be patched.
  */
 @Fluent
-public final class FleetPatch {
+public final class FleetPatch implements JsonSerializable<FleetPatch> {
     /*
      * Resource tags.
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*
      * Managed identity.
      */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
+    private AzureResourceManagerLegacyManagedServiceIdentityV4Update identity;
 
     /**
      * Creates an instance of FleetPatch class.
@@ -58,7 +58,7 @@ public final class FleetPatch {
      * 
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
+    public AzureResourceManagerLegacyManagedServiceIdentityV4Update identity() {
         return this.identity;
     }
 
@@ -68,7 +68,7 @@ public final class FleetPatch {
      * @param identity the identity value to set.
      * @return the FleetPatch object itself.
      */
-    public FleetPatch withIdentity(ManagedServiceIdentity identity) {
+    public FleetPatch withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
         this.identity = identity;
         return this;
     }
@@ -82,5 +82,46 @@ public final class FleetPatch {
         if (identity() != null) {
             identity().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("identity", this.identity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of FleetPatch from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of FleetPatch if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the FleetPatch.
+     */
+    public static FleetPatch fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            FleetPatch deserializedFleetPatch = new FleetPatch();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedFleetPatch.tags = tags;
+                } else if ("identity".equals(fieldName)) {
+                    deserializedFleetPatch.identity
+                        = AzureResourceManagerLegacyManagedServiceIdentityV4Update.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedFleetPatch;
+        });
     }
 }
