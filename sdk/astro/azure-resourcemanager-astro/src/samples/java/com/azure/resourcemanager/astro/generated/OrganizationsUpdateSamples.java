@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.astro.generated;
 
+import com.azure.resourcemanager.astro.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.astro.models.LiftrBaseDataPartnerOrganizationPropertiesUpdate;
 import com.azure.resourcemanager.astro.models.LiftrBaseSingleSignOnProperties;
 import com.azure.resourcemanager.astro.models.LiftrBaseUserDetailsUpdate;
-import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
 import com.azure.resourcemanager.astro.models.OrganizationResourceUpdateProperties;
@@ -31,20 +31,29 @@ public final class OrganizationsUpdateSamples {
      */
     public static void organizationsUpdate(com.azure.resourcemanager.astro.AstroManager manager) {
         OrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgastronomer", "6.", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("key1474", "fakeTokenPlaceholder"))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf()))
+            .getByResourceGroupWithResponse("rgastronomer", "6.", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key1474", "fakeTokenPlaceholder"))
+            .withIdentity(
+                new AzureResourceManagerLegacyManagedServiceIdentityV4Update().withType(ManagedServiceIdentityType.NONE)
+                    .withUserAssignedIdentities(mapOf()))
             .withProperties(new OrganizationResourceUpdateProperties()
                 .withUser(new LiftrBaseUserDetailsUpdate().withFirstName("qeuofehzypzljgcuysugefbgxde")
-                    .withLastName("g").withEmailAddress(".K_@e7N-g1.xjqnbPs").withUpn("uwtprzdfpsqmktx")
+                    .withLastName("g")
+                    .withEmailAddress(".K_@e7N-g1.xjqnbPs")
+                    .withUpn("uwtprzdfpsqmktx")
                     .withPhoneNumber("aqpyxznvqpgkzohevynofrjdfgoo"))
                 .withPartnerOrganizationProperties(new LiftrBaseDataPartnerOrganizationPropertiesUpdate()
-                    .withOrganizationId("lrtmbkvyvvoszhjevohkmyjhfyty").withWorkspaceId("xsepuskdhejaadusyxq")
-                    .withOrganizationName("U2P_").withWorkspaceName("L.-y_--:")
-                    .withSingleSignOnProperties(new LiftrBaseSingleSignOnProperties()
-                        .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("mklfypyujwumgwdzae")
-                        .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr").withAadDomains(Arrays.asList("kfbleh")))))
+                    .withOrganizationId("lrtmbkvyvvoszhjevohkmyjhfyty")
+                    .withWorkspaceId("xsepuskdhejaadusyxq")
+                    .withOrganizationName("U2P_")
+                    .withWorkspaceName("L.-y_--:")
+                    .withSingleSignOnProperties(
+                        new LiftrBaseSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                            .withEnterpriseAppId("mklfypyujwumgwdzae")
+                            .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr")
+                            .withAadDomains(Arrays.asList("kfbleh")))))
             .apply();
     }
 

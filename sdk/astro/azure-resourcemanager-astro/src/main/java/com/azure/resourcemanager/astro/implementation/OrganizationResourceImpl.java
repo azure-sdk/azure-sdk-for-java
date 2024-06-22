@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.astro.fluent.models.OrganizationResourceInner;
+import com.azure.resourcemanager.astro.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.astro.models.LiftrBaseDataOrganizationProperties;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.OrganizationResource;
@@ -91,14 +92,16 @@ public final class OrganizationResourceImpl
     }
 
     public OrganizationResource create() {
-        this.innerObject = serviceManager.serviceClient().getOrganizations().createOrUpdate(resourceGroupName,
-            organizationName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .createOrUpdate(resourceGroupName, organizationName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public OrganizationResource create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getOrganizations().createOrUpdate(resourceGroupName,
-            organizationName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .createOrUpdate(resourceGroupName, organizationName, this.innerModel(), context);
         return this;
     }
 
@@ -114,14 +117,16 @@ public final class OrganizationResourceImpl
     }
 
     public OrganizationResource apply() {
-        this.innerObject = serviceManager.serviceClient().getOrganizations().update(resourceGroupName, organizationName,
-            updateProperties, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .update(resourceGroupName, organizationName, updateProperties, Context.NONE);
         return this;
     }
 
     public OrganizationResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getOrganizations().update(resourceGroupName, organizationName,
-            updateProperties, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .update(resourceGroupName, organizationName, updateProperties, context);
         return this;
     }
 
@@ -134,14 +139,18 @@ public final class OrganizationResourceImpl
     }
 
     public OrganizationResource refresh() {
-        this.innerObject = serviceManager.serviceClient().getOrganizations()
-            .getByResourceGroupWithResponse(resourceGroupName, organizationName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .getByResourceGroupWithResponse(resourceGroupName, organizationName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public OrganizationResource refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getOrganizations()
-            .getByResourceGroupWithResponse(resourceGroupName, organizationName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getOrganizations()
+            .getByResourceGroupWithResponse(resourceGroupName, organizationName, context)
+            .getValue();
         return this;
     }
 
@@ -171,13 +180,13 @@ public final class OrganizationResourceImpl
     }
 
     public OrganizationResourceImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public OrganizationResourceImpl withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
+        this.updateProperties.withIdentity(identity);
+        return this;
     }
 
     public OrganizationResourceImpl withProperties(OrganizationResourceUpdateProperties properties) {
