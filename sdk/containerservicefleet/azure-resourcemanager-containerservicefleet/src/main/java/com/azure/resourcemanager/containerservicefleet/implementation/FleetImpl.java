@@ -9,6 +9,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.FleetInner;
+import com.azure.resourcemanager.containerservicefleet.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.containerservicefleet.models.Fleet;
 import com.azure.resourcemanager.containerservicefleet.models.FleetCredentialResults;
 import com.azure.resourcemanager.containerservicefleet.models.FleetHubProfile;
@@ -202,13 +203,8 @@ public final class FleetImpl implements Fleet, Fleet.Definition, Fleet.Update {
     }
 
     public FleetImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
+        this.innerModel().withIdentity(identity);
+        return this;
     }
 
     public FleetImpl withHubProfile(FleetHubProfile hubProfile) {
@@ -228,6 +224,11 @@ public final class FleetImpl implements Fleet, Fleet.Definition, Fleet.Update {
 
     public FleetImpl withIfNoneMatch(String ifNoneMatch) {
         this.createIfNoneMatch = ifNoneMatch;
+        return this;
+    }
+
+    public FleetImpl withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
+        this.updateProperties.withIdentity(identity);
         return this;
     }
 
