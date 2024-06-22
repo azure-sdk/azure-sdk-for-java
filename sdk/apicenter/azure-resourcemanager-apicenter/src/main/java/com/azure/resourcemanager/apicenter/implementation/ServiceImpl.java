@@ -8,12 +8,14 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.AzureResourceManagerCommonTypesManagedServiceIdentityUpdate;
 import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.Service;
 import com.azure.resourcemanager.apicenter.models.ServiceProperties;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
+import com.azure.resourcemanager.apicenter.models.ServiceUpdateProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -91,14 +93,18 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public Service create() {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public Service create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -114,14 +120,18 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public Service apply() {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .updateWithResponse(resourceGroupName, serviceName, updateProperties, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .updateWithResponse(resourceGroupName, serviceName, updateProperties, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Service apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .updateWithResponse(resourceGroupName, serviceName, updateProperties, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .updateWithResponse(resourceGroupName, serviceName, updateProperties, context)
+            .getValue();
         return this;
     }
 
@@ -133,14 +143,18 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public Service refresh() {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .getByResourceGroupWithResponse(resourceGroupName, serviceName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .getByResourceGroupWithResponse(resourceGroupName, serviceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Service refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .getByResourceGroupWithResponse(resourceGroupName, serviceName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .getByResourceGroupWithResponse(resourceGroupName, serviceName, context)
+            .getValue();
         return this;
     }
 
@@ -178,13 +192,18 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ServiceImpl withIdentity(AzureResourceManagerCommonTypesManagedServiceIdentityUpdate identity) {
+        this.updateProperties.withIdentity(identity);
+        return this;
+    }
+
+    public ServiceImpl withProperties(ServiceUpdateProperties properties) {
+        this.updateProperties.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {
