@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.networkanalytics.generated;
 
+import com.azure.resourcemanager.networkanalytics.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.networkanalytics.models.ControlState;
 import com.azure.resourcemanager.networkanalytics.models.DataProduct;
 import com.azure.resourcemanager.networkanalytics.models.DataProductUpdateProperties;
-import com.azure.resourcemanager.networkanalytics.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.networkanalytics.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.networkanalytics.models.UserAssignedIdentity;
 import java.util.Arrays;
@@ -33,15 +33,19 @@ public final class DataProductsUpdateSamples {
         DataProduct resource = manager.dataProducts()
             .getByResourceGroupWithResponse("aoiresourceGroupName", "dataproduct01", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder"))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+        resource.update()
+            .withTags(mapOf("userSpecifiedKeyName", "fakeTokenPlaceholder"))
+            .withIdentity(new AzureResourceManagerLegacyManagedServiceIdentityV4Update()
+                .withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
                     new UserAssignedIdentity())))
             .withProperties(
                 new DataProductUpdateProperties().withOwners(Arrays.asList("abc@micros.com", "def@micros.com"))
-                    .withPurviewAccount("testpurview").withPurviewCollection("134567890")
-                    .withPrivateLinksEnabled(ControlState.DISABLED).withCurrentMinorVersion("1.0.1"))
+                    .withPurviewAccount("testpurview")
+                    .withPurviewCollection("134567890")
+                    .withPrivateLinksEnabled(ControlState.DISABLED)
+                    .withCurrentMinorVersion("1.0.1"))
             .apply();
     }
 

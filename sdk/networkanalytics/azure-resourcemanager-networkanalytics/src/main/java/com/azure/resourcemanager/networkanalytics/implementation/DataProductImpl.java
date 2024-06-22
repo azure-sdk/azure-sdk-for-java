@@ -12,6 +12,7 @@ import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductInner
 import com.azure.resourcemanager.networkanalytics.fluent.models.RoleAssignmentDetailInner;
 import com.azure.resourcemanager.networkanalytics.models.AccountSas;
 import com.azure.resourcemanager.networkanalytics.models.AccountSasToken;
+import com.azure.resourcemanager.networkanalytics.models.AzureResourceManagerLegacyManagedServiceIdentityV4Update;
 import com.azure.resourcemanager.networkanalytics.models.DataProduct;
 import com.azure.resourcemanager.networkanalytics.models.DataProductProperties;
 import com.azure.resourcemanager.networkanalytics.models.DataProductUpdate;
@@ -98,14 +99,16 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public DataProduct create() {
-        this.innerObject = serviceManager.serviceClient().getDataProducts().create(resourceGroupName, dataProductName,
-            this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .create(resourceGroupName, dataProductName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public DataProduct create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataProducts().create(resourceGroupName, dataProductName,
-            this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .create(resourceGroupName, dataProductName, this.innerModel(), context);
         return this;
     }
 
@@ -121,14 +124,16 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public DataProduct apply() {
-        this.innerObject = serviceManager.serviceClient().getDataProducts().update(resourceGroupName, dataProductName,
-            updateProperties, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .update(resourceGroupName, dataProductName, updateProperties, Context.NONE);
         return this;
     }
 
     public DataProduct apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataProducts().update(resourceGroupName, dataProductName,
-            updateProperties, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .update(resourceGroupName, dataProductName, updateProperties, context);
         return this;
     }
 
@@ -141,14 +146,18 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public DataProduct refresh() {
-        this.innerObject = serviceManager.serviceClient().getDataProducts()
-            .getByResourceGroupWithResponse(resourceGroupName, dataProductName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .getByResourceGroupWithResponse(resourceGroupName, dataProductName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public DataProduct refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDataProducts()
-            .getByResourceGroupWithResponse(resourceGroupName, dataProductName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDataProducts()
+            .getByResourceGroupWithResponse(resourceGroupName, dataProductName, context)
+            .getValue();
         return this;
     }
 
@@ -162,8 +171,8 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public Response<AccountSasToken> generateStorageAccountSasTokenWithResponse(AccountSas body, Context context) {
-        return serviceManager.dataProducts().generateStorageAccountSasTokenWithResponse(resourceGroupName,
-            dataProductName, body, context);
+        return serviceManager.dataProducts()
+            .generateStorageAccountSasTokenWithResponse(resourceGroupName, dataProductName, body, context);
     }
 
     public AccountSasToken generateStorageAccountSasToken(AccountSas body) {
@@ -171,8 +180,8 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public Response<ListRoleAssignments> listRolesAssignmentsWithResponse(Object body, Context context) {
-        return serviceManager.dataProducts().listRolesAssignmentsWithResponse(resourceGroupName, dataProductName, body,
-            context);
+        return serviceManager.dataProducts()
+            .listRolesAssignmentsWithResponse(resourceGroupName, dataProductName, body, context);
     }
 
     public ListRoleAssignments listRolesAssignments(Object body) {
@@ -180,8 +189,8 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public Response<Void> removeUserRoleWithResponse(RoleAssignmentDetailInner body, Context context) {
-        return serviceManager.dataProducts().removeUserRoleWithResponse(resourceGroupName, dataProductName, body,
-            context);
+        return serviceManager.dataProducts()
+            .removeUserRoleWithResponse(resourceGroupName, dataProductName, body, context);
     }
 
     public void removeUserRole(RoleAssignmentDetailInner body) {
@@ -222,13 +231,13 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     public DataProductImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public DataProductImpl withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
+        this.updateProperties.withIdentity(identity);
+        return this;
     }
 
     public DataProductImpl withProperties(DataProductUpdateProperties properties) {
