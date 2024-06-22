@@ -5,32 +5,31 @@
 package com.azure.resourcemanager.networkanalytics.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * The type used for update operations of the DataProduct.
  */
 @Fluent
-public final class DataProductUpdate {
+public final class DataProductUpdate implements JsonSerializable<DataProductUpdate> {
     /*
      * The managed service identities assigned to this resource.
      */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
+    private AzureResourceManagerLegacyManagedServiceIdentityV4Update identity;
 
     /*
      * Resource tags.
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*
      * The updatable properties of the DataProduct.
      */
-    @JsonProperty(value = "properties")
     private DataProductUpdateProperties properties;
 
     /**
@@ -44,7 +43,7 @@ public final class DataProductUpdate {
      * 
      * @return the identity value.
      */
-    public ManagedServiceIdentity identity() {
+    public AzureResourceManagerLegacyManagedServiceIdentityV4Update identity() {
         return this.identity;
     }
 
@@ -54,7 +53,7 @@ public final class DataProductUpdate {
      * @param identity the identity value to set.
      * @return the DataProductUpdate object itself.
      */
-    public DataProductUpdate withIdentity(ManagedServiceIdentity identity) {
+    public DataProductUpdate withIdentity(AzureResourceManagerLegacyManagedServiceIdentityV4Update identity) {
         this.identity = identity;
         return this;
     }
@@ -111,5 +110,49 @@ public final class DataProductUpdate {
         if (properties() != null) {
             properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DataProductUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DataProductUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DataProductUpdate.
+     */
+    public static DataProductUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DataProductUpdate deserializedDataProductUpdate = new DataProductUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("identity".equals(fieldName)) {
+                    deserializedDataProductUpdate.identity
+                        = AzureResourceManagerLegacyManagedServiceIdentityV4Update.fromJson(reader);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDataProductUpdate.tags = tags;
+                } else if ("properties".equals(fieldName)) {
+                    deserializedDataProductUpdate.properties = DataProductUpdateProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDataProductUpdate;
+        });
     }
 }
