@@ -11,13 +11,16 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
+import com.azure.resourcemanager.machinelearning.models.SecretExpiry;
 import java.util.List;
 
-/** An instance of this class provides access to all the operations defined in DatastoresClient. */
+/**
+ * An instance of this class provides access to all the operations defined in DatastoresClient.
+ */
 public interface DatastoresClient {
     /**
      * List datastores.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -30,7 +33,7 @@ public interface DatastoresClient {
 
     /**
      * List datastores.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param skip Continuation token for pagination.
@@ -47,21 +50,12 @@ public interface DatastoresClient {
      * @return a paginated list of Datastore entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatastoreInner> list(
-        String resourceGroupName,
-        String workspaceName,
-        String skip,
-        Integer count,
-        Boolean isDefault,
-        List<String> names,
-        String searchText,
-        String orderBy,
-        Boolean orderByAsc,
-        Context context);
+    PagedIterable<DatastoreInner> list(String resourceGroupName, String workspaceName, String skip, Integer count,
+        Boolean isDefault, List<String> names, String searchText, String orderBy, Boolean orderByAsc, Context context);
 
     /**
      * Delete datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -76,7 +70,7 @@ public interface DatastoresClient {
 
     /**
      * Delete datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -89,7 +83,7 @@ public interface DatastoresClient {
 
     /**
      * Get datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -100,12 +94,12 @@ public interface DatastoresClient {
      * @return datastore along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DatastoreInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String name, Context context);
+    Response<DatastoreInner> getWithResponse(String resourceGroupName, String workspaceName, String name,
+        Context context);
 
     /**
      * Get datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -119,7 +113,7 @@ public interface DatastoresClient {
 
     /**
      * Create or update datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -132,17 +126,12 @@ public interface DatastoresClient {
      * @return azure Resource Manager resource envelope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DatastoreInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        DatastoreInner body,
-        Boolean skipValidation,
-        Context context);
+    Response<DatastoreInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName, String name,
+        DatastoreInner body, Boolean skipValidation, Context context);
 
     /**
      * Create or update datastore.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
@@ -157,10 +146,11 @@ public interface DatastoresClient {
 
     /**
      * Get datastore secrets.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
+     * @param body Secret expiry information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -168,12 +158,12 @@ public interface DatastoresClient {
      * @return datastore secrets along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DatastoreSecretsInner> listSecretsWithResponse(
-        String resourceGroupName, String workspaceName, String name, Context context);
+    Response<DatastoreSecretsInner> listSecretsWithResponse(String resourceGroupName, String workspaceName, String name,
+        SecretExpiry body, Context context);
 
     /**
      * Get datastore secrets.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
