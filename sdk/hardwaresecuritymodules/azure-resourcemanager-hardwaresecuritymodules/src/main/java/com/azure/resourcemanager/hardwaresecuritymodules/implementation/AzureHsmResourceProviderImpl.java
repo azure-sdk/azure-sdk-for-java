@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hardwaresecuritymodules.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -25,7 +26,9 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureHsmResourceProvider;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateLinkResourcesClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersBackupStatusClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersRestoreStatusClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.DedicatedHsmsClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.OperationsClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.PrivateEndpointConnectionsClient;
@@ -69,6 +72,20 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
      */
     public String getEndpoint() {
         return this.endpoint;
+    }
+
+    /**
+     * Api Version.
+     */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
     }
 
     /**
@@ -170,17 +187,31 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The CloudHsmClustersBackupStatusClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final CloudHsmClustersBackupStatusClient cloudHsmClustersBackupStatus;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the CloudHsmClustersBackupStatusClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the CloudHsmClustersBackupStatusClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public CloudHsmClustersBackupStatusClient getCloudHsmClustersBackupStatus() {
+        return this.cloudHsmClustersBackupStatus;
+    }
+
+    /**
+     * The CloudHsmClustersRestoreStatusClient object to access its operations.
+     */
+    private final CloudHsmClustersRestoreStatusClient cloudHsmClustersRestoreStatus;
+
+    /**
+     * Gets the CloudHsmClustersRestoreStatusClient object to access its operations.
+     * 
+     * @return the CloudHsmClustersRestoreStatusClient object.
+     */
+    public CloudHsmClustersRestoreStatusClient getCloudHsmClustersRestoreStatus() {
+        return this.cloudHsmClustersRestoreStatus;
     }
 
     /**
@@ -195,6 +226,20 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
      */
     public DedicatedHsmsClient getDedicatedHsms() {
         return this.dedicatedHsms;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
@@ -214,12 +259,15 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2024-06-30";
         this.cloudHsmClusters = new CloudHsmClustersClientImpl(this);
         this.cloudHsmClusterPrivateLinkResources = new CloudHsmClusterPrivateLinkResourcesClientImpl(this);
         this.cloudHsmClusterPrivateEndpointConnections = new CloudHsmClusterPrivateEndpointConnectionsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
+        this.cloudHsmClustersBackupStatus = new CloudHsmClustersBackupStatusClientImpl(this);
+        this.cloudHsmClustersRestoreStatus = new CloudHsmClustersRestoreStatusClientImpl(this);
         this.dedicatedHsms = new DedicatedHsmsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
     }
 
     /**
@@ -282,8 +330,8 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -324,7 +372,7 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {
