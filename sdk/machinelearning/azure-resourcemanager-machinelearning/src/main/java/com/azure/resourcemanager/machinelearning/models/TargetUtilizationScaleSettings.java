@@ -5,48 +5,63 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.Duration;
 
-/** The TargetUtilizationScaleSettings model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scaleType")
-@JsonTypeName("TargetUtilization")
+/**
+ * The TargetUtilizationScaleSettings model.
+ */
 @Fluent
 public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /*
+     * [Required] Type of deployment scaling algorithm
+     */
+    private ScaleType scaleType = ScaleType.TARGET_UTILIZATION;
+
+    /*
      * The maximum number of instances that the deployment can scale to. The quota will be reserved for max_instances.
      */
-    @JsonProperty(value = "maxInstances")
     private Integer maxInstances;
 
     /*
      * The minimum number of instances to always be present.
      */
-    @JsonProperty(value = "minInstances")
     private Integer minInstances;
 
     /*
      * The polling interval in ISO 8691 format. Only supports duration with precision as low as Seconds.
      */
-    @JsonProperty(value = "pollingInterval")
     private Duration pollingInterval;
 
     /*
      * Target CPU usage for the autoscaler.
      */
-    @JsonProperty(value = "targetUtilizationPercentage")
     private Integer targetUtilizationPercentage;
 
-    /** Creates an instance of TargetUtilizationScaleSettings class. */
+    /**
+     * Creates an instance of TargetUtilizationScaleSettings class.
+     */
     public TargetUtilizationScaleSettings() {
+    }
+
+    /**
+     * Get the scaleType property: [Required] Type of deployment scaling algorithm.
+     * 
+     * @return the scaleType value.
+     */
+    @Override
+    public ScaleType scaleType() {
+        return this.scaleType;
     }
 
     /**
      * Get the maxInstances property: The maximum number of instances that the deployment can scale to. The quota will
      * be reserved for max_instances.
-     *
+     * 
      * @return the maxInstances value.
      */
     public Integer maxInstances() {
@@ -56,7 +71,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Set the maxInstances property: The maximum number of instances that the deployment can scale to. The quota will
      * be reserved for max_instances.
-     *
+     * 
      * @param maxInstances the maxInstances value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -67,7 +82,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Get the minInstances property: The minimum number of instances to always be present.
-     *
+     * 
      * @return the minInstances value.
      */
     public Integer minInstances() {
@@ -76,7 +91,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Set the minInstances property: The minimum number of instances to always be present.
-     *
+     * 
      * @param minInstances the minInstances value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -88,7 +103,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Get the pollingInterval property: The polling interval in ISO 8691 format. Only supports duration with precision
      * as low as Seconds.
-     *
+     * 
      * @return the pollingInterval value.
      */
     public Duration pollingInterval() {
@@ -98,7 +113,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Set the pollingInterval property: The polling interval in ISO 8691 format. Only supports duration with precision
      * as low as Seconds.
-     *
+     * 
      * @param pollingInterval the pollingInterval value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -109,7 +124,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Get the targetUtilizationPercentage property: Target CPU usage for the autoscaler.
-     *
+     * 
      * @return the targetUtilizationPercentage value.
      */
     public Integer targetUtilizationPercentage() {
@@ -118,7 +133,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Set the targetUtilizationPercentage property: Target CPU usage for the autoscaler.
-     *
+     * 
      * @param targetUtilizationPercentage the targetUtilizationPercentage value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -129,11 +144,62 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("scaleType", this.scaleType == null ? null : this.scaleType.toString());
+        jsonWriter.writeNumberField("maxInstances", this.maxInstances);
+        jsonWriter.writeNumberField("minInstances", this.minInstances);
+        jsonWriter.writeStringField("pollingInterval", CoreUtils.durationToStringWithDays(this.pollingInterval));
+        jsonWriter.writeNumberField("targetUtilizationPercentage", this.targetUtilizationPercentage);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of TargetUtilizationScaleSettings from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of TargetUtilizationScaleSettings if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the TargetUtilizationScaleSettings.
+     */
+    public static TargetUtilizationScaleSettings fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            TargetUtilizationScaleSettings deserializedTargetUtilizationScaleSettings
+                = new TargetUtilizationScaleSettings();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("scaleType".equals(fieldName)) {
+                    deserializedTargetUtilizationScaleSettings.scaleType = ScaleType.fromString(reader.getString());
+                } else if ("maxInstances".equals(fieldName)) {
+                    deserializedTargetUtilizationScaleSettings.maxInstances = reader.getNullable(JsonReader::getInt);
+                } else if ("minInstances".equals(fieldName)) {
+                    deserializedTargetUtilizationScaleSettings.minInstances = reader.getNullable(JsonReader::getInt);
+                } else if ("pollingInterval".equals(fieldName)) {
+                    deserializedTargetUtilizationScaleSettings.pollingInterval
+                        = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));
+                } else if ("targetUtilizationPercentage".equals(fieldName)) {
+                    deserializedTargetUtilizationScaleSettings.targetUtilizationPercentage
+                        = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedTargetUtilizationScaleSettings;
+        });
     }
 }

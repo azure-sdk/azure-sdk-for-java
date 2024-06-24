@@ -6,53 +6,81 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** Azure File datastore configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
-@JsonTypeName("AzureFile")
+/**
+ * Azure File datastore configuration.
+ */
 @Fluent
 public final class AzureFileDatastore extends DatastoreProperties {
     /*
+     * [Required] Storage type backing the datastore.
+     */
+    private DatastoreType datastoreType = DatastoreType.AZURE_FILE;
+
+    /*
      * [Required] Storage account name.
      */
-    @JsonProperty(value = "accountName", required = true)
     private String accountName;
 
     /*
      * Azure cloud endpoint for the storage account.
      */
-    @JsonProperty(value = "endpoint")
     private String endpoint;
 
     /*
      * [Required] The name of the Azure file share that the datastore points to.
      */
-    @JsonProperty(value = "fileShareName", required = true)
     private String fileShareName;
 
     /*
      * Protocol used to communicate with the storage account.
      */
-    @JsonProperty(value = "protocol")
     private String protocol;
 
     /*
      * Indicates which identity to use to authenticate service data access to customer's storage.
      */
-    @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
-    /** Creates an instance of AzureFileDatastore class. */
+    /*
+     * Azure Resource Group name
+     */
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    private String subscriptionId;
+
+    /*
+     * Readonly property to indicate if datastore is the workspace default datastore
+     */
+    private Boolean isDefault;
+
+    /**
+     * Creates an instance of AzureFileDatastore class.
+     */
     public AzureFileDatastore() {
     }
 
     /**
+     * Get the datastoreType property: [Required] Storage type backing the datastore.
+     * 
+     * @return the datastoreType value.
+     */
+    @Override
+    public DatastoreType datastoreType() {
+        return this.datastoreType;
+    }
+
+    /**
      * Get the accountName property: [Required] Storage account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -61,7 +89,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Set the accountName property: [Required] Storage account name.
-     *
+     * 
      * @param accountName the accountName value to set.
      * @return the AzureFileDatastore object itself.
      */
@@ -72,7 +100,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Get the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -81,7 +109,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Set the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the AzureFileDatastore object itself.
      */
@@ -92,7 +120,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Get the fileShareName property: [Required] The name of the Azure file share that the datastore points to.
-     *
+     * 
      * @return the fileShareName value.
      */
     public String fileShareName() {
@@ -101,7 +129,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Set the fileShareName property: [Required] The name of the Azure file share that the datastore points to.
-     *
+     * 
      * @param fileShareName the fileShareName value to set.
      * @return the AzureFileDatastore object itself.
      */
@@ -112,7 +140,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Get the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @return the protocol value.
      */
     public String protocol() {
@@ -121,7 +149,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Set the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @param protocol the protocol value to set.
      * @return the AzureFileDatastore object itself.
      */
@@ -133,7 +161,7 @@ public final class AzureFileDatastore extends DatastoreProperties {
     /**
      * Get the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @return the serviceDataAccessAuthIdentity value.
      */
     public ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity() {
@@ -143,38 +171,96 @@ public final class AzureFileDatastore extends DatastoreProperties {
     /**
      * Set the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @param serviceDataAccessAuthIdentity the serviceDataAccessAuthIdentity value to set.
      * @return the AzureFileDatastore object itself.
      */
-    public AzureFileDatastore withServiceDataAccessAuthIdentity(
-        ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
+    public AzureFileDatastore
+        withServiceDataAccessAuthIdentity(ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     * 
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     * 
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureFileDatastore object itself.
+     */
+    public AzureFileDatastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureFileDatastore object itself.
+     */
+    public AzureFileDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /**
+     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
+     * 
+     * @return the isDefault value.
+     */
+    @Override
+    public Boolean isDefault() {
+        return this.isDefault;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureFileDatastore withCredentials(DatastoreCredentials credentials) {
         super.withCredentials(credentials);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureFileDatastore withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureFileDatastore withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureFileDatastore withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -183,24 +269,98 @@ public final class AzureFileDatastore extends DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (accountName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property accountName in model AzureFileDatastore"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property accountName in model AzureFileDatastore"));
         }
         if (fileShareName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property fileShareName in model AzureFileDatastore"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fileShareName in model AzureFileDatastore"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(AzureFileDatastore.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("credentials", credentials());
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("accountName", this.accountName);
+        jsonWriter.writeStringField("fileShareName", this.fileShareName);
+        jsonWriter.writeStringField("datastoreType", this.datastoreType == null ? null : this.datastoreType.toString());
+        jsonWriter.writeStringField("endpoint", this.endpoint);
+        jsonWriter.writeStringField("protocol", this.protocol);
+        jsonWriter.writeStringField("serviceDataAccessAuthIdentity",
+            this.serviceDataAccessAuthIdentity == null ? null : this.serviceDataAccessAuthIdentity.toString());
+        jsonWriter.writeStringField("resourceGroup", this.resourceGroup);
+        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AzureFileDatastore from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AzureFileDatastore if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the AzureFileDatastore.
+     */
+    public static AzureFileDatastore fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AzureFileDatastore deserializedAzureFileDatastore = new AzureFileDatastore();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("credentials".equals(fieldName)) {
+                    deserializedAzureFileDatastore.withCredentials(DatastoreCredentials.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedAzureFileDatastore.withDescription(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureFileDatastore.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAzureFileDatastore.withTags(tags);
+                } else if ("isDefault".equals(fieldName)) {
+                    deserializedAzureFileDatastore.isDefault = reader.getNullable(JsonReader::getBoolean);
+                } else if ("accountName".equals(fieldName)) {
+                    deserializedAzureFileDatastore.accountName = reader.getString();
+                } else if ("fileShareName".equals(fieldName)) {
+                    deserializedAzureFileDatastore.fileShareName = reader.getString();
+                } else if ("datastoreType".equals(fieldName)) {
+                    deserializedAzureFileDatastore.datastoreType = DatastoreType.fromString(reader.getString());
+                } else if ("endpoint".equals(fieldName)) {
+                    deserializedAzureFileDatastore.endpoint = reader.getString();
+                } else if ("protocol".equals(fieldName)) {
+                    deserializedAzureFileDatastore.protocol = reader.getString();
+                } else if ("serviceDataAccessAuthIdentity".equals(fieldName)) {
+                    deserializedAzureFileDatastore.serviceDataAccessAuthIdentity
+                        = ServiceDataAccessAuthIdentity.fromString(reader.getString());
+                } else if ("resourceGroup".equals(fieldName)) {
+                    deserializedAzureFileDatastore.resourceGroup = reader.getString();
+                } else if ("subscriptionId".equals(fieldName)) {
+                    deserializedAzureFileDatastore.subscriptionId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAzureFileDatastore;
+        });
+    }
 }

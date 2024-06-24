@@ -5,48 +5,63 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Text Classification Multilabel task in AutoML NLP vertical. NLP - Natural Language Processing. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
-@JsonTypeName("TextClassificationMultilabel")
+/**
+ * Text Classification Multilabel task in AutoML NLP vertical.
+ * NLP - Natural Language Processing.
+ */
 @Fluent
 public final class TextClassificationMultilabel extends AutoMLVertical {
+    /*
+     * [Required] Task type for AutoMLJob.
+     */
+    private TaskType taskType = TaskType.TEXT_CLASSIFICATION_MULTILABEL;
+
     /*
      * Primary metric for Text-Classification-Multilabel task.
      * Currently only Accuracy is supported as primary metric, hence user need not set it explicitly.
      */
-    @JsonProperty(value = "primaryMetric", access = JsonProperty.Access.WRITE_ONLY)
     private ClassificationMultilabelPrimaryMetrics primaryMetric;
 
     /*
      * Featurization inputs needed for AutoML job.
      */
-    @JsonProperty(value = "featurizationSettings")
     private NlpVerticalFeaturizationSettings featurizationSettings;
 
     /*
      * Execution constraints for AutoMLJob.
      */
-    @JsonProperty(value = "limitSettings")
     private NlpVerticalLimitSettings limitSettings;
 
     /*
      * Validation data inputs.
      */
-    @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of TextClassificationMultilabel class. */
+    /**
+     * Creates an instance of TextClassificationMultilabel class.
+     */
     public TextClassificationMultilabel() {
     }
 
     /**
-     * Get the primaryMetric property: Primary metric for Text-Classification-Multilabel task. Currently only Accuracy
-     * is supported as primary metric, hence user need not set it explicitly.
-     *
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    @Override
+    public TaskType taskType() {
+        return this.taskType;
+    }
+
+    /**
+     * Get the primaryMetric property: Primary metric for Text-Classification-Multilabel task.
+     * Currently only Accuracy is supported as primary metric, hence user need not set it explicitly.
+     * 
      * @return the primaryMetric value.
      */
     public ClassificationMultilabelPrimaryMetrics primaryMetric() {
@@ -55,7 +70,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -64,19 +79,19 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TextClassificationMultilabel object itself.
      */
-    public TextClassificationMultilabel withFeaturizationSettings(
-        NlpVerticalFeaturizationSettings featurizationSettings) {
+    public TextClassificationMultilabel
+        withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
         return this;
     }
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -85,7 +100,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TextClassificationMultilabel object itself.
      */
@@ -96,7 +111,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -105,7 +120,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TextClassificationMultilabel object itself.
      */
@@ -114,21 +129,27 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -137,7 +158,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -152,5 +173,65 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
         if (validationData() != null) {
             validationData().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("trainingData", trainingData());
+        jsonWriter.writeStringField("logVerbosity", logVerbosity() == null ? null : logVerbosity().toString());
+        jsonWriter.writeStringField("targetColumnName", targetColumnName());
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
+        jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
+        jsonWriter.writeJsonField("validationData", this.validationData);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of TextClassificationMultilabel from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of TextClassificationMultilabel if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the TextClassificationMultilabel.
+     */
+    public static TextClassificationMultilabel fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            TextClassificationMultilabel deserializedTextClassificationMultilabel = new TextClassificationMultilabel();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("trainingData".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.withTrainingData(MLTableJobInput.fromJson(reader));
+                } else if ("logVerbosity".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel
+                        .withLogVerbosity(LogVerbosity.fromString(reader.getString()));
+                } else if ("targetColumnName".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.withTargetColumnName(reader.getString());
+                } else if ("taskType".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.taskType = TaskType.fromString(reader.getString());
+                } else if ("primaryMetric".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.primaryMetric
+                        = ClassificationMultilabelPrimaryMetrics.fromString(reader.getString());
+                } else if ("featurizationSettings".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.featurizationSettings
+                        = NlpVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
+                } else if ("validationData".equals(fieldName)) {
+                    deserializedTextClassificationMultilabel.validationData = MLTableJobInput.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedTextClassificationMultilabel;
+        });
     }
 }
