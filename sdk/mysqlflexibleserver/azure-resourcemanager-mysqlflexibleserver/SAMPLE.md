@@ -136,7 +136,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdvancedThreatProtec
  */
 public final class AdvancedThreatProtectionSettingsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsGet.json
      */
     /**
      * Sample code: Get a server's Advanced Threat Protection settings.
@@ -160,7 +162,9 @@ public final class AdvancedThreatProtectionSettingsGetSamples {
  */
 public final class AdvancedThreatProtectionSettingsListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsList.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsList.json
      */
     /**
      * Sample code: Get list of server's Advanced Threat Protection settings.
@@ -187,7 +191,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdvancedThreatProtec
  */
 public final class AdvancedThreatProtectionSettingsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsPatchDisabled.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsPatchDisabled.json
      */
     /**
      * Sample code: Disable a server's Advanced Threat Protection settings with all parameters.
@@ -203,7 +209,9 @@ public final class AdvancedThreatProtectionSettingsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsPatchEnabled.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsPatchEnabled.json
      */
     /**
      * Sample code: Enable a server's Advanced Threat Protection settings.
@@ -232,7 +240,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdvancedThreatProtec
  */
 public final class AdvancedThreatProtectionSettingsUpdatePutSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsPutDisabled.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsPutDisabled.json
      */
     /**
      * Sample code: Disable a server's Advanced Threat Protection settings with all parameters using PUT.
@@ -248,7 +258,9 @@ public final class AdvancedThreatProtectionSettingsUpdatePutSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/AdvancedThreatProtectionSettingsPutEnabled.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * AdvancedThreatProtectionSettingsPutEnabled.json
      */
     /**
      * Sample code: Enable a server's Advanced Threat Protection settings using PUT.
@@ -276,7 +288,8 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdministratorType;
  */
 public final class AzureADAdministratorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorCreate.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/
+     * AzureADAdministratorCreate.json
      */
     /**
      * Sample code: Create an azure ad administrator.
@@ -309,7 +322,8 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdministratorName;
  */
 public final class AzureADAdministratorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorDelete.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/
+     * AzureADAdministratorDelete.json
      */
     /**
      * Sample code: Delete an azure ad administrator.
@@ -334,7 +348,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdministratorName;
  */
 public final class AzureADAdministratorsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/AzureADAdministratorGet.
+     * json
      */
     /**
      * Sample code: Get an azure ad administrator.
@@ -357,7 +373,8 @@ public final class AzureADAdministratorsGetSamples {
  */
 public final class AzureADAdministratorsListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorsListByServer.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/
+     * AzureADAdministratorsListByServer.json
      */
     /**
      * Sample code: List Azure AD administrators in a server.
@@ -384,7 +401,8 @@ import java.util.Arrays;
  */
 public final class BackupAndExportCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/BackupAndExport.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupAndExport.json
      */
     /**
      * Sample code: Create and Export Backup.
@@ -409,7 +427,8 @@ public final class BackupAndExportCreateSamples {
  */
 public final class BackupAndExportValidateBackupSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/ValidateBackup.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/ValidateBackup.json
      */
     /**
      * Sample code: Validate Backup.
@@ -431,7 +450,8 @@ public final class BackupAndExportValidateBackupSamples {
  */
 public final class BackupsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/BackupGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupGet.json
      */
     /**
      * Sample code: Get a backup for a server.
@@ -453,7 +473,9 @@ public final class BackupsGetSamples {
  */
 public final class BackupsListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/BackupsListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupsListByServer.
+     * json
      */
     /**
      * Sample code: List backups for a server.
@@ -474,7 +496,8 @@ public final class BackupsListByServerSamples {
  */
 public final class BackupsPutSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/BackupPut.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupPut.json
      */
     /**
      * Sample code: Create backup for a server.
@@ -497,7 +520,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.NameAvailabilityRequ
  */
 public final class CheckNameAvailabilityExecuteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CheckNameAvailability.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CheckNameAvailability.json
      */
     /**
      * Sample code: Check name availability.
@@ -523,7 +548,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.NameAvailabilityRequ
  */
 public final class CheckNameAvailabilityWithoutLocationExecuteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CheckNameAvailability.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CheckNameAvailability.json
      */
     /**
      * Sample code: Check name availability.
@@ -549,7 +576,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.VirtualNetworkSubnet
  */
 public final class CheckVirtualNetworkSubnetUsageExecuteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CheckVirtualNetworkSubnetUsage.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CheckVirtualNetworkSubnetUsage.json
      */
     /**
      * Sample code: CheckVirtualNetworkSubnetUsage.
@@ -579,7 +608,9 @@ import java.util.Arrays;
  */
 public final class ConfigurationsBatchUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/preview/2023-06-01-preview/examples/ConfigurationsBatchUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationsBatchUpdate.json
      */
     /**
      * Sample code: ConfigurationList.
@@ -606,7 +637,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ConfigurationSource;
  */
 public final class ConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/preview/2023-06-01-preview/examples/ConfigurationCreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationCreateOrUpdate.json
      */
     /**
      * Sample code: ConfigurationCreateOrUpdate.
@@ -632,7 +665,9 @@ public final class ConfigurationsCreateOrUpdateSamples {
  */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/preview/2023-06-01-preview/examples/ConfigurationGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationGet.json
      */
     /**
      * Sample code: Get a configuration.
@@ -654,7 +689,9 @@ public final class ConfigurationsGetSamples {
  */
 public final class ConfigurationsListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/preview/2023-06-01-preview/examples/ConfigurationsListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationsListByServer.json
      */
     /**
      * Sample code: List all configurations for a server.
@@ -680,7 +717,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ConfigurationSource;
  */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/preview/2023-06-01-preview/examples/ConfigurationUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationUpdate.json
      */
     /**
      * Sample code: Update a user configuration.
@@ -704,7 +743,9 @@ public final class ConfigurationsUpdateSamples {
  */
 public final class DatabasesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/preview/2023-06-01-preview/examples/DatabaseCreate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/DatabaseCreate.
+     * json
      */
     /**
      * Sample code: Create a database.
@@ -730,7 +771,9 @@ public final class DatabasesCreateOrUpdateSamples {
  */
 public final class DatabasesDeleteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/preview/2023-06-01-preview/examples/DatabaseDelete.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/DatabaseDelete.
+     * json
      */
     /**
      * Sample code: Delete a database.
@@ -751,7 +794,8 @@ public final class DatabasesDeleteSamples {
  */
 public final class DatabasesGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/preview/2023-06-01-preview/examples/DatabaseGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/DatabaseGet.json
      */
     /**
      * Sample code: Get a database.
@@ -772,7 +816,9 @@ public final class DatabasesGetSamples {
  */
 public final class DatabasesListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/preview/2023-06-01-preview/examples/DatabasesListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/
+     * DatabasesListByServer.json
      */
     /**
      * Sample code: List databases in a server.
@@ -793,7 +839,9 @@ public final class DatabasesListByServerSamples {
  */
 public final class FirewallRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/preview/2023-06-01-preview/examples/FirewallRuleCreate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/stable/2023-12-30/examples/FirewallRuleCreate.
+     * json
      */
     /**
      * Sample code: Create a firewall rule.
@@ -819,7 +867,9 @@ public final class FirewallRulesCreateOrUpdateSamples {
  */
 public final class FirewallRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/preview/2023-06-01-preview/examples/FirewallRuleDelete.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/stable/2023-12-30/examples/FirewallRuleDelete.
+     * json
      */
     /**
      * Sample code: Delete a firewall rule.
@@ -840,7 +890,9 @@ public final class FirewallRulesDeleteSamples {
  */
 public final class FirewallRulesGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/preview/2023-06-01-preview/examples/FirewallRuleGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/stable/2023-12-30/examples/FirewallRuleGet.
+     * json
      */
     /**
      * Sample code: Get a firewall rule.
@@ -861,7 +913,9 @@ public final class FirewallRulesGetSamples {
  */
 public final class FirewallRulesListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/preview/2023-06-01-preview/examples/FirewallRulesListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Firewall/stable/2023-12-30/examples/
+     * FirewallRulesListByServer.json
      */
     /**
      * Sample code: List all firewall rules in a server.
@@ -883,7 +937,9 @@ public final class FirewallRulesListByServerSamples {
  */
 public final class GetPrivateDnsZoneSuffixExecuteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/GetPrivateDnsZoneSuffix.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * GetPrivateDnsZoneSuffix.json
      */
     /**
      * Sample code: GetPrivateDnsZoneSuffix.
@@ -904,7 +960,9 @@ public final class GetPrivateDnsZoneSuffixExecuteSamples {
  */
 public final class LocationBasedCapabilitiesListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CapabilitiesByLocationList.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CapabilitiesByLocationList.json
      */
     /**
      * Sample code: CapabilitiesList.
@@ -925,7 +983,9 @@ public final class LocationBasedCapabilitiesListSamples {
  */
 public final class LocationBasedCapabilitySetGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CapabilitySetByLocation.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CapabilitySetByLocation.json
      */
     /**
      * Sample code: CapabilityResult.
@@ -946,7 +1006,9 @@ public final class LocationBasedCapabilitySetGetSamples {
  */
 public final class LocationBasedCapabilitySetListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/CapabilitySetListByLocation.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * CapabilitySetListByLocation.json
      */
     /**
      * Sample code: CapabilitySetsResult.
@@ -967,7 +1029,9 @@ public final class LocationBasedCapabilitySetListSamples {
  */
 public final class LogFilesListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/LogFiles/preview/2023-06-01-preview/examples/LogFilesListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/LogFiles/stable/2023-12-30/examples/
+     * LogFilesListByServer.json
      */
     /**
      * Sample code: List all server log files for a server.
@@ -989,7 +1053,9 @@ public final class LogFilesListByServerSamples {
  */
 public final class LongRunningBackupCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/LongRunningBackup.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/LongRunningBackup.
+     * json
      */
     /**
      * Sample code: Create backup for a server.
@@ -1013,7 +1079,9 @@ public final class LongRunningBackupCreateSamples {
  */
 public final class LongRunningBackupsOperationGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/LongRunningBackupGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/LongRunningBackupGet
+     * .json
      */
     /**
      * Sample code: Get a backup for a server.
@@ -1035,7 +1103,8 @@ public final class LongRunningBackupsOperationGetSamples {
  */
 public final class LongRunningBackupsOperationListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/LongRunningBackupsListByServer.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/
+     * LongRunningBackupsListByServer.json
      */
     /**
      * Sample code: List backups for a server.
@@ -1056,7 +1125,9 @@ public final class LongRunningBackupsOperationListSamples {
  */
 public final class MaintenancesListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/preview/2023-10-01-preview/examples/MaintenancesListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/stable/2023-12-30/examples/
+     * MaintenancesListByServer.json
      */
     /**
      * Sample code: List maintenances on a server.
@@ -1077,7 +1148,9 @@ public final class MaintenancesListSamples {
  */
 public final class MaintenancesReadSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/preview/2023-10-01-preview/examples/MaintenanceRead.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/stable/2023-12-30/examples/MaintenanceRead.
+     * json
      */
     /**
      * Sample code: Read a maintenance.
@@ -1102,7 +1175,9 @@ import java.time.OffsetDateTime;
  */
 public final class MaintenancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/preview/2023-10-01-preview/examples/MaintenanceUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/stable/2023-12-30/examples/
+     * MaintenanceUpdate.json
      */
     /**
      * Sample code: Update maintenance on a server.
@@ -1126,7 +1201,9 @@ public final class MaintenancesUpdateSamples {
  */
 public final class OperationProgressGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationProgress_Get_BackupAndExport.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * OperationProgress_Get_BackupAndExport.json
      */
     /**
      * Sample code: OperationProgress_Get BackupAndExport.
@@ -1140,7 +1217,9 @@ public final class OperationProgressGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationProgress_Get_ImportFromStorage.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * OperationProgress_Get_ImportFromStorage.json
      */
     /**
      * Sample code: OperationProgress_Get ImportFromStorage.
@@ -1163,7 +1242,9 @@ public final class OperationProgressGetSamples {
  */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationResults_Get.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * OperationResults_Get.json
      */
     /**
      * Sample code: OperationResults_Get.
@@ -1185,7 +1266,9 @@ public final class OperationResultsGetSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationsList.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/
+     * OperationsList.json
      */
     /**
      * Sample code: OperationList.
@@ -1206,7 +1289,9 @@ public final class OperationsListSamples {
  */
 public final class ReplicasListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ReplicasListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ReplicasListByServer.json
      */
     /**
      * Sample code: List replicas for a server.
@@ -1247,7 +1332,9 @@ import java.util.Map;
  */
 public final class ServersCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateReplica.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerCreateReplica.json
      */
     /**
      * Sample code: Create a replica server.
@@ -1266,7 +1353,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreate
+     * .json
      */
     /**
      * Sample code: Create a new server.
@@ -1295,7 +1384,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateWithBYOK.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerCreateWithBYOK.json
      */
     /**
      * Sample code: Create a server with byok.
@@ -1337,7 +1428,9 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerCreateWithPointInTimeRestore.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerCreateWithPointInTimeRestore.json
      */
     /**
      * Sample code: Create a server as a point in time restore.
@@ -1381,7 +1474,9 @@ public final class ServersCreateSamples {
  */
 public final class ServersDeleteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerDelete.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerDelete
+     * .json
      */
     /**
      * Sample code: Delete a server.
@@ -1402,7 +1497,9 @@ public final class ServersDeleteSamples {
  */
 public final class ServersFailoverSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerFailover.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerFailover.json
      */
     /**
      * Sample code: Restart a server.
@@ -1423,7 +1520,9 @@ public final class ServersFailoverSamples {
  */
 public final class ServersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerGetWithVnet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerGetWithVnet.json
      */
     /**
      * Sample code: Get a server with vnet.
@@ -1435,7 +1534,9 @@ public final class ServersGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerGet.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerGet.
+     * json
      */
     /**
      * Sample code: Get a server.
@@ -1456,7 +1557,9 @@ public final class ServersGetByResourceGroupSamples {
  */
 public final class ServersListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServersList.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServersList.
+     * json
      */
     /**
      * Sample code: List servers in a subscription.
@@ -1477,7 +1580,9 @@ public final class ServersListSamples {
  */
 public final class ServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServersListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServersListByResourceGroup.json
      */
     /**
      * Sample code: List servers in a resource group.
@@ -1500,7 +1605,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParamet
  */
 public final class ServersResetGtidSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerResetGtid.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerResetGtid.json
      */
     /**
      * Sample code: Reset GTID on a server.
@@ -1527,7 +1634,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParamet
  */
 public final class ServersRestartSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerRestart.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerRestart.json
      */
     /**
      * Sample code: Restart a server.
@@ -1552,7 +1661,9 @@ public final class ServersRestartSamples {
  */
 public final class ServersStartSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerStart.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerStart.
+     * json
      */
     /**
      * Sample code: Start a server.
@@ -1573,7 +1684,9 @@ public final class ServersStartSamples {
  */
 public final class ServersStopSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerStop.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerStop.
+     * json
      */
     /**
      * Sample code: Stop a server.
@@ -1609,7 +1722,9 @@ import java.util.Map;
  */
 public final class ServersUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdateWithCustomerMaintenanceWindow.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerUpdateWithCustomerMaintenanceWindow.json
      */
     /**
      * Sample code: Update server customer maintenance window.
@@ -1630,7 +1745,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdateWithBYOK.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerUpdateWithBYOK.json
      */
     /**
      * Sample code: Update server with byok.
@@ -1659,7 +1776,9 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdate.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerUpdate
+     * .json
      */
     /**
      * Sample code: Update a server.
@@ -1703,7 +1822,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.HighAvailabil
  */
 public final class ServersValidateEstimateHighAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/ServerValidateEstimateHighAvailability.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * ServerValidateEstimateHighAvailability.json
      */
     /**
      * Sample code: Validate a validation and estimation of high availability.
@@ -1728,7 +1849,9 @@ public final class ServersValidateEstimateHighAvailabilitySamples {
  */
 public final class ServersMigrationCutoverMigrationSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/CutoverMigration.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/stable/2023-12-30/examples/
+     * CutoverMigration.json
      */
     /**
      * Sample code: Cutover migration for MySQL import.

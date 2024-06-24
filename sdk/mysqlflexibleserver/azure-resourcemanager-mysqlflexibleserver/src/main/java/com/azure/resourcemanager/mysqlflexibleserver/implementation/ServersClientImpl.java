@@ -238,10 +238,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -281,11 +280,10 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, parameters, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, parameters, accept, context);
     }
 
     /**
@@ -468,10 +466,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -512,11 +509,10 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, parameters, accept, context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, parameters, accept, context);
     }
 
     /**
@@ -700,10 +696,9 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -737,11 +732,10 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, accept, context);
     }
 
     /**
@@ -902,10 +896,9 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -939,11 +932,10 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, serverName, accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context);
     }
 
     /**
@@ -1017,10 +1009,9 @@ public final class ServersClientImpl implements ServersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, accept, context))
             .<PagedResponse<ServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -1052,12 +1043,11 @@ public final class ServersClientImpl implements ServersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1139,11 +1129,10 @@ public final class ServersClientImpl implements ServersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1168,10 +1157,11 @@ public final class ServersClientImpl implements ServersClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1256,10 +1246,9 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.failover(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.failover(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1293,10 +1282,9 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.failover(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.failover(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             resourceGroupName, serverName, accept, context);
     }
 
@@ -1465,11 +1453,11 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.validateEstimateHighAvailability(this.client.getEndpoint(), apiVersion,
-                this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
+            .withContext(context -> service.validateEstimateHighAvailability(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, serverName, parameters,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1510,10 +1498,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.validateEstimateHighAvailability(this.client.getEndpoint(), apiVersion,
+        return service.validateEstimateHighAvailability(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context);
     }
 
@@ -1607,10 +1594,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.restart(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.restart(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1650,10 +1636,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.restart(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+        return service.restart(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             resourceGroupName, serverName, parameters, accept, context);
     }
 
@@ -1828,10 +1813,9 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.start(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.start(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1865,11 +1849,10 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.start(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, accept, context);
+        return service.start(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, accept, context);
     }
 
     /**
@@ -2028,11 +2011,10 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.stop(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, serverName, accept, context))
+            .withContext(context -> service.stop(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -2065,11 +2047,10 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.stop(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, accept, context);
+        return service.stop(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, accept, context);
     }
 
     /**
@@ -2235,10 +2216,9 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.resetGtid(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.resetGtid(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -2278,11 +2258,10 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.resetGtid(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, serverName, parameters, accept, context);
+        return service.resetGtid(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context);
     }
 
     /**
@@ -2432,9 +2411,7 @@ public final class ServersClientImpl implements ServersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2461,9 +2438,7 @@ public final class ServersClientImpl implements ServersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2489,9 +2464,7 @@ public final class ServersClientImpl implements ServersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2516,9 +2489,7 @@ public final class ServersClientImpl implements ServersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
