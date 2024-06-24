@@ -6,61 +6,61 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.EndpointAuthMode;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.Map;
 
-/** Inference Endpoint base definition. */
+/**
+ * Inference Endpoint base definition.
+ */
 @Fluent
-public class EndpointPropertiesBaseInner {
+public class EndpointPropertiesBaseInner implements JsonSerializable<EndpointPropertiesBaseInner> {
     /*
      * [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine Learning token-based
      * authentication. 'Key' doesn't expire but 'AMLToken' does.
      */
-    @JsonProperty(value = "authMode", required = true)
     private EndpointAuthMode authMode;
 
     /*
      * Description of the inference endpoint.
      */
-    @JsonProperty(value = "description")
     private String description;
 
     /*
      * EndpointAuthKeys to set initially on an Endpoint.
      * This property will always be returned as null. AuthKey values must be retrieved using the ListKeys API.
      */
-    @JsonProperty(value = "keys")
     private EndpointAuthKeysInner keys;
 
     /*
      * Property dictionary. Properties can be added, but not removed or altered.
      */
-    @JsonProperty(value = "properties")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> properties;
 
     /*
      * Endpoint URI.
      */
-    @JsonProperty(value = "scoringUri", access = JsonProperty.Access.WRITE_ONLY)
     private String scoringUri;
 
     /*
      * Endpoint Swagger URI.
      */
-    @JsonProperty(value = "swaggerUri", access = JsonProperty.Access.WRITE_ONLY)
     private String swaggerUri;
 
-    /** Creates an instance of EndpointPropertiesBaseInner class. */
+    /**
+     * Creates an instance of EndpointPropertiesBaseInner class.
+     */
     public EndpointPropertiesBaseInner() {
     }
 
     /**
      * Get the authMode property: [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine
      * Learning token-based authentication. 'Key' doesn't expire but 'AMLToken' does.
-     *
+     * 
      * @return the authMode value.
      */
     public EndpointAuthMode authMode() {
@@ -70,7 +70,7 @@ public class EndpointPropertiesBaseInner {
     /**
      * Set the authMode property: [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine
      * Learning token-based authentication. 'Key' doesn't expire but 'AMLToken' does.
-     *
+     * 
      * @param authMode the authMode value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -81,7 +81,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the description property: Description of the inference endpoint.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -90,7 +90,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Set the description property: Description of the inference endpoint.
-     *
+     * 
      * @param description the description value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -100,9 +100,9 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Get the keys property: EndpointAuthKeys to set initially on an Endpoint. This property will always be returned as
-     * null. AuthKey values must be retrieved using the ListKeys API.
-     *
+     * Get the keys property: EndpointAuthKeys to set initially on an Endpoint.
+     * This property will always be returned as null. AuthKey values must be retrieved using the ListKeys API.
+     * 
      * @return the keys value.
      */
     public EndpointAuthKeysInner keys() {
@@ -110,9 +110,9 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Set the keys property: EndpointAuthKeys to set initially on an Endpoint. This property will always be returned as
-     * null. AuthKey values must be retrieved using the ListKeys API.
-     *
+     * Set the keys property: EndpointAuthKeys to set initially on an Endpoint.
+     * This property will always be returned as null. AuthKey values must be retrieved using the ListKeys API.
+     * 
      * @param keys the keys value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -123,7 +123,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, String> properties() {
@@ -132,7 +132,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Set the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -143,7 +143,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the scoringUri property: Endpoint URI.
-     *
+     * 
      * @return the scoringUri value.
      */
     public String scoringUri() {
@@ -151,8 +151,19 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
+     * Set the scoringUri property: Endpoint URI.
+     * 
+     * @param scoringUri the scoringUri value to set.
+     * @return the EndpointPropertiesBaseInner object itself.
+     */
+    EndpointPropertiesBaseInner withScoringUri(String scoringUri) {
+        this.scoringUri = scoringUri;
+        return this;
+    }
+
+    /**
      * Get the swaggerUri property: Endpoint Swagger URI.
-     *
+     * 
      * @return the swaggerUri value.
      */
     public String swaggerUri() {
@@ -160,16 +171,26 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
+     * Set the swaggerUri property: Endpoint Swagger URI.
+     * 
+     * @param swaggerUri the swaggerUri value to set.
+     * @return the EndpointPropertiesBaseInner object itself.
+     */
+    EndpointPropertiesBaseInner withSwaggerUri(String swaggerUri) {
+        this.swaggerUri = swaggerUri;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (authMode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authMode in model EndpointPropertiesBaseInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property authMode in model EndpointPropertiesBaseInner"));
         }
         if (keys() != null) {
             keys().validate();
@@ -177,4 +198,55 @@ public class EndpointPropertiesBaseInner {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(EndpointPropertiesBaseInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("authMode", this.authMode == null ? null : this.authMode.toString());
+        jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeJsonField("keys", this.keys);
+        jsonWriter.writeMapField("properties", this.properties, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EndpointPropertiesBaseInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EndpointPropertiesBaseInner if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the EndpointPropertiesBaseInner.
+     */
+    public static EndpointPropertiesBaseInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EndpointPropertiesBaseInner deserializedEndpointPropertiesBaseInner = new EndpointPropertiesBaseInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("authMode".equals(fieldName)) {
+                    deserializedEndpointPropertiesBaseInner.authMode = EndpointAuthMode.fromString(reader.getString());
+                } else if ("description".equals(fieldName)) {
+                    deserializedEndpointPropertiesBaseInner.description = reader.getString();
+                } else if ("keys".equals(fieldName)) {
+                    deserializedEndpointPropertiesBaseInner.keys = EndpointAuthKeysInner.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedEndpointPropertiesBaseInner.properties = properties;
+                } else if ("scoringUri".equals(fieldName)) {
+                    deserializedEndpointPropertiesBaseInner.scoringUri = reader.getString();
+                } else if ("swaggerUri".equals(fieldName)) {
+                    deserializedEndpointPropertiesBaseInner.swaggerUri = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEndpointPropertiesBaseInner;
+        });
+    }
 }

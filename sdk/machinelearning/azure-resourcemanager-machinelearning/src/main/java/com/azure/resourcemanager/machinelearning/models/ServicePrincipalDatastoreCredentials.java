@@ -6,53 +6,67 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
-/** Service Principal datastore credentials configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
-@JsonTypeName("ServicePrincipal")
+/**
+ * Service Principal datastore credentials configuration.
+ */
 @Fluent
 public final class ServicePrincipalDatastoreCredentials extends DatastoreCredentials {
     /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    private CredentialsType credentialsType = CredentialsType.SERVICE_PRINCIPAL;
+
+    /*
      * Authority URL used for authentication.
      */
-    @JsonProperty(value = "authorityUrl")
     private String authorityUrl;
 
     /*
      * [Required] Service principal client ID.
      */
-    @JsonProperty(value = "clientId", required = true)
     private UUID clientId;
 
     /*
      * Resource the service principal has access to.
      */
-    @JsonProperty(value = "resourceUrl")
     private String resourceUrl;
 
     /*
      * [Required] Service principal secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
     private ServicePrincipalDatastoreSecrets secrets;
 
     /*
      * [Required] ID of the tenant to which the service principal belongs.
      */
-    @JsonProperty(value = "tenantId", required = true)
     private UUID tenantId;
 
-    /** Creates an instance of ServicePrincipalDatastoreCredentials class. */
+    /**
+     * Creates an instance of ServicePrincipalDatastoreCredentials class.
+     */
     public ServicePrincipalDatastoreCredentials() {
     }
 
     /**
+     * Get the credentialsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the credentialsType value.
+     */
+    @Override
+    public CredentialsType credentialsType() {
+        return this.credentialsType;
+    }
+
+    /**
      * Get the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @return the authorityUrl value.
      */
     public String authorityUrl() {
@@ -61,7 +75,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @param authorityUrl the authorityUrl value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -72,7 +86,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -81,7 +95,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -92,7 +106,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @return the resourceUrl value.
      */
     public String resourceUrl() {
@@ -101,7 +115,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @param resourceUrl the resourceUrl value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -112,7 +126,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @return the secrets value.
      */
     public ServicePrincipalDatastoreSecrets secrets() {
@@ -121,7 +135,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @param secrets the secrets value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -132,7 +146,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -141,7 +155,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -152,33 +166,88 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clientId in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clientId in model ServicePrincipalDatastoreCredentials"));
         }
         if (secrets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property secrets in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property secrets in model ServicePrincipalDatastoreCredentials"));
         } else {
             secrets().validate();
         }
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ServicePrincipalDatastoreCredentials.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("clientId", Objects.toString(this.clientId, null));
+        jsonWriter.writeJsonField("secrets", this.secrets);
+        jsonWriter.writeStringField("tenantId", Objects.toString(this.tenantId, null));
+        jsonWriter.writeStringField("credentialsType",
+            this.credentialsType == null ? null : this.credentialsType.toString());
+        jsonWriter.writeStringField("authorityUrl", this.authorityUrl);
+        jsonWriter.writeStringField("resourceUrl", this.resourceUrl);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ServicePrincipalDatastoreCredentials from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ServicePrincipalDatastoreCredentials if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ServicePrincipalDatastoreCredentials.
+     */
+    public static ServicePrincipalDatastoreCredentials fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ServicePrincipalDatastoreCredentials deserializedServicePrincipalDatastoreCredentials
+                = new ServicePrincipalDatastoreCredentials();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("clientId".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.clientId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
+                } else if ("secrets".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.secrets
+                        = ServicePrincipalDatastoreSecrets.fromJson(reader);
+                } else if ("tenantId".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.tenantId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
+                } else if ("credentialsType".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.credentialsType
+                        = CredentialsType.fromString(reader.getString());
+                } else if ("authorityUrl".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.authorityUrl = reader.getString();
+                } else if ("resourceUrl".equals(fieldName)) {
+                    deserializedServicePrincipalDatastoreCredentials.resourceUrl = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedServicePrincipalDatastoreCredentials;
+        });
+    }
 }

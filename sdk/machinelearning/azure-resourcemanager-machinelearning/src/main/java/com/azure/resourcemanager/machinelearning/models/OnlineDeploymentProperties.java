@@ -5,78 +5,71 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** The OnlineDeploymentProperties model. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "endpointComputeType",
-    defaultImpl = OnlineDeploymentProperties.class)
-@JsonTypeName("OnlineDeploymentProperties")
-@JsonSubTypes({
-    @JsonSubTypes.Type(name = "Kubernetes", value = KubernetesOnlineDeployment.class),
-    @JsonSubTypes.Type(name = "Managed", value = ManagedOnlineDeployment.class)
-})
+/**
+ * The OnlineDeploymentProperties model.
+ */
 @Fluent
 public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase {
     /*
+     * [Required] The compute type of the endpoint.
+     */
+    private EndpointComputeType endpointComputeType = EndpointComputeType.fromString("OnlineDeploymentProperties");
+
+    /*
      * If true, enables Application Insights logging.
      */
-    @JsonProperty(value = "appInsightsEnabled")
     private Boolean appInsightsEnabled;
+
+    /*
+     * The mdc configuration, we disable mdc when it's null.
+     */
+    private DataCollector dataCollector;
 
     /*
      * If Enabled, allow egress public network access. If Disabled, this will create secure egress. Default: Enabled.
      */
-    @JsonProperty(value = "egressPublicNetworkAccess")
     private EgressPublicNetworkAccessType egressPublicNetworkAccess;
 
     /*
      * Compute instance type.
      */
-    @JsonProperty(value = "instanceType")
     private String instanceType;
 
     /*
      * Liveness probe monitors the health of the container regularly.
      */
-    @JsonProperty(value = "livenessProbe")
     private ProbeSettings livenessProbe;
 
     /*
      * The URI path to the model.
      */
-    @JsonProperty(value = "model")
     private String model;
 
     /*
      * The path to mount the model in custom container.
      */
-    @JsonProperty(value = "modelMountPath")
     private String modelMountPath;
 
     /*
      * Provisioning state for the endpoint deployment.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private DeploymentProvisioningState provisioningState;
 
     /*
-     * Readiness probe validates if the container is ready to serve traffic. The properties and defaults are the same
-     * as liveness probe.
+     * Readiness probe validates if the container is ready to serve traffic. The properties and defaults are the same as
+     * liveness probe.
      */
-    @JsonProperty(value = "readinessProbe")
     private ProbeSettings readinessProbe;
 
     /*
      * Request settings for the deployment.
      */
-    @JsonProperty(value = "requestSettings")
     private OnlineRequestSettings requestSettings;
 
     /*
@@ -85,16 +78,26 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
      * it defaults to TargetUtilizationScaleSettings for KubernetesOnlineDeployment
      * and to DefaultScaleSettings for ManagedOnlineDeployment.
      */
-    @JsonProperty(value = "scaleSettings")
     private OnlineScaleSettings scaleSettings;
 
-    /** Creates an instance of OnlineDeploymentProperties class. */
+    /**
+     * Creates an instance of OnlineDeploymentProperties class.
+     */
     public OnlineDeploymentProperties() {
     }
 
     /**
+     * Get the endpointComputeType property: [Required] The compute type of the endpoint.
+     * 
+     * @return the endpointComputeType value.
+     */
+    public EndpointComputeType endpointComputeType() {
+        return this.endpointComputeType;
+    }
+
+    /**
      * Get the appInsightsEnabled property: If true, enables Application Insights logging.
-     *
+     * 
      * @return the appInsightsEnabled value.
      */
     public Boolean appInsightsEnabled() {
@@ -103,7 +106,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the appInsightsEnabled property: If true, enables Application Insights logging.
-     *
+     * 
      * @param appInsightsEnabled the appInsightsEnabled value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -113,9 +116,29 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
+     * Get the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     * 
+     * @return the dataCollector value.
+     */
+    public DataCollector dataCollector() {
+        return this.dataCollector;
+    }
+
+    /**
+     * Set the dataCollector property: The mdc configuration, we disable mdc when it's null.
+     * 
+     * @param dataCollector the dataCollector value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    public OnlineDeploymentProperties withDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
+        return this;
+    }
+
+    /**
      * Get the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
      * will create secure egress. Default: Enabled.
-     *
+     * 
      * @return the egressPublicNetworkAccess value.
      */
     public EgressPublicNetworkAccessType egressPublicNetworkAccess() {
@@ -125,19 +148,19 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     /**
      * Set the egressPublicNetworkAccess property: If Enabled, allow egress public network access. If Disabled, this
      * will create secure egress. Default: Enabled.
-     *
+     * 
      * @param egressPublicNetworkAccess the egressPublicNetworkAccess value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
-    public OnlineDeploymentProperties withEgressPublicNetworkAccess(
-        EgressPublicNetworkAccessType egressPublicNetworkAccess) {
+    public OnlineDeploymentProperties
+        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         this.egressPublicNetworkAccess = egressPublicNetworkAccess;
         return this;
     }
 
     /**
      * Get the instanceType property: Compute instance type.
-     *
+     * 
      * @return the instanceType value.
      */
     public String instanceType() {
@@ -146,7 +169,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the instanceType property: Compute instance type.
-     *
+     * 
      * @param instanceType the instanceType value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -157,7 +180,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Get the livenessProbe property: Liveness probe monitors the health of the container regularly.
-     *
+     * 
      * @return the livenessProbe value.
      */
     public ProbeSettings livenessProbe() {
@@ -166,7 +189,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the livenessProbe property: Liveness probe monitors the health of the container regularly.
-     *
+     * 
      * @param livenessProbe the livenessProbe value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -177,7 +200,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Get the model property: The URI path to the model.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -186,7 +209,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the model property: The URI path to the model.
-     *
+     * 
      * @param model the model value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -197,7 +220,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Get the modelMountPath property: The path to mount the model in custom container.
-     *
+     * 
      * @return the modelMountPath value.
      */
     public String modelMountPath() {
@@ -206,7 +229,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the modelMountPath property: The path to mount the model in custom container.
-     *
+     * 
      * @param modelMountPath the modelMountPath value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -217,7 +240,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Get the provisioningState property: Provisioning state for the endpoint deployment.
-     *
+     * 
      * @return the provisioningState value.
      */
     public DeploymentProvisioningState provisioningState() {
@@ -225,9 +248,20 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
+     * Set the provisioningState property: Provisioning state for the endpoint deployment.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the OnlineDeploymentProperties object itself.
+     */
+    OnlineDeploymentProperties withProvisioningState(DeploymentProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
      * Get the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
      * properties and defaults are the same as liveness probe.
-     *
+     * 
      * @return the readinessProbe value.
      */
     public ProbeSettings readinessProbe() {
@@ -237,7 +271,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     /**
      * Set the readinessProbe property: Readiness probe validates if the container is ready to serve traffic. The
      * properties and defaults are the same as liveness probe.
-     *
+     * 
      * @param readinessProbe the readinessProbe value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -248,7 +282,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Get the requestSettings property: Request settings for the deployment.
-     *
+     * 
      * @return the requestSettings value.
      */
     public OnlineRequestSettings requestSettings() {
@@ -257,7 +291,7 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Set the requestSettings property: Request settings for the deployment.
-     *
+     * 
      * @param requestSettings the requestSettings value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -267,10 +301,11 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
-     * Get the scaleSettings property: Scale settings for the deployment. If it is null or not provided, it defaults to
-     * TargetUtilizationScaleSettings for KubernetesOnlineDeployment and to DefaultScaleSettings for
-     * ManagedOnlineDeployment.
-     *
+     * Get the scaleSettings property: Scale settings for the deployment.
+     * If it is null or not provided,
+     * it defaults to TargetUtilizationScaleSettings for KubernetesOnlineDeployment
+     * and to DefaultScaleSettings for ManagedOnlineDeployment.
+     * 
      * @return the scaleSettings value.
      */
     public OnlineScaleSettings scaleSettings() {
@@ -278,10 +313,11 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
     }
 
     /**
-     * Set the scaleSettings property: Scale settings for the deployment. If it is null or not provided, it defaults to
-     * TargetUtilizationScaleSettings for KubernetesOnlineDeployment and to DefaultScaleSettings for
-     * ManagedOnlineDeployment.
-     *
+     * Set the scaleSettings property: Scale settings for the deployment.
+     * If it is null or not provided,
+     * it defaults to TargetUtilizationScaleSettings for KubernetesOnlineDeployment
+     * and to DefaultScaleSettings for ManagedOnlineDeployment.
+     * 
      * @param scaleSettings the scaleSettings value to set.
      * @return the OnlineDeploymentProperties object itself.
      */
@@ -290,35 +326,45 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentProperties withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentProperties withEnvironmentId(String environmentId) {
         super.withEnvironmentId(environmentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentProperties withEnvironmentVariables(Map<String, String> environmentVariables) {
         super.withEnvironmentVariables(environmentVariables);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -327,12 +373,15 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+        if (dataCollector() != null) {
+            dataCollector().validate();
+        }
         if (livenessProbe() != null) {
             livenessProbe().validate();
         }
@@ -345,5 +394,124 @@ public class OnlineDeploymentProperties extends EndpointDeploymentPropertiesBase
         if (scaleSettings() != null) {
             scaleSettings().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("codeConfiguration", codeConfiguration());
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeStringField("environmentId", environmentId());
+        jsonWriter.writeMapField("environmentVariables", environmentVariables(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("endpointComputeType",
+            this.endpointComputeType == null ? null : this.endpointComputeType.toString());
+        jsonWriter.writeBooleanField("appInsightsEnabled", this.appInsightsEnabled);
+        jsonWriter.writeJsonField("dataCollector", this.dataCollector);
+        jsonWriter.writeStringField("egressPublicNetworkAccess",
+            this.egressPublicNetworkAccess == null ? null : this.egressPublicNetworkAccess.toString());
+        jsonWriter.writeStringField("instanceType", this.instanceType);
+        jsonWriter.writeJsonField("livenessProbe", this.livenessProbe);
+        jsonWriter.writeStringField("model", this.model);
+        jsonWriter.writeStringField("modelMountPath", this.modelMountPath);
+        jsonWriter.writeJsonField("readinessProbe", this.readinessProbe);
+        jsonWriter.writeJsonField("requestSettings", this.requestSettings);
+        jsonWriter.writeJsonField("scaleSettings", this.scaleSettings);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OnlineDeploymentProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OnlineDeploymentProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the OnlineDeploymentProperties.
+     */
+    public static OnlineDeploymentProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            String discriminatorValue = null;
+            try (JsonReader readerToUse = reader.bufferObject()) {
+                readerToUse.nextToken(); // Prepare for reading
+                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = readerToUse.getFieldName();
+                    readerToUse.nextToken();
+                    if ("endpointComputeType".equals(fieldName)) {
+                        discriminatorValue = readerToUse.getString();
+                        break;
+                    } else {
+                        readerToUse.skipChildren();
+                    }
+                }
+                // Use the discriminator value to determine which subtype should be deserialized.
+                if ("Kubernetes".equals(discriminatorValue)) {
+                    return KubernetesOnlineDeployment.fromJson(readerToUse.reset());
+                } else if ("Managed".equals(discriminatorValue)) {
+                    return ManagedOnlineDeployment.fromJson(readerToUse.reset());
+                } else {
+                    return fromJsonKnownDiscriminator(readerToUse.reset());
+                }
+            }
+        });
+    }
+
+    static OnlineDeploymentProperties fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OnlineDeploymentProperties deserializedOnlineDeploymentProperties = new OnlineDeploymentProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("codeConfiguration".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.withCodeConfiguration(CodeConfiguration.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.withDescription(reader.getString());
+                } else if ("environmentId".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.withEnvironmentId(reader.getString());
+                } else if ("environmentVariables".equals(fieldName)) {
+                    Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
+                    deserializedOnlineDeploymentProperties.withEnvironmentVariables(environmentVariables);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedOnlineDeploymentProperties.withProperties(properties);
+                } else if ("endpointComputeType".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.endpointComputeType
+                        = EndpointComputeType.fromString(reader.getString());
+                } else if ("appInsightsEnabled".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.appInsightsEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("dataCollector".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.dataCollector = DataCollector.fromJson(reader);
+                } else if ("egressPublicNetworkAccess".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.egressPublicNetworkAccess
+                        = EgressPublicNetworkAccessType.fromString(reader.getString());
+                } else if ("instanceType".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.instanceType = reader.getString();
+                } else if ("livenessProbe".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.livenessProbe = ProbeSettings.fromJson(reader);
+                } else if ("model".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.model = reader.getString();
+                } else if ("modelMountPath".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.modelMountPath = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.provisioningState
+                        = DeploymentProvisioningState.fromString(reader.getString());
+                } else if ("readinessProbe".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.readinessProbe = ProbeSettings.fromJson(reader);
+                } else if ("requestSettings".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.requestSettings = OnlineRequestSettings.fromJson(reader);
+                } else if ("scaleSettings".equals(fieldName)) {
+                    deserializedOnlineDeploymentProperties.scaleSettings = OnlineScaleSettings.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOnlineDeploymentProperties;
+        });
     }
 }
