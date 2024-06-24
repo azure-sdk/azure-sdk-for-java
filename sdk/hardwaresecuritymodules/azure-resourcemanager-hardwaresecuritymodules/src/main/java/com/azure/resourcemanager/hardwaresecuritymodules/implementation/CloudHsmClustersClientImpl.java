@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -33,9 +34,13 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.BackupResultInner;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.CloudHsmClusterInner;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.RestoreResultInner;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.BackupRequestProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterListResult;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterPatchParameters;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.RestoreRequestProperties;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -106,7 +111,7 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
@@ -130,6 +135,50 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         Mono<Response<CloudHsmClusterListResult>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("$skiptoken") String skiptoken,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/prebackup")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> preBackup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudHsmClusterName") String cloudHsmClusterName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BackupRequestProperties backupRequestProperties,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> backup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudHsmClusterName") String cloudHsmClusterName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BackupRequestProperties backupRequestProperties,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/prerestore")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> preRestore(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudHsmClusterName") String cloudHsmClusterName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") RestoreRequestProperties restoreRequestProperties,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restore")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> restore(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudHsmClusterName") String cloudHsmClusterName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") RestoreRequestProperties restoreRequestProperties,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -185,11 +234,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, body, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -231,11 +279,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, body, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -432,11 +479,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, body, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -478,11 +524,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, body, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -671,11 +716,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudHsmClusterName, apiVersion, accept, context))
+            .withContext(
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -710,11 +755,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -798,11 +842,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -837,11 +880,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1010,11 +1052,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, skiptoken, apiVersion, accept, context))
+            .withContext(
+                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, skiptoken, this.client.getApiVersion(), accept, context))
             .<PagedResponse<CloudHsmClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1047,12 +1089,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                skiptoken, apiVersion, accept, context)
+                skiptoken, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1163,11 +1204,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken,
-                apiVersion, accept, context))
+                this.client.getApiVersion(), accept, context))
             .<PagedResponse<CloudHsmClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1193,11 +1233,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken, apiVersion, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken, this.client.getApiVersion(),
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1276,11 +1316,1108 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
     }
 
     /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preBackupWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (backupRequestProperties != null) {
+            backupRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.preBackup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), backupRequestProperties, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preBackupWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (backupRequestProperties != null) {
+            backupRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.preBackup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudHsmClusterName, this.client.getApiVersion(), backupRequestProperties, accept, context);
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginPreBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preBackupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginPreBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preBackupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginPreBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preBackupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, context);
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<BackupResultInner>, BackupResultInner> beginPreBackup(String resourceGroupName,
+        String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return this.beginPreBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties)
+            .getSyncPoller();
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<BackupResultInner>, BackupResultInner> beginPreBackup(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        return this.beginPreBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> preBackupAsync(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties) {
+        return beginPreBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> preBackupAsync(String resourceGroupName, String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return beginPreBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> preBackupAsync(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        return beginPreBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupResultInner preBackup(String resourceGroupName, String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return preBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).block();
+    }
+
+    /**
+     * Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in
+     * the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure Storage blob container URI.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupResultInner preBackup(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        return preBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context).block();
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> backupWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (backupRequestProperties != null) {
+            backupRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.backup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    cloudHsmClusterName, this.client.getApiVersion(), backupRequestProperties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> backupWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (backupRequestProperties != null) {
+            backupRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.backup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudHsmClusterName, this.client.getApiVersion(), backupRequestProperties, accept, context);
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = backupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = backupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupResultInner>, BackupResultInner> beginBackupAsync(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = backupWithResponseAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context);
+        return this.client.<BackupResultInner, BackupResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            BackupResultInner.class, BackupResultInner.class, context);
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<BackupResultInner>, BackupResultInner> beginBackup(String resourceGroupName,
+        String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return this.beginBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).getSyncPoller();
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<BackupResultInner>, BackupResultInner> beginBackup(String resourceGroupName,
+        String cloudHsmClusterName, BackupRequestProperties backupRequestProperties, Context context) {
+        return this.beginBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> backupAsync(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties) {
+        return beginBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> backupAsync(String resourceGroupName, String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return beginBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BackupResultInner> backupAsync(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        return beginBackupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupResultInner backup(String resourceGroupName, String cloudHsmClusterName) {
+        final BackupRequestProperties backupRequestProperties = null;
+        return backupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties).block();
+    }
+
+    /**
+     * Create a backup of the Cloud HSM Cluster in the specified subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param backupRequestProperties Azure storage Resource Uri.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return backup operation Result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupResultInner backup(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        return backupAsync(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context).block();
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preRestoreWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (restoreRequestProperties != null) {
+            restoreRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.preRestore(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), restoreRequestProperties, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> preRestoreWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (restoreRequestProperties != null) {
+            restoreRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.preRestore(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudHsmClusterName, this.client.getApiVersion(), restoreRequestProperties, accept, context);
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RestoreResultInner>, RestoreResultInner> beginPreRestoreAsync(
+        String resourceGroupName, String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preRestoreWithResponseAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties);
+        return this.client.<RestoreResultInner, RestoreResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            RestoreResultInner.class, RestoreResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RestoreResultInner>, RestoreResultInner>
+        beginPreRestoreAsync(String resourceGroupName, String cloudHsmClusterName) {
+        final RestoreRequestProperties restoreRequestProperties = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preRestoreWithResponseAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties);
+        return this.client.<RestoreResultInner, RestoreResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            RestoreResultInner.class, RestoreResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RestoreResultInner>, RestoreResultInner> beginPreRestoreAsync(
+        String resourceGroupName, String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = preRestoreWithResponseAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context);
+        return this.client.<RestoreResultInner, RestoreResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            RestoreResultInner.class, RestoreResultInner.class, context);
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<RestoreResultInner>, RestoreResultInner> beginPreRestore(String resourceGroupName,
+        String cloudHsmClusterName) {
+        final RestoreRequestProperties restoreRequestProperties = null;
+        return this.beginPreRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties)
+            .getSyncPoller();
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<RestoreResultInner>, RestoreResultInner> beginPreRestore(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties, Context context) {
+        return this.beginPreRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RestoreResultInner> preRestoreAsync(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties) {
+        return beginPreRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RestoreResultInner> preRestoreAsync(String resourceGroupName, String cloudHsmClusterName) {
+        final RestoreRequestProperties restoreRequestProperties = null;
+        return beginPreRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RestoreResultInner> preRestoreAsync(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        return beginPreRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RestoreResultInner preRestore(String resourceGroupName, String cloudHsmClusterName) {
+        final RestoreRequestProperties restoreRequestProperties = null;
+        return preRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).block();
+    }
+
+    /**
+     * Queued validating pre restore operation.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Optional Parameters to validate prior performing a restore operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RestoreResultInner preRestore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        return preRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context).block();
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> restoreWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (restoreRequestProperties == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter restoreRequestProperties is required and cannot be null."));
+        } else {
+            restoreRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.restore(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), restoreRequestProperties, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> restoreWithResponseAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudHsmClusterName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
+        }
+        if (restoreRequestProperties == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter restoreRequestProperties is required and cannot be null."));
+        } else {
+            restoreRequestProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.restore(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudHsmClusterName, this.client.getApiVersion(), restoreRequestProperties, accept, context);
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RestoreResultInner>, RestoreResultInner> beginRestoreAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = restoreWithResponseAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties);
+        return this.client.<RestoreResultInner, RestoreResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            RestoreResultInner.class, RestoreResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<RestoreResultInner>, RestoreResultInner> beginRestoreAsync(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = restoreWithResponseAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context);
+        return this.client.<RestoreResultInner, RestoreResultInner>getLroResult(mono, this.client.getHttpPipeline(),
+            RestoreResultInner.class, RestoreResultInner.class, context);
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<RestoreResultInner>, RestoreResultInner> beginRestore(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties) {
+        return this.beginRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).getSyncPoller();
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<RestoreResultInner>, RestoreResultInner> beginRestore(String resourceGroupName,
+        String cloudHsmClusterName, RestoreRequestProperties restoreRequestProperties, Context context) {
+        return this.beginRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RestoreResultInner> restoreAsync(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties) {
+        return beginRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RestoreResultInner> restoreAsync(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        return beginRestoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RestoreResultInner restore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties) {
+        return restoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties).block();
+    }
+
+    /**
+     * Restores all key materials of a specified Cloud HSM Cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudHsmClusterName The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM
+     * Cluster names must be between 3 and 24 characters in length.
+     * @param restoreRequestProperties Backup Operation Required properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return restore operation properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RestoreResultInner restore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        return restoreAsync(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context).block();
+    }
+
+    /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1307,9 +2444,7 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1336,9 +2471,7 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1365,9 +2498,7 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -26,6 +26,13 @@ public interface AzureHsmResourceProvider {
     String getEndpoint();
 
     /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
+
+    /**
      * Gets The HTTP pipeline to send requests through.
      * 
      * @return the httpPipeline value.
@@ -68,11 +75,18 @@ public interface AzureHsmResourceProvider {
     PrivateEndpointConnectionsClient getPrivateEndpointConnections();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the CloudHsmClustersBackupStatusClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the CloudHsmClustersBackupStatusClient object.
      */
-    OperationsClient getOperations();
+    CloudHsmClustersBackupStatusClient getCloudHsmClustersBackupStatus();
+
+    /**
+     * Gets the CloudHsmClustersRestoreStatusClient object to access its operations.
+     * 
+     * @return the CloudHsmClustersRestoreStatusClient object.
+     */
+    CloudHsmClustersRestoreStatusClient getCloudHsmClustersRestoreStatus();
 
     /**
      * Gets the DedicatedHsmsClient object to access its operations.
@@ -80,4 +94,11 @@ public interface AzureHsmResourceProvider {
      * @return the DedicatedHsmsClient object.
      */
     DedicatedHsmsClient getDedicatedHsms();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 }

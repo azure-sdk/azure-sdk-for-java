@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -27,13 +27,17 @@ import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureHsmResource
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.AzureHsmResourceProviderBuilder;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClusterPrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClusterPrivateLinkResourcesImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClustersBackupStatusImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClustersImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClustersRestoreStatusImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.DedicatedHsmsImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.OperationsImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterPrivateEndpointConnections;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterPrivateLinkResources;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusters;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClustersBackupStatus;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClustersRestoreStatus;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsms;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.Operations;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.PrivateEndpointConnections;
@@ -57,9 +61,13 @@ public final class HardwareSecurityModulesManager {
 
     private PrivateEndpointConnections privateEndpointConnections;
 
-    private Operations operations;
+    private CloudHsmClustersBackupStatus cloudHsmClustersBackupStatus;
+
+    private CloudHsmClustersRestoreStatus cloudHsmClustersRestoreStatus;
 
     private DedicatedHsms dedicatedHsms;
+
+    private Operations operations;
 
     private final AzureHsmResourceProvider clientObject;
 
@@ -68,8 +76,10 @@ public final class HardwareSecurityModulesManager {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new AzureHsmResourceProviderBuilder().pipeline(httpPipeline)
-            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
-            .defaultPollInterval(defaultPollInterval).buildClient();
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
@@ -221,12 +231,19 @@ public final class HardwareSecurityModulesManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder.append("azsdk-java").append("-")
-                .append("com.azure.resourcemanager.hardwaresecuritymodules").append("/").append("1.0.0-beta.2");
+            userAgentBuilder.append("azsdk-java")
+                .append("-")
+                .append("com.azure.resourcemanager.hardwaresecuritymodules")
+                .append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
+                userAgentBuilder.append(" (")
+                    .append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.name"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version"))
+                    .append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -245,18 +262,21 @@ public final class HardwareSecurityModulesManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
                 .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
-                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
-                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new HardwareSecurityModulesManager(httpPipeline, profile, defaultPollInterval);
         }
     }
@@ -314,15 +334,29 @@ public final class HardwareSecurityModulesManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of CloudHsmClustersBackupStatus.
      * 
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of CloudHsmClustersBackupStatus.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public CloudHsmClustersBackupStatus cloudHsmClustersBackupStatus() {
+        if (this.cloudHsmClustersBackupStatus == null) {
+            this.cloudHsmClustersBackupStatus
+                = new CloudHsmClustersBackupStatusImpl(clientObject.getCloudHsmClustersBackupStatus(), this);
         }
-        return operations;
+        return cloudHsmClustersBackupStatus;
+    }
+
+    /**
+     * Gets the resource collection API of CloudHsmClustersRestoreStatus.
+     * 
+     * @return Resource collection API of CloudHsmClustersRestoreStatus.
+     */
+    public CloudHsmClustersRestoreStatus cloudHsmClustersRestoreStatus() {
+        if (this.cloudHsmClustersRestoreStatus == null) {
+            this.cloudHsmClustersRestoreStatus
+                = new CloudHsmClustersRestoreStatusImpl(clientObject.getCloudHsmClustersRestoreStatus(), this);
+        }
+        return cloudHsmClustersRestoreStatus;
     }
 
     /**
@@ -335,6 +369,18 @@ public final class HardwareSecurityModulesManager {
             this.dedicatedHsms = new DedicatedHsmsImpl(clientObject.getDedicatedHsms(), this);
         }
         return dedicatedHsms;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
     }
 
     /**
