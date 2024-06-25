@@ -15,21 +15,18 @@ import com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner;
  */
 public interface SubscriptionUsagesClient {
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaInner> listByLocation(String locationName);
+    PagedIterable<QuotaInner> listByLocation();
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -37,5 +34,5 @@ public interface SubscriptionUsagesClient {
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaInner> listByLocation(String locationName, Context context);
+    PagedIterable<QuotaInner> listByLocation(Context context);
 }

@@ -12,25 +12,22 @@ import com.azure.core.util.Context;
  */
 public interface SubscriptionUsages {
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Quota> listByLocation(String locationName);
+    PagedIterable<Quota> listByLocation();
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Quota> listByLocation(String locationName, Context context);
+    PagedIterable<Quota> listByLocation(Context context);
 }

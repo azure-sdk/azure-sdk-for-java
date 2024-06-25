@@ -25,13 +25,13 @@ public final class SubscriptionUsagesImpl implements SubscriptionUsages {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Quota> listByLocation(String locationName) {
-        PagedIterable<QuotaInner> inner = this.serviceClient().listByLocation(locationName);
+    public PagedIterable<Quota> listByLocation() {
+        PagedIterable<QuotaInner> inner = this.serviceClient().listByLocation();
         return ResourceManagerUtils.mapPage(inner, inner1 -> new QuotaImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Quota> listByLocation(String locationName, Context context) {
-        PagedIterable<QuotaInner> inner = this.serviceClient().listByLocation(locationName, context);
+    public PagedIterable<Quota> listByLocation(Context context) {
+        PagedIterable<QuotaInner> inner = this.serviceClient().listByLocation(context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new QuotaImpl(inner1, this.manager()));
     }
 

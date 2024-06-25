@@ -11,6 +11,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
@@ -27,7 +28,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.SubscriptionUsagesClient;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner;
-import com.azure.resourcemanager.devopsinfrastructure.implementation.models.QuotaListResult;
+import com.azure.resourcemanager.devopsinfrastructure.implementation.models.ResourceListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,58 +64,46 @@ public final class SubscriptionUsagesClientImpl implements SubscriptionUsagesCli
     @ServiceInterface(name = "DevOpsInfrastructure")
     public interface SubscriptionUsagesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/locations/{locationName}/usages")
+        @Post("/listByLocation")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaListResult>> listByLocation(@HostParam("endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("locationName") String locationName, @HeaderParam("accept") String accept, Context context);
+        Mono<Response<ResourceListResult>> listByLocation(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaListResult>> listByLocationNext(
+        Mono<Response<ResourceListResult>> listByLocationNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
             @HeaderParam("accept") String accept, Context context);
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listByLocationSinglePageAsync(String locationName) {
+    private Mono<PagedResponse<QuotaInner>> listByLocationSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
-        }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByLocation(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), locationName, accept, context))
+        return FluxUtil.withContext(
+            context -> service.listByLocation(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
             .<PagedResponse<QuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -123,46 +112,34 @@ public final class SubscriptionUsagesClientImpl implements SubscriptionUsagesCli
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listByLocationSinglePageAsync(String locationName, Context context) {
+    private Mono<PagedResponse<QuotaInner>> listByLocationSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByLocation(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                locationName, accept, context)
+        return service.listByLocation(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaInner> listByLocationAsync(String locationName) {
-        return new PagedFlux<>(() -> listByLocationSinglePageAsync(locationName),
+    private PagedFlux<QuotaInner> listByLocationAsync() {
+        return new PagedFlux<>(() -> listByLocationSinglePageAsync(),
             nextLink -> listByLocationNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -170,29 +147,26 @@ public final class SubscriptionUsagesClientImpl implements SubscriptionUsagesCli
      * @return the response of a Quota list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaInner> listByLocationAsync(String locationName, Context context) {
-        return new PagedFlux<>(() -> listByLocationSinglePageAsync(locationName, context),
+    private PagedFlux<QuotaInner> listByLocationAsync(Context context) {
+        return new PagedFlux<>(() -> listByLocationSinglePageAsync(context),
             nextLink -> listByLocationNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaInner> listByLocation(String locationName) {
-        return new PagedIterable<>(listByLocationAsync(locationName));
+    public PagedIterable<QuotaInner> listByLocation() {
+        return new PagedIterable<>(listByLocationAsync());
     }
 
     /**
-     * List Quota resources by subscription ID.
+     * Returns quotas by location.
      * 
-     * @param locationName Name of the location.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -200,8 +174,8 @@ public final class SubscriptionUsagesClientImpl implements SubscriptionUsagesCli
      * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaInner> listByLocation(String locationName, Context context) {
-        return new PagedIterable<>(listByLocationAsync(locationName, context));
+    public PagedIterable<QuotaInner> listByLocation(Context context) {
+        return new PagedIterable<>(listByLocationAsync(context));
     }
 
     /**

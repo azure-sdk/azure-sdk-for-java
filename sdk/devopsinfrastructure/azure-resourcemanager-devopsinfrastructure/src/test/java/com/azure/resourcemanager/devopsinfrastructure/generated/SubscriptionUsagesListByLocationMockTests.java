@@ -22,7 +22,7 @@ public final class SubscriptionUsagesListByLocationMockTests {
     @Test
     public void testListByLocation() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"unit\":\"jzrwrdgrtw\",\"currentValue\":1523837111721006893,\"limit\":560219894776191821,\"name\":{\"value\":\"kopbminrf\",\"localizedValue\":\"oyuhhziui\"}},\"id\":\"ozbhdmsmlmzq\",\"name\":\"oftrmaequia\",\"type\":\"xicslfao\"}]}";
+            = "{\"value\":[{\"unit\":\"bzkfzbeyvpn\",\"currentValue\":3787214015941911197,\"limit\":6271331199552854530}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -31,13 +31,10 @@ public final class SubscriptionUsagesListByLocationMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        PagedIterable<Quota> response
-            = manager.subscriptionUsages().listByLocation("ejdcngqqmoakuf", com.azure.core.util.Context.NONE);
+        PagedIterable<Quota> response = manager.subscriptionUsages().listByLocation(com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("jzrwrdgrtw", response.iterator().next().properties().unit());
-        Assertions.assertEquals(1523837111721006893L, response.iterator().next().properties().currentValue());
-        Assertions.assertEquals(560219894776191821L, response.iterator().next().properties().limit());
-        Assertions.assertEquals("kopbminrf", response.iterator().next().properties().name().value());
-        Assertions.assertEquals("oyuhhziui", response.iterator().next().properties().name().localizedValue());
+        Assertions.assertEquals("bzkfzbeyvpn", response.iterator().next().unit());
+        Assertions.assertEquals(3787214015941911197L, response.iterator().next().currentValue());
+        Assertions.assertEquals(6271331199552854530L, response.iterator().next().limit());
     }
 }

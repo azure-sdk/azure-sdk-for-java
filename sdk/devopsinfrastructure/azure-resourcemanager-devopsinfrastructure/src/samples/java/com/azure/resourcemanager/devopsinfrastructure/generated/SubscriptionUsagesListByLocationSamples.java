@@ -20,6 +20,6 @@ public final class SubscriptionUsagesListByLocationSamples {
      */
     public static void subscriptionUsagesListByLocation(
         com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
-        manager.subscriptionUsages().listByLocation("eastus", com.azure.core.util.Context.NONE);
+        manager.subscriptionUsages().listByLocation(com.azure.core.util.Context.NONE);
     }
 }
