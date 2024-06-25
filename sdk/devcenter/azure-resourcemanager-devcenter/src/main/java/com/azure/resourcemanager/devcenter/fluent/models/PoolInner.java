@@ -7,15 +7,20 @@ package com.azure.resourcemanager.devcenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.models.HealthStatus;
 import com.azure.resourcemanager.devcenter.models.HealthStatusDetail;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +32,27 @@ public final class PoolInner extends Resource {
     /*
      * Pool properties
      */
-    @JsonProperty(value = "properties")
     private PoolProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
 
     /**
      * Creates an instance of PoolInner class.
@@ -58,6 +76,36 @@ public final class PoolInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -117,7 +165,33 @@ public final class PoolInner extends Resource {
     }
 
     /**
-     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Get the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinitionType();
+    }
+
+    /**
+     * Set the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @param devBoxDefinitionType the devBoxDefinitionType value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withDevBoxDefinitionType(devBoxDefinitionType);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
@@ -126,7 +200,8 @@ public final class PoolInner extends Resource {
     }
 
     /**
-     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @param devBoxDefinitionName the devBoxDefinitionName value to set.
      * @return the PoolInner object itself.
@@ -136,6 +211,31 @@ public final class PoolInner extends Resource {
             this.innerProperties = new PoolProperties();
         }
         this.innerProperties().withDevBoxDefinitionName(devBoxDefinitionName);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinition();
+    }
+
+    /**
+     * Set the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @param devBoxDefinition the devBoxDefinition value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withDevBoxDefinition(devBoxDefinition);
         return this;
     }
 
@@ -342,5 +442,57 @@ public final class PoolInner extends Resource {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PoolInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PoolInner if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the PoolInner.
+     */
+    public static PoolInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PoolInner deserializedPoolInner = new PoolInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedPoolInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedPoolInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedPoolInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedPoolInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPoolInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedPoolInner.innerProperties = PoolProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedPoolInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPoolInner;
+        });
     }
 }
