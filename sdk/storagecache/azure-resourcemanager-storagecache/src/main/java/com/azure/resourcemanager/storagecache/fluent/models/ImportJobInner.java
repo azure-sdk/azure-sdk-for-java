@@ -7,10 +7,14 @@ package com.azure.resourcemanager.storagecache.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.storagecache.models.ConflictResolutionMode;
+import com.azure.resourcemanager.storagecache.models.ImportJobAdminStatus;
 import com.azure.resourcemanager.storagecache.models.ImportJobProvisioningStateType;
 import com.azure.resourcemanager.storagecache.models.ImportStatusType;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -24,14 +28,27 @@ public final class ImportJobInner extends Resource {
     /*
      * Properties of the import job.
      */
-    @JsonProperty(value = "properties")
     private ImportJobProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
 
     /**
      * Creates an instance of ImportJobInner class.
@@ -55,6 +72,36 @@ public final class ImportJobInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -82,6 +129,31 @@ public final class ImportJobInner extends Resource {
      */
     public ImportJobProvisioningStateType provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the adminStatus property: The administrative status of the import job. Possible values: 'Enable', 'Disable'.
+     * Passing in a value of 'Disable' will cancel the current active import job. By default it is set to 'Enable'.
+     * 
+     * @return the adminStatus value.
+     */
+    public ImportJobAdminStatus adminStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().adminStatus();
+    }
+
+    /**
+     * Set the adminStatus property: The administrative status of the import job. Possible values: 'Enable', 'Disable'.
+     * Passing in a value of 'Disable' will cancel the current active import job. By default it is set to 'Enable'.
+     * 
+     * @param adminStatus the adminStatus value to set.
+     * @return the ImportJobInner object itself.
+     */
+    public ImportJobInner withAdminStatus(ImportJobAdminStatus adminStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImportJobProperties();
+        }
+        this.innerProperties().withAdminStatus(adminStatus);
+        return this;
     }
 
     /**
@@ -172,11 +244,11 @@ public final class ImportJobInner extends Resource {
     }
 
     /**
-     * Get the state property: The state of the import job. InProgress indicates the import is still running. Canceled
-     * indicates it has been canceled by the user. Completed indicates import finished, successfully importing all
-     * discovered blobs into the Lustre namespace. CompletedPartial indicates the import finished but some blobs either
-     * were found to be conflicting and could not be imported or other errors were encountered. Failed means the import
-     * was unable to complete due to a fatal error.
+     * Get the state property: The operational state of the import job. InProgress indicates the import is still
+     * running. Canceled indicates it has been canceled by the user. Completed indicates import finished, successfully
+     * importing all discovered blobs into the Lustre namespace. CompletedPartial indicates the import finished but some
+     * blobs either were found to be conflicting and could not be imported or other errors were encountered. Failed
+     * means the import was unable to complete due to a fatal error.
      * 
      * @return the state value.
      */
@@ -221,6 +293,64 @@ public final class ImportJobInner extends Resource {
     }
 
     /**
+     * Get the importedFiles property: Number of new or modified files that have been imported into the filesystem.
+     * 
+     * @return the importedFiles value.
+     */
+    public Long importedFiles() {
+        return this.innerProperties() == null ? null : this.innerProperties().importedFiles();
+    }
+
+    /**
+     * Get the importedDirectories property: Number of new or modified directories that have been imported into the
+     * filesystem.
+     * 
+     * @return the importedDirectories value.
+     */
+    public Long importedDirectories() {
+        return this.innerProperties() == null ? null : this.innerProperties().importedDirectories();
+    }
+
+    /**
+     * Get the importedSymlinks property: Number of newly added symbolic links into the filesystem.
+     * 
+     * @return the importedSymlinks value.
+     */
+    public Long importedSymlinks() {
+        return this.innerProperties() == null ? null : this.innerProperties().importedSymlinks();
+    }
+
+    /**
+     * Get the preexistingFiles property: Number of files that already exist in the filesystem and have not been
+     * modified.
+     * 
+     * @return the preexistingFiles value.
+     */
+    public Long preexistingFiles() {
+        return this.innerProperties() == null ? null : this.innerProperties().preexistingFiles();
+    }
+
+    /**
+     * Get the preexistingDirectories property: Number of directories that already exist in the filesystem and have not
+     * been modified.
+     * 
+     * @return the preexistingDirectories value.
+     */
+    public Long preexistingDirectories() {
+        return this.innerProperties() == null ? null : this.innerProperties().preexistingDirectories();
+    }
+
+    /**
+     * Get the preexistingSymlinks property: Number of symbolic links that already exist in the filesystem and have not
+     * been modified.
+     * 
+     * @return the preexistingSymlinks value.
+     */
+    public Long preexistingSymlinks() {
+        return this.innerProperties() == null ? null : this.innerProperties().preexistingSymlinks();
+    }
+
+    /**
      * Get the blobsImportedPerSecond property: A recent and frequently updated rate of total files, directories, and
      * symlinks imported per second.
      * 
@@ -231,7 +361,7 @@ public final class ImportJobInner extends Resource {
     }
 
     /**
-     * Get the lastCompletionTime property: The time of the last completed archive operation.
+     * Get the lastCompletionTime property: The time (in UTC) of the last completed import job.
      * 
      * @return the lastCompletionTime value.
      */
@@ -240,7 +370,7 @@ public final class ImportJobInner extends Resource {
     }
 
     /**
-     * Get the lastStartedTime property: The time the latest archive operation started.
+     * Get the lastStartedTime property: The time (in UTC) the latest import job started.
      * 
      * @return the lastStartedTime value.
      */
@@ -275,5 +405,57 @@ public final class ImportJobInner extends Resource {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ImportJobInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ImportJobInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ImportJobInner.
+     */
+    public static ImportJobInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ImportJobInner deserializedImportJobInner = new ImportJobInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedImportJobInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedImportJobInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedImportJobInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedImportJobInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedImportJobInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedImportJobInner.innerProperties = ImportJobProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedImportJobInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedImportJobInner;
+        });
     }
 }

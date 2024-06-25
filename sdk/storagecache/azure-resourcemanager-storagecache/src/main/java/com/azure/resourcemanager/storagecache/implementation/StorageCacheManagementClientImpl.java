@@ -26,6 +26,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.storagecache.fluent.AmlFilesystemsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscOperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscUsagesClient;
+import com.azure.resourcemanager.storagecache.fluent.AutoExportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.CachesClient;
 import com.azure.resourcemanager.storagecache.fluent.ImportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.OperationsClient;
@@ -145,6 +146,20 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
      */
     public AmlFilesystemsClient getAmlFilesystems() {
         return this.amlFilesystems;
+    }
+
+    /**
+     * The AutoExportJobsClient object to access its operations.
+     */
+    private final AutoExportJobsClient autoExportJobs;
+
+    /**
+     * Gets the AutoExportJobsClient object to access its operations.
+     * 
+     * @return the AutoExportJobsClient object.
+     */
+    public AutoExportJobsClient getAutoExportJobs() {
+        return this.autoExportJobs;
     }
 
     /**
@@ -304,8 +319,9 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01";
+        this.apiVersion = "2024-07-01";
         this.amlFilesystems = new AmlFilesystemsClientImpl(this);
+        this.autoExportJobs = new AutoExportJobsClientImpl(this);
         this.importJobs = new ImportJobsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
