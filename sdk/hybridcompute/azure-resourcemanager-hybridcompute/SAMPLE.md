@@ -102,7 +102,9 @@
  */
 public final class ExtensionMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/ExtensionMetadata_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/ExtensionMetadata_Get.json
      */
     /**
      * Sample code: GET an extensions metadata.
@@ -125,7 +127,9 @@ public final class ExtensionMetadataGetSamples {
  */
 public final class ExtensionMetadataListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/ExtensionMetadata_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/ExtensionMetadata_List.json
      */
     /**
      * Sample code: GET a list of extensions.
@@ -150,7 +154,9 @@ import java.util.Arrays;
  */
 public final class GatewaysCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update a Gateway.
@@ -177,7 +183,9 @@ public final class GatewaysCreateOrUpdateSamples {
  */
 public final class GatewaysDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_Delete.json
      */
     /**
      * Sample code: Delete a Gateway.
@@ -198,7 +206,9 @@ public final class GatewaysDeleteSamples {
  */
 public final class GatewaysGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_Get.json
      */
     /**
      * Sample code: Get Gateway.
@@ -220,7 +230,9 @@ public final class GatewaysGetByResourceGroupSamples {
  */
 public final class GatewaysListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_ListBySubscription.json
      */
     /**
      * Sample code: List Gateways by Subscription.
@@ -242,7 +254,9 @@ public final class GatewaysListSamples {
  */
 public final class GatewaysListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_ListByResourceGroup.json
      */
     /**
      * Sample code: List Gateways by Resource Group.
@@ -267,7 +281,9 @@ import java.util.Arrays;
  */
 public final class GatewaysUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/gateway/Gateway_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/gateway/
+     * Gateway_Update.json
      */
     /**
      * Sample code: Update a Gateway.
@@ -298,7 +314,9 @@ import com.azure.resourcemanager.hybridcompute.models.LicenseType;
  */
 public final class LicensesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update a License.
@@ -329,7 +347,9 @@ public final class LicensesCreateOrUpdateSamples {
  */
 public final class LicensesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_Delete.json
      */
     /**
      * Sample code: Delete a License.
@@ -350,7 +370,9 @@ public final class LicensesDeleteSamples {
  */
 public final class LicensesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_Get.json
      */
     /**
      * Sample code: Get License.
@@ -372,7 +394,9 @@ public final class LicensesGetByResourceGroupSamples {
  */
 public final class LicensesListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_ListBySubscription.json
      */
     /**
      * Sample code: List Licenses by Subscription.
@@ -394,7 +418,9 @@ public final class LicensesListSamples {
  */
 public final class LicensesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_ListByResourceGroup.json
      */
     /**
      * Sample code: GET all Machine Extensions.
@@ -422,7 +448,9 @@ import com.azure.resourcemanager.hybridcompute.models.LicenseType;
  */
 public final class LicensesUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/license/License_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/license/
+     * License_Update.json
      */
     /**
      * Sample code: Update a License.
@@ -457,7 +485,9 @@ import java.util.Map;
  */
 public final class MachineExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extension_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extension_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update a Machine Extension.
@@ -501,7 +531,9 @@ public final class MachineExtensionsCreateOrUpdateSamples {
  */
 public final class MachineExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extension_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extension_Delete.json
      */
     /**
      * Sample code: Delete a Machine Extension.
@@ -522,7 +554,9 @@ public final class MachineExtensionsDeleteSamples {
  */
 public final class MachineExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extension_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extension_Get.json
      */
     /**
      * Sample code: GET Machine Extension.
@@ -544,7 +578,9 @@ public final class MachineExtensionsGetSamples {
  */
 public final class MachineExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extension_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extension_List.json
      */
     /**
      * Sample code: GET all Machine Extensions - List.
@@ -570,7 +606,9 @@ import java.util.Map;
  */
 public final class MachineExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extension_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extension_Update.json
      */
     /**
      * Sample code: Create or Update a Machine Extension.
@@ -618,7 +656,9 @@ import java.util.Arrays;
  */
 public final class MachineRunCommandsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update a Run Command.
@@ -653,7 +693,9 @@ public final class MachineRunCommandsCreateOrUpdateSamples {
  */
 public final class MachineRunCommandsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_Delete.json
      */
     /**
      * Sample code: Delete a Machine Run Command.
@@ -675,7 +717,9 @@ public final class MachineRunCommandsDeleteSamples {
  */
 public final class MachineRunCommandsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_Get.json
      */
     /**
      * Sample code: Get a Run Command.
@@ -697,7 +741,9 @@ public final class MachineRunCommandsGetSamples {
  */
 public final class MachineRunCommandsListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_List.json
      */
     /**
      * Sample code: GET all Machine Run Commands.
@@ -722,7 +768,9 @@ import java.util.Map;
  */
 public final class MachineRunCommandsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_Update.json
      */
     /**
      * Sample code: Update a Run Command.
@@ -758,7 +806,9 @@ public final class MachineRunCommandsUpdateSamples {
  */
 public final class MachinesAssessPatchesSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machine_AssessPatches.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machine_AssessPatches.json
      */
     /**
      * Sample code: Assess patch state of a machine.
@@ -780,7 +830,9 @@ public final class MachinesAssessPatchesSamples {
  */
 public final class MachinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machines_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machines_Delete.json
      */
     /**
      * Sample code: Delete a Machine.
@@ -802,7 +854,9 @@ public final class MachinesDeleteSamples {
  */
 public final class MachinesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machines_Get_LicenseProfileInstanceView.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machines_Get_LicenseProfileInstanceView.json
      */
     /**
      * Sample code: Get Machine with License Profile Instance View.
@@ -817,7 +871,9 @@ public final class MachinesGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machines_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machines_Get.json
      */
     /**
      * Sample code: Get Machine.
@@ -847,7 +903,9 @@ import java.util.Arrays;
  */
 public final class MachinesInstallPatchesSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machine_InstallPatches.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machine_InstallPatches.json
      */
     /**
      * Sample code: Install patch state of a machine.
@@ -877,7 +935,9 @@ public final class MachinesInstallPatchesSamples {
  */
 public final class MachinesListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machines_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machines_ListBySubscription.json
      */
     /**
      * Sample code: List Machines by resource group.
@@ -899,7 +959,9 @@ public final class MachinesListSamples {
  */
 public final class MachinesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/machine/Machines_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/machine/
+     * Machines_ListByResourceGroup.json
      */
     /**
      * Sample code: List Machines by resource group.
@@ -921,7 +983,9 @@ public final class MachinesListByResourceGroupSamples {
  */
 public final class NetworkProfileGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/NetworkProfile_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * NetworkProfile_Get.json
      */
     /**
      * Sample code: GET Network Profile.
@@ -942,7 +1006,9 @@ public final class NetworkProfileGetSamples {
  */
 public final class NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationGet.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationGet.json
      */
     /**
      * Sample code: Gets the network security perimeter configuration of the private link scope.
@@ -966,7 +1032,9 @@ public final class NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeSa
  */
 public final class NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationList.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationList.json
      */
     /**
      * Sample code: Gets the list of network security perimeter configurations of the private link scope.
@@ -989,7 +1057,9 @@ public final class NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeS
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/Operations_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * Operations_List.json
      */
     /**
      * Sample code: List Hybrid Compute Provider Operations.
@@ -1014,7 +1084,9 @@ import com.azure.resourcemanager.hybridcompute.models.PrivateLinkServiceConnecti
  */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateEndpoint/PrivateEndpointConnection_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateEndpoint/PrivateEndpointConnection_Update.json
      */
     /**
      * Sample code: Approve or reject a private endpoint connection with a given name.
@@ -1042,7 +1114,9 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateEndpoint/PrivateEndpointConnection_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateEndpoint/PrivateEndpointConnection_Delete.json
      */
     /**
      * Sample code: Deletes a private endpoint connection with a given name.
@@ -1066,7 +1140,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateEndpoint/PrivateEndpointConnection_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateEndpoint/PrivateEndpointConnection_Get.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -1090,7 +1166,9 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateEndpoint/PrivateEndpointConnection_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateEndpoint/PrivateEndpointConnection_List.json
      */
     /**
      * Sample code: Gets list of private endpoint connections on a private link scope.
@@ -1113,7 +1191,9 @@ public final class PrivateEndpointConnectionsListByPrivateLinkScopeSamples {
  */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopePrivateLinkResource_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopePrivateLinkResource_Get.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -1137,7 +1217,9 @@ public final class PrivateLinkResourcesGetSamples {
  */
 public final class PrivateLinkResourcesListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopePrivateLinkResource_ListGet.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopePrivateLinkResource_ListGet.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -1163,7 +1245,9 @@ import java.util.Map;
  */
 public final class PrivateLinkScopesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_Create.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Create.json
      */
     /**
      * Sample code: PrivateLinkScopeCreate.
@@ -1179,7 +1263,9 @@ public final class PrivateLinkScopesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Update.json
      */
     /**
      * Sample code: PrivateLinkScopeUpdate.
@@ -1217,7 +1303,9 @@ public final class PrivateLinkScopesCreateOrUpdateSamples {
  */
 public final class PrivateLinkScopesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_Delete.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Delete.json
      */
     /**
      * Sample code: PrivateLinkScopesDelete.
@@ -1239,7 +1327,9 @@ public final class PrivateLinkScopesDeleteSamples {
  */
 public final class PrivateLinkScopesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Get.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -1262,7 +1352,9 @@ public final class PrivateLinkScopesGetByResourceGroupSamples {
  */
 public final class PrivateLinkScopesGetValidationDetailsSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_GetValidation.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_GetValidation.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -1285,7 +1377,9 @@ public final class PrivateLinkScopesGetValidationDetailsSamples {
  */
 public final class PrivateLinkScopesGetValidationDetailsForMachineSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_GetValidationForMachine.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_GetValidationForMachine.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -1308,7 +1402,9 @@ public final class PrivateLinkScopesGetValidationDetailsForMachineSamples {
  */
 public final class PrivateLinkScopesListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_List.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_List.json
      */
     /**
      * Sample code: PrivateLinkScopesList.json.
@@ -1329,7 +1425,9 @@ public final class PrivateLinkScopesListSamples {
  */
 public final class PrivateLinkScopesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_ListByResourceGroup.json
      */
     /**
      * Sample code: PrivateLinkScopeListByResourceGroup.
@@ -1355,7 +1453,9 @@ import java.util.Map;
  */
 public final class PrivateLinkScopesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/privateLinkScope/PrivateLinkScopes_UpdateTagsOnly.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_UpdateTagsOnly.json
      */
     /**
      * Sample code: PrivateLinkScopeUpdateTagsOnly.
@@ -1398,7 +1498,9 @@ import java.util.Map;
  */
 public final class ResourceProviderUpgradeExtensionsSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/extension/Extensions_Upgrade.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * extension/Extensions_Upgrade.json
      */
     /**
      * Sample code: Upgrade Machine Extensions.
@@ -1436,7 +1538,9 @@ public final class ResourceProviderUpgradeExtensionsSamples {
  */
 public final class SettingsOperationGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/settings/SettingsGet.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/settings
+     * /SettingsGet.json
      */
     /**
      * Sample code: NetworkConfigurationsGet.
@@ -1461,7 +1565,9 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.SettingsInner;
  */
 public final class SettingsOperationPatchSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/settings/SettingsPatch.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/settings
+     * /SettingsPatch.json
      */
     /**
      * Sample code: NetworkConfigurationsPatch.
@@ -1489,7 +1595,9 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.SettingsInner;
  */
 public final class SettingsOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/settings/SettingsUpdate.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/settings
+     * /SettingsUpdate.json
      */
     /**
      * Sample code: SettingsUpdate.

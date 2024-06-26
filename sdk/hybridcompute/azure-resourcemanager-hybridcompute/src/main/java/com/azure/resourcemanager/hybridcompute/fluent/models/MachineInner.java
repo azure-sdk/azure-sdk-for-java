@@ -8,17 +8,23 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.hybridcompute.models.AgentConfiguration;
 import com.azure.resourcemanager.hybridcompute.models.AgentUpgrade;
 import com.azure.resourcemanager.hybridcompute.models.ArcKindEnum;
 import com.azure.resourcemanager.hybridcompute.models.CloudMetadata;
+import com.azure.resourcemanager.hybridcompute.models.FirmwareProfile;
+import com.azure.resourcemanager.hybridcompute.models.HardwareProfile;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
 import com.azure.resourcemanager.hybridcompute.models.LocationData;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionInstanceView;
 import com.azure.resourcemanager.hybridcompute.models.OSProfile;
 import com.azure.resourcemanager.hybridcompute.models.ServiceStatuses;
 import com.azure.resourcemanager.hybridcompute.models.StatusTypes;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.hybridcompute.models.StorageProfile;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -32,32 +38,42 @@ public final class MachineInner extends Resource {
     /*
      * Hybrid Compute Machine properties
      */
-    @JsonProperty(value = "properties")
     private MachinePropertiesInner innerProperties;
 
     /*
      * The list of extensions affiliated to the machine
      */
-    @JsonProperty(value = "resources", access = JsonProperty.Access.WRITE_ONLY)
     private List<MachineExtensionInner> resources;
 
     /*
      * Identity for the resource.
      */
-    @JsonProperty(value = "identity")
     private Identity identity;
 
     /*
      * Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc.
      */
-    @JsonProperty(value = "kind")
     private ArcKindEnum kind;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
 
     /**
      * Creates an instance of MachineInner class.
@@ -135,6 +151,36 @@ public final class MachineInner extends Resource {
     }
 
     /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -205,6 +251,75 @@ public final class MachineInner extends Resource {
             this.innerProperties = new MachinePropertiesInner();
         }
         this.innerProperties().withServiceStatuses(serviceStatuses);
+        return this;
+    }
+
+    /**
+     * Get the hardwareProfile property: Information about the machine's hardware.
+     * 
+     * @return the hardwareProfile value.
+     */
+    public HardwareProfile hardwareProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().hardwareProfile();
+    }
+
+    /**
+     * Set the hardwareProfile property: Information about the machine's hardware.
+     * 
+     * @param hardwareProfile the hardwareProfile value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withHardwareProfile(HardwareProfile hardwareProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachinePropertiesInner();
+        }
+        this.innerProperties().withHardwareProfile(hardwareProfile);
+        return this;
+    }
+
+    /**
+     * Get the storageProfile property: Information about the machine's storage.
+     * 
+     * @return the storageProfile value.
+     */
+    public StorageProfile storageProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageProfile();
+    }
+
+    /**
+     * Set the storageProfile property: Information about the machine's storage.
+     * 
+     * @param storageProfile the storageProfile value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withStorageProfile(StorageProfile storageProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachinePropertiesInner();
+        }
+        this.innerProperties().withStorageProfile(storageProfile);
+        return this;
+    }
+
+    /**
+     * Get the firmwareProfile property: Information about the machine's firmware.
+     * 
+     * @return the firmwareProfile value.
+     */
+    public FirmwareProfile firmwareProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().firmwareProfile();
+    }
+
+    /**
+     * Set the firmwareProfile property: Information about the machine's firmware.
+     * 
+     * @param firmwareProfile the firmwareProfile value to set.
+     * @return the MachineInner object itself.
+     */
+    public MachineInner withFirmwareProfile(FirmwareProfile firmwareProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MachinePropertiesInner();
+        }
+        this.innerProperties().withFirmwareProfile(firmwareProfile);
         return this;
     }
 
@@ -635,5 +750,67 @@ public final class MachineInner extends Resource {
         if (identity() != null) {
             identity().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MachineInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MachineInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the MachineInner.
+     */
+    public static MachineInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MachineInner deserializedMachineInner = new MachineInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedMachineInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedMachineInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedMachineInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedMachineInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMachineInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedMachineInner.innerProperties = MachinePropertiesInner.fromJson(reader);
+                } else if ("resources".equals(fieldName)) {
+                    List<MachineExtensionInner> resources
+                        = reader.readArray(reader1 -> MachineExtensionInner.fromJson(reader1));
+                    deserializedMachineInner.resources = resources;
+                } else if ("identity".equals(fieldName)) {
+                    deserializedMachineInner.identity = Identity.fromJson(reader);
+                } else if ("kind".equals(fieldName)) {
+                    deserializedMachineInner.kind = ArcKindEnum.fromString(reader.getString());
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedMachineInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMachineInner;
+        });
     }
 }

@@ -13,7 +13,9 @@ import java.util.Map;
  */
 public final class MachineRunCommandsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/runCommand/RunCommands_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * runCommand/RunCommands_Update.json
      */
     /**
      * Sample code: Update a Run Command.
