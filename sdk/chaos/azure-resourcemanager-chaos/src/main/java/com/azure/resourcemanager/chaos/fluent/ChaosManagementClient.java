@@ -82,6 +82,13 @@ public interface ChaosManagementClient {
     OperationsClient getOperations();
 
     /**
+     * Gets the PrivateAccessesClient object to access its operations.
+     * 
+     * @return the PrivateAccessesClient object.
+     */
+    PrivateAccessesClient getPrivateAccesses();
+
+    /**
      * Gets the TargetTypesClient object to access its operations.
      * 
      * @return the TargetTypesClient object.

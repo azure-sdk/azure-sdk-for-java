@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.chaos.generated;
 
 import com.azure.resourcemanager.chaos.models.Experiment;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
+import com.azure.resourcemanager.chaos.models.ExperimentIdentity;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.chaos.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
 public final class ExperimentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/UpdateExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-03-22-preview/examples/UpdateExperiment.json
      */
     /**
      * Sample code: Update an Experiment in a resource group.
@@ -28,10 +28,12 @@ public final class ExperimentsUpdateSamples {
         Experiment resource = manager.experiments()
             .getByResourceGroupWithResponse("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).withIdentity(
-            new ResourceIdentity().withType(ResourceIdentityType.USER_ASSIGNED).withUserAssignedIdentities(mapOf(
-                "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.ManagedIdentity/userAssignedIdentity/exampleUMI",
-                new UserAssignedIdentity())))
+        resource.update()
+            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withIdentity(new ExperimentIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.ManagedIdentity/userAssignedIdentity/exampleUMI",
+                    new UserAssignedIdentity())))
             .apply();
     }
 
