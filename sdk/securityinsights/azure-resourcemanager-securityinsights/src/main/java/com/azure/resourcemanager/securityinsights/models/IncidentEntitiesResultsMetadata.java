@@ -6,26 +6,56 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Information of a specific aggregation in the incident related entities result. */
+/**
+ * Information of a specific aggregation in the incident related entities result.
+ */
 @Fluent
-public final class IncidentEntitiesResultsMetadata {
-    /*
-     * Total number of aggregations of the given kind in the incident related entities result.
-     */
-    @JsonProperty(value = "count", required = true)
-    private int count;
-
+public final class IncidentEntitiesResultsMetadata implements JsonSerializable<IncidentEntitiesResultsMetadata> {
     /*
      * The kind of the aggregated entity.
      */
-    @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
+
+    /*
+     * Total number of aggregations of the given kind in the incident related entities result.
+     */
+    private int count;
+
+    /**
+     * Creates an instance of IncidentEntitiesResultsMetadata class.
+     */
+    public IncidentEntitiesResultsMetadata() {
+    }
+
+    /**
+     * Get the entityKind property: The kind of the aggregated entity.
+     * 
+     * @return the entityKind value.
+     */
+    public EntityKindEnum entityKind() {
+        return this.entityKind;
+    }
+
+    /**
+     * Set the entityKind property: The kind of the aggregated entity.
+     * 
+     * @param entityKind the entityKind value to set.
+     * @return the IncidentEntitiesResultsMetadata object itself.
+     */
+    public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
+        this.entityKind = entityKind;
+        return this;
+    }
 
     /**
      * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -34,7 +64,7 @@ public final class IncidentEntitiesResultsMetadata {
 
     /**
      * Set the count property: Total number of aggregations of the given kind in the incident related entities result.
-     *
+     * 
      * @param count the count value to set.
      * @return the IncidentEntitiesResultsMetadata object itself.
      */
@@ -44,38 +74,59 @@ public final class IncidentEntitiesResultsMetadata {
     }
 
     /**
-     * Get the entityKind property: The kind of the aggregated entity.
-     *
-     * @return the entityKind value.
-     */
-    public EntityKind entityKind() {
-        return this.entityKind;
-    }
-
-    /**
-     * Set the entityKind property: The kind of the aggregated entity.
-     *
-     * @param entityKind the entityKind value to set.
-     * @return the IncidentEntitiesResultsMetadata object itself.
-     */
-    public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
-        this.entityKind = entityKind;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (entityKind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property entityKind in model IncidentEntitiesResultsMetadata"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property entityKind in model IncidentEntitiesResultsMetadata"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(IncidentEntitiesResultsMetadata.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("entityKind", this.entityKind == null ? null : this.entityKind.toString());
+        jsonWriter.writeIntField("count", this.count);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IncidentEntitiesResultsMetadata from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IncidentEntitiesResultsMetadata if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the IncidentEntitiesResultsMetadata.
+     */
+    public static IncidentEntitiesResultsMetadata fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IncidentEntitiesResultsMetadata deserializedIncidentEntitiesResultsMetadata
+                = new IncidentEntitiesResultsMetadata();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("entityKind".equals(fieldName)) {
+                    deserializedIncidentEntitiesResultsMetadata.entityKind
+                        = EntityKindEnum.fromString(reader.getString());
+                } else if ("count".equals(fieldName)) {
+                    deserializedIncidentEntitiesResultsMetadata.count = reader.getInt();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIncidentEntitiesResultsMetadata;
+        });
+    }
 }
