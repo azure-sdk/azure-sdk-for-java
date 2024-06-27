@@ -28,7 +28,7 @@
 
 ## SubscriptionUsages
 
-- [ListByLocation](#subscriptionusages_listbylocation)
+- [Usages](#subscriptionusages_usages)
 ### ImageVersions_ListByImage
 
 ```java
@@ -290,26 +290,26 @@ public final class SkuListByLocationSamples {
 }
 ```
 
-### SubscriptionUsages_ListByLocation
+### SubscriptionUsages_Usages
 
 ```java
 /**
- * Samples for SubscriptionUsages ListByLocation.
+ * Samples for SubscriptionUsages Usages.
  */
-public final class SubscriptionUsagesListByLocationSamples {
+public final class SubscriptionUsagesUsagesSamples {
     /*
      * x-ms-original-file:
      * specification/devopsinfrastructure/Microsoft.DevOpsInfrastructure/examples/2024-04-04-preview/
-     * SubscriptionUsages_ListByLocation.json
+     * SubscriptionUsages_Usages.json
      */
     /**
-     * Sample code: SubscriptionUsages_ListByLocation.
+     * Sample code: SubscriptionUsages_Usages.
      * 
      * @param manager Entry point to DevOpsInfrastructureManager.
      */
-    public static void subscriptionUsagesListByLocation(
-        com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
-        manager.subscriptionUsages().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    public static void
+        subscriptionUsagesUsages(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
+        manager.subscriptionUsages().usages("eastus", com.azure.core.util.Context.NONE);
     }
 }
 ```
