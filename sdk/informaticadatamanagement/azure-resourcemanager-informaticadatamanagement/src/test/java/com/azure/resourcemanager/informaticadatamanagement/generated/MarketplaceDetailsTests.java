@@ -13,33 +13,33 @@ public final class MarketplaceDetailsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         MarketplaceDetails model = BinaryData.fromString(
-            "{\"marketplaceSubscriptionId\":\"rwclxxwrljdo\",\"offerDetails\":{\"publisherId\":\"skcqvkocrcjd\",\"offerId\":\"wtnhxbnjbiksqr\",\"planId\":\"lssai\",\"planName\":\"qpjwnzlljfm\",\"termUnit\":\"eebvmgxsab\",\"termId\":\"yqduujit\"}}")
+            "{\"marketplaceSubscriptionId\":\"cr\",\"offerDetails\":{\"publisherId\":\"jdkwtnhxbnjb\",\"offerId\":\"ksqrglssai\",\"planId\":\"qpjwnzlljfm\",\"planName\":\"pee\",\"termUnit\":\"mgxsab\",\"termId\":\"yqduujit\"}}")
             .toObject(MarketplaceDetails.class);
-        Assertions.assertEquals("rwclxxwrljdo", model.marketplaceSubscriptionId());
-        Assertions.assertEquals("skcqvkocrcjd", model.offerDetails().publisherId());
-        Assertions.assertEquals("wtnhxbnjbiksqr", model.offerDetails().offerId());
-        Assertions.assertEquals("lssai", model.offerDetails().planId());
-        Assertions.assertEquals("qpjwnzlljfm", model.offerDetails().planName());
-        Assertions.assertEquals("eebvmgxsab", model.offerDetails().termUnit());
+        Assertions.assertEquals("cr", model.marketplaceSubscriptionId());
+        Assertions.assertEquals("jdkwtnhxbnjb", model.offerDetails().publisherId());
+        Assertions.assertEquals("ksqrglssai", model.offerDetails().offerId());
+        Assertions.assertEquals("qpjwnzlljfm", model.offerDetails().planId());
+        Assertions.assertEquals("pee", model.offerDetails().planName());
+        Assertions.assertEquals("mgxsab", model.offerDetails().termUnit());
         Assertions.assertEquals("yqduujit", model.offerDetails().termId());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        MarketplaceDetails model = new MarketplaceDetails().withMarketplaceSubscriptionId("rwclxxwrljdo")
-            .withOfferDetails(new OfferDetails().withPublisherId("skcqvkocrcjd")
-                .withOfferId("wtnhxbnjbiksqr")
-                .withPlanId("lssai")
-                .withPlanName("qpjwnzlljfm")
-                .withTermUnit("eebvmgxsab")
+        MarketplaceDetails model = new MarketplaceDetails().withMarketplaceSubscriptionId("cr")
+            .withOfferDetails(new OfferDetails().withPublisherId("jdkwtnhxbnjb")
+                .withOfferId("ksqrglssai")
+                .withPlanId("qpjwnzlljfm")
+                .withPlanName("pee")
+                .withTermUnit("mgxsab")
                 .withTermId("yqduujit"));
         model = BinaryData.fromObject(model).toObject(MarketplaceDetails.class);
-        Assertions.assertEquals("rwclxxwrljdo", model.marketplaceSubscriptionId());
-        Assertions.assertEquals("skcqvkocrcjd", model.offerDetails().publisherId());
-        Assertions.assertEquals("wtnhxbnjbiksqr", model.offerDetails().offerId());
-        Assertions.assertEquals("lssai", model.offerDetails().planId());
-        Assertions.assertEquals("qpjwnzlljfm", model.offerDetails().planName());
-        Assertions.assertEquals("eebvmgxsab", model.offerDetails().termUnit());
+        Assertions.assertEquals("cr", model.marketplaceSubscriptionId());
+        Assertions.assertEquals("jdkwtnhxbnjb", model.offerDetails().publisherId());
+        Assertions.assertEquals("ksqrglssai", model.offerDetails().offerId());
+        Assertions.assertEquals("qpjwnzlljfm", model.offerDetails().planId());
+        Assertions.assertEquals("pee", model.offerDetails().planName());
+        Assertions.assertEquals("mgxsab", model.offerDetails().termUnit());
         Assertions.assertEquals("yqduujit", model.offerDetails().termId());
     }
 }

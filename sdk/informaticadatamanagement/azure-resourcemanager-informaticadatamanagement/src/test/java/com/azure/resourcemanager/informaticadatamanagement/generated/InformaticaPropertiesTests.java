@@ -12,24 +12,24 @@ public final class InformaticaPropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         InformaticaProperties model = BinaryData.fromString(
-            "{\"organizationId\":\"ubljofxqe\",\"organizationName\":\"jaeq\",\"informaticaRegion\":\"qjbasvms\",\"singleSignOnUrl\":\"qulngsntnbybkzgc\"}")
+            "{\"organizationId\":\"xqeofjaeqjhqjba\",\"organizationName\":\"msmjqulngsntn\",\"informaticaRegion\":\"bkzgcwrwclx\",\"singleSignOnUrl\":\"rljdouskcqv\"}")
             .toObject(InformaticaProperties.class);
-        Assertions.assertEquals("ubljofxqe", model.organizationId());
-        Assertions.assertEquals("jaeq", model.organizationName());
-        Assertions.assertEquals("qjbasvms", model.informaticaRegion());
-        Assertions.assertEquals("qulngsntnbybkzgc", model.singleSignOnUrl());
+        Assertions.assertEquals("xqeofjaeqjhqjba", model.organizationId());
+        Assertions.assertEquals("msmjqulngsntn", model.organizationName());
+        Assertions.assertEquals("bkzgcwrwclx", model.informaticaRegion());
+        Assertions.assertEquals("rljdouskcqv", model.singleSignOnUrl());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        InformaticaProperties model = new InformaticaProperties().withOrganizationId("ubljofxqe")
-            .withOrganizationName("jaeq")
-            .withInformaticaRegion("qjbasvms")
-            .withSingleSignOnUrl("qulngsntnbybkzgc");
+        InformaticaProperties model = new InformaticaProperties().withOrganizationId("xqeofjaeqjhqjba")
+            .withOrganizationName("msmjqulngsntn")
+            .withInformaticaRegion("bkzgcwrwclx")
+            .withSingleSignOnUrl("rljdouskcqv");
         model = BinaryData.fromObject(model).toObject(InformaticaProperties.class);
-        Assertions.assertEquals("ubljofxqe", model.organizationId());
-        Assertions.assertEquals("jaeq", model.organizationName());
-        Assertions.assertEquals("qjbasvms", model.informaticaRegion());
-        Assertions.assertEquals("qulngsntnbybkzgc", model.singleSignOnUrl());
+        Assertions.assertEquals("xqeofjaeqjhqjba", model.organizationId());
+        Assertions.assertEquals("msmjqulngsntn", model.organizationName());
+        Assertions.assertEquals("bkzgcwrwclx", model.informaticaRegion());
+        Assertions.assertEquals("rljdouskcqv", model.singleSignOnUrl());
     }
 }

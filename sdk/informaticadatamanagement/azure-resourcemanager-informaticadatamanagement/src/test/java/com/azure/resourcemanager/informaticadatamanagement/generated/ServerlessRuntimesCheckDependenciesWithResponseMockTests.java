@@ -21,7 +21,7 @@ public final class ServerlessRuntimesCheckDependenciesWithResponseMockTests {
     @Test
     public void testCheckDependenciesWithResponse() throws Exception {
         String responseStr
-            = "{\"count\":1199003595,\"id\":\"mmrqz\",\"references\":[{\"id\":\"rjvpglydzgkrvqee\",\"appContextId\":\"toepryu\",\"path\":\"nwy\",\"documentType\":\"pzdm\",\"description\":\"vzvfvaawzqadfl\",\"lastUpdatedTime\":\"z\"}]}";
+            = "{\"count\":1665980983,\"id\":\"oepry\",\"references\":[{\"id\":\"nwy\",\"appContextId\":\"pzdm\",\"path\":\"vzvfvaawzqadfl\",\"documentType\":\"z\",\"description\":\"riglaec\",\"lastUpdatedTime\":\"ndtic\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -31,16 +31,16 @@ public final class ServerlessRuntimesCheckDependenciesWithResponseMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         CheckDependenciesResponse response = manager.serverlessRuntimes()
-            .checkDependenciesWithResponse("wk", "ziycslevufuztck", "yhjtqedcgzu", com.azure.core.util.Context.NONE)
+            .checkDependenciesWithResponse("tqedcgzulwm", "rqzz", "rjvpglydzgkrvqee", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals(1199003595, response.count());
-        Assertions.assertEquals("mmrqz", response.id());
-        Assertions.assertEquals("rjvpglydzgkrvqee", response.references().get(0).id());
-        Assertions.assertEquals("toepryu", response.references().get(0).appContextId());
-        Assertions.assertEquals("nwy", response.references().get(0).path());
-        Assertions.assertEquals("pzdm", response.references().get(0).documentType());
-        Assertions.assertEquals("vzvfvaawzqadfl", response.references().get(0).description());
-        Assertions.assertEquals("z", response.references().get(0).lastUpdatedTime());
+        Assertions.assertEquals(1665980983, response.count());
+        Assertions.assertEquals("oepry", response.id());
+        Assertions.assertEquals("nwy", response.references().get(0).id());
+        Assertions.assertEquals("pzdm", response.references().get(0).appContextId());
+        Assertions.assertEquals("vzvfvaawzqadfl", response.references().get(0).path());
+        Assertions.assertEquals("z", response.references().get(0).documentType());
+        Assertions.assertEquals("riglaec", response.references().get(0).description());
+        Assertions.assertEquals("ndtic", response.references().get(0).lastUpdatedTime());
     }
 }
