@@ -1,0 +1,4 @@
+directory: specification/appcomplianceautomation/AppComplianceAutomation.Management
+commit: e7e3050b37ac68074dabebc1a62a7c04602afb46
+repo: Azure/azure-rest-api-specs
+additionalDirectories:
