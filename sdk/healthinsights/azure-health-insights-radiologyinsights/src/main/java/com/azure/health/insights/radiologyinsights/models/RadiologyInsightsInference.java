@@ -41,7 +41,10 @@ import java.util.List;
     @JsonSubTypes.Type(name = "criticalResult", value = CriticalResultInference.class),
     @JsonSubTypes.Type(name = "radiologyProcedure", value = RadiologyProcedureInference.class),
     @JsonSubTypes.Type(name = "followupRecommendation", value = FollowupRecommendationInference.class),
-    @JsonSubTypes.Type(name = "followupCommunication", value = FollowupCommunicationInference.class) })
+    @JsonSubTypes.Type(name = "followupCommunication", value = FollowupCommunicationInference.class),
+    @JsonSubTypes.Type(name = "scoringAndAssessment", value = ScoringAndAssessmentInference.class),
+    @JsonSubTypes.Type(name = "guidance", value = GuidanceInference.class),
+    @JsonSubTypes.Type(name = "qualityMeasure", value = QualityMeasureInference.class) })
 @Immutable
 public class RadiologyInsightsInference {
 
