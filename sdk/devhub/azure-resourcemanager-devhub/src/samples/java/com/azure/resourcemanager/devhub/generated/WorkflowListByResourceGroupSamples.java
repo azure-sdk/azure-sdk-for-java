@@ -4,22 +4,24 @@
 
 package com.azure.resourcemanager.devhub.generated;
 
-/** Samples for Workflow ListByResourceGroup. */
+/**
+ * Samples for Workflow ListByResourceGroup.
+ */
 public final class WorkflowListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/developerhub/resource-manager/Microsoft.DevHub/preview/2022-10-11-preview/examples/Workflow_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/developerhub/resource-manager/Microsoft.DevHub/preview/2024-07-01-preview/examples/
+     * Workflow_ListByResourceGroup.json
      */
     /**
      * Sample code: List Workflows.
-     *
+     * 
      * @param manager Entry point to DevHubManager.
      */
     public static void listWorkflows(com.azure.resourcemanager.devhub.DevHubManager manager) {
-        manager
-            .workflows()
-            .listByResourceGroup(
-                "resourceGroup1",
-                "/subscriptions/subscriptionId1/resourcegroups/resourceGroup1/providers/Microsoft.ContainerService/managedClusters/cluster1",
+        manager.workflows()
+            .listByResourceGroup("resourceGroup1",
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resourceGroup1/providers/Microsoft.ContainerService/managedClusters/cluster1",
                 com.azure.core.util.Context.NONE);
     }
 }
