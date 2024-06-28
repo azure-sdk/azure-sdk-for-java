@@ -375,7 +375,7 @@ def get_latest_ga_version(group_id: str, module: str, previous_version: str) -> 
     """
     If previous_version is GA, return previous_version,
     Otherwise, return previous GA version before previous beta.
-    previous_version itself if no previous GA version.
+    None if no previous GA version.
     """
     if "-beta." not in previous_version:
         return previous_version
@@ -402,7 +402,7 @@ def get_latest_ga_version(group_id: str, module: str, previous_version: str) -> 
     if len(previous_ga_versions) > 0:
         return previous_ga_versions[0]
 
-    return previous_version
+    return None
 
 
 def compare_version(v1: str, v2: str) -> int:
