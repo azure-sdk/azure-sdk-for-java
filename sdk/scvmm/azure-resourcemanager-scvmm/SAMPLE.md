@@ -95,33 +95,15 @@ import java.util.Map;
  */
 public final class AvailabilitySetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void availabilitySetsCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets()
-            .define("_")
-            .withRegion("jelevilan")
-            .withExistingResourceGroup("rgscvmm")
-            .withExtendedLocation(new ExtendedLocation())
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void availabilitySetsCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void availabilitySetsCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.availabilitySets()
             .define("-")
             .withRegion("jelevilan")
@@ -160,29 +142,16 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class AvailabilitySetsDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void availabilitySetsDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void availabilitySetsDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.availabilitySets().delete("rgscvmm", "_", ForceDelete.TRUE, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void availabilitySetsDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().delete("rgscvmm", "6", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -195,28 +164,15 @@ public final class AvailabilitySetsDeleteSamples {
  */
 public final class AvailabilitySetsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void availabilitySetsGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().getByResourceGroupWithResponse("rgscvmm", "V", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void availabilitySetsGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void availabilitySetsGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.availabilitySets().getByResourceGroupWithResponse("rgscvmm", "-", com.azure.core.util.Context.NONE);
     }
 }
@@ -230,30 +186,16 @@ public final class AvailabilitySetsGetByResourceGroupSamples {
  */
 public final class AvailabilitySetsListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_ListBySubscription_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        availabilitySetsListBySubscriptionMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_ListBySubscription_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        availabilitySetsListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        availabilitySetsListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.availabilitySets().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -267,30 +209,16 @@ public final class AvailabilitySetsListSamples {
  */
 public final class AvailabilitySetsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_ListByResourceGroup_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        availabilitySetsListByResourceGroupMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.availabilitySets().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_ListByResourceGroup_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        availabilitySetsListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        availabilitySetsListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.availabilitySets().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
     }
 }
@@ -308,31 +236,15 @@ import java.util.Map;
  */
 public final class AvailabilitySetsUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: AvailabilitySets_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void availabilitySetsUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        AvailabilitySet resource = manager.availabilitySets()
-            .getByResourceGroupWithResponse("rgscvmm", "1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * AvailabilitySets_Update_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/AvailabilitySets_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: AvailabilitySets_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void availabilitySetsUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void availabilitySetsUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         AvailabilitySet resource = manager.availabilitySets()
             .getByResourceGroupWithResponse("rgscvmm", "-", com.azure.core.util.Context.NONE)
             .getValue();
@@ -366,33 +278,15 @@ import java.util.Map;
  */
 public final class CloudsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds()
-            .define("-")
-            .withRegion("khwsdmaxfhmbu")
-            .withExistingResourceGroup("rgscvmm")
-            .withExtendedLocation(new ExtendedLocation())
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.clouds()
             .define("2")
             .withRegion("khwsdmaxfhmbu")
@@ -432,29 +326,15 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class CloudsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.clouds().delete("rgscvmm", "-", ForceDelete.TRUE, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().delete("rgscvmm", "1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -467,29 +347,15 @@ public final class CloudsDeleteSamples {
  */
 public final class CloudsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MaximumSet_Gen.json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.clouds().getByResourceGroupWithResponse("rgscvmm", "_", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().getByResourceGroupWithResponse("rgscvmm", "i", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -502,28 +368,15 @@ public final class CloudsGetByResourceGroupSamples {
  */
 public final class CloudsListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_ListBySubscription_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsListBySubscriptionMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_ListBySubscription_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.clouds().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -537,28 +390,15 @@ public final class CloudsListSamples {
  */
 public final class CloudsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_ListByResourceGroup_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * Clouds_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_ListByResourceGroup_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsListByResourceGroupMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.clouds().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
     }
 }
@@ -576,31 +416,14 @@ import java.util.Map;
  */
 public final class CloudsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Clouds_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void cloudsUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        Cloud resource = manager.clouds()
-            .getByResourceGroupWithResponse("rgscvmm", "_", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/Clouds_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void cloudsUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void cloudsUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         Cloud resource = manager.clouds()
             .getByResourceGroupWithResponse("rgscvmm", "P", com.azure.core.util.Context.NONE)
             .getValue();
@@ -636,29 +459,14 @@ import com.azure.resourcemanager.scvmm.models.ProvisioningAction;
 public final class GuestAgentsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Create_MinimumSet_Gen
-     * .json
-     */
-    /**
-     * Sample code: GuestAgents_Create_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void guestAgentsCreateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.guestAgents().create("gtgclehcbsyave", new GuestAgentInner(), com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Create_MaximumSet_Gen
-     * .json
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/GuestAgents_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: GuestAgents_Create_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void guestAgentsCreateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void guestAgentsCreateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.guestAgents()
             .create("gtgclehcbsyave",
                 new GuestAgentInner().withProperties(new GuestAgentProperties()
@@ -680,29 +488,14 @@ public final class GuestAgentsCreateSamples {
 public final class GuestAgentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MaximumSet_Gen
-     * .json
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/GuestAgents_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: GuestAgents_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void guestAgentsDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.guestAgents().deleteWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MinimumSet_Gen
-     * .json
-     */
-    /**
-     * Sample code: GuestAgents_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void guestAgentsDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void guestAgentsDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.guestAgents().deleteWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -716,30 +509,14 @@ public final class GuestAgentsDeleteSamples {
  */
 public final class GuestAgentsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Get_MaximumSet_Gen.
-     * json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/GuestAgents_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: GuestAgents_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void guestAgentsGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.guestAgents().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Get_MinimumSet_Gen.
-     * json
-     */
-    /**
-     * Sample code: GuestAgents_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void guestAgentsGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void guestAgentsGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.guestAgents().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -753,30 +530,17 @@ public final class GuestAgentsGetSamples {
  */
 public final class GuestAgentsListByVirtualMachineInstanceSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * GuestAgents_ListByVirtualMachineInstance_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/GuestAgents_ListByVirtualMachineInstance_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: GuestAgents_ListByVirtualMachineInstance_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        guestAgentsListByVirtualMachineInstanceMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.guestAgents().listByVirtualMachineInstance("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * GuestAgents_ListByVirtualMachineInstance_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: GuestAgents_ListByVirtualMachineInstance_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        guestAgentsListByVirtualMachineInstanceMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        guestAgentsListByVirtualMachineInstanceMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.guestAgents().listByVirtualMachineInstance("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -792,31 +556,15 @@ import com.azure.resourcemanager.scvmm.models.InventoryItemProperties;
  */
 public final class InventoryItemsCreateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_Create_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: InventoryItems_Create_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void inventoryItemsCreateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems()
-            .define("bbFb0cBb-50ce-4bfc-3eeD-bC26AbCC257a")
-            .withExistingVmmServer("rgscvmm", ".")
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_Create_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/InventoryItems_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: InventoryItems_Create_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void inventoryItemsCreateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void inventoryItemsCreateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.inventoryItems()
             .define("1BdDc2Ab-bDd9-Ebd6-bfdb-C0dbbdB5DEDf")
             .withExistingVmmServer("rgscvmm", "O")
@@ -835,32 +583,17 @@ public final class InventoryItemsCreateSamples {
  */
 public final class InventoryItemsDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/InventoryItems_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: InventoryItems_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void inventoryItemsDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void inventoryItemsDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.inventoryItems()
             .deleteWithResponse("rgscvmm", "b", "EcECadfd-Eaaa-e5Ce-ebdA-badeEd3c6af1",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: InventoryItems_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void inventoryItemsDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems()
-            .deleteWithResponse("rgscvmm", "_", "cDBcbae6-BC3d-52fe-CedC-7eFeaBFabb82",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -875,30 +608,14 @@ public final class InventoryItemsDeleteSamples {
 public final class InventoryItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MinimumSet_Gen
-     * .json
-     */
-    /**
-     * Sample code: InventoryItems_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void inventoryItemsGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems()
-            .getWithResponse("rgscvmm", "_", "cacb8Ceb-efAC-bebb-ae7C-dec8C5Bb7100", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/InventoryItems_Get_MaximumSet_Gen
-     * .json
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/InventoryItems_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: InventoryItems_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void inventoryItemsGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void inventoryItemsGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.inventoryItems()
             .getWithResponse("rgscvmm", "1", "2bFBede6-EEf8-becB-dBbd-B96DbBFdB3f3", com.azure.core.util.Context.NONE);
     }
@@ -913,29 +630,16 @@ public final class InventoryItemsGetSamples {
  */
 public final class InventoryItemsListByVmmServerSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_ListByVmmServer_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/InventoryItems_ListByVmmServer_MaximumSet_Gen.json
      */
     /**
      * Sample code: InventoryItems_ListByVmmServer_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void inventoryItemsListByVmmServerMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void inventoryItemsListByVmmServerMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.inventoryItems().listByVmmServer("rgscvmm", "X", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * InventoryItems_ListByVmmServer_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: InventoryItems_ListByVmmServer_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void inventoryItemsListByVmmServerMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.inventoryItems().listByVmmServer("rgscvmm", "H", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -948,30 +652,14 @@ public final class InventoryItemsListByVmmServerSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MinimumSet_Gen.
-     * json
-     */
-    /**
-     * Sample code: Operations_List_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void operationsListMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MaximumSet_Gen.
-     * json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/Operations_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: Operations_List_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void operationsListMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void operationsListMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -987,34 +675,20 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineCreateCheckpoint;
  */
 public final class VirtualMachineInstancesCreateCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_CreateCheckpoint_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_CreateCheckpoint_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: VirtualMachineInstances_CreateCheckpoint_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineInstancesCreateCheckpointMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineInstancesCreateCheckpointMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .createCheckpoint("gtgclehcbsyave", new VirtualMachineCreateCheckpoint().withName("ilvltf")
                 .withDescription("zoozhfbepldrgpjqsbhpqebtodrhvy"), com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_CreateCheckpoint_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_CreateCheckpoint_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineInstancesCreateCheckpointMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .createCheckpoint("gtgclehcbsyave", new VirtualMachineCreateCheckpoint(), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1045,16 +719,17 @@ import java.util.Arrays;
  */
 public final class VirtualMachineInstancesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_CreateOrUpdate_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: VirtualMachineInstances_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineInstancesCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineInstancesCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .createOrUpdate("gtgclehcbsyave", new VirtualMachineInstanceInner()
                 .withProperties(new VirtualMachineInstanceProperties()
@@ -1106,23 +781,6 @@ public final class VirtualMachineInstancesCreateOrUpdateSamples {
                         "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/customLocationName")),
                 com.azure.core.util.Context.NONE);
     }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineInstancesCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .createOrUpdate("gtgclehcbsyave",
-                new VirtualMachineInstanceInner().withExtendedLocation(new ExtendedLocation()),
-                com.azure.core.util.Context.NONE);
-    }
 }
 ```
 
@@ -1137,30 +795,17 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualMachineInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .delete("gtgclehcbsyave", ForceDelete.TRUE, DeleteFromHost.TRUE, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().delete("gtgclehcbsyave", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1175,35 +820,21 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineDeleteCheckpoint;
  */
 public final class VirtualMachineInstancesDeleteCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_DeleteCheckpoint_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_DeleteCheckpoint_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: VirtualMachineInstances_DeleteCheckpoint_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineInstancesDeleteCheckpointMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineInstancesDeleteCheckpointMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .deleteCheckpoint("gtgclehcbsyave",
                 new VirtualMachineDeleteCheckpoint().withId("eenfflimcbgqfsebdusophahjpk"),
                 com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_DeleteCheckpoint_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_DeleteCheckpoint_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineInstancesDeleteCheckpointMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .deleteCheckpoint("gtgclehcbsyave", new VirtualMachineDeleteCheckpoint(), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1216,28 +847,15 @@ public final class VirtualMachineInstancesDeleteCheckpointSamples {
  */
 public final class VirtualMachineInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -1251,28 +869,15 @@ public final class VirtualMachineInstancesGetSamples {
  */
 public final class VirtualMachineInstancesListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_List_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_List_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesListMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().list("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_List_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_List_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesListMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesListMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances().list("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -1286,28 +891,15 @@ public final class VirtualMachineInstancesListSamples {
  */
 public final class VirtualMachineInstancesRestartSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Restart_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Restart_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Restart_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesRestartMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().restart("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Restart_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Restart_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesRestartMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesRestartMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances().restart("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -1323,32 +915,17 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineRestoreCheckpoint;
  */
 public final class VirtualMachineInstancesRestoreCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_RestoreCheckpoint_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_RestoreCheckpoint_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineInstancesRestoreCheckpointMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .restoreCheckpoint("gtgclehcbsyave", new VirtualMachineRestoreCheckpoint(),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_RestoreCheckpoint_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_RestoreCheckpoint_MaximumSet_Gen
+     * .json
      */
     /**
      * Sample code: VirtualMachineInstances_RestoreCheckpoint_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineInstancesRestoreCheckpointMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineInstancesRestoreCheckpointMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .restoreCheckpoint("gtgclehcbsyave", new VirtualMachineRestoreCheckpoint().withId("rweqduwzsn"),
                 com.azure.core.util.Context.NONE);
@@ -1364,28 +941,15 @@ public final class VirtualMachineInstancesRestoreCheckpointSamples {
  */
 public final class VirtualMachineInstancesStartSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Start_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Start_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesStartMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().start("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Start_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Start_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Start_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesStartMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesStartMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances().start("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -1402,32 +966,18 @@ import com.azure.resourcemanager.scvmm.models.StopVirtualMachineOptions;
  */
 public final class VirtualMachineInstancesStopSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Stop_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Stop_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Stop_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesStopMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesStopMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .stop("gtgclehcbsyave", new StopVirtualMachineOptions().withSkipShutdown(SkipShutdown.TRUE),
                 com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Stop_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Stop_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesStopMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .stop("gtgclehcbsyave", new StopVirtualMachineOptions(), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1455,29 +1005,15 @@ import java.util.Arrays;
  */
 public final class VirtualMachineInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances()
-            .update("gtgclehcbsyave", new VirtualMachineInstanceUpdate(), com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_Update_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineInstances_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineInstances_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineInstancesUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineInstancesUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineInstances()
             .update("gtgclehcbsyave",
                 new VirtualMachineInstanceUpdate().withProperties(new VirtualMachineInstanceUpdateProperties()
@@ -1528,35 +1064,17 @@ import java.util.Map;
  */
 public final class VirtualMachineTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineTemplatesCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates()
-            .define("P")
-            .withRegion("ayxsyduviotylbojh")
-            .withExistingResourceGroup("rgscvmm")
-            .withExtendedLocation(new ExtendedLocation())
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineTemplates_CreateOrUpdate_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: VirtualMachineTemplates_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineTemplatesCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineTemplatesCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineTemplates()
             .define("6")
             .withRegion("ayxsyduviotylbojh")
@@ -1596,28 +1114,15 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualMachineTemplatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineTemplatesDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().delete("rgscvmm", "5", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineTemplates_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineTemplates_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineTemplatesDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineTemplatesDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineTemplates().delete("rgscvmm", "6", ForceDelete.TRUE, com.azure.core.util.Context.NONE);
     }
 }
@@ -1631,29 +1136,15 @@ public final class VirtualMachineTemplatesDeleteSamples {
  */
 public final class VirtualMachineTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineTemplatesGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates()
-            .getByResourceGroupWithResponse("rgscvmm", "m", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineTemplates_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineTemplates_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineTemplatesGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineTemplatesGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineTemplates()
             .getByResourceGroupWithResponse("rgscvmm", "4", com.azure.core.util.Context.NONE);
     }
@@ -1668,30 +1159,16 @@ public final class VirtualMachineTemplatesGetByResourceGroupSamples {
  */
 public final class VirtualMachineTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/
      * VirtualMachineTemplates_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineTemplates_ListBySubscription_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineTemplatesListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_ListBySubscription_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineTemplatesListBySubscriptionMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineTemplatesListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineTemplates().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1705,30 +1182,16 @@ public final class VirtualMachineTemplatesListSamples {
  */
 public final class VirtualMachineTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_ListByResourceGroup_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualMachineTemplatesListByResourceGroupMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/
      * VirtualMachineTemplates_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineTemplates_ListByResourceGroup_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualMachineTemplatesListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualMachineTemplatesListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualMachineTemplates().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
     }
 }
@@ -1746,35 +1209,19 @@ import java.util.Map;
  */
 public final class VirtualMachineTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Update_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualMachineTemplates_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualMachineTemplates_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualMachineTemplatesUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualMachineTemplatesUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         VirtualMachineTemplate resource = manager.virtualMachineTemplates()
             .getByResourceGroupWithResponse("rgscvmm", "g", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().withTags(mapOf("key6634", "fakeTokenPlaceholder")).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineTemplates_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineTemplates_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineTemplatesUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        VirtualMachineTemplate resource = manager.virtualMachineTemplates()
-            .getByResourceGroupWithResponse("rgscvmm", "-", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
     }
 
     // Use "Map.of" if available
@@ -1804,15 +1251,15 @@ import java.util.Map;
  */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualNetworksCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualNetworksCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualNetworks()
             .define("_")
             .withRegion("fky")
@@ -1825,24 +1272,6 @@ public final class VirtualNetworksCreateOrUpdateSamples {
                 .withUuid("12345678-1234-1234-1234-12345678abcd")
                 .withVmmServerId(
                     "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.ScVmm/vmmServers/vmmServerName"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualNetworksCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks()
-            .define("-")
-            .withRegion("fky")
-            .withExistingResourceGroup("rgscvmm")
-            .withExtendedLocation(new ExtendedLocation())
             .create();
     }
 
@@ -1870,29 +1299,16 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
  */
 public final class VirtualNetworksDeleteSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualNetworksDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualNetworksDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualNetworks().delete("rgscvmm", ".", ForceDelete.TRUE, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualNetworksDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().delete("rgscvmm", "1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1905,29 +1321,16 @@ public final class VirtualNetworksDeleteSamples {
  */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualNetworksGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualNetworksGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualNetworks().getByResourceGroupWithResponse("rgscvmm", "2", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualNetworksGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().getByResourceGroupWithResponse("rgscvmm", "-", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1940,30 +1343,16 @@ public final class VirtualNetworksGetByResourceGroupSamples {
  */
 public final class VirtualNetworksListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_ListBySubscription_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualNetworksListBySubscriptionMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_ListBySubscription_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualNetworksListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualNetworksListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualNetworks().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1977,30 +1366,16 @@ public final class VirtualNetworksListSamples {
  */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_ListByResourceGroup_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        virtualNetworksListByResourceGroupMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualNetworks().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_ListByResourceGroup_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        virtualNetworksListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        virtualNetworksListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.virtualNetworks().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
     }
 }
@@ -2018,31 +1393,15 @@ import java.util.Map;
  */
 public final class VirtualNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualNetworks_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualNetworksUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        VirtualNetwork resource = manager.virtualNetworks()
-            .getByResourceGroupWithResponse("rgscvmm", "-", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualNetworks_Update_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VirtualNetworks_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VirtualNetworks_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void virtualNetworksUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void virtualNetworksUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         VirtualNetwork resource = manager.virtualNetworks()
             .getByResourceGroupWithResponse("rgscvmm", "S", com.azure.core.util.Context.NONE)
             .getValue();
@@ -2071,30 +1430,17 @@ public final class VirtualNetworksUpdateSamples {
  */
 public final class VmInstanceHybridIdentityMetadatasGetSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmInstanceHybridIdentityMetadatas_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VmInstanceHybridIdentityMetadatas_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void
-        vmInstanceHybridIdentityMetadatasGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmInstanceHybridIdentityMetadatas().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmInstanceHybridIdentityMetadatas_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmInstanceHybridIdentityMetadatas_Get_MaximumSet_Gen.
+     * json
      */
     /**
      * Sample code: VmInstanceHybridIdentityMetadatas_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void
-        vmInstanceHybridIdentityMetadatasGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        vmInstanceHybridIdentityMetadatasGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmInstanceHybridIdentityMetadatas().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
@@ -2108,31 +1454,16 @@ public final class VmInstanceHybridIdentityMetadatasGetSamples {
  */
 public final class VmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/
      * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
     public static void vmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceMaximumSet(
-        com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmInstanceHybridIdentityMetadatas()
-            .listByVirtualMachineInstance("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceMinimumSet(
-        com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmInstanceHybridIdentityMetadatas()
             .listByVirtualMachineInstance("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
@@ -2153,33 +1484,15 @@ import java.util.Map;
  */
 public final class VmmServersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VmmServers_CreateOrUpdate_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersCreateOrUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers()
-            .define("w")
-            .withRegion("hslxkyzktvwpqbypvs")
-            .withExistingResourceGroup("rgscvmm")
-            .withExtendedLocation(new ExtendedLocation())
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_CreateOrUpdate_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersCreateOrUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmmServers()
             .define("-")
             .withRegion("hslxkyzktvwpqbypvs")
@@ -2221,30 +1534,15 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
 public final class VmmServersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Delete_MaximumSet_Gen.
-     * json
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_Delete_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersDeleteMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersDeleteMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmmServers().delete("rgscvmm", ".", ForceDelete.TRUE, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Delete_MinimumSet_Gen.
-     * json
-     */
-    /**
-     * Sample code: VmmServers_Delete_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersDeleteMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().delete("rgscvmm", "8", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2257,30 +1555,14 @@ public final class VmmServersDeleteSamples {
  */
 public final class VmmServersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Get_MinimumSet_Gen.
-     * json
-     */
-    /**
-     * Sample code: VmmServers_Get_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersGetMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().getByResourceGroupWithResponse("rgscvmm", "D", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Get_MaximumSet_Gen.
-     * json
+     * x-ms-original-file: specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_Get_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersGetMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmmServers().getByResourceGroupWithResponse("rgscvmm", ".", com.azure.core.util.Context.NONE);
     }
 }
@@ -2294,28 +1576,15 @@ public final class VmmServersGetByResourceGroupSamples {
  */
 public final class VmmServersListSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_ListBySubscription_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VmmServers_ListBySubscription_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersListBySubscriptionMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersListBySubscriptionMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmmServers().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -2329,28 +1598,15 @@ public final class VmmServersListSamples {
  */
 public final class VmmServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VmmServers_ListByResourceGroup_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersListByResourceGroupMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.vmmServers().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VmmServers_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_ListByResourceGroup_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersListByResourceGroupMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         manager.vmmServers().listByResourceGroup("rgscvmm", com.azure.core.util.Context.NONE);
     }
 }
@@ -2369,32 +1625,14 @@ import java.util.Map;
 public final class VmmServersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Update_MinimumSet_Gen.
-     * json
-     */
-    /**
-     * Sample code: VmmServers_Update_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void vmmServersUpdateMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        VmmServer resource = manager.vmmServers()
-            .getByResourceGroupWithResponse("rgscvmm", "_", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/VmmServers_Update_MaximumSet_Gen.
-     * json
+     * specification/scvmm/ScVmm.Management/examples/2023-10-07/VmmServers_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VmmServers_Update_MaximumSet.
      * 
-     * @param manager Entry point to ScvmmManager.
+     * @param manager Entry point to SCVMMManager.
      */
-    public static void vmmServersUpdateMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+    public static void vmmServersUpdateMaximumSet(com.azure.resourcemanager.scvmm.SCVMMManager manager) {
         VmmServer resource = manager.vmmServers()
             .getByResourceGroupWithResponse("rgscvmm", "Y", com.azure.core.util.Context.NONE)
             .getValue();
