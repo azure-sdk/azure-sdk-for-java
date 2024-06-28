@@ -1,0 +1,4 @@
+directory: specification/scvmm/ScVmm.Management
+commit: 869ff949403f64de798f8d94763b1abc1e4651a6
+repo: test-repo-billy/azure-rest-api-specs
+additionalDirectories:
