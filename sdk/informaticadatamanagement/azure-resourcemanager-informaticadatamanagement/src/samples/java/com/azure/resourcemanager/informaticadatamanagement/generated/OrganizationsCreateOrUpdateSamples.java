@@ -39,7 +39,7 @@ public final class OrganizationsCreateOrUpdateSamples {
                     new InformaticaProperties().withOrganizationId("wtdmhlwhkvgqdumaehgfgiqcxgnqpx")
                         .withOrganizationName("nomzbvwe")
                         .withInformaticaRegion("zfqodqpbeflhedypiijdkc")
-                        .withSingleSignOnUrl("espcbzjhtmgwfdkckhqk"))
+                        .withSingleSignOnUrl("https://contoso.com/singlesignon"))
                 .withMarketplaceDetails(new MarketplaceDetails().withMarketplaceSubscriptionId("ovenlecocg")
                     .withOfferDetails(new OfferDetails()
                         .withPublisherId(

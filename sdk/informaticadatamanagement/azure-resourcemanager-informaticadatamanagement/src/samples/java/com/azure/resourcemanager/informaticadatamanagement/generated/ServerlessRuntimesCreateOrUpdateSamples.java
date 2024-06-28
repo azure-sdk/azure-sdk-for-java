@@ -42,8 +42,10 @@ public final class ServerlessRuntimesCreateOrUpdateSamples {
                 .withExecutionTimeout("ruiougpypny")
                 .withServerlessAccountLocation("bkxdfopapbqucyhduewrubjpaei")
                 .withServerlessRuntimeNetworkProfile(new ServerlessRuntimeNetworkProfile()
-                    .withNetworkInterfaceConfiguration(new NetworkInterfaceConfiguration().withVnetId("uaqjvtubxccjs")
-                        .withSubnetId("s")
+                    .withNetworkInterfaceConfiguration(new NetworkInterfaceConfiguration().withVnetId(
+                        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/HypernetVnet1")
+                        .withSubnetId(
+                            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/subnet1")
                         .withVnetResourceGuid("5328d299-1462-4be0-bef1-303a28e556a0")))
                 .withAdvancedCustomProperties(Arrays.asList(
                     new AdvancedCustomProperties().withKey("fakeTokenPlaceholder").withValue("unraxmnohdmvutt")))

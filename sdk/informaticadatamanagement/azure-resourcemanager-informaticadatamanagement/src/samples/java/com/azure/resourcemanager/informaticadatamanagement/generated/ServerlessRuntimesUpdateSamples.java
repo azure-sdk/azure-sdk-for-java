@@ -38,44 +38,45 @@ public final class ServerlessRuntimesUpdateSamples {
             .getWithResponse("rgopenapi", "W5", "t_", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withProperties(
-                new ServerlessRuntimePropertiesCustomUpdate().withDescription("ocprslpljoikxyduackzqnkuhyzrh")
-                    .withPlatform(PlatformType.AZURE)
-                    .withApplicationType(ApplicationType.CDI)
-                    .withComputeUnits("uncwbpu")
-                    .withExecutionTimeout("tjyfytuywriabt")
-                    .withServerlessAccountLocation("goaugkyfanqfnvcmntreibqrswfpis")
-                    .withServerlessRuntimeNetworkProfile(
-                        new ServerlessRuntimeNetworkProfileUpdate().withNetworkInterfaceConfiguration(
-                            new NetworkInterfaceConfigurationUpdate().withVnetId("tnsqwwoxydeqqffumdnxlkkb")
-                                .withSubnetId("dctcuhgttxhcarwcrgdmsfwksyrzj")
-                                .withVnetResourceGuid("5328d299-1462-4be0-bef1-303a28e556a0")))
-                    .withAdvancedCustomProperties(Arrays.asList(
-                        new AdvancedCustomProperties().withKey("fakeTokenPlaceholder").withValue("unraxmnohdmvutt")))
-                    .withSupplementaryFileLocation("csxaqzpxu")
-                    .withServerlessRuntimeConfig(new ServerlessRuntimeConfigPropertiesUpdate()
-                        .withCdiConfigProps(
-                            Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
-                                .withEngineVersion("zlrlbg")
-                                .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
-                                    .withName("upfvjrqcrwwedfujkmsodeinw")
-                                    .withValue("mozgsetpwjmtyl")
-                                    .withPlatform("dixfyeobngivyvf")
-                                    .withCustomized("j")
-                                    .withDefaultValue("zvgkqwmi")))))
-                        .withCdieConfigProps(
-                            Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
-                                .withEngineVersion("zlrlbg")
-                                .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
-                                    .withName("upfvjrqcrwwedfujkmsodeinw")
-                                    .withValue("mozgsetpwjmtyl")
-                                    .withPlatform("dixfyeobngivyvf")
-                                    .withCustomized("j")
-                                    .withDefaultValue("zvgkqwmi"))))))
-                    .withServerlessRuntimeTags(
-                        Arrays.asList(new ServerlessRuntimeTag().withName("korveuycuwhs").withValue("uyiuegxnkgp")))
-                    .withServerlessRuntimeUserContextProperties(new ServerlessRuntimeUserContextPropertiesUpdate()
-                        .withUserContextToken("fakeTokenPlaceholder")))
+            .withProperties(new ServerlessRuntimePropertiesCustomUpdate()
+                .withDescription("ocprslpljoikxyduackzqnkuhyzrh")
+                .withPlatform(PlatformType.AZURE)
+                .withApplicationType(ApplicationType.CDI)
+                .withComputeUnits("uncwbpu")
+                .withExecutionTimeout("tjyfytuywriabt")
+                .withServerlessAccountLocation("goaugkyfanqfnvcmntreibqrswfpis")
+                .withServerlessRuntimeNetworkProfile(new ServerlessRuntimeNetworkProfileUpdate()
+                    .withNetworkInterfaceConfiguration(new NetworkInterfaceConfigurationUpdate().withVnetId(
+                        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/HypernetVnet1")
+                        .withSubnetId(
+                            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/subnet1")
+                        .withVnetResourceGuid("5328d299-1462-4be0-bef1-303a28e556a0")))
+                .withAdvancedCustomProperties(Arrays.asList(
+                    new AdvancedCustomProperties().withKey("fakeTokenPlaceholder").withValue("unraxmnohdmvutt")))
+                .withSupplementaryFileLocation("csxaqzpxu")
+                .withServerlessRuntimeConfig(new ServerlessRuntimeConfigPropertiesUpdate()
+                    .withCdiConfigProps(
+                        Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
+                            .withEngineVersion("zlrlbg")
+                            .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
+                                .withName("upfvjrqcrwwedfujkmsodeinw")
+                                .withValue("mozgsetpwjmtyl")
+                                .withPlatform("dixfyeobngivyvf")
+                                .withCustomized("j")
+                                .withDefaultValue("zvgkqwmi")))))
+                    .withCdieConfigProps(
+                        Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
+                            .withEngineVersion("zlrlbg")
+                            .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
+                                .withName("upfvjrqcrwwedfujkmsodeinw")
+                                .withValue("mozgsetpwjmtyl")
+                                .withPlatform("dixfyeobngivyvf")
+                                .withCustomized("j")
+                                .withDefaultValue("zvgkqwmi"))))))
+                .withServerlessRuntimeTags(
+                    Arrays.asList(new ServerlessRuntimeTag().withName("korveuycuwhs").withValue("uyiuegxnkgp")))
+                .withServerlessRuntimeUserContextProperties(
+                    new ServerlessRuntimeUserContextPropertiesUpdate().withUserContextToken("fakeTokenPlaceholder")))
             .apply();
     }
 }

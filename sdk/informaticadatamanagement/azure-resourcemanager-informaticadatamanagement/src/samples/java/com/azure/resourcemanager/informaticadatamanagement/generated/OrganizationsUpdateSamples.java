@@ -55,7 +55,8 @@ public final class OrganizationsUpdateSamples {
                     .withDomain("dponvwnrdrnzahcurqssesukbsokdd")
                     .withBusiness("mwqblnruflwpolgbxpqbqneve")
                     .withNumberOfEmployees(22))
-                .withExistingResourceId("uvwlcphdfkqnhrtddpsiacbowcxxo"))
+                .withExistingResourceId(
+                    "/subscriptions/subid/resourceGroups/rg1/providers/Informatica.DataManagement/organizations/org1/serverlessRuntimes/serverlessRuntimeName"))
             .apply();
     }
 
