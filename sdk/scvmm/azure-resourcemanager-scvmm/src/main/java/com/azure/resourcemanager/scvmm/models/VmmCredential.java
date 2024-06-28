@@ -5,25 +5,23 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Credentials to connect to VmmServer.
  */
 @Fluent
-public final class VmmCredential implements JsonSerializable<VmmCredential> {
+public final class VmmCredential {
     /*
      * Username to use to connect to VmmServer.
      */
+    @JsonProperty(value = "username")
     private String username;
 
     /*
      * Password to use to connect to VmmServer.
      */
+    @JsonProperty(value = "password")
     private String password;
 
     /**
@@ -78,44 +76,5 @@ public final class VmmCredential implements JsonSerializable<VmmCredential> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("username", this.username);
-        jsonWriter.writeStringField("password", this.password);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VmmCredential from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VmmCredential if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VmmCredential.
-     */
-    public static VmmCredential fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VmmCredential deserializedVmmCredential = new VmmCredential();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("username".equals(fieldName)) {
-                    deserializedVmmCredential.username = reader.getString();
-                } else if ("password".equals(fieldName)) {
-                    deserializedVmmCredential.password = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVmmCredential;
-        });
     }
 }

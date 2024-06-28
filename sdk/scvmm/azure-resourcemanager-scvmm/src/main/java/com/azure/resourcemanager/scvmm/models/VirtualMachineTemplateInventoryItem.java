@@ -5,60 +5,52 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The Virtual machine template inventory item.
  */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "inventoryType",
+    defaultImpl = VirtualMachineTemplateInventoryItem.class,
+    visible = true)
+@JsonTypeName("VirtualMachineTemplate")
 @Immutable
 public final class VirtualMachineTemplateInventoryItem extends InventoryItemProperties {
     /*
      * They inventory type.
      */
+    @JsonTypeId
+    @JsonProperty(value = "inventoryType", required = true)
     private InventoryType inventoryType = InventoryType.VIRTUAL_MACHINE_TEMPLATE;
 
     /*
      * Gets the desired number of vCPUs for the vm.
      */
+    @JsonProperty(value = "cpuCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer cpuCount;
 
     /*
      * MemoryMB is the desired size of a virtual machine's memory, in MB.
      */
+    @JsonProperty(value = "memoryMB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer memoryMB;
 
     /*
      * Gets the type of the os.
      */
+    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
      * Gets os name.
      */
+    @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
-
-    /*
-     * Gets the tracked resource id corresponding to the inventory resource.
-     */
-    private String managedResourceId;
-
-    /*
-     * Gets the UUID (which is assigned by Vmm) for the inventory item.
-     */
-    private String uuid;
-
-    /*
-     * Gets the Managed Object name in Vmm for the inventory item.
-     */
-    private String inventoryItemName;
-
-    /*
-     * Provisioning state of the resource.
-     */
-    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of VirtualMachineTemplateInventoryItem class.
@@ -113,46 +105,6 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     }
 
     /**
-     * Get the managedResourceId property: Gets the tracked resource id corresponding to the inventory resource.
-     * 
-     * @return the managedResourceId value.
-     */
-    @Override
-    public String managedResourceId() {
-        return this.managedResourceId;
-    }
-
-    /**
-     * Get the uuid property: Gets the UUID (which is assigned by Vmm) for the inventory item.
-     * 
-     * @return the uuid value.
-     */
-    @Override
-    public String uuid() {
-        return this.uuid;
-    }
-
-    /**
-     * Get the inventoryItemName property: Gets the Managed Object name in Vmm for the inventory item.
-     * 
-     * @return the inventoryItemName value.
-     */
-    @Override
-    public String inventoryItemName() {
-        return this.inventoryItemName;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state of the resource.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -160,60 +112,5 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     @Override
     public void validate() {
         super.validate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryType", this.inventoryType == null ? null : this.inventoryType.toString());
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineTemplateInventoryItem from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineTemplateInventoryItem if the JsonReader was pointing to an instance of it,
-     * or null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualMachineTemplateInventoryItem.
-     */
-    public static VirtualMachineTemplateInventoryItem fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineTemplateInventoryItem deserializedVirtualMachineTemplateInventoryItem
-                = new VirtualMachineTemplateInventoryItem();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("managedResourceId".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.managedResourceId = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.uuid = reader.getString();
-                } else if ("inventoryItemName".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.inventoryItemName = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else if ("inventoryType".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.inventoryType
-                        = InventoryType.fromString(reader.getString());
-                } else if ("cpuCount".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.cpuCount = reader.getNullable(JsonReader::getInt);
-                } else if ("memoryMB".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.memoryMB = reader.getNullable(JsonReader::getInt);
-                } else if ("osType".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.osType = OsType.fromString(reader.getString());
-                } else if ("osName".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateInventoryItem.osName = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineTemplateInventoryItem;
-        });
     }
 }

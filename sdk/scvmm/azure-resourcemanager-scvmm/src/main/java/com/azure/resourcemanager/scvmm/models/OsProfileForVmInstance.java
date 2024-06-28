@@ -5,40 +5,41 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class OsProfileForVmInstance implements JsonSerializable<OsProfileForVmInstance> {
+public final class OsProfileForVmInstance {
     /*
      * Admin password of the virtual machine.
      */
+    @JsonProperty(value = "adminPassword")
     private String adminPassword;
 
     /*
      * Gets or sets computer name.
      */
+    @JsonProperty(value = "computerName")
     private String computerName;
 
     /*
      * Gets the type of the os.
      */
+    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
      * Gets os sku.
      */
+    @JsonProperty(value = "osSku", access = JsonProperty.Access.WRITE_ONLY)
     private String osSku;
 
     /*
      * Gets os version.
      */
+    @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String osVersion;
 
     /**
@@ -120,50 +121,5 @@ public final class OsProfileForVmInstance implements JsonSerializable<OsProfileF
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("adminPassword", this.adminPassword);
-        jsonWriter.writeStringField("computerName", this.computerName);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of OsProfileForVmInstance from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of OsProfileForVmInstance if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the OsProfileForVmInstance.
-     */
-    public static OsProfileForVmInstance fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            OsProfileForVmInstance deserializedOsProfileForVmInstance = new OsProfileForVmInstance();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("adminPassword".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.adminPassword = reader.getString();
-                } else if ("computerName".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.computerName = reader.getString();
-                } else if ("osType".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osType = OsType.fromString(reader.getString());
-                } else if ("osSku".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osSku = reader.getString();
-                } else if ("osVersion".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osVersion = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedOsProfileForVmInstance;
-        });
     }
 }
