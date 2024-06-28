@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devopsinfrastructure.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner;
 
 /**
@@ -12,39 +11,25 @@ import com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner;
  */
 public interface Quota {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the unit property: The unit of usage measurement.
      * 
-     * @return the id value.
+     * @return the unit value.
      */
-    String id();
+    String unit();
 
     /**
-     * Gets the name property: The name of the resource.
+     * Gets the currentValue property: The current usage of the resource.
      * 
-     * @return the name value.
+     * @return the currentValue value.
      */
-    String name();
+    long currentValue();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the limit property: The maximum permitted usage of the resource.
      * 
-     * @return the type value.
+     * @return the limit value.
      */
-    String type();
-
-    /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    QuotaProperties properties();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
+    long limit();
 
     /**
      * Gets the inner com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner object.

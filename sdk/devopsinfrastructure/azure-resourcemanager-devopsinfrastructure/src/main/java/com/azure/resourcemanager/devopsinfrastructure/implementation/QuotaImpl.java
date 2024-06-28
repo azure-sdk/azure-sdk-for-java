@@ -4,10 +4,8 @@
 
 package com.azure.resourcemanager.devopsinfrastructure.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.QuotaInner;
 import com.azure.resourcemanager.devopsinfrastructure.models.Quota;
-import com.azure.resourcemanager.devopsinfrastructure.models.QuotaProperties;
 
 public final class QuotaImpl implements Quota {
     private QuotaInner innerObject;
@@ -20,24 +18,16 @@ public final class QuotaImpl implements Quota {
         this.serviceManager = serviceManager;
     }
 
-    public String id() {
-        return this.innerModel().id();
+    public String unit() {
+        return this.innerModel().unit();
     }
 
-    public String name() {
-        return this.innerModel().name();
+    public long currentValue() {
+        return this.innerModel().currentValue();
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
-    public QuotaProperties properties() {
-        return this.innerModel().properties();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
+    public long limit() {
+        return this.innerModel().limit();
     }
 
     public QuotaInner innerModel() {
