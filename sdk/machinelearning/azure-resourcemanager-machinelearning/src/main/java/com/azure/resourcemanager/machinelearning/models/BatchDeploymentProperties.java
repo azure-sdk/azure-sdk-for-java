@@ -5,17 +5,26 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** Batch inference settings per deployment. */
+/**
+ * Batch inference settings per deployment.
+ */
 @Fluent
 public final class BatchDeploymentProperties extends EndpointDeploymentPropertiesBase {
     /*
      * Compute target for batch inference operation.
      */
-    @JsonProperty(value = "compute")
     private String compute;
+
+    /*
+     * Properties relevant to different deployment types.
+     */
+    private BatchDeploymentConfiguration deploymentConfiguration;
 
     /*
      * Error threshold, if the error count for the entire input goes above this value,
@@ -24,19 +33,16 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
      * For TabularDataset, this value is the count of record failures.
      * If set to -1 (the lower bound), all failures during batch inference will be ignored.
      */
-    @JsonProperty(value = "errorThreshold")
     private Integer errorThreshold;
 
     /*
      * Logging level for batch inference operation.
      */
-    @JsonProperty(value = "loggingLevel")
     private BatchLoggingLevel loggingLevel;
 
     /*
      * Indicates maximum number of parallelism per instance.
      */
-    @JsonProperty(value = "maxConcurrencyPerInstance")
     private Integer maxConcurrencyPerInstance;
 
     /*
@@ -44,54 +50,49 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
      * For FileDataset, this is the number of files per mini-batch.
      * For TabularDataset, this is the size of the records in bytes, per mini-batch.
      */
-    @JsonProperty(value = "miniBatchSize")
     private Long miniBatchSize;
 
     /*
      * Reference to the model asset for the endpoint deployment.
      */
-    @JsonProperty(value = "model")
     private AssetReferenceBase model;
 
     /*
      * Indicates how the output will be organized.
      */
-    @JsonProperty(value = "outputAction")
     private BatchOutputAction outputAction;
 
     /*
      * Customized output file name for append_row output action.
      */
-    @JsonProperty(value = "outputFileName")
     private String outputFileName;
 
     /*
      * Provisioning state for the endpoint deployment.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private DeploymentProvisioningState provisioningState;
 
     /*
      * Indicates compute configuration for the job.
      * If not provided, will default to the defaults defined in ResourceConfiguration.
      */
-    @JsonProperty(value = "resources")
     private DeploymentResourceConfiguration resources;
 
     /*
      * Retry Settings for the batch inference operation.
      * If not provided, will default to the defaults defined in BatchRetrySettings.
      */
-    @JsonProperty(value = "retrySettings")
     private BatchRetrySettings retrySettings;
 
-    /** Creates an instance of BatchDeploymentProperties class. */
+    /**
+     * Creates an instance of BatchDeploymentProperties class.
+     */
     public BatchDeploymentProperties() {
     }
 
     /**
      * Get the compute property: Compute target for batch inference operation.
-     *
+     * 
      * @return the compute value.
      */
     public String compute() {
@@ -100,7 +101,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the compute property: Compute target for batch inference operation.
-     *
+     * 
      * @param compute the compute value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -110,11 +111,32 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
+     * Get the deploymentConfiguration property: Properties relevant to different deployment types.
+     * 
+     * @return the deploymentConfiguration value.
+     */
+    public BatchDeploymentConfiguration deploymentConfiguration() {
+        return this.deploymentConfiguration;
+    }
+
+    /**
+     * Set the deploymentConfiguration property: Properties relevant to different deployment types.
+     * 
+     * @param deploymentConfiguration the deploymentConfiguration value to set.
+     * @return the BatchDeploymentProperties object itself.
+     */
+    public BatchDeploymentProperties withDeploymentConfiguration(BatchDeploymentConfiguration deploymentConfiguration) {
+        this.deploymentConfiguration = deploymentConfiguration;
+        return this;
+    }
+
+    /**
      * Get the errorThreshold property: Error threshold, if the error count for the entire input goes above this value,
-     * the batch inference will be aborted. Range is [-1, int.MaxValue]. For FileDataset, this value is the count of
-     * file failures. For TabularDataset, this value is the count of record failures. If set to -1 (the lower bound),
-     * all failures during batch inference will be ignored.
-     *
+     * the batch inference will be aborted. Range is [-1, int.MaxValue].
+     * For FileDataset, this value is the count of file failures.
+     * For TabularDataset, this value is the count of record failures.
+     * If set to -1 (the lower bound), all failures during batch inference will be ignored.
+     * 
      * @return the errorThreshold value.
      */
     public Integer errorThreshold() {
@@ -123,10 +145,11 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the errorThreshold property: Error threshold, if the error count for the entire input goes above this value,
-     * the batch inference will be aborted. Range is [-1, int.MaxValue]. For FileDataset, this value is the count of
-     * file failures. For TabularDataset, this value is the count of record failures. If set to -1 (the lower bound),
-     * all failures during batch inference will be ignored.
-     *
+     * the batch inference will be aborted. Range is [-1, int.MaxValue].
+     * For FileDataset, this value is the count of file failures.
+     * For TabularDataset, this value is the count of record failures.
+     * If set to -1 (the lower bound), all failures during batch inference will be ignored.
+     * 
      * @param errorThreshold the errorThreshold value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -137,7 +160,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the loggingLevel property: Logging level for batch inference operation.
-     *
+     * 
      * @return the loggingLevel value.
      */
     public BatchLoggingLevel loggingLevel() {
@@ -146,7 +169,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the loggingLevel property: Logging level for batch inference operation.
-     *
+     * 
      * @param loggingLevel the loggingLevel value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -157,7 +180,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
-     *
+     * 
      * @return the maxConcurrencyPerInstance value.
      */
     public Integer maxConcurrencyPerInstance() {
@@ -166,7 +189,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
-     *
+     * 
      * @param maxConcurrencyPerInstance the maxConcurrencyPerInstance value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -176,9 +199,10 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the miniBatchSize property: Size of the mini-batch passed to each batch invocation. For FileDataset, this is
-     * the number of files per mini-batch. For TabularDataset, this is the size of the records in bytes, per mini-batch.
-     *
+     * Get the miniBatchSize property: Size of the mini-batch passed to each batch invocation.
+     * For FileDataset, this is the number of files per mini-batch.
+     * For TabularDataset, this is the size of the records in bytes, per mini-batch.
+     * 
      * @return the miniBatchSize value.
      */
     public Long miniBatchSize() {
@@ -186,9 +210,10 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Set the miniBatchSize property: Size of the mini-batch passed to each batch invocation. For FileDataset, this is
-     * the number of files per mini-batch. For TabularDataset, this is the size of the records in bytes, per mini-batch.
-     *
+     * Set the miniBatchSize property: Size of the mini-batch passed to each batch invocation.
+     * For FileDataset, this is the number of files per mini-batch.
+     * For TabularDataset, this is the size of the records in bytes, per mini-batch.
+     * 
      * @param miniBatchSize the miniBatchSize value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -199,7 +224,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the model property: Reference to the model asset for the endpoint deployment.
-     *
+     * 
      * @return the model value.
      */
     public AssetReferenceBase model() {
@@ -208,7 +233,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the model property: Reference to the model asset for the endpoint deployment.
-     *
+     * 
      * @param model the model value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -219,7 +244,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the outputAction property: Indicates how the output will be organized.
-     *
+     * 
      * @return the outputAction value.
      */
     public BatchOutputAction outputAction() {
@@ -228,7 +253,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the outputAction property: Indicates how the output will be organized.
-     *
+     * 
      * @param outputAction the outputAction value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -239,7 +264,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the outputFileName property: Customized output file name for append_row output action.
-     *
+     * 
      * @return the outputFileName value.
      */
     public String outputFileName() {
@@ -248,7 +273,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Set the outputFileName property: Customized output file name for append_row output action.
-     *
+     * 
      * @param outputFileName the outputFileName value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -259,7 +284,7 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Get the provisioningState property: Provisioning state for the endpoint deployment.
-     *
+     * 
      * @return the provisioningState value.
      */
     public DeploymentProvisioningState provisioningState() {
@@ -267,9 +292,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the resources property: Indicates compute configuration for the job. If not provided, will default to the
-     * defaults defined in ResourceConfiguration.
-     *
+     * Get the resources property: Indicates compute configuration for the job.
+     * If not provided, will default to the defaults defined in ResourceConfiguration.
+     * 
      * @return the resources value.
      */
     public DeploymentResourceConfiguration resources() {
@@ -277,9 +302,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Set the resources property: Indicates compute configuration for the job. If not provided, will default to the
-     * defaults defined in ResourceConfiguration.
-     *
+     * Set the resources property: Indicates compute configuration for the job.
+     * If not provided, will default to the defaults defined in ResourceConfiguration.
+     * 
      * @param resources the resources value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -289,9 +314,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the retrySettings property: Retry Settings for the batch inference operation. If not provided, will default
-     * to the defaults defined in BatchRetrySettings.
-     *
+     * Get the retrySettings property: Retry Settings for the batch inference operation.
+     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * 
      * @return the retrySettings value.
      */
     public BatchRetrySettings retrySettings() {
@@ -299,9 +324,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Set the retrySettings property: Retry Settings for the batch inference operation. If not provided, will default
-     * to the defaults defined in BatchRetrySettings.
-     *
+     * Set the retrySettings property: Retry Settings for the batch inference operation.
+     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * 
      * @param retrySettings the retrySettings value to set.
      * @return the BatchDeploymentProperties object itself.
      */
@@ -310,35 +335,45 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BatchDeploymentProperties withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BatchDeploymentProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BatchDeploymentProperties withEnvironmentId(String environmentId) {
         super.withEnvironmentId(environmentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BatchDeploymentProperties withEnvironmentVariables(Map<String, String> environmentVariables) {
         super.withEnvironmentVariables(environmentVariables);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BatchDeploymentProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -347,12 +382,15 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+        if (deploymentConfiguration() != null) {
+            deploymentConfiguration().validate();
+        }
         if (model() != null) {
             model().validate();
         }
@@ -362,5 +400,96 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
         if (retrySettings() != null) {
             retrySettings().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("codeConfiguration", codeConfiguration());
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeStringField("environmentId", environmentId());
+        jsonWriter.writeMapField("environmentVariables", environmentVariables(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("compute", this.compute);
+        jsonWriter.writeJsonField("deploymentConfiguration", this.deploymentConfiguration);
+        jsonWriter.writeNumberField("errorThreshold", this.errorThreshold);
+        jsonWriter.writeStringField("loggingLevel", this.loggingLevel == null ? null : this.loggingLevel.toString());
+        jsonWriter.writeNumberField("maxConcurrencyPerInstance", this.maxConcurrencyPerInstance);
+        jsonWriter.writeNumberField("miniBatchSize", this.miniBatchSize);
+        jsonWriter.writeJsonField("model", this.model);
+        jsonWriter.writeStringField("outputAction", this.outputAction == null ? null : this.outputAction.toString());
+        jsonWriter.writeStringField("outputFileName", this.outputFileName);
+        jsonWriter.writeJsonField("resources", this.resources);
+        jsonWriter.writeJsonField("retrySettings", this.retrySettings);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of BatchDeploymentProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of BatchDeploymentProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the BatchDeploymentProperties.
+     */
+    public static BatchDeploymentProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            BatchDeploymentProperties deserializedBatchDeploymentProperties = new BatchDeploymentProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("codeConfiguration".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.withCodeConfiguration(CodeConfiguration.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.withDescription(reader.getString());
+                } else if ("environmentId".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.withEnvironmentId(reader.getString());
+                } else if ("environmentVariables".equals(fieldName)) {
+                    Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
+                    deserializedBatchDeploymentProperties.withEnvironmentVariables(environmentVariables);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedBatchDeploymentProperties.withProperties(properties);
+                } else if ("compute".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.compute = reader.getString();
+                } else if ("deploymentConfiguration".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.deploymentConfiguration
+                        = BatchDeploymentConfiguration.fromJson(reader);
+                } else if ("errorThreshold".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.errorThreshold = reader.getNullable(JsonReader::getInt);
+                } else if ("loggingLevel".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.loggingLevel
+                        = BatchLoggingLevel.fromString(reader.getString());
+                } else if ("maxConcurrencyPerInstance".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.maxConcurrencyPerInstance
+                        = reader.getNullable(JsonReader::getInt);
+                } else if ("miniBatchSize".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.miniBatchSize = reader.getNullable(JsonReader::getLong);
+                } else if ("model".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.model = AssetReferenceBase.fromJson(reader);
+                } else if ("outputAction".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.outputAction
+                        = BatchOutputAction.fromString(reader.getString());
+                } else if ("outputFileName".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.outputFileName = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.provisioningState
+                        = DeploymentProvisioningState.fromString(reader.getString());
+                } else if ("resources".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.resources = DeploymentResourceConfiguration.fromJson(reader);
+                } else if ("retrySettings".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.retrySettings = BatchRetrySettings.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedBatchDeploymentProperties;
+        });
     }
 }
