@@ -5,63 +5,65 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.Duration;
 
-/** Training related configuration. */
+/**
+ * Training related configuration.
+ */
 @Fluent
-public class TrainingSettings {
+public class TrainingSettings implements JsonSerializable<TrainingSettings> {
     /*
      * Enable recommendation of DNN models.
      */
-    @JsonProperty(value = "enableDnnTraining")
     private Boolean enableDnnTraining;
 
     /*
      * Flag to turn on explainability on best model.
      */
-    @JsonProperty(value = "enableModelExplainability")
     private Boolean enableModelExplainability;
 
     /*
      * Flag for enabling onnx compatible models.
      */
-    @JsonProperty(value = "enableOnnxCompatibleModels")
     private Boolean enableOnnxCompatibleModels;
 
     /*
      * Enable stack ensemble run.
      */
-    @JsonProperty(value = "enableStackEnsemble")
     private Boolean enableStackEnsemble;
 
     /*
      * Enable voting ensemble run.
      */
-    @JsonProperty(value = "enableVoteEnsemble")
     private Boolean enableVoteEnsemble;
 
     /*
-     * During VotingEnsemble and StackEnsemble model generation, multiple fitted models from the previous child runs
-     * are downloaded.
+     * During VotingEnsemble and StackEnsemble model generation, multiple fitted models from the previous child runs are
+     * downloaded.
      * Configure this parameter with a higher value than 300 secs, if more time is needed.
      */
-    @JsonProperty(value = "ensembleModelDownloadTimeout")
     private Duration ensembleModelDownloadTimeout;
 
     /*
      * Stack ensemble settings for stack ensemble run.
      */
-    @JsonProperty(value = "stackEnsembleSettings")
     private StackEnsembleSettings stackEnsembleSettings;
 
-    /** Creates an instance of TrainingSettings class. */
+    /**
+     * Creates an instance of TrainingSettings class.
+     */
     public TrainingSettings() {
     }
 
     /**
      * Get the enableDnnTraining property: Enable recommendation of DNN models.
-     *
+     * 
      * @return the enableDnnTraining value.
      */
     public Boolean enableDnnTraining() {
@@ -70,7 +72,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableDnnTraining property: Enable recommendation of DNN models.
-     *
+     * 
      * @param enableDnnTraining the enableDnnTraining value to set.
      * @return the TrainingSettings object itself.
      */
@@ -81,7 +83,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableModelExplainability property: Flag to turn on explainability on best model.
-     *
+     * 
      * @return the enableModelExplainability value.
      */
     public Boolean enableModelExplainability() {
@@ -90,7 +92,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableModelExplainability property: Flag to turn on explainability on best model.
-     *
+     * 
      * @param enableModelExplainability the enableModelExplainability value to set.
      * @return the TrainingSettings object itself.
      */
@@ -101,7 +103,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableOnnxCompatibleModels property: Flag for enabling onnx compatible models.
-     *
+     * 
      * @return the enableOnnxCompatibleModels value.
      */
     public Boolean enableOnnxCompatibleModels() {
@@ -110,7 +112,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableOnnxCompatibleModels property: Flag for enabling onnx compatible models.
-     *
+     * 
      * @param enableOnnxCompatibleModels the enableOnnxCompatibleModels value to set.
      * @return the TrainingSettings object itself.
      */
@@ -121,7 +123,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableStackEnsemble property: Enable stack ensemble run.
-     *
+     * 
      * @return the enableStackEnsemble value.
      */
     public Boolean enableStackEnsemble() {
@@ -130,7 +132,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableStackEnsemble property: Enable stack ensemble run.
-     *
+     * 
      * @param enableStackEnsemble the enableStackEnsemble value to set.
      * @return the TrainingSettings object itself.
      */
@@ -141,7 +143,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableVoteEnsemble property: Enable voting ensemble run.
-     *
+     * 
      * @return the enableVoteEnsemble value.
      */
     public Boolean enableVoteEnsemble() {
@@ -150,7 +152,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableVoteEnsemble property: Enable voting ensemble run.
-     *
+     * 
      * @param enableVoteEnsemble the enableVoteEnsemble value to set.
      * @return the TrainingSettings object itself.
      */
@@ -161,9 +163,9 @@ public class TrainingSettings {
 
     /**
      * Get the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation, multiple
-     * fitted models from the previous child runs are downloaded. Configure this parameter with a higher value than 300
-     * secs, if more time is needed.
-     *
+     * fitted models from the previous child runs are downloaded.
+     * Configure this parameter with a higher value than 300 secs, if more time is needed.
+     * 
      * @return the ensembleModelDownloadTimeout value.
      */
     public Duration ensembleModelDownloadTimeout() {
@@ -172,9 +174,9 @@ public class TrainingSettings {
 
     /**
      * Set the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation, multiple
-     * fitted models from the previous child runs are downloaded. Configure this parameter with a higher value than 300
-     * secs, if more time is needed.
-     *
+     * fitted models from the previous child runs are downloaded.
+     * Configure this parameter with a higher value than 300 secs, if more time is needed.
+     * 
      * @param ensembleModelDownloadTimeout the ensembleModelDownloadTimeout value to set.
      * @return the TrainingSettings object itself.
      */
@@ -185,7 +187,7 @@ public class TrainingSettings {
 
     /**
      * Get the stackEnsembleSettings property: Stack ensemble settings for stack ensemble run.
-     *
+     * 
      * @return the stackEnsembleSettings value.
      */
     public StackEnsembleSettings stackEnsembleSettings() {
@@ -194,7 +196,7 @@ public class TrainingSettings {
 
     /**
      * Set the stackEnsembleSettings property: Stack ensemble settings for stack ensemble run.
-     *
+     * 
      * @param stackEnsembleSettings the stackEnsembleSettings value to set.
      * @return the TrainingSettings object itself.
      */
@@ -205,12 +207,69 @@ public class TrainingSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (stackEnsembleSettings() != null) {
             stackEnsembleSettings().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("enableDnnTraining", this.enableDnnTraining);
+        jsonWriter.writeBooleanField("enableModelExplainability", this.enableModelExplainability);
+        jsonWriter.writeBooleanField("enableOnnxCompatibleModels", this.enableOnnxCompatibleModels);
+        jsonWriter.writeBooleanField("enableStackEnsemble", this.enableStackEnsemble);
+        jsonWriter.writeBooleanField("enableVoteEnsemble", this.enableVoteEnsemble);
+        jsonWriter.writeStringField("ensembleModelDownloadTimeout",
+            CoreUtils.durationToStringWithDays(this.ensembleModelDownloadTimeout));
+        jsonWriter.writeJsonField("stackEnsembleSettings", this.stackEnsembleSettings);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of TrainingSettings from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of TrainingSettings if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the TrainingSettings.
+     */
+    public static TrainingSettings fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            TrainingSettings deserializedTrainingSettings = new TrainingSettings();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("enableDnnTraining".equals(fieldName)) {
+                    deserializedTrainingSettings.enableDnnTraining = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableModelExplainability".equals(fieldName)) {
+                    deserializedTrainingSettings.enableModelExplainability = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableOnnxCompatibleModels".equals(fieldName)) {
+                    deserializedTrainingSettings.enableOnnxCompatibleModels
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableStackEnsemble".equals(fieldName)) {
+                    deserializedTrainingSettings.enableStackEnsemble = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableVoteEnsemble".equals(fieldName)) {
+                    deserializedTrainingSettings.enableVoteEnsemble = reader.getNullable(JsonReader::getBoolean);
+                } else if ("ensembleModelDownloadTimeout".equals(fieldName)) {
+                    deserializedTrainingSettings.ensembleModelDownloadTimeout
+                        = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));
+                } else if ("stackEnsembleSettings".equals(fieldName)) {
+                    deserializedTrainingSettings.stackEnsembleSettings = StackEnsembleSettings.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedTrainingSettings;
+        });
     }
 }
