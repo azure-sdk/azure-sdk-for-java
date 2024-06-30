@@ -202,7 +202,7 @@ public final class ContentSafetyClientImpl {
      * 
      * <pre>{@code
      * {
-     *     text: String (Required)
+     *     text2: String (Required)
      *     categories (Optional): [
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
@@ -258,7 +258,7 @@ public final class ContentSafetyClientImpl {
      * 
      * <pre>{@code
      * {
-     *     text: String (Required)
+     *     text2: String (Required)
      *     categories (Optional): [
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
