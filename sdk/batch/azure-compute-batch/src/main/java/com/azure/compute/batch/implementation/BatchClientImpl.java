@@ -1169,7 +1169,7 @@ public final class BatchClientImpl {
             Context context);
 
         @Post("/jobs/{jobId}/tasks/{taskId}/terminate")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
@@ -1180,7 +1180,7 @@ public final class BatchClientImpl {
             Context context);
 
         @Post("/jobs/{jobId}/tasks/{taskId}/terminate")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
@@ -1191,7 +1191,7 @@ public final class BatchClientImpl {
             Context context);
 
         @Post("/jobs/{jobId}/tasks/{taskId}/reactivate")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
@@ -1202,7 +1202,7 @@ public final class BatchClientImpl {
             Context context);
 
         @Post("/jobs/{jobId}/tasks/{taskId}/reactivate")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
@@ -24705,7 +24705,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -24763,7 +24763,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -24840,7 +24840,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -24897,7 +24897,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -27541,7 +27541,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -27597,7 +27597,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -27672,7 +27672,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -27727,7 +27727,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -32071,7 +32071,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -32111,7 +32111,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -32614,7 +32614,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -32654,7 +32654,7 @@ public final class BatchClientImpl {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
