@@ -158,6 +158,7 @@
     <module>sdk/personalizer</module>
     <module>sdk/playwrighttesting</module>
     <module>sdk/policyinsights</module>
+    <module>sdk/portal</module>
     <module>sdk/postgresql</module>
     <module>sdk/postgresqlflexibleserver</module>
     <module>sdk/powerbidedicated</module>
