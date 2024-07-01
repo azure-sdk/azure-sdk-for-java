@@ -10,6 +10,7 @@
   <version>1.0.0</version><!-- Need not change for every release-->
 
   <modules>
+    <module>azure-developer-microsoftplaywrighttesting</module>
     <module>azure-resourcemanager-playwrighttesting</module>
   </modules>
 </project>
