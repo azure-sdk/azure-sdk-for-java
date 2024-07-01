@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.reservations {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.reservations;
     exports com.azure.resourcemanager.reservations.fluent;
     exports com.azure.resourcemanager.reservations.fluent.models;
     exports com.azure.resourcemanager.reservations.models;
-
-    opens com.azure.resourcemanager.reservations.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.reservations.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.reservations.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.reservations.models to com.azure.core, com.fasterxml.jackson.databind;
 }
