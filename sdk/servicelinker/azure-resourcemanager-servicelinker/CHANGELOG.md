@@ -1,14 +1,333 @@
 # Release History
 
-## 1.0.0-beta.3 (Unreleased)
+## 1.0.0-beta.1 (2024-07-02)
 
-### Features Added
+- Azure Resource Manager ServiceLinker client library for Java. This package contains Microsoft Azure SDK for ServiceLinker Management SDK. Microsoft.ServiceLinker provider testing. Package tag package-2023-04-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.LinkerList` was removed
 
-### Other Changes
+* `models.SourceConfigurationResult` was removed
+
+#### `models.LinkerResource$DefinitionStages` was modified
+
+* `withExistingResourceUri(java.lang.String)` was removed in stage 1
+
+#### `models.LinkerResource$Definition` was modified
+
+* `withExistingResourceUri(java.lang.String)` was removed
+
+#### `models.LinkerResource` was modified
+
+* `listConfigurations()` was removed
+* `listConfigurationsWithResponse(com.azure.core.util.Context)` was removed
+
+#### `models.Linkers` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `models.SourceConfigurationResult listConfigurations(java.lang.String,java.lang.String)` -> `models.ConfigurationResult listConfigurations(java.lang.String,java.lang.String)`
+* `define(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.AccessKeyInfoBase` was added
+
+* `models.ConfigurationNameItem` was added
+
+* `models.ConfigurationNamesOperations` was added
+
+* `models.CreateOrUpdateDryrunParameters` was added
+
+* `models.DryrunPrerequisiteResultType` was added
+
+* `models.ConfigurationName` was added
+
+* `models.DryrunResource$Update` was added
+
+* `models.SelfHostedServer` was added
+
+* `models.FirewallRules` was added
+
+* `models.ConfigurationInfo` was added
+
+* `models.DatabaseAadAuthInfo` was added
+
+* `models.DryrunParameters` was added
+
+* `models.DryrunList` was added
+
+* `models.UserAccountAuthInfo` was added
+
+* `models.DeleteOrUpdateBehavior` was added
+
+* `models.DryrunPatch` was added
+
+* `models.AllowType` was added
+
+* `models.DryrunPrerequisiteResult` was added
+
+* `models.PermissionsMissingDryrunPrerequisiteResult` was added
+
+* `models.DaprMetadataRequired` was added
+
+* `models.ConfigurationStore` was added
+
+* `models.EasyAuthMicrosoftEntraIdAuthInfo` was added
+
+* `models.Connectors` was added
+
+* `models.DaprMetadata` was added
+
+* `models.DryrunResource$DefinitionStages` was added
+
+* `models.SecretSourceType` was added
+
+* `models.DryrunOperationPreview` was added
+
+* `models.ConfigurationResult` was added
+
+* `models.DryrunResource` was added
+
+* `models.LinkerConfigurationType` was added
+
+* `models.ResourceList` was added
+
+* `models.LinkersOperations` was added
+
+* `models.PublicNetworkSolution` was added
+
+* `models.AuthMode` was added
+
+* `models.DaprConfigurationResource` was added
+
+* `models.DaprBindingComponentDirection` was added
+
+* `models.ConfigurationNameResult` was added
+
+* `models.DryrunActionName` was added
+
+* `models.DryrunResource$Definition` was added
+
+* `models.DaprConfigurationList` was added
+
+* `models.AccessKeyPermissions` was added
+
+* `models.BasicErrorDryrunPrerequisiteResult` was added
+
+* `models.DryrunResource$UpdateStages` was added
+
+* `models.DaprProperties` was added
+
+* `models.DryrunPreviewOperationType` was added
+
+#### `ServiceLinkerManager` was modified
+
+* `configurationNamesOperations()` was added
+* `connectors()` was added
+* `linkersOperations()` was added
+
+#### `models.LinkerResource$Definition` was modified
+
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+* `withExistingLocation(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.AzureResourcePropertiesBase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.KeyVaultSecretReferenceSecretInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `secretType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LinkerResource` was modified
+
+* `generateConfigurationsWithResponse(models.ConfigurationInfo,com.azure.core.util.Context)` was added
+* `generateConfigurations()` was added
+* `configurationInfo()` was added
+* `resourceGroupName()` was added
+* `publicNetworkSolution()` was added
+
+#### `models.ValueSecretInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `secretType()` was added
+
+#### `models.ConfluentSchemaRegistry` was modified
+
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureKeyVaultProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SecretInfoBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `secretType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LinkerResource$Update` was modified
+
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+
+#### `models.VNetSolution` was modified
+
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+* `deleteOrUpdateBehavior()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ValidationResultItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.KeyVaultSecretUriSecretInfo` was modified
+
+* `secretType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LinkerPatch` was modified
+
+* `publicNetworkSolution()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+* `configurationInfo()` was added
+
+#### `models.ServicePrincipalCertificateAuthInfo` was modified
+
+* `deleteOrUpdateBehavior()` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+* `authType()` was added
+* `withRoles(java.util.List)` was added
+* `withAuthMode(models.AuthMode)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `roles()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Linkers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.LinkerResourceInner)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.LinkerResourceInner,com.azure.core.util.Context)` was added
+* `update(java.lang.String,java.lang.String,models.LinkerPatch,com.azure.core.util.Context)` was added
+* `update(java.lang.String,java.lang.String,models.LinkerPatch)` was added
+
+#### `models.SourceConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withKeyVaultReferenceIdentity(java.lang.String)` was added
+* `description()` was added
+* `withDescription(java.lang.String)` was added
+* `configType()` was added
+* `keyVaultReferenceIdentity()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServicePrincipalSecretAuthInfo` was modified
+
+* `username()` was added
+* `withRoles(java.util.List)` was added
+* `deleteOrUpdateBehavior()` was added
+* `withAuthMode(models.AuthMode)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `roles()` was added
+* `authType()` was added
+* `withUsername(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+
+#### `models.UserAssignedIdentityAuthInfo` was modified
+
+* `roles()` was added
+* `withAuthMode(models.AuthMode)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withRoles(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withUsername(java.lang.String)` was added
+* `authType()` was added
+* `username()` was added
+* `deleteOrUpdateBehavior()` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+
+#### `models.ConfluentBootstrapServer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.SecretStore` was modified
+
+* `keyVaultSecretName()` was added
+* `withKeyVaultSecretName(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SystemAssignedIdentityAuthInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `authType()` was added
+* `withRoles(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withAuthMode(models.AuthMode)` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+* `deleteOrUpdateBehavior()` was added
+* `roles()` was added
+* `username()` was added
+* `withUsername(java.lang.String)` was added
+
+#### `models.SecretAuthInfo` was modified
+
+* `authType()` was added
+* `withAuthMode(models.AuthMode)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TargetServiceBase` was modified
+
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AuthInfoBase` was modified
+
+* `authType()` was added
+* `authMode()` was added
+* `withAuthMode(models.AuthMode)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.0.0-beta.2 (2022-05-19)
 
