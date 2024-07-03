@@ -16,12 +16,12 @@
       "path": "./eng/mgmt/automation/generate.py",
       "logPrefix": "Java-Sdk-Automation",
       "stderr": {
-        "showInComment": "^\\[GENERATE\\]\\[Error\\]",
-        "scriptError": "^(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*"
+        "showInComment": "ExternalError",
+        "scriptError": "ExternalError"
       },
       "stdout": {
-        "showInComment": "^(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*",
-        "scriptError": "^(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*"
+        "showInComment": "Using project name",
+        "scriptError": "Using project name"
       }
     }
   },
