@@ -18,6 +18,10 @@
       "stderr": {
         "showInComment": "(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*",
         "scriptError": "(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*"
+      },
+      "stdout": {
+        "showInComment": "(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*",
+        "scriptError": "(\\[GENERATE\\]\\[Error\\]|\\[COMPILE\\] Maven build fail).*"
       }
     }
   },
