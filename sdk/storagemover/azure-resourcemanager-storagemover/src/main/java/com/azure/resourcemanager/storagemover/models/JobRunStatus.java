@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The current status of the Job Run in a non-terminal state, if exists.
+ * The state of the Job Run execution.
  */
 public final class JobRunStatus extends ExpandableStringEnum<JobRunStatus> {
     /**
