@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface GlobalReachConnections {
     /**
-     * List GlobalReachConnection resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -25,7 +25,7 @@ public interface GlobalReachConnections {
     PagedIterable<GlobalReachConnection> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List GlobalReachConnection resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

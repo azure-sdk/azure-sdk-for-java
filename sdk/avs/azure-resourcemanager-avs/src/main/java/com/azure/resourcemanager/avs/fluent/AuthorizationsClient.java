@@ -18,7 +18,7 @@ import com.azure.resourcemanager.avs.fluent.models.ExpressRouteAuthorizationInne
  */
 public interface AuthorizationsClient {
     /**
-     * List ExpressRouteAuthorization resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -32,7 +32,7 @@ public interface AuthorizationsClient {
     PagedIterable<ExpressRouteAuthorizationInner> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List ExpressRouteAuthorization resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

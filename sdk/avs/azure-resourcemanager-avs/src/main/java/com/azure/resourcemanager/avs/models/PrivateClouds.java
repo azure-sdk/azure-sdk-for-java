@@ -33,7 +33,7 @@ public interface PrivateClouds {
     PagedIterable<PrivateCloud> list(Context context);
 
     /**
-     * List PrivateCloud resources by resource group.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,7 +44,7 @@ public interface PrivateClouds {
     PagedIterable<PrivateCloud> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List PrivateCloud resources by resource group.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.

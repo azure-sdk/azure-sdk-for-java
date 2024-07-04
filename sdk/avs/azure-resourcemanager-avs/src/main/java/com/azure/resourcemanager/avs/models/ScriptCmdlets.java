@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface ScriptCmdlets {
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -26,7 +26,7 @@ public interface ScriptCmdlets {
     PagedIterable<ScriptCmdlet> list(String resourceGroupName, String privateCloudName, String scriptPackageName);
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

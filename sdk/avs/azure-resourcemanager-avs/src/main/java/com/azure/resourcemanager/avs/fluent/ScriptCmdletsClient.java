@@ -16,7 +16,7 @@ import com.azure.resourcemanager.avs.fluent.models.ScriptCmdletInner;
  */
 public interface ScriptCmdletsClient {
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -30,7 +30,7 @@ public interface ScriptCmdletsClient {
     PagedIterable<ScriptCmdletInner> list(String resourceGroupName, String privateCloudName, String scriptPackageName);
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

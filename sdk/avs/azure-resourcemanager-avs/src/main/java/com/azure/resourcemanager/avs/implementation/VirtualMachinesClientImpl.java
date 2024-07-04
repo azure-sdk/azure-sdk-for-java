@@ -112,7 +112,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -155,7 +155,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -199,7 +199,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -217,7 +217,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -236,7 +236,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -253,7 +253,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * List VirtualMachine resources by Cluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

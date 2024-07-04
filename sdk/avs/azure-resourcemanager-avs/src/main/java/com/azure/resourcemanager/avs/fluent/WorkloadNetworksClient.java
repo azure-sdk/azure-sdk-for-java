@@ -27,7 +27,7 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVMGroupInner;
  */
 public interface WorkloadNetworksClient {
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -40,7 +40,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkInner> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -81,7 +81,7 @@ public interface WorkloadNetworksClient {
     WorkloadNetworkInner get(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -94,7 +94,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkDhcpInner> listDhcp(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -329,7 +329,7 @@ public interface WorkloadNetworksClient {
     void deleteDhcp(String resourceGroupName, String privateCloudName, String dhcpId, Context context);
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -343,7 +343,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -584,7 +584,7 @@ public interface WorkloadNetworksClient {
     void deleteDnsService(String resourceGroupName, String dnsServiceId, String privateCloudName, Context context);
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -597,7 +597,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -836,7 +836,7 @@ public interface WorkloadNetworksClient {
     void deleteDnsZone(String resourceGroupName, String dnsZoneId, String privateCloudName, Context context);
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -849,7 +849,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkGatewayInner> listGateways(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -894,7 +894,7 @@ public interface WorkloadNetworksClient {
     WorkloadNetworkGatewayInner getGateway(String resourceGroupName, String privateCloudName, String gatewayId);
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -909,7 +909,7 @@ public interface WorkloadNetworksClient {
         String privateCloudName);
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1151,7 +1151,7 @@ public interface WorkloadNetworksClient {
         Context context);
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1165,7 +1165,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1337,7 +1337,7 @@ public interface WorkloadNetworksClient {
     void deletePublicIp(String resourceGroupName, String publicIpId, String privateCloudName, Context context);
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1350,7 +1350,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkSegmentInner> listSegments(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1589,7 +1589,7 @@ public interface WorkloadNetworksClient {
     void deleteSegment(String resourceGroupName, String privateCloudName, String segmentId, Context context);
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1604,7 +1604,7 @@ public interface WorkloadNetworksClient {
         String privateCloudName);
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1651,7 +1651,7 @@ public interface WorkloadNetworksClient {
         String virtualMachineId);
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1664,7 +1664,7 @@ public interface WorkloadNetworksClient {
     PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(String resourceGroupName, String privateCloudName);
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

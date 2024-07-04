@@ -94,7 +94,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -137,7 +137,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -182,7 +182,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -200,7 +200,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -220,7 +220,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -237,7 +237,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
     }
 
     /**
-     * List ScriptCmdlet resources by ScriptPackage.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

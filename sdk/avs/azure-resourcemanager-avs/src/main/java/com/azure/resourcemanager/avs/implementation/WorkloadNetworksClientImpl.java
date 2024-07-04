@@ -588,7 +588,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -627,7 +627,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -667,7 +667,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -683,7 +683,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -701,7 +701,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -716,7 +716,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetwork resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -853,7 +853,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -892,7 +892,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -932,7 +932,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -948,7 +948,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -966,7 +966,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -981,7 +981,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDhcp resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1874,7 +1874,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1913,7 +1913,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1953,7 +1953,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1970,7 +1970,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -1988,7 +1988,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -2005,7 +2005,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsService resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -2920,7 +2920,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -2959,7 +2959,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -2999,7 +2999,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -3016,7 +3016,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -3034,7 +3034,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -3049,7 +3049,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkDnsZone resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -3952,7 +3952,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -3991,7 +3991,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4031,7 +4031,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4048,7 +4048,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4066,7 +4066,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4081,7 +4081,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkGateway resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4230,7 +4230,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4269,7 +4269,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4309,7 +4309,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4327,7 +4327,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4346,7 +4346,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -4363,7 +4363,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPortMirroring resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5292,7 +5292,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5331,7 +5331,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5371,7 +5371,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5388,7 +5388,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5406,7 +5406,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -5423,7 +5423,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkPublicIP resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6062,7 +6062,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6101,7 +6101,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6141,7 +6141,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6158,7 +6158,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6176,7 +6176,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -6191,7 +6191,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkSegment resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7094,7 +7094,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7133,7 +7133,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7173,7 +7173,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7191,7 +7191,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7210,7 +7210,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7227,7 +7227,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVirtualMachine resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7383,7 +7383,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7422,7 +7422,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7462,7 +7462,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7479,7 +7479,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7497,7 +7497,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -7512,7 +7512,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     }
 
     /**
-     * List WorkloadNetworkVMGroup resources by WorkloadNetwork.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

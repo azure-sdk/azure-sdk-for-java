@@ -92,7 +92,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -131,7 +131,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -171,7 +171,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -187,7 +187,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -205,7 +205,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -220,7 +220,7 @@ public final class ScriptPackagesClientImpl implements ScriptPackagesClient {
     }
 
     /**
-     * List ScriptPackage resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
