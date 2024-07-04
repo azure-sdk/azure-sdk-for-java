@@ -1,14 +1,52 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-07-04)
 
-### Features Added
+- Azure Resource Manager OracleDatabase client library for Java. This package contains Microsoft Azure SDK for OracleDatabase Management SDK.  Package tag package-2023-09-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DbNodes` was modified
 
-### Other Changes
+* `listByCloudVmCluster(java.lang.String,java.lang.String)` was removed
+* `listByCloudVmCluster(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.DbServers` was modified
+
+* `listByCloudExadataInfrastructure(java.lang.String,java.lang.String)` was removed
+* `listByCloudExadataInfrastructure(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.VirtualNetworkAddresses` was modified
+
+* `listByCloudVmCluster(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listByCloudVmCluster(java.lang.String,java.lang.String)` was removed
+
+#### `models.AutonomousDatabaseBackups` was modified
+
+* `listByAutonomousDatabase(java.lang.String,java.lang.String)` was removed
+* `listByAutonomousDatabase(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+#### `models.DbNodes` was modified
+
+* `listByParent(java.lang.String,java.lang.String)` was added
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.DbServers` was modified
+
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByParent(java.lang.String,java.lang.String)` was added
+
+#### `models.VirtualNetworkAddresses` was modified
+
+* `listByParent(java.lang.String,java.lang.String)` was added
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.AutonomousDatabaseBackups` was modified
+
+* `listByParent(java.lang.String,java.lang.String)` was added
+* `listByParent(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
 
 ## 1.0.0 (2024-07-04)
 

@@ -33,7 +33,7 @@ public interface AutonomousDatabases {
     PagedIterable<AutonomousDatabase> list(Context context);
 
     /**
-     * List AutonomousDatabase resources by resource group.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,7 +44,7 @@ public interface AutonomousDatabases {
     PagedIterable<AutonomousDatabase> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List AutonomousDatabase resources by resource group.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.

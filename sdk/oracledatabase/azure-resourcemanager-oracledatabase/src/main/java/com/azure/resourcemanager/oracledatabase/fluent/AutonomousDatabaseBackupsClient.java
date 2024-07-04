@@ -19,7 +19,7 @@ import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupU
  */
 public interface AutonomousDatabaseBackupsClient {
     /**
-     * List AutonomousDatabaseBackup resources by AutonomousDatabase.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param autonomousdatabasename The database name.
@@ -30,11 +30,10 @@ public interface AutonomousDatabaseBackupsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename);
+    PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName, String autonomousdatabasename);
 
     /**
-     * List AutonomousDatabaseBackup resources by AutonomousDatabase.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param autonomousdatabasename The database name.
@@ -46,8 +45,8 @@ public interface AutonomousDatabaseBackupsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename, Context context);
+    PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName, String autonomousdatabasename,
+        Context context);
 
     /**
      * Get a AutonomousDatabaseBackup.

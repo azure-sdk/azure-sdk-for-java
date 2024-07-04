@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.DbSystemShapeInner
  */
 public interface DbSystemShapesClient {
     /**
-     * List DbSystemShape resources by Location.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +28,7 @@ public interface DbSystemShapesClient {
     PagedIterable<DbSystemShapeInner> listByLocation(String location);
 
     /**
-     * List DbSystemShape resources by Location.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

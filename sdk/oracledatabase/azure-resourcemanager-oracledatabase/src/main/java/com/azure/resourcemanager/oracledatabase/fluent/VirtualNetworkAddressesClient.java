@@ -18,7 +18,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.VirtualNetworkAddr
  */
 public interface VirtualNetworkAddressesClient {
     /**
-     * List VirtualNetworkAddress resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -28,10 +28,10 @@ public interface VirtualNetworkAddressesClient {
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
-     * List VirtualNetworkAddress resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -42,7 +42,7 @@ public interface VirtualNetworkAddressesClient {
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
+    PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername,
         Context context);
 
     /**

@@ -19,7 +19,7 @@ import com.azure.resourcemanager.oracledatabase.models.DbNodeAction;
  */
 public interface DbNodesClient {
     /**
-     * List DbNode resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -29,10 +29,10 @@ public interface DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
-     * List DbNode resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -43,8 +43,7 @@ public interface DbNodesClient {
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbNodeInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
-        Context context);
+    PagedIterable<DbNodeInner> listByParent(String resourceGroupName, String cloudvmclustername, Context context);
 
     /**
      * Get a DbNode.

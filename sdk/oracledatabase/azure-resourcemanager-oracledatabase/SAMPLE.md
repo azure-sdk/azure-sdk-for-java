@@ -6,7 +6,7 @@
 - [CreateOrUpdate](#autonomousdatabasebackups_createorupdate)
 - [Delete](#autonomousdatabasebackups_delete)
 - [Get](#autonomousdatabasebackups_get)
-- [ListByAutonomousDatabase](#autonomousdatabasebackups_listbyautonomousdatabase)
+- [ListByParent](#autonomousdatabasebackups_listbyparent)
 - [Update](#autonomousdatabasebackups_update)
 
 ## AutonomousDatabaseCharacterSets
@@ -64,12 +64,12 @@
 
 - [Action](#dbnodes_action)
 - [Get](#dbnodes_get)
-- [ListByCloudVmCluster](#dbnodes_listbycloudvmcluster)
+- [ListByParent](#dbnodes_listbyparent)
 
 ## DbServers
 
 - [Get](#dbservers_get)
-- [ListByCloudExadataInfrastructure](#dbservers_listbycloudexadatainfrastructure)
+- [ListByParent](#dbservers_listbyparent)
 
 ## DbSystemShapes
 
@@ -116,7 +116,7 @@
 - [CreateOrUpdate](#virtualnetworkaddresses_createorupdate)
 - [Delete](#virtualnetworkaddresses_delete)
 - [Get](#virtualnetworkaddresses_get)
-- [ListByCloudVmCluster](#virtualnetworkaddresses_listbycloudvmcluster)
+- [ListByParent](#virtualnetworkaddresses_listbyparent)
 ### AutonomousDatabaseBackups_CreateOrUpdate
 
 ```java
@@ -250,13 +250,13 @@ public final class AutonomousDatabaseBackupsGetSamples {
 }
 ```
 
-### AutonomousDatabaseBackups_ListByAutonomousDatabase
+### AutonomousDatabaseBackups_ListByParent
 
 ```java
 /**
- * Samples for AutonomousDatabaseBackups ListByAutonomousDatabase.
+ * Samples for AutonomousDatabaseBackups ListByParent.
  */
-public final class AutonomousDatabaseBackupsListByAutonomousDatabaseSamples {
+public final class AutonomousDatabaseBackupsListByParentSamples {
     /*
      * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
      * autonomousDatabaseBackup_listByParent.json
@@ -268,23 +268,7 @@ public final class AutonomousDatabaseBackupsListByAutonomousDatabaseSamples {
      */
     public static void listAutonomousDatabaseBackupsByAutonomousDatabase(
         com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .listByAutonomousDatabase("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseBackup_listByParent.json
-     */
-    /**
-     * Sample code: AutonomousDatabaseBackups_ListByAutonomousDatabase.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void autonomousDatabaseBackupsListByAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .listByAutonomousDatabase("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+        manager.autonomousDatabaseBackups().listByParent("rg000", "databasedb1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1498,13 +1482,13 @@ public final class DbNodesGetSamples {
 }
 ```
 
-### DbNodes_ListByCloudVmCluster
+### DbNodes_ListByParent
 
 ```java
 /**
- * Samples for DbNodes ListByCloudVmCluster.
+ * Samples for DbNodes ListByParent.
  */
-public final class DbNodesListByCloudVmClusterSamples {
+public final class DbNodesListByParentSamples {
     /*
      * x-ms-original-file:
      * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_listByParent.json
@@ -1515,7 +1499,7 @@ public final class DbNodesListByCloudVmClusterSamples {
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void listDbNodesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
+        manager.dbNodes().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1542,13 +1526,13 @@ public final class DbServersGetSamples {
 }
 ```
 
-### DbServers_ListByCloudExadataInfrastructure
+### DbServers_ListByParent
 
 ```java
 /**
- * Samples for DbServers ListByCloudExadataInfrastructure.
+ * Samples for DbServers ListByParent.
  */
-public final class DbServersListByCloudExadataInfrastructureSamples {
+public final class DbServersListByParentSamples {
     /*
      * x-ms-original-file:
      * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbServers_listByParent.json
@@ -1560,7 +1544,7 @@ public final class DbServersListByCloudExadataInfrastructureSamples {
      */
     public static void
         listDbServersByExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbServers().listByCloudExadataInfrastructure("rg000", "infra1", com.azure.core.util.Context.NONE);
+        manager.dbServers().listByParent("rg000", "infra1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2122,13 +2106,13 @@ public final class VirtualNetworkAddressesGetSamples {
 }
 ```
 
-### VirtualNetworkAddresses_ListByCloudVmCluster
+### VirtualNetworkAddresses_ListByParent
 
 ```java
 /**
- * Samples for VirtualNetworkAddresses ListByCloudVmCluster.
+ * Samples for VirtualNetworkAddresses ListByParent.
  */
-public final class VirtualNetworkAddressesListByCloudVmClusterSamples {
+public final class VirtualNetworkAddressesListByParentSamples {
     /*
      * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
      * virtualNetworkAddresses_listByParent.json
@@ -2140,7 +2124,7 @@ public final class VirtualNetworkAddressesListByCloudVmClusterSamples {
      */
     public static void
         listVirtualNetworkAddressesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
+        manager.virtualNetworkAddresses().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
 ```

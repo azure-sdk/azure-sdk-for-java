@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface GiVersions {
     /**
-     * List GiVersion resources by Location.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +24,7 @@ public interface GiVersions {
     PagedIterable<GiVersion> listByLocation(String location);
 
     /**
-     * List GiVersion resources by Location.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.
