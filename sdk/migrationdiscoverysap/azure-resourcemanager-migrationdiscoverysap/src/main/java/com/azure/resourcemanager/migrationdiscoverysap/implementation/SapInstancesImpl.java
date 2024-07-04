@@ -27,16 +27,14 @@ public final class SapInstancesImpl implements SapInstances {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<SapInstance> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName) {
-        PagedIterable<SapInstanceInner> inner
-            = this.serviceClient().listBySapDiscoverySite(resourceGroupName, sapDiscoverySiteName);
+    public PagedIterable<SapInstance> list(String resourceGroupName, String sapDiscoverySiteName) {
+        PagedIterable<SapInstanceInner> inner = this.serviceClient().list(resourceGroupName, sapDiscoverySiteName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SapInstanceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<SapInstance> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName,
-        Context context) {
+    public PagedIterable<SapInstance> list(String resourceGroupName, String sapDiscoverySiteName, Context context) {
         PagedIterable<SapInstanceInner> inner
-            = this.serviceClient().listBySapDiscoverySite(resourceGroupName, sapDiscoverySiteName, context);
+            = this.serviceClient().list(resourceGroupName, sapDiscoverySiteName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SapInstanceImpl(inner1, this.manager()));
     }
 

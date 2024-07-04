@@ -23,8 +23,7 @@ public interface ServerInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ServerInstance> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
-        String sapInstanceName);
+    PagedIterable<ServerInstance> list(String resourceGroupName, String sapDiscoverySiteName, String sapInstanceName);
 
     /**
      * Lists the Server Instance resources for the given SAP Instance resource.
@@ -38,8 +37,8 @@ public interface ServerInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ServerInstance> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
-        String sapInstanceName, Context context);
+    PagedIterable<ServerInstance> list(String resourceGroupName, String sapDiscoverySiteName, String sapInstanceName,
+        Context context);
 
     /**
      * Gets the Server Instance resource.

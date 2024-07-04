@@ -30,7 +30,7 @@ public interface ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServerInstanceInner> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    PagedIterable<ServerInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName);
 
     /**
@@ -46,7 +46,7 @@ public interface ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServerInstanceInner> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    PagedIterable<ServerInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, Context context);
 
     /**

@@ -20,7 +20,6 @@
 - [Create](#sapinstances_create)
 - [Delete](#sapinstances_delete)
 - [Get](#sapinstances_get)
-- [ListBySapDiscoverySite](#sapinstances_listbysapdiscoverysite)
 - [Update](#sapinstances_update)
 
 ## ServerInstances
@@ -28,7 +27,6 @@
 - [Create](#serverinstances_create)
 - [Delete](#serverinstances_delete)
 - [Get](#serverinstances_get)
-- [ListBySapInstance](#serverinstances_listbysapinstance)
 - [Update](#serverinstances_update)
 ### Operations_List
 
@@ -77,7 +75,10 @@ public final class SapDiscoverySitesCreateSamples {
      */
     public static void createResourceForImportBasedInput(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites().define("SampleSite").withRegion("eastus").withExistingResourceGroup("test-rg")
+        manager.sapDiscoverySites()
+            .define("SampleSite")
+            .withRegion("eastus")
+            .withExistingResourceGroup("test-rg")
             .withTags(mapOf("property1", "value1", "property2", "value2"))
             .withProperties(new SapDiscoverySiteProperties().withMasterSiteId("MasterSiteIdResourceId")
                 .withMigrateProjectId("MigrateProjectId"))
@@ -141,8 +142,8 @@ public final class SapDiscoverySitesGetByResourceGroupSamples {
      */
     public static void gETASAPMigrationDiscoverySiteResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites().getByResourceGroupWithResponse("test-rg", "SampleSite",
-            com.azure.core.util.Context.NONE);
+        manager.sapDiscoverySites()
+            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -243,7 +244,8 @@ public final class SapDiscoverySitesUpdateSamples {
     public static void updatesASAPMigrationDiscoverySiteResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
         SapDiscoverySite resource = manager.sapDiscoverySites()
-            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
@@ -284,9 +286,12 @@ public final class SapInstancesCreateSamples {
      */
     public static void createsTheSAPInstanceResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapInstances().define("MPP_MPP").withRegion("eastus")
+        manager.sapInstances()
+            .define("MPP_MPP")
+            .withRegion("eastus")
             .withExistingSapDiscoverySite("test-rg", "SampleSite")
-            .withTags(mapOf("property1", "value1", "property2", "value2")).withProperties(new SapInstanceProperties())
+            .withTags(mapOf("property1", "value1", "property2", "value2"))
+            .withProperties(new SapInstanceProperties())
             .create();
     }
 
@@ -352,30 +357,6 @@ public final class SapInstancesGetSamples {
 }
 ```
 
-### SapInstances_ListBySapDiscoverySite
-
-```java
-/**
- * Samples for SapInstances ListBySapDiscoverySite.
- */
-public final class SapInstancesListBySapDiscoverySiteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPInstances_List.json
-     */
-    /**
-     * Sample code: Lists the SAP Instance resources for the given SAP Migration discovery site resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void listsTheSAPInstanceResourcesForTheGivenSAPMigrationDiscoverySiteResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapInstances().listBySapDiscoverySite("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### SapInstances_Update
 
 ```java
@@ -400,7 +381,8 @@ public final class SapInstancesUpdateSamples {
     public static void updatesTheSAPInstanceResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
         SapInstance resource = manager.sapInstances()
-            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE).getValue();
+            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
@@ -437,7 +419,9 @@ public final class ServerInstancesCreateSamples {
      */
     public static void createsTheServerInstanceResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances().define("APP_SapServer1").withExistingSapInstance("test-rg", "SampleSite", "MPP_MPP")
+        manager.serverInstances()
+            .define("APP_SapServer1")
+            .withExistingSapInstance("test-rg", "SampleSite", "MPP_MPP")
             .create();
     }
 }
@@ -462,8 +446,8 @@ public final class ServerInstancesDeleteSamples {
      */
     public static void deletesTheServerInstanceResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances().delete("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1",
-            com.azure.core.util.Context.NONE);
+        manager.serverInstances()
+            .delete("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -487,33 +471,8 @@ public final class ServerInstancesGetSamples {
      */
     public static void gETAServerInstanceResource(
         com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances().getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1",
-            com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ServerInstances_ListBySapInstance
-
-```java
-/**
- * Samples for ServerInstances ListBySapInstance.
- */
-public final class ServerInstancesListBySapInstanceSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_List.json
-     */
-    /**
-     * Sample code: Lists the Server Instance resources for the given SAP Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void listsTheServerInstanceResourcesForTheGivenSAPInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances().listBySapInstance("test-rg", "SampleSite", "MPP_MPP",
-            com.azure.core.util.Context.NONE);
+        manager.serverInstances()
+            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
     }
 }
 ```

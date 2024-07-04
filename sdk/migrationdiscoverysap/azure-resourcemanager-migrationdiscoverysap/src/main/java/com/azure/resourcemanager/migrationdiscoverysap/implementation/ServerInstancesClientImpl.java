@@ -76,7 +76,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapDiscoverySites/{sapDiscoverySiteName}/sapInstances/{sapInstanceName}/serverInstances")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ServerInstanceListResult>> listBySapInstance(@HostParam("$host") String endpoint,
+        Mono<Response<ServerInstanceListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("sapDiscoverySiteName") String sapDiscoverySiteName,
@@ -137,7 +137,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ServerInstanceListResult>> listBySapInstanceNext(
+        Mono<Response<ServerInstanceListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -155,7 +155,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ServerInstanceInner>> listBySapInstanceSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<ServerInstanceInner>> listSinglePageAsync(String resourceGroupName,
         String sapDiscoverySiteName, String sapInstanceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -178,10 +178,8 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
                 .error(new IllegalArgumentException("Parameter sapInstanceName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listBySapInstance(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, sapDiscoverySiteName, sapInstanceName, accept,
-                context))
+        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, sapDiscoverySiteName, sapInstanceName, accept, context))
             .<PagedResponse<ServerInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -201,7 +199,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ServerInstanceInner>> listBySapInstanceSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<ServerInstanceInner>> listSinglePageAsync(String resourceGroupName,
         String sapDiscoverySiteName, String sapInstanceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -226,7 +224,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySapInstance(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, sapDiscoverySiteName, sapInstanceName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -244,11 +242,10 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ServerInstanceInner> listBySapInstanceAsync(String resourceGroupName, String sapDiscoverySiteName,
+    private PagedFlux<ServerInstanceInner> listAsync(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName) {
-        return new PagedFlux<>(
-            () -> listBySapInstanceSinglePageAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName),
-            nextLink -> listBySapInstanceNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -264,11 +261,11 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ServerInstanceInner> listBySapInstanceAsync(String resourceGroupName, String sapDiscoverySiteName,
+    private PagedFlux<ServerInstanceInner> listAsync(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, Context context) {
         return new PagedFlux<>(
-            () -> listBySapInstanceSinglePageAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context),
-            nextLink -> listBySapInstanceNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -283,9 +280,9 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ServerInstanceInner> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    public PagedIterable<ServerInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName) {
-        return new PagedIterable<>(listBySapInstanceAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName));
+        return new PagedIterable<>(listAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName));
     }
 
     /**
@@ -301,10 +298,9 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * @return the response of a ServerInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ServerInstanceInner> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    public PagedIterable<ServerInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, Context context) {
-        return new PagedIterable<>(
-            listBySapInstanceAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context));
+        return new PagedIterable<>(listAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context));
     }
 
     /**
@@ -656,8 +652,10 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     public SyncPoller<PollResult<ServerInstanceInner>, ServerInstanceInner> beginCreate(String resourceGroupName,
         String sapDiscoverySiteName, String sapInstanceName, String serverInstanceName, ServerInstanceInner resource,
         Context context) {
-        return this.beginCreateAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName,
-            resource, context).getSyncPoller();
+        return this
+            .beginCreateAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName, resource,
+                context)
+            .getSyncPoller();
     }
 
     /**
@@ -678,7 +676,8 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     private Mono<ServerInstanceInner> createAsync(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, String serverInstanceName, ServerInstanceInner resource) {
         return beginCreateAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName, resource)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1143,7 +1142,8 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     private Mono<Void> deleteAsync(String resourceGroupName, String sapDiscoverySiteName, String sapInstanceName,
         String serverInstanceName, Context context) {
         return beginDeleteAsync(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -1188,9 +1188,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1198,7 +1196,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ServerInstanceInner>> listBySapInstanceNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ServerInstanceInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1207,8 +1205,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listBySapInstanceNext(nextLink, this.client.getEndpoint(), accept, context))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<ServerInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1217,9 +1214,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1228,8 +1223,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ServerInstanceInner>> listBySapInstanceNextSinglePageAsync(String nextLink,
-        Context context) {
+    private Mono<PagedResponse<ServerInstanceInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1239,7 +1233,7 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listBySapInstanceNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

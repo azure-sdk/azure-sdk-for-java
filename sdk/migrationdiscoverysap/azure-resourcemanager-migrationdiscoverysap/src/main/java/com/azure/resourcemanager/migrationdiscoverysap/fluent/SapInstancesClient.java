@@ -29,7 +29,7 @@ public interface SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SapInstanceInner> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName);
+    PagedIterable<SapInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName);
 
     /**
      * Lists the SAP Instance resources for the given SAP Migration discovery site resource.
@@ -43,8 +43,7 @@ public interface SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SapInstanceInner> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName,
-        Context context);
+    PagedIterable<SapInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName, Context context);
 
     /**
      * Gets the SAP Instance resource.

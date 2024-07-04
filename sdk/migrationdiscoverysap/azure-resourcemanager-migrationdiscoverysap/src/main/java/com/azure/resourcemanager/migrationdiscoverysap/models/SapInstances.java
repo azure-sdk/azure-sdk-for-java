@@ -22,7 +22,7 @@ public interface SapInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SapInstance> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName);
+    PagedIterable<SapInstance> list(String resourceGroupName, String sapDiscoverySiteName);
 
     /**
      * Lists the SAP Instance resources for the given SAP Migration discovery site resource.
@@ -35,8 +35,7 @@ public interface SapInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SapInstance> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName,
-        Context context);
+    PagedIterable<SapInstance> list(String resourceGroupName, String sapDiscoverySiteName, Context context);
 
     /**
      * Gets the SAP Instance resource.
