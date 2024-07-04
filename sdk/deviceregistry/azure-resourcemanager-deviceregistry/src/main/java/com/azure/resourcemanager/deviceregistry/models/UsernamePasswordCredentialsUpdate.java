@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.deviceregistry.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.io.IOException;
  * The credentials for authentication mode UsernamePassword.
  */
 @Fluent
-public final class UsernamePasswordCredentials implements JsonSerializable<UsernamePasswordCredentials> {
+public final class UsernamePasswordCredentialsUpdate implements JsonSerializable<UsernamePasswordCredentialsUpdate> {
     /*
      * A reference to secret containing the username.
      */
@@ -28,9 +27,9 @@ public final class UsernamePasswordCredentials implements JsonSerializable<Usern
     private String passwordReference;
 
     /**
-     * Creates an instance of UsernamePasswordCredentials class.
+     * Creates an instance of UsernamePasswordCredentialsUpdate class.
      */
-    public UsernamePasswordCredentials() {
+    public UsernamePasswordCredentialsUpdate() {
     }
 
     /**
@@ -46,9 +45,9 @@ public final class UsernamePasswordCredentials implements JsonSerializable<Usern
      * Set the usernameReference property: A reference to secret containing the username.
      * 
      * @param usernameReference the usernameReference value to set.
-     * @return the UsernamePasswordCredentials object itself.
+     * @return the UsernamePasswordCredentialsUpdate object itself.
      */
-    public UsernamePasswordCredentials withUsernameReference(String usernameReference) {
+    public UsernamePasswordCredentialsUpdate withUsernameReference(String usernameReference) {
         this.usernameReference = usernameReference;
         return this;
     }
@@ -66,9 +65,9 @@ public final class UsernamePasswordCredentials implements JsonSerializable<Usern
      * Set the passwordReference property: A reference to secret containing the password.
      * 
      * @param passwordReference the passwordReference value to set.
-     * @return the UsernamePasswordCredentials object itself.
+     * @return the UsernamePasswordCredentialsUpdate object itself.
      */
-    public UsernamePasswordCredentials withPasswordReference(String passwordReference) {
+    public UsernamePasswordCredentialsUpdate withPasswordReference(String passwordReference) {
         this.passwordReference = passwordReference;
         return this;
     }
@@ -79,19 +78,7 @@ public final class UsernamePasswordCredentials implements JsonSerializable<Usern
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (usernameReference() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property usernameReference in model UsernamePasswordCredentials"));
-        }
-        if (passwordReference() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property passwordReference in model UsernamePasswordCredentials"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UsernamePasswordCredentials.class);
 
     /**
      * {@inheritDoc}
@@ -105,31 +92,31 @@ public final class UsernamePasswordCredentials implements JsonSerializable<Usern
     }
 
     /**
-     * Reads an instance of UsernamePasswordCredentials from the JsonReader.
+     * Reads an instance of UsernamePasswordCredentialsUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of UsernamePasswordCredentials if the JsonReader was pointing to an instance of it, or null
-     * if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the UsernamePasswordCredentials.
+     * @return An instance of UsernamePasswordCredentialsUpdate if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the UsernamePasswordCredentialsUpdate.
      */
-    public static UsernamePasswordCredentials fromJson(JsonReader jsonReader) throws IOException {
+    public static UsernamePasswordCredentialsUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            UsernamePasswordCredentials deserializedUsernamePasswordCredentials = new UsernamePasswordCredentials();
+            UsernamePasswordCredentialsUpdate deserializedUsernamePasswordCredentialsUpdate
+                = new UsernamePasswordCredentialsUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("usernameReference".equals(fieldName)) {
-                    deserializedUsernamePasswordCredentials.usernameReference = reader.getString();
+                    deserializedUsernamePasswordCredentialsUpdate.usernameReference = reader.getString();
                 } else if ("passwordReference".equals(fieldName)) {
-                    deserializedUsernamePasswordCredentials.passwordReference = reader.getString();
+                    deserializedUsernamePasswordCredentialsUpdate.passwordReference = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedUsernamePasswordCredentials;
+            return deserializedUsernamePasswordCredentialsUpdate;
         });
     }
 }
