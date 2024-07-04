@@ -27,24 +27,24 @@ public final class ServerInstancesImpl implements ServerInstances {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ServerInstance> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    public PagedIterable<ServerInstance> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName) {
         PagedIterable<ServerInstanceInner> inner
-            = this.serviceClient().listBySapInstance(resourceGroupName, sapDiscoverySiteName, sapInstanceName);
+            = this.serviceClient().list(resourceGroupName, sapDiscoverySiteName, sapInstanceName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ServerInstanceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ServerInstance> listBySapInstance(String resourceGroupName, String sapDiscoverySiteName,
+    public PagedIterable<ServerInstance> list(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, Context context) {
         PagedIterable<ServerInstanceInner> inner
-            = this.serviceClient().listBySapInstance(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context);
+            = this.serviceClient().list(resourceGroupName, sapDiscoverySiteName, sapInstanceName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ServerInstanceImpl(inner1, this.manager()));
     }
 
     public Response<ServerInstance> getWithResponse(String resourceGroupName, String sapDiscoverySiteName,
         String sapInstanceName, String serverInstanceName, Context context) {
-        Response<ServerInstanceInner> inner = this.serviceClient().getWithResponse(resourceGroupName,
-            sapDiscoverySiteName, sapInstanceName, serverInstanceName, context);
+        Response<ServerInstanceInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ServerInstanceImpl(inner.getValue(), this.manager()));
@@ -71,8 +71,8 @@ public final class ServerInstancesImpl implements ServerInstances {
 
     public void delete(String resourceGroupName, String sapDiscoverySiteName, String sapInstanceName,
         String serverInstanceName, Context context) {
-        this.serviceClient().delete(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName,
-            context);
+        this.serviceClient()
+            .delete(resourceGroupName, sapDiscoverySiteName, sapInstanceName, serverInstanceName, context);
     }
 
     public ServerInstance getById(String id) {

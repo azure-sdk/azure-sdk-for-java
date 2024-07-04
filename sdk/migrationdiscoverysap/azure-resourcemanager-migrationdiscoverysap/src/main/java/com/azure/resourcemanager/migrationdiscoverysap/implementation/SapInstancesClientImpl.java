@@ -76,7 +76,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapDiscoverySites/{sapDiscoverySiteName}/sapInstances")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SapInstanceListResult>> listBySapDiscoverySite(@HostParam("$host") String endpoint,
+        Mono<Response<SapInstanceListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("sapDiscoverySiteName") String sapDiscoverySiteName, @HeaderParam("Accept") String accept,
@@ -132,9 +132,8 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SapInstanceListResult>> listBySapDiscoverySiteNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<SapInstanceListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -149,7 +148,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SapInstanceInner>> listBySapDiscoverySiteSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<SapInstanceInner>> listSinglePageAsync(String resourceGroupName,
         String sapDiscoverySiteName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -169,9 +168,8 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listBySapDiscoverySite(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, sapDiscoverySiteName, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, sapDiscoverySiteName, accept, context))
             .<PagedResponse<SapInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -190,7 +188,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SapInstanceInner>> listBySapDiscoverySiteSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<SapInstanceInner>> listSinglePageAsync(String resourceGroupName,
         String sapDiscoverySiteName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -211,8 +209,8 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySapDiscoverySite(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, sapDiscoverySiteName, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, sapDiscoverySiteName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -228,10 +226,9 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SapInstanceInner> listBySapDiscoverySiteAsync(String resourceGroupName,
-        String sapDiscoverySiteName) {
-        return new PagedFlux<>(() -> listBySapDiscoverySiteSinglePageAsync(resourceGroupName, sapDiscoverySiteName),
-            nextLink -> listBySapDiscoverySiteNextSinglePageAsync(nextLink));
+    private PagedFlux<SapInstanceInner> listAsync(String resourceGroupName, String sapDiscoverySiteName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, sapDiscoverySiteName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -246,11 +243,10 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SapInstanceInner> listBySapDiscoverySiteAsync(String resourceGroupName,
-        String sapDiscoverySiteName, Context context) {
-        return new PagedFlux<>(
-            () -> listBySapDiscoverySiteSinglePageAsync(resourceGroupName, sapDiscoverySiteName, context),
-            nextLink -> listBySapDiscoverySiteNextSinglePageAsync(nextLink, context));
+    private PagedFlux<SapInstanceInner> listAsync(String resourceGroupName, String sapDiscoverySiteName,
+        Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, sapDiscoverySiteName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -264,9 +260,8 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SapInstanceInner> listBySapDiscoverySite(String resourceGroupName,
-        String sapDiscoverySiteName) {
-        return new PagedIterable<>(listBySapDiscoverySiteAsync(resourceGroupName, sapDiscoverySiteName));
+    public PagedIterable<SapInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, sapDiscoverySiteName));
     }
 
     /**
@@ -281,9 +276,9 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * @return the response of a SAPInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SapInstanceInner> listBySapDiscoverySite(String resourceGroupName, String sapDiscoverySiteName,
+    public PagedIterable<SapInstanceInner> list(String resourceGroupName, String sapDiscoverySiteName,
         Context context) {
-        return new PagedIterable<>(listBySapDiscoverySiteAsync(resourceGroupName, sapDiscoverySiteName, context));
+        return new PagedIterable<>(listAsync(resourceGroupName, sapDiscoverySiteName, context));
     }
 
     /**
@@ -1084,9 +1079,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1094,7 +1087,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SapInstanceInner>> listBySapDiscoverySiteNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<SapInstanceInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1103,9 +1096,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listBySapDiscoverySiteNext(nextLink, this.client.getEndpoint(), accept, context))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<SapInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1114,9 +1105,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1125,8 +1114,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SapInstanceInner>> listBySapDiscoverySiteNextSinglePageAsync(String nextLink,
-        Context context) {
+    private Mono<PagedResponse<SapInstanceInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1136,7 +1124,7 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listBySapDiscoverySiteNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
