@@ -31,7 +31,7 @@ public interface DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DataTypeInner> listByDataProduct(String resourceGroupName, String dataProductName);
+    PagedIterable<DataTypeInner> listByParent(String resourceGroupName, String dataProductName);
 
     /**
      * List data type by parent resource.
@@ -45,7 +45,7 @@ public interface DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DataTypeInner> listByDataProduct(String resourceGroupName, String dataProductName, Context context);
+    PagedIterable<DataTypeInner> listByParent(String resourceGroupName, String dataProductName, Context context);
 
     /**
      * Retrieve data type resource.

@@ -30,15 +30,14 @@ public final class DataTypesImpl implements DataTypes {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<DataType> listByDataProduct(String resourceGroupName, String dataProductName) {
-        PagedIterable<DataTypeInner> inner = this.serviceClient().listByDataProduct(resourceGroupName, dataProductName);
+    public PagedIterable<DataType> listByParent(String resourceGroupName, String dataProductName) {
+        PagedIterable<DataTypeInner> inner = this.serviceClient().listByParent(resourceGroupName, dataProductName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DataTypeImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DataType> listByDataProduct(String resourceGroupName, String dataProductName,
-        Context context) {
+    public PagedIterable<DataType> listByParent(String resourceGroupName, String dataProductName, Context context) {
         PagedIterable<DataTypeInner> inner
-            = this.serviceClient().listByDataProduct(resourceGroupName, dataProductName, context);
+            = this.serviceClient().listByParent(resourceGroupName, dataProductName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DataTypeImpl(inner1, this.manager()));
     }
 
@@ -82,8 +81,9 @@ public final class DataTypesImpl implements DataTypes {
 
     public Response<ContainerSasToken> generateStorageContainerSasTokenWithResponse(String resourceGroupName,
         String dataProductName, String dataTypeName, ContainerSaS body, Context context) {
-        Response<ContainerSasTokenInner> inner = this.serviceClient().generateStorageContainerSasTokenWithResponse(
-            resourceGroupName, dataProductName, dataTypeName, body, context);
+        Response<ContainerSasTokenInner> inner = this.serviceClient()
+            .generateStorageContainerSasTokenWithResponse(resourceGroupName, dataProductName, dataTypeName, body,
+                context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ContainerSasTokenImpl(inner.getValue(), this.manager()));
@@ -94,8 +94,8 @@ public final class DataTypesImpl implements DataTypes {
 
     public ContainerSasToken generateStorageContainerSasToken(String resourceGroupName, String dataProductName,
         String dataTypeName, ContainerSaS body) {
-        ContainerSasTokenInner inner = this.serviceClient().generateStorageContainerSasToken(resourceGroupName,
-            dataProductName, dataTypeName, body);
+        ContainerSasTokenInner inner = this.serviceClient()
+            .generateStorageContainerSasToken(resourceGroupName, dataProductName, dataTypeName, body);
         if (inner != null) {
             return new ContainerSasTokenImpl(inner, this.manager());
         } else {

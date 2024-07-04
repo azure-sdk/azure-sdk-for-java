@@ -79,7 +79,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataTypeListResult>> listByDataProduct(@HostParam("$host") String endpoint,
+        Mono<Response<DataTypeListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("dataProductName") String dataProductName, @HeaderParam("Accept") String accept,
@@ -151,7 +151,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataTypeListResult>> listByDataProductNext(
+        Mono<Response<DataTypeListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -168,7 +168,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataTypeInner>> listByDataProductSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DataTypeInner>> listByParentSinglePageAsync(String resourceGroupName,
         String dataProductName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -188,7 +188,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByDataProduct(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, dataProductName, accept, context))
             .<PagedResponse<DataTypeInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -208,7 +208,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataTypeInner>> listByDataProductSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DataTypeInner>> listByParentSinglePageAsync(String resourceGroupName,
         String dataProductName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -229,7 +229,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByDataProduct(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, dataProductName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -246,9 +246,9 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DataTypeInner> listByDataProductAsync(String resourceGroupName, String dataProductName) {
-        return new PagedFlux<>(() -> listByDataProductSinglePageAsync(resourceGroupName, dataProductName),
-            nextLink -> listByDataProductNextSinglePageAsync(nextLink));
+    private PagedFlux<DataTypeInner> listByParentAsync(String resourceGroupName, String dataProductName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, dataProductName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -263,10 +263,10 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DataTypeInner> listByDataProductAsync(String resourceGroupName, String dataProductName,
+    private PagedFlux<DataTypeInner> listByParentAsync(String resourceGroupName, String dataProductName,
         Context context) {
-        return new PagedFlux<>(() -> listByDataProductSinglePageAsync(resourceGroupName, dataProductName, context),
-            nextLink -> listByDataProductNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, dataProductName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -280,8 +280,8 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DataTypeInner> listByDataProduct(String resourceGroupName, String dataProductName) {
-        return new PagedIterable<>(listByDataProductAsync(resourceGroupName, dataProductName));
+    public PagedIterable<DataTypeInner> listByParent(String resourceGroupName, String dataProductName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, dataProductName));
     }
 
     /**
@@ -296,9 +296,9 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DataTypeInner> listByDataProduct(String resourceGroupName, String dataProductName,
+    public PagedIterable<DataTypeInner> listByParent(String resourceGroupName, String dataProductName,
         Context context) {
-        return new PagedIterable<>(listByDataProductAsync(resourceGroupName, dataProductName, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, dataProductName, context));
     }
 
     /**
@@ -1558,9 +1558,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1568,7 +1566,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataTypeInner>> listByDataProductNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DataTypeInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1578,7 +1576,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByDataProductNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<DataTypeInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1587,9 +1585,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1598,7 +1594,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataTypeInner>> listByDataProductNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<DataTypeInner>> listByParentNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1608,7 +1604,7 @@ public final class DataTypesClientImpl implements DataTypesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByDataProductNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
