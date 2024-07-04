@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface VirtualNetworkAddresses {
     /**
-     * List VirtualNetworkAddress resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -22,10 +22,10 @@ public interface VirtualNetworkAddresses {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
-     * List VirtualNetworkAddress resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -35,7 +35,7 @@ public interface VirtualNetworkAddresses {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
+    PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername,
         Context context);
 
     /**

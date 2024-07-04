@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.oracledatabase.generated;
 
 /**
- * Samples for DbNodes ListByCloudVmCluster.
+ * Samples for DbNodes ListByParent.
  */
-public final class DbNodesListByCloudVmClusterSamples {
+public final class DbNodesListByParentSamples {
     /*
      * x-ms-original-file:
      * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_listByParent.json
@@ -18,6 +18,6 @@ public final class DbNodesListByCloudVmClusterSamples {
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void listDbNodesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
+        manager.dbNodes().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

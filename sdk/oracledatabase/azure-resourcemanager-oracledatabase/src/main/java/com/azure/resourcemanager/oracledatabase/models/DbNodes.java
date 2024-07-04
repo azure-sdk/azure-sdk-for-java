@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface DbNodes {
     /**
-     * List DbNode resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -22,10 +22,10 @@ public interface DbNodes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
-     * List DbNode resources by CloudVmCluster.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
@@ -35,7 +35,7 @@ public interface DbNodes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbNode list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbNode> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername, Context context);
+    PagedIterable<DbNode> listByParent(String resourceGroupName, String cloudvmclustername, Context context);
 
     /**
      * Get a DbNode.

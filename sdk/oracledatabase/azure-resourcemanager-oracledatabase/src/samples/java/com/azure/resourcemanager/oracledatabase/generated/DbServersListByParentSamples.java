@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.oracledatabase.generated;
 
 /**
- * Samples for DbServers ListByCloudExadataInfrastructure.
+ * Samples for DbServers ListByParent.
  */
-public final class DbServersListByCloudExadataInfrastructureSamples {
+public final class DbServersListByParentSamples {
     /*
      * x-ms-original-file:
      * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbServers_listByParent.json
@@ -19,6 +19,6 @@ public final class DbServersListByCloudExadataInfrastructureSamples {
      */
     public static void
         listDbServersByExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbServers().listByCloudExadataInfrastructure("rg000", "infra1", com.azure.core.util.Context.NONE);
+        manager.dbServers().listByParent("rg000", "infra1", com.azure.core.util.Context.NONE);
     }
 }

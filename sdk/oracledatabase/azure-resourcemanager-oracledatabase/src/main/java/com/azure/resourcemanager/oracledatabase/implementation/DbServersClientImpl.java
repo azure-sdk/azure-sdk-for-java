@@ -66,7 +66,7 @@ public final class DbServersClientImpl implements DbServersClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudExadataInfrastructures/{cloudexadatainfrastructurename}/dbServers")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbServerListResult>> listByCloudExadataInfrastructure(@HostParam("$host") String endpoint,
+        Mono<Response<DbServerListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudexadatainfrastructurename") String cloudexadatainfrastructurename,
@@ -86,13 +86,13 @@ public final class DbServersClientImpl implements DbServersClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbServerListResult>> listByCloudExadataInfrastructureNext(
+        Mono<Response<DbServerListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -103,7 +103,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DbServerInner>> listByParentSinglePageAsync(String resourceGroupName,
         String cloudexadatainfrastructurename) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -123,16 +123,15 @@ public final class DbServersClientImpl implements DbServersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudExadataInfrastructure(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
-                cloudexadatainfrastructurename, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, cloudexadatainfrastructurename, accept, context))
             .<PagedResponse<DbServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -144,7 +143,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DbServerInner>> listByParentSinglePageAsync(String resourceGroupName,
         String cloudexadatainfrastructurename, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -165,14 +164,14 @@ public final class DbServersClientImpl implements DbServersClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCloudExadataInfrastructure(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudexadatainfrastructurename, accept, context)
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudexadatainfrastructurename, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -182,34 +181,33 @@ public final class DbServersClientImpl implements DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbServerInner> listByCloudExadataInfrastructureAsync(String resourceGroupName,
+    private PagedFlux<DbServerInner> listByParentAsync(String resourceGroupName,
         String cloudexadatainfrastructurename) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudexadatainfrastructurename),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * A resource list operation, at the scope of the resource's parent.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DbServerInner> listByParentAsync(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context) {
         return new PagedFlux<>(
-            () -> listByCloudExadataInfrastructureSinglePageAsync(resourceGroupName, cloudexadatainfrastructurename),
-            nextLink -> listByCloudExadataInfrastructureNextSinglePageAsync(nextLink));
+            () -> listByParentSinglePageAsync(resourceGroupName, cloudexadatainfrastructurename, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbServerInner> listByCloudExadataInfrastructureAsync(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context) {
-        return new PagedFlux<>(() -> listByCloudExadataInfrastructureSinglePageAsync(resourceGroupName,
-            cloudexadatainfrastructurename, context),
-            nextLink -> listByCloudExadataInfrastructureNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -219,14 +217,12 @@ public final class DbServersClientImpl implements DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename) {
-        return new PagedIterable<>(
-            listByCloudExadataInfrastructureAsync(resourceGroupName, cloudexadatainfrastructurename));
+    public PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudexadatainfrastructurename));
     }
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -237,10 +233,9 @@ public final class DbServersClientImpl implements DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context) {
-        return new PagedIterable<>(
-            listByCloudExadataInfrastructureAsync(resourceGroupName, cloudexadatainfrastructurename, context));
+    public PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, cloudexadatainfrastructurename, context));
     }
 
     /**
@@ -388,7 +383,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DbServerInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -398,8 +393,7 @@ public final class DbServersClientImpl implements DbServersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudExadataInfrastructureNext(nextLink, this.client.getEndpoint(),
-                accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<DbServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -417,8 +411,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureNextSinglePageAsync(String nextLink,
-        Context context) {
+    private Mono<PagedResponse<DbServerInner>> listByParentNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -428,7 +421,7 @@ public final class DbServersClientImpl implements DbServersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByCloudExadataInfrastructureNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

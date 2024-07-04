@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.oracledatabase.generated;
 
 /**
- * Samples for VirtualNetworkAddresses ListByCloudVmCluster.
+ * Samples for VirtualNetworkAddresses ListByParent.
  */
-public final class VirtualNetworkAddressesListByCloudVmClusterSamples {
+public final class VirtualNetworkAddressesListByParentSamples {
     /*
      * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
      * virtualNetworkAddresses_listByParent.json
@@ -19,6 +19,6 @@ public final class VirtualNetworkAddressesListByCloudVmClusterSamples {
      */
     public static void
         listVirtualNetworkAddressesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
+        manager.virtualNetworkAddresses().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

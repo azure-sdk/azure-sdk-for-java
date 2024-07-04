@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface AutonomousDatabaseBackups {
     /**
-     * List AutonomousDatabaseBackup resources by AutonomousDatabase.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param autonomousdatabasename The database name.
@@ -23,11 +23,10 @@ public interface AutonomousDatabaseBackups {
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename);
+    PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName, String autonomousdatabasename);
 
     /**
-     * List AutonomousDatabaseBackup resources by AutonomousDatabase.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param autonomousdatabasename The database name.
@@ -38,8 +37,8 @@ public interface AutonomousDatabaseBackups {
      * @return the response of a AutonomousDatabaseBackup list operation as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<AutonomousDatabaseBackup> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename, Context context);
+    PagedIterable<AutonomousDatabaseBackup> listByParent(String resourceGroupName, String autonomousdatabasename,
+        Context context);
 
     /**
      * Get a AutonomousDatabaseBackup.

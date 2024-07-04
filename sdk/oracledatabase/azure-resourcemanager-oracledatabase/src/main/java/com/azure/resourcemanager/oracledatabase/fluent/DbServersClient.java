@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.DbServerInner;
  */
 public interface DbServersClient {
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -26,11 +26,10 @@ public interface DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename);
+    PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename);
 
     /**
-     * List DbServer resources by CloudExadataInfrastructure.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
@@ -41,8 +40,8 @@ public interface DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context);
+    PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context);
 
     /**
      * Get a DbServer.
