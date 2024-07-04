@@ -322,7 +322,7 @@ public final class MongoClustersListConnectionStringsSamples {
 
 ```java
 import com.azure.resourcemanager.mongocluster.models.MongoCluster;
-import com.azure.resourcemanager.mongocluster.models.MongoClusterUpdateProperties;
+import com.azure.resourcemanager.mongocluster.models.MongoClusterProperties;
 import com.azure.resourcemanager.mongocluster.models.NodeGroupSpec;
 import com.azure.resourcemanager.mongocluster.models.NodeKind;
 import java.util.Arrays;
@@ -346,7 +346,7 @@ public final class MongoClustersUpdateSamples {
             .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withProperties(new MongoClusterUpdateProperties()
+            .withProperties(new MongoClusterProperties()
                 .withNodeGroupSpecs(Arrays.asList(new NodeGroupSpec().withDiskSizeGB(256L).withKind(NodeKind.SHARD))))
             .apply();
     }
