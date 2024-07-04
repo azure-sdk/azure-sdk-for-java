@@ -34,13 +34,13 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<VirtualMachineInstance> list(String resourceUri) {
-        PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().list(resourceUri);
+    public PagedIterable<VirtualMachineInstance> listByArm(String resourceUri) {
+        PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().listByArm(resourceUri);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<VirtualMachineInstance> list(String resourceUri, Context context) {
-        PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().list(resourceUri, context);
+    public PagedIterable<VirtualMachineInstance> listByArm(String resourceUri, Context context) {
+        PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().listByArm(resourceUri, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
     }
 

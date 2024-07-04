@@ -83,7 +83,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         @Get("/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineInstanceListResult>> list(@HostParam("$host") String endpoint,
+        Mono<Response<VirtualMachineInstanceListResult>> listByArm(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
             Context context);
@@ -189,7 +189,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineInstanceListResult>> listNext(
+        Mono<Response<VirtualMachineInstanceListResult>> listByArmNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -207,7 +207,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInstanceInner>> listSinglePageAsync(String resourceUri) {
+    private Mono<PagedResponse<VirtualMachineInstanceInner>> listByArmSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -217,8 +217,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
-                accept, context))
+            .withContext(context -> service.listByArm(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
             .<PagedResponse<VirtualMachineInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -238,7 +238,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInstanceInner>> listSinglePageAsync(String resourceUri, Context context) {
+    private Mono<PagedResponse<VirtualMachineInstanceInner>> listByArmSinglePageAsync(String resourceUri,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -248,7 +249,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context)
+        return service.listByArm(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -265,8 +266,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualMachineInstanceInner> listAsync(String resourceUri) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri), nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<VirtualMachineInstanceInner> listByArmAsync(String resourceUri) {
+        return new PagedFlux<>(() -> listByArmSinglePageAsync(resourceUri),
+            nextLink -> listByArmNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -282,9 +284,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualMachineInstanceInner> listAsync(String resourceUri, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    private PagedFlux<VirtualMachineInstanceInner> listByArmAsync(String resourceUri, Context context) {
+        return new PagedFlux<>(() -> listByArmSinglePageAsync(resourceUri, context),
+            nextLink -> listByArmNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -299,8 +301,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualMachineInstanceInner> list(String resourceUri) {
-        return new PagedIterable<>(listAsync(resourceUri));
+    public PagedIterable<VirtualMachineInstanceInner> listByArm(String resourceUri) {
+        return new PagedIterable<>(listByArmAsync(resourceUri));
     }
 
     /**
@@ -316,8 +318,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualMachineInstanceInner> list(String resourceUri, Context context) {
-        return new PagedIterable<>(listAsync(resourceUri, context));
+    public PagedIterable<VirtualMachineInstanceInner> listByArm(String resourceUri, Context context) {
+        return new PagedIterable<>(listByArmAsync(resourceUri, context));
     }
 
     /**
@@ -2379,7 +2381,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInstanceInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<VirtualMachineInstanceInner>> listByArmNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -2388,7 +2390,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+        return FluxUtil
+            .withContext(context -> service.listByArmNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<VirtualMachineInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -2406,7 +2409,8 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInstanceInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<VirtualMachineInstanceInner>> listByArmNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -2416,7 +2420,7 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByArmNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
