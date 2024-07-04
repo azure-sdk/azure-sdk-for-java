@@ -19,7 +19,7 @@ import com.azure.resourcemanager.containerservicefleet.models.SkipProperties;
  */
 public interface UpdateRunsClient {
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -29,10 +29,10 @@ public interface UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<UpdateRunInner> listByFleet(String resourceGroupName, String fleetName);
+    PagedIterable<UpdateRunInner> listByParent(String resourceGroupName, String fleetName);
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -43,7 +43,7 @@ public interface UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<UpdateRunInner> listByFleet(String resourceGroupName, String fleetName, Context context);
+    PagedIterable<UpdateRunInner> listByParent(String resourceGroupName, String fleetName, Context context);
 
     /**
      * Get a UpdateRun.

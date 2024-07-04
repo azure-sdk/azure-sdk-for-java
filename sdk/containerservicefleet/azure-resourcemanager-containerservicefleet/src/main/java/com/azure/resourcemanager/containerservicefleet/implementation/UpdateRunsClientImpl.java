@@ -76,7 +76,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<UpdateRunListResult>> listByFleet(@HostParam("$host") String endpoint,
+        Mono<Response<UpdateRunListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fleetName") String fleetName,
             @HeaderParam("Accept") String accept, Context context);
@@ -145,13 +145,13 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<UpdateRunListResult>> listByFleetNext(
+        Mono<Response<UpdateRunListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -162,7 +162,8 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<UpdateRunInner>> listByFleetSinglePageAsync(String resourceGroupName, String fleetName) {
+    private Mono<PagedResponse<UpdateRunInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String fleetName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -180,7 +181,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleet(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, fleetName, accept, context))
             .<PagedResponse<UpdateRunInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -188,7 +189,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -200,7 +201,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<UpdateRunInner>> listByFleetSinglePageAsync(String resourceGroupName, String fleetName,
+    private Mono<PagedResponse<UpdateRunInner>> listByParentSinglePageAsync(String resourceGroupName, String fleetName,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -220,14 +221,14 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByFleet(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, fleetName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -237,13 +238,13 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<UpdateRunInner> listByFleetAsync(String resourceGroupName, String fleetName) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink));
+    private PagedFlux<UpdateRunInner> listByParentAsync(String resourceGroupName, String fleetName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -254,13 +255,13 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<UpdateRunInner> listByFleetAsync(String resourceGroupName, String fleetName, Context context) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName, context),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink, context));
+    private PagedFlux<UpdateRunInner> listByParentAsync(String resourceGroupName, String fleetName, Context context) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -270,12 +271,12 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<UpdateRunInner> listByFleet(String resourceGroupName, String fleetName) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName));
+    public PagedIterable<UpdateRunInner> listByParent(String resourceGroupName, String fleetName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName));
     }
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -286,8 +287,8 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<UpdateRunInner> listByFleet(String resourceGroupName, String fleetName, Context context) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName, context));
+    public PagedIterable<UpdateRunInner> listByParent(String resourceGroupName, String fleetName, Context context) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName, context));
     }
 
     /**
@@ -1906,9 +1907,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1916,7 +1915,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<UpdateRunInner>> listByFleetNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<UpdateRunInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1926,7 +1925,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<UpdateRunInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1935,9 +1934,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1946,7 +1943,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<UpdateRunInner>> listByFleetNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<UpdateRunInner>> listByParentNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1956,7 +1953,7 @@ public final class UpdateRunsClientImpl implements UpdateRunsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

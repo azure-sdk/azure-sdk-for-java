@@ -18,7 +18,7 @@ import com.azure.resourcemanager.containerservicefleet.fluent.models.FleetUpdate
  */
 public interface FleetUpdateStrategiesClient {
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -28,10 +28,10 @@ public interface FleetUpdateStrategiesClient {
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FleetUpdateStrategyInner> listByFleet(String resourceGroupName, String fleetName);
+    PagedIterable<FleetUpdateStrategyInner> listByParent(String resourceGroupName, String fleetName);
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -42,7 +42,7 @@ public interface FleetUpdateStrategiesClient {
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FleetUpdateStrategyInner> listByFleet(String resourceGroupName, String fleetName, Context context);
+    PagedIterable<FleetUpdateStrategyInner> listByParent(String resourceGroupName, String fleetName, Context context);
 
     /**
      * Get a FleetUpdateStrategy.
