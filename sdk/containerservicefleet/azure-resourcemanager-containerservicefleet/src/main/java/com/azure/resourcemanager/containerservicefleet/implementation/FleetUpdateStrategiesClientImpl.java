@@ -74,7 +74,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FleetUpdateStrategyListResult>> listByFleet(@HostParam("$host") String endpoint,
+        Mono<Response<FleetUpdateStrategyListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fleetName") String fleetName,
             @HeaderParam("Accept") String accept, Context context);
@@ -115,13 +115,13 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FleetUpdateStrategyListResult>> listByFleetNext(
+        Mono<Response<FleetUpdateStrategyListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -132,7 +132,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByFleetSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByParentSinglePageAsync(String resourceGroupName,
         String fleetName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -151,7 +151,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleet(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, fleetName, accept, context))
             .<PagedResponse<FleetUpdateStrategyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -159,7 +159,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -171,7 +171,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByFleetSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByParentSinglePageAsync(String resourceGroupName,
         String fleetName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -191,14 +191,14 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByFleet(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, fleetName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -208,13 +208,13 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FleetUpdateStrategyInner> listByFleetAsync(String resourceGroupName, String fleetName) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink));
+    private PagedFlux<FleetUpdateStrategyInner> listByParentAsync(String resourceGroupName, String fleetName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -225,14 +225,14 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FleetUpdateStrategyInner> listByFleetAsync(String resourceGroupName, String fleetName,
+    private PagedFlux<FleetUpdateStrategyInner> listByParentAsync(String resourceGroupName, String fleetName,
         Context context) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName, context),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -242,12 +242,12 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FleetUpdateStrategyInner> listByFleet(String resourceGroupName, String fleetName) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName));
+    public PagedIterable<FleetUpdateStrategyInner> listByParent(String resourceGroupName, String fleetName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName));
     }
 
     /**
-     * List FleetUpdateStrategy resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -258,9 +258,9 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FleetUpdateStrategyInner> listByFleet(String resourceGroupName, String fleetName,
+    public PagedIterable<FleetUpdateStrategyInner> listByParent(String resourceGroupName, String fleetName,
         Context context) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName, context));
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName, context));
     }
 
     /**
@@ -1015,9 +1015,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1025,7 +1023,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByFleetNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1035,7 +1033,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<FleetUpdateStrategyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1044,9 +1042,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1055,7 +1051,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByFleetNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<FleetUpdateStrategyInner>> listByParentNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1066,7 +1062,7 @@ public final class FleetUpdateStrategiesClientImpl implements FleetUpdateStrateg
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

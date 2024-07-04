@@ -76,7 +76,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FleetMemberListResult>> listByFleet(@HostParam("$host") String endpoint,
+        Mono<Response<FleetMemberListResult>> listByParent(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("fleetName") String fleetName,
             @HeaderParam("Accept") String accept, Context context);
@@ -128,13 +128,13 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FleetMemberListResult>> listByFleetNext(
+        Mono<Response<FleetMemberListResult>> listByParentNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -145,7 +145,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetMemberInner>> listByFleetSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<FleetMemberInner>> listByParentSinglePageAsync(String resourceGroupName,
         String fleetName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -164,7 +164,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleet(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, fleetName, accept, context))
             .<PagedResponse<FleetMemberInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -172,7 +172,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -184,8 +184,8 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetMemberInner>> listByFleetSinglePageAsync(String resourceGroupName, String fleetName,
-        Context context) {
+    private Mono<PagedResponse<FleetMemberInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String fleetName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -204,14 +204,14 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByFleet(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .listByParent(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, fleetName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -221,13 +221,13 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * @return the response of a FleetMember list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FleetMemberInner> listByFleetAsync(String resourceGroupName, String fleetName) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink));
+    private PagedFlux<FleetMemberInner> listByParentAsync(String resourceGroupName, String fleetName) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -238,13 +238,13 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * @return the response of a FleetMember list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FleetMemberInner> listByFleetAsync(String resourceGroupName, String fleetName, Context context) {
-        return new PagedFlux<>(() -> listByFleetSinglePageAsync(resourceGroupName, fleetName, context),
-            nextLink -> listByFleetNextSinglePageAsync(nextLink, context));
+    private PagedFlux<FleetMemberInner> listByParentAsync(String resourceGroupName, String fleetName, Context context) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, fleetName, context),
+            nextLink -> listByParentNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -254,12 +254,12 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * @return the response of a FleetMember list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FleetMemberInner> listByFleet(String resourceGroupName, String fleetName) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName));
+    public PagedIterable<FleetMemberInner> listByParent(String resourceGroupName, String fleetName) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName));
     }
 
     /**
-     * List FleetMember resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -270,8 +270,8 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * @return the response of a FleetMember list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FleetMemberInner> listByFleet(String resourceGroupName, String fleetName, Context context) {
-        return new PagedIterable<>(listByFleetAsync(resourceGroupName, fleetName, context));
+    public PagedIterable<FleetMemberInner> listByParent(String resourceGroupName, String fleetName, Context context) {
+        return new PagedIterable<>(listByParentAsync(resourceGroupName, fleetName, context));
     }
 
     /**
@@ -1306,9 +1306,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1316,7 +1314,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetMemberInner>> listByFleetNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<FleetMemberInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1326,7 +1324,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<FleetMemberInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1335,9 +1333,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1346,7 +1342,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FleetMemberInner>> listByFleetNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<FleetMemberInner>> listByParentNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1356,7 +1352,7 @@ public final class FleetMembersClientImpl implements FleetMembersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByFleetNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

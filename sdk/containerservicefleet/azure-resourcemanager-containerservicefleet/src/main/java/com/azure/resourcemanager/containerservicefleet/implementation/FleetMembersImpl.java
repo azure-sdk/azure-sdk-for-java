@@ -27,13 +27,14 @@ public final class FleetMembersImpl implements FleetMembers {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<FleetMember> listByFleet(String resourceGroupName, String fleetName) {
-        PagedIterable<FleetMemberInner> inner = this.serviceClient().listByFleet(resourceGroupName, fleetName);
+    public PagedIterable<FleetMember> listByParent(String resourceGroupName, String fleetName) {
+        PagedIterable<FleetMemberInner> inner = this.serviceClient().listByParent(resourceGroupName, fleetName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FleetMemberImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FleetMember> listByFleet(String resourceGroupName, String fleetName, Context context) {
-        PagedIterable<FleetMemberInner> inner = this.serviceClient().listByFleet(resourceGroupName, fleetName, context);
+    public PagedIterable<FleetMember> listByParent(String resourceGroupName, String fleetName, Context context) {
+        PagedIterable<FleetMemberInner> inner
+            = this.serviceClient().listByParent(resourceGroupName, fleetName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FleetMemberImpl(inner1, this.manager()));
     }
 

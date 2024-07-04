@@ -6,17 +6,20 @@ package com.azure.resourcemanager.containerservicefleet.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * The node image upgrade to be applied to the target nodes in update run.
  */
 @Fluent
-public final class NodeImageSelection {
+public final class NodeImageSelection implements JsonSerializable<NodeImageSelection> {
     /*
      * The node image upgrade type.
      */
-    @JsonProperty(value = "type", required = true)
     private NodeImageSelectionType type;
 
     /**
@@ -58,4 +61,41 @@ public final class NodeImageSelection {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(NodeImageSelection.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NodeImageSelection from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NodeImageSelection if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the NodeImageSelection.
+     */
+    public static NodeImageSelection fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NodeImageSelection deserializedNodeImageSelection = new NodeImageSelection();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("type".equals(fieldName)) {
+                    deserializedNodeImageSelection.type = NodeImageSelectionType.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNodeImageSelection;
+        });
+    }
 }

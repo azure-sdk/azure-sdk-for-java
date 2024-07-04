@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface UpdateRuns {
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -22,10 +22,10 @@ public interface UpdateRuns {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UpdateRun> listByFleet(String resourceGroupName, String fleetName);
+    PagedIterable<UpdateRun> listByParent(String resourceGroupName, String fleetName);
 
     /**
-     * List UpdateRun resources by Fleet.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -35,7 +35,7 @@ public interface UpdateRuns {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UpdateRun> listByFleet(String resourceGroupName, String fleetName, Context context);
+    PagedIterable<UpdateRun> listByParent(String resourceGroupName, String fleetName, Context context);
 
     /**
      * Get a UpdateRun.

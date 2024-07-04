@@ -27,14 +27,15 @@ public final class FleetUpdateStrategiesImpl implements FleetUpdateStrategies {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<FleetUpdateStrategy> listByFleet(String resourceGroupName, String fleetName) {
-        PagedIterable<FleetUpdateStrategyInner> inner = this.serviceClient().listByFleet(resourceGroupName, fleetName);
+    public PagedIterable<FleetUpdateStrategy> listByParent(String resourceGroupName, String fleetName) {
+        PagedIterable<FleetUpdateStrategyInner> inner = this.serviceClient().listByParent(resourceGroupName, fleetName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FleetUpdateStrategyImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FleetUpdateStrategy> listByFleet(String resourceGroupName, String fleetName, Context context) {
+    public PagedIterable<FleetUpdateStrategy> listByParent(String resourceGroupName, String fleetName,
+        Context context) {
         PagedIterable<FleetUpdateStrategyInner> inner
-            = this.serviceClient().listByFleet(resourceGroupName, fleetName, context);
+            = this.serviceClient().listByParent(resourceGroupName, fleetName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FleetUpdateStrategyImpl(inner1, this.manager()));
     }
 
