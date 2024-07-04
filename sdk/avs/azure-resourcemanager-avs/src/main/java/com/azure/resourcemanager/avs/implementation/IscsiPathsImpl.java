@@ -26,16 +26,13 @@ public final class IscsiPathsImpl implements IscsiPaths {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<IscsiPath> listByPrivateCloud(String resourceGroupName, String privateCloudName) {
-        PagedIterable<IscsiPathInner> inner
-            = this.serviceClient().listByPrivateCloud(resourceGroupName, privateCloudName);
+    public PagedIterable<IscsiPath> list(String resourceGroupName, String privateCloudName) {
+        PagedIterable<IscsiPathInner> inner = this.serviceClient().list(resourceGroupName, privateCloudName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new IscsiPathImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<IscsiPath> listByPrivateCloud(String resourceGroupName, String privateCloudName,
-        Context context) {
-        PagedIterable<IscsiPathInner> inner
-            = this.serviceClient().listByPrivateCloud(resourceGroupName, privateCloudName, context);
+    public PagedIterable<IscsiPath> list(String resourceGroupName, String privateCloudName, Context context) {
+        PagedIterable<IscsiPathInner> inner = this.serviceClient().list(resourceGroupName, privateCloudName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new IscsiPathImpl(inner1, this.manager()));
     }
 

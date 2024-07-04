@@ -14,7 +14,7 @@ import com.azure.resourcemanager.avs.fluent.models.IscsiPathInner;
  */
 public interface IscsiPaths {
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -23,10 +23,10 @@ public interface IscsiPaths {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<IscsiPath> listByPrivateCloud(String resourceGroupName, String privateCloudName);
+    PagedIterable<IscsiPath> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -36,7 +36,7 @@ public interface IscsiPaths {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<IscsiPath> listByPrivateCloud(String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<IscsiPath> list(String resourceGroupName, String privateCloudName, Context context);
 
     /**
      * Get a IscsiPath.

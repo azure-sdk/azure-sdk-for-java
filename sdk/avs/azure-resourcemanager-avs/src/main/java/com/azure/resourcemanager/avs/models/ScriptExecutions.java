@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ScriptExecutions {
     /**
-     * List ScriptExecution resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -26,7 +26,7 @@ public interface ScriptExecutions {
     PagedIterable<ScriptExecution> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List ScriptExecution resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.

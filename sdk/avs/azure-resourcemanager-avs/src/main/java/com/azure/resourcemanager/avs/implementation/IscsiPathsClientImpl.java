@@ -74,7 +74,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<IscsiPathListResult>> listByPrivateCloud(@HostParam("$host") String endpoint,
+        Mono<Response<IscsiPathListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
@@ -115,13 +115,12 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<IscsiPathListResult>> listByPrivateCloudNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<IscsiPathListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -132,8 +131,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IscsiPathInner>> listByPrivateCloudSinglePageAsync(String resourceGroupName,
-        String privateCloudName) {
+    private Mono<PagedResponse<IscsiPathInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -152,7 +150,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByPrivateCloud(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, privateCloudName, accept, context))
             .<PagedResponse<IscsiPathInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -160,7 +158,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -172,8 +170,8 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IscsiPathInner>> listByPrivateCloudSinglePageAsync(String resourceGroupName,
-        String privateCloudName, Context context) {
+    private Mono<PagedResponse<IscsiPathInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -193,14 +191,14 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByPrivateCloud(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
                 resourceGroupName, privateCloudName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -210,13 +208,13 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IscsiPathInner> listByPrivateCloudAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(() -> listByPrivateCloudSinglePageAsync(resourceGroupName, privateCloudName),
-            nextLink -> listByPrivateCloudNextSinglePageAsync(nextLink));
+    private PagedFlux<IscsiPathInner> listAsync(String resourceGroupName, String privateCloudName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -227,14 +225,13 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IscsiPathInner> listByPrivateCloudAsync(String resourceGroupName, String privateCloudName,
-        Context context) {
-        return new PagedFlux<>(() -> listByPrivateCloudSinglePageAsync(resourceGroupName, privateCloudName, context),
-            nextLink -> listByPrivateCloudNextSinglePageAsync(nextLink, context));
+    private PagedFlux<IscsiPathInner> listAsync(String resourceGroupName, String privateCloudName, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -244,12 +241,12 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IscsiPathInner> listByPrivateCloud(String resourceGroupName, String privateCloudName) {
-        return new PagedIterable<>(listByPrivateCloudAsync(resourceGroupName, privateCloudName));
+    public PagedIterable<IscsiPathInner> list(String resourceGroupName, String privateCloudName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName));
     }
 
     /**
-     * List IscsiPath resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -260,9 +257,8 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * @return the response of a IscsiPath list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IscsiPathInner> listByPrivateCloud(String resourceGroupName, String privateCloudName,
-        Context context) {
-        return new PagedIterable<>(listByPrivateCloudAsync(resourceGroupName, privateCloudName, context));
+    public PagedIterable<IscsiPathInner> list(String resourceGroupName, String privateCloudName, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
@@ -830,7 +826,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IscsiPathInner>> listByPrivateCloudNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<IscsiPathInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -839,9 +835,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByPrivateCloudNext(nextLink, this.client.getEndpoint(), accept, context))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<IscsiPathInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -859,8 +853,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IscsiPathInner>> listByPrivateCloudNextSinglePageAsync(String nextLink,
-        Context context) {
+    private Mono<PagedResponse<IscsiPathInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -870,7 +863,7 @@ public final class IscsiPathsClientImpl implements IscsiPathsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByPrivateCloudNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -57,7 +57,6 @@
 - [CreateOrUpdate](#iscsipaths_createorupdate)
 - [Delete](#iscsipaths_delete)
 - [Get](#iscsipaths_get)
-- [ListByPrivateCloud](#iscsipaths_listbyprivatecloud)
 
 ## Locations
 
@@ -1027,28 +1026,6 @@ public final class IscsiPathsGetSamples {
      */
     public static void iscsiPathsGet(com.azure.resourcemanager.avs.AvsManager manager) {
         manager.iscsiPaths().getWithResponse("group1", "cloud1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IscsiPaths_ListByPrivateCloud
-
-```java
-/**
- * Samples for IscsiPaths ListByPrivateCloud.
- */
-public final class IscsiPathsListByPrivateCloudSamples {
-    /*
-     * x-ms-original-file:
-     * specification/vmware/resource-manager/Microsoft.AVS/stable/2023-09-01/examples/IscsiPaths_List.json
-     */
-    /**
-     * Sample code: IscsiPaths_ListByPrivateCloud.
-     * 
-     * @param manager Entry point to AvsManager.
-     */
-    public static void iscsiPathsListByPrivateCloud(com.azure.resourcemanager.avs.AvsManager manager) {
-        manager.iscsiPaths().listByPrivateCloud("group1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```

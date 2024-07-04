@@ -20,7 +20,7 @@ import com.azure.resourcemanager.avs.models.ClusterUpdate;
  */
 public interface ClustersClient {
     /**
-     * List Cluster resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
@@ -33,7 +33,7 @@ public interface ClustersClient {
     PagedIterable<ClusterInner> list(String resourceGroupName, String privateCloudName);
 
     /**
-     * List Cluster resources by PrivateCloud.
+     * A resource list operation, at the scope of the resource's parent.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
