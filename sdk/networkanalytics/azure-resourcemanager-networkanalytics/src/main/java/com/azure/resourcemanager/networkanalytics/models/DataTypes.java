@@ -22,7 +22,7 @@ public interface DataTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DataType> listByDataProduct(String resourceGroupName, String dataProductName);
+    PagedIterable<DataType> listByParent(String resourceGroupName, String dataProductName);
 
     /**
      * List data type by parent resource.
@@ -35,7 +35,7 @@ public interface DataTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DataType list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DataType> listByDataProduct(String resourceGroupName, String dataProductName, Context context);
+    PagedIterable<DataType> listByParent(String resourceGroupName, String dataProductName, Context context);
 
     /**
      * Retrieve data type resource.
