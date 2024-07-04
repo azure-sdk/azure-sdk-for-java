@@ -43,7 +43,8 @@ import com.azure.resourcemanager.mongocluster.models.FirewallRuleProperties;
  */
 public final class FirewallRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_FirewallRuleCreate.json
      */
     /**
@@ -71,7 +72,8 @@ public final class FirewallRulesCreateOrUpdateSamples {
  */
 public final class FirewallRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_FirewallRuleDelete.json
      */
     /**
@@ -94,7 +96,8 @@ public final class FirewallRulesDeleteSamples {
  */
 public final class FirewallRulesGetSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_FirewallRuleGet.json
      */
     /**
@@ -118,7 +121,8 @@ public final class FirewallRulesGetSamples {
  */
 public final class FirewallRulesListByMongoClusterSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_FirewallRuleList.json
      */
     /**
@@ -143,7 +147,8 @@ import com.azure.resourcemanager.mongocluster.models.CheckNameAvailabilityReques
  */
 public final class MongoClustersCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_NameAvailability.json
      */
     /**
@@ -157,15 +162,37 @@ public final class MongoClustersCheckNameAvailabilitySamples {
             .checkNameAvailabilityWithResponse("westus2", new CheckNameAvailabilityRequest().withName("newmongocluster")
                 .withType("Microsoft.DocumentDB/mongoClusters"), com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_NameAvailability_AlreadyExists.json
+     */
+    /**
+     * Sample code: Checks and returns that the Mongo Cluster name is already in-use.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void checksAndReturnsThatTheMongoClusterNameIsAlreadyInUse(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        manager.mongoClusters()
+            .checkNameAvailabilityWithResponse("westus2",
+                new CheckNameAvailabilityRequest().withName("existingmongocluster")
+                    .withType("Microsoft.DocumentDB/mongoClusters"),
+                com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
 ### MongoClusters_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.mongocluster.models.CreateMode;
 import com.azure.resourcemanager.mongocluster.models.MongoClusterProperties;
+import com.azure.resourcemanager.mongocluster.models.MongoClusterRestoreParameters;
 import com.azure.resourcemanager.mongocluster.models.NodeGroupSpec;
 import com.azure.resourcemanager.mongocluster.models.NodeKind;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 /**
@@ -174,8 +201,32 @@ import java.util.Arrays;
 public final class MongoClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Create.
-     * json
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_CreatePITR.json
+     */
+    /**
+     * Sample code: Creates a Mongo Cluster resource from a point in time restore.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void createsAMongoClusterResourceFromAPointInTimeRestore(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        manager.mongoClusters()
+            .define("myMongoCluster")
+            .withRegion("westus2")
+            .withExistingResourceGroup("TestResourceGroup")
+            .withProperties(new MongoClusterProperties().withCreateMode(CreateMode.POINT_IN_TIME_RESTORE)
+                .withRestoreParameters(new MongoClusterRestoreParameters()
+                    .withPointInTimeUtc(OffsetDateTime.parse("2023-01-13T20:07:35Z"))
+                    .withSourceResourceId(
+                        "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/TestResourceGroup/providers/Microsoft.DocumentDB/mongoClusters/myOtherMongoCluster")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_Create.json
      */
     /**
      * Sample code: Creates a new Mongo Cluster resource.
@@ -210,8 +261,8 @@ public final class MongoClustersCreateOrUpdateSamples {
 public final class MongoClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Delete.
-     * json
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_Delete.json
      */
     /**
      * Sample code: Deletes a Mongo Cluster resource.
@@ -234,7 +285,8 @@ public final class MongoClustersDeleteSamples {
 public final class MongoClustersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Get.json
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_Get.json
      */
     /**
      * Sample code: Gets a Mongo Cluster resource.
@@ -257,7 +309,8 @@ public final class MongoClustersGetByResourceGroupSamples {
 public final class MongoClustersListSamples {
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_List.json
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_List.json
      */
     /**
      * Sample code: Lists the Mongo Cluster resources in a subscription.
@@ -279,7 +332,8 @@ public final class MongoClustersListSamples {
  */
 public final class MongoClustersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_ListByResourceGroup.json
      */
     /**
@@ -302,7 +356,8 @@ public final class MongoClustersListByResourceGroupSamples {
  */
 public final class MongoClustersListConnectionStringsSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_ListConnectionStrings.json
      */
     /**
@@ -325,6 +380,7 @@ import com.azure.resourcemanager.mongocluster.models.MongoCluster;
 import com.azure.resourcemanager.mongocluster.models.MongoClusterUpdateProperties;
 import com.azure.resourcemanager.mongocluster.models.NodeGroupSpec;
 import com.azure.resourcemanager.mongocluster.models.NodeKind;
+import com.azure.resourcemanager.mongocluster.models.PublicNetworkAccess;
 import java.util.Arrays;
 
 /**
@@ -332,7 +388,8 @@ import java.util.Arrays;
  */
 public final class MongoClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PatchDiskSize.json
      */
     /**
@@ -350,6 +407,54 @@ public final class MongoClustersUpdateSamples {
                 .withNodeGroupSpecs(Arrays.asList(new NodeGroupSpec().withDiskSizeGB(256L).withKind(NodeKind.SHARD))))
             .apply();
     }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_PatchPrivateNetworkAccess.json
+     */
+    /**
+     * Sample code: Disables public network access on a Mongo Cluster resource with a private endpoint connection.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void disablesPublicNetworkAccessOnAMongoClusterResourceWithAPrivateEndpointConnection(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        MongoCluster resource = manager.mongoClusters()
+            .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new MongoClusterUpdateProperties().withPublicNetworkAccess(PublicNetworkAccess.DISABLED))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * MongoClusters_Update.json
+     */
+    /**
+     * Sample code: Updates a Mongo Cluster resource.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void
+        updatesAMongoClusterResource(com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        MongoCluster resource = manager.mongoClusters()
+            .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new MongoClusterUpdateProperties().withAdministratorLogin("mongoAdmin")
+                .withAdministratorLoginPassword("fakeTokenPlaceholder")
+                .withServerVersion("5.0")
+                .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                .withNodeGroupSpecs(Arrays.asList(new NodeGroupSpec().withSku("M50")
+                    .withDiskSizeGB(256L)
+                    .withEnableHa(true)
+                    .withKind(NodeKind.SHARD)
+                    .withNodeCount(1))))
+            .apply();
+    }
 }
 ```
 
@@ -362,7 +467,8 @@ public final class MongoClustersUpdateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/Operations_List.json
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
+     * Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -387,7 +493,8 @@ import com.azure.resourcemanager.mongocluster.models.PrivateLinkServiceConnectio
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PrivateEndpointConnectionPut.json
      */
     /**
@@ -416,7 +523,8 @@ public final class PrivateEndpointConnectionsCreateSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PrivateEndpointConnectionDelete.json
      */
     /**
@@ -441,7 +549,8 @@ public final class PrivateEndpointConnectionsDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PrivateEndpointConnectionGet.json
      */
     /**
@@ -466,7 +575,8 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsListByMongoClusterSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PrivateEndpointConnectionList.json
      */
     /**
@@ -490,7 +600,8 @@ public final class PrivateEndpointConnectionsListByMongoClusterSamples {
  */
 public final class PrivateLinksListByMongoClusterSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongocluster/resource-manager/Microsoft.DocumentDB/preview/2024-03-01-preview/examples/
      * MongoClusters_PrivateLinkResourceList.json
      */
     /**
