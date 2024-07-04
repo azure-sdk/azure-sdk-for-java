@@ -24,7 +24,7 @@ public interface VirtualMachineInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualMachineInstance> list(String resourceUri);
+    PagedIterable<VirtualMachineInstance> listByArm(String resourceUri);
 
     /**
      * Implements List virtual machine instances.
@@ -38,7 +38,7 @@ public interface VirtualMachineInstances {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualMachineInstance> list(String resourceUri, Context context);
+    PagedIterable<VirtualMachineInstance> listByArm(String resourceUri, Context context);
 
     /**
      * Gets a virtual machine.

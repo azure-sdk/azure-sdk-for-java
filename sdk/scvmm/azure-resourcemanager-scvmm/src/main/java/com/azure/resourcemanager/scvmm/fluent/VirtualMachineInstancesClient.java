@@ -36,7 +36,7 @@ public interface VirtualMachineInstancesClient {
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualMachineInstanceInner> list(String resourceUri);
+    PagedIterable<VirtualMachineInstanceInner> listByArm(String resourceUri);
 
     /**
      * Implements List virtual machine instances.
@@ -51,7 +51,7 @@ public interface VirtualMachineInstancesClient {
      * @return the response of a VirtualMachineInstance list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualMachineInstanceInner> list(String resourceUri, Context context);
+    PagedIterable<VirtualMachineInstanceInner> listByArm(String resourceUri, Context context);
 
     /**
      * Gets a virtual machine.

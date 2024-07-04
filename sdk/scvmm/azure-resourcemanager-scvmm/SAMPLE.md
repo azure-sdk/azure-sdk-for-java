@@ -44,7 +44,6 @@
 - [Delete](#virtualmachineinstances_delete)
 - [DeleteCheckpoint](#virtualmachineinstances_deletecheckpoint)
 - [Get](#virtualmachineinstances_get)
-- [List](#virtualmachineinstances_list)
 - [Restart](#virtualmachineinstances_restart)
 - [RestoreCheckpoint](#virtualmachineinstances_restorecheckpoint)
 - [Start](#virtualmachineinstances_start)
@@ -1239,41 +1238,6 @@ public final class VirtualMachineInstancesGetSamples {
      */
     public static void virtualMachineInstancesGetMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         manager.virtualMachineInstances().getWithResponse("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineInstances_List
-
-```java
-/**
- * Samples for VirtualMachineInstances List.
- */
-public final class VirtualMachineInstancesListSamples {
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_List_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_List_MaximumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesListMaximumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().list("gtgclehcbsyave", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
-     * VirtualMachineInstances_List_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VirtualMachineInstances_List_MinimumSet.
-     * 
-     * @param manager Entry point to ScvmmManager.
-     */
-    public static void virtualMachineInstancesListMinimumSet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineInstances().list("gtgclehcbsyave", com.azure.core.util.Context.NONE);
     }
 }
 ```
