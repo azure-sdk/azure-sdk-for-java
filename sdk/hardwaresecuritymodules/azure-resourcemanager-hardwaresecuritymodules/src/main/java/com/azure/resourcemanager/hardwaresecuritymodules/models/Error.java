@@ -6,7 +6,10 @@ package com.azure.resourcemanager.hardwaresecuritymodules.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.exception.ManagementError;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * The error exception.
@@ -16,7 +19,6 @@ public final class Error extends ManagementError {
     /*
      * Contains more specific error that narrows down the cause. May be null.
      */
-    @JsonProperty(value = "innererror", access = JsonProperty.Access.WRITE_ONLY)
     private Error innerError;
 
     /**
@@ -43,5 +45,40 @@ public final class Error extends ManagementError {
         if (getInnerError() != null) {
             getInnerError().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Error from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Error if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
+     * @throws IOException If an error occurs while reading the Error.
+     */
+    public static Error fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Error deserializedError = new Error();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("innererror".equals(fieldName)) {
+                    deserializedError.innerError = Error.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedError;
+        });
     }
 }

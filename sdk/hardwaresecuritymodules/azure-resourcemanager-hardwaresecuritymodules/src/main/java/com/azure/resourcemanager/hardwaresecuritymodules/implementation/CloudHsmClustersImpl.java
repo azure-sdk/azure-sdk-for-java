@@ -10,9 +10,15 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.BackupResultInner;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.CloudHsmClusterInner;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.RestoreResultInner;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.BackupRequestProperties;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.BackupResult;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmCluster;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusters;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.RestoreRequestProperties;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.RestoreResult;
 
 public final class CloudHsmClustersImpl implements CloudHsmClusters {
     private static final ClientLogger LOGGER = new ClientLogger(CloudHsmClustersImpl.class);
@@ -76,6 +82,88 @@ public final class CloudHsmClustersImpl implements CloudHsmClusters {
     public PagedIterable<CloudHsmCluster> list(String skiptoken, Context context) {
         PagedIterable<CloudHsmClusterInner> inner = this.serviceClient().list(skiptoken, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new CloudHsmClusterImpl(inner1, this.manager()));
+    }
+
+    public BackupResult validateBackup(String resourceGroupName, String cloudHsmClusterName) {
+        BackupResultInner inner = this.serviceClient().validateBackup(resourceGroupName, cloudHsmClusterName);
+        if (inner != null) {
+            return new BackupResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public BackupResult validateBackup(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        BackupResultInner inner = this.serviceClient()
+            .validateBackup(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context);
+        if (inner != null) {
+            return new BackupResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public BackupResult backup(String resourceGroupName, String cloudHsmClusterName) {
+        BackupResultInner inner = this.serviceClient().backup(resourceGroupName, cloudHsmClusterName);
+        if (inner != null) {
+            return new BackupResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public BackupResult backup(String resourceGroupName, String cloudHsmClusterName,
+        BackupRequestProperties backupRequestProperties, Context context) {
+        BackupResultInner inner
+            = this.serviceClient().backup(resourceGroupName, cloudHsmClusterName, backupRequestProperties, context);
+        if (inner != null) {
+            return new BackupResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public RestoreResult validateRestore(String resourceGroupName, String cloudHsmClusterName) {
+        RestoreResultInner inner = this.serviceClient().validateRestore(resourceGroupName, cloudHsmClusterName);
+        if (inner != null) {
+            return new RestoreResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public RestoreResult validateRestore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        RestoreResultInner inner = this.serviceClient()
+            .validateRestore(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context);
+        if (inner != null) {
+            return new RestoreResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public RestoreResult restore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties) {
+        RestoreResultInner inner
+            = this.serviceClient().restore(resourceGroupName, cloudHsmClusterName, restoreRequestProperties);
+        if (inner != null) {
+            return new RestoreResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public RestoreResult restore(String resourceGroupName, String cloudHsmClusterName,
+        RestoreRequestProperties restoreRequestProperties, Context context) {
+        RestoreResultInner inner
+            = this.serviceClient().restore(resourceGroupName, cloudHsmClusterName, restoreRequestProperties, context);
+        if (inner != null) {
+            return new RestoreResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public CloudHsmCluster getById(String id) {

@@ -29,18 +29,18 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String name) {
-        this.serviceClient().delete(resourceGroupName, name);
+    public void deleteByResourceGroup(String resourceGroupName, String dedicatedHsmName) {
+        this.serviceClient().delete(resourceGroupName, dedicatedHsmName);
     }
 
-    public void delete(String resourceGroupName, String name, Context context) {
-        this.serviceClient().delete(resourceGroupName, name, context);
+    public void delete(String resourceGroupName, String dedicatedHsmName, Context context) {
+        this.serviceClient().delete(resourceGroupName, dedicatedHsmName, context);
     }
 
-    public Response<DedicatedHsm> getByResourceGroupWithResponse(String resourceGroupName, String name,
+    public Response<DedicatedHsm> getByResourceGroupWithResponse(String resourceGroupName, String dedicatedHsmName,
         Context context) {
         Response<DedicatedHsmInner> inner
-            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, name, context);
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, dedicatedHsmName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DedicatedHsmImpl(inner.getValue(), this.manager()));
@@ -49,8 +49,8 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
         }
     }
 
-    public DedicatedHsm getByResourceGroup(String resourceGroupName, String name) {
-        DedicatedHsmInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, name);
+    public DedicatedHsm getByResourceGroup(String resourceGroupName, String dedicatedHsmName) {
+        DedicatedHsmInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, dedicatedHsmName);
         if (inner != null) {
             return new DedicatedHsmImpl(inner, this.manager());
         } else {
@@ -80,17 +80,17 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
     }
 
     public PagedIterable<OutboundEnvironmentEndpoint> listOutboundNetworkDependenciesEndpoints(String resourceGroupName,
-        String name) {
+        String dedicatedHsmName) {
         PagedIterable<OutboundEnvironmentEndpointInner> inner
-            = this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, name);
+            = this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, dedicatedHsmName);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new OutboundEnvironmentEndpointImpl(inner1, this.manager()));
     }
 
     public PagedIterable<OutboundEnvironmentEndpoint> listOutboundNetworkDependenciesEndpoints(String resourceGroupName,
-        String name, Context context) {
-        PagedIterable<OutboundEnvironmentEndpointInner> inner
-            = this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, name, context);
+        String dedicatedHsmName, Context context) {
+        PagedIterable<OutboundEnvironmentEndpointInner> inner = this.serviceClient()
+            .listOutboundNetworkDependenciesEndpoints(resourceGroupName, dedicatedHsmName, context);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new OutboundEnvironmentEndpointImpl(inner1, this.manager()));
     }
@@ -101,12 +101,12 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
-        if (name == null) {
+        String dedicatedHsmName = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
+        if (dedicatedHsmName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'dedicatedHSMs'.", id)));
         }
-        return this.getByResourceGroupWithResponse(resourceGroupName, name, Context.NONE).getValue();
+        return this.getByResourceGroupWithResponse(resourceGroupName, dedicatedHsmName, Context.NONE).getValue();
     }
 
     public Response<DedicatedHsm> getByIdWithResponse(String id, Context context) {
@@ -115,12 +115,12 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
-        if (name == null) {
+        String dedicatedHsmName = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
+        if (dedicatedHsmName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'dedicatedHSMs'.", id)));
         }
-        return this.getByResourceGroupWithResponse(resourceGroupName, name, context);
+        return this.getByResourceGroupWithResponse(resourceGroupName, dedicatedHsmName, context);
     }
 
     public void deleteById(String id) {
@@ -129,12 +129,12 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
-        if (name == null) {
+        String dedicatedHsmName = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
+        if (dedicatedHsmName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'dedicatedHSMs'.", id)));
         }
-        this.delete(resourceGroupName, name, Context.NONE);
+        this.delete(resourceGroupName, dedicatedHsmName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
@@ -143,12 +143,12 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
-        if (name == null) {
+        String dedicatedHsmName = ResourceManagerUtils.getValueFromIdByName(id, "dedicatedHSMs");
+        if (dedicatedHsmName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'dedicatedHSMs'.", id)));
         }
-        this.delete(resourceGroupName, name, context);
+        this.delete(resourceGroupName, dedicatedHsmName, context);
     }
 
     private DedicatedHsmsClient serviceClient() {
