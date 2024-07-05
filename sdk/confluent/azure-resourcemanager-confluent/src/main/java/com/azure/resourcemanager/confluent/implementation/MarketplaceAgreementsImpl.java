@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.confluent.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -25,18 +24,6 @@ public final class MarketplaceAgreementsImpl implements MarketplaceAgreements {
         com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<ConfluentAgreementResource> list() {
-        PagedIterable<ConfluentAgreementResourceInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ConfluentAgreementResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ConfluentAgreementResource> list(Context context) {
-        PagedIterable<ConfluentAgreementResourceInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ConfluentAgreementResourceImpl(inner1, this.manager()));
     }
 
     public Response<ConfluentAgreementResource> createWithResponse(ConfluentAgreementResourceInner body,

@@ -17,7 +17,6 @@
 ## MarketplaceAgreements
 
 - [Create](#marketplaceagreements_create)
-- [List](#marketplaceagreements_list)
 
 ## Organization
 
@@ -66,11 +65,13 @@ public final class AccessCreateRoleBindingSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessCreateRoleBinding(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().createRoleBindingWithResponse("myResourceGroup", "myOrganization",
-            new AccessCreateRoleBindingRequestModel().withPrincipal("User:u-111aaa").withRoleName("CloudClusterAdmin")
-                .withCrnPattern(
-                    "crn://confluent.cloud/organization=1111aaaa-11aa-11aa-11aa-111111aaaaaa/environment=env-aaa1111/cloud-cluster=lkc-1111aaa"),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .createRoleBindingWithResponse("myResourceGroup", "myOrganization",
+                new AccessCreateRoleBindingRequestModel().withPrincipal("User:u-111aaa")
+                    .withRoleName("CloudClusterAdmin")
+                    .withCrnPattern(
+                        "crn://confluent.cloud/organization=1111aaaa-11aa-11aa-11aa-111111aaaaaa/environment=env-aaa1111/cloud-cluster=lkc-1111aaa"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -93,8 +94,9 @@ public final class AccessDeleteRoleBindingSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessDeleteRoleBinding(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().deleteRoleBindingWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .deleteRoleBindingWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -102,8 +104,8 @@ public final class AccessDeleteRoleBindingSamples {
 ### Access_InviteUser
 
 ```java
-import com.azure.resourcemanager.confluent.models.AccessInviteUserAccountModel;
 import com.azure.resourcemanager.confluent.models.AccessInvitedUserDetails;
+import com.azure.resourcemanager.confluent.models.AccessInviteUserAccountModel;
 
 /**
  * Samples for Access InviteUser.
@@ -119,10 +121,12 @@ public final class AccessInviteUserSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessInviteUser(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().inviteUserWithResponse("myResourceGroup", "myOrganization",
-            new AccessInviteUserAccountModel().withInvitedUserDetails(
-                new AccessInvitedUserDetails().withInvitedEmail("user2@onmicrosoft.com").withAuthType("AUTH_TYPE_SSO")),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .inviteUserWithResponse("myResourceGroup", "myOrganization",
+                new AccessInviteUserAccountModel()
+                    .withInvitedUserDetails(new AccessInvitedUserDetails().withInvitedEmail("user2@onmicrosoft.com")
+                        .withAuthType("AUTH_TYPE_SSO")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -232,10 +236,11 @@ public final class AccessListInvitationsSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessInvitationsList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().listInvitationsWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel().withSearchFilters(
-                mapOf("pageSize", "10", "pageToken", "fakeTokenPlaceholder", "status", "INVITE_STATUS_SENT")),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .listInvitationsWithResponse("myResourceGroup", "myOrganization",
+                new ListAccessRequestModel().withSearchFilters(
+                    mapOf("pageSize", "10", "pageToken", "fakeTokenPlaceholder", "status", "INVITE_STATUS_SENT")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
@@ -273,11 +278,12 @@ public final class AccessListRoleBindingNameListSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessRoleBindingNameList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().listRoleBindingNameListWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel().withSearchFilters(mapOf("crn_pattern",
-                "crn://confluent.cloud/organization=1aa7de07-298e-479c-8f2f-16ac91fd8e76", "namespace",
-                "public,dataplane,networking,identity,datagovernance,connect,streamcatalog,pipelines,ksql")),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .listRoleBindingNameListWithResponse("myResourceGroup", "myOrganization",
+                new ListAccessRequestModel().withSearchFilters(mapOf("crn_pattern",
+                    "crn://confluent.cloud/organization=1aa7de07-298e-479c-8f2f-16ac91fd8e76", "namespace",
+                    "public,dataplane,networking,identity,datagovernance,connect,streamcatalog,pipelines,ksql")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
@@ -398,9 +404,9 @@ public final class AccessListUsersSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessUsersList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().listUsersWithResponse("myResourceGroup", "myOrganization", new ListAccessRequestModel()
-            .withSearchFilters(mapOf("pageSize", "10", "pageToken", "fakeTokenPlaceholder")),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .listUsersWithResponse("myResourceGroup", "myOrganization", new ListAccessRequestModel().withSearchFilters(
+                mapOf("pageSize", "10", "pageToken", "fakeTokenPlaceholder")), com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
@@ -440,28 +446,6 @@ public final class MarketplaceAgreementsCreateSamples {
 }
 ```
 
-### MarketplaceAgreements_List
-
-```java
-/**
- * Samples for MarketplaceAgreements List.
- */
-public final class MarketplaceAgreementsListSamples {
-    /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
-     * MarketplaceAgreements_List.json
-     */
-    /**
-     * Sample code: MarketplaceAgreements_List.
-     * 
-     * @param manager Entry point to ConfluentManager.
-     */
-    public static void marketplaceAgreementsList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.marketplaceAgreements().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Organization_Create
 
 ```java
@@ -486,16 +470,25 @@ public final class OrganizationCreateSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationCreate(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().define("myOrganization").withRegion("West US")
+        manager.organizations()
+            .define("myOrganization")
+            .withRegion("West US")
             .withExistingResourceGroup("myResourceGroup")
-            .withOfferDetail(
-                new OfferDetail().withPublisherId("string").withId("string").withPlanId("string").withPlanName("string")
-                    .withTermUnit("string").withPrivateOfferId("string").withPrivateOfferIds(Arrays.asList("string")))
-            .withUserDetail(new UserDetail().withFirstName("string").withLastName("string")
-                .withEmailAddress("contoso@microsoft.com").withUserPrincipalName("contoso@microsoft.com")
+            .withOfferDetail(new OfferDetail().withPublisherId("string")
+                .withId("string")
+                .withPlanId("string")
+                .withPlanName("string")
+                .withTermUnit("string")
+                .withPrivateOfferId("string")
+                .withPrivateOfferIds(Arrays.asList("string")))
+            .withUserDetail(new UserDetail().withFirstName("string")
+                .withLastName("string")
+                .withEmailAddress("contoso@microsoft.com")
+                .withUserPrincipalName("contoso@microsoft.com")
                 .withAadEmail("contoso@microsoft.com"))
             .withTags(mapOf("Environment", "Dev"))
-            .withLinkOrganization(new LinkOrganization().withToken("fakeTokenPlaceholder")).create();
+            .withLinkOrganization(new LinkOrganization().withToken("fakeTokenPlaceholder"))
+            .create();
     }
 
     // Use "Map.of" if available
@@ -531,10 +524,11 @@ public final class OrganizationCreateApiKeySamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationCreateAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().createApiKeyWithResponse(
-            "myResourceGroup", "myOrganization", "env-12132", "clusterId-123", new CreateApiKeyModel()
-                .withName("CI kafka access key").withDescription("This API key provides kafka access to cluster x"),
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .createApiKeyWithResponse("myResourceGroup", "myOrganization", "env-12132", "clusterId-123",
+                new CreateApiKeyModel().withName("CI kafka access key")
+                    .withDescription("This API key provides kafka access to cluster x"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -578,8 +572,9 @@ public final class OrganizationDeleteClusterApiKeySamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationDeleteClusterAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().deleteClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "ZFZ6SZZZWGYBEIFB",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .deleteClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "ZFZ6SZZZWGYBEIFB",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -601,8 +596,8 @@ public final class OrganizationGetByResourceGroupSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGet(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getByResourceGroupWithResponse("myResourceGroup", "myOrganization",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -624,8 +619,9 @@ public final class OrganizationGetClusterApiKeySamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGetClusterAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "apiKeyId-123",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "apiKeyId-123",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -647,8 +643,9 @@ public final class OrganizationGetClusterByIdSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGetClusterById(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getClusterByIdWithResponse("myResourceGroup", "myOrganization", "env-12132",
-            "dlz-f3a90de", com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getClusterByIdWithResponse("myResourceGroup", "myOrganization", "env-12132", "dlz-f3a90de",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -670,8 +667,9 @@ public final class OrganizationGetEnvironmentByIdSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGetEnvironmentById(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getEnvironmentByIdWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getEnvironmentByIdWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -694,8 +692,9 @@ public final class OrganizationGetSchemaRegistryClusterByIdSamples {
      */
     public static void
         organizationGetSchemaRegistryClusterById(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getSchemaRegistryClusterByIdWithResponse("myResourceGroup", "myOrganization",
-            "env-stgcczjp2j3", "lsrc-stgczkq22z", com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getSchemaRegistryClusterByIdWithResponse("myResourceGroup", "myOrganization", "env-stgcczjp2j3",
+                "lsrc-stgczkq22z", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -762,8 +761,8 @@ public final class OrganizationListClustersSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListClusters(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listClusters("myResourceGroup", "myOrganization", "env-12132", 10, null,
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listClusters("myResourceGroup", "myOrganization", "env-12132", 10, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -785,8 +784,8 @@ public final class OrganizationListEnvironmentsSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListEnvironments(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listEnvironments("myResourceGroup", "myOrganization", 10, null,
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listEnvironments("myResourceGroup", "myOrganization", 10, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -813,10 +812,11 @@ public final class OrganizationListRegionsSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListRegions(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listRegionsWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel()
-                .withSearchFilters(mapOf("cloud", "azure", "packages", "ADVANCED,ESSENTIALS", "region", "eastus")),
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listRegionsWithResponse("myResourceGroup", "myOrganization",
+                new ListAccessRequestModel()
+                    .withSearchFilters(mapOf("cloud", "azure", "packages", "ADVANCED,ESSENTIALS", "region", "eastus")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
@@ -851,8 +851,9 @@ public final class OrganizationListSchemaRegistryClustersSamples {
      */
     public static void
         organizationListSchemaRegistryClusters(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listSchemaRegistryClusters("myResourceGroup", "myOrganization", "env-stgcczjp2j3", null,
-            null, com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listSchemaRegistryClusters("myResourceGroup", "myOrganization", "env-stgcczjp2j3", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -944,15 +945,23 @@ public final class ValidationsValidateOrganizationSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void validationsValidateOrganizations(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.validations().validateOrganizationWithResponse("myResourceGroup", "myOrganization",
-            new OrganizationResourceInner().withLocation("West US").withTags(mapOf("Environment", "Dev"))
-                .withOfferDetail(new OfferDetail().withPublisherId("string").withId("string").withPlanId("string")
-                    .withPlanName("string").withTermUnit("string").withPrivateOfferId("string")
-                    .withPrivateOfferIds(Arrays.asList("string")))
-                .withUserDetail(new UserDetail().withFirstName("string").withLastName("string")
-                    .withEmailAddress("abc@microsoft.com").withUserPrincipalName("abc@microsoft.com")
-                    .withAadEmail("abc@microsoft.com")),
-            com.azure.core.util.Context.NONE);
+        manager.validations()
+            .validateOrganizationWithResponse("myResourceGroup", "myOrganization",
+                new OrganizationResourceInner().withLocation("West US")
+                    .withTags(mapOf("Environment", "Dev"))
+                    .withOfferDetail(new OfferDetail().withPublisherId("string")
+                        .withId("string")
+                        .withPlanId("string")
+                        .withPlanName("string")
+                        .withTermUnit("string")
+                        .withPrivateOfferId("string")
+                        .withPrivateOfferIds(Arrays.asList("string")))
+                    .withUserDetail(new UserDetail().withFirstName("string")
+                        .withLastName("string")
+                        .withEmailAddress("abc@microsoft.com")
+                        .withUserPrincipalName("abc@microsoft.com")
+                        .withAadEmail("abc@microsoft.com")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
@@ -993,15 +1002,23 @@ public final class ValidationsValidateOrganizationV2Samples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void validationsValidateOrganizations(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.validations().validateOrganizationV2WithResponse("myResourceGroup", "myOrganization",
-            new OrganizationResourceInner().withLocation("West US").withTags(mapOf("Environment", "Dev"))
-                .withOfferDetail(new OfferDetail().withPublisherId("string").withId("string").withPlanId("string")
-                    .withPlanName("string").withTermUnit("string").withPrivateOfferId("string")
-                    .withPrivateOfferIds(Arrays.asList("string")))
-                .withUserDetail(new UserDetail().withFirstName("string").withLastName("string")
-                    .withEmailAddress("abc@microsoft.com").withUserPrincipalName("abc@microsoft.com")
-                    .withAadEmail("abc@microsoft.com")),
-            com.azure.core.util.Context.NONE);
+        manager.validations()
+            .validateOrganizationV2WithResponse("myResourceGroup", "myOrganization",
+                new OrganizationResourceInner().withLocation("West US")
+                    .withTags(mapOf("Environment", "Dev"))
+                    .withOfferDetail(new OfferDetail().withPublisherId("string")
+                        .withId("string")
+                        .withPlanId("string")
+                        .withPlanName("string")
+                        .withTermUnit("string")
+                        .withPrivateOfferId("string")
+                        .withPrivateOfferIds(Arrays.asList("string")))
+                    .withUserDetail(new UserDetail().withFirstName("string")
+                        .withLastName("string")
+                        .withEmailAddress("abc@microsoft.com")
+                        .withUserPrincipalName("abc@microsoft.com")
+                        .withAadEmail("abc@microsoft.com")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
