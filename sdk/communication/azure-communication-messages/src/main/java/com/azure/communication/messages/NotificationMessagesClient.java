@@ -73,7 +73,7 @@ public final class NotificationMessagesClient {
      * }
      * }</pre>
      *
-     * @param body Body parameter.
+     * @param body Details of the message to send.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -112,7 +112,7 @@ public final class NotificationMessagesClient {
     /**
      * Sends a notification message from Business to User.
      *
-     * @param body Body parameter.
+     * @param body Details of the message to send.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
