@@ -8,42 +8,44 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of FileSystems. */
+/**
+ * Resource collection API of FileSystems.
+ */
 public interface FileSystems {
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FileSystemResource> list();
+    PagedIterable<LiftrBaseStorageFileSystemResource> list();
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FileSystemResource> list(Context context);
+    PagedIterable<LiftrBaseStorageFileSystemResource> list(Context context);
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FileSystemResource> listByResourceGroup(String resourceGroupName);
+    PagedIterable<LiftrBaseStorageFileSystemResource> listByResourceGroup(String resourceGroupName);
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -51,11 +53,11 @@ public interface FileSystems {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<FileSystemResource> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<LiftrBaseStorageFileSystemResource> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -64,12 +66,12 @@ public interface FileSystems {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a FileSystemResource along with {@link Response}.
      */
-    Response<FileSystemResource> getByResourceGroupWithResponse(
-        String resourceGroupName, String fileSystemName, Context context);
+    Response<LiftrBaseStorageFileSystemResource> getByResourceGroupWithResponse(String resourceGroupName,
+        String fileSystemName, Context context);
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,11 +79,11 @@ public interface FileSystems {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a FileSystemResource.
      */
-    FileSystemResource getByResourceGroup(String resourceGroupName, String fileSystemName);
+    LiftrBaseStorageFileSystemResource getByResourceGroup(String resourceGroupName, String fileSystemName);
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -92,7 +94,7 @@ public interface FileSystems {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -104,18 +106,18 @@ public interface FileSystems {
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a FileSystemResource along with {@link Response}.
      */
-    FileSystemResource getById(String id);
+    LiftrBaseStorageFileSystemResource getById(String id);
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -123,11 +125,11 @@ public interface FileSystems {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a FileSystemResource along with {@link Response}.
      */
-    Response<FileSystemResource> getByIdWithResponse(String id, Context context);
+    Response<LiftrBaseStorageFileSystemResource> getByIdWithResponse(String id, Context context);
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -137,7 +139,7 @@ public interface FileSystems {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -147,10 +149,10 @@ public interface FileSystems {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new FileSystemResource resource.
-     *
+     * Begins definition for a new LiftrBaseStorageFileSystemResource resource.
+     * 
      * @param name resource name.
-     * @return the first stage of the new FileSystemResource definition.
+     * @return the first stage of the new LiftrBaseStorageFileSystemResource definition.
      */
-    FileSystemResource.DefinitionStages.Blank define(String name);
+    LiftrBaseStorageFileSystemResource.DefinitionStages.Blank define(String name);
 }

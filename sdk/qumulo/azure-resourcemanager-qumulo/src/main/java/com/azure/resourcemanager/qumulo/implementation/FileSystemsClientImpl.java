@@ -33,29 +33,35 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.qumulo.fluent.FileSystemsClient;
-import com.azure.resourcemanager.qumulo.fluent.models.FileSystemResourceInner;
+import com.azure.resourcemanager.qumulo.fluent.models.LiftrBaseStorageFileSystemResourceInner;
 import com.azure.resourcemanager.qumulo.models.FileSystemResourceListResult;
-import com.azure.resourcemanager.qumulo.models.FileSystemResourceUpdate;
+import com.azure.resourcemanager.qumulo.models.LiftrBaseStorageFileSystemResourceUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in FileSystemsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in FileSystemsClient.
+ */
 public final class FileSystemsClientImpl implements FileSystemsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final FileSystemsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final QumuloStorageImpl client;
 
     /**
      * Initializes an instance of FileSystemsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     FileSystemsClientImpl(QumuloStorageImpl client) {
-        this.service =
-            RestProxy.create(FileSystemsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(FileSystemsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -66,213 +72,153 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
     @Host("{$host}")
     @ServiceInterface(name = "QumuloStorageFileSys")
     public interface FileSystemsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Qumulo.Storage/fileSystems")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FileSystemResourceListResult>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<FileSystemResourceListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FileSystemResourceListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<FileSystemResourceListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FileSystemResourceInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<LiftrBaseStorageFileSystemResourceInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("fileSystemName") String fileSystemName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("fileSystemName") String fileSystemName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("fileSystemName") String fileSystemName,
-            @BodyParam("application/json") FileSystemResourceInner resource,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @BodyParam("application/json") LiftrBaseStorageFileSystemResourceInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FileSystemResourceInner>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<LiftrBaseStorageFileSystemResourceInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("fileSystemName") String fileSystemName,
-            @BodyParam("application/json") FileSystemResourceUpdate properties,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @BodyParam("application/json") LiftrBaseStorageFileSystemResourceUpdate properties,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Qumulo.Storage/fileSystems/{fileSystemName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("fileSystemName") String fileSystemName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("fileSystemName") String fileSystemName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FileSystemResourceListResult>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FileSystemResourceListResult>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            accept,
-                            context))
-            .<PagedResponse<FileSystemResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FileSystemResourceInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    private PagedFlux<LiftrBaseStorageFileSystemResourceInner> listAsync() {
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -280,26 +226,26 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FileSystemResourceInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    private PagedFlux<LiftrBaseStorageFileSystemResourceInner> listAsync(Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FileSystemResourceInner> list() {
+    public PagedIterable<LiftrBaseStorageFileSystemResourceInner> list() {
         return new PagedIterable<>(listAsync());
     }
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -307,33 +253,30 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FileSystemResourceInner> list(Context context) {
+    public PagedIterable<LiftrBaseStorageFileSystemResourceInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -341,53 +284,35 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            accept,
-                            context))
-            .<PagedResponse<FileSystemResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context))
+            .<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -396,27 +321,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -424,15 +337,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FileSystemResourceInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+    private PagedFlux<LiftrBaseStorageFileSystemResourceInner> listByResourceGroupAsync(String resourceGroupName) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -441,15 +353,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FileSystemResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+    private PagedFlux<LiftrBaseStorageFileSystemResourceInner> listByResourceGroupAsync(String resourceGroupName,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -457,13 +369,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FileSystemResourceInner> listByResourceGroup(String resourceGroupName) {
+    public PagedIterable<LiftrBaseStorageFileSystemResourceInner> listByResourceGroup(String resourceGroupName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
     }
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -472,13 +384,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FileSystemResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
+    public PagedIterable<LiftrBaseStorageFileSystemResourceInner> listByResourceGroup(String resourceGroupName,
+        Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
     }
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -487,19 +400,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return a FileSystemResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FileSystemResourceInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String fileSystemName) {
+    private Mono<Response<LiftrBaseStorageFileSystemResourceInner>>
+        getByResourceGroupWithResponseAsync(String resourceGroupName, String fileSystemName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -510,23 +419,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            fileSystemName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fileSystemName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -536,19 +436,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return a FileSystemResource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FileSystemResourceInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String fileSystemName, Context context) {
+    private Mono<Response<LiftrBaseStorageFileSystemResourceInner>>
+        getByResourceGroupWithResponseAsync(String resourceGroupName, String fileSystemName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -559,20 +455,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                fileSystemName,
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, fileSystemName, accept, context);
     }
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -581,14 +470,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return a FileSystemResource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FileSystemResourceInner> getByResourceGroupAsync(String resourceGroupName, String fileSystemName) {
+    private Mono<LiftrBaseStorageFileSystemResourceInner> getByResourceGroupAsync(String resourceGroupName,
+        String fileSystemName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, fileSystemName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -598,14 +488,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return a FileSystemResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FileSystemResourceInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String fileSystemName, Context context) {
+    public Response<LiftrBaseStorageFileSystemResourceInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String fileSystemName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, fileSystemName, context).block();
     }
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -614,35 +504,32 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return a FileSystemResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileSystemResourceInner getByResourceGroup(String resourceGroupName, String fileSystemName) {
+    public LiftrBaseStorageFileSystemResourceInner getByResourceGroup(String resourceGroupName, String fileSystemName) {
         return getByResourceGroupWithResponse(resourceGroupName, fileSystemName, Context.NONE).getValue();
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response} on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -658,24 +545,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            fileSystemName,
-                            resource,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fileSystemName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -683,22 +560,19 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response} on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -714,47 +588,37 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                fileSystemName,
-                resource,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, fileSystemName, resource, accept, context);
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link PollerFlux} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, fileSystemName, resource);
-        return this
-            .client
-            .<FileSystemResourceInner, FileSystemResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                FileSystemResourceInner.class,
-                FileSystemResourceInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, fileSystemName, resource);
+        return this.client
+            .<LiftrBaseStorageFileSystemResourceInner, LiftrBaseStorageFileSystemResourceInner>getLroResult(mono,
+                this.client.getHttpPipeline(), LiftrBaseStorageFileSystemResourceInner.class,
+                LiftrBaseStorageFileSystemResourceInner.class, this.client.getContext());
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -762,44 +626,44 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link PollerFlux} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context) {
+    private PollerFlux<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, fileSystemName, resource, context);
-        return this
-            .client
-            .<FileSystemResourceInner, FileSystemResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                FileSystemResourceInner.class,
-                FileSystemResourceInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, fileSystemName, resource, context);
+        return this.client
+            .<LiftrBaseStorageFileSystemResourceInner, LiftrBaseStorageFileSystemResourceInner>getLroResult(mono,
+                this.client.getHttpPipeline(), LiftrBaseStorageFileSystemResourceInner.class,
+                LiftrBaseStorageFileSystemResourceInner.class, context);
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link SyncPoller} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource) {
+    public SyncPoller<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdate(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource).getSyncPoller();
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -807,36 +671,38 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link SyncPoller} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context) {
+    public SyncPoller<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdate(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource, Context context) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource, context).getSyncPoller();
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FileSystemResourceInner> createOrUpdateAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource) {
-        return beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource)
-            .last()
+    private Mono<LiftrBaseStorageFileSystemResourceInner> createOrUpdateAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -844,36 +710,36 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FileSystemResourceInner> createOrUpdateAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource, context)
-            .last()
+    private Mono<LiftrBaseStorageFileSystemResourceInner> createOrUpdateAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, fileSystemName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileSystemResourceInner createOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource) {
+    public LiftrBaseStorageFileSystemResourceInner createOrUpdate(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceInner resource) {
         return createOrUpdateAsync(resourceGroupName, fileSystemName, resource).block();
     }
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -881,39 +747,36 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileSystemResourceInner createOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context) {
+    public LiftrBaseStorageFileSystemResourceInner createOrUpdate(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceInner resource, Context context) {
         return createOrUpdateAsync(resourceGroupName, fileSystemName, resource, context).block();
     }
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response} on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FileSystemResourceInner>> updateWithResponseAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties) {
+    private Mono<Response<LiftrBaseStorageFileSystemResourceInner>> updateWithResponseAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceUpdate properties) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -929,24 +792,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            fileSystemName,
-                            properties,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fileSystemName, properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
@@ -954,22 +807,19 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response} on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FileSystemResourceInner>> updateWithResponseAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties, Context context) {
+    private Mono<Response<LiftrBaseStorageFileSystemResourceInner>> updateWithResponseAsync(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceUpdate properties, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -985,39 +835,32 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                fileSystemName,
-                properties,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, fileSystemName, properties, accept, context);
     }
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo on successful completion of {@link Mono}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FileSystemResourceInner> updateAsync(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties) {
+    private Mono<LiftrBaseStorageFileSystemResourceInner> updateAsync(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceUpdate properties) {
         return updateWithResponseAsync(resourceGroupName, fileSystemName, properties)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
@@ -1025,34 +868,35 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FileSystemResourceInner> updateWithResponse(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties, Context context) {
+    public Response<LiftrBaseStorageFileSystemResourceInner> updateWithResponse(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceUpdate properties, Context context) {
         return updateWithResponseAsync(resourceGroupName, fileSystemName, properties, context).block();
     }
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileSystemResourceInner update(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties) {
+    public LiftrBaseStorageFileSystemResourceInner update(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceUpdate properties) {
         return updateWithResponse(resourceGroupName, fileSystemName, properties, Context.NONE).getValue();
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1063,16 +907,12 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String fileSystemName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1083,23 +923,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            fileSystemName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, fileSystemName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -1109,19 +940,15 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String fileSystemName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String fileSystemName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1132,20 +959,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                fileSystemName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, fileSystemName, accept, context);
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1156,15 +976,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String fileSystemName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, fileSystemName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -1174,18 +992,17 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String fileSystemName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String fileSystemName,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, fileSystemName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1200,7 +1017,7 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -1210,14 +1027,14 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String fileSystemName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String fileSystemName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, fileSystemName, context).getSyncPoller();
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1227,14 +1044,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String fileSystemName) {
-        return beginDeleteAsync(resourceGroupName, fileSystemName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, fileSystemName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -1245,14 +1061,13 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String fileSystemName, Context context) {
-        return beginDeleteAsync(resourceGroupName, fileSystemName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, fileSystemName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1266,7 +1081,7 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -1281,155 +1096,117 @@ public final class FileSystemsClientImpl implements FileSystemsClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listBySubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<FileSystemResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listBySubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<FileSystemResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FileSystemResourceInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<LiftrBaseStorageFileSystemResourceInner>>
+        listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -10,9 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.qumulo.fluent.FileSystemsClient;
-import com.azure.resourcemanager.qumulo.fluent.models.FileSystemResourceInner;
-import com.azure.resourcemanager.qumulo.models.FileSystemResource;
+import com.azure.resourcemanager.qumulo.fluent.models.LiftrBaseStorageFileSystemResourceInner;
 import com.azure.resourcemanager.qumulo.models.FileSystems;
+import com.azure.resourcemanager.qumulo.models.LiftrBaseStorageFileSystemResource;
 
 public final class FileSystemsImpl implements FileSystems {
     private static final ClientLogger LOGGER = new ClientLogger(FileSystemsImpl.class);
@@ -21,52 +21,56 @@ public final class FileSystemsImpl implements FileSystems {
 
     private final com.azure.resourcemanager.qumulo.QumuloManager serviceManager;
 
-    public FileSystemsImpl(
-        FileSystemsClient innerClient, com.azure.resourcemanager.qumulo.QumuloManager serviceManager) {
+    public FileSystemsImpl(FileSystemsClient innerClient,
+        com.azure.resourcemanager.qumulo.QumuloManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<FileSystemResource> list() {
-        PagedIterable<FileSystemResourceInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new FileSystemResourceImpl(inner1, this.manager()));
+    public PagedIterable<LiftrBaseStorageFileSystemResource> list() {
+        PagedIterable<LiftrBaseStorageFileSystemResourceInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new LiftrBaseStorageFileSystemResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FileSystemResource> list(Context context) {
-        PagedIterable<FileSystemResourceInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new FileSystemResourceImpl(inner1, this.manager()));
+    public PagedIterable<LiftrBaseStorageFileSystemResource> list(Context context) {
+        PagedIterable<LiftrBaseStorageFileSystemResourceInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new LiftrBaseStorageFileSystemResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FileSystemResource> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<FileSystemResourceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new FileSystemResourceImpl(inner1, this.manager()));
+    public PagedIterable<LiftrBaseStorageFileSystemResource> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<LiftrBaseStorageFileSystemResourceInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new LiftrBaseStorageFileSystemResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FileSystemResource> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<FileSystemResourceInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new FileSystemResourceImpl(inner1, this.manager()));
+    public PagedIterable<LiftrBaseStorageFileSystemResource> listByResourceGroup(String resourceGroupName,
+        Context context) {
+        PagedIterable<LiftrBaseStorageFileSystemResourceInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new LiftrBaseStorageFileSystemResourceImpl(inner1, this.manager()));
     }
 
-    public Response<FileSystemResource> getByResourceGroupWithResponse(
-        String resourceGroupName, String fileSystemName, Context context) {
-        Response<FileSystemResourceInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, fileSystemName, context);
+    public Response<LiftrBaseStorageFileSystemResource> getByResourceGroupWithResponse(String resourceGroupName,
+        String fileSystemName, Context context) {
+        Response<LiftrBaseStorageFileSystemResourceInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, fileSystemName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new FileSystemResourceImpl(inner.getValue(), this.manager()));
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new LiftrBaseStorageFileSystemResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public FileSystemResource getByResourceGroup(String resourceGroupName, String fileSystemName) {
-        FileSystemResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, fileSystemName);
+    public LiftrBaseStorageFileSystemResource getByResourceGroup(String resourceGroupName, String fileSystemName) {
+        LiftrBaseStorageFileSystemResourceInner inner
+            = this.serviceClient().getByResourceGroup(resourceGroupName, fileSystemName);
         if (inner != null) {
-            return new FileSystemResourceImpl(inner, this.manager());
+            return new LiftrBaseStorageFileSystemResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -80,78 +84,58 @@ public final class FileSystemsImpl implements FileSystems {
         this.serviceClient().delete(resourceGroupName, fileSystemName, context);
     }
 
-    public FileSystemResource getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+    public LiftrBaseStorageFileSystemResource getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String fileSystemName = Utils.getValueFromIdByName(id, "fileSystems");
+        String fileSystemName = ResourceManagerUtils.getValueFromIdByName(id, "fileSystems");
         if (fileSystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, fileSystemName, Context.NONE).getValue();
     }
 
-    public Response<FileSystemResource> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+    public Response<LiftrBaseStorageFileSystemResource> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String fileSystemName = Utils.getValueFromIdByName(id, "fileSystems");
+        String fileSystemName = ResourceManagerUtils.getValueFromIdByName(id, "fileSystems");
         if (fileSystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, fileSystemName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String fileSystemName = Utils.getValueFromIdByName(id, "fileSystems");
+        String fileSystemName = ResourceManagerUtils.getValueFromIdByName(id, "fileSystems");
         if (fileSystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
         }
         this.delete(resourceGroupName, fileSystemName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String fileSystemName = Utils.getValueFromIdByName(id, "fileSystems");
+        String fileSystemName = ResourceManagerUtils.getValueFromIdByName(id, "fileSystems");
         if (fileSystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fileSystems'.", id)));
         }
         this.delete(resourceGroupName, fileSystemName, context);
     }
@@ -164,7 +148,7 @@ public final class FileSystemsImpl implements FileSystems {
         return this.serviceManager;
     }
 
-    public FileSystemResourceImpl define(String name) {
-        return new FileSystemResourceImpl(name, this.manager());
+    public LiftrBaseStorageFileSystemResourceImpl define(String name) {
+        return new LiftrBaseStorageFileSystemResourceImpl(name, this.manager());
     }
 }

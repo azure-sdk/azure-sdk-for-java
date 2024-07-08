@@ -11,24 +11,26 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.qumulo.fluent.models.FileSystemResourceInner;
-import com.azure.resourcemanager.qumulo.models.FileSystemResourceUpdate;
+import com.azure.resourcemanager.qumulo.fluent.models.LiftrBaseStorageFileSystemResourceInner;
+import com.azure.resourcemanager.qumulo.models.LiftrBaseStorageFileSystemResourceUpdate;
 
-/** An instance of this class provides access to all the operations defined in FileSystemsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in FileSystemsClient.
+ */
 public interface FileSystemsClient {
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FileSystemResourceInner> list();
+    PagedIterable<LiftrBaseStorageFileSystemResourceInner> list();
 
     /**
      * List FileSystemResource resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -36,11 +38,11 @@ public interface FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FileSystemResourceInner> list(Context context);
+    PagedIterable<LiftrBaseStorageFileSystemResourceInner> list(Context context);
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -48,11 +50,11 @@ public interface FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FileSystemResourceInner> listByResourceGroup(String resourceGroupName);
+    PagedIterable<LiftrBaseStorageFileSystemResourceInner> listByResourceGroup(String resourceGroupName);
 
     /**
      * List FileSystemResource resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -61,11 +63,12 @@ public interface FileSystemsClient {
      * @return the response of a FileSystemResource list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FileSystemResourceInner> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<LiftrBaseStorageFileSystemResourceInner> listByResourceGroup(String resourceGroupName,
+        Context context);
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -75,12 +78,12 @@ public interface FileSystemsClient {
      * @return a FileSystemResource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<FileSystemResourceInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String fileSystemName, Context context);
+    Response<LiftrBaseStorageFileSystemResourceInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String fileSystemName, Context context);
 
     /**
      * Get a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -89,26 +92,28 @@ public interface FileSystemsClient {
      * @return a FileSystemResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FileSystemResourceInner getByResourceGroup(String resourceGroupName, String fileSystemName);
+    LiftrBaseStorageFileSystemResourceInner getByResourceGroup(String resourceGroupName, String fileSystemName);
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link SyncPoller} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource);
+    SyncPoller<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdate(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource);
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -116,30 +121,32 @@ public interface FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a FileSystem Resource by Qumulo.
+     * @return the {@link SyncPoller} for polling of concrete tracked resource types can be created by aliasing this
+     * type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<FileSystemResourceInner>, FileSystemResourceInner> beginCreateOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context);
+    SyncPoller<PollResult<LiftrBaseStorageFileSystemResourceInner>, LiftrBaseStorageFileSystemResourceInner>
+        beginCreateOrUpdate(String resourceGroupName, String fileSystemName,
+            LiftrBaseStorageFileSystemResourceInner resource, Context context);
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FileSystemResourceInner createOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource);
+    LiftrBaseStorageFileSystemResourceInner createOrUpdate(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceInner resource);
 
     /**
      * Create a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param resource Resource create parameters.
@@ -147,15 +154,15 @@ public interface FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FileSystemResourceInner createOrUpdate(
-        String resourceGroupName, String fileSystemName, FileSystemResourceInner resource, Context context);
+    LiftrBaseStorageFileSystemResourceInner createOrUpdate(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceInner resource, Context context);
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
@@ -163,30 +170,31 @@ public interface FileSystemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo along with {@link Response}.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<FileSystemResourceInner> updateWithResponse(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties, Context context);
+    Response<LiftrBaseStorageFileSystemResourceInner> updateWithResponse(String resourceGroupName,
+        String fileSystemName, LiftrBaseStorageFileSystemResourceUpdate properties, Context context);
 
     /**
      * Update a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FileSystem Resource by Qumulo.
+     * @return concrete tracked resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FileSystemResourceInner update(
-        String resourceGroupName, String fileSystemName, FileSystemResourceUpdate properties);
+    LiftrBaseStorageFileSystemResourceInner update(String resourceGroupName, String fileSystemName,
+        LiftrBaseStorageFileSystemResourceUpdate properties);
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -199,7 +207,7 @@ public interface FileSystemsClient {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
@@ -213,7 +221,7 @@ public interface FileSystemsClient {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -225,7 +233,7 @@ public interface FileSystemsClient {
 
     /**
      * Delete a FileSystemResource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fileSystemName Name of the File System resource.
      * @param context The context to associate with this operation.
