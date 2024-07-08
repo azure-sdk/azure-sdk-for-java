@@ -9,7 +9,8 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * PrivateEndpointConnections_Delete_MaximumSet_Gen.json
      */
     /**
@@ -19,22 +20,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void
         privateEndpointConnectionsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().delete("resourcegroupname", "elasticsanname",
-            "privateendpointconnectionname", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * PrivateEndpointConnections_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Delete_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        privateEndpointConnectionsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().delete("resourcegroupname", "elasticsanname",
-            "privateendpointconnectionname", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .delete("rgelasticsan", "elasticsanname", "xpp", com.azure.core.util.Context.NONE);
     }
 }

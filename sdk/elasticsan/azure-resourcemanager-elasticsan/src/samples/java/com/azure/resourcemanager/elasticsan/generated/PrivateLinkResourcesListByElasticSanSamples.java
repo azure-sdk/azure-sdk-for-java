@@ -9,22 +9,8 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class PrivateLinkResourcesListByElasticSanSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void privateLinkResourcesListByElasticSanMinimumSetGen(
-        com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateLinkResources().listByElasticSanWithResponse("resourcegroupname", "elasticsanname",
-            com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.json
      */
     /**
@@ -34,7 +20,7 @@ public final class PrivateLinkResourcesListByElasticSanSamples {
      */
     public static void privateLinkResourcesListByElasticSanMaximumSetGen(
         com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateLinkResources().listByElasticSanWithResponse("resourcegroupname", "elasticsanname",
-            com.azure.core.util.Context.NONE);
+        manager.privateLinkResources()
+            .listByElasticSanWithResponse("rgelasticsan", "elasticsanname", com.azure.core.util.Context.NONE);
     }
 }
