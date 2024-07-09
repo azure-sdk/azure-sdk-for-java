@@ -6,36 +6,28 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.datafactory.fluent.models.SharePointOnlineListLinkedServiceTypeProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * SharePoint Online List linked service.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    property = "type",
-    defaultImpl = SharePointOnlineListLinkedService.class,
-    visible = true)
-@JsonTypeName("SharePointOnlineList")
 @Fluent
 public final class SharePointOnlineListLinkedService extends LinkedService {
     /*
      * Type of linked service.
      */
-    @JsonTypeId
-    @JsonProperty(value = "type", required = true)
     private String type = "SharePointOnlineList";
 
     /*
      * SharePoint Online List linked service properties.
      */
-    @JsonProperty(value = "typeProperties", required = true)
     private SharePointOnlineListLinkedServiceTypeProperties innerTypeProperties
         = new SharePointOnlineListLinkedServiceTypeProperties();
 
@@ -203,6 +195,62 @@ public final class SharePointOnlineListLinkedService extends LinkedService {
     }
 
     /**
+     * Get the servicePrincipalCredentialType property: The service principal credential type to use in Server-To-Server
+     * authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or
+     * Expression with resultType string).
+     * 
+     * @return the servicePrincipalCredentialType value.
+     */
+    public Object servicePrincipalCredentialType() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().servicePrincipalCredentialType();
+    }
+
+    /**
+     * Set the servicePrincipalCredentialType property: The service principal credential type to use in Server-To-Server
+     * authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or
+     * Expression with resultType string).
+     * 
+     * @param servicePrincipalCredentialType the servicePrincipalCredentialType value to set.
+     * @return the SharePointOnlineListLinkedService object itself.
+     */
+    public SharePointOnlineListLinkedService withServicePrincipalCredentialType(Object servicePrincipalCredentialType) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SharePointOnlineListLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withServicePrincipalCredentialType(servicePrincipalCredentialType);
+        return this;
+    }
+
+    /**
+     * Get the servicePrincipalCredential property: The credential of the service principal object in Azure Active
+     * Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be
+     * SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert',
+     * servicePrincipalCredential can only be AzureKeyVaultSecretReference.
+     * 
+     * @return the servicePrincipalCredential value.
+     */
+    public SecretBase servicePrincipalCredential() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().servicePrincipalCredential();
+    }
+
+    /**
+     * Set the servicePrincipalCredential property: The credential of the service principal object in Azure Active
+     * Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be
+     * SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert',
+     * servicePrincipalCredential can only be AzureKeyVaultSecretReference.
+     * 
+     * @param servicePrincipalCredential the servicePrincipalCredential value to set.
+     * @return the SharePointOnlineListLinkedService object itself.
+     */
+    public SharePointOnlineListLinkedService withServicePrincipalCredential(SecretBase servicePrincipalCredential) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SharePointOnlineListLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withServicePrincipalCredential(servicePrincipalCredential);
+        return this;
+    }
+
+    /**
      * Get the encryptedCredential property: The encrypted credential used for authentication. Credentials are encrypted
      * using the integration runtime credential manager. Type: string.
      * 
@@ -245,4 +293,73 @@ public final class SharePointOnlineListLinkedService extends LinkedService {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SharePointOnlineListLinkedService.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("connectVia", connectVia());
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeMapField("parameters", parameters(), (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("annotations", annotations(), (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeJsonField("typeProperties", this.innerTypeProperties);
+        jsonWriter.writeStringField("type", this.type);
+        if (additionalProperties() != null) {
+            for (Map.Entry<String, Object> additionalProperty : additionalProperties().entrySet()) {
+                jsonWriter.writeUntypedField(additionalProperty.getKey(), additionalProperty.getValue());
+            }
+        }
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SharePointOnlineListLinkedService from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SharePointOnlineListLinkedService if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SharePointOnlineListLinkedService.
+     */
+    public static SharePointOnlineListLinkedService fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SharePointOnlineListLinkedService deserializedSharePointOnlineListLinkedService
+                = new SharePointOnlineListLinkedService();
+            Map<String, Object> additionalProperties = null;
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("connectVia".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedService
+                        .withConnectVia(IntegrationRuntimeReference.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedService.withDescription(reader.getString());
+                } else if ("parameters".equals(fieldName)) {
+                    Map<String, ParameterSpecification> parameters
+                        = reader.readMap(reader1 -> ParameterSpecification.fromJson(reader1));
+                    deserializedSharePointOnlineListLinkedService.withParameters(parameters);
+                } else if ("annotations".equals(fieldName)) {
+                    List<Object> annotations = reader.readArray(reader1 -> reader1.readUntyped());
+                    deserializedSharePointOnlineListLinkedService.withAnnotations(annotations);
+                } else if ("typeProperties".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedService.innerTypeProperties
+                        = SharePointOnlineListLinkedServiceTypeProperties.fromJson(reader);
+                } else if ("type".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedService.type = reader.getString();
+                } else {
+                    if (additionalProperties == null) {
+                        additionalProperties = new LinkedHashMap<>();
+                    }
+
+                    additionalProperties.put(fieldName, reader.readUntyped());
+                }
+            }
+            deserializedSharePointOnlineListLinkedService.withAdditionalProperties(additionalProperties);
+
+            return deserializedSharePointOnlineListLinkedService;
+        });
+    }
 }

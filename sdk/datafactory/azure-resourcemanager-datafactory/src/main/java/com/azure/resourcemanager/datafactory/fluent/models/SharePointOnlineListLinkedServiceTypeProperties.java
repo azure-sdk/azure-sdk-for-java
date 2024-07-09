@@ -6,47 +6,61 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * SharePoint Online List linked service properties.
  */
 @Fluent
-public final class SharePointOnlineListLinkedServiceTypeProperties {
+public final class SharePointOnlineListLinkedServiceTypeProperties
+    implements JsonSerializable<SharePointOnlineListLinkedServiceTypeProperties> {
     /*
      * The URL of the SharePoint Online site. For example, https://contoso.sharepoint.com/sites/siteName. Type: string
      * (or Expression with resultType string).
      */
-    @JsonProperty(value = "siteUrl", required = true)
     private Object siteUrl;
 
     /*
      * The tenant ID under which your application resides. You can find it from Azure portal Active Directory overview
      * page. Type: string (or Expression with resultType string).
      */
-    @JsonProperty(value = "tenantId", required = true)
     private Object tenantId;
 
     /*
      * The application (client) ID of your application registered in Azure Active Directory. Make sure to grant
      * SharePoint site permission to this application. Type: string (or Expression with resultType string).
      */
-    @JsonProperty(value = "servicePrincipalId", required = true)
     private Object servicePrincipalId;
 
     /*
      * The client secret of your application registered in Azure Active Directory. Type: string (or Expression with
      * resultType string).
      */
-    @JsonProperty(value = "servicePrincipalKey", required = true)
     private SecretBase servicePrincipalKey;
+
+    /*
+     * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for
+     * key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
+     */
+    private Object servicePrincipalCredentialType;
+
+    /*
+     * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is
+     * 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If
+     * servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be
+     * AzureKeyVaultSecretReference.
+     */
+    private SecretBase servicePrincipalCredential;
 
     /*
      * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime
      * credential manager. Type: string.
      */
-    @JsonProperty(value = "encryptedCredential")
     private String encryptedCredential;
 
     /**
@@ -146,6 +160,58 @@ public final class SharePointOnlineListLinkedServiceTypeProperties {
     }
 
     /**
+     * Get the servicePrincipalCredentialType property: The service principal credential type to use in Server-To-Server
+     * authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or
+     * Expression with resultType string).
+     * 
+     * @return the servicePrincipalCredentialType value.
+     */
+    public Object servicePrincipalCredentialType() {
+        return this.servicePrincipalCredentialType;
+    }
+
+    /**
+     * Set the servicePrincipalCredentialType property: The service principal credential type to use in Server-To-Server
+     * authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or
+     * Expression with resultType string).
+     * 
+     * @param servicePrincipalCredentialType the servicePrincipalCredentialType value to set.
+     * @return the SharePointOnlineListLinkedServiceTypeProperties object itself.
+     */
+    public SharePointOnlineListLinkedServiceTypeProperties
+        withServicePrincipalCredentialType(Object servicePrincipalCredentialType) {
+        this.servicePrincipalCredentialType = servicePrincipalCredentialType;
+        return this;
+    }
+
+    /**
+     * Get the servicePrincipalCredential property: The credential of the service principal object in Azure Active
+     * Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be
+     * SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert',
+     * servicePrincipalCredential can only be AzureKeyVaultSecretReference.
+     * 
+     * @return the servicePrincipalCredential value.
+     */
+    public SecretBase servicePrincipalCredential() {
+        return this.servicePrincipalCredential;
+    }
+
+    /**
+     * Set the servicePrincipalCredential property: The credential of the service principal object in Azure Active
+     * Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be
+     * SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert',
+     * servicePrincipalCredential can only be AzureKeyVaultSecretReference.
+     * 
+     * @param servicePrincipalCredential the servicePrincipalCredential value to set.
+     * @return the SharePointOnlineListLinkedServiceTypeProperties object itself.
+     */
+    public SharePointOnlineListLinkedServiceTypeProperties
+        withServicePrincipalCredential(SecretBase servicePrincipalCredential) {
+        this.servicePrincipalCredential = servicePrincipalCredential;
+        return this;
+    }
+
+    /**
      * Get the encryptedCredential property: The encrypted credential used for authentication. Credentials are encrypted
      * using the integration runtime credential manager. Type: string.
      * 
@@ -188,14 +254,74 @@ public final class SharePointOnlineListLinkedServiceTypeProperties {
                 .log(new IllegalArgumentException(
                     "Missing required property servicePrincipalId in model SharePointOnlineListLinkedServiceTypeProperties"));
         }
-        if (servicePrincipalKey() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property servicePrincipalKey in model SharePointOnlineListLinkedServiceTypeProperties"));
-        } else {
+        if (servicePrincipalKey() != null) {
             servicePrincipalKey().validate();
+        }
+        if (servicePrincipalCredential() != null) {
+            servicePrincipalCredential().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SharePointOnlineListLinkedServiceTypeProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeUntypedField("siteUrl", this.siteUrl);
+        jsonWriter.writeUntypedField("tenantId", this.tenantId);
+        jsonWriter.writeUntypedField("servicePrincipalId", this.servicePrincipalId);
+        jsonWriter.writeJsonField("servicePrincipalKey", this.servicePrincipalKey);
+        jsonWriter.writeUntypedField("servicePrincipalCredentialType", this.servicePrincipalCredentialType);
+        jsonWriter.writeJsonField("servicePrincipalCredential", this.servicePrincipalCredential);
+        jsonWriter.writeStringField("encryptedCredential", this.encryptedCredential);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SharePointOnlineListLinkedServiceTypeProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SharePointOnlineListLinkedServiceTypeProperties if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SharePointOnlineListLinkedServiceTypeProperties.
+     */
+    public static SharePointOnlineListLinkedServiceTypeProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SharePointOnlineListLinkedServiceTypeProperties deserializedSharePointOnlineListLinkedServiceTypeProperties
+                = new SharePointOnlineListLinkedServiceTypeProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("siteUrl".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.siteUrl = reader.readUntyped();
+                } else if ("tenantId".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.tenantId = reader.readUntyped();
+                } else if ("servicePrincipalId".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.servicePrincipalId
+                        = reader.readUntyped();
+                } else if ("servicePrincipalKey".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.servicePrincipalKey
+                        = SecretBase.fromJson(reader);
+                } else if ("servicePrincipalCredentialType".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.servicePrincipalCredentialType
+                        = reader.readUntyped();
+                } else if ("servicePrincipalCredential".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.servicePrincipalCredential
+                        = SecretBase.fromJson(reader);
+                } else if ("encryptedCredential".equals(fieldName)) {
+                    deserializedSharePointOnlineListLinkedServiceTypeProperties.encryptedCredential
+                        = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSharePointOnlineListLinkedServiceTypeProperties;
+        });
+    }
 }
