@@ -13,6 +13,9 @@ import com.azure.resourcemanager.devopsinfrastructure.fluent.PoolsClient;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner;
 import com.azure.resourcemanager.devopsinfrastructure.models.Pool;
 import com.azure.resourcemanager.devopsinfrastructure.models.Pools;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public final class PoolsImpl implements Pools {
     private static final ClientLogger LOGGER = new ClientLogger(PoolsImpl.class);
@@ -73,6 +76,20 @@ public final class PoolsImpl implements Pools {
     public PagedIterable<Pool> list(Context context) {
         PagedIterable<PoolInner> inner = this.serviceClient().list(context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PoolImpl(inner1, this.manager()));
+    }
+
+    public Response<List<Map<String, Integer>>> getUsageWithResponse(String resourceGroupName, String poolName,
+        Context context) {
+        return this.serviceClient().getUsageWithResponse(resourceGroupName, poolName, context);
+    }
+
+    public List<Map<String, Integer>> getUsage(String resourceGroupName, String poolName) {
+        List<Map<String, Integer>> inner = this.serviceClient().getUsage(resourceGroupName, poolName);
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public Pool getById(String id) {

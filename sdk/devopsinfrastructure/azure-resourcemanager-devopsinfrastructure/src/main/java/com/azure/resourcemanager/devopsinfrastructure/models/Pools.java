@@ -7,6 +7,8 @@ package com.azure.resourcemanager.devopsinfrastructure.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Resource collection API of Pools.
@@ -102,6 +104,32 @@ public interface Pools {
      * @return the response of a Pool list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Pool> list(Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response}.
+     */
+    Response<List<Map<String, Integer>>> getUsageWithResponse(String resourceGroupName, String poolName,
+        Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week.
+     */
+    List<Map<String, Integer>> getUsage(String resourceGroupName, String poolName);
 
     /**
      * Get a Pool.
