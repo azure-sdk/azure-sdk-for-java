@@ -11,19 +11,18 @@ import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager;
-import com.azure.resourcemanager.devopsinfrastructure.models.ActionType;
-import com.azure.resourcemanager.devopsinfrastructure.models.Operation;
+import com.azure.resourcemanager.devopsinfrastructure.models.Quota;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class OperationsListMockTests {
+public final class SubscriptionUsagesUsagesMockTests {
     @Test
-    public void testList() throws Exception {
+    public void testUsages() throws Exception {
         String responseStr
-            = "{\"value\":[{\"name\":\"bogqxndlkzgxhu\",\"isDataAction\":true,\"display\":{\"provider\":\"podxunkb\",\"resource\":\"xmubyyntwlrbq\",\"operation\":\"oievseotgqrlltm\",\"description\":\"lauwzizxbmpgcjef\"},\"origin\":\"user\",\"actionType\":\"Internal\"}]}";
+            = "{\"value\":[{\"id\":\"fz\",\"unit\":\"whxxbuyqax\",\"currentValue\":3453211564265327754,\"limit\":5500271153534098761}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,12 +31,11 @@ public final class OperationsListMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        PagedIterable<Operation> response = manager.operations().list(com.azure.core.util.Context.NONE);
+        PagedIterable<Quota> response = manager.subscriptionUsages().usages("ncckw", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("podxunkb", response.iterator().next().display().provider());
-        Assertions.assertEquals("xmubyyntwlrbq", response.iterator().next().display().resource());
-        Assertions.assertEquals("oievseotgqrlltm", response.iterator().next().display().operation());
-        Assertions.assertEquals("lauwzizxbmpgcjef", response.iterator().next().display().description());
-        Assertions.assertEquals(ActionType.INTERNAL, response.iterator().next().actionType());
+        Assertions.assertEquals("fz", response.iterator().next().id());
+        Assertions.assertEquals("whxxbuyqax", response.iterator().next().unit());
+        Assertions.assertEquals(3453211564265327754L, response.iterator().next().currentValue());
+        Assertions.assertEquals(5500271153534098761L, response.iterator().next().limit());
     }
 }

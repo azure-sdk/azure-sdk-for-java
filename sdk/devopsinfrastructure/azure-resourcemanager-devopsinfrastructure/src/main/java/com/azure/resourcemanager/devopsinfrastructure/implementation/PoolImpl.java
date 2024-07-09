@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devopsinfrastructure.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -14,6 +15,7 @@ import com.azure.resourcemanager.devopsinfrastructure.models.PoolProperties;
 import com.azure.resourcemanager.devopsinfrastructure.models.PoolUpdate;
 import com.azure.resourcemanager.devopsinfrastructure.models.PoolUpdateProperties;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
@@ -149,6 +151,14 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
             .getByResourceGroupWithResponse(resourceGroupName, poolName, context)
             .getValue();
         return this;
+    }
+
+    public Response<List<Map<String, Integer>>> getUsageWithResponse(Context context) {
+        return serviceManager.pools().getUsageWithResponse(resourceGroupName, poolName, context);
+    }
+
+    public List<Map<String, Integer>> getUsage() {
+        return serviceManager.pools().getUsage(resourceGroupName, poolName);
     }
 
     public PoolImpl withRegion(Region location) {

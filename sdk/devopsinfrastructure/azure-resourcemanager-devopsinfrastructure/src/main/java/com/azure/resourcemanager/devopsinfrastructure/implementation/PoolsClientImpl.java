@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -37,6 +38,8 @@ import com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner;
 import com.azure.resourcemanager.devopsinfrastructure.implementation.models.PoolListResult;
 import com.azure.resourcemanager.devopsinfrastructure.models.PoolUpdate;
 import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -123,6 +126,15 @@ public final class PoolsClientImpl implements PoolsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PoolListResult>> list(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}/usage")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<List<Map<String, Integer>>>> getUsage(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("poolName") String poolName,
             @HeaderParam("accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -1163,6 +1175,125 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PoolInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<List<Map<String, Integer>>>> getUsageWithResponseAsync(String resourceGroupName,
+        String poolName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (poolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter poolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getUsage(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, poolName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<List<Map<String, Integer>>>> getUsageWithResponseAsync(String resourceGroupName,
+        String poolName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (poolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter poolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getUsage(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, poolName, accept, context);
+    }
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<List<Map<String, Integer>>> getUsageAsync(String resourceGroupName, String poolName) {
+        return getUsageWithResponseAsync(resourceGroupName, poolName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<List<Map<String, Integer>>> getUsageWithResponse(String resourceGroupName, String poolName,
+        Context context) {
+        return getUsageWithResponseAsync(resourceGroupName, poolName, context).block();
+    }
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<Map<String, Integer>> getUsage(String resourceGroupName, String poolName) {
+        return getUsageWithResponse(resourceGroupName, poolName, Context.NONE).getValue();
     }
 
     /**

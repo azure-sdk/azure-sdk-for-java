@@ -6,23 +6,22 @@ package com.azure.resourcemanager.devopsinfrastructure.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager;
-import com.azure.resourcemanager.devopsinfrastructure.models.Quota;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class SubscriptionUsagesListByLocationMockTests {
+public final class PoolsGetUsageWithResponseMockTests {
     @Test
-    public void testListByLocation() throws Exception {
-        String responseStr
-            = "{\"value\":[{\"properties\":{\"unit\":\"jzrwrdgrtw\",\"currentValue\":1523837111721006893,\"limit\":560219894776191821,\"name\":{\"value\":\"kopbminrf\",\"localizedValue\":\"oyuhhziui\"}},\"id\":\"ozbhdmsmlmzq\",\"name\":\"oftrmaequia\",\"type\":\"xicslfao\"}]}";
+    public void testGetUsageWithResponse() throws Exception {
+        String responseStr = "[{\"ysuiizynkedya\":1257157038}]";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -31,13 +30,10 @@ public final class SubscriptionUsagesListByLocationMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        PagedIterable<Quota> response
-            = manager.subscriptionUsages().listByLocation("ejdcngqqmoakuf", com.azure.core.util.Context.NONE);
+        List<Map<String, Integer>> response = manager.pools()
+            .getUsageWithResponse("swsrms", "yzrpzbchckqqzq", com.azure.core.util.Context.NONE)
+            .getValue();
 
-        Assertions.assertEquals("jzrwrdgrtw", response.iterator().next().properties().unit());
-        Assertions.assertEquals(1523837111721006893L, response.iterator().next().properties().currentValue());
-        Assertions.assertEquals(560219894776191821L, response.iterator().next().properties().limit());
-        Assertions.assertEquals("kopbminrf", response.iterator().next().properties().name().value());
-        Assertions.assertEquals("oyuhhziui", response.iterator().next().properties().name().localizedValue());
+        Assertions.assertEquals(1257157038, response.get(0).get("ysuiizynkedya"));
     }
 }

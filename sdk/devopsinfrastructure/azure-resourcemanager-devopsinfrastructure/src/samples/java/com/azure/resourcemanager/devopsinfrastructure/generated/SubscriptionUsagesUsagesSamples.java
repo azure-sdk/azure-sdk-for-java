@@ -5,20 +5,21 @@
 package com.azure.resourcemanager.devopsinfrastructure.generated;
 
 /**
- * Samples for Pools Delete.
+ * Samples for SubscriptionUsages Usages.
  */
-public final class PoolsDeleteSamples {
+public final class SubscriptionUsagesUsagesSamples {
     /*
      * x-ms-original-file:
      * specification/devopsinfrastructure/Microsoft.DevOpsInfrastructure.Management/examples/2024-07-03-preview/
-     * DeletePool.json
+     * SubscriptionUsages_Usages.json
      */
     /**
-     * Sample code: Pools_Delete.
+     * Sample code: SubscriptionUsages_Usages.
      * 
      * @param manager Entry point to DevOpsInfrastructureManager.
      */
-    public static void poolsDelete(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
-        manager.pools().delete("rg", "pool", com.azure.core.util.Context.NONE);
+    public static void
+        subscriptionUsagesUsages(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
+        manager.subscriptionUsages().usages("eastus", com.azure.core.util.Context.NONE);
     }
 }

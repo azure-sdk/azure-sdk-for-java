@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner;
 import com.azure.resourcemanager.devopsinfrastructure.models.PoolUpdate;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An instance of this class provides access to all the operations defined in PoolsClient.
@@ -267,4 +269,32 @@ public interface PoolsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PoolInner> list(Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<List<Map<String, Integer>>> getUsageWithResponse(String resourceGroupName, String poolName,
+        Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param poolName Name of the pool. It needs to be globally unique.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    List<Map<String, Integer>> getUsage(String resourceGroupName, String poolName);
 }

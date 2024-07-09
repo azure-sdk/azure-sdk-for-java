@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.devopsinfrastructure.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.PoolInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -296,4 +298,24 @@ public interface Pool {
      * @return the refreshed resource.
      */
     Pool refresh(Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week along with {@link Response}.
+     */
+    Response<List<Map<String, Integer>>> getUsageWithResponse(Context context);
+
+    /**
+     * Get the usage for a pool for the previous week.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the usage for a pool for the previous week.
+     */
+    List<Map<String, Integer>> getUsage();
 }
