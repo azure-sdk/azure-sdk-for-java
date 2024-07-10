@@ -8,12 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineInstanceProperties;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Define the virtualMachineInstance.
@@ -23,32 +20,20 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
+    @JsonProperty(value = "properties")
     private VirtualMachineInstanceProperties properties;
 
     /*
      * Gets or sets the extended location.
      */
+    @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
-
-    /*
-     * Fully qualified resource Id for the resource.
-     */
-    private String id;
-
-    /*
-     * The name of the resource.
-     */
-    private String name;
-
-    /*
-     * The type of the resource.
-     */
-    private String type;
 
     /**
      * Creates an instance of VirtualMachineInstanceInner class.
@@ -106,36 +91,6 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
-     * 
-     * @return the id value.
-     */
-    @Override
-    public String id() {
-        return this.id;
-    }
-
-    /**
-     * Get the name property: The name of the resource.
-     * 
-     * @return the name value.
-     */
-    @Override
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the type property: The type of the resource.
-     * 
-     * @return the type value.
-     */
-    @Override
-    public String type() {
-        return this.type;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -154,53 +109,4 @@ public final class VirtualMachineInstanceInner extends ProxyResource {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineInstanceInner.class);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("extendedLocation", this.extendedLocation);
-        jsonWriter.writeJsonField("properties", this.properties);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineInstanceInner from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineInstanceInner if the JsonReader was pointing to an instance of it, or null
-     * if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the VirtualMachineInstanceInner.
-     */
-    public static VirtualMachineInstanceInner fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineInstanceInner deserializedVirtualMachineInstanceInner = new VirtualMachineInstanceInner();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("id".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.id = reader.getString();
-                } else if ("name".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.name = reader.getString();
-                } else if ("type".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.type = reader.getString();
-                } else if ("extendedLocation".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.extendedLocation = ExtendedLocation.fromJson(reader);
-                } else if ("properties".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.properties
-                        = VirtualMachineInstanceProperties.fromJson(reader);
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceInner.systemData = SystemData.fromJson(reader);
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineInstanceInner;
-        });
-    }
 }

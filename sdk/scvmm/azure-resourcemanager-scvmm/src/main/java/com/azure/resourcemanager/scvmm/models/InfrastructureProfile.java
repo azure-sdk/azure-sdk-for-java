@@ -5,71 +5,78 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Specifies the vmmServer infrastructure specific settings for the virtual machine instance.
  */
 @Fluent
-public final class InfrastructureProfile implements JsonSerializable<InfrastructureProfile> {
+public final class InfrastructureProfile {
     /*
      * Gets or sets the inventory Item ID for the resource.
      */
+    @JsonProperty(value = "inventoryItemId")
     private String inventoryItemId;
 
     /*
      * ARM Id of the vmmServer resource in which this resource resides.
      */
+    @JsonProperty(value = "vmmServerId")
     private String vmmServerId;
 
     /*
      * ARM Id of the cloud resource to use for deploying the vm.
      */
+    @JsonProperty(value = "cloudId")
     private String cloudId;
 
     /*
      * ARM Id of the template resource to use for deploying the vm.
      */
+    @JsonProperty(value = "templateId")
     private String templateId;
 
     /*
      * VMName is the name of VM on the SCVmm server.
      */
+    @JsonProperty(value = "vmName")
     private String vmName;
 
     /*
      * Unique ID of the virtual machine.
      */
+    @JsonProperty(value = "uuid")
     private String uuid;
 
     /*
      * Last restored checkpoint in the vm.
      */
+    @JsonProperty(value = "lastRestoredVMCheckpoint", access = JsonProperty.Access.WRITE_ONLY)
     private Checkpoint lastRestoredVmCheckpoint;
 
     /*
      * Checkpoints in the vm.
      */
+    @JsonProperty(value = "checkpoints", access = JsonProperty.Access.WRITE_ONLY)
     private List<Checkpoint> checkpoints;
 
     /*
      * Type of checkpoint supported for the vm.
      */
+    @JsonProperty(value = "checkpointType")
     private String checkpointType;
 
     /*
      * Gets or sets the generation for the vm.
      */
+    @JsonProperty(value = "generation")
     private Integer generation;
 
     /*
      * Gets or sets the bios guid for the vm.
      */
+    @JsonProperty(value = "biosGuid")
     private String biosGuid;
 
     /**
@@ -288,70 +295,5 @@ public final class InfrastructureProfile implements JsonSerializable<Infrastruct
         if (checkpoints() != null) {
             checkpoints().forEach(e -> e.validate());
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryItemId", this.inventoryItemId);
-        jsonWriter.writeStringField("vmmServerId", this.vmmServerId);
-        jsonWriter.writeStringField("cloudId", this.cloudId);
-        jsonWriter.writeStringField("templateId", this.templateId);
-        jsonWriter.writeStringField("vmName", this.vmName);
-        jsonWriter.writeStringField("uuid", this.uuid);
-        jsonWriter.writeStringField("checkpointType", this.checkpointType);
-        jsonWriter.writeNumberField("generation", this.generation);
-        jsonWriter.writeStringField("biosGuid", this.biosGuid);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of InfrastructureProfile from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of InfrastructureProfile if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the InfrastructureProfile.
-     */
-    public static InfrastructureProfile fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            InfrastructureProfile deserializedInfrastructureProfile = new InfrastructureProfile();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("inventoryItemId".equals(fieldName)) {
-                    deserializedInfrastructureProfile.inventoryItemId = reader.getString();
-                } else if ("vmmServerId".equals(fieldName)) {
-                    deserializedInfrastructureProfile.vmmServerId = reader.getString();
-                } else if ("cloudId".equals(fieldName)) {
-                    deserializedInfrastructureProfile.cloudId = reader.getString();
-                } else if ("templateId".equals(fieldName)) {
-                    deserializedInfrastructureProfile.templateId = reader.getString();
-                } else if ("vmName".equals(fieldName)) {
-                    deserializedInfrastructureProfile.vmName = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedInfrastructureProfile.uuid = reader.getString();
-                } else if ("lastRestoredVMCheckpoint".equals(fieldName)) {
-                    deserializedInfrastructureProfile.lastRestoredVmCheckpoint = Checkpoint.fromJson(reader);
-                } else if ("checkpoints".equals(fieldName)) {
-                    List<Checkpoint> checkpoints = reader.readArray(reader1 -> Checkpoint.fromJson(reader1));
-                    deserializedInfrastructureProfile.checkpoints = checkpoints;
-                } else if ("checkpointType".equals(fieldName)) {
-                    deserializedInfrastructureProfile.checkpointType = reader.getString();
-                } else if ("generation".equals(fieldName)) {
-                    deserializedInfrastructureProfile.generation = reader.getNullable(JsonReader::getInt);
-                } else if ("biosGuid".equals(fieldName)) {
-                    deserializedInfrastructureProfile.biosGuid = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedInfrastructureProfile;
-        });
     }
 }

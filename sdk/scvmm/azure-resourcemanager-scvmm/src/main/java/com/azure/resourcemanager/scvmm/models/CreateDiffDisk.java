@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.util.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -36,6 +37,7 @@ public final class CreateDiffDisk extends ExpandableStringEnum<CreateDiffDisk> {
      * @param name a name to look for.
      * @return the corresponding CreateDiffDisk.
      */
+    @JsonCreator
     public static CreateDiffDisk fromString(String name) {
         return fromString(name, CreateDiffDisk.class);
     }
