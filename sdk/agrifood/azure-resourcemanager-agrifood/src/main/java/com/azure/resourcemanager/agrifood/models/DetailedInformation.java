@@ -5,45 +5,67 @@
 package com.azure.resourcemanager.agrifood.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** Model to capture detailed information for farmBeatsExtensions. */
+/**
+ * Model to capture detailed information for Data Manager For AgricultureExtensions.
+ */
 @Fluent
-public final class DetailedInformation {
+public final class DetailedInformation implements JsonSerializable<DetailedInformation> {
     /*
-     * ApiName available for the farmBeatsExtension.
+     * ApiName available for the Data Manager For Agriculture Extension.
      */
-    @JsonProperty(value = "apiName")
     private String apiName;
+
+    /*
+     * Extension provider's API documentation link.
+     */
+    private String apiDocsLink;
+
+    /*
+     * Type of Api in Extension.
+     */
+    private String apiType;
 
     /*
      * List of customParameters.
      */
-    @JsonProperty(value = "customParameters")
     private List<String> customParameters;
 
     /*
      * List of platformParameters.
      */
-    @JsonProperty(value = "platformParameters")
     private List<String> platformParameters;
+
+    /*
+     * List of defaultParameters.
+     */
+    private List<String> apiDefaultInputParameters;
 
     /*
      * Unit systems info for the data provider.
      */
-    @JsonProperty(value = "unitsSupported")
     private UnitSystemsInfo unitsSupported;
 
     /*
      * List of apiInputParameters.
      */
-    @JsonProperty(value = "apiInputParameters")
     private List<String> apiInputParameters;
 
     /**
-     * Get the apiName property: ApiName available for the farmBeatsExtension.
-     *
+     * Creates an instance of DetailedInformation class.
+     */
+    public DetailedInformation() {
+    }
+
+    /**
+     * Get the apiName property: ApiName available for the Data Manager For Agriculture Extension.
+     * 
      * @return the apiName value.
      */
     public String apiName() {
@@ -51,8 +73,8 @@ public final class DetailedInformation {
     }
 
     /**
-     * Set the apiName property: ApiName available for the farmBeatsExtension.
-     *
+     * Set the apiName property: ApiName available for the Data Manager For Agriculture Extension.
+     * 
      * @param apiName the apiName value to set.
      * @return the DetailedInformation object itself.
      */
@@ -62,8 +84,48 @@ public final class DetailedInformation {
     }
 
     /**
+     * Get the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @return the apiDocsLink value.
+     */
+    public String apiDocsLink() {
+        return this.apiDocsLink;
+    }
+
+    /**
+     * Set the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @param apiDocsLink the apiDocsLink value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDocsLink(String apiDocsLink) {
+        this.apiDocsLink = apiDocsLink;
+        return this;
+    }
+
+    /**
+     * Get the apiType property: Type of Api in Extension.
+     * 
+     * @return the apiType value.
+     */
+    public String apiType() {
+        return this.apiType;
+    }
+
+    /**
+     * Set the apiType property: Type of Api in Extension.
+     * 
+     * @param apiType the apiType value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiType(String apiType) {
+        this.apiType = apiType;
+        return this;
+    }
+
+    /**
      * Get the customParameters property: List of customParameters.
-     *
+     * 
      * @return the customParameters value.
      */
     public List<String> customParameters() {
@@ -72,7 +134,7 @@ public final class DetailedInformation {
 
     /**
      * Set the customParameters property: List of customParameters.
-     *
+     * 
      * @param customParameters the customParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -83,7 +145,7 @@ public final class DetailedInformation {
 
     /**
      * Get the platformParameters property: List of platformParameters.
-     *
+     * 
      * @return the platformParameters value.
      */
     public List<String> platformParameters() {
@@ -92,7 +154,7 @@ public final class DetailedInformation {
 
     /**
      * Set the platformParameters property: List of platformParameters.
-     *
+     * 
      * @param platformParameters the platformParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -102,8 +164,28 @@ public final class DetailedInformation {
     }
 
     /**
+     * Get the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @return the apiDefaultInputParameters value.
+     */
+    public List<String> apiDefaultInputParameters() {
+        return this.apiDefaultInputParameters;
+    }
+
+    /**
+     * Set the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @param apiDefaultInputParameters the apiDefaultInputParameters value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDefaultInputParameters(List<String> apiDefaultInputParameters) {
+        this.apiDefaultInputParameters = apiDefaultInputParameters;
+        return this;
+    }
+
+    /**
      * Get the unitsSupported property: Unit systems info for the data provider.
-     *
+     * 
      * @return the unitsSupported value.
      */
     public UnitSystemsInfo unitsSupported() {
@@ -112,7 +194,7 @@ public final class DetailedInformation {
 
     /**
      * Set the unitsSupported property: Unit systems info for the data provider.
-     *
+     * 
      * @param unitsSupported the unitsSupported value to set.
      * @return the DetailedInformation object itself.
      */
@@ -123,7 +205,7 @@ public final class DetailedInformation {
 
     /**
      * Get the apiInputParameters property: List of apiInputParameters.
-     *
+     * 
      * @return the apiInputParameters value.
      */
     public List<String> apiInputParameters() {
@@ -132,7 +214,7 @@ public final class DetailedInformation {
 
     /**
      * Set the apiInputParameters property: List of apiInputParameters.
-     *
+     * 
      * @param apiInputParameters the apiInputParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -143,12 +225,77 @@ public final class DetailedInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (unitsSupported() != null) {
             unitsSupported().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("apiName", this.apiName);
+        jsonWriter.writeStringField("apiDocsLink", this.apiDocsLink);
+        jsonWriter.writeStringField("apiType", this.apiType);
+        jsonWriter.writeArrayField("customParameters", this.customParameters,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("platformParameters", this.platformParameters,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("apiDefaultInputParameters", this.apiDefaultInputParameters,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("unitsSupported", this.unitsSupported);
+        jsonWriter.writeArrayField("apiInputParameters", this.apiInputParameters,
+            (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DetailedInformation from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DetailedInformation if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DetailedInformation.
+     */
+    public static DetailedInformation fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DetailedInformation deserializedDetailedInformation = new DetailedInformation();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("apiName".equals(fieldName)) {
+                    deserializedDetailedInformation.apiName = reader.getString();
+                } else if ("apiDocsLink".equals(fieldName)) {
+                    deserializedDetailedInformation.apiDocsLink = reader.getString();
+                } else if ("apiType".equals(fieldName)) {
+                    deserializedDetailedInformation.apiType = reader.getString();
+                } else if ("customParameters".equals(fieldName)) {
+                    List<String> customParameters = reader.readArray(reader1 -> reader1.getString());
+                    deserializedDetailedInformation.customParameters = customParameters;
+                } else if ("platformParameters".equals(fieldName)) {
+                    List<String> platformParameters = reader.readArray(reader1 -> reader1.getString());
+                    deserializedDetailedInformation.platformParameters = platformParameters;
+                } else if ("apiDefaultInputParameters".equals(fieldName)) {
+                    List<String> apiDefaultInputParameters = reader.readArray(reader1 -> reader1.getString());
+                    deserializedDetailedInformation.apiDefaultInputParameters = apiDefaultInputParameters;
+                } else if ("unitsSupported".equals(fieldName)) {
+                    deserializedDetailedInformation.unitsSupported = UnitSystemsInfo.fromJson(reader);
+                } else if ("apiInputParameters".equals(fieldName)) {
+                    List<String> apiInputParameters = reader.readArray(reader1 -> reader1.getString());
+                    deserializedDetailedInformation.apiInputParameters = apiInputParameters;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDetailedInformation;
+        });
     }
 }
