@@ -758,8 +758,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> modifyVectorStore(@HostParam("endpoint") String endpoint,
             @PathParam("vectorStoreId") String vectorStoreId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData vectorStoreUpdateOptions, RequestOptions requestOptions,
-            Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Post("/vector_stores/{vectorStoreId}")
         @ExpectedResponses({ 200 })
@@ -769,8 +768,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> modifyVectorStoreSync(@HostParam("endpoint") String endpoint,
             @PathParam("vectorStoreId") String vectorStoreId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData vectorStoreUpdateOptions, RequestOptions requestOptions,
-            Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Delete("/vector_stores/{vectorStoreId}")
         @ExpectedResponses({ 200 })
@@ -4935,7 +4933,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param vectorStoreId The ID of the vector store to modify.
-     * @param vectorStoreUpdateOptions Request object for updating a vector store.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -4945,11 +4943,11 @@ public final class AssistantsClientImpl {
      * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> modifyVectorStoreWithResponseAsync(String vectorStoreId,
-        BinaryData vectorStoreUpdateOptions, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> modifyVectorStoreWithResponseAsync(String vectorStoreId, BinaryData body,
+        RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.modifyVectorStore(this.getEndpoint(), vectorStoreId, accept,
-            vectorStoreUpdateOptions, requestOptions, context));
+            body, requestOptions, context));
     }
 
     /**
@@ -4999,7 +4997,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param vectorStoreId The ID of the vector store to modify.
-     * @param vectorStoreUpdateOptions Request object for updating a vector store.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -5009,11 +5007,11 @@ public final class AssistantsClientImpl {
      * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> modifyVectorStoreWithResponse(String vectorStoreId, BinaryData vectorStoreUpdateOptions,
+    public Response<BinaryData> modifyVectorStoreWithResponse(String vectorStoreId, BinaryData body,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.modifyVectorStoreSync(this.getEndpoint(), vectorStoreId, accept, vectorStoreUpdateOptions,
-            requestOptions, Context.NONE);
+        return service.modifyVectorStoreSync(this.getEndpoint(), vectorStoreId, accept, body, requestOptions,
+            Context.NONE);
     }
 
     /**

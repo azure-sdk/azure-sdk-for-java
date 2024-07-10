@@ -3416,7 +3416,7 @@ public final class AssistantsAsyncClient {
      * The ID of the vector store to modify.
      *
      * @param vectorStoreId The ID of the vector store to modify.
-     * @param vectorStoreUpdateOptions Request object for updating a vector store.
+     * @param body Body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3428,12 +3428,11 @@ public final class AssistantsAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<VectorStore> modifyVectorStore(String vectorStoreId,
-        VectorStoreUpdateOptions vectorStoreUpdateOptions) {
+    public Mono<VectorStore> modifyVectorStore(String vectorStoreId, VectorStoreUpdateOptions body) {
         // Generated convenience method for modifyVectorStoreWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return modifyVectorStoreWithResponse(vectorStoreId, BinaryData.fromObject(vectorStoreUpdateOptions),
-            requestOptions).flatMap(FluxUtil::toMono)
+        return modifyVectorStoreWithResponse(vectorStoreId, BinaryData.fromObject(body), requestOptions)
+            .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(VectorStore.class));
     }
 
