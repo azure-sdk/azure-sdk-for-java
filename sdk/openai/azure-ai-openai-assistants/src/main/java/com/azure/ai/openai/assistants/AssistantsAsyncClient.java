@@ -2307,30 +2307,6 @@ public final class AssistantsAsyncClient {
     /**
      * Creates a new run for an assistant thread.
      *
-     * @param threadId The ID of the thread to run.
-     * @param createRunOptions The details for the run to create.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data representing a single evaluation run of an assistant thread on successful completion of
-     * {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ThreadRun> createRun(String threadId, CreateRunOptions createRunOptions) {
-        // Generated convenience method for createRunWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return createRunWithResponse(threadId, BinaryData.fromObject(createRunOptions), requestOptions)
-            .flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(ThreadRun.class));
-    }
-
-    /**
-     * Creates a new run for an assistant thread.
-     *
      * @param thread The thread to run.
      * @param assistant The assistant that will run the thread.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3288,8 +3264,7 @@ public final class AssistantsAsyncClient {
      * Creates a new message on a specified thread.
      *
      * @param threadId The ID of the thread to create the new message on.
-     * @param threadMessageOptions A single message within an assistant thread, as provided during that thread's
-     * creation for its initial state.
+     * @param body Body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3300,10 +3275,10 @@ public final class AssistantsAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ThreadMessage> createMessage(String threadId, ThreadMessageOptions threadMessageOptions) {
+    public Mono<ThreadMessage> createMessage(String threadId, ThreadMessageOptions body) {
         // Generated convenience method for createMessageWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return createMessageWithResponse(threadId, BinaryData.fromObject(threadMessageOptions), requestOptions)
+        return createMessageWithResponse(threadId, BinaryData.fromObject(body), requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(ThreadMessage.class));
     }

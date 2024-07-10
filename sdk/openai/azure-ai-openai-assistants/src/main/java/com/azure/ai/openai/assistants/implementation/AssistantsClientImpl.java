@@ -333,8 +333,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createMessage(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData threadMessageOptions, RequestOptions requestOptions,
-            Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Post("/threads/{threadId}/messages")
         @ExpectedResponses({ 200 })
@@ -344,8 +343,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createMessageSync(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData threadMessageOptions, RequestOptions requestOptions,
-            Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/messages")
         @ExpectedResponses({ 200 })
@@ -417,7 +415,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createRun(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData createRunOptions, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData createRunRequest, RequestOptions requestOptions, Context context);
 
         @Post("/threads/{threadId}/runs")
         @ExpectedResponses({ 200 })
@@ -427,7 +425,7 @@ public final class AssistantsClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> createRunSync(@HostParam("endpoint") String endpoint,
             @PathParam("threadId") String threadId, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData createRunOptions, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData createRunRequest, RequestOptions requestOptions, Context context);
 
         @Get("/threads/{threadId}/runs")
         @ExpectedResponses({ 200 })
@@ -2109,8 +2107,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param threadId The ID of the thread to create the new message on.
-     * @param threadMessageOptions A single message within an assistant thread, as provided during that thread's
-     * creation for its initial state.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2120,11 +2117,11 @@ public final class AssistantsClientImpl {
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createMessageWithResponseAsync(String threadId, BinaryData threadMessageOptions,
+    public Mono<Response<BinaryData>> createMessageWithResponseAsync(String threadId, BinaryData body,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.createMessage(this.getEndpoint(), threadId, accept,
-            threadMessageOptions, requestOptions, context));
+        return FluxUtil.withContext(
+            context -> service.createMessage(this.getEndpoint(), threadId, accept, body, requestOptions, context));
     }
 
     /**
@@ -2186,8 +2183,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param threadId The ID of the thread to create the new message on.
-     * @param threadMessageOptions A single message within an assistant thread, as provided during that thread's
-     * creation for its initial state.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2196,11 +2192,10 @@ public final class AssistantsClientImpl {
      * @return a single, existing message within an assistant thread along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createMessageWithResponse(String threadId, BinaryData threadMessageOptions,
+    public Response<BinaryData> createMessageWithResponse(String threadId, BinaryData body,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.createMessageSync(this.getEndpoint(), threadId, accept, threadMessageOptions, requestOptions,
-            Context.NONE);
+        return service.createMessageSync(this.getEndpoint(), threadId, accept, body, requestOptions, Context.NONE);
     }
 
     /**
@@ -2721,7 +2716,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param threadId The ID of the thread to run.
-     * @param createRunOptions The details for the run to create.
+     * @param createRunRequest The createRunRequest parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2731,10 +2726,10 @@ public final class AssistantsClientImpl {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createRunWithResponseAsync(String threadId, BinaryData createRunOptions,
+    public Mono<Response<BinaryData>> createRunWithResponseAsync(String threadId, BinaryData createRunRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.createRun(this.getEndpoint(), threadId, accept, createRunOptions,
+        return FluxUtil.withContext(context -> service.createRun(this.getEndpoint(), threadId, accept, createRunRequest,
             requestOptions, context));
     }
 
@@ -2855,7 +2850,7 @@ public final class AssistantsClientImpl {
      * }</pre>
      * 
      * @param threadId The ID of the thread to run.
-     * @param createRunOptions The details for the run to create.
+     * @param createRunRequest The createRunRequest parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2864,10 +2859,10 @@ public final class AssistantsClientImpl {
      * @return data representing a single evaluation run of an assistant thread along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createRunWithResponse(String threadId, BinaryData createRunOptions,
+    public Response<BinaryData> createRunWithResponse(String threadId, BinaryData createRunRequest,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.createRunSync(this.getEndpoint(), threadId, accept, createRunOptions, requestOptions,
+        return service.createRunSync(this.getEndpoint(), threadId, accept, createRunRequest, requestOptions,
             Context.NONE);
     }
 

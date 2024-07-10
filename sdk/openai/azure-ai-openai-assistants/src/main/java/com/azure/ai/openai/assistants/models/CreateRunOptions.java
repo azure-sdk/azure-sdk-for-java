@@ -6,19 +6,14 @@ package com.azure.ai.openai.assistants.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
 import com.azure.core.util.BinaryData;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 /**
- * The details used when creating a new run of an assistant thread.
+ * Options for createRun API.
  */
 @Fluent
-public final class CreateRunOptions implements JsonSerializable<CreateRunOptions> {
+public final class CreateRunOptions {
 
     /*
      * The ID of the assistant that should run the thread.
@@ -177,16 +172,6 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
     }
 
     /**
-     * Creates an instance of CreateRunOptions class.
-     *
-     * @param assistantId the assistantId value to set.
-     */
-    @Generated
-    public CreateRunOptions(String assistantId) {
-        this.assistantId = assistantId;
-    }
-
-    /**
      * Set the additionalInstructions property: Additional instructions to append at the end of the instructions for the
      * run. This is useful for modifying the behavior
      * on a per-run basis without overriding other instructions.
@@ -198,121 +183,6 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
     public CreateRunOptions setAdditionalInstructions(String additionalInstructions) {
         this.additionalInstructions = additionalInstructions;
         return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Generated
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("assistant_id", this.assistantId);
-        jsonWriter.writeStringField("model", this.model);
-        jsonWriter.writeStringField("instructions", this.instructions);
-        jsonWriter.writeStringField("additional_instructions", this.additionalInstructions);
-        jsonWriter.writeArrayField("additional_messages", this.additionalMessages,
-            (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeArrayField("tools", this.tools, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeBooleanField("stream", this.stream);
-        jsonWriter.writeNumberField("temperature", this.temperature);
-        jsonWriter.writeNumberField("top_p", this.topP);
-        jsonWriter.writeNumberField("max_prompt_tokens", this.maxPromptTokens);
-        jsonWriter.writeNumberField("max_completion_tokens", this.maxCompletionTokens);
-        jsonWriter.writeJsonField("truncation_strategy", this.truncationStrategy);
-        if (this.toolChoice != null) {
-            jsonWriter.writeUntypedField("tool_choice", this.toolChoice.toObject(Object.class));
-        }
-        if (this.responseFormat != null) {
-            jsonWriter.writeUntypedField("response_format", this.responseFormat.toObject(Object.class));
-        }
-        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of CreateRunOptions from the JsonReader.
-     *
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of CreateRunOptions if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the CreateRunOptions.
-     */
-    @Generated
-    public static CreateRunOptions fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            String assistantId = null;
-            String model = null;
-            String instructions = null;
-            String additionalInstructions = null;
-            List<ThreadMessage> additionalMessages = null;
-            List<ToolDefinition> tools = null;
-            Boolean stream = null;
-            Double temperature = null;
-            Double topP = null;
-            Integer maxPromptTokens = null;
-            Integer maxCompletionTokens = null;
-            TruncationObject truncationStrategy = null;
-            BinaryData toolChoice = null;
-            BinaryData responseFormat = null;
-            Map<String, String> metadata = null;
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-                if ("assistant_id".equals(fieldName)) {
-                    assistantId = reader.getString();
-                } else if ("model".equals(fieldName)) {
-                    model = reader.getString();
-                } else if ("instructions".equals(fieldName)) {
-                    instructions = reader.getString();
-                } else if ("additional_instructions".equals(fieldName)) {
-                    additionalInstructions = reader.getString();
-                } else if ("additional_messages".equals(fieldName)) {
-                    additionalMessages = reader.readArray(reader1 -> ThreadMessage.fromJson(reader1));
-                } else if ("tools".equals(fieldName)) {
-                    tools = reader.readArray(reader1 -> ToolDefinition.fromJson(reader1));
-                } else if ("stream".equals(fieldName)) {
-                    stream = reader.getNullable(JsonReader::getBoolean);
-                } else if ("temperature".equals(fieldName)) {
-                    temperature = reader.getNullable(JsonReader::getDouble);
-                } else if ("top_p".equals(fieldName)) {
-                    topP = reader.getNullable(JsonReader::getDouble);
-                } else if ("max_prompt_tokens".equals(fieldName)) {
-                    maxPromptTokens = reader.getNullable(JsonReader::getInt);
-                } else if ("max_completion_tokens".equals(fieldName)) {
-                    maxCompletionTokens = reader.getNullable(JsonReader::getInt);
-                } else if ("truncation_strategy".equals(fieldName)) {
-                    truncationStrategy = TruncationObject.fromJson(reader);
-                } else if ("tool_choice".equals(fieldName)) {
-                    toolChoice
-                        = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
-                } else if ("response_format".equals(fieldName)) {
-                    responseFormat
-                        = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
-                } else if ("metadata".equals(fieldName)) {
-                    metadata = reader.readMap(reader1 -> reader1.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-            CreateRunOptions deserializedCreateRunOptions = new CreateRunOptions(assistantId);
-            deserializedCreateRunOptions.model = model;
-            deserializedCreateRunOptions.instructions = instructions;
-            deserializedCreateRunOptions.additionalInstructions = additionalInstructions;
-            deserializedCreateRunOptions.additionalMessages = additionalMessages;
-            deserializedCreateRunOptions.tools = tools;
-            deserializedCreateRunOptions.stream = stream;
-            deserializedCreateRunOptions.temperature = temperature;
-            deserializedCreateRunOptions.topP = topP;
-            deserializedCreateRunOptions.maxPromptTokens = maxPromptTokens;
-            deserializedCreateRunOptions.maxCompletionTokens = maxCompletionTokens;
-            deserializedCreateRunOptions.truncationStrategy = truncationStrategy;
-            deserializedCreateRunOptions.toolChoice = toolChoice;
-            deserializedCreateRunOptions.responseFormat = responseFormat;
-            deserializedCreateRunOptions.metadata = metadata;
-            return deserializedCreateRunOptions;
-        });
     }
 
     /*
@@ -617,5 +487,33 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
             this.responseFormat = null;
         }
         return this;
+    }
+
+    /*
+     * The ID of the thread to run.
+     */
+    @Generated
+    private final String threadId;
+
+    /**
+     * Creates an instance of CreateRunOptions class.
+     *
+     * @param threadId the threadId value to set.
+     * @param assistantId the assistantId value to set.
+     */
+    @Generated
+    public CreateRunOptions(String threadId, String assistantId) {
+        this.threadId = threadId;
+        this.assistantId = assistantId;
+    }
+
+    /**
+     * Get the threadId property: The ID of the thread to run.
+     *
+     * @return the threadId value.
+     */
+    @Generated
+    public String getThreadId() {
+        return this.threadId;
     }
 }
