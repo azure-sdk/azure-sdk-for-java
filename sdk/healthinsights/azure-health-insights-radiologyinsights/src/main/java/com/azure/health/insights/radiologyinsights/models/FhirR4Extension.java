@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Base for all elements
- * Based on [FHIR Element](https://www.hl7.org/fhir/datatypes.html#Element).
+ * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html).
  */
 @Fluent
 public final class FhirR4Extension extends FhirR4Element {
