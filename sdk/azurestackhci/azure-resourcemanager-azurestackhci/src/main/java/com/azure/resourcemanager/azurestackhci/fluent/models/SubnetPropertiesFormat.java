@@ -5,65 +5,66 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.IpAllocationMethodEnum;
 import com.azure.resourcemanager.azurestackhci.models.IpPool;
 import com.azure.resourcemanager.azurestackhci.models.RouteTable;
 import com.azure.resourcemanager.azurestackhci.models.SubnetPropertiesFormatIpConfigurationReferencesItem;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Properties of the subnet. */
+/**
+ * Properties of the subnet.
+ */
 @Fluent
-public final class SubnetPropertiesFormat {
+public final class SubnetPropertiesFormat implements JsonSerializable<SubnetPropertiesFormat> {
     /*
      * The address prefix for the subnet: Cidr for this subnet - IPv4, IPv6.
      */
-    @JsonProperty(value = "addressPrefix")
     private String addressPrefix;
 
     /*
      * List of address prefixes for the subnet.
      */
-    @JsonProperty(value = "addressPrefixes")
     private List<String> addressPrefixes;
 
     /*
      * IPAllocationMethod - The IP address allocation method. Possible values include: 'Static', 'Dynamic'
      */
-    @JsonProperty(value = "ipAllocationMethod")
     private IpAllocationMethodEnum ipAllocationMethod;
 
     /*
      * IPConfigurationReferences - list of IPConfigurationReferences
      */
-    @JsonProperty(value = "ipConfigurationReferences")
     private List<SubnetPropertiesFormatIpConfigurationReferencesItem> ipConfigurationReferences;
 
     /*
      * Route table resource.
      */
-    @JsonProperty(value = "routeTable")
     private RouteTable routeTable;
 
     /*
      * network associated pool of IP Addresses
      */
-    @JsonProperty(value = "ipPools")
     private List<IpPool> ipPools;
 
     /*
      * Vlan to use for the subnet
      */
-    @JsonProperty(value = "vlan")
     private Integer vlan;
 
-    /** Creates an instance of SubnetPropertiesFormat class. */
+    /**
+     * Creates an instance of SubnetPropertiesFormat class.
+     */
     public SubnetPropertiesFormat() {
     }
 
     /**
      * Get the addressPrefix property: The address prefix for the subnet: Cidr for this subnet - IPv4, IPv6.
-     *
+     * 
      * @return the addressPrefix value.
      */
     public String addressPrefix() {
@@ -72,7 +73,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the addressPrefix property: The address prefix for the subnet: Cidr for this subnet - IPv4, IPv6.
-     *
+     * 
      * @param addressPrefix the addressPrefix value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -83,7 +84,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the addressPrefixes property: List of address prefixes for the subnet.
-     *
+     * 
      * @return the addressPrefixes value.
      */
     public List<String> addressPrefixes() {
@@ -92,7 +93,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the addressPrefixes property: List of address prefixes for the subnet.
-     *
+     * 
      * @param addressPrefixes the addressPrefixes value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -104,7 +105,7 @@ public final class SubnetPropertiesFormat {
     /**
      * Get the ipAllocationMethod property: IPAllocationMethod - The IP address allocation method. Possible values
      * include: 'Static', 'Dynamic'.
-     *
+     * 
      * @return the ipAllocationMethod value.
      */
     public IpAllocationMethodEnum ipAllocationMethod() {
@@ -114,7 +115,7 @@ public final class SubnetPropertiesFormat {
     /**
      * Set the ipAllocationMethod property: IPAllocationMethod - The IP address allocation method. Possible values
      * include: 'Static', 'Dynamic'.
-     *
+     * 
      * @param ipAllocationMethod the ipAllocationMethod value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -125,7 +126,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the ipConfigurationReferences property: IPConfigurationReferences - list of IPConfigurationReferences.
-     *
+     * 
      * @return the ipConfigurationReferences value.
      */
     public List<SubnetPropertiesFormatIpConfigurationReferencesItem> ipConfigurationReferences() {
@@ -134,7 +135,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the ipConfigurationReferences property: IPConfigurationReferences - list of IPConfigurationReferences.
-     *
+     * 
      * @param ipConfigurationReferences the ipConfigurationReferences value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -146,7 +147,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the routeTable property: Route table resource.
-     *
+     * 
      * @return the routeTable value.
      */
     public RouteTable routeTable() {
@@ -155,7 +156,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the routeTable property: Route table resource.
-     *
+     * 
      * @param routeTable the routeTable value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -166,7 +167,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the ipPools property: network associated pool of IP Addresses.
-     *
+     * 
      * @return the ipPools value.
      */
     public List<IpPool> ipPools() {
@@ -175,7 +176,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the ipPools property: network associated pool of IP Addresses.
-     *
+     * 
      * @param ipPools the ipPools value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -186,7 +187,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Get the vlan property: Vlan to use for the subnet.
-     *
+     * 
      * @return the vlan value.
      */
     public Integer vlan() {
@@ -195,7 +196,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Set the vlan property: Vlan to use for the subnet.
-     *
+     * 
      * @param vlan the vlan value to set.
      * @return the SubnetPropertiesFormat object itself.
      */
@@ -206,7 +207,7 @@ public final class SubnetPropertiesFormat {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -219,5 +220,67 @@ public final class SubnetPropertiesFormat {
         if (ipPools() != null) {
             ipPools().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("addressPrefix", this.addressPrefix);
+        jsonWriter.writeArrayField("addressPrefixes", this.addressPrefixes,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("ipAllocationMethod",
+            this.ipAllocationMethod == null ? null : this.ipAllocationMethod.toString());
+        jsonWriter.writeArrayField("ipConfigurationReferences", this.ipConfigurationReferences,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("routeTable", this.routeTable);
+        jsonWriter.writeArrayField("ipPools", this.ipPools, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeNumberField("vlan", this.vlan);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SubnetPropertiesFormat from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SubnetPropertiesFormat if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the SubnetPropertiesFormat.
+     */
+    public static SubnetPropertiesFormat fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SubnetPropertiesFormat deserializedSubnetPropertiesFormat = new SubnetPropertiesFormat();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("addressPrefix".equals(fieldName)) {
+                    deserializedSubnetPropertiesFormat.addressPrefix = reader.getString();
+                } else if ("addressPrefixes".equals(fieldName)) {
+                    List<String> addressPrefixes = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSubnetPropertiesFormat.addressPrefixes = addressPrefixes;
+                } else if ("ipAllocationMethod".equals(fieldName)) {
+                    deserializedSubnetPropertiesFormat.ipAllocationMethod
+                        = IpAllocationMethodEnum.fromString(reader.getString());
+                } else if ("ipConfigurationReferences".equals(fieldName)) {
+                    List<SubnetPropertiesFormatIpConfigurationReferencesItem> ipConfigurationReferences = reader
+                        .readArray(reader1 -> SubnetPropertiesFormatIpConfigurationReferencesItem.fromJson(reader1));
+                    deserializedSubnetPropertiesFormat.ipConfigurationReferences = ipConfigurationReferences;
+                } else if ("routeTable".equals(fieldName)) {
+                    deserializedSubnetPropertiesFormat.routeTable = RouteTable.fromJson(reader);
+                } else if ("ipPools".equals(fieldName)) {
+                    List<IpPool> ipPools = reader.readArray(reader1 -> IpPool.fromJson(reader1));
+                    deserializedSubnetPropertiesFormat.ipPools = ipPools;
+                } else if ("vlan".equals(fieldName)) {
+                    deserializedSubnetPropertiesFormat.vlan = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSubnetPropertiesFormat;
+        });
     }
 }

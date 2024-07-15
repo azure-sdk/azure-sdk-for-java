@@ -5,49 +5,54 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
-/** Instance view status. */
+/**
+ * Instance view status.
+ */
 @Fluent
-public final class InstanceViewStatus {
+public final class InstanceViewStatus implements JsonSerializable<InstanceViewStatus> {
     /*
      * The status code.
      */
-    @JsonProperty(value = "code")
     private String code;
 
     /*
      * The level code.
      */
-    @JsonProperty(value = "level")
     private StatusLevelTypes level;
 
     /*
      * The short localizable label for the status.
      */
-    @JsonProperty(value = "displayStatus")
     private String displayStatus;
 
     /*
      * The detailed status message, including for alerts and error messages.
      */
-    @JsonProperty(value = "message")
     private String message;
 
     /*
      * The time of the status.
      */
-    @JsonProperty(value = "time")
     private OffsetDateTime time;
 
-    /** Creates an instance of InstanceViewStatus class. */
+    /**
+     * Creates an instance of InstanceViewStatus class.
+     */
     public InstanceViewStatus() {
     }
 
     /**
      * Get the code property: The status code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -56,7 +61,7 @@ public final class InstanceViewStatus {
 
     /**
      * Set the code property: The status code.
-     *
+     * 
      * @param code the code value to set.
      * @return the InstanceViewStatus object itself.
      */
@@ -67,7 +72,7 @@ public final class InstanceViewStatus {
 
     /**
      * Get the level property: The level code.
-     *
+     * 
      * @return the level value.
      */
     public StatusLevelTypes level() {
@@ -76,7 +81,7 @@ public final class InstanceViewStatus {
 
     /**
      * Set the level property: The level code.
-     *
+     * 
      * @param level the level value to set.
      * @return the InstanceViewStatus object itself.
      */
@@ -87,7 +92,7 @@ public final class InstanceViewStatus {
 
     /**
      * Get the displayStatus property: The short localizable label for the status.
-     *
+     * 
      * @return the displayStatus value.
      */
     public String displayStatus() {
@@ -96,7 +101,7 @@ public final class InstanceViewStatus {
 
     /**
      * Set the displayStatus property: The short localizable label for the status.
-     *
+     * 
      * @param displayStatus the displayStatus value to set.
      * @return the InstanceViewStatus object itself.
      */
@@ -107,7 +112,7 @@ public final class InstanceViewStatus {
 
     /**
      * Get the message property: The detailed status message, including for alerts and error messages.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -116,7 +121,7 @@ public final class InstanceViewStatus {
 
     /**
      * Set the message property: The detailed status message, including for alerts and error messages.
-     *
+     * 
      * @param message the message value to set.
      * @return the InstanceViewStatus object itself.
      */
@@ -127,7 +132,7 @@ public final class InstanceViewStatus {
 
     /**
      * Get the time property: The time of the status.
-     *
+     * 
      * @return the time value.
      */
     public OffsetDateTime time() {
@@ -136,7 +141,7 @@ public final class InstanceViewStatus {
 
     /**
      * Set the time property: The time of the status.
-     *
+     * 
      * @param time the time value to set.
      * @return the InstanceViewStatus object itself.
      */
@@ -147,9 +152,59 @@ public final class InstanceViewStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("code", this.code);
+        jsonWriter.writeStringField("level", this.level == null ? null : this.level.toString());
+        jsonWriter.writeStringField("displayStatus", this.displayStatus);
+        jsonWriter.writeStringField("message", this.message);
+        jsonWriter.writeStringField("time",
+            this.time == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.time));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of InstanceViewStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of InstanceViewStatus if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the InstanceViewStatus.
+     */
+    public static InstanceViewStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            InstanceViewStatus deserializedInstanceViewStatus = new InstanceViewStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("code".equals(fieldName)) {
+                    deserializedInstanceViewStatus.code = reader.getString();
+                } else if ("level".equals(fieldName)) {
+                    deserializedInstanceViewStatus.level = StatusLevelTypes.fromString(reader.getString());
+                } else if ("displayStatus".equals(fieldName)) {
+                    deserializedInstanceViewStatus.displayStatus = reader.getString();
+                } else if ("message".equals(fieldName)) {
+                    deserializedInstanceViewStatus.message = reader.getString();
+                } else if ("time".equals(fieldName)) {
+                    deserializedInstanceViewStatus.time = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedInstanceViewStatus;
+        });
     }
 }
