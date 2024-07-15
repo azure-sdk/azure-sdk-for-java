@@ -12,7 +12,6 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppJobExecutionsInner;
-import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsCollectionInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobExecutionBaseInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
@@ -31,16 +30,14 @@ public interface JobsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of diagnostics for a Container App Job along with {@link Response}.
+     * @return the list of diagnostics for a Container App Job as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DiagnosticsCollectionInner> listDetectorsWithResponse(String resourceGroupName, String jobName,
-        Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DiagnosticsInner> listDetectors(String resourceGroupName, String jobName);
 
     /**
      * Get the list of diagnostics for a given Container App Job.
@@ -49,14 +46,15 @@ public interface JobsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of diagnostics for a Container App Job.
+     * @return the list of diagnostics for a Container App Job as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DiagnosticsCollectionInner listDetectors(String resourceGroupName, String jobName);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DiagnosticsInner> listDetectors(String resourceGroupName, String jobName, Context context);
 
     /**
      * Get the diagnostics data for a given Container App Job.
@@ -472,10 +470,10 @@ public interface JobsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStopExecution(String resourceGroupName, String jobName,
+    SyncPoller<PollResult<String>, String> beginStopExecution(String resourceGroupName, String jobName,
         String jobExecutionName);
 
     /**
@@ -489,10 +487,10 @@ public interface JobsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStopExecution(String resourceGroupName, String jobName,
+    SyncPoller<PollResult<String>, String> beginStopExecution(String resourceGroupName, String jobName,
         String jobExecutionName, Context context);
 
     /**
@@ -505,9 +503,10 @@ public interface JobsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void stopExecution(String resourceGroupName, String jobName, String jobExecutionName);
+    String stopExecution(String resourceGroupName, String jobName, String jobExecutionName);
 
     /**
      * Terminates execution of a running container apps job.
@@ -520,9 +519,10 @@ public interface JobsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context);
+    String stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context);
 
     /**
      * Terminates execution of a running container apps job.
