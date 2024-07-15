@@ -24,11 +24,9 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hybridcompute.fluent.ExtensionMetadatasClient;
-import com.azure.resourcemanager.hybridcompute.fluent.GatewaysClient;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
 import com.azure.resourcemanager.hybridcompute.fluent.LicensesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachineExtensionsClient;
-import com.azure.resourcemanager.hybridcompute.fluent.MachineRunCommandsClient;
 import com.azure.resourcemanager.hybridcompute.fluent.MachinesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.NetworkProfilesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.NetworkSecurityPerimeterConfigurationsClient;
@@ -37,7 +35,6 @@ import com.azure.resourcemanager.hybridcompute.fluent.PrivateEndpointConnections
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.PrivateLinkScopesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.ResourceProvidersClient;
-import com.azure.resourcemanager.hybridcompute.fluent.SettingsOperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -235,48 +232,6 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
     }
 
     /**
-     * The MachineRunCommandsClient object to access its operations.
-     */
-    private final MachineRunCommandsClient machineRunCommands;
-
-    /**
-     * Gets the MachineRunCommandsClient object to access its operations.
-     * 
-     * @return the MachineRunCommandsClient object.
-     */
-    public MachineRunCommandsClient getMachineRunCommands() {
-        return this.machineRunCommands;
-    }
-
-    /**
-     * The GatewaysClient object to access its operations.
-     */
-    private final GatewaysClient gateways;
-
-    /**
-     * Gets the GatewaysClient object to access its operations.
-     * 
-     * @return the GatewaysClient object.
-     */
-    public GatewaysClient getGateways() {
-        return this.gateways;
-    }
-
-    /**
-     * The SettingsOperationsClient object to access its operations.
-     */
-    private final SettingsOperationsClient settingsOperations;
-
-    /**
-     * Gets the SettingsOperationsClient object to access its operations.
-     * 
-     * @return the SettingsOperationsClient object.
-     */
-    public SettingsOperationsClient getSettingsOperations() {
-        return this.settingsOperations;
-    }
-
-    /**
      * The PrivateLinkScopesClient object to access its operations.
      */
     private final PrivateLinkScopesClient privateLinkScopes;
@@ -349,7 +304,7 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-31-preview";
+        this.apiVersion = "2024-07-10";
         this.licenses = new LicensesClientImpl(this);
         this.machines = new MachinesClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
@@ -357,9 +312,6 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.extensionMetadatas = new ExtensionMetadatasClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.networkProfiles = new NetworkProfilesClientImpl(this);
-        this.machineRunCommands = new MachineRunCommandsClientImpl(this);
-        this.gateways = new GatewaysClientImpl(this);
-        this.settingsOperations = new SettingsOperationsClientImpl(this);
         this.privateLinkScopes = new PrivateLinkScopesClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);

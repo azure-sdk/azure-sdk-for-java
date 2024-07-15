@@ -9,7 +9,9 @@ package com.azure.resourcemanager.hybridcompute.generated;
  */
 public final class NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-03-31-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationList.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2024-07-10/examples/
+     * networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationList.json
      */
     /**
      * Sample code: Gets the list of network security perimeter configurations of the private link scope.
