@@ -95,11 +95,10 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
-                locationName, operationId, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), locationName, operationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -132,11 +131,10 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
         if (operationId == null) {
             return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, locationName,
-            operationId, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
+            locationName, operationId, accept, context);
     }
 
     /**
