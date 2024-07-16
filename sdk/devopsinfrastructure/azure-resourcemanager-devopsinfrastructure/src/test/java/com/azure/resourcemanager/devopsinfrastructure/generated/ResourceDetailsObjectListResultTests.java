@@ -13,11 +13,11 @@ public final class ResourceDetailsObjectListResultTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ResourceDetailsObjectListResult model = BinaryData.fromString(
-            "{\"value\":[{\"properties\":{\"status\":\"Updating\",\"image\":\"ktwh\",\"imageVersion\":\"dxwzywqsmbsurexi\"},\"id\":\"ryocfsfksymdd\",\"name\":\"stkiiuxhqyud\",\"type\":\"o\"},{\"properties\":{\"status\":\"PendingReturn\",\"image\":\"nbpoczvyifqrvkdv\",\"imageVersion\":\"sllr\"},\"id\":\"vdfwatkpn\",\"name\":\"ulexxbczwtr\",\"type\":\"wiqzbqjvsovmyo\"},{\"properties\":{\"status\":\"Provisioning\",\"image\":\"spkwlhzdobpxjm\",\"imageVersion\":\"lb\"},\"id\":\"nchrkcciww\",\"name\":\"juqk\",\"type\":\"rsa\"}],\"nextLink\":\"wkuofoskghsauu\"}")
+            "{\"value\":[{\"properties\":{\"status\":\"Reimaging\",\"image\":\"dkcglhsl\",\"imageVersion\":\"zj\"},\"id\":\"ggd\",\"name\":\"jixhbk\",\"type\":\"ofqweykhmenevfye\"}],\"nextLink\":\"whybcib\"}")
             .toObject(ResourceDetailsObjectListResult.class);
-        Assertions.assertEquals(ResourceStatus.UPDATING, model.value().get(0).properties().status());
-        Assertions.assertEquals("ktwh", model.value().get(0).properties().image());
-        Assertions.assertEquals("dxwzywqsmbsurexi", model.value().get(0).properties().imageVersion());
-        Assertions.assertEquals("wkuofoskghsauu", model.nextLink());
+        Assertions.assertEquals(ResourceStatus.REIMAGING, model.value().get(0).properties().status());
+        Assertions.assertEquals("dkcglhsl", model.value().get(0).properties().image());
+        Assertions.assertEquals("zj", model.value().get(0).properties().imageVersion());
+        Assertions.assertEquals("whybcib", model.nextLink());
     }
 }

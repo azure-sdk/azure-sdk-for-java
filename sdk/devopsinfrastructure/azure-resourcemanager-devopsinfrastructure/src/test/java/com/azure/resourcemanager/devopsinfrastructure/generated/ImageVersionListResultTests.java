@@ -12,9 +12,9 @@ public final class ImageVersionListResultTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ImageVersionListResult model = BinaryData.fromString(
-            "{\"value\":[{\"properties\":{\"version\":\"ohfwds\"},\"id\":\"ka\",\"name\":\"jutiiswacff\",\"type\":\"dkzzewkfvhqcrail\"},{\"properties\":{\"version\":\"n\"},\"id\":\"fuflrwdmhdlx\",\"name\":\"jrxs\",\"type\":\"gafcnihgwqapnedg\"},{\"properties\":{\"version\":\"cvkcvqvpkeqdcv\"},\"id\":\"hvoodsotbobzd\",\"name\":\"pcjwv\",\"type\":\"hdldwmgxcxrsl\"}],\"nextLink\":\"utwu\"}")
+            "{\"value\":[{\"properties\":{\"version\":\"bxwakbog\"},\"id\":\"ndlkzgxhurip\",\"name\":\"bpodxunkbebxm\",\"type\":\"byyntwlrbqt\"}],\"nextLink\":\"ievseotgqrllt\"}")
             .toObject(ImageVersionListResult.class);
-        Assertions.assertEquals("ohfwds", model.value().get(0).properties().version());
-        Assertions.assertEquals("utwu", model.nextLink());
+        Assertions.assertEquals("bxwakbog", model.value().get(0).properties().version());
+        Assertions.assertEquals("ievseotgqrllt", model.nextLink());
     }
 }
