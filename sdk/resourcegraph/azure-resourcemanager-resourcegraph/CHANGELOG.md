@@ -1,14 +1,89 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-07-16)
+
+- Azure Resource Manager ResourceGraph client library for Java. This package contains Microsoft Azure SDK for ResourceGraph Management SDK. Azure Resource Graph Query API Reference. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.GraphQueryUpdateParameters` was added
 
-### Bugs Fixed
+* `models.GraphQueryResource` was added
 
-### Other Changes
+* `models.AuthorizationScopeFilter` was added
+
+* `models.GraphQueryListResult` was added
+
+* `models.GraphQueryResource$UpdateStages` was added
+
+* `models.ResultKind` was added
+
+* `models.GraphQueryResource$Definition` was added
+
+* `models.GraphQueryResource$DefinitionStages` was added
+
+* `models.GraphQueryResource$Update` was added
+
+* `models.GraphQueries` was added
+
+#### `models.FacetError` was modified
+
+* `resultType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FacetRequestOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Facet` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `resultType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ErrorDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FacetRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.QueryRequestOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withAuthorizationScopeFilter(models.AuthorizationScopeFilter)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `authorizationScopeFilter()` was added
+
+#### `models.QueryRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FacetResult` was modified
+
+* `resultType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `ResourceGraphManager` was modified
+
+* `graphQueries()` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.0.0 (2022-11-02)
 

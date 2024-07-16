@@ -7,46 +7,62 @@ package com.azure.resourcemanager.resourcegraph.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for ResourceGraphClient class. */
+/**
+ * The interface for ResourceGraphClient class.
+ */
 public interface ResourceGraphClient {
     /**
+     * Gets The ID of the target subscription.
+     * 
+     * @return the subscriptionId value.
+     */
+    String getSubscriptionId();
+
+    /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the GraphQueriesClient object to access its operations.
+     * 
+     * @return the GraphQueriesClient object.
+     */
+    GraphQueriesClient getGraphQueries();
+
+    /**
      * Gets the ResourceProvidersClient object to access its operations.
-     *
+     * 
      * @return the ResourceProvidersClient object.
      */
     ResourceProvidersClient getResourceProviders();
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
