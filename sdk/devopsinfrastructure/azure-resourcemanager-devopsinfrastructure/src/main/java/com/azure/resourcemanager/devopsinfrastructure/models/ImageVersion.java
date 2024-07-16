@@ -37,7 +37,7 @@ public interface ImageVersion {
      * 
      * @return the properties value.
      */
-    ImageVersionProperties properties();
+    VersionProperties properties();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.

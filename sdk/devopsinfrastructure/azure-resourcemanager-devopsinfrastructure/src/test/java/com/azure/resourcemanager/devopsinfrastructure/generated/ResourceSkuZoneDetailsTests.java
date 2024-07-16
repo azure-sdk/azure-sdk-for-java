@@ -12,10 +12,10 @@ public final class ResourceSkuZoneDetailsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ResourceSkuZoneDetails model = BinaryData.fromString(
-            "{\"name\":[\"vkr\",\"swbxqz\"],\"capabilities\":[{\"name\":\"zjf\",\"value\":\"uvjfdxxive\"},{\"name\":\"vtcqaqtdo\",\"value\":\"mcbxvwvxysl\"},{\"name\":\"bhsfxob\",\"value\":\"ytkblmpew\"},{\"name\":\"wfbkrvrns\",\"value\":\"shqjohxcrsbf\"}]}")
+            "{\"name\":[\"asrru\",\"wbhsqfsub\",\"gjb\"],\"capabilities\":[{\"name\":\"xb\",\"value\":\"ybsrfbjfdtwss\"},{\"name\":\"t\",\"value\":\"tpvjzbexilzznfqq\"}]}")
             .toObject(ResourceSkuZoneDetails.class);
-        Assertions.assertEquals("vkr", model.name().get(0));
-        Assertions.assertEquals("zjf", model.capabilities().get(0).name());
-        Assertions.assertEquals("uvjfdxxive", model.capabilities().get(0).value());
+        Assertions.assertEquals("asrru", model.name().get(0));
+        Assertions.assertEquals("xb", model.capabilities().get(0).name());
+        Assertions.assertEquals("ybsrfbjfdtwss", model.capabilities().get(0).value());
     }
 }

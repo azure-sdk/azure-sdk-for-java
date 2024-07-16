@@ -10,7 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.devopsinfrastructure.models.ImageVersionProperties;
+import com.azure.resourcemanager.devopsinfrastructure.models.VersionProperties;
 import java.io.IOException;
 
 /**
@@ -21,7 +21,7 @@ public final class ImageVersionInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
-    private ImageVersionProperties properties;
+    private VersionProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -54,7 +54,7 @@ public final class ImageVersionInner extends ProxyResource {
      * 
      * @return the properties value.
      */
-    public ImageVersionProperties properties() {
+    public VersionProperties properties() {
         return this.properties;
     }
 
@@ -141,7 +141,7 @@ public final class ImageVersionInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedImageVersionInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedImageVersionInner.properties = ImageVersionProperties.fromJson(reader);
+                    deserializedImageVersionInner.properties = VersionProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedImageVersionInner.systemData = SystemData.fromJson(reader);
                 } else {

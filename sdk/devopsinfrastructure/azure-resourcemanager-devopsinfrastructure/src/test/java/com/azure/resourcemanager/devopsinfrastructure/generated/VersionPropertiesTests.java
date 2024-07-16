@@ -5,15 +5,13 @@
 package com.azure.resourcemanager.devopsinfrastructure.generated;
 
 import com.azure.core.util.BinaryData;
-import com.azure.resourcemanager.devopsinfrastructure.models.QuotaName;
+import com.azure.resourcemanager.devopsinfrastructure.models.VersionProperties;
 import org.junit.jupiter.api.Assertions;
 
-public final class QuotaNameTests {
+public final class VersionPropertiesTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        QuotaName model = BinaryData.fromString("{\"value\":\"uuvxz\",\"localizedValue\":\"lvithhqzonosgg\"}")
-            .toObject(QuotaName.class);
-        Assertions.assertEquals("uuvxz", model.value());
-        Assertions.assertEquals("lvithhqzonosgg", model.localizedValue());
+        VersionProperties model = BinaryData.fromString("{\"version\":\"ohdneuel\"}").toObject(VersionProperties.class);
+        Assertions.assertEquals("ohdneuel", model.version());
     }
 }

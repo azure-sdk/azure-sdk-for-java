@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devopsinfrastructure.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devopsinfrastructure.fluent.models.ImageVersionInner;
 import com.azure.resourcemanager.devopsinfrastructure.models.ImageVersion;
-import com.azure.resourcemanager.devopsinfrastructure.models.ImageVersionProperties;
+import com.azure.resourcemanager.devopsinfrastructure.models.VersionProperties;
 
 public final class ImageVersionImpl implements ImageVersion {
     private ImageVersionInner innerObject;
@@ -32,7 +32,7 @@ public final class ImageVersionImpl implements ImageVersion {
         return this.innerModel().type();
     }
 
-    public ImageVersionProperties properties() {
+    public VersionProperties properties() {
         return this.innerModel().properties();
     }
 

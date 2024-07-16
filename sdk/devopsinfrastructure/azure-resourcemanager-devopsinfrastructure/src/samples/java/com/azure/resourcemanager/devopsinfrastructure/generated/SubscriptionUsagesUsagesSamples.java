@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.devopsinfrastructure.generated;
 
 /**
- * Samples for Sku ListByLocation.
+ * Samples for SubscriptionUsages Usages.
  */
-public final class SkuListByLocationSamples {
+public final class SubscriptionUsagesUsagesSamples {
     /*
      * x-ms-original-file:
      * specification/devopsinfrastructure/Microsoft.DevOpsInfrastructure.Management/examples/2024-07-01-preview/
-     * Sku_ListByLocation.json
+     * SubscriptionUsages_Usages.json
      */
     /**
-     * Sample code: Sku_ListByLocation.
+     * Sample code: SubscriptionUsages_Usages.
      * 
      * @param manager Entry point to DevOpsInfrastructureManager.
      */
     public static void
-        skuListByLocation(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
-        manager.skus().listByLocation("eastus", com.azure.core.util.Context.NONE);
+        subscriptionUsagesUsages(com.azure.resourcemanager.devopsinfrastructure.DevOpsInfrastructureManager manager) {
+        manager.subscriptionUsages().usages("eastus", com.azure.core.util.Context.NONE);
     }
 }

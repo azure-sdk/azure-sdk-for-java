@@ -16,16 +16,16 @@ import java.io.IOException;
  * Details of the ImageVersionProperties.
  */
 @Immutable
-public final class ImageVersionProperties implements JsonSerializable<ImageVersionProperties> {
+public final class VersionProperties implements JsonSerializable<VersionProperties> {
     /*
      * Version of the image.
      */
     private String version;
 
     /**
-     * Creates an instance of ImageVersionProperties class.
+     * Creates an instance of VersionProperties class.
      */
-    private ImageVersionProperties() {
+    private VersionProperties() {
     }
 
     /**
@@ -45,11 +45,11 @@ public final class ImageVersionProperties implements JsonSerializable<ImageVersi
     public void validate() {
         if (version() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property version in model ImageVersionProperties"));
+                .log(new IllegalArgumentException("Missing required property version in model VersionProperties"));
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ImageVersionProperties.class);
+    private static final ClientLogger LOGGER = new ClientLogger(VersionProperties.class);
 
     /**
      * {@inheritDoc}
@@ -62,29 +62,29 @@ public final class ImageVersionProperties implements JsonSerializable<ImageVersi
     }
 
     /**
-     * Reads an instance of ImageVersionProperties from the JsonReader.
+     * Reads an instance of VersionProperties from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ImageVersionProperties if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
+     * @return An instance of VersionProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ImageVersionProperties.
+     * @throws IOException If an error occurs while reading the VersionProperties.
      */
-    public static ImageVersionProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static VersionProperties fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ImageVersionProperties deserializedImageVersionProperties = new ImageVersionProperties();
+            VersionProperties deserializedVersionProperties = new VersionProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("version".equals(fieldName)) {
-                    deserializedImageVersionProperties.version = reader.getString();
+                    deserializedVersionProperties.version = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedImageVersionProperties;
+            return deserializedVersionProperties;
         });
     }
 }

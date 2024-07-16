@@ -13,10 +13,10 @@ public final class ResourceDetailsObjectInnerTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ResourceDetailsObjectInner model = BinaryData.fromString(
-            "{\"properties\":{\"status\":\"PendingReimage\",\"image\":\"mvxi\",\"imageVersion\":\"duugidyjr\"},\"id\":\"byao\",\"name\":\"v\",\"type\":\"xc\"}")
+            "{\"properties\":{\"status\":\"PendingReturn\",\"image\":\"dcsi\",\"imageVersion\":\"ynnaam\"},\"id\":\"ctehfiqscjey\",\"name\":\"vhezrkgqhcj\",\"type\":\"efovgmk\"}")
             .toObject(ResourceDetailsObjectInner.class);
-        Assertions.assertEquals(ResourceStatus.PENDING_REIMAGE, model.properties().status());
-        Assertions.assertEquals("mvxi", model.properties().image());
-        Assertions.assertEquals("duugidyjr", model.properties().imageVersion());
+        Assertions.assertEquals(ResourceStatus.PENDING_RETURN, model.properties().status());
+        Assertions.assertEquals("dcsi", model.properties().image());
+        Assertions.assertEquals("ynnaam", model.properties().imageVersion());
     }
 }
