@@ -10,7 +10,7 @@ package com.azure.resourcemanager.oracledatabase.generated;
 public final class GiVersionsListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/giVersions_listByLocation.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/giVersions_listByLocation.json
      */
     /**
      * Sample code: List GiVersions by location.
