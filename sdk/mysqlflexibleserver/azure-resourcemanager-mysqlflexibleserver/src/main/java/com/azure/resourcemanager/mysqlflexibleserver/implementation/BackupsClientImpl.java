@@ -130,11 +130,10 @@ public final class BackupsClientImpl implements BackupsClient {
         if (backupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter backupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.put(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, serverName, backupName, accept, context))
+            .withContext(context -> service.put(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, serverName, backupName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -171,11 +170,10 @@ public final class BackupsClientImpl implements BackupsClient {
         if (backupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter backupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.put(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, backupName, accept, context);
+        return service.put(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, backupName, accept, context);
     }
 
     /**
@@ -261,11 +259,10 @@ public final class BackupsClientImpl implements BackupsClient {
         if (backupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter backupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                resourceGroupName, serverName, backupName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, serverName, backupName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -302,11 +299,10 @@ public final class BackupsClientImpl implements BackupsClient {
         if (backupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter backupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, backupName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, backupName, accept, context);
     }
 
     /**
@@ -388,10 +384,9 @@ public final class BackupsClientImpl implements BackupsClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByServer(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.listByServer(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .<PagedResponse<ServerBackupInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -427,12 +422,11 @@ public final class BackupsClientImpl implements BackupsClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByServer(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-                serverName, accept, context)
+            .listByServer(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, serverName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -505,9 +499,7 @@ public final class BackupsClientImpl implements BackupsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -533,9 +525,7 @@ public final class BackupsClientImpl implements BackupsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
