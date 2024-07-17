@@ -7,6 +7,9 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.CloudInitDataSource;
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageIdentifier;
@@ -15,37 +18,53 @@ import com.azure.resourcemanager.azurestackhci.models.GalleryImageVersion;
 import com.azure.resourcemanager.azurestackhci.models.HyperVGeneration;
 import com.azure.resourcemanager.azurestackhci.models.OperatingSystemTypes;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.Map;
 
-/** The gallery images resource definition. */
+/**
+ * The gallery images resource definition.
+ */
 @Fluent
 public final class GalleryImagesInner extends Resource {
     /*
      * Properties under the gallery image resource
      */
-    @JsonProperty(value = "properties")
     private GalleryImageProperties innerProperties;
 
     /*
      * The extendedLocation of the resource.
      */
-    @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of GalleryImagesInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of GalleryImagesInner class.
+     */
     public GalleryImagesInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the gallery image resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GalleryImageProperties innerProperties() {
@@ -54,7 +73,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -63,7 +82,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -74,21 +93,55 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GalleryImagesInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GalleryImagesInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -97,7 +150,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for gallery image.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -106,7 +159,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for gallery image.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -120,7 +173,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the imagePath property: location of the image the gallery image should be created from.
-     *
+     * 
      * @return the imagePath value.
      */
     public String imagePath() {
@@ -129,7 +182,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the imagePath property: location of the image the gallery image should be created from.
-     *
+     * 
      * @param imagePath the imagePath value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -143,7 +196,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -152,7 +205,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @param osType the osType value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -167,7 +220,7 @@ public final class GalleryImagesInner extends Resource {
     /**
      * Get the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @return the cloudInitDataSource value.
      */
     public CloudInitDataSource cloudInitDataSource() {
@@ -177,7 +230,7 @@ public final class GalleryImagesInner extends Resource {
     /**
      * Set the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @param cloudInitDataSource the cloudInitDataSource value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -191,7 +244,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -200,7 +253,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -214,7 +267,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @return the identifier value.
      */
     public GalleryImageIdentifier identifier() {
@@ -223,7 +276,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Set the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -238,7 +291,7 @@ public final class GalleryImagesInner extends Resource {
     /**
      * Get the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @return the version value.
      */
     public GalleryImageVersion version() {
@@ -248,7 +301,7 @@ public final class GalleryImagesInner extends Resource {
     /**
      * Set the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @param version the version value to set.
      * @return the GalleryImagesInner object itself.
      */
@@ -262,7 +315,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the gallery image.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -271,7 +324,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Get the status property: The observed state of gallery images.
-     *
+     * 
      * @return the status value.
      */
     public GalleryImageStatus status() {
@@ -280,7 +333,7 @@ public final class GalleryImagesInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -290,5 +343,60 @@ public final class GalleryImagesInner extends Resource {
         if (extendedLocation() != null) {
             extendedLocation().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("extendedLocation", this.extendedLocation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImagesInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImagesInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the GalleryImagesInner.
+     */
+    public static GalleryImagesInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImagesInner deserializedGalleryImagesInner = new GalleryImagesInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedGalleryImagesInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedGalleryImagesInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedGalleryImagesInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedGalleryImagesInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedGalleryImagesInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedGalleryImagesInner.innerProperties = GalleryImageProperties.fromJson(reader);
+                } else if ("extendedLocation".equals(fieldName)) {
+                    deserializedGalleryImagesInner.extendedLocation = ExtendedLocation.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedGalleryImagesInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImagesInner;
+        });
     }
 }
