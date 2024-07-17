@@ -4,12 +4,73 @@
 
 ### Features Added
 
-### Breaking Changes
+* `models.CommunicationMessagesChannel` was added
 
-### Bugs Fixed
+* `models.MessageTemplateValueKind` was added
 
-### Other Changes
+* `models.CommunicationMessageKind` was added
 
+* `models.MessageTemplateBindingsKind` was added
+
+#### `models.MessageTemplateImage` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateQuickAction` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateBindings` was modified
+
+* `getKind()` was added
+
+#### `models.channels.WhatsAppMessageTemplateBindings` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateVideo` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateText` was modified
+
+* `getKind()` was added
+
+#### `models.NotificationContent` was modified
+
+* `getKind()` was added
+
+#### `models.TextNotificationContent` was modified
+
+* `getKind()` was added
+
+#### `models.MediaNotificationContent` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateItem` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateValue` was modified
+
+* `getKind()` was added
+
+#### `models.TemplateNotificationContent` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateLocation` was modified
+
+* `getKind()` was added
+
+#### `models.MessageTemplateDocument` was modified
+
+* `getKind()` was added
+
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
+
+* `getKind()` was added
 
 ## 1.0.4 (2024-06-27)
 
