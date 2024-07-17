@@ -1,14 +1,496 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-07-17)
+
+- Azure Resource Manager NetAppFiles client library for Java. This package contains Microsoft Azure SDK for NetAppFiles Management SDK. Microsoft NetApp Files Azure Resource Provider specification. Package tag package-preview-2024-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.EncryptionMigrationRequest` was added
 
-### Bugs Fixed
+* `models.AcceptGrowCapacityPoolForShortTermCloneSplit` was added
 
-### Other Changes
+* `models.SvmPeerCommandResponse` was added
+
+* `models.PeerClusterForVolumeMigrationRequest` was added
+
+* `models.ListQuotaReportResponse` was added
+
+* `models.ClusterPeerCommandResponse` was added
+
+* `models.RemotePath` was added
+
+* `models.VolumeLanguage` was added
+
+* `models.KeyVaultPrivateEndpoint` was added
+
+* `models.QuotaReport` was added
+
+* `models.DestinationReplication` was added
+
+* `models.ChangeKeyVault` was added
+
+* `models.ReplicationType` was added
+
+#### `models.NetAppAccount$Definition` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+
+#### `models.ServiceSpecification` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MetricSpecification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Volume` was modified
+
+* `peerExternalCluster(models.PeerClusterForVolumeMigrationRequest,com.azure.core.util.Context)` was added
+* `finalizeExternalReplication(com.azure.core.util.Context)` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+* `peerExternalCluster(models.PeerClusterForVolumeMigrationRequest)` was added
+* `inheritedSizeInBytes()` was added
+* `language()` was added
+* `authorizeExternalReplication(com.azure.core.util.Context)` was added
+* `listQuotaReport(com.azure.core.util.Context)` was added
+* `authorizeExternalReplication()` was added
+* `performReplicationTransfer()` was added
+* `splitCloneFromParent(com.azure.core.util.Context)` was added
+* `performReplicationTransfer(com.azure.core.util.Context)` was added
+* `listQuotaReport()` was added
+* `splitCloneFromParent()` was added
+* `finalizeExternalReplication()` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Volume$Update` was modified
+
+* `withProtocolTypes(java.util.List)` was added
+
+#### `models.VolumePatchPropertiesExportPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VolumePatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `id()` was added
+* `protocolTypes()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withProtocolTypes(java.util.List)` was added
+* `type()` was added
+* `name()` was added
+
+#### `models.KeyVaultProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BreakFileLocksRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SnapshotPolicyPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HourlySchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ActiveDirectory` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupVaultPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SnapshotPoliciesList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PlacementKeyValuePairs` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeQuotaRulesList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeGroupMetadata` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MonthlySchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LogSpecification` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupPoliciesList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumePropertiesDataProtection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceNameAvailabilityRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupsMigrationRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GetGroupIdListForLdapUserRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeRelocationProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EncryptionIdentity` was modified
+
+* `federatedClientId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withFederatedClientId(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DailySchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SnapshotsList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RelocateVolumeRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeGroupList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Volume$Definition` was modified
+
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+* `withLanguage(models.VolumeLanguage)` was added
+
+#### `models.VolumeSnapshotProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NicInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumePatchPropertiesDataProtection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeBackups` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExportPolicyRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumePropertiesExportPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupsList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupVaultsList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupPolicyPatch` was modified
+
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `name()` was added
+* `id()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateNetworkSiblingSetRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ReplicationObject` was modified
+
+* `withRemotePath(models.RemotePath)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `remotePath()` was added
+* `destinationReplications()` was added
+
+#### `models.BackupRestoreFiles` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Volumes` was modified
+
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `authorizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `peerExternalCluster(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PeerClusterForVolumeMigrationRequest)` was added
+* `authorizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `finalizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `finalizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `peerExternalCluster(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PeerClusterForVolumeMigrationRequest,com.azure.core.util.Context)` was added
+* `performReplicationTransfer(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `performReplicationTransfer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetAppAccountPatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `id()` was added
+* `name()` was added
+* `withNfsV4IdDomain(java.lang.String)` was added
+* `nfsV4IdDomain()` was added
+* `type()` was added
+* `isMultiAdEnabled()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SubvolumePatchRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VolumeRevert` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FilePathAvailabilityRequest` was modified
+
+* `availabilityZone()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withAvailabilityZone(java.lang.String)` was added
+
+#### `models.AuthorizeRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RegionInfoAvailabilityZoneMappingsItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BreakReplicationRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QueryNetworkSiblingSetRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WeeklySchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetAppAccount$Update` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+
+#### `models.CapacityPoolPatch` was modified
+
+* `name()` was added
+* `id()` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SnapshotRestoreFiles` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LdapSearchScopeOpt` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VolumeGroupVolumeProperties` was modified
+
+* `withLanguage(models.VolumeLanguage)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+* `language()` was added
+* `type()` was added
+* `id()` was added
+* `inheritedSizeInBytes()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Dimension` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Replication` was modified
+
+* `replicationId()` was added
+
+#### `models.Accounts` was modified
+
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `changeKeyVault(java.lang.String,java.lang.String)` was added
+* `migrateEncryptionKey(java.lang.String,java.lang.String)` was added
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String)` was added
+* `changeKeyVault(java.lang.String,java.lang.String,models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `migrateEncryptionKey(java.lang.String,java.lang.String,models.EncryptionMigrationRequest,com.azure.core.util.Context)` was added
+
+#### `models.SubscriptionQuotaItemList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RegionInfosList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QuotaAvailabilityRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeQuotaRulePatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetAppAccount` was modified
+
+* `migrateEncryptionKey()` was added
+* `migrateEncryptionKey(models.EncryptionMigrationRequest,com.azure.core.util.Context)` was added
+* `nfsV4IdDomain()` was added
+* `changeKeyVault(models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation(com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation()` was added
+* `isMultiAdEnabled()` was added
+* `changeKeyVault()` was added
+
+#### `models.CapacityPoolList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SubvolumesList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AccountEncryption` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VolumeBackupProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ListReplications` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PoolChangeRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetAppAccountList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ReestablishReplicationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.2.0 (2024-05-30)
 
