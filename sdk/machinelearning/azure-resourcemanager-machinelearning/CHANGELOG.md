@@ -1,14 +1,2780 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-07-17)
 
-### Features Added
+- Azure Resource Manager Machine Learning client library for Java. This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.AmlOperation` was removed
 
-### Other Changes
+* `models.AmlOperationListResult` was removed
+
+* `models.AmlOperationDisplay` was removed
+
+#### `models.ComponentContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.DataContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.EnvironmentContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.ModelContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.CodeContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.CodeVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ComponentContainers` was modified
+
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.DataContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.DataContainers` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ComputeStartStopSchedule` was modified
+
+* `models.RecurrenceTrigger recurrence()` -> `models.Recurrence recurrence()`
+* `models.TriggerType triggerType()` -> `models.ComputeTriggerType triggerType()`
+* `models.CronTrigger cron()` -> `models.Cron cron()`
+* `withTriggerType(models.TriggerType)` was removed
+* `withRecurrence(models.RecurrenceTrigger)` was removed
+* `withCron(models.CronTrigger)` was removed
+
+#### `models.Workspaces` was modified
+
+* `delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+
+#### `models.EnvironmentContainers` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ModelContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.CodeContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.EnvironmentContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.PrivateEndpoint` was modified
+
+* `subnetArmId()` was removed
+
+#### `MachineLearningManager` was modified
+
+* `fluent.AzureMachineLearningWorkspaces serviceClient()` -> `fluent.AzureMachineLearningServices serviceClient()`
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccess publicNetworkAccess()`
+* `models.Sku sku()` -> `models.Sku sku()`
+* `models.ServiceManagedResourcesSettings serviceManagedResourcesSettings()` -> `models.ServiceManagedResourcesSettings serviceManagedResourcesSettings()`
+* `withContainerRegistry(java.lang.String)` was removed
+* `java.lang.String friendlyName()` -> `java.lang.String friendlyName()`
+* `validate()` was removed
+* `java.util.Map tags()` -> `java.util.Map tags()`
+* `withImageBuildCompute(java.lang.String)` was removed
+* `java.lang.String containerRegistry()` -> `java.lang.String containerRegistry()`
+* `withApplicationInsights(java.lang.String)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `java.lang.String primaryUserAssignedIdentity()` -> `java.lang.String primaryUserAssignedIdentity()`
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+* `models.ManagedServiceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `java.lang.String description()` -> `java.lang.String description()`
+* `java.lang.String imageBuildCompute()` -> `java.lang.String imageBuildCompute()`
+* `withPrimaryUserAssignedIdentity(java.lang.String)` was removed
+* `java.lang.String applicationInsights()` -> `java.lang.String applicationInsights()`
+* `withTags(java.util.Map)` was removed
+* `withIdentity(models.ManagedServiceIdentity)` was removed
+* `withSku(models.Sku)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withServiceManagedResourcesSettings(models.ServiceManagedResourcesSettings)` was removed
+
+#### `models.ComponentVersions` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `define(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.CodeContainers` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.Jobs` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.ListViewType,com.azure.core.util.Context)` was removed
+
+#### `models.DataVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.EnvironmentVersions` was modified
+
+* `getById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+
+#### `models.ComponentContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.ModelVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ModelContainers` was modified
+
+* `define(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.SystemCreatedStorageAccount` was added
+
+* `models.Registry$Definition` was added
+
+* `models.NodesValueType` was added
+
+* `models.MonitoringFeatureFilterType` was added
+
+* `models.DataAvailabilityStatus` was added
+
+* `models.FeaturesetVersionBackfillResponse` was added
+
+* `models.LakeHouseArtifact` was added
+
+* `models.OperationListResult` was added
+
+* `models.ServerlessEndpoint$Update` was added
+
+* `models.NumericalDataDriftMetric` was added
+
+* `models.ServerlessEndpoint` was added
+
+* `models.NumericalPredictionDriftMetric` was added
+
+* `models.WorkspaceConnectionAccessKey` was added
+
+* `models.DestinationAsset` was added
+
+* `models.ManagedIdentityCredential` was added
+
+* `models.ServerlessComputeSettings` was added
+
+* `models.FeaturestoreEntityVersions` was added
+
+* `models.MonitoringFeatureFilterBase` was added
+
+* `models.OutboundRuleBasicResource$Update` was added
+
+* `models.DataDriftMonitoringSignal` was added
+
+* `models.MonitorNotificationSettings` was added
+
+* `models.WorkspaceHubConfig` was added
+
+* `models.FeaturesetVersionProperties` was added
+
+* `models.MaterializationComputeResource` was added
+
+* `models.FeaturestoreEntityVersion$DefinitionStages` was added
+
+* `models.ManagedComputeIdentity` was added
+
+* `models.AcrDetails` was added
+
+* `models.CategoricalPredictionDriftMetric` was added
+
+* `models.MarketplaceSubscription` was added
+
+* `models.TmpfsOptions` was added
+
+* `models.DockerCredential` was added
+
+* `models.Registry` was added
+
+* `models.CategoricalPredictionDriftMetricThreshold` was added
+
+* `models.FeaturesetContainer$Definition` was added
+
+* `models.CustomMetricThreshold` was added
+
+* `models.MarketplaceSubscriptionProperties` was added
+
+* `models.SparkJobScalaEntry` was added
+
+* `models.FeaturesetVersion$Definition` was added
+
+* `models.FeatureDataType` was added
+
+* `models.MarketplaceSubscriptions` was added
+
+* `models.SparkJobEntry` was added
+
+* `models.AssetProvisioningState` was added
+
+* `models.EncryptionUpdateProperties` was added
+
+* `models.CategoricalDataDriftMetric` was added
+
+* `models.ServerlessEndpointTrackedResourceArmPaginatedResult` was added
+
+* `models.Image` was added
+
+* `models.MonitorComputeConfigurationBase` was added
+
+* `models.MarketplaceSubscription$Definition` was added
+
+* `models.FeaturestoreEntityContainerResourceArmPaginatedResult` was added
+
+* `models.WorkspaceConnectionApiKey` was added
+
+* `models.Collection` was added
+
+* `models.PendingUploadCredentialType` was added
+
+* `models.OperationDisplay` was added
+
+* `models.PrivateEndpointResource` was added
+
+* `models.SystemCreatedAcrAccount` was added
+
+* `models.MonitorDefinition` was added
+
+* `models.RegistryComponentVersions` was added
+
+* `models.MarketplacePlan` was added
+
+* `models.ManagedNetworkSettingsRules` was added
+
+* `models.OneLakeDatastore` was added
+
+* `models.ServerlessEndpoint$DefinitionStages` was added
+
+* `models.FeatureImportanceSettings` was added
+
+* `models.FeatureResourceArmPaginatedResult` was added
+
+* `models.FeaturesetSpecification` was added
+
+* `models.ManagedNetworkProvisions` was added
+
+* `models.AzureDevOpsWebhook` was added
+
+* `models.MonitoringSignalType` was added
+
+* `models.EnvironmentVariableType` was added
+
+* `models.DataDriftMetricThresholdBase` was added
+
+* `models.MonitoringSignalBase` was added
+
+* `models.Docker` was added
+
+* `models.NumericalPredictionDriftMetricThreshold` was added
+
+* `models.ArmResourceId` was added
+
+* `models.RegistryEnvironmentContainers` was added
+
+* `models.ServicePrincipalAuthTypeWorkspaceConnectionProperties` was added
+
+* `models.Origin` was added
+
+* `models.PrivateEndpointOutboundRule` was added
+
+* `models.MarketplaceSubscriptionResourceArmPaginatedResult` was added
+
+* `models.DataCollectionMode` was added
+
+* `models.Nodes` was added
+
+* `models.BindOptions` was added
+
+* `models.RegistryCodeContainers` was added
+
+* `models.AllFeatures` was added
+
+* `models.RegistryEnvironmentVersions` was added
+
+* `models.DataReferenceCredential` was added
+
+* `models.PredictionDriftMonitoringSignal` was added
+
+* `models.OAuth2AuthTypeWorkspaceConnectionProperties` was added
+
+* `models.FeatureProperties` was added
+
+* `models.FeaturesetVersions` was added
+
+* `models.FeaturesetVersion$Update` was added
+
+* `models.VolumeDefinitionType` was added
+
+* `models.Operation` was added
+
+* `models.DataQualityMonitoringSignal` was added
+
+* `models.RegistryPartialManagedServiceIdentity` was added
+
+* `models.TopNFeaturesByAttribution` was added
+
+* `models.Registries` was added
+
+* `models.FeaturestoreEntityVersion$Definition` was added
+
+* `models.MarketplaceSubscription$DefinitionStages` was added
+
+* `models.Feature` was added
+
+* `models.RuleAction` was added
+
+* `models.ContentSafetyStatus` was added
+
+* `models.ConnectionGroup` was added
+
+* `models.RegistryPrivateEndpointConnection` was added
+
+* `models.GetBlobReferenceSasRequestDto` was added
+
+* `models.BatchDeploymentConfigurationType` was added
+
+* `models.StorageAccountDetails` was added
+
+* `models.RegistryRegionArmDetails` was added
+
+* `models.EncryptionKeyVaultUpdateProperties` was added
+
+* `models.FeaturesetVersion$DefinitionStages` was added
+
+* `models.MonitorComputeType` was added
+
+* `models.StaticInputData` was added
+
+* `models.SparkJobEntryType` was added
+
+* `models.UserCreatedAcrAccount` was added
+
+* `models.ServerlessEndpoints` was added
+
+* `models.VolumeOptions` was added
+
+* `models.FeaturestoreEntityVersionResourceArmPaginatedResult` was added
+
+* `models.RegistryCodeVersions` was added
+
+* `models.FeatureImportanceMode` was added
+
+* `models.MarketplaceSubscriptionProvisioningState` was added
+
+* `models.MonitoringTarget` was added
+
+* `models.QueueSettings` was added
+
+* `models.RegistryDataContainers` was added
+
+* `models.FeatureAttributionMetricThreshold` was added
+
+* `models.Protocol` was added
+
+* `models.ActionType` was added
+
+* `models.ComputeRecurrenceSchedule` was added
+
+* `models.Registry$Update` was added
+
+* `models.MarketplaceSubscriptionStatus` was added
+
+* `models.MonitorServerlessSparkCompute` was added
+
+* `models.ApiKeyAuthWorkspaceConnectionProperties` was added
+
+* `models.AnonymousAccessCredential` was added
+
+* `models.ManagedNetworkSettings` was added
+
+* `models.MarketplaceSubscription$Update` was added
+
+* `models.MaterializationSettings` was added
+
+* `models.Recurrence` was added
+
+* `models.Registry$UpdateStages` was added
+
+* `models.OutboundRuleListResult` was added
+
+* `models.WorkspaceConnectionServicePrincipal` was added
+
+* `models.Webhook` was added
+
+* `models.DataReferenceCredentialType` was added
+
+* `models.RegistryDataReferences` was added
+
+* `models.PrivateEndpointDestination` was added
+
+* `models.MarketplaceSubscription$UpdateStages` was added
+
+* `models.OneLakeArtifact` was added
+
+* `models.FeaturestoreEntityContainer$UpdateStages` was added
+
+* `models.ServerlessEndpointProperties` was added
+
+* `models.ImageMetadata` was added
+
+* `models.CustomKeysWorkspaceConnectionProperties` was added
+
+* `models.FeaturestoreEntityContainer` was added
+
+* `models.CustomKeys` was added
+
+* `models.FeatureStoreSettings` was added
+
+* `models.WebhookType` was added
+
+* `models.AccountKeyAuthTypeWorkspaceConnectionProperties` was added
+
+* `models.ManagedNetworkProvisionOptions` was added
+
+* `models.SparkJob` was added
+
+* `models.ServerlessEndpointState` was added
+
+* `models.WorkspacePropertiesUpdateParameters` was added
+
+* `models.ComputeRuntimeDto` was added
+
+* `models.FeatureWindow` was added
+
+* `models.Cron` was added
+
+* `models.RuleCategory` was added
+
+* `models.FeatureSubset` was added
+
+* `models.PendingUploadRequestDto` was added
+
+* `models.RuleStatus` was added
+
+* `models.RegistryComponentContainers` was added
+
+* `models.DataCollector` was added
+
+* `models.WorkspaceConnectionAccountKey` was added
+
+* `models.MonitoringInputDataBase` was added
+
+* `models.Features` was added
+
+* `models.AccessKeyAuthTypeWorkspaceConnectionProperties` was added
+
+* `models.CategoricalDataQualityMetricThreshold` was added
+
+* `models.MaterializationStoreType` was added
+
+* `models.CustomService` was added
+
+* `models.AadAuthTypeWorkspaceConnectionProperties` was added
+
+* `models.BlobReferenceForConsumptionDto` was added
+
+* `models.VolumeDefinition` was added
+
+* `models.ModelTaskType` was added
+
+* `models.FeaturestoreEntityVersion` was added
+
+* `models.FeaturestoreEntityContainer$Update` was added
+
+* `models.ServerlessInferenceEndpoint` was added
+
+* `models.FeaturesetVersionBackfillRequest` was added
+
+* `models.ServerlessEndpoint$Definition` was added
+
+* `models.PendingUploadResponseDto` was added
+
+* `models.RegistryDataVersions` was added
+
+* `models.OutboundRule` was added
+
+* `models.ModelSettings` was added
+
+* `models.OneLakeArtifactType` was added
+
+* `models.Endpoint` was added
+
+* `models.MonitoringThreshold` was added
+
+* `models.MonitoringInputDataType` was added
+
+* `models.RollingInputData` was added
+
+* `models.GetBlobReferenceSasResponseDto` was added
+
+* `models.Registry$DefinitionStages` was added
+
+* `models.FeaturesetVersion$UpdateStages` was added
+
+* `models.FeaturestoreEntityContainers` was added
+
+* `models.ComputeRecurrenceFrequency` was added
+
+* `models.IndexColumn` was added
+
+* `models.CategoricalDataDriftMetricThreshold` was added
+
+* `models.NumericalDataQualityMetricThreshold` was added
+
+* `models.FeaturestoreEntityContainer$DefinitionStages` was added
+
+* `models.FeaturesetContainers` was added
+
+* `models.PredictionDriftMetricThresholdBase` was added
+
+* `models.JobTier` was added
+
+* `models.GetBlobReferenceForConsumptionDto` was added
+
+* `models.FeaturestoreEntityVersion$Update` was added
+
+* `models.MonitorEmailNotificationSettings` was added
+
+* `models.SasCredential` was added
+
+* `models.NotificationSetting` was added
+
+* `models.BatchDeploymentConfiguration` was added
+
+* `models.SasCredentialDto` was added
+
+* `models.ServiceTagOutboundRule` was added
+
+* `models.IsolationMode` was added
+
+* `models.UserCreatedStorageAccount` was added
+
+* `models.MonitoringFeatureDataType` was added
+
+* `models.ServerlessEndpoint$UpdateStages` was added
+
+* `models.OutboundRuleBasicResource$UpdateStages` was added
+
+* `models.EnvironmentVariable` was added
+
+* `models.WorkspaceConnectionOAuth2` was added
+
+* `models.PartialRegistryPartialTrackedResource` was added
+
+* `models.PartialMinimalTrackedResourceWithSkuAndIdentity` was added
+
+* `models.FeaturesetContainer$Update` was added
+
+* `models.RegistryTrackedResourceArmPaginatedResult` was added
+
+* `models.FeaturestoreEntityContainerProperties` was added
+
+* `models.FeaturestoreEntityVersionProperties` was added
+
+* `models.RuleType` was added
+
+* `models.NumericalDataDriftMetricThreshold` was added
+
+* `models.ComputeTriggerType` was added
+
+* `models.EndpointServiceConnectionStatus` was added
+
+* `models.FeaturesetContainer$DefinitionStages` was added
+
+* `models.OutboundRuleBasicResource$Definition` was added
+
+* `models.EmailNotificationEnableType` was added
+
+* `models.ServiceTagDestination` was added
+
+* `models.RequestLogging` was added
+
+* `models.FeaturestoreEntityContainer$Definition` was added
+
+* `models.ManagedNetworkStatus` was added
+
+* `models.FeaturesetContainerProperties` was added
+
+* `models.FeaturesetContainer$UpdateStages` was added
+
+* `models.MonitoringNotificationType` was added
+
+* `models.RollingRateType` was added
+
+* `models.CustomMonitoringSignal` was added
+
+* `models.CreateMonitorAction` was added
+
+* `models.ComputeWeekDay` was added
+
+* `models.DataQualityMetricThresholdBase` was added
+
+* `models.OutboundRuleBasicResource$DefinitionStages` was added
+
+* `models.ServerlessInferenceEndpointAuthMode` was added
+
+* `models.RegistryModelVersions` was added
+
+* `models.SparkResourceConfiguration` was added
+
+* `models.SparkJobPythonEntry` was added
+
+* `models.FeaturesetContainerResourceArmPaginatedResult` was added
+
+* `models.FeaturesetVersionResourceArmPaginatedResult` was added
+
+* `models.MonitorComputeIdentityType` was added
+
+* `models.OutboundRuleBasicResource` was added
+
+* `models.AmlTokenComputeIdentity` was added
+
+* `models.FeatureAttributionDriftMonitoringSignal` was added
+
+* `models.NumericalDataQualityMetric` was added
+
+* `models.FeaturesetVersion` was added
+
+* `models.FeaturesetContainer` was added
+
+* `models.RegistryModelContainers` was added
+
+* `models.FeaturestoreEntityVersion$UpdateStages` was added
+
+* `models.AllNodes` was added
+
+* `models.MonitorComputeIdentityBase` was added
+
+* `models.ContentSafety` was added
+
+* `models.FeatureAttributionMetric` was added
+
+* `models.CategoricalDataQualityMetric` was added
+
+* `models.BatchPipelineComponentDeploymentConfiguration` was added
+
+* `models.PendingUploadType` was added
+
+* `models.ManagedNetworkProvisionStatus` was added
+
+* `models.PendingUploadCredentialDto` was added
+
+* `models.RegistryPrivateLinkServiceConnectionState` was added
+
+* `models.FixedInputData` was added
+
+* `models.ImageType` was added
+
+* `models.AzureDatastore` was added
+
+* `models.FqdnOutboundRule` was added
+
+#### `models.DiagnoseRequestProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NlpVerticalLimitSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoScaleProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NoneDatastoreCredentials` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `credentialsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FqdnEndpointsProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EstimatedVMPrice` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScaleSettingsInformation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceConnectionPropertiesV2` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `metadata()` was added
+* `createdByWorkspaceArmId()` was added
+* `withSharedUserList(java.util.List)` was added
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `withMetadata(java.util.Map)` was added
+* `group()` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `authType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `expiryTime()` was added
+* `sharedUserList()` was added
+* `isSharedToAll()` was added
+
+#### `models.BanditPolicy` was modified
+
+* `policyType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JobResourceConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ImageClassificationMultilabel` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `taskType()` was added
+
+#### `models.BuildContext` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CronTrigger` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `triggerType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MLFlowModelJobOutput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobOutputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureBlobDatastore` was modified
+
+* `resourceGroup()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `datastoreType()` was added
+* `withResourceGroup(java.lang.String)` was added
+* `isDefault()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `subscriptionId()` was added
+* `withSubscriptionId(java.lang.String)` was added
+
+#### `models.AssetContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CodeVersions` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner)` was added
+* `createOrGetStartPendingUpload(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PendingUploadRequestDto)` was added
+* `createOrGetStartPendingUploadWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset,com.azure.core.util.Context)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset)` was added
+
+#### `models.ComponentContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.KubernetesProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageModelSettingsObjectDetection` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatabricksComputeSecretsProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AmlToken` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `identityType()` was added
+
+#### `models.DatabricksSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SweepJobLimits` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobLimitsType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SynapseSpark` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningState()` was added
+* `createdOn()` was added
+* `isAttachedCompute()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningErrors()` was added
+* `computeType()` was added
+* `modifiedOn()` was added
+
+#### `models.ScheduleProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeInstanceSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FqdnEndpoints` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DefaultScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `scaleType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.ImageSweepSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SystemService` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OnlineRequestSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DataVersionBaseProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dataType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DataVersionBase` was modified
+
+* `createOrGetStartPendingUpload(models.PendingUploadRequestDto)` was added
+* `createOrGetStartPendingUploadWithResponse(models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+
+#### `models.DataContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.CodeConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageInstanceSegmentation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ForecastHorizon` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchDeploymentProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withDeploymentConfiguration(models.BatchDeploymentConfiguration)` was added
+* `deploymentConfiguration()` was added
+
+#### `models.Aks` was modified
+
+* `modifiedOn()` was added
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `createdOn()` was added
+* `computeType()` was added
+* `isAttachedCompute()` was added
+* `provisioningErrors()` was added
+
+#### `models.PartialMinimalTrackedResourceWithSku` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetRollingWindowSize` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataLakeAnalytics` was modified
+
+* `computeType()` was added
+* `createdOn()` was added
+* `provisioningErrors()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `modifiedOn()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `isAttachedCompute()` was added
+* `provisioningState()` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoTargetRollingWindowSize` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+
+#### `models.DataVersionBaseResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClassificationTrainingSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Workspace$Update` was modified
+
+* `withEncryption(models.EncryptionUpdateProperties)` was added
+* `withV1LegacyMode(java.lang.Boolean)` was added
+* `withEnableDataIsolation(java.lang.Boolean)` was added
+* `withFeatureStoreSettings(models.FeatureStoreSettings)` was added
+* `withManagedNetwork(fluent.models.ManagedNetworkSettingsInner)` was added
+* `withServerlessComputeSettings(models.ServerlessComputeSettings)` was added
+
+#### `models.PartialBatchDeployment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataContainerResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeStartStopSchedule` was modified
+
+* `withRecurrence(models.Recurrence)` was added
+* `withTriggerType(models.ComputeTriggerType)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withCron(models.Cron)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceName` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineSecrets` was modified
+
+* `computeType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AutoPauseProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceCreatedBy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ModelVersionProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `stage()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `withStage(java.lang.String)` was added
+
+#### `models.BatchEndpointProperties` was modified
+
+* `swaggerUri()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `scoringUri()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OnlineDeploymentProperties` was modified
+
+* `withDataCollector(models.DataCollector)` was added
+* `endpointComputeType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dataCollector()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TruncationSelectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `policyType()` was added
+
+#### `models.ImageClassificationBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchRetrySettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualMachineSshCredentials` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceConnectionUsernamePassword` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSecurityToken(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `securityToken()` was added
+
+#### `models.WorkspaceConnectionPersonalAccessToken` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QuotaBaseProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CodeContainerProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `latestVersion()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `nextVersion()` was added
+* `provisioningState()` was added
+
+#### `models.AmlComputeNodeInformation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ModelContainerProperties` was modified
+
+* `latestVersion()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `nextVersion()` was added
+
+#### `models.TableVerticalFeaturizationSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EarlyTerminationPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `policyType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoNCrossValidations` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.InferenceContainerProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterUpdateParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.JobLimits` was modified
+
+* `jobLimitsType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetLags` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+
+#### `models.BatchEndpointDefaults` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageModelDistributionSettingsClassification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScriptsToExecute` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureDataLakeGen1Datastore` was modified
+
+* `datastoreType()` was added
+* `withResourceGroup(java.lang.String)` was added
+* `isDefault()` was added
+* `resourceGroup()` was added
+* `withSubscriptionId(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `subscriptionId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatastoreSecrets` was modified
+
+* `secretsType()` was added
+
+#### `models.Workspaces` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.Kubernetes` was modified
+
+* `isAttachedCompute()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `computeType()` was added
+* `createdOn()` was added
+* `modifiedOn()` was added
+* `provisioningErrors()` was added
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedOnlineDeployment` was modified
+
+* `withDataCollector(models.DataCollector)` was added
+* `provisioningState()` was added
+* `endpointComputeType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DataLakeAnalyticsSchema` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeStateCounts` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EnvironmentVersionProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `withStage(java.lang.String)` was added
+* `stage()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ModelVersionResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AssignedUser` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EnvironmentContainerProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `latestVersion()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `nextVersion()` was added
+
+#### `models.AksSchemaProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AssetJobOutput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnectionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CustomModelJobInput` was modified
+
+* `jobInputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CodeVersionProperties` was modified
+
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AmlComputeNodesInformation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EnvironmentContainers` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner)` was added
+
+#### `models.Objective` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.QuotaUpdateParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UriFolderDataVersion` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `dataType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withAssociatedWorkspaces(java.util.List)` was added
+* `withServerlessComputeSettings(models.ServerlessComputeSettings)` was added
+* `withKind(java.lang.String)` was added
+* `withFeatureStoreSettings(models.FeatureStoreSettings)` was added
+* `withManagedNetwork(fluent.models.ManagedNetworkSettingsInner)` was added
+* `withEnableDataIsolation(java.lang.Boolean)` was added
+* `withHubResourceId(java.lang.String)` was added
+* `withWorkspaceHubConfig(models.WorkspaceHubConfig)` was added
+
+#### `models.DataPathAssetReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `referenceType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ModelContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.CodeContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.SynapseSparkProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StackEnsembleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceDataDisk` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ListWorkspaceQuotas` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetUtilizationScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `scaleType()` was added
+
+#### `models.ComputeInstanceApplication` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `name()` was added
+* `id()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.PipelineJob` was modified
+
+* `status()` was added
+* `withNotificationSetting(models.NotificationSetting)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobType()` was added
+
+#### `models.Password` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ColumnTransformer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TrainingSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecurrenceSchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PartialMinimalTrackedResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceConnectionManagedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CustomTargetLags` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+
+#### `models.DistributionConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `distributionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PaginatedComputeResourcesList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScheduleResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Seasonality` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HDInsightProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Classification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualMachine` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningState()` was added
+* `computeType()` was added
+* `modifiedOn()` was added
+* `createdOn()` was added
+* `provisioningErrors()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `isAttachedCompute()` was added
+
+#### `models.RegressionTrainingSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateWorkspaceQuotas` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AmlCompute` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `modifiedOn()` was added
+* `provisioningErrors()` was added
+* `isAttachedCompute()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `computeType()` was added
+* `createdOn()` was added
+* `provisioningState()` was added
+
+#### `models.AzureDataLakeGen2Datastore` was modified
+
+* `subscriptionId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSubscriptionId(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `resourceGroup()` was added
+* `isDefault()` was added
+* `datastoreType()` was added
+* `withResourceGroup(java.lang.String)` was added
+
+#### `models.ImageModelSettingsClassification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatastoreResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AccountKeyDatastoreCredentials` was modified
+
+* `credentialsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContainerResourceRequirements` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeInstanceConnectivityEndpoints` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Databricks` was modified
+
+* `createdOn()` was added
+* `isAttachedCompute()` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningErrors()` was added
+* `computeType()` was added
+* `modifiedOn()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ListAmlUserFeatureResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UriFileDataVersion` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `dataType()` was added
+
+#### `models.EnvironmentContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.UriFileJobInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobInputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeInstance` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `modifiedOn()` was added
+* `createdOn()` was added
+* `isAttachedCompute()` was added
+* `computeType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningErrors()` was added
+* `provisioningState()` was added
+
+#### `models.SkuCapacity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkspaceConnections` was modified
+
+* `listSecretsWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listSecrets(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.ComponentContainerProperties` was modified
+
+* `provisioningState()` was added
+* `nextVersion()` was added
+* `latestVersion()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Workspace` was modified
+
+* `workspaceHubConfig()` was added
+* `featureStoreSettings()` was added
+* `serverlessComputeSettings()` was added
+* `kind()` was added
+* `associatedWorkspaces()` was added
+* `managedNetwork()` was added
+* `enableDataIsolation()` was added
+* `hubResourceId()` was added
+
+#### `models.ComponentContainerResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeResourceSchema` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AmlComputeProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Route` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EncryptionKeyVaultProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NlpVertical` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UriFileJobOutput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobOutputType()` was added
+
+#### `models.LiteralJobInput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobInputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CodeVersion` was modified
+
+* `createOrGetStartPendingUpload(models.PendingUploadRequestDto)` was added
+* `createOrGetStartPendingUploadWithResponse(models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+
+#### `models.TableVerticalLimitSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UriFolderJobInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobInputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TrialComponent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeSecrets` was modified
+
+* `computeType()` was added
+
+#### `models.SkuResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MedianStoppingPolicy` was modified
+
+* `policyType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NoneAuthTypeWorkspaceConnectionProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withMetadata(java.util.Map)` was added
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `withSharedUserList(java.util.List)` was added
+* `group()` was added
+* `createdByWorkspaceArmId()` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `authType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NotebookPreparationError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScaleSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.JobBaseResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PartialManagedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Regression` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `MachineLearningManager` was modified
+
+* `registryDataReferences()` was added
+* `features()` was added
+* `featuresetVersions()` was added
+* `registryDataContainers()` was added
+* `registryCodeContainers()` was added
+* `registryDataVersions()` was added
+* `managedNetworkSettingsRules()` was added
+* `registryModelContainers()` was added
+* `registryCodeVersions()` was added
+* `registryComponentVersions()` was added
+* `registries()` was added
+* `serverlessEndpoints()` was added
+* `registryComponentContainers()` was added
+* `managedNetworkProvisions()` was added
+* `marketplaceSubscriptions()` was added
+* `registryEnvironmentVersions()` was added
+* `featuresetContainers()` was added
+* `featurestoreEntityVersions()` was added
+* `featurestoreEntityContainers()` was added
+* `registryEnvironmentContainers()` was added
+* `registryModelVersions()` was added
+
+#### `models.CodeContainerResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScheduleActionBase` was modified
+
+* `actionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListUsagesResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MLTableData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dataType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Forecasting` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `taskType()` was added
+
+#### `models.CertificateDatastoreSecrets` was modified
+
+* `secretsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateDatastoreCredentials` was modified
+
+* `credentialsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineSchemaProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UsernamePasswordAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `withMetadata(java.util.Map)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSharedUserList(java.util.List)` was added
+* `group()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `createdByWorkspaceArmId()` was added
+* `authType()` was added
+
+#### `models.ServiceManagedResourcesSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.GridSamplingAlgorithm` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `samplingAlgorithmType()` was added
+
+#### `models.ComponentVersionResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IdentityForCmk` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureFileDatastore` was modified
+
+* `datastoreType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `isDefault()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSubscriptionId(java.lang.String)` was added
+* `resourceGroup()` was added
+* `subscriptionId()` was added
+* `withResourceGroup(java.lang.String)` was added
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `featureStoreSettings()` was added
+* `managedNetwork()` was added
+* `innerModel()` was added
+* `enableDataIsolation()` was added
+* `serverlessComputeSettings()` was added
+* `encryption()` was added
+* `v1LegacyMode()` was added
+
+#### `models.NlpVerticalFeaturizationSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineImage` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UriFolderJobOutput` was modified
+
+* `jobOutputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Compute` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `computeType()` was added
+
+#### `models.OutputPathAssetReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `referenceType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EnvironmentVersionResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TriggerBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `triggerType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AssetBase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.InstanceTypeSchemaResources` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScriptReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MLTableJobOutput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobOutputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoMLVertical` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `taskType()` was added
+
+#### `models.Mpi` was modified
+
+* `distributionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiagnoseResponseResultValue` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SasDatastoreCredentials` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `credentialsType()` was added
+
+#### `models.AksNetworkingConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualMachineSecretsSchema` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BatchEndpointTrackedResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatabricksComputeSecrets` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `computeType()` was added
+
+#### `models.OnlineDeploymentTrackedResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageModelDistributionSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageVertical` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiagnoseResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TritonModelJobOutput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobOutputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceConnectionSharedAccessSignature` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DatastoreCredentials` was modified
+
+* `credentialsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.KubernetesSchema` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProbeSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceBase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResource` was modified
+
+* `listSecretsWithResponse(com.azure.core.util.Context)` was added
+* `listSecrets()` was added
+
+#### `models.EstimatedVMPrices` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextClassificationMultilabel` was modified
+
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComponentVersions` was modified
+
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset,com.azure.core.util.Context)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner,com.azure.core.util.Context)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner)` was added
+
+#### `models.CosmosDbSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdAssetReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `referenceType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AksComputeSecrets` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `computeType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PersonalComputeInstanceSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkspaceProperties` was modified
+
+* `enableDataIsolation()` was added
+* `featureStoreSettings()` was added
+* `associatedWorkspaces()` was added
+* `hubResourceId()` was added
+* `managedNetwork()` was added
+* `workspaceHubConfig()` was added
+* `serverlessComputeSettings()` was added
+
+#### `models.CommandJobLimits` was modified
+
+* `jobLimitsType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineSize` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ImageClassification` was modified
+
+* `taskType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatabricksProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SasDatastoreSecrets` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `secretsType()` was added
+
+#### `models.SharedPrivateLinkResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AksSchema` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TritonModelJobInput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobInputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AssetJobInput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CodeContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.ContainerResourceSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CustomModelJobOutput` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobOutputType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FlavorData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatastoreProperties` was modified
+
+* `datastoreType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BayesianSamplingAlgorithm` was modified
+
+* `samplingAlgorithmType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Jobs` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.ListViewType,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.DeploymentResourceConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TableVertical` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CustomNCrossValidations` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+
+#### `models.DataVersions` was modified
+
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset,com.azure.core.util.Context)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset)` was added
+
+#### `models.ComputeInstanceEnvironmentInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SkuSetting` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceSshSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RegenerateEndpointKeysRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TensorFlow` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `distributionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SasAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withMetadata(java.util.Map)` was added
+* `withSharedUserList(java.util.List)` was added
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `authType()` was added
+* `group()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `createdByWorkspaceArmId()` was added
+
+#### `models.ImageObjectDetectionBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeploymentLogsRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextNer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `taskType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FqdnEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EnvironmentVersions` was modified
+
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner,com.azure.core.util.Context)` was added
+
+#### `models.MLTableJobInput` was modified
+
+* `jobInputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoForecastHorizon` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspaceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EncryptionProperty` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComponentContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.CommandJob` was modified
+
+* `status()` was added
+* `jobType()` was added
+* `withNotificationSetting(models.NotificationSetting)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withQueueSettings(models.QueueSettings)` was added
+* `queueSettings()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceVersion` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentityConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `identityType()` was added
+
+#### `models.ManagedIdentityAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `withMetadata(java.util.Map)` was added
+* `withSharedUserList(java.util.List)` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `createdByWorkspaceArmId()` was added
+* `group()` was added
+* `authType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RegistryListCredentialsResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FeaturizationSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServicePrincipalDatastoreCredentials` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `credentialsType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ModelContainerResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SslConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiagnoseWorkspaceParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EndpointDeploymentPropertiesBase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataFactory` was modified
+
+* `modifiedOn()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `createdOn()` was added
+* `provisioningErrors()` was added
+* `computeType()` was added
+* `provisioningState()` was added
+* `isAttachedCompute()` was added
+
+#### `models.CustomTargetRollingWindowSize` was modified
+
+* `mode()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageObjectDetection` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ModelVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset)` was added
+* `publish(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.DestinationAsset,com.azure.core.util.Context)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner,com.azure.core.util.Context)` was added
+
+#### `models.Sku` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.InstanceTypeSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AmlComputeSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `identityType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageModelSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAccountCredentials` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JobOutput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobOutputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CodeVersionResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HDInsightSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EndpointScheduleAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `actionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedIdentity` was modified
+
+* `identityType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SetupScripts` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MLFlowModelJobInput` was modified
+
+* `jobInputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CustomForecastHorizon` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+
+#### `models.AssetReferenceBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `referenceType()` was added
+
+#### `models.ComputeInstanceProperties` was modified
+
+* `withSchedules(models.ComputeSchedules)` was added
+* `osImageMetadata()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `customServices()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withCustomServices(java.util.List)` was added
+
+#### `models.ModelVersion` was modified
+
+* `createOrGetStartPendingUpload(models.PendingUploadRequestDto)` was added
+* `createOrGetStartPendingUploadWithResponse(models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+
+#### `models.UsageName` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchDeploymentTrackedResourceArmPaginatedResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SweepJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withQueueSettings(models.QueueSettings)` was added
+* `queueSettings()` was added
+* `withNotificationSetting(models.NotificationSetting)` was added
+* `jobType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `status()` was added
+
+#### `models.AksComputeSecretsProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ModelContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.AutoSeasonality` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `mode()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NCrossValidations` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+
+#### `models.OnlineEndpointTrackedResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScheduleBase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageModelDistributionSettingsObjectDetection` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComputeInstanceDataMount` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ForecastingTrainingSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TextClassification` was modified
+
+* `taskType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PartialSku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AutoTargetLags` was modified
+
+* `mode()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ImageLimitSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineSchema` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OnlineScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `scaleType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataContainerProperties` was modified
+
+* `nextVersion()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `latestVersion()` was added
+
+#### `models.PartialMinimalTrackedResourceWithIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AutoMLJob` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `status()` was added
+* `withNotificationSetting(models.NotificationSetting)` was added
+* `queueSettings()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `jobType()` was added
+* `withQueueSettings(models.QueueSettings)` was added
+
+#### `models.RandomSamplingAlgorithm` was modified
+
+* `samplingAlgorithmType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JobInput` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `jobInputType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JobScheduleAction` was modified
+
+* `actionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.JobService` was modified
+
+* `withNodes(models.Nodes)` was added
+* `nodes()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HDInsight` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `isAttachedCompute()` was added
+* `createdOn()` was added
+* `computeType()` was added
+* `modifiedOn()` was added
+* `provisioningErrors()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+
+#### `models.KubernetesOnlineDeployment` was modified
+
+* `withDataCollector(models.DataCollector)` was added
+* `endpointComputeType()` was added
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AccountKeyDatastoreSecrets` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `secretsType()` was added
+
+#### `models.ServicePrincipalDatastoreSecrets` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `secretsType()` was added
+
+#### `models.OnlineEndpointProperties` was modified
+
+* `mirrorTraffic()` was added
+* `swaggerUri()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withMirrorTraffic(java.util.Map)` was added
+* `scoringUri()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CustomSeasonality` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `mode()` was added
+
+#### `models.ResourceId` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecurrenceTrigger` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `triggerType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FqdnEndpointDetail` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceLastOperation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ForecastingSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EnvironmentContainerResourceArmPaginatedResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JobBaseProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNotificationSetting(models.NotificationSetting)` was added
+* `jobType()` was added
+* `notificationSetting()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PyTorch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `distributionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataLakeAnalyticsSchemaProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComponentVersionProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+
+#### `models.SamplingAlgorithm` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `samplingAlgorithmType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PatAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withIsSharedToAll(java.lang.Boolean)` was added
+* `group()` was added
+* `withMetadata(java.util.Map)` was added
+* `authType()` was added
+* `withSharedUserList(java.util.List)` was added
+* `withExpiryTime(java.time.OffsetDateTime)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeSchedules` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.0.0 (2023-01-11)
 
