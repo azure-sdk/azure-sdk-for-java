@@ -59,7 +59,6 @@
 - [GetDataPlaneAccess](#factories_getdataplaneaccess)
 - [GetGitHubAccessToken](#factories_getgithubaccesstoken)
 - [List](#factories_list)
-- [ListByResourceGroup](#factories_listbyresourcegroup)
 - [Update](#factories_update)
 
 ## GlobalParameters
@@ -1348,28 +1347,6 @@ public final class FactoriesListSamples {
      */
     public static void factoriesList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
         manager.factories().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Factories_ListByResourceGroup
-
-```java
-/**
- * Samples for Factories ListByResourceGroup.
- */
-public final class FactoriesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/
-     * Factories_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Factories_ListByResourceGroup.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void factoriesListByResourceGroup(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.factories().listByResourceGroup("exampleResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
