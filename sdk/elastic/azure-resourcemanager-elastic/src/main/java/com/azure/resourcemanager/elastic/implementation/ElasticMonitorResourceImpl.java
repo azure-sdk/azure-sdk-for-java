@@ -13,6 +13,7 @@ import com.azure.resourcemanager.elastic.models.ElasticMonitorResourceUpdatePara
 import com.azure.resourcemanager.elastic.models.IdentityProperties;
 import com.azure.resourcemanager.elastic.models.MonitorProperties;
 import com.azure.resourcemanager.elastic.models.ResourceSku;
+import com.azure.resourcemanager.elastic.models.ResubscribeProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -95,20 +96,16 @@ public final class ElasticMonitorResourceImpl
     }
 
     public ElasticMonitorResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .create(resourceGroupName, monitorName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .create(resourceGroupName, monitorName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ElasticMonitorResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .create(resourceGroupName, monitorName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .create(resourceGroupName, monitorName, this.innerModel(), context);
         return this;
     }
 
@@ -124,50 +121,39 @@ public final class ElasticMonitorResourceImpl
     }
 
     public ElasticMonitorResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateBody, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .update(resourceGroupName, monitorName, updateBody, Context.NONE);
         return this;
     }
 
     public ElasticMonitorResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateBody, context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getMonitors().update(resourceGroupName, monitorName, updateBody, context);
         return this;
     }
 
-    ElasticMonitorResourceImpl(
-        ElasticMonitorResourceInner innerObject, com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
+    ElasticMonitorResourceImpl(ElasticMonitorResourceInner innerObject,
+        com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.monitorName = Utils.getValueFromIdByName(innerObject.id(), "monitors");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.monitorName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "monitors");
     }
 
     public ElasticMonitorResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ElasticMonitorResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, context)
+            .getValue();
         return this;
     }
 
@@ -203,6 +189,11 @@ public final class ElasticMonitorResourceImpl
 
     public ElasticMonitorResourceImpl withIdentity(IdentityProperties identity) {
         this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withResubscribeProperties(ResubscribeProperties resubscribeProperties) {
+        this.updateBody.withResubscribeProperties(resubscribeProperties);
         return this;
     }
 
