@@ -1,14 +1,629 @@
 # Release History
 
-## 1.1.0-beta.5 (Unreleased)
+## 1.0.0-beta.1 (2024-07-19)
 
-### Features Added
+- Azure Resource Manager Batch client library for Java. This package contains Microsoft Azure SDK for Batch Management SDK. Batch Client. Package tag package-2024-07. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.PrivateEndpointConnectionsUpdateHeaders` was removed
 
-### Other Changes
+* `models.BatchAccountsCreateResponse` was removed
+
+* `models.CloudServiceConfiguration` was removed
+
+* `models.PoolsDeleteHeaders` was removed
+
+* `models.BatchAccountsDeleteHeaders` was removed
+
+* `models.CertificatesDeleteResponse` was removed
+
+* `models.BatchAccountsDeleteResponse` was removed
+
+* `models.CertificatesDeleteHeaders` was removed
+
+* `models.BatchAccountsCreateHeaders` was removed
+
+* `models.PrivateEndpointConnectionsUpdateResponse` was removed
+
+* `models.PoolsDeleteResponse` was removed
+
+#### `models.DeploymentConfiguration` was modified
+
+* `withCloudServiceConfiguration(models.CloudServiceConfiguration)` was removed
+* `cloudServiceConfiguration()` was removed
+
+#### `models.NetworkConfiguration` was modified
+
+* `withDynamicVNetAssignmentScope(models.DynamicVNetAssignmentScope)` was removed
+* `dynamicVNetAssignmentScope()` was removed
+
+#### `models.ContainerConfiguration` was modified
+
+* `withType(java.lang.String)` was removed
+* `java.lang.String type()` -> `models.ContainerType type()`
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `actionRequired()` was removed
+
+#### `models.Certificate$Definition` was modified
+
+* `withData(java.lang.String)` was removed
+
+#### `models.PrivateEndpointConnections` was modified
+
+* `update(java.lang.String,java.lang.String,java.lang.String,fluent.models.PrivateEndpointConnectionInner,java.lang.String)` was removed
+
+#### `models.Locations` was modified
+
+* `listSupportedCloudServiceSkus(java.lang.String,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSupportedCloudServiceSkus(java.lang.String)` was removed
+
+### Features Added
+
+* `models.ContainerHostDataPath` was added
+
+* `models.SecurityTypes` was added
+
+* `models.SecurityProfile` was added
+
+* `models.ContainerType` was added
+
+* `models.VMDiskSecurityProfile` was added
+
+* `models.UefiSettings` was added
+
+* `models.ManagedDisk` was added
+
+* `models.NetworkProfile` was added
+
+* `models.UpgradePolicy` was added
+
+* `models.EndpointAccessProfile` was added
+
+* `models.RollingUpgradePolicy` was added
+
+* `models.UpgradeMode` was added
+
+* `models.ServiceArtifactReference` was added
+
+* `models.SecurityEncryptionTypes` was added
+
+* `models.AutomaticOSUpgradePolicy` was added
+
+* `models.NodeCommunicationMode` was added
+
+* `models.EndpointAccessDefaultAction` was added
+
+* `models.ContainerHostBatchBindMountEntry` was added
+
+* `models.AzureProxyResource` was added
+
+* `models.IpRule` was added
+
+#### `models.DeploymentConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccountRegenerateKeyParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ListPoolsResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkConfiguration` was modified
+
+* `withDynamicVnetAssignmentScope(models.DynamicVNetAssignmentScope)` was added
+* `withEnableAcceleratedNetworking(java.lang.Boolean)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `enableAcceleratedNetworking()` was added
+* `dynamicVnetAssignmentScope()` was added
+
+#### `models.AutoScaleRunError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccountIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `BatchManager$Configurable` was modified
+
+* `withRetryOptions(com.azure.core.http.policy.RetryOptions)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileShareConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CheckNameAvailabilityParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Application` was modified
+
+* `tags()` was added
+* `resourceGroupName()` was added
+
+#### `models.DiskEncryptionConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AutoScaleRun` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccount` was modified
+
+* `networkProfile()` was added
+* `nodeManagementEndpoint()` was added
+* `resourceGroupName()` was added
+
+#### `models.NodePlacementConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ActivateApplicationPackageParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TaskContainerSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `containerHostBatchBindMounts()` was added
+* `withContainerHostBatchBindMounts(java.util.List)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NfsMountConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DetectorListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EndpointDependency` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResizeOperationStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PoolEndpointConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccountUpdateParameters` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccessType)` was added
+* `withNetworkProfile(models.NetworkProfile)` was added
+* `publicNetworkAccess()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `networkProfile()` was added
+
+#### `models.KeyVaultProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FixedScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Certificate` was modified
+
+* `resourceGroupName()` was added
+* `tags()` was added
+
+#### `models.WindowsUserConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Certificate$Update` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.AutoScaleSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchPoolIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AutoUserSpecification` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `tags()` was added
+* `groupIds()` was added
+
+#### `models.ContainerConfiguration` was modified
+
+* `withType(models.ContainerType)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ResourceFile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SupportedSkusResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EndpointDetail` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.InboundNatPool` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EnvironmentSetting` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `BatchManager` was modified
+
+* `authenticate(com.azure.core.http.HttpPipeline,com.azure.core.management.profile.AzureProfile)` was added
+
+#### `models.VMExtension` was modified
+
+* `enableAutomaticUpgrade()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withEnableAutomaticUpgrade(java.lang.Boolean)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualMachineConfiguration` was modified
+
+* `serviceArtifactReference()` was added
+* `withServiceArtifactReference(models.ServiceArtifactReference)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withSecurityProfile(models.SecurityProfile)` was added
+* `securityProfile()` was added
+
+#### `models.ScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataDisk` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationPackage` was modified
+
+* `tags()` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `actionsRequired()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AutoStorageProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListApplicationPackagesResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccount$Definition` was modified
+
+* `withNetworkProfile(models.NetworkProfile)` was added
+
+#### `models.SupportedSku` was modified
+
+* `batchSupportEndOfLife()` was added
+
+#### `models.UserAccount` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `tags()` was added
+
+#### `models.AutoStorageBaseProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TaskSchedulingPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationPackageReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ImageReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `sharedGalleryImageId()` was added
+* `withSharedGalleryImageId(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withCommunityGalleryImageId(java.lang.String)` was added
+* `communityGalleryImageId()` was added
+
+#### `models.KeyVaultReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Certificate$Definition` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.NetworkSecurityGroupRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateCreateOrUpdateParameters` was modified
+
+* `withTags(java.util.Map)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `id()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `name()` was added
+* `type()` was added
+
+#### `models.ComputeNodeIdentityReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationPackage$Definition` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureBlobFileSystemConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualMachineFamilyCoreQuota` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MetadataItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpointConnections` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.OSDisk` was modified
+
+* `diskSizeGB()` was added
+* `managedDisk()` was added
+* `withDiskSizeGB(java.lang.Integer)` was added
+* `withManagedDisk(models.ManagedDisk)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withWriteAcceleratorEnabled(java.lang.Boolean)` was added
+* `writeAcceleratorEnabled()` was added
+* `caching()` was added
+* `withCaching(models.CachingType)` was added
+
+#### `models.CifsMountConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContainerRegistry` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EncryptionProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Pool$Definition` was modified
+
+* `withUpgradePolicy(models.UpgradePolicy)` was added
+* `withResourceTags(java.util.Map)` was added
+* `withTags(java.util.Map)` was added
+* `withTargetNodeCommunicationMode(models.NodeCommunicationMode)` was added
+
+#### `models.BatchAccount$Update` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccessType)` was added
+* `withNetworkProfile(models.NetworkProfile)` was added
+
+#### `models.StartTask` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OutboundEnvironmentEndpointCollection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MountConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PublicIpAddressConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkuCapability` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Application$Update` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.CertificateBaseProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WindowsConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BatchAccountCreateParameters` was modified
+
+* `withNetworkProfile(models.NetworkProfile)` was added
+* `networkProfile()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListPrivateEndpointConnectionsResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BatchAccountListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LinuxUserConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListCertificatesResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeleteCertificateError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAssignedIdentities` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListApplicationsResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Pool` was modified
+
+* `resourceGroupName()` was added
+* `resourceTags()` was added
+* `targetNodeCommunicationMode()` was added
+* `upgradePolicy()` was added
+* `tags()` was added
+* `currentNodeCommunicationMode()` was added
+
+#### `models.DetectorResponse` was modified
+
+* `tags()` was added
+
+#### `models.Pool$Update` was modified
+
+* `withTags(java.util.Map)` was added
+* `withTargetNodeCommunicationMode(models.NodeCommunicationMode)` was added
+* `withResourceTags(java.util.Map)` was added
+* `withUpgradePolicy(models.UpgradePolicy)` was added
+
+#### `models.ListPrivateLinkResourcesResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Application$Definition` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.DiffDiskSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ResizeError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0-beta.4 (2024-03-27)
 
