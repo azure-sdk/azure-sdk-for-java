@@ -27,6 +27,7 @@ import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementCli
 import com.azure.resourcemanager.hybridcompute.implementation.ExtensionMetadatasImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.GatewaysImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.HybridComputeManagementClientBuilder;
+import com.azure.resourcemanager.hybridcompute.implementation.LicenseProfilesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.LicensesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachineExtensionsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachineRunCommandsImpl;
@@ -41,6 +42,7 @@ import com.azure.resourcemanager.hybridcompute.implementation.ResourceProvidersI
 import com.azure.resourcemanager.hybridcompute.implementation.SettingsOperationsImpl;
 import com.azure.resourcemanager.hybridcompute.models.ExtensionMetadatas;
 import com.azure.resourcemanager.hybridcompute.models.Gateways;
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfiles;
 import com.azure.resourcemanager.hybridcompute.models.Licenses;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensions;
 import com.azure.resourcemanager.hybridcompute.models.MachineRunCommands;
@@ -68,6 +70,8 @@ public final class HybridComputeManager {
     private Licenses licenses;
 
     private Machines machines;
+
+    private LicenseProfiles licenseProfiles;
 
     private MachineExtensions machineExtensions;
 
@@ -257,7 +261,7 @@ public final class HybridComputeManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hybridcompute")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -325,6 +329,18 @@ public final class HybridComputeManager {
             this.machines = new MachinesImpl(clientObject.getMachines(), this);
         }
         return machines;
+    }
+
+    /**
+     * Gets the resource collection API of LicenseProfiles. It manages LicenseProfile.
+     * 
+     * @return Resource collection API of LicenseProfiles.
+     */
+    public LicenseProfiles licenseProfiles() {
+        if (this.licenseProfiles == null) {
+            this.licenseProfiles = new LicenseProfilesImpl(clientObject.getLicenseProfiles(), this);
+        }
+        return licenseProfiles;
     }
 
     /**
