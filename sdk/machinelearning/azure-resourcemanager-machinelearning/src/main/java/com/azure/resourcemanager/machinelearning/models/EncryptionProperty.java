@@ -6,56 +6,81 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The EncryptionProperty model. */
+/**
+ * The EncryptionProperty model.
+ */
 @Fluent
-public final class EncryptionProperty {
+public final class EncryptionProperty implements JsonSerializable<EncryptionProperty> {
     /*
-     * Indicates whether or not the encryption is enabled for the workspace.
+     * The byok cosmosdb account that customer brings to store customer's data
+     * with encryption
      */
-    @JsonProperty(value = "status", required = true)
-    private EncryptionStatus status;
+    private String cosmosDbResourceId;
 
     /*
-     * The identity that will be used to access the key vault for encryption at rest.
+     * Identity to be used with the keyVault
      */
-    @JsonProperty(value = "identity")
     private IdentityForCmk identity;
 
     /*
-     * Customer Key vault properties.
+     * KeyVault details to do the encryption
      */
-    @JsonProperty(value = "keyVaultProperties", required = true)
-    private EncryptionKeyVaultProperties keyVaultProperties;
+    private KeyVaultProperties keyVaultProperties;
 
-    /** Creates an instance of EncryptionProperty class. */
+    /*
+     * The byok search account that customer brings to store customer's data
+     * with encryption
+     */
+    private String searchAccountResourceId;
+
+    /*
+     * Indicates whether or not the encryption is enabled for the workspace.
+     */
+    private EncryptionStatus status;
+
+    /*
+     * The byok storage account that customer brings to store customer's data
+     * with encryption
+     */
+    private String storageAccountResourceId;
+
+    /**
+     * Creates an instance of EncryptionProperty class.
+     */
     public EncryptionProperty() {
     }
 
     /**
-     * Get the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
-     * @return the status value.
+     * Get the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the cosmosDbResourceId value.
      */
-    public EncryptionStatus status() {
-        return this.status;
+    public String cosmosDbResourceId() {
+        return this.cosmosDbResourceId;
     }
 
     /**
-     * Set the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
-     * @param status the status value to set.
+     * Set the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param cosmosDbResourceId the cosmosDbResourceId value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withStatus(EncryptionStatus status) {
-        this.status = status;
+    public EncryptionProperty withCosmosDbResourceId(String cosmosDbResourceId) {
+        this.cosmosDbResourceId = cosmosDbResourceId;
         return this;
     }
 
     /**
-     * Get the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * Get the identity property: Identity to be used with the keyVault.
+     * 
      * @return the identity value.
      */
     public IdentityForCmk identity() {
@@ -63,8 +88,8 @@ public final class EncryptionProperty {
     }
 
     /**
-     * Set the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * Set the identity property: Identity to be used with the keyVault.
+     * 
      * @param identity the identity value to set.
      * @return the EncryptionProperty object itself.
      */
@@ -74,48 +99,162 @@ public final class EncryptionProperty {
     }
 
     /**
-     * Get the keyVaultProperties property: Customer Key vault properties.
-     *
+     * Get the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
      * @return the keyVaultProperties value.
      */
-    public EncryptionKeyVaultProperties keyVaultProperties() {
+    public KeyVaultProperties keyVaultProperties() {
         return this.keyVaultProperties;
     }
 
     /**
-     * Set the keyVaultProperties property: Customer Key vault properties.
-     *
+     * Set the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withKeyVaultProperties(EncryptionKeyVaultProperties keyVaultProperties) {
+    public EncryptionProperty withKeyVaultProperties(KeyVaultProperties keyVaultProperties) {
         this.keyVaultProperties = keyVaultProperties;
         return this;
     }
 
     /**
+     * Get the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the searchAccountResourceId value.
+     */
+    public String searchAccountResourceId() {
+        return this.searchAccountResourceId;
+    }
+
+    /**
+     * Set the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param searchAccountResourceId the searchAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withSearchAccountResourceId(String searchAccountResourceId) {
+        this.searchAccountResourceId = searchAccountResourceId;
+        return this;
+    }
+
+    /**
+     * Get the status property: Indicates whether or not the encryption is enabled for the workspace.
+     * 
+     * @return the status value.
+     */
+    public EncryptionStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: Indicates whether or not the encryption is enabled for the workspace.
+     * 
+     * @param status the status value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withStatus(EncryptionStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the storageAccountResourceId value.
+     */
+    public String storageAccountResourceId() {
+        return this.storageAccountResourceId;
+    }
+
+    /**
+     * Set the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param storageAccountResourceId the storageAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withStorageAccountResourceId(String storageAccountResourceId) {
+        this.storageAccountResourceId = storageAccountResourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
-        }
         if (identity() != null) {
             identity().validate();
         }
         if (keyVaultProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultProperties in model EncryptionProperty"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyVaultProperties in model EncryptionProperty"));
         } else {
             keyVaultProperties().validate();
+        }
+        if (status() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(EncryptionProperty.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("keyVaultProperties", this.keyVaultProperties);
+        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        jsonWriter.writeStringField("cosmosDbResourceId", this.cosmosDbResourceId);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("searchAccountResourceId", this.searchAccountResourceId);
+        jsonWriter.writeStringField("storageAccountResourceId", this.storageAccountResourceId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EncryptionProperty from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EncryptionProperty if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the EncryptionProperty.
+     */
+    public static EncryptionProperty fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EncryptionProperty deserializedEncryptionProperty = new EncryptionProperty();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("keyVaultProperties".equals(fieldName)) {
+                    deserializedEncryptionProperty.keyVaultProperties = KeyVaultProperties.fromJson(reader);
+                } else if ("status".equals(fieldName)) {
+                    deserializedEncryptionProperty.status = EncryptionStatus.fromString(reader.getString());
+                } else if ("cosmosDbResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.cosmosDbResourceId = reader.getString();
+                } else if ("identity".equals(fieldName)) {
+                    deserializedEncryptionProperty.identity = IdentityForCmk.fromJson(reader);
+                } else if ("searchAccountResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.searchAccountResourceId = reader.getString();
+                } else if ("storageAccountResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.storageAccountResourceId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEncryptionProperty;
+        });
+    }
 }
