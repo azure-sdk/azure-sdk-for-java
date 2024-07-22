@@ -5,28 +5,60 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Map;
 
-/** The ManagedIdentityAuthTypeWorkspaceConnectionProperties model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
-@JsonTypeName("ManagedIdentity")
+/**
+ * The ManagedIdentityAuthTypeWorkspaceConnectionProperties model.
+ */
 @Fluent
 public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends WorkspaceConnectionPropertiesV2 {
     /*
+     * Authentication type of the connection target
+     */
+    private ConnectionAuthType authType = ConnectionAuthType.MANAGED_IDENTITY;
+
+    /*
      * The credentials property.
      */
-    @JsonProperty(value = "credentials")
     private WorkspaceConnectionManagedIdentity credentials;
 
-    /** Creates an instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties class. */
+    /*
+     * The createdByWorkspaceArmId property.
+     */
+    private String createdByWorkspaceArmId;
+
+    /*
+     * Group based on connection category
+     */
+    private ConnectionGroup group;
+
+    /**
+     * Creates an instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties class.
+     */
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
+     * Get the authType property: Authentication type of the connection target.
+     * 
+     * @return the authType value.
+     */
+    @Override
+    public ConnectionAuthType authType() {
+        return this.authType;
+    }
+
+    /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionManagedIdentity credentials() {
@@ -35,47 +67,130 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the ManagedIdentityAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionManagedIdentity credentials) {
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionManagedIdentity credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
+     * 
+     * @return the createdByWorkspaceArmId value.
+     */
+    @Override
+    public String createdByWorkspaceArmId() {
+        return this.createdByWorkspaceArmId;
+    }
+
+    /**
+     * Get the group property: Group based on connection category.
+     * 
+     * @return the group value.
+     */
+    @Override
+    public ConnectionGroup group() {
+        return this.group;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withError(String error) {
+        super.withError(error);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withPeRequirement(ManagedPERequirement peRequirement) {
+        super.withPeRequirement(peRequirement);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withPeStatus(ManagedPEStatus peStatus) {
+        super.withPeStatus(peStatus);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withSharedUserList(List<String> sharedUserList) {
+        super.withSharedUserList(sharedUserList);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties
+        withUseWorkspaceManagedIdentity(Boolean useWorkspaceManagedIdentity) {
+        super.withUseWorkspaceManagedIdentity(useWorkspaceManagedIdentity);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -84,5 +199,94 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
         if (credentials() != null) {
             credentials().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("category", category() == null ? null : category().toString());
+        jsonWriter.writeStringField("error", error());
+        jsonWriter.writeStringField("expiryTime",
+            expiryTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(expiryTime()));
+        jsonWriter.writeBooleanField("isSharedToAll", isSharedToAll());
+        jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("peRequirement", peRequirement() == null ? null : peRequirement().toString());
+        jsonWriter.writeStringField("peStatus", peStatus() == null ? null : peStatus().toString());
+        jsonWriter.writeArrayField("sharedUserList", sharedUserList(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("target", target());
+        jsonWriter.writeBooleanField("useWorkspaceManagedIdentity", useWorkspaceManagedIdentity());
+        jsonWriter.writeStringField("authType", this.authType == null ? null : this.authType.toString());
+        jsonWriter.writeJsonField("credentials", this.credentials);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ManagedIdentityAuthTypeWorkspaceConnectionProperties.
+     */
+    public static ManagedIdentityAuthTypeWorkspaceConnectionProperties fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            ManagedIdentityAuthTypeWorkspaceConnectionProperties deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                = new ManagedIdentityAuthTypeWorkspaceConnectionProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("category".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                        .withCategory(ConnectionCategory.fromString(reader.getString()));
+                } else if ("createdByWorkspaceArmId".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId
+                        = reader.getString();
+                } else if ("error".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.withError(reader.getString());
+                } else if ("expiryTime".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
+                } else if ("group".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.group
+                        = ConnectionGroup.fromString(reader.getString());
+                } else if ("isSharedToAll".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                        .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));
+                } else if ("metadata".equals(fieldName)) {
+                    Map<String, String> metadata = reader.readMap(reader1 -> reader1.getString());
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.withMetadata(metadata);
+                } else if ("peRequirement".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                        .withPeRequirement(ManagedPERequirement.fromString(reader.getString()));
+                } else if ("peStatus".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                        .withPeStatus(ManagedPEStatus.fromString(reader.getString()));
+                } else if ("sharedUserList".equals(fieldName)) {
+                    List<String> sharedUserList = reader.readArray(reader1 -> reader1.getString());
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.withSharedUserList(sharedUserList);
+                } else if ("target".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.withTarget(reader.getString());
+                } else if ("useWorkspaceManagedIdentity".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties
+                        .withUseWorkspaceManagedIdentity(reader.getNullable(JsonReader::getBoolean));
+                } else if ("authType".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.authType
+                        = ConnectionAuthType.fromString(reader.getString());
+                } else if ("credentials".equals(fieldName)) {
+                    deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties.credentials
+                        = WorkspaceConnectionManagedIdentity.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedManagedIdentityAuthTypeWorkspaceConnectionProperties;
+        });
     }
 }
