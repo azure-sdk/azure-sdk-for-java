@@ -91,7 +91,7 @@ public final class NetworkSecurityPerimeterConfigurationsClientImpl
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/privateLinkScopes/{scopeName}/networkSecurityPerimeterConfigurations/{perimeterName}/reconcile")
-        @ExpectedResponses({ 202 })
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> reconcileForPrivateLinkScope(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,

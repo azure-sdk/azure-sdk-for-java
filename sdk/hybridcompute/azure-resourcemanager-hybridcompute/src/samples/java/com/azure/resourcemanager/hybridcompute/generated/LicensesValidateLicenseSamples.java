@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.hybridcompute.generated;
 
+import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseInner;
 import com.azure.resourcemanager.hybridcompute.models.LicenseCoreType;
 import com.azure.resourcemanager.hybridcompute.models.LicenseDetails;
 import com.azure.resourcemanager.hybridcompute.models.LicenseEdition;
@@ -12,30 +13,28 @@ import com.azure.resourcemanager.hybridcompute.models.LicenseTarget;
 import com.azure.resourcemanager.hybridcompute.models.LicenseType;
 
 /**
- * Samples for Licenses CreateOrUpdate.
+ * Samples for Licenses ValidateLicense.
  */
-public final class LicensesCreateOrUpdateSamples {
+public final class LicensesValidateLicenseSamples {
     /*
      * x-ms-original-file:
      * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/stable/2024-07-10/examples/license/
-     * License_CreateOrUpdate.json
+     * License_ValidateLicense.json
      */
     /**
-     * Sample code: Create or Update a License.
+     * Sample code: Validate a License.
      * 
      * @param manager Entry point to HybridComputeManager.
      */
-    public static void createOrUpdateALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+    public static void validateALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
         manager.licenses()
-            .define("{licenseName}")
-            .withRegion("eastus2euap")
-            .withExistingResourceGroup("myResourceGroup")
-            .withLicenseType(LicenseType.ESU)
-            .withLicenseDetails(new LicenseDetails().withState(LicenseState.ACTIVATED)
-                .withTarget(LicenseTarget.WINDOWS_SERVER_2012)
-                .withEdition(LicenseEdition.DATACENTER)
-                .withType(LicenseCoreType.P_CORE)
-                .withProcessors(6))
-            .create();
+            .validateLicense(new LicenseInner().withLocation("eastus2euap")
+                .withLicenseType(LicenseType.ESU)
+                .withLicenseDetails(new LicenseDetails().withState(LicenseState.ACTIVATED)
+                    .withTarget(LicenseTarget.WINDOWS_SERVER_2012)
+                    .withEdition(LicenseEdition.DATACENTER)
+                    .withType(LicenseCoreType.P_CORE)
+                    .withProcessors(6)),
+                com.azure.core.util.Context.NONE);
     }
 }

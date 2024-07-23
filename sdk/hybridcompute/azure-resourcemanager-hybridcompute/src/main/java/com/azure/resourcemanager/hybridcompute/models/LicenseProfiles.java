@@ -7,151 +7,111 @@ package com.azure.resourcemanager.hybridcompute.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseInner;
 
 /**
- * Resource collection API of Licenses.
+ * Resource collection API of LicenseProfiles.
  */
-public interface Licenses {
+public interface LicenseProfiles {
     /**
-     * The operation to validate a license.
+     * Retrieves information about the view of a license profile.
      * 
-     * @param parameters Parameters supplied to the license validation operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine.
-     */
-    License validateLicense(LicenseInner parameters);
-
-    /**
-     * The operation to validate a license.
-     * 
-     * @param parameters Parameters supplied to the license validation operation.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine.
+     * @return describes a license profile in a hybrid machine along with {@link Response}.
      */
-    License validateLicense(LicenseInner parameters, Context context);
+    Response<LicenseProfile> getWithResponse(String resourceGroupName, String machineName, Context context);
 
     /**
-     * Retrieves information about the view of a license.
+     * Retrieves information about the view of a license profile.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param licenseName The name of the license.
-     * @param context The context to associate with this operation.
+     * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine along with {@link Response}.
+     * @return describes a license profile in a hybrid machine.
      */
-    Response<License> getByResourceGroupWithResponse(String resourceGroupName, String licenseName, Context context);
+    LicenseProfile get(String resourceGroupName, String machineName);
 
     /**
-     * Retrieves information about the view of a license.
+     * The operation to delete a license profile.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param licenseName The name of the license.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine.
-     */
-    License getByResourceGroup(String resourceGroupName, String licenseName);
-
-    /**
-     * The operation to delete a license.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param licenseName The name of the license.
+     * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String licenseName);
+    void deleteByResourceGroup(String resourceGroupName, String machineName);
 
     /**
-     * The operation to delete a license.
+     * The operation to delete a license profile.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param licenseName The name of the license.
+     * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String licenseName, Context context);
+    void delete(String resourceGroupName, String machineName, Context context);
 
     /**
-     * The operation to get all licenses of a non-Azure machine.
+     * The operation to get all license profiles of a non-Azure machine.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param machineName The name of the machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List license operation response as paginated response with {@link PagedIterable}.
+     * @return the List hybrid machine license profile operation response as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<License> listByResourceGroup(String resourceGroupName);
+    PagedIterable<LicenseProfile> list(String resourceGroupName, String machineName);
 
     /**
-     * The operation to get all licenses of a non-Azure machine.
+     * The operation to get all license profiles of a non-Azure machine.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param machineName The name of the machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List license operation response as paginated response with {@link PagedIterable}.
+     * @return the List hybrid machine license profile operation response as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<License> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<LicenseProfile> list(String resourceGroupName, String machineName, Context context);
 
     /**
-     * The operation to get all licenses of a non-Azure machine.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List license operation response as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<License> list();
-
-    /**
-     * The operation to get all licenses of a non-Azure machine.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List license operation response as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<License> list(Context context);
-
-    /**
-     * Retrieves information about the view of a license.
+     * Retrieves information about the view of a license profile.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine along with {@link Response}.
+     * @return describes a license profile in a hybrid machine along with {@link Response}.
      */
-    License getById(String id);
+    LicenseProfile getById(String id);
 
     /**
-     * Retrieves information about the view of a license.
+     * Retrieves information about the view of a license profile.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a license in a hybrid machine along with {@link Response}.
+     * @return describes a license profile in a hybrid machine along with {@link Response}.
      */
-    Response<License> getByIdWithResponse(String id, Context context);
+    Response<LicenseProfile> getByIdWithResponse(String id, Context context);
 
     /**
-     * The operation to delete a license.
+     * The operation to delete a license profile.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -161,7 +121,7 @@ public interface Licenses {
     void deleteById(String id);
 
     /**
-     * The operation to delete a license.
+     * The operation to delete a license profile.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -172,10 +132,9 @@ public interface Licenses {
     void deleteByIdWithResponse(String id, Context context);
 
     /**
-     * Begins definition for a new License resource.
+     * Begins definition for a new LicenseProfile resource.
      * 
-     * @param name resource name.
-     * @return the first stage of the new License definition.
+     * @return the first stage of the new LicenseProfile definition.
      */
-    License.DefinitionStages.Blank define(String name);
+    LicenseProfile.DefinitionStages.Blank define();
 }
