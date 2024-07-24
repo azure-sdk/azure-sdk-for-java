@@ -4,64 +4,52 @@
 
 package com.azure.resourcemanager.managementgroups.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.SubscriptionUnderManagementGroupInner;
 
-/** An immutable client-side representation of SubscriptionUnderManagementGroup. */
+/**
+ * An immutable client-side representation of SubscriptionUnderManagementGroup.
+ */
 public interface SubscriptionUnderManagementGroup {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the tenant property: The AAD Tenant ID associated with the subscription. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenant value.
+     * Gets the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
      */
-    String tenant();
+    SubscriptionUnderManagementGroupProperties properties();
 
     /**
-     * Gets the displayName property: The friendly name of the subscription.
-     *
-     * @return the displayName value.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    String displayName();
-
-    /**
-     * Gets the parent property: The ID of the parent management group.
-     *
-     * @return the parent value.
-     */
-    DescendantParentGroupInfo parent();
-
-    /**
-     * Gets the state property: The state of the subscription.
-     *
-     * @return the state value.
-     */
-    String state();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.managementgroups.fluent.models.SubscriptionUnderManagementGroupInner
      * object.
-     *
+     * 
      * @return the inner object.
      */
     SubscriptionUnderManagementGroupInner innerModel();

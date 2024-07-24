@@ -6,122 +6,161 @@ package com.azure.resourcemanager.managementgroups.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.managementgroups.models.HierarchySettingsProperties;
+import java.io.IOException;
 
-/** Settings defined at the Management Group scope. */
+/**
+ * Settings defined at the Management Group scope.
+ */
 @Fluent
 public final class HierarchySettingsInner extends ProxyResource {
     /*
-     * The generic properties of hierarchy settings.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties")
-    private HierarchySettingsProperties innerProperties;
+    private HierarchySettingsProperties properties;
 
-    /** Creates an instance of HierarchySettingsInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of HierarchySettingsInner class.
+     */
     public HierarchySettingsInner() {
     }
 
     /**
-     * Get the innerProperties property: The generic properties of hierarchy settings.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
      */
-    private HierarchySettingsProperties innerProperties() {
-        return this.innerProperties;
+    public HierarchySettingsProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Get the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
-    }
-
-    /**
-     * Set the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @param tenantId the tenantId value to set.
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
      * @return the HierarchySettingsInner object itself.
      */
-    public HierarchySettingsInner withTenantId(String tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new HierarchySettingsProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
+    public HierarchySettingsInner withProperties(HierarchySettingsProperties properties) {
+        this.properties = properties;
         return this;
     }
 
     /**
-     * Get the requireAuthorizationForGroupCreation property: Indicates whether RBAC access is required upon group
-     * creation under the root Management Group. If set to true, user will require
-     * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
-     * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
-     * given access.
-     *
-     * @return the requireAuthorizationForGroupCreation value.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    public Boolean requireAuthorizationForGroupCreation() {
-        return this.innerProperties() == null ? null : this.innerProperties().requireAuthorizationForGroupCreation();
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
-     * Set the requireAuthorizationForGroupCreation property: Indicates whether RBAC access is required upon group
-     * creation under the root Management Group. If set to true, user will require
-     * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
-     * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
-     * given access.
-     *
-     * @param requireAuthorizationForGroupCreation the requireAuthorizationForGroupCreation value to set.
-     * @return the HierarchySettingsInner object itself.
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
      */
-    public HierarchySettingsInner withRequireAuthorizationForGroupCreation(
-        Boolean requireAuthorizationForGroupCreation) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new HierarchySettingsProperties();
-        }
-        this.innerProperties().withRequireAuthorizationForGroupCreation(requireAuthorizationForGroupCreation);
-        return this;
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
-     * Get the defaultManagementGroup property: Settings that sets the default Management Group under which new
-     * subscriptions get added in this tenant. For example,
-     * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
-     * @return the defaultManagementGroup value.
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
      */
-    public String defaultManagementGroup() {
-        return this.innerProperties() == null ? null : this.innerProperties().defaultManagementGroup();
+    @Override
+    public String name() {
+        return this.name;
     }
 
     /**
-     * Set the defaultManagementGroup property: Settings that sets the default Management Group under which new
-     * subscriptions get added in this tenant. For example,
-     * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
-     * @param defaultManagementGroup the defaultManagementGroup value to set.
-     * @return the HierarchySettingsInner object itself.
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
      */
-    public HierarchySettingsInner withDefaultManagementGroup(String defaultManagementGroup) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new HierarchySettingsProperties();
-        }
-        this.innerProperties().withDefaultManagementGroup(defaultManagementGroup);
-        return this;
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HierarchySettingsInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HierarchySettingsInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the HierarchySettingsInner.
+     */
+    public static HierarchySettingsInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HierarchySettingsInner deserializedHierarchySettingsInner = new HierarchySettingsInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedHierarchySettingsInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedHierarchySettingsInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedHierarchySettingsInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedHierarchySettingsInner.properties = HierarchySettingsProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedHierarchySettingsInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHierarchySettingsInner;
+        });
     }
 }

@@ -5,16 +5,18 @@
 package com.azure.resourcemanager.managementgroups.implementation;
 
 import com.azure.resourcemanager.managementgroups.fluent.models.OperationInner;
+import com.azure.resourcemanager.managementgroups.models.ActionType;
 import com.azure.resourcemanager.managementgroups.models.Operation;
-import com.azure.resourcemanager.managementgroups.models.OperationDisplayProperties;
+import com.azure.resourcemanager.managementgroups.models.OperationDisplay;
+import com.azure.resourcemanager.managementgroups.models.Origin;
 
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    OperationImpl(
-        OperationInner innerObject, com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
+    OperationImpl(OperationInner innerObject,
+        com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -23,8 +25,20 @@ public final class OperationImpl implements Operation {
         return this.innerModel().name();
     }
 
-    public OperationDisplayProperties display() {
+    public Boolean isDataAction() {
+        return this.innerModel().isDataAction();
+    }
+
+    public OperationDisplay display() {
         return this.innerModel().display();
+    }
+
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
     }
 
     public OperationInner innerModel() {

@@ -6,15 +6,14 @@ package com.azure.resourcemanager.managementgroups.implementation;
 
 import com.azure.resourcemanager.managementgroups.fluent.models.DescendantInfoInner;
 import com.azure.resourcemanager.managementgroups.models.DescendantInfo;
-import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
+import com.azure.resourcemanager.managementgroups.models.DescendantInfoProperties;
 
 public final class DescendantInfoImpl implements DescendantInfo {
     private DescendantInfoInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    DescendantInfoImpl(
-        DescendantInfoInner innerObject,
+    DescendantInfoImpl(DescendantInfoInner innerObject,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -32,12 +31,8 @@ public final class DescendantInfoImpl implements DescendantInfo {
         return this.innerModel().name();
     }
 
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public DescendantParentGroupInfo parent() {
-        return this.innerModel().parent();
+    public DescendantInfoProperties properties() {
+        return this.innerModel().properties();
     }
 
     public DescendantInfoInner innerModel() {

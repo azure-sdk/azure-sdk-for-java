@@ -6,18 +6,14 @@ package com.azure.resourcemanager.managementgroups.implementation;
 
 import com.azure.resourcemanager.managementgroups.fluent.models.EntityInfoInner;
 import com.azure.resourcemanager.managementgroups.models.EntityInfo;
-import com.azure.resourcemanager.managementgroups.models.EntityParentGroupInfo;
-import com.azure.resourcemanager.managementgroups.models.Permissions;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.managementgroups.models.EntityInfoProperties;
 
 public final class EntityInfoImpl implements EntityInfo {
     private EntityInfoInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    EntityInfoImpl(
-        EntityInfoInner innerObject,
+    EntityInfoImpl(EntityInfoInner innerObject,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -35,54 +31,8 @@ public final class EntityInfoImpl implements EntityInfo {
         return this.innerModel().name();
     }
 
-    public String tenantId() {
-        return this.innerModel().tenantId();
-    }
-
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public EntityParentGroupInfo parent() {
-        return this.innerModel().parent();
-    }
-
-    public Permissions permissions() {
-        return this.innerModel().permissions();
-    }
-
-    public Permissions inheritedPermissions() {
-        return this.innerModel().inheritedPermissions();
-    }
-
-    public Integer numberOfDescendants() {
-        return this.innerModel().numberOfDescendants();
-    }
-
-    public Integer numberOfChildren() {
-        return this.innerModel().numberOfChildren();
-    }
-
-    public Integer numberOfChildGroups() {
-        return this.innerModel().numberOfChildGroups();
-    }
-
-    public List<String> parentDisplayNameChain() {
-        List<String> inner = this.innerModel().parentDisplayNameChain();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public List<String> parentNameChain() {
-        List<String> inner = this.innerModel().parentNameChain();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public EntityInfoProperties properties() {
+        return this.innerModel().properties();
     }
 
     public EntityInfoInner innerModel() {

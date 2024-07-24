@@ -5,47 +5,49 @@
 package com.azure.resourcemanager.managementgroups.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.managementgroups.models.EntityParentGroupInfo;
-import com.azure.resourcemanager.managementgroups.models.Permissions;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.managementgroups.models.EntityInfoProperties;
+import java.io.IOException;
 
-/** The entity. */
+/**
+ * The entity.
+ */
 @Fluent
-public final class EntityInfoInner {
+public final class EntityInfoInner implements JsonSerializable<EntityInfoInner> {
     /*
-     * The fully qualified ID for the entity.  For example,
+     * The fully qualified ID for the entity. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
      * The type of the resource. For example, Microsoft.Management/managementGroups
      */
-    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
 
     /*
      * The name of the entity. For example, 00000000-0000-0000-0000-000000000000
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     /*
      * The generic properties of an entity.
      */
-    @JsonProperty(value = "properties")
-    private EntityInfoProperties innerProperties;
+    private EntityInfoProperties properties;
 
-    /** Creates an instance of EntityInfoInner class. */
+    /**
+     * Creates an instance of EntityInfoInner class.
+     */
     public EntityInfoInner() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the entity. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -54,7 +56,7 @@ public final class EntityInfoInner {
 
     /**
      * Get the type property: The type of the resource. For example, Microsoft.Management/managementGroups.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -63,7 +65,7 @@ public final class EntityInfoInner {
 
     /**
      * Get the name property: The name of the entity. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -71,266 +73,75 @@ public final class EntityInfoInner {
     }
 
     /**
-     * Get the innerProperties property: The generic properties of an entity.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: The generic properties of an entity.
+     * 
+     * @return the properties value.
      */
-    private EntityInfoProperties innerProperties() {
-        return this.innerProperties;
+    public EntityInfoProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Get the tenantId property: The AAD Tenant ID associated with the entity. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
-    }
-
-    /**
-     * Set the tenantId property: The AAD Tenant ID associated with the entity. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @param tenantId the tenantId value to set.
+     * Set the properties property: The generic properties of an entity.
+     * 
+     * @param properties the properties value to set.
      * @return the EntityInfoInner object itself.
      */
-    public EntityInfoInner withTenantId(String tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
-        return this;
-    }
-
-    /**
-     * Get the displayName property: The friendly name of the management group.
-     *
-     * @return the displayName value.
-     */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
-    }
-
-    /**
-     * Set the displayName property: The friendly name of the management group.
-     *
-     * @param displayName the displayName value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
-     * Get the parent property: (Optional) The ID of the parent management group.
-     *
-     * @return the parent value.
-     */
-    public EntityParentGroupInfo parent() {
-        return this.innerProperties() == null ? null : this.innerProperties().parent();
-    }
-
-    /**
-     * Set the parent property: (Optional) The ID of the parent management group.
-     *
-     * @param parent the parent value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withParent(EntityParentGroupInfo parent) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withParent(parent);
-        return this;
-    }
-
-    /**
-     * Get the permissions property: The users specific permissions to this item.
-     *
-     * @return the permissions value.
-     */
-    public Permissions permissions() {
-        return this.innerProperties() == null ? null : this.innerProperties().permissions();
-    }
-
-    /**
-     * Set the permissions property: The users specific permissions to this item.
-     *
-     * @param permissions the permissions value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withPermissions(Permissions permissions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withPermissions(permissions);
-        return this;
-    }
-
-    /**
-     * Get the inheritedPermissions property: The users specific permissions to this item.
-     *
-     * @return the inheritedPermissions value.
-     */
-    public Permissions inheritedPermissions() {
-        return this.innerProperties() == null ? null : this.innerProperties().inheritedPermissions();
-    }
-
-    /**
-     * Set the inheritedPermissions property: The users specific permissions to this item.
-     *
-     * @param inheritedPermissions the inheritedPermissions value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withInheritedPermissions(Permissions inheritedPermissions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withInheritedPermissions(inheritedPermissions);
-        return this;
-    }
-
-    /**
-     * Get the numberOfDescendants property: Number of Descendants.
-     *
-     * @return the numberOfDescendants value.
-     */
-    public Integer numberOfDescendants() {
-        return this.innerProperties() == null ? null : this.innerProperties().numberOfDescendants();
-    }
-
-    /**
-     * Set the numberOfDescendants property: Number of Descendants.
-     *
-     * @param numberOfDescendants the numberOfDescendants value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withNumberOfDescendants(Integer numberOfDescendants) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withNumberOfDescendants(numberOfDescendants);
-        return this;
-    }
-
-    /**
-     * Get the numberOfChildren property: Number of Children
-     *
-     * <p>Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
-     * Group.
-     *
-     * @return the numberOfChildren value.
-     */
-    public Integer numberOfChildren() {
-        return this.innerProperties() == null ? null : this.innerProperties().numberOfChildren();
-    }
-
-    /**
-     * Set the numberOfChildren property: Number of Children
-     *
-     * <p>Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
-     * Group.
-     *
-     * @param numberOfChildren the numberOfChildren value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withNumberOfChildren(Integer numberOfChildren) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withNumberOfChildren(numberOfChildren);
-        return this;
-    }
-
-    /**
-     * Get the numberOfChildGroups property: Number of Child Groups
-     *
-     * <p>Number of children is the number of Groups that are exactly one level underneath the current Group.
-     *
-     * @return the numberOfChildGroups value.
-     */
-    public Integer numberOfChildGroups() {
-        return this.innerProperties() == null ? null : this.innerProperties().numberOfChildGroups();
-    }
-
-    /**
-     * Set the numberOfChildGroups property: Number of Child Groups
-     *
-     * <p>Number of children is the number of Groups that are exactly one level underneath the current Group.
-     *
-     * @param numberOfChildGroups the numberOfChildGroups value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withNumberOfChildGroups(Integer numberOfChildGroups) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withNumberOfChildGroups(numberOfChildGroups);
-        return this;
-    }
-
-    /**
-     * Get the parentDisplayNameChain property: The parent display name chain from the root group to the immediate
-     * parent.
-     *
-     * @return the parentDisplayNameChain value.
-     */
-    public List<String> parentDisplayNameChain() {
-        return this.innerProperties() == null ? null : this.innerProperties().parentDisplayNameChain();
-    }
-
-    /**
-     * Set the parentDisplayNameChain property: The parent display name chain from the root group to the immediate
-     * parent.
-     *
-     * @param parentDisplayNameChain the parentDisplayNameChain value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withParentDisplayNameChain(List<String> parentDisplayNameChain) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withParentDisplayNameChain(parentDisplayNameChain);
-        return this;
-    }
-
-    /**
-     * Get the parentNameChain property: The parent name chain from the root group to the immediate parent.
-     *
-     * @return the parentNameChain value.
-     */
-    public List<String> parentNameChain() {
-        return this.innerProperties() == null ? null : this.innerProperties().parentNameChain();
-    }
-
-    /**
-     * Set the parentNameChain property: The parent name chain from the root group to the immediate parent.
-     *
-     * @param parentNameChain the parentNameChain value to set.
-     * @return the EntityInfoInner object itself.
-     */
-    public EntityInfoInner withParentNameChain(List<String> parentNameChain) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EntityInfoProperties();
-        }
-        this.innerProperties().withParentNameChain(parentNameChain);
+    public EntityInfoInner withProperties(EntityInfoProperties properties) {
+        this.properties = properties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EntityInfoInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EntityInfoInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the EntityInfoInner.
+     */
+    public static EntityInfoInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EntityInfoInner deserializedEntityInfoInner = new EntityInfoInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedEntityInfoInner.id = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedEntityInfoInner.type = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedEntityInfoInner.name = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedEntityInfoInner.properties = EntityInfoProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEntityInfoInner;
+        });
     }
 }

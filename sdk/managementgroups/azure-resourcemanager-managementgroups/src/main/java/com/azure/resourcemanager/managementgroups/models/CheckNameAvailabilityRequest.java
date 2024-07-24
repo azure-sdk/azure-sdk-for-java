@@ -5,30 +5,36 @@
 package com.azure.resourcemanager.managementgroups.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Management group name availability check parameters. */
+/**
+ * Management group name availability check parameters.
+ */
 @Fluent
-public final class CheckNameAvailabilityRequest {
+public final class CheckNameAvailabilityRequest implements JsonSerializable<CheckNameAvailabilityRequest> {
     /*
      * the name to check for availability
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * fully qualified resource type which includes provider namespace
      */
-    @JsonProperty(value = "type")
-    private Type type;
+    private CheckNameAvailabilityRequestType type;
 
-    /** Creates an instance of CheckNameAvailabilityRequest class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityRequest class.
+     */
     public CheckNameAvailabilityRequest() {
     }
 
     /**
      * Get the name property: the name to check for availability.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +43,7 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Set the name property: the name to check for availability.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameAvailabilityRequest object itself.
      */
@@ -48,29 +54,69 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Get the type property: fully qualified resource type which includes provider namespace.
-     *
+     * 
      * @return the type value.
      */
-    public Type type() {
+    public CheckNameAvailabilityRequestType type() {
         return this.type;
     }
 
     /**
      * Set the type property: fully qualified resource type which includes provider namespace.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckNameAvailabilityRequest object itself.
      */
-    public CheckNameAvailabilityRequest withType(Type type) {
+    public CheckNameAvailabilityRequest withType(CheckNameAvailabilityRequestType type) {
         this.type = type;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of CheckNameAvailabilityRequest from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of CheckNameAvailabilityRequest if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the CheckNameAvailabilityRequest.
+     */
+    public static CheckNameAvailabilityRequest fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            CheckNameAvailabilityRequest deserializedCheckNameAvailabilityRequest = new CheckNameAvailabilityRequest();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedCheckNameAvailabilityRequest.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedCheckNameAvailabilityRequest.type
+                        = CheckNameAvailabilityRequestType.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedCheckNameAvailabilityRequest;
+        });
     }
 }

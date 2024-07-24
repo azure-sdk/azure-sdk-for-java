@@ -33,35 +33,40 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.managementgroups.fluent.ManagementGroupsClient;
-import com.azure.resourcemanager.managementgroups.fluent.models.AzureAsyncOperationResultsInner;
 import com.azure.resourcemanager.managementgroups.fluent.models.DescendantInfoInner;
-import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInfoInner;
+import com.azure.resourcemanager.managementgroups.fluent.models.HierarchySettingsInner;
 import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInner;
-import com.azure.resourcemanager.managementgroups.models.CreateManagementGroupRequest;
+import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupOperationAcceptanceInner;
 import com.azure.resourcemanager.managementgroups.models.DescendantListResult;
+import com.azure.resourcemanager.managementgroups.models.HierarchySettingsListResult;
 import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandType;
-import com.azure.resourcemanager.managementgroups.models.ManagementGroupListResult;
 import com.azure.resourcemanager.managementgroups.models.PatchManagementGroupRequest;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ManagementGroupsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ManagementGroupsClient.
+ */
 public final class ManagementGroupsClientImpl implements ManagementGroupsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ManagementGroupsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ManagementGroupsApiImpl client;
 
     /**
      * Initializes an instance of ManagementGroupsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ManagementGroupsClientImpl(ManagementGroupsApiImpl client) {
-        this.service =
-            RestProxy.create(ManagementGroupsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ManagementGroupsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -72,347 +77,124 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
     @Host("{$host}")
     @ServiceInterface(name = "ManagementGroupsApiM")
     public interface ManagementGroupsService {
-        @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Management/managementGroups")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ManagementGroupListResult>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @QueryParam("$skiptoken") String skiptoken,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Management/managementGroups/{groupId}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ManagementGroupInner>> get(
-            @HostParam("$host") String endpoint,
-            @PathParam("groupId") String groupId,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("$expand") ManagementGroupExpandType expand,
-            @QueryParam("$recurse") Boolean recurse,
-            @QueryParam("$filter") String filter,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ManagementGroupInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$expand") ManagementGroupExpandType expand,
+            @QueryParam("$recurse") Boolean recurse, @QueryParam("$filter") String filter,
+            @HeaderParam("cache-control") String cacheControl, @PathParam("groupId") String groupId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Management/managementGroups/{groupId}")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 201, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @PathParam("groupId") String groupId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @BodyParam("application/json") CreateManagementGroupRequest createManagementGroupRequest,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("cache-control") String cacheControl,
+            @PathParam("groupId") String groupId, @BodyParam("application/json") ManagementGroupInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.Management/managementGroups/{groupId}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ManagementGroupInner>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("groupId") String groupId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @BodyParam("application/json") PatchManagementGroupRequest patchGroupRequest,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ManagementGroupInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("cache-control") String cacheControl,
+            @PathParam("groupId") String groupId, @BodyParam("application/json") PatchManagementGroupRequest properties,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/providers/Microsoft.Management/managementGroups/{groupId}")
-        @ExpectedResponses({202, 204})
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("groupId") String groupId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("cache-control") String cacheControl,
+            @PathParam("groupId") String groupId, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Management/managementGroups/{groupId}/descendants")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Management/managementGroups/{groupId}/descendants/{groupId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DescendantListResult>> getDescendants(
-            @HostParam("$host") String endpoint,
-            @PathParam("groupId") String groupId,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("$skiptoken") String skiptoken,
-            @QueryParam("$top") Integer top,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DescendantListResult>> getDescendants(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("groupId") String groupId,
+            @QueryParam("$skiptoken") String skiptoken, @QueryParam("$top") Integer top,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Management/managementGroups/{groupId}/settings/{groupId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<HierarchySettingsListResult>> listSettings(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("groupId") String groupId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ManagementGroupListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Cache-Control") String cacheControl,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DescendantListResult>> getDescendantsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-    }
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ManagementGroupInfoInner>> listSinglePageAsync(String cacheControl, String skiptoken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            cacheControl,
-                            skiptoken,
-                            accept,
-                            context))
-            .<PagedResponse<ManagementGroupInfoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ManagementGroupInfoInner>> listSinglePageAsync(
-        String cacheControl, String skiptoken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl, skiptoken, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ManagementGroupInfoInner> listAsync(String cacheControl, String skiptoken) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(cacheControl, skiptoken),
-            nextLink -> listNextSinglePageAsync(nextLink, cacheControl));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ManagementGroupInfoInner> listAsync() {
-        final String cacheControl = null;
-        final String skiptoken = null;
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(cacheControl, skiptoken),
-            nextLink -> listNextSinglePageAsync(nextLink, cacheControl));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ManagementGroupInfoInner> listAsync(String cacheControl, String skiptoken, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(cacheControl, skiptoken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, cacheControl, context));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ManagementGroupInfoInner> list() {
-        final String cacheControl = null;
-        final String skiptoken = null;
-        return new PagedIterable<>(listAsync(cacheControl, skiptoken));
-    }
-
-    /**
-     * List management groups for the authenticated user.
-     *
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ManagementGroupInfoInner> list(String cacheControl, String skiptoken, Context context) {
-        return new PagedIterable<>(listAsync(cacheControl, skiptoken, context));
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<HierarchySettingsListResult>> listSettingsNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get the details of the management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the
-     *     response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
-     *     includes the ancestor Ids of the current group.
+     * response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
+     * includes the ancestor Ids of the current group.
      * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy
-     *     in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
+     * in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
      * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType
-     *     ne Subscription').
+     * ne Subscription').
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the management group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagementGroupInner>> getWithResponseAsync(
-        String groupId, ManagementGroupExpandType expand, Boolean recurse, String filter, String cacheControl) {
+    private Mono<Response<ManagementGroupInner>> getWithResponseAsync(String groupId, ManagementGroupExpandType expand,
+        Boolean recurse, String filter, String cacheControl) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            groupId,
-                            this.client.getApiVersion(),
-                            expand,
-                            recurse,
-                            filter,
-                            cacheControl,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), expand, recurse,
+                filter, cacheControl, groupId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the details of the management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the
-     *     response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
-     *     includes the ancestor Ids of the current group.
+     * response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
+     * includes the ancestor Ids of the current group.
      * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy
-     *     in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
+     * in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
      * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType
-     *     ne Subscription').
+     * ne Subscription').
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -420,40 +202,24 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the details of the management group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagementGroupInner>> getWithResponseAsync(
-        String groupId,
-        ManagementGroupExpandType expand,
-        Boolean recurse,
-        String filter,
-        String cacheControl,
-        Context context) {
+    private Mono<Response<ManagementGroupInner>> getWithResponseAsync(String groupId, ManagementGroupExpandType expand,
+        Boolean recurse, String filter, String cacheControl, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                groupId,
-                this.client.getApiVersion(),
-                expand,
-                recurse,
-                filter,
-                cacheControl,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), expand, recurse, filter,
+            cacheControl, groupId, accept, context);
     }
 
     /**
      * Get the details of the management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -472,17 +238,17 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
 
     /**
      * Get the details of the management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @param expand The $expand=children query string parameter allows clients to request inclusion of children in the
-     *     response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
-     *     includes the ancestor Ids of the current group.
+     * response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors
+     * includes the ancestor Ids of the current group.
      * @param recurse The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy
-     *     in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
+     * in the response payload. Note that $expand=children must be passed up if $recurse is set to true.
      * @param filter A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType
-     *     ne Subscription').
+     * ne Subscription').
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -490,19 +256,14 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the details of the management group along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ManagementGroupInner> getWithResponse(
-        String groupId,
-        ManagementGroupExpandType expand,
-        Boolean recurse,
-        String filter,
-        String cacheControl,
-        Context context) {
+    public Response<ManagementGroupInner> getWithResponse(String groupId, ManagementGroupExpandType expand,
+        Boolean recurse, String filter, String cacheControl, Context context) {
         return getWithResponseAsync(groupId, expand, recurse, filter, cacheControl, context).block();
     }
 
     /**
      * Get the details of the management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -519,62 +280,50 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest, String cacheControl) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String groupId,
+        ManagementGroupInner resource, String cacheControl) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
-        if (createManagementGroupRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter createManagementGroupRequest is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            createManagementGroupRequest.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            groupId,
-                            this.client.getApiVersion(),
-                            cacheControl,
-                            createManagementGroupRequest,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                cacheControl, groupId, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -582,104 +331,78 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the management group details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String groupId,
-        CreateManagementGroupRequest createManagementGroupRequest,
-        String cacheControl,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String groupId,
+        ManagementGroupInner resource, String cacheControl, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
-        if (createManagementGroupRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter createManagementGroupRequest is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            createManagementGroupRequest.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                groupId,
-                this.client.getApiVersion(),
-                cacheControl,
-                createManagementGroupRequest,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl, groupId,
+            resource, accept, context);
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the management group details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest, String cacheControl) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(groupId, createManagementGroupRequest, cacheControl);
-        return this
-            .client
-            .<ManagementGroupInner, ManagementGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ManagementGroupInner.class,
-                ManagementGroupInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(String groupId,
+        ManagementGroupInner resource, String cacheControl) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(groupId, resource, cacheControl);
+        return this.client.<ManagementGroupInner, ManagementGroupInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ManagementGroupInner.class, ManagementGroupInner.class, this.client.getContext());
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the management group details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest) {
+    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(String groupId,
+        ManagementGroupInner resource) {
         final String cacheControl = null;
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(groupId, createManagementGroupRequest, cacheControl);
-        return this
-            .client
-            .<ManagementGroupInner, ManagementGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ManagementGroupInner.class,
-                ManagementGroupInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(groupId, resource, cacheControl);
+        return this.client.<ManagementGroupInner, ManagementGroupInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ManagementGroupInner.class, ManagementGroupInner.class, this.client.getContext());
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -687,46 +410,43 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the {@link PollerFlux} for polling of the management group details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(
-        String groupId,
-        CreateManagementGroupRequest createManagementGroupRequest,
-        String cacheControl,
-        Context context) {
+    private PollerFlux<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdateAsync(String groupId,
+        ManagementGroupInner resource, String cacheControl, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(groupId, createManagementGroupRequest, cacheControl, context);
-        return this
-            .client
-            .<ManagementGroupInner, ManagementGroupInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ManagementGroupInner.class, ManagementGroupInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(groupId, resource, cacheControl, context);
+        return this.client.<ManagementGroupInner, ManagementGroupInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ManagementGroupInner.class, ManagementGroupInner.class, context);
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the management group details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdate(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest) {
+    public SyncPoller<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdate(String groupId,
+        ManagementGroupInner resource) {
         final String cacheControl = null;
-        return this.beginCreateOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(groupId, resource, cacheControl).getSyncPoller();
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -734,65 +454,60 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the {@link SyncPoller} for polling of the management group details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdate(
-        String groupId,
-        CreateManagementGroupRequest createManagementGroupRequest,
-        String cacheControl,
-        Context context) {
-        return this
-            .beginCreateOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl, context)
-            .getSyncPoller();
+    public SyncPoller<PollResult<ManagementGroupInner>, ManagementGroupInner> beginCreateOrUpdate(String groupId,
+        ManagementGroupInner resource, String cacheControl, Context context) {
+        return this.beginCreateOrUpdateAsync(groupId, resource, cacheControl, context).getSyncPoller();
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupInner> createOrUpdateAsync(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest, String cacheControl) {
-        return beginCreateOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl)
-            .last()
+    private Mono<ManagementGroupInner> createOrUpdateAsync(String groupId, ManagementGroupInner resource,
+        String cacheControl) {
+        return beginCreateOrUpdateAsync(groupId, resource, cacheControl).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupInner> createOrUpdateAsync(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest) {
+    private Mono<ManagementGroupInner> createOrUpdateAsync(String groupId, ManagementGroupInner resource) {
         final String cacheControl = null;
-        return beginCreateOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl)
-            .last()
+        return beginCreateOrUpdateAsync(groupId, resource, cacheControl).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -800,42 +515,39 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the management group details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupInner> createOrUpdateAsync(
-        String groupId,
-        CreateManagementGroupRequest createManagementGroupRequest,
-        String cacheControl,
-        Context context) {
-        return beginCreateOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl, context)
-            .last()
+    private Mono<ManagementGroupInner> createOrUpdateAsync(String groupId, ManagementGroupInner resource,
+        String cacheControl, Context context) {
+        return beginCreateOrUpdateAsync(groupId, resource, cacheControl, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagementGroupInner createOrUpdate(
-        String groupId, CreateManagementGroupRequest createManagementGroupRequest) {
+    public ManagementGroupInner createOrUpdate(String groupId, ManagementGroupInner resource) {
         final String cacheControl = null;
-        return createOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl).block();
+        return createOrUpdateAsync(groupId, resource, cacheControl).block();
     }
 
     /**
-     * Create or update a management group. If a management group is already created and a subsequent create request is
-     * issued with different properties, the management group properties will be updated.
-     *
+     * Create or update a management group.
+     * If a management group is already created and a subsequent create request is issued with different properties, the
+     * management group properties will be updated.
+     * 
      * @param groupId Management Group ID.
-     * @param createManagementGroupRequest Management group creation parameters.
+     * @param resource Management group creation parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -843,67 +555,52 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the management group details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagementGroupInner createOrUpdate(
-        String groupId,
-        CreateManagementGroupRequest createManagementGroupRequest,
-        String cacheControl,
+    public ManagementGroupInner createOrUpdate(String groupId, ManagementGroupInner resource, String cacheControl,
         Context context) {
-        return createOrUpdateAsync(groupId, createManagementGroupRequest, cacheControl, context).block();
+        return createOrUpdateAsync(groupId, resource, cacheControl, context).block();
     }
 
     /**
      * Update a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param patchGroupRequest Management group patch parameters.
+     * @param properties Management group patch parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagementGroupInner>> updateWithResponseAsync(
-        String groupId, PatchManagementGroupRequest patchGroupRequest, String cacheControl) {
+    private Mono<Response<ManagementGroupInner>> updateWithResponseAsync(String groupId,
+        PatchManagementGroupRequest properties, String cacheControl) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
-        if (patchGroupRequest == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter patchGroupRequest is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            patchGroupRequest.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            groupId,
-                            this.client.getApiVersion(),
-                            cacheControl,
-                            patchGroupRequest,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl,
+                groupId, properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param patchGroupRequest Management group patch parameters.
+     * @param properties Management group patch parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -911,60 +608,50 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the management group details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagementGroupInner>> updateWithResponseAsync(
-        String groupId, PatchManagementGroupRequest patchGroupRequest, String cacheControl, Context context) {
+    private Mono<Response<ManagementGroupInner>> updateWithResponseAsync(String groupId,
+        PatchManagementGroupRequest properties, String cacheControl, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
-        if (patchGroupRequest == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter patchGroupRequest is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            patchGroupRequest.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                groupId,
-                this.client.getApiVersion(),
-                cacheControl,
-                patchGroupRequest,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl, groupId, properties,
+            accept, context);
     }
 
     /**
      * Update a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param patchGroupRequest Management group patch parameters.
+     * @param properties Management group patch parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequest patchGroupRequest) {
+    private Mono<ManagementGroupInner> updateAsync(String groupId, PatchManagementGroupRequest properties) {
         final String cacheControl = null;
-        return updateWithResponseAsync(groupId, patchGroupRequest, cacheControl)
+        return updateWithResponseAsync(groupId, properties, cacheControl)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Update a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param patchGroupRequest Management group patch parameters.
+     * @param properties Management group patch parameters.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -972,358 +659,329 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return the management group details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ManagementGroupInner> updateWithResponse(
-        String groupId, PatchManagementGroupRequest patchGroupRequest, String cacheControl, Context context) {
-        return updateWithResponseAsync(groupId, patchGroupRequest, cacheControl, context).block();
+    public Response<ManagementGroupInner> updateWithResponse(String groupId, PatchManagementGroupRequest properties,
+        String cacheControl, Context context) {
+        return updateWithResponseAsync(groupId, properties, cacheControl, context).block();
     }
 
     /**
      * Update a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param patchGroupRequest Management group patch parameters.
+     * @param properties Management group patch parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the management group details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagementGroupInner update(String groupId, PatchManagementGroupRequest patchGroupRequest) {
+    public ManagementGroupInner update(String groupId, PatchManagementGroupRequest properties) {
         final String cacheControl = null;
-        return updateWithResponse(groupId, patchGroupRequest, cacheControl, Context.NONE).getValue();
+        return updateWithResponse(groupId, properties, cacheControl, Context.NONE).getValue();
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation along with {@link Response} on successful completion of {@link Mono}.
+     * @return the management group operation acceptance details along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String groupId, String cacheControl) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            groupId,
-                            this.client.getApiVersion(),
-                            cacheControl,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl,
+                groupId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation along with {@link Response} on successful completion of {@link Mono}.
+     * @return the management group operation acceptance details along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String groupId, String cacheControl, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String groupId, String cacheControl,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(this.client.getEndpoint(), groupId, this.client.getApiVersion(), cacheControl, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), cacheControl, groupId, accept,
+            context);
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the results of Azure-AsyncOperation.
+     * @return the {@link PollerFlux} for polling of the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AzureAsyncOperationResultsInner>, AzureAsyncOperationResultsInner> beginDeleteAsync(
-        String groupId, String cacheControl) {
+    private PollerFlux<PollResult<ManagementGroupOperationAcceptanceInner>, ManagementGroupOperationAcceptanceInner>
+        beginDeleteAsync(String groupId, String cacheControl) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(groupId, cacheControl);
-        return this
-            .client
-            .<AzureAsyncOperationResultsInner, AzureAsyncOperationResultsInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                AzureAsyncOperationResultsInner.class,
-                AzureAsyncOperationResultsInner.class,
-                this.client.getContext());
+        return this.client
+            .<ManagementGroupOperationAcceptanceInner, ManagementGroupOperationAcceptanceInner>getLroResult(mono,
+                this.client.getHttpPipeline(), ManagementGroupOperationAcceptanceInner.class,
+                ManagementGroupOperationAcceptanceInner.class, this.client.getContext());
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the results of Azure-AsyncOperation.
+     * @return the {@link PollerFlux} for polling of the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AzureAsyncOperationResultsInner>, AzureAsyncOperationResultsInner> beginDeleteAsync(
-        String groupId) {
+    private PollerFlux<PollResult<ManagementGroupOperationAcceptanceInner>, ManagementGroupOperationAcceptanceInner>
+        beginDeleteAsync(String groupId) {
         final String cacheControl = null;
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(groupId, cacheControl);
-        return this
-            .client
-            .<AzureAsyncOperationResultsInner, AzureAsyncOperationResultsInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                AzureAsyncOperationResultsInner.class,
-                AzureAsyncOperationResultsInner.class,
-                this.client.getContext());
+        return this.client
+            .<ManagementGroupOperationAcceptanceInner, ManagementGroupOperationAcceptanceInner>getLroResult(mono,
+                this.client.getHttpPipeline(), ManagementGroupOperationAcceptanceInner.class,
+                ManagementGroupOperationAcceptanceInner.class, this.client.getContext());
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the results of Azure-AsyncOperation.
+     * @return the {@link PollerFlux} for polling of the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AzureAsyncOperationResultsInner>, AzureAsyncOperationResultsInner> beginDeleteAsync(
-        String groupId, String cacheControl, Context context) {
+    private PollerFlux<PollResult<ManagementGroupOperationAcceptanceInner>, ManagementGroupOperationAcceptanceInner>
+        beginDeleteAsync(String groupId, String cacheControl, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(groupId, cacheControl, context);
-        return this
-            .client
-            .<AzureAsyncOperationResultsInner, AzureAsyncOperationResultsInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                AzureAsyncOperationResultsInner.class,
-                AzureAsyncOperationResultsInner.class,
-                context);
+        return this.client
+            .<ManagementGroupOperationAcceptanceInner, ManagementGroupOperationAcceptanceInner>getLroResult(mono,
+                this.client.getHttpPipeline(), ManagementGroupOperationAcceptanceInner.class,
+                ManagementGroupOperationAcceptanceInner.class, context);
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the results of Azure-AsyncOperation.
+     * @return the {@link SyncPoller} for polling of the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AzureAsyncOperationResultsInner>, AzureAsyncOperationResultsInner> beginDelete(
-        String groupId) {
+    public SyncPoller<PollResult<ManagementGroupOperationAcceptanceInner>, ManagementGroupOperationAcceptanceInner>
+        beginDelete(String groupId) {
         final String cacheControl = null;
         return this.beginDeleteAsync(groupId, cacheControl).getSyncPoller();
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the results of Azure-AsyncOperation.
+     * @return the {@link SyncPoller} for polling of the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AzureAsyncOperationResultsInner>, AzureAsyncOperationResultsInner> beginDelete(
-        String groupId, String cacheControl, Context context) {
+    public SyncPoller<PollResult<ManagementGroupOperationAcceptanceInner>, ManagementGroupOperationAcceptanceInner>
+        beginDelete(String groupId, String cacheControl, Context context) {
         return this.beginDeleteAsync(groupId, cacheControl, context).getSyncPoller();
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation on successful completion of {@link Mono}.
+     * @return the management group operation acceptance details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureAsyncOperationResultsInner> deleteAsync(String groupId, String cacheControl) {
+    private Mono<ManagementGroupOperationAcceptanceInner> deleteAsync(String groupId, String cacheControl) {
         return beginDeleteAsync(groupId, cacheControl).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation on successful completion of {@link Mono}.
+     * @return the management group operation acceptance details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureAsyncOperationResultsInner> deleteAsync(String groupId) {
+    private Mono<ManagementGroupOperationAcceptanceInner> deleteAsync(String groupId) {
         final String cacheControl = null;
         return beginDeleteAsync(groupId, cacheControl).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation on successful completion of {@link Mono}.
+     * @return the management group operation acceptance details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureAsyncOperationResultsInner> deleteAsync(String groupId, String cacheControl, Context context) {
+    private Mono<ManagementGroupOperationAcceptanceInner> deleteAsync(String groupId, String cacheControl,
+        Context context) {
         return beginDeleteAsync(groupId, cacheControl, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation.
+     * @return the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureAsyncOperationResultsInner delete(String groupId) {
+    public ManagementGroupOperationAcceptanceInner delete(String groupId) {
         final String cacheControl = null;
         return deleteAsync(groupId, cacheControl).block();
     }
 
     /**
-     * Delete management group. If a management group contains child resources, the request will fail.
-     *
+     * Delete management group.
+     * If a management group contains child resources, the request will fail.
+     * 
      * @param groupId Management Group ID.
      * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * value to bypass existing caches.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the results of Azure-AsyncOperation.
+     * @return the management group operation acceptance details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureAsyncOperationResultsInner delete(String groupId, String cacheControl, Context context) {
+    public ManagementGroupOperationAcceptanceInner delete(String groupId, String cacheControl, Context context) {
         return deleteAsync(groupId, cacheControl, context).block();
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a token
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the result of the request to view descendants along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsSinglePageAsync(
-        String groupId, String skiptoken, Integer top) {
+    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsSinglePageAsync(String groupId, String skiptoken,
+        Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getDescendants(
-                            this.client.getEndpoint(),
-                            groupId,
-                            this.client.getApiVersion(),
-                            skiptoken,
-                            top,
-                            accept,
-                            context))
-            .<PagedResponse<DescendantInfoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.getDescendants(this.client.getEndpoint(), this.client.getApiVersion(),
+                groupId, skiptoken, top, accept, context))
+            .<PagedResponse<DescendantInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a token
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the result of the request to view descendants along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsSinglePageAsync(
-        String groupId, String skiptoken, Integer top, Context context) {
+    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsSinglePageAsync(String groupId, String skiptoken,
+        Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (groupId == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
@@ -1331,26 +989,19 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getDescendants(
-                this.client.getEndpoint(), groupId, this.client.getApiVersion(), skiptoken, top, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .getDescendants(this.client.getEndpoint(), this.client.getApiVersion(), groupId, skiptoken, top, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a token
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1359,14 +1010,13 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DescendantInfoInner> getDescendantsAsync(String groupId, String skiptoken, Integer top) {
-        return new PagedFlux<>(
-            () -> getDescendantsSinglePageAsync(groupId, skiptoken, top),
+        return new PagedFlux<>(() -> getDescendantsSinglePageAsync(groupId, skiptoken, top),
             nextLink -> getDescendantsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1377,18 +1027,17 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
     private PagedFlux<DescendantInfoInner> getDescendantsAsync(String groupId) {
         final String skiptoken = null;
         final Integer top = null;
-        return new PagedFlux<>(
-            () -> getDescendantsSinglePageAsync(groupId, skiptoken, top),
+        return new PagedFlux<>(() -> getDescendantsSinglePageAsync(groupId, skiptoken, top),
             nextLink -> getDescendantsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a token
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1397,16 +1046,15 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return describes the result of the request to view descendants as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DescendantInfoInner> getDescendantsAsync(
-        String groupId, String skiptoken, Integer top, Context context) {
-        return new PagedFlux<>(
-            () -> getDescendantsSinglePageAsync(groupId, skiptoken, top, context),
+    private PagedFlux<DescendantInfoInner> getDescendantsAsync(String groupId, String skiptoken, Integer top,
+        Context context) {
+        return new PagedFlux<>(() -> getDescendantsSinglePageAsync(groupId, skiptoken, top, context),
             nextLink -> getDescendantsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1422,11 +1070,11 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
 
     /**
      * List all entities that descend from a management group.
-     *
+     * 
      * @param groupId Management Group ID.
-     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result. If a
-     *     previous response contains a nextLink element, the value of the nextLink element will include a token
-     *     parameter that specifies a starting point to use for subsequent calls.
+     * @param skiptoken Page continuation token is only used if a previous operation returned a partial result.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a token
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param top Number of elements to return when retrieving results. Passing this in will override $skipToken.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1435,103 +1083,145 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
      * @return describes the result of the request to view descendants as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DescendantInfoInner> getDescendants(
-        String groupId, String skiptoken, Integer top, Context context) {
+    public PagedIterable<DescendantInfoInner> getDescendants(String groupId, String skiptoken, Integer top,
+        Context context) {
         return new PagedIterable<>(getDescendantsAsync(groupId, skiptoken, top, context));
     }
 
     /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return all the hierarchy settings defined at the Management Group level along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ManagementGroupInfoInner>> listNextSinglePageAsync(
-        String nextLink, String cacheControl) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<HierarchySettingsInner>> listSettingsSinglePageAsync(String groupId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (groupId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listNext(nextLink, this.client.getEndpoint(), cacheControl, accept, context))
-            .<PagedResponse<ManagementGroupInfoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listSettings(this.client.getEndpoint(), this.client.getApiVersion(),
+                groupId, accept, context))
+            .<PagedResponse<HierarchySettingsInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param cacheControl Indicates whether the request should utilize any caches. Populate the header with 'no-cache'
-     *     value to bypass existing caches.
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the result of the request to list management groups along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return all the hierarchy settings defined at the Management Group level along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ManagementGroupInfoInner>> listNextSinglePageAsync(
-        String nextLink, String cacheControl, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<HierarchySettingsInner>> listSettingsSinglePageAsync(String groupId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (groupId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), cacheControl, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listSettings(this.client.getEndpoint(), this.client.getApiVersion(), groupId, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the hierarchy settings defined at the Management Group level as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HierarchySettingsInner> listSettingsAsync(String groupId) {
+        return new PagedFlux<>(() -> listSettingsSinglePageAsync(groupId),
+            nextLink -> listSettingsNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the hierarchy settings defined at the Management Group level as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HierarchySettingsInner> listSettingsAsync(String groupId, Context context) {
+        return new PagedFlux<>(() -> listSettingsSinglePageAsync(groupId, context),
+            nextLink -> listSettingsNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the hierarchy settings defined at the Management Group level as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<HierarchySettingsInner> listSettings(String groupId) {
+        return new PagedIterable<>(listSettingsAsync(groupId));
+    }
+
+    /**
+     * Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root
+     * Management Group of the hierarchy.
+     * 
+     * @param groupId Management Group ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the hierarchy settings defined at the Management Group level as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<HierarchySettingsInner> listSettings(String groupId, Context context) {
+        return new PagedIterable<>(listSettingsAsync(groupId, context));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the result of the request to view descendants along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DescendantInfoInner>> getDescendantsNextSinglePageAsync(String nextLink) {
@@ -1539,62 +1229,97 @@ public final class ManagementGroupsClientImpl implements ManagementGroupsClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getDescendantsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DescendantInfoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DescendantInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the result of the request to view descendants along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<DescendantInfoInner>> getDescendantsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getDescendantsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.getDescendantsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HierarchySettings list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<HierarchySettingsInner>> listSettingsNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listSettingsNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<HierarchySettingsInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HierarchySettings list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<HierarchySettingsInner>> listSettingsNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listSettingsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
