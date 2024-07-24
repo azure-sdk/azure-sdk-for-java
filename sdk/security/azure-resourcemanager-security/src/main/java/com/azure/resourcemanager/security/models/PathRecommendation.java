@@ -5,66 +5,61 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Represents a path that is recommended to be allowed and its properties.
  */
 @Fluent
-public final class PathRecommendation {
+public final class PathRecommendation implements JsonSerializable<PathRecommendation> {
     /*
      * The full path of the file, or an identifier of the application
      */
-    @JsonProperty(value = "path")
     private String path;
 
     /*
      * The recommendation action of the machine or rule
      */
-    @JsonProperty(value = "action")
     private RecommendationAction action;
 
     /*
      * The type of IoT Security recommendation.
      */
-    @JsonProperty(value = "type")
     private RecommendationType type;
 
     /*
      * Represents the publisher information of a process/rule
      */
-    @JsonProperty(value = "publisherInfo")
     private PublisherInfo publisherInfo;
 
     /*
      * Whether the application is commonly run on the machine
      */
-    @JsonProperty(value = "common")
     private Boolean common;
 
     /*
      * The userSids property.
      */
-    @JsonProperty(value = "userSids")
     private List<String> userSids;
 
     /*
      * The usernames property.
      */
-    @JsonProperty(value = "usernames")
     private List<UserRecommendation> usernames;
 
     /*
      * The type of the file (for Linux files - Executable is used)
      */
-    @JsonProperty(value = "fileType")
     private FileType fileType;
 
     /*
      * The configuration status of the machines group or machine or rule
      */
-    @JsonProperty(value = "configurationStatus")
     private ConfigurationStatus configurationStatus;
 
     /**
@@ -265,5 +260,70 @@ public final class PathRecommendation {
         if (usernames() != null) {
             usernames().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("path", this.path);
+        jsonWriter.writeStringField("action", this.action == null ? null : this.action.toString());
+        jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
+        jsonWriter.writeJsonField("publisherInfo", this.publisherInfo);
+        jsonWriter.writeBooleanField("common", this.common);
+        jsonWriter.writeArrayField("userSids", this.userSids, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("usernames", this.usernames, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("fileType", this.fileType == null ? null : this.fileType.toString());
+        jsonWriter.writeStringField("configurationStatus",
+            this.configurationStatus == null ? null : this.configurationStatus.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PathRecommendation from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PathRecommendation if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the PathRecommendation.
+     */
+    public static PathRecommendation fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PathRecommendation deserializedPathRecommendation = new PathRecommendation();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("path".equals(fieldName)) {
+                    deserializedPathRecommendation.path = reader.getString();
+                } else if ("action".equals(fieldName)) {
+                    deserializedPathRecommendation.action = RecommendationAction.fromString(reader.getString());
+                } else if ("type".equals(fieldName)) {
+                    deserializedPathRecommendation.type = RecommendationType.fromString(reader.getString());
+                } else if ("publisherInfo".equals(fieldName)) {
+                    deserializedPathRecommendation.publisherInfo = PublisherInfo.fromJson(reader);
+                } else if ("common".equals(fieldName)) {
+                    deserializedPathRecommendation.common = reader.getNullable(JsonReader::getBoolean);
+                } else if ("userSids".equals(fieldName)) {
+                    List<String> userSids = reader.readArray(reader1 -> reader1.getString());
+                    deserializedPathRecommendation.userSids = userSids;
+                } else if ("usernames".equals(fieldName)) {
+                    List<UserRecommendation> usernames
+                        = reader.readArray(reader1 -> UserRecommendation.fromJson(reader1));
+                    deserializedPathRecommendation.usernames = usernames;
+                } else if ("fileType".equals(fieldName)) {
+                    deserializedPathRecommendation.fileType = FileType.fromString(reader.getString());
+                } else if ("configurationStatus".equals(fieldName)) {
+                    deserializedPathRecommendation.configurationStatus
+                        = ConfigurationStatus.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPathRecommendation;
+        });
     }
 }

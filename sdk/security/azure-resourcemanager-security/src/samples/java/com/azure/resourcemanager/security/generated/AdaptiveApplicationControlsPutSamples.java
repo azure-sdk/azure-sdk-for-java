@@ -23,7 +23,9 @@ import java.util.Arrays;
  */
 public final class AdaptiveApplicationControlsPutSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/ApplicationWhitelistings/PutAdaptiveApplicationControls_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/ApplicationWhitelistings/
+     * PutAdaptiveApplicationControls_example.json
      */
     /**
      * Sample code: Update an application control machine group by adding a new application.

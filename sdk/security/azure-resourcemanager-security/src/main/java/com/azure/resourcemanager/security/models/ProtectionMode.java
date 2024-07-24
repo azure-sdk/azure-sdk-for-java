@@ -5,35 +5,35 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * The protection mode of the collection/file types. Exe/Msi/Script are used for Windows, Executable is used for Linux.
  */
 @Fluent
-public final class ProtectionMode {
+public final class ProtectionMode implements JsonSerializable<ProtectionMode> {
     /*
      * The application control policy enforcement/protection mode of the machine group
      */
-    @JsonProperty(value = "exe")
     private EnforcementMode exe;
 
     /*
      * The application control policy enforcement/protection mode of the machine group
      */
-    @JsonProperty(value = "msi")
     private EnforcementMode msi;
 
     /*
      * The application control policy enforcement/protection mode of the machine group
      */
-    @JsonProperty(value = "script")
     private EnforcementMode script;
 
     /*
      * The application control policy enforcement/protection mode of the machine group
      */
-    @JsonProperty(value = "executable")
     private EnforcementMode executable;
 
     /**
@@ -128,5 +128,50 @@ public final class ProtectionMode {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("exe", this.exe == null ? null : this.exe.toString());
+        jsonWriter.writeStringField("msi", this.msi == null ? null : this.msi.toString());
+        jsonWriter.writeStringField("script", this.script == null ? null : this.script.toString());
+        jsonWriter.writeStringField("executable", this.executable == null ? null : this.executable.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ProtectionMode from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ProtectionMode if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ProtectionMode.
+     */
+    public static ProtectionMode fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ProtectionMode deserializedProtectionMode = new ProtectionMode();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("exe".equals(fieldName)) {
+                    deserializedProtectionMode.exe = EnforcementMode.fromString(reader.getString());
+                } else if ("msi".equals(fieldName)) {
+                    deserializedProtectionMode.msi = EnforcementMode.fromString(reader.getString());
+                } else if ("script".equals(fieldName)) {
+                    deserializedProtectionMode.script = EnforcementMode.fromString(reader.getString());
+                } else if ("executable".equals(fieldName)) {
+                    deserializedProtectionMode.executable = EnforcementMode.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedProtectionMode;
+        });
     }
 }

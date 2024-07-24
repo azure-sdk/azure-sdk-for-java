@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -60,7 +59,6 @@ public final class AdaptiveApplicationControlIssue extends ExpandableStringEnum<
      * @param name a name to look for.
      * @return the corresponding AdaptiveApplicationControlIssue.
      */
-    @JsonCreator
     public static AdaptiveApplicationControlIssue fromString(String name) {
         return fromString(name, AdaptiveApplicationControlIssue.class);
     }

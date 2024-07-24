@@ -5,6 +5,10 @@
 package com.azure.resourcemanager.security.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.security.models.AdaptiveApplicationControlIssueSummary;
 import com.azure.resourcemanager.security.models.ConfigurationStatus;
 import com.azure.resourcemanager.security.models.EnforcementMode;
@@ -13,60 +17,54 @@ import com.azure.resourcemanager.security.models.ProtectionMode;
 import com.azure.resourcemanager.security.models.RecommendationStatus;
 import com.azure.resourcemanager.security.models.SourceSystem;
 import com.azure.resourcemanager.security.models.VmRecommendation;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Represents a machines group and set of rules to be allowed running on a machine.
  */
 @Fluent
-public final class AdaptiveApplicationControlGroupData {
+public final class AdaptiveApplicationControlGroupData
+    implements JsonSerializable<AdaptiveApplicationControlGroupData> {
     /*
      * The application control policy enforcement/protection mode of the machine group
      */
-    @JsonProperty(value = "enforcementMode")
     private EnforcementMode enforcementMode;
 
     /*
-     * The protection mode of the collection/file types. Exe/Msi/Script are used for Windows, Executable is used for Linux.
+     * The protection mode of the collection/file types. Exe/Msi/Script are used for Windows, Executable is used for
+     * Linux.
      */
-    @JsonProperty(value = "protectionMode")
     private ProtectionMode protectionMode;
 
     /*
      * The configuration status of the machines group or machine or rule
      */
-    @JsonProperty(value = "configurationStatus", access = JsonProperty.Access.WRITE_ONLY)
     private ConfigurationStatus configurationStatus;
 
     /*
      * The initial recommendation status of the machine group or machine
      */
-    @JsonProperty(value = "recommendationStatus", access = JsonProperty.Access.WRITE_ONLY)
     private RecommendationStatus recommendationStatus;
 
     /*
      * The issues property.
      */
-    @JsonProperty(value = "issues", access = JsonProperty.Access.WRITE_ONLY)
     private List<AdaptiveApplicationControlIssueSummary> issues;
 
     /*
      * The source type of the machine group
      */
-    @JsonProperty(value = "sourceSystem", access = JsonProperty.Access.WRITE_ONLY)
     private SourceSystem sourceSystem;
 
     /*
      * The vmRecommendations property.
      */
-    @JsonProperty(value = "vmRecommendations")
     private List<VmRecommendation> vmRecommendations;
 
     /*
      * The pathRecommendations property.
      */
-    @JsonProperty(value = "pathRecommendations")
     private List<PathRecommendation> pathRecommendations;
 
     /**
@@ -213,5 +211,72 @@ public final class AdaptiveApplicationControlGroupData {
         if (pathRecommendations() != null) {
             pathRecommendations().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("enforcementMode",
+            this.enforcementMode == null ? null : this.enforcementMode.toString());
+        jsonWriter.writeJsonField("protectionMode", this.protectionMode);
+        jsonWriter.writeArrayField("vmRecommendations", this.vmRecommendations,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("pathRecommendations", this.pathRecommendations,
+            (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AdaptiveApplicationControlGroupData from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AdaptiveApplicationControlGroupData if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AdaptiveApplicationControlGroupData.
+     */
+    public static AdaptiveApplicationControlGroupData fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AdaptiveApplicationControlGroupData deserializedAdaptiveApplicationControlGroupData
+                = new AdaptiveApplicationControlGroupData();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("enforcementMode".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlGroupData.enforcementMode
+                        = EnforcementMode.fromString(reader.getString());
+                } else if ("protectionMode".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlGroupData.protectionMode = ProtectionMode.fromJson(reader);
+                } else if ("configurationStatus".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlGroupData.configurationStatus
+                        = ConfigurationStatus.fromString(reader.getString());
+                } else if ("recommendationStatus".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlGroupData.recommendationStatus
+                        = RecommendationStatus.fromString(reader.getString());
+                } else if ("issues".equals(fieldName)) {
+                    List<AdaptiveApplicationControlIssueSummary> issues
+                        = reader.readArray(reader1 -> AdaptiveApplicationControlIssueSummary.fromJson(reader1));
+                    deserializedAdaptiveApplicationControlGroupData.issues = issues;
+                } else if ("sourceSystem".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlGroupData.sourceSystem
+                        = SourceSystem.fromString(reader.getString());
+                } else if ("vmRecommendations".equals(fieldName)) {
+                    List<VmRecommendation> vmRecommendations
+                        = reader.readArray(reader1 -> VmRecommendation.fromJson(reader1));
+                    deserializedAdaptiveApplicationControlGroupData.vmRecommendations = vmRecommendations;
+                } else if ("pathRecommendations".equals(fieldName)) {
+                    List<PathRecommendation> pathRecommendations
+                        = reader.readArray(reader1 -> PathRecommendation.fromJson(reader1));
+                    deserializedAdaptiveApplicationControlGroupData.pathRecommendations = pathRecommendations;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAdaptiveApplicationControlGroupData;
+        });
     }
 }

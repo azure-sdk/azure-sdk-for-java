@@ -15,7 +15,9 @@ import java.util.Arrays;
  */
 public final class AdaptiveNetworkHardeningsEnforceSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/AdaptiveNetworkHardenings/EnforceAdaptiveNetworkHardeningRules_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/stable/2020-01-01/examples/AdaptiveNetworkHardenings/
+     * EnforceAdaptiveNetworkHardeningRules_example.json
      */
     /**
      * Sample code: Enforces the given rules on the NSG(s) listed in the request.
