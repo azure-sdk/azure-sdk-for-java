@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.securityinsights.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
-import com.azure.resourcemanager.securityinsights.fluent.models.SettingListInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
-import com.azure.resourcemanager.securityinsights.models.SettingList;
 import com.azure.resourcemanager.securityinsights.models.Settings;
 
 public final class ProductSettingsImpl implements ProductSettings {
@@ -22,31 +21,29 @@ public final class ProductSettingsImpl implements ProductSettings {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public ProductSettingsImpl(
-        ProductSettingsClient innerClient,
+    public ProductSettingsImpl(ProductSettingsClient innerClient,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public SettingList list(String resourceGroupName, String workspaceName) {
-        SettingListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new SettingListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<Settings> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<SettingsInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SettingsImpl(inner1, this.manager()));
     }
 
-    public Response<SettingList> listWithResponse(String resourceGroupName, String workspaceName, Context context) {
-        Response<SettingListInner> inner =
-            this.serviceClient().listWithResponse(resourceGroupName, workspaceName, context);
+    public PagedIterable<Settings> list(String resourceGroupName, String workspaceName, Context context) {
+        PagedIterable<SettingsInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SettingsImpl(inner1, this.manager()));
+    }
+
+    public Response<Settings> getWithResponse(String resourceGroupName, String workspaceName, String settingsName,
+        Context context) {
+        Response<SettingsInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, settingsName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new SettingListImpl(inner.getValue(), this.manager()));
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SettingsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
@@ -61,50 +58,32 @@ public final class ProductSettingsImpl implements ProductSettings {
         }
     }
 
-    public Response<Settings> getWithResponse(
-        String resourceGroupName, String workspaceName, String settingsName, Context context) {
-        Response<SettingsInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, settingsName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new SettingsImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String settingsName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, settingsName, context);
     }
 
     public void delete(String resourceGroupName, String workspaceName, String settingsName) {
         this.serviceClient().delete(resourceGroupName, workspaceName, settingsName);
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String settingsName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, settingsName, context);
-    }
-
-    public Settings update(
-        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings) {
-        SettingsInner inner = this.serviceClient().update(resourceGroupName, workspaceName, settingsName, settings);
+    public Response<Settings> updateWithResponse(String resourceGroupName, String workspaceName, String settingsName,
+        SettingsInner settings, Context context) {
+        Response<SettingsInner> inner = this.serviceClient()
+            .updateWithResponse(resourceGroupName, workspaceName, settingsName, settings, context);
         if (inner != null) {
-            return new SettingsImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SettingsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Response<Settings> updateWithResponse(
-        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings, Context context) {
-        Response<SettingsInner> inner =
-            this.serviceClient().updateWithResponse(resourceGroupName, workspaceName, settingsName, settings, context);
+    public Settings update(String resourceGroupName, String workspaceName, String settingsName,
+        SettingsInner settings) {
+        SettingsInner inner = this.serviceClient().update(resourceGroupName, workspaceName, settingsName, settings);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new SettingsImpl(inner.getValue(), this.manager()));
+            return new SettingsImpl(inner, this.manager());
         } else {
             return null;
         }
