@@ -1,14 +1,568 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2024-07-24)
 
-### Features Added
+- Azure Resource Manager Avs client library for Java. This package contains Microsoft Azure SDK for Avs Management SDK. Azure VMware Solution API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.DatastoreList` was removed
 
-### Other Changes
+* `models.ClusterList` was removed
+
+* `models.GlobalReachConnectionList` was removed
+
+* `models.ServiceSpecification` was removed
+
+* `models.MetricSpecification` was removed
+
+* `models.AddonList` was removed
+
+* `models.WorkloadNetworkName` was removed
+
+* `models.VirtualMachinesList` was removed
+
+* `models.WorkloadNetworkDhcpList` was removed
+
+* `models.ScriptCmdletsList` was removed
+
+* `models.CloudLinkList` was removed
+
+* `models.WorkloadNetworkVMGroupsList` was removed
+
+* `models.MetricDimension` was removed
+
+* `models.ScriptExecutionsList` was removed
+
+* `models.HcxEnterpriseSiteList` was removed
+
+* `models.WorkloadNetworkPortMirroringList` was removed
+
+* `models.WorkloadNetworkVirtualMachinesList` was removed
+
+* `models.OperationList` was removed
+
+* `models.LogSpecification` was removed
+
+* `models.ResourceIdentityType` was removed
+
+* `models.WorkloadNetworkList` was removed
+
+* `models.PlacementPoliciesList` was removed
+
+* `models.WorkloadNetworkPublicIPsList` was removed
+
+* `models.WorkloadNetworkSegmentsList` was removed
+
+* `models.WorkloadNetworkDnsServicesList` was removed
+
+* `models.PrivateCloudList` was removed
+
+* `models.ExpressRouteAuthorizationList` was removed
+
+* `models.OperationProperties` was removed
+
+* `models.WorkloadNetworkDnsZonesList` was removed
+
+* `models.WorkloadNetworkGatewayList` was removed
+
+* `models.ScriptPackagesList` was removed
+
+* `models.CommonClusterProperties` was removed
+
+#### `models.WorkloadNetworkSegmentPortVif` was modified
+
+* `withPortName(java.lang.String)` was removed
+
+#### `models.WorkloadNetworks` was modified
+
+* `get(java.lang.String,java.lang.String,models.WorkloadNetworkName)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,models.WorkloadNetworkName,com.azure.core.util.Context)` was removed
+
+#### `models.Operation` was modified
+
+* `properties()` was removed
+* `java.lang.String origin()` -> `models.Origin origin()`
+
+#### `models.ScriptParameter` was modified
+
+* `withName(java.lang.String)` was removed
+
+#### `AvsManager` was modified
+
+* `fluent.AvsClient serviceClient()` -> `fluent.AVSClient serviceClient()`
+
+#### `models.ManagementCluster` was modified
+
+* `withHosts(java.util.List)` was removed
+* `withClusterSize(java.lang.Integer)` was removed
+
+#### `models.PrivateCloudIdentity` was modified
+
+* `withType(models.ResourceIdentityType)` was removed
+* `models.ResourceIdentityType type()` -> `models.SystemAssignedServiceIdentityType type()`
+
+### Features Added
+
+* `models.CloudLinkProvisioningState` was added
+
+* `implementation.models.DatastoreList` was added
+
+* `implementation.models.ScriptPackagesList` was added
+
+* `models.IscsiPath` was added
+
+* `implementation.models.VirtualMachinesList` was added
+
+* `implementation.models.ExpressRouteAuthorizationList` was added
+
+* `implementation.models.WorkloadNetworkList` was added
+
+* `models.IscsiPaths` was added
+
+* `models.SystemAssignedServiceIdentityType` was added
+
+* `models.ScriptCmdletAudience` was added
+
+* `models.VirtualMachineProvisioningState` was added
+
+* `implementation.models.PrivateCloudList` was added
+
+* `models.HcxEnterpriseSiteProvisioningState` was added
+
+* `implementation.models.ClusterList` was added
+
+* `implementation.models.CloudLinkList` was added
+
+* `implementation.models.AddonList` was added
+
+* `models.ActionType` was added
+
+* `implementation.models.WorkloadNetworkDnsServicesList` was added
+
+* `implementation.models.WorkloadNetworkGatewayList` was added
+
+* `models.WorkloadNetworkProvisioningState` was added
+
+* `implementation.models.PlacementPoliciesList` was added
+
+* `models.ScriptExecutionPropertiesNamedOutput` was added
+
+* `implementation.models.WorkloadNetworkVMGroupsList` was added
+
+* `models.SkuTier` was added
+
+* `models.ScriptCmdletProvisioningState` was added
+
+* `implementation.models.WorkloadNetworkDhcpList` was added
+
+* `models.DnsZoneType` was added
+
+* `implementation.models.WorkloadNetworkVirtualMachinesList` was added
+
+* `implementation.models.ScriptExecutionsList` was added
+
+* `models.ElasticSanVolume` was added
+
+* `models.IscsiPathProvisioningState` was added
+
+* `models.ScriptPackageProvisioningState` was added
+
+* `implementation.models.WorkloadNetworkDnsZonesList` was added
+
+* `implementation.models.HcxEnterpriseSiteList` was added
+
+* `implementation.models.IscsiPathListResult` was added
+
+* `implementation.models.WorkloadNetworkSegmentsList` was added
+
+* `implementation.models.WorkloadNetworkPublicIPsList` was added
+
+* `implementation.models.ScriptCmdletsList` was added
+
+* `implementation.models.WorkloadNetworkPortMirroringList` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.Origin` was added
+
+* `implementation.models.GlobalReachConnectionList` was added
+
+#### `models.Cluster$Definition` was modified
+
+* `withVsanDatastoreName(java.lang.String)` was added
+
+#### `models.WorkloadNetworkSegmentPortVif` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScriptStringExecutionParameter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworkDhcpRelay` was modified
+
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dhcpType()` was added
+* `segments()` was added
+
+#### `models.ScriptCmdlet` was modified
+
+* `provisioningState()` was added
+* `systemData()` was added
+* `audience()` was added
+
+#### `models.Cluster` was modified
+
+* `systemData()` was added
+* `vsanDatastoreName()` was added
+
+#### `models.WorkloadNetworkSegmentSubnet` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AvailabilityProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GlobalReachConnection` was modified
+
+* `systemData()` was added
+
+#### `models.DiskPoolVolume` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworkDhcpEntity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `dhcpType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworks` was modified
+
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `get(java.lang.String,java.lang.String)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Operation` was modified
+
+* `actionType()` was added
+
+#### `models.AddonArcProperties` was modified
+
+* `addonType()` was added
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExpressRouteAuthorization` was modified
+
+* `systemData()` was added
+
+#### `models.VmPlacementPolicyProperties` was modified
+
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachine` was modified
+
+* `systemData()` was added
+* `provisioningState()` was added
+
+#### `models.EncryptionKeyVaultProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworkDnsZone` was modified
+
+* `systemData()` was added
+
+#### `models.PlacementPolicy` was modified
+
+* `systemData()` was added
+
+#### `models.ScriptPackage` was modified
+
+* `systemData()` was added
+* `provisioningState()` was added
+
+#### `models.Addon` was modified
+
+* `systemData()` was added
+
+#### `models.Datastore` was modified
+
+* `systemData()` was added
+* `elasticSanVolume()` was added
+
+#### `models.ClusterZone` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworkSegment` was modified
+
+* `systemData()` was added
+
+#### `models.Datastore$Definition` was modified
+
+* `withElasticSanVolume(models.ElasticSanVolume)` was added
+
+#### `models.PrivateCloud$Update` was modified
+
+* `withSku(models.Sku)` was added
+* `withDnsZoneType(models.DnsZoneType)` was added
+
+#### `models.AddonVrProperties` was modified
+
+* `addonType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScriptParameter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentitySource` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadNetworkVirtualMachine` was modified
+
+* `provisioningState()` was added
+* `systemData()` was added
+
+#### `models.PlacementPolicyUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `AvsManager` was modified
+
+* `iscsiPaths()` was added
+
+#### `models.AddonProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `addonType()` was added
+
+#### `models.Encryption` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetAppVolume` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CloudLink` was modified
+
+* `systemData()` was added
+* `provisioningState()` was added
+
+#### `models.WorkloadNetwork` was modified
+
+* `systemData()` was added
+* `provisioningState()` was added
+
+#### `models.ManagementCluster` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `vsanDatastoreName()` was added
+* `clusterSize()` was added
+* `hosts()` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withVsanDatastoreName(java.lang.String)` was added
+* `clusterId()` was added
+
+#### `models.VmHostPlacementPolicyProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.PrivateCloudUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withSku(models.Sku)` was added
+* `dnsZoneType()` was added
+* `sku()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withDnsZoneType(models.DnsZoneType)` was added
+
+#### `models.ScriptSecureStringExecutionParameter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadNetworkPortMirroring` was modified
+
+* `systemData()` was added
+
+#### `models.ScriptExecution` was modified
+
+* `systemData()` was added
+
+#### `models.WorkloadNetworkPublicIp` was modified
+
+* `systemData()` was added
+
+#### `models.PrivateCloud$Definition` was modified
+
+* `withVirtualNetworkId(java.lang.String)` was added
+* `withDnsZoneType(models.DnsZoneType)` was added
+
+#### `models.WorkloadNetworkVMGroup` was modified
+
+* `systemData()` was added
+
+#### `models.ExpressRouteAuthorization$Definition` was modified
+
+* `withExpressRouteId(java.lang.String)` was added
+
+#### `models.ExpressRouteAuthorization$Update` was modified
+
+* `withExpressRouteId(java.lang.String)` was added
+
+#### `models.Cluster$Update` was modified
+
+* `withSku(models.Sku)` was added
+
+#### `models.AddonHcxProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `addonType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Endpoints` was modified
+
+* `nsxtManagerIp()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `vcenterIp()` was added
+* `hcxCloudManagerIp()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PlacementPolicyProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PSCredentialExecutionParameter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+
+#### `models.HcxEnterpriseSite` was modified
+
+* `systemData()` was added
+* `provisioningState()` was added
+
+#### `models.Datastore$Update` was modified
+
+* `withElasticSanVolume(models.ElasticSanVolume)` was added
+
+#### `models.PrivateCloudIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withType(models.SystemAssignedServiceIdentityType)` was added
+
+#### `models.ClusterUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `sku()` was added
+* `withSku(models.Sku)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualMachineRestrictMovement` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Sku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `tier()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withTier(models.SkuTier)` was added
+* `capacity()` was added
+* `withCapacity(java.lang.Integer)` was added
+* `withSize(java.lang.String)` was added
+* `size()` was added
+* `withFamily(java.lang.String)` was added
+* `family()` was added
+
+#### `models.ScriptExecutionParameter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.WorkloadNetworkGateway` was modified
+
+* `provisioningState()` was added
+* `systemData()` was added
+
+#### `models.PrivateCloud` was modified
+
+* `virtualNetworkId()` was added
+* `dnsZoneType()` was added
+* `systemData()` was added
+
+#### `models.WorkloadNetworkDnsService` was modified
+
+* `systemData()` was added
+
+#### `models.AddonSrmProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningState()` was added
+* `addonType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadNetworkDhcp` was modified
+
+* `systemData()` was added
+
+#### `models.Circuit` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadNetworkDhcpServer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `segments()` was added
+* `dhcpType()` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.2.0-beta.1 (2024-06-25)
 
