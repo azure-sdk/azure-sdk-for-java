@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.fluent.models.ImportJobInner;
 import com.azure.resourcemanager.storagecache.models.ConflictResolutionMode;
 import com.azure.resourcemanager.storagecache.models.ImportJob;
+import com.azure.resourcemanager.storagecache.models.ImportJobAdminStatus;
 import com.azure.resourcemanager.storagecache.models.ImportJobProvisioningStateType;
 import com.azure.resourcemanager.storagecache.models.ImportJobUpdate;
 import com.azure.resourcemanager.storagecache.models.ImportStatusType;
@@ -56,6 +57,10 @@ public final class ImportJobImpl implements ImportJob, ImportJob.Definition, Imp
         return this.innerModel().provisioningState();
     }
 
+    public ImportJobAdminStatus adminStatus() {
+        return this.innerModel().adminStatus();
+    }
+
     public List<String> importPrefixes() {
         List<String> inner = this.innerModel().importPrefixes();
         if (inner != null) {
@@ -91,6 +96,30 @@ public final class ImportJobImpl implements ImportJob, ImportJob.Definition, Imp
 
     public Long totalBlobsImported() {
         return this.innerModel().totalBlobsImported();
+    }
+
+    public Long importedFiles() {
+        return this.innerModel().importedFiles();
+    }
+
+    public Long importedDirectories() {
+        return this.innerModel().importedDirectories();
+    }
+
+    public Long importedSymlinks() {
+        return this.innerModel().importedSymlinks();
+    }
+
+    public Long preexistingFiles() {
+        return this.innerModel().preexistingFiles();
+    }
+
+    public Long preexistingDirectories() {
+        return this.innerModel().preexistingDirectories();
+    }
+
+    public Long preexistingSymlinks() {
+        return this.innerModel().preexistingSymlinks();
     }
 
     public Long blobsImportedPerSecond() {
@@ -229,6 +258,11 @@ public final class ImportJobImpl implements ImportJob, ImportJob.Definition, Imp
             this.updateImportJob.withTags(tags);
             return this;
         }
+    }
+
+    public ImportJobImpl withAdminStatus(ImportJobAdminStatus adminStatus) {
+        this.innerModel().withAdminStatus(adminStatus);
+        return this;
     }
 
     public ImportJobImpl withImportPrefixes(List<String> importPrefixes) {
