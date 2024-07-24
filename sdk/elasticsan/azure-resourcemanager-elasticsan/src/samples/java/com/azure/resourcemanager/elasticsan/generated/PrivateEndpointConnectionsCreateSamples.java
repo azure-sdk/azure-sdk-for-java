@@ -14,7 +14,8 @@ import java.util.Arrays;
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * PrivateEndpointConnections_Create_MaximumSet_Gen.json
      */
     /**
@@ -24,27 +25,15 @@ public final class PrivateEndpointConnectionsCreateSamples {
      */
     public static void
         privateEndpointConnectionsCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().define("privateendpointconnectionname")
-            .withExistingElasticSan("resourcegroupname", "elasticsanname")
+        manager.privateEndpointConnections()
+            .define("qhucqhdwhudzxamhb")
+            .withExistingElasticSan("rgelasticsan", "elasticsanname")
             .withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.PENDING)
-                    .withDescription("dxl").withActionsRequired("jhjdpwvyzipggtn"))
-            .withPrivateEndpoint(new PrivateEndpoint()).withGroupIds(Arrays.asList("jdwrzpemdjrpiwzvy")).create();
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * PrivateEndpointConnections_Create_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Create_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        privateEndpointConnectionsCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().define("privateendpointconnectionname")
-            .withExistingElasticSan("resourcegroupname", "elasticsanname")
-            .withPrivateLinkServiceConnectionState(new PrivateLinkServiceConnectionState()).create();
+                    .withDescription("lvxntg")
+                    .withActionsRequired("k"))
+            .withPrivateEndpoint(new PrivateEndpoint())
+            .withGroupIds(Arrays.asList("jnbouuriknrbopjlxd"))
+            .create();
     }
 }

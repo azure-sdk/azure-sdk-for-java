@@ -4,8 +4,11 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.AutoScalePolicyEnforcement;
+import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
+import com.azure.resourcemanager.elasticsan.models.ScaleUpProperties;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,23 +17,8 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: ElasticSans_Update_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void elasticSansUpdateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        ElasticSan resource = manager.elasticSans()
-            .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
@@ -40,10 +28,19 @@ public final class ElasticSansUpdateSamples {
      */
     public static void elasticSansUpdateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         ElasticSan resource = manager.elasticSans()
-            .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rgelasticsan", "elasticsanname", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("key1931", "fakeTokenPlaceholder")).withBaseSizeTiB(13L)
-            .withExtendedCapacitySizeTiB(29L).withPublicNetworkAccess(PublicNetworkAccess.ENABLED).apply();
+        resource.update()
+            .withTags(mapOf("key1557", "fakeTokenPlaceholder"))
+            .withBaseSizeTiB(28L)
+            .withExtendedCapacitySizeTiB(8L)
+            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .withAutoScaleProperties(
+                new AutoScaleProperties().withScaleUpProperties(new ScaleUpProperties().withUnusedSizeTiB(18L)
+                    .withIncreaseCapacityUnitByTiB(16L)
+                    .withCapacityUnitScaleUpLimitTiB(6L)
+                    .withAutoScalePolicyEnforcement(AutoScalePolicyEnforcement.ENABLED)))
+            .apply();
     }
 
     // Use "Map.of" if available

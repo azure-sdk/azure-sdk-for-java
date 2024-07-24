@@ -9,7 +9,8 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * Skus_List_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +23,8 @@ public final class SkusListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * Skus_List_MaximumSet_Gen.json
      */
     /**
@@ -31,6 +33,6 @@ public final class SkusListSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void skusListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list("obwwdrkq", com.azure.core.util.Context.NONE);
+        manager.skus().list("jzdrqtnsuucgevmnlvndar", com.azure.core.util.Context.NONE);
     }
 }

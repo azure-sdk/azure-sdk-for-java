@@ -25,7 +25,8 @@ import java.util.Map;
  */
 public final class VolumeGroupsUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * VolumeGroups_Update_MaximumSet_Gen.json
      */
     /**
@@ -35,38 +36,22 @@ public final class VolumeGroupsUpdateSamples {
      */
     public static void volumeGroupsUpdateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         VolumeGroup resource = manager.volumeGroups()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", com.azure.core.util.Context.NONE)
+            .getWithResponse("rgelasticsan", "elasticsanname", "volumegroupname", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withIdentity(new Identity().withType(IdentityType.NONE)
-                .withUserAssignedIdentities(mapOf("key7482", new UserAssignedIdentity())))
+                .withUserAssignedIdentities(mapOf("key5273", new UserAssignedIdentity())))
             .withProtocolType(StorageTargetType.ISCSI)
             .withEncryption(EncryptionType.ENCRYPTION_AT_REST_WITH_PLATFORM_KEY)
             .withEncryptionProperties(new EncryptionProperties()
                 .withKeyVaultProperties(new KeyVaultProperties().withKeyName("fakeTokenPlaceholder")
-                    .withKeyVersion("fakeTokenPlaceholder").withKeyVaultUri("fakeTokenPlaceholder"))
-                .withEncryptionIdentity(new EncryptionIdentity().withEncryptionUserAssignedIdentity("im")))
-            .withNetworkAcls(new NetworkRuleSet().withVirtualNetworkRules(Arrays.asList(new VirtualNetworkRule()
-                .withVirtualNetworkResourceId(
-                    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}")
-                .withAction(Action.ALLOW))))
+                    .withKeyVersion("fakeTokenPlaceholder")
+                    .withKeyVaultUri("fakeTokenPlaceholder"))
+                .withEncryptionIdentity(new EncryptionIdentity().withEncryptionUserAssignedIdentity("emqnmac")))
+            .withNetworkAcls(new NetworkRuleSet().withVirtualNetworkRules(Arrays.asList(
+                new VirtualNetworkRule().withVirtualNetworkResourceId("bapwkbnzpahwjsgf").withAction(Action.ALLOW))))
+            .withEnforceDataIntegrityCheckForIscsi(true)
             .apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * VolumeGroups_Update_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeGroups_Update_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void volumeGroupsUpdateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        VolumeGroup resource = manager.volumeGroups()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
     }
 
     // Use "Map.of" if available
