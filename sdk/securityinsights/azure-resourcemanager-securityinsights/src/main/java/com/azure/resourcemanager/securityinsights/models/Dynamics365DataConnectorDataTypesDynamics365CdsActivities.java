@@ -5,11 +5,25 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Common Data Service data type connection. */
+/**
+ * Common Data Service data type connection.
+ */
 @Fluent
 public final class Dynamics365DataConnectorDataTypesDynamics365CdsActivities extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of Dynamics365DataConnectorDataTypesDynamics365CdsActivities class.
+     */
+    public Dynamics365DataConnectorDataTypesDynamics365CdsActivities() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dynamics365DataConnectorDataTypesDynamics365CdsActivities withState(DataTypeState state) {
         super.withState(state);
@@ -18,11 +32,52 @@ public final class Dynamics365DataConnectorDataTypesDynamics365CdsActivities ext
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("state", state() == null ? null : state().toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Dynamics365DataConnectorDataTypesDynamics365CdsActivities from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Dynamics365DataConnectorDataTypesDynamics365CdsActivities if the JsonReader was pointing
+     * to an instance of it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the
+     * Dynamics365DataConnectorDataTypesDynamics365CdsActivities.
+     */
+    public static Dynamics365DataConnectorDataTypesDynamics365CdsActivities fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            Dynamics365DataConnectorDataTypesDynamics365CdsActivities deserializedDynamics365DataConnectorDataTypesDynamics365CdsActivities
+                = new Dynamics365DataConnectorDataTypesDynamics365CdsActivities();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("state".equals(fieldName)) {
+                    deserializedDynamics365DataConnectorDataTypesDynamics365CdsActivities
+                        .withState(DataTypeState.fromString(reader.getString()));
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDynamics365DataConnectorDataTypesDynamics365CdsActivities;
+        });
     }
 }
