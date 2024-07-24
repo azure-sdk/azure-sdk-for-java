@@ -4,16 +4,17 @@
 
 package com.azure.resourcemanager.managementgroups.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.HierarchySettingsInner;
 import com.azure.resourcemanager.managementgroups.models.HierarchySettings;
+import com.azure.resourcemanager.managementgroups.models.HierarchySettingsProperties;
 
 public final class HierarchySettingsImpl implements HierarchySettings {
     private HierarchySettingsInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    HierarchySettingsImpl(
-        HierarchySettingsInner innerObject,
+    HierarchySettingsImpl(HierarchySettingsInner innerObject,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -31,16 +32,12 @@ public final class HierarchySettingsImpl implements HierarchySettings {
         return this.innerModel().type();
     }
 
-    public String tenantId() {
-        return this.innerModel().tenantId();
+    public HierarchySettingsProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Boolean requireAuthorizationForGroupCreation() {
-        return this.innerModel().requireAuthorizationForGroupCreation();
-    }
-
-    public String defaultManagementGroup() {
-        return this.innerModel().defaultManagementGroup();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public HierarchySettingsInner innerModel() {

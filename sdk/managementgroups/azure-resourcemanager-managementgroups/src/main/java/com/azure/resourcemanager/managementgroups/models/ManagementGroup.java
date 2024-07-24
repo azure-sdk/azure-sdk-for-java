@@ -4,64 +4,51 @@
 
 package com.azure.resourcemanager.managementgroups.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInner;
-import java.util.List;
 
-/** An immutable client-side representation of ManagementGroup. */
+/**
+ * An immutable client-side representation of ManagementGroup.
+ */
 public interface ManagementGroup {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the tenantId property: The AAD Tenant ID associated with the management group. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenantId value.
+     * Gets the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
      */
-    String tenantId();
+    ManagementGroupProperties properties();
 
     /**
-     * Gets the displayName property: The friendly name of the management group.
-     *
-     * @return the displayName value.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    String displayName();
-
-    /**
-     * Gets the details property: The details of a management group.
-     *
-     * @return the details value.
-     */
-    ManagementGroupDetails details();
-
-    /**
-     * Gets the children property: The list of children.
-     *
-     * @return the children value.
-     */
-    List<ManagementGroupChildInfo> children();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInner object.
-     *
+     * 
      * @return the inner object.
      */
     ManagementGroupInner innerModel();

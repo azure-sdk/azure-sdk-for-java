@@ -4,62 +4,51 @@
 
 package com.azure.resourcemanager.managementgroups.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.HierarchySettingsInner;
 
-/** An immutable client-side representation of HierarchySettings. */
+/**
+ * An immutable client-side representation of HierarchySettings.
+ */
 public interface HierarchySettings {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenantId value.
+     * Gets the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
      */
-    String tenantId();
+    HierarchySettingsProperties properties();
 
     /**
-     * Gets the requireAuthorizationForGroupCreation property: Indicates whether RBAC access is required upon group
-     * creation under the root Management Group. If set to true, user will require
-     * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
-     * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
-     * given access.
-     *
-     * @return the requireAuthorizationForGroupCreation value.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    Boolean requireAuthorizationForGroupCreation();
-
-    /**
-     * Gets the defaultManagementGroup property: Settings that sets the default Management Group under which new
-     * subscriptions get added in this tenant. For example,
-     * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
-     * @return the defaultManagementGroup value.
-     */
-    String defaultManagementGroup();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.managementgroups.fluent.models.HierarchySettingsInner object.
-     *
+     * 
      * @return the inner object.
      */
     HierarchySettingsInner innerModel();

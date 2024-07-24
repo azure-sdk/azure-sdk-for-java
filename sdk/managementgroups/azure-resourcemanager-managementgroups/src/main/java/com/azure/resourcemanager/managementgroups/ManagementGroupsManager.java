@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -24,19 +24,19 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managementgroups.fluent.ManagementGroupsApi;
-import com.azure.resourcemanager.managementgroups.implementation.EntitiesImpl;
-import com.azure.resourcemanager.managementgroups.implementation.HierarchySettingsOperationsImpl;
-import com.azure.resourcemanager.managementgroups.implementation.ManagementGroupSubscriptionsImpl;
+import com.azure.resourcemanager.managementgroups.implementation.EntitiesOperationsImpl;
+import com.azure.resourcemanager.managementgroups.implementation.HierarchySettingsOperationGroupsImpl;
 import com.azure.resourcemanager.managementgroups.implementation.ManagementGroupsApiBuilder;
 import com.azure.resourcemanager.managementgroups.implementation.ManagementGroupsImpl;
 import com.azure.resourcemanager.managementgroups.implementation.OperationsImpl;
 import com.azure.resourcemanager.managementgroups.implementation.ResourceProvidersImpl;
-import com.azure.resourcemanager.managementgroups.models.Entities;
-import com.azure.resourcemanager.managementgroups.models.HierarchySettingsOperations;
-import com.azure.resourcemanager.managementgroups.models.ManagementGroupSubscriptions;
+import com.azure.resourcemanager.managementgroups.implementation.SubscriptionUnderManagementGroupsImpl;
+import com.azure.resourcemanager.managementgroups.models.EntitiesOperations;
+import com.azure.resourcemanager.managementgroups.models.HierarchySettingsOperationGroups;
 import com.azure.resourcemanager.managementgroups.models.ManagementGroups;
 import com.azure.resourcemanager.managementgroups.models.Operations;
 import com.azure.resourcemanager.managementgroups.models.ResourceProviders;
+import com.azure.resourcemanager.managementgroups.models.SubscriptionUnderManagementGroups;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -45,39 +45,38 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to ManagementGroupsManager. The Azure Management Groups API enables consolidation of multiple
- * subscriptions/resources into an organizational hierarchy and centrally manage access control, policies, alerting and
- * reporting for those resources.
+ * Entry point to ManagementGroupsManager.
+ * The Azure Management Groups API enables consolidation of multiple
+ * subscriptions/resources into an organizational hierarchy and centrally
+ * manage access control, policies, alerting and reporting for those resources.
  */
 public final class ManagementGroupsManager {
-    private ManagementGroups managementGroups;
-
-    private ManagementGroupSubscriptions managementGroupSubscriptions;
-
-    private HierarchySettingsOperations hierarchySettingsOperations;
-
-    private Operations operations;
-
     private ResourceProviders resourceProviders;
 
-    private Entities entities;
+    private EntitiesOperations entitiesOperations;
+
+    private ManagementGroups managementGroups;
+
+    private HierarchySettingsOperationGroups hierarchySettingsOperationGroups;
+
+    private SubscriptionUnderManagementGroups subscriptionUnderManagementGroups;
+
+    private Operations operations;
 
     private final ManagementGroupsApi clientObject;
 
     private ManagementGroupsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new ManagementGroupsApiBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new ManagementGroupsApiBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
      * Creates an instance of ManagementGroups service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the ManagementGroups service API instance.
@@ -90,7 +89,7 @@ public final class ManagementGroupsManager {
 
     /**
      * Creates an instance of ManagementGroups service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the ManagementGroups service API instance.
@@ -103,14 +102,16 @@ public final class ManagementGroupsManager {
 
     /**
      * Gets a Configurable instance that can be used to create ManagementGroupsManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new ManagementGroupsManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -182,8 +183,8 @@ public final class ManagementGroupsManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -200,8 +201,8 @@ public final class ManagementGroupsManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -221,15 +222,13 @@ public final class ManagementGroupsManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
+            userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.managementgroups")
                 .append("/")
                 .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
+                userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ")
                     .append(Configuration.getGlobalConfiguration().get("os.name"))
@@ -254,88 +253,28 @@ public final class ManagementGroupsManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new ManagementGroupsManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
-     * Gets the resource collection API of ManagementGroups.
-     *
-     * @return Resource collection API of ManagementGroups.
-     */
-    public ManagementGroups managementGroups() {
-        if (this.managementGroups == null) {
-            this.managementGroups = new ManagementGroupsImpl(clientObject.getManagementGroups(), this);
-        }
-        return managementGroups;
-    }
-
-    /**
-     * Gets the resource collection API of ManagementGroupSubscriptions.
-     *
-     * @return Resource collection API of ManagementGroupSubscriptions.
-     */
-    public ManagementGroupSubscriptions managementGroupSubscriptions() {
-        if (this.managementGroupSubscriptions == null) {
-            this.managementGroupSubscriptions =
-                new ManagementGroupSubscriptionsImpl(clientObject.getManagementGroupSubscriptions(), this);
-        }
-        return managementGroupSubscriptions;
-    }
-
-    /**
-     * Gets the resource collection API of HierarchySettingsOperations.
-     *
-     * @return Resource collection API of HierarchySettingsOperations.
-     */
-    public HierarchySettingsOperations hierarchySettingsOperations() {
-        if (this.hierarchySettingsOperations == null) {
-            this.hierarchySettingsOperations =
-                new HierarchySettingsOperationsImpl(clientObject.getHierarchySettingsOperations(), this);
-        }
-        return hierarchySettingsOperations;
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of ResourceProviders.
-     *
+     * 
      * @return Resource collection API of ResourceProviders.
      */
     public ResourceProviders resourceProviders() {
@@ -346,20 +285,72 @@ public final class ManagementGroupsManager {
     }
 
     /**
-     * Gets the resource collection API of Entities.
-     *
-     * @return Resource collection API of Entities.
+     * Gets the resource collection API of EntitiesOperations.
+     * 
+     * @return Resource collection API of EntitiesOperations.
      */
-    public Entities entities() {
-        if (this.entities == null) {
-            this.entities = new EntitiesImpl(clientObject.getEntities(), this);
+    public EntitiesOperations entitiesOperations() {
+        if (this.entitiesOperations == null) {
+            this.entitiesOperations = new EntitiesOperationsImpl(clientObject.getEntitiesOperations(), this);
         }
-        return entities;
+        return entitiesOperations;
     }
 
     /**
-     * @return Wrapped service client ManagementGroupsApi providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets the resource collection API of ManagementGroups.
+     * 
+     * @return Resource collection API of ManagementGroups.
+     */
+    public ManagementGroups managementGroups() {
+        if (this.managementGroups == null) {
+            this.managementGroups = new ManagementGroupsImpl(clientObject.getManagementGroups(), this);
+        }
+        return managementGroups;
+    }
+
+    /**
+     * Gets the resource collection API of HierarchySettingsOperationGroups.
+     * 
+     * @return Resource collection API of HierarchySettingsOperationGroups.
+     */
+    public HierarchySettingsOperationGroups hierarchySettingsOperationGroups() {
+        if (this.hierarchySettingsOperationGroups == null) {
+            this.hierarchySettingsOperationGroups
+                = new HierarchySettingsOperationGroupsImpl(clientObject.getHierarchySettingsOperationGroups(), this);
+        }
+        return hierarchySettingsOperationGroups;
+    }
+
+    /**
+     * Gets the resource collection API of SubscriptionUnderManagementGroups.
+     * 
+     * @return Resource collection API of SubscriptionUnderManagementGroups.
+     */
+    public SubscriptionUnderManagementGroups subscriptionUnderManagementGroups() {
+        if (this.subscriptionUnderManagementGroups == null) {
+            this.subscriptionUnderManagementGroups
+                = new SubscriptionUnderManagementGroupsImpl(clientObject.getSubscriptionUnderManagementGroups(), this);
+        }
+        return subscriptionUnderManagementGroups;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets wrapped service client ManagementGroupsApi providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     * 
+     * @return Wrapped service client ManagementGroupsApi.
      */
     public ManagementGroupsApi serviceClient() {
         return this.clientObject;

@@ -11,8 +11,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managementgroups.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.managementgroups.fluent.models.CheckNameAvailabilityResultInner;
 import com.azure.resourcemanager.managementgroups.fluent.models.TenantBackfillStatusResultInner;
-import com.azure.resourcemanager.managementgroups.models.CheckNameAvailabilityRequest;
 import com.azure.resourcemanager.managementgroups.models.CheckNameAvailabilityResult;
+import com.azure.resourcemanager.managementgroups.models.ResourceProviderCheckNameAvailabilityRequestBody;
 import com.azure.resourcemanager.managementgroups.models.ResourceProviders;
 import com.azure.resourcemanager.managementgroups.models.TenantBackfillStatusResult;
 
@@ -23,32 +23,26 @@ public final class ResourceProvidersImpl implements ResourceProviders {
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    public ResourceProvidersImpl(
-        ResourceProvidersClient innerClient,
+    public ResourceProvidersImpl(ResourceProvidersClient innerClient,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<CheckNameAvailabilityResult> checkNameAvailabilityWithResponse(
-        CheckNameAvailabilityRequest checkNameAvailabilityRequest, Context context) {
-        Response<CheckNameAvailabilityResultInner> inner =
-            this.serviceClient().checkNameAvailabilityWithResponse(checkNameAvailabilityRequest, context);
+    public Response<CheckNameAvailabilityResult>
+        checkNameAvailabilityWithResponse(ResourceProviderCheckNameAvailabilityRequestBody body, Context context) {
+        Response<CheckNameAvailabilityResultInner> inner
+            = this.serviceClient().checkNameAvailabilityWithResponse(body, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CheckNameAvailabilityResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public CheckNameAvailabilityResult checkNameAvailability(
-        CheckNameAvailabilityRequest checkNameAvailabilityRequest) {
-        CheckNameAvailabilityResultInner inner =
-            this.serviceClient().checkNameAvailability(checkNameAvailabilityRequest);
+    public CheckNameAvailabilityResult checkNameAvailability(ResourceProviderCheckNameAvailabilityRequestBody body) {
+        CheckNameAvailabilityResultInner inner = this.serviceClient().checkNameAvailability(body);
         if (inner != null) {
             return new CheckNameAvailabilityResultImpl(inner, this.manager());
         } else {
@@ -59,10 +53,7 @@ public final class ResourceProvidersImpl implements ResourceProviders {
     public Response<TenantBackfillStatusResult> startTenantBackfillWithResponse(Context context) {
         Response<TenantBackfillStatusResultInner> inner = this.serviceClient().startTenantBackfillWithResponse(context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new TenantBackfillStatusResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -79,13 +70,10 @@ public final class ResourceProvidersImpl implements ResourceProviders {
     }
 
     public Response<TenantBackfillStatusResult> tenantBackfillStatusWithResponse(Context context) {
-        Response<TenantBackfillStatusResultInner> inner =
-            this.serviceClient().tenantBackfillStatusWithResponse(context);
+        Response<TenantBackfillStatusResultInner> inner
+            = this.serviceClient().tenantBackfillStatusWithResponse(context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new TenantBackfillStatusResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;

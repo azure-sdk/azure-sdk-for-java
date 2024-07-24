@@ -4,33 +4,31 @@
 
 package com.azure.resourcemanager.managementgroups.generated;
 
-import com.azure.resourcemanager.managementgroups.models.CreateManagementGroupDetails;
-import com.azure.resourcemanager.managementgroups.models.CreateManagementGroupRequest;
-import com.azure.resourcemanager.managementgroups.models.CreateParentGroupInfo;
+import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInner;
+import com.azure.resourcemanager.managementgroups.models.ManagementGroupDetails;
+import com.azure.resourcemanager.managementgroups.models.ManagementGroupProperties;
+import com.azure.resourcemanager.managementgroups.models.ParentGroupInfo;
 
-/** Samples for ManagementGroups CreateOrUpdate. */
+/**
+ * Samples for ManagementGroups CreateOrUpdate.
+ */
 public final class ManagementGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PutManagementGroup.json
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * ManagementGroups_CreateOrUpdate.json
      */
     /**
      * Sample code: PutManagementGroup.
-     *
+     * 
      * @param manager Entry point to ManagementGroupsManager.
      */
     public static void putManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager
-            .managementGroups()
-            .createOrUpdate(
-                "ChildGroup",
-                new CreateManagementGroupRequest()
-                    .withDisplayName("ChildGroup")
-                    .withDetails(
-                        new CreateManagementGroupDetails()
-                            .withParent(
-                                new CreateParentGroupInfo()
-                                    .withId("/providers/Microsoft.Management/managementGroups/RootGroup"))),
-                "no-cache",
-                com.azure.core.util.Context.NONE);
+        manager.managementGroups()
+            .createOrUpdate("ChildGroup",
+                new ManagementGroupInner().withProperties(new ManagementGroupProperties().withDisplayName("ChildGroup")
+                    .withDetails(new ManagementGroupDetails().withParent(
+                        new ParentGroupInfo().withId("/providers/Microsoft.Management/managementGroups/RootGroup")))),
+                "no-cache", com.azure.core.util.Context.NONE);
     }
 }

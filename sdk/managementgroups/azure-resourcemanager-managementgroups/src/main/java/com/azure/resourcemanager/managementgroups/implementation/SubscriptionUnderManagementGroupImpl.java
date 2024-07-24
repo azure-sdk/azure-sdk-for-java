@@ -4,17 +4,17 @@
 
 package com.azure.resourcemanager.managementgroups.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.SubscriptionUnderManagementGroupInner;
-import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
 import com.azure.resourcemanager.managementgroups.models.SubscriptionUnderManagementGroup;
+import com.azure.resourcemanager.managementgroups.models.SubscriptionUnderManagementGroupProperties;
 
 public final class SubscriptionUnderManagementGroupImpl implements SubscriptionUnderManagementGroup {
     private SubscriptionUnderManagementGroupInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    SubscriptionUnderManagementGroupImpl(
-        SubscriptionUnderManagementGroupInner innerObject,
+    SubscriptionUnderManagementGroupImpl(SubscriptionUnderManagementGroupInner innerObject,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -32,20 +32,12 @@ public final class SubscriptionUnderManagementGroupImpl implements SubscriptionU
         return this.innerModel().type();
     }
 
-    public String tenant() {
-        return this.innerModel().tenant();
+    public SubscriptionUnderManagementGroupProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public DescendantParentGroupInfo parent() {
-        return this.innerModel().parent();
-    }
-
-    public String state() {
-        return this.innerModel().state();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public SubscriptionUnderManagementGroupInner innerModel() {

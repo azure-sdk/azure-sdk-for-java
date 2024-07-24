@@ -5,38 +5,44 @@
 package com.azure.resourcemanager.managementgroups.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.managementgroups.fluent.models.EntityInfoInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Describes the result of the request to view entities. */
+/**
+ * Describes the result of the request to view entities.
+ */
 @Fluent
-public final class EntityListResult {
+public final class EntityListResult implements JsonSerializable<EntityListResult> {
     /*
-     * The list of entities.
+     * The EntityInfo items on this page
      */
-    @JsonProperty(value = "value")
     private List<EntityInfoInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    private String nextLink;
 
     /*
      * Total count of records that match the filter
      */
-    @JsonProperty(value = "count", access = JsonProperty.Access.WRITE_ONLY)
     private Integer count;
 
-    /*
-     * The URL to use for getting the next set of results.
+    /**
+     * Creates an instance of EntityListResult class.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /** Creates an instance of EntityListResult class. */
     public EntityListResult() {
     }
 
     /**
-     * Get the value property: The list of entities.
-     *
+     * Get the value property: The EntityInfo items on this page.
+     * 
      * @return the value value.
      */
     public List<EntityInfoInner> value() {
@@ -44,8 +50,8 @@ public final class EntityListResult {
     }
 
     /**
-     * Set the value property: The list of entities.
-     *
+     * Set the value property: The EntityInfo items on this page.
+     * 
      * @param value the value value to set.
      * @return the EntityListResult object itself.
      */
@@ -55,17 +61,8 @@ public final class EntityListResult {
     }
 
     /**
-     * Get the count property: Total count of records that match the filter.
-     *
-     * @return the count value.
-     */
-    public Integer count() {
-        return this.count;
-    }
-
-    /**
-     * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -73,13 +70,81 @@ public final class EntityListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the EntityListResult object itself.
+     */
+    public EntityListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
+     * Get the count property: Total count of records that match the filter.
+     * 
+     * @return the count value.
+     */
+    public Integer count() {
+        return this.count;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model EntityListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(EntityListResult.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EntityListResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EntityListResult if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the EntityListResult.
+     */
+    public static EntityListResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EntityListResult deserializedEntityListResult = new EntityListResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<EntityInfoInner> value = reader.readArray(reader1 -> EntityInfoInner.fromJson(reader1));
+                    deserializedEntityListResult.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedEntityListResult.nextLink = reader.getString();
+                } else if ("count".equals(fieldName)) {
+                    deserializedEntityListResult.count = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEntityListResult;
+        });
     }
 }

@@ -6,133 +6,163 @@ package com.azure.resourcemanager.managementgroups.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.managementgroups.models.SubscriptionUnderManagementGroupProperties;
+import java.io.IOException;
 
-/** The details of subscription under management group. */
+/**
+ * The details of subscription under management group.
+ */
 @Fluent
 public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
     /*
-     * The generic properties of subscription under a management group.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties")
-    private SubscriptionUnderManagementGroupProperties innerProperties;
+    private SubscriptionUnderManagementGroupProperties properties;
 
-    /** Creates an instance of SubscriptionUnderManagementGroupInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of SubscriptionUnderManagementGroupInner class.
+     */
     public SubscriptionUnderManagementGroupInner() {
     }
 
     /**
-     * Get the innerProperties property: The generic properties of subscription under a management group.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
      */
-    private SubscriptionUnderManagementGroupProperties innerProperties() {
-        return this.innerProperties;
+    public SubscriptionUnderManagementGroupProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Get the tenant property: The AAD Tenant ID associated with the subscription. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @return the tenant value.
-     */
-    public String tenant() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenant();
-    }
-
-    /**
-     * Set the tenant property: The AAD Tenant ID associated with the subscription. For example,
-     * 00000000-0000-0000-0000-000000000000.
-     *
-     * @param tenant the tenant value to set.
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
      * @return the SubscriptionUnderManagementGroupInner object itself.
      */
-    public SubscriptionUnderManagementGroupInner withTenant(String tenant) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SubscriptionUnderManagementGroupProperties();
-        }
-        this.innerProperties().withTenant(tenant);
+    public SubscriptionUnderManagementGroupInner withProperties(SubscriptionUnderManagementGroupProperties properties) {
+        this.properties = properties;
         return this;
     }
 
     /**
-     * Get the displayName property: The friendly name of the subscription.
-     *
-     * @return the displayName value.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
-     * Set the displayName property: The friendly name of the subscription.
-     *
-     * @param displayName the displayName value to set.
-     * @return the SubscriptionUnderManagementGroupInner object itself.
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
      */
-    public SubscriptionUnderManagementGroupInner withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SubscriptionUnderManagementGroupProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
-     * Get the parent property: The ID of the parent management group.
-     *
-     * @return the parent value.
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
      */
-    public DescendantParentGroupInfo parent() {
-        return this.innerProperties() == null ? null : this.innerProperties().parent();
+    @Override
+    public String name() {
+        return this.name;
     }
 
     /**
-     * Set the parent property: The ID of the parent management group.
-     *
-     * @param parent the parent value to set.
-     * @return the SubscriptionUnderManagementGroupInner object itself.
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
      */
-    public SubscriptionUnderManagementGroupInner withParent(DescendantParentGroupInfo parent) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SubscriptionUnderManagementGroupProperties();
-        }
-        this.innerProperties().withParent(parent);
-        return this;
-    }
-
-    /**
-     * Get the state property: The state of the subscription.
-     *
-     * @return the state value.
-     */
-    public String state() {
-        return this.innerProperties() == null ? null : this.innerProperties().state();
-    }
-
-    /**
-     * Set the state property: The state of the subscription.
-     *
-     * @param state the state value to set.
-     * @return the SubscriptionUnderManagementGroupInner object itself.
-     */
-    public SubscriptionUnderManagementGroupInner withState(String state) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SubscriptionUnderManagementGroupProperties();
-        }
-        this.innerProperties().withState(state);
-        return this;
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SubscriptionUnderManagementGroupInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SubscriptionUnderManagementGroupInner if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SubscriptionUnderManagementGroupInner.
+     */
+    public static SubscriptionUnderManagementGroupInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SubscriptionUnderManagementGroupInner deserializedSubscriptionUnderManagementGroupInner
+                = new SubscriptionUnderManagementGroupInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedSubscriptionUnderManagementGroupInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedSubscriptionUnderManagementGroupInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedSubscriptionUnderManagementGroupInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedSubscriptionUnderManagementGroupInner.properties
+                        = SubscriptionUnderManagementGroupProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedSubscriptionUnderManagementGroupInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSubscriptionUnderManagementGroupInner;
+        });
     }
 }

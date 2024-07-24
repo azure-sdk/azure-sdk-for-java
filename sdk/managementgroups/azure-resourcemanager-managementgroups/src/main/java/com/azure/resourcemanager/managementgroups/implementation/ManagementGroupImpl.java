@@ -4,20 +4,17 @@
 
 package com.azure.resourcemanager.managementgroups.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupInner;
 import com.azure.resourcemanager.managementgroups.models.ManagementGroup;
-import com.azure.resourcemanager.managementgroups.models.ManagementGroupChildInfo;
-import com.azure.resourcemanager.managementgroups.models.ManagementGroupDetails;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.managementgroups.models.ManagementGroupProperties;
 
 public final class ManagementGroupImpl implements ManagementGroup {
     private ManagementGroupInner innerObject;
 
     private final com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager;
 
-    ManagementGroupImpl(
-        ManagementGroupInner innerObject,
+    ManagementGroupImpl(ManagementGroupInner innerObject,
         com.azure.resourcemanager.managementgroups.ManagementGroupsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -35,25 +32,12 @@ public final class ManagementGroupImpl implements ManagementGroup {
         return this.innerModel().type();
     }
 
-    public String tenantId() {
-        return this.innerModel().tenantId();
+    public ManagementGroupProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public ManagementGroupDetails details() {
-        return this.innerModel().details();
-    }
-
-    public List<ManagementGroupChildInfo> children() {
-        List<ManagementGroupChildInfo> inner = this.innerModel().children();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public ManagementGroupInner innerModel() {
