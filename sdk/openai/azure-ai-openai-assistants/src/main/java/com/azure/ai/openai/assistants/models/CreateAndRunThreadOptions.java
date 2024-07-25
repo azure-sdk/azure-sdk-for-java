@@ -219,6 +219,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
         if (this.responseFormat != null) {
             jsonWriter.writeUntypedField("response_format", this.responseFormat.toObject(Object.class));
         }
+        jsonWriter.writeBooleanField("parallel_tool_calls", this.parallelToolCalls);
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -249,6 +250,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
             TruncationObject truncationStrategy = null;
             BinaryData toolChoice = null;
             BinaryData responseFormat = null;
+            Boolean parallelToolCalls = null;
             Map<String, String> metadata = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
@@ -283,6 +285,8 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
                 } else if ("response_format".equals(fieldName)) {
                     responseFormat
                         = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
+                } else if ("parallel_tool_calls".equals(fieldName)) {
+                    parallelToolCalls = reader.getNullable(JsonReader::getBoolean);
                 } else if ("metadata".equals(fieldName)) {
                     metadata = reader.readMap(reader1 -> reader1.getString());
                 } else {
@@ -304,6 +308,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
             deserializedCreateAndRunThreadOptions.truncationStrategy = truncationStrategy;
             deserializedCreateAndRunThreadOptions.toolChoice = toolChoice;
             deserializedCreateAndRunThreadOptions.responseFormat = responseFormat;
+            deserializedCreateAndRunThreadOptions.parallelToolCalls = parallelToolCalls;
             deserializedCreateAndRunThreadOptions.metadata = metadata;
             return deserializedCreateAndRunThreadOptions;
         });
@@ -613,6 +618,34 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
         } else {
             this.responseFormat = null;
         }
+        return this;
+    }
+
+    /*
+     * Whether to enable parallel function calling during tool use.
+     */
+    @Generated
+    private Boolean parallelToolCalls;
+
+    /**
+     * Get the parallelToolCalls property: Whether to enable parallel function calling during tool use.
+     *
+     * @return the parallelToolCalls value.
+     */
+    @Generated
+    public Boolean isParallelToolCalls() {
+        return this.parallelToolCalls;
+    }
+
+    /**
+     * Set the parallelToolCalls property: Whether to enable parallel function calling during tool use.
+     *
+     * @param parallelToolCalls the parallelToolCalls value to set.
+     * @return the CreateAndRunThreadOptions object itself.
+     */
+    @Generated
+    public CreateAndRunThreadOptions setParallelToolCalls(Boolean parallelToolCalls) {
+        this.parallelToolCalls = parallelToolCalls;
         return this;
     }
 }

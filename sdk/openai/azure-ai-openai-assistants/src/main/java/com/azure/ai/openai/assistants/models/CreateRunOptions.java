@@ -226,6 +226,7 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
         if (this.responseFormat != null) {
             jsonWriter.writeUntypedField("response_format", this.responseFormat.toObject(Object.class));
         }
+        jsonWriter.writeBooleanField("parallel_tool_calls", this.parallelToolCalls);
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -256,6 +257,7 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
             TruncationObject truncationStrategy = null;
             BinaryData toolChoice = null;
             BinaryData responseFormat = null;
+            Boolean parallelToolCalls = null;
             Map<String, String> metadata = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
@@ -290,6 +292,8 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
                 } else if ("response_format".equals(fieldName)) {
                     responseFormat
                         = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
+                } else if ("parallel_tool_calls".equals(fieldName)) {
+                    parallelToolCalls = reader.getNullable(JsonReader::getBoolean);
                 } else if ("metadata".equals(fieldName)) {
                     metadata = reader.readMap(reader1 -> reader1.getString());
                 } else {
@@ -310,6 +314,7 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
             deserializedCreateRunOptions.truncationStrategy = truncationStrategy;
             deserializedCreateRunOptions.toolChoice = toolChoice;
             deserializedCreateRunOptions.responseFormat = responseFormat;
+            deserializedCreateRunOptions.parallelToolCalls = parallelToolCalls;
             deserializedCreateRunOptions.metadata = metadata;
             return deserializedCreateRunOptions;
         });
@@ -616,6 +621,34 @@ public final class CreateRunOptions implements JsonSerializable<CreateRunOptions
         } else {
             this.responseFormat = null;
         }
+        return this;
+    }
+
+    /*
+     * Whether to enable parallel function calling during tool use.
+     */
+    @Generated
+    private Boolean parallelToolCalls;
+
+    /**
+     * Get the parallelToolCalls property: Whether to enable parallel function calling during tool use.
+     *
+     * @return the parallelToolCalls value.
+     */
+    @Generated
+    public Boolean isParallelToolCalls() {
+        return this.parallelToolCalls;
+    }
+
+    /**
+     * Set the parallelToolCalls property: Whether to enable parallel function calling during tool use.
+     *
+     * @param parallelToolCalls the parallelToolCalls value to set.
+     * @return the CreateRunOptions object itself.
+     */
+    @Generated
+    public CreateRunOptions setParallelToolCalls(Boolean parallelToolCalls) {
+        this.parallelToolCalls = parallelToolCalls;
         return this;
     }
 }

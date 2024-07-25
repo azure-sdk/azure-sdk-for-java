@@ -123,6 +123,8 @@ public class RunStepDeltaToolCall implements JsonSerializable<RunStepDeltaToolCa
                     return RunStepDeltaFileSearchToolCall.fromJson(readerToUse.reset());
                 } else if ("code_interpreter".equals(discriminatorValue)) {
                     return RunStepDeltaCodeInterpreterToolCall.fromJson(readerToUse.reset());
+                } else if ("browser".equals(discriminatorValue)) {
+                    return RunStepDeltaBingSearchToolCall.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

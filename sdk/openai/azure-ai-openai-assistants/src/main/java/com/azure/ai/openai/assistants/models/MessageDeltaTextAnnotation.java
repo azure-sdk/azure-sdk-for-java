@@ -102,6 +102,8 @@ public class MessageDeltaTextAnnotation implements JsonSerializable<MessageDelta
                     return MessageDeltaTextFileCitationAnnotationObject.fromJson(readerToUse.reset());
                 } else if ("file_path".equals(discriminatorValue)) {
                     return MessageDeltaTextFilePathAnnotationObject.fromJson(readerToUse.reset());
+                } else if ("url_citation".equals(discriminatorValue)) {
+                    return MessageDeltaTextUrlCitationAnnotation.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

@@ -102,6 +102,8 @@ public class MessageTextAnnotation implements JsonSerializable<MessageTextAnnota
                     return MessageTextFileCitationAnnotation.fromJson(readerToUse.reset());
                 } else if ("file_path".equals(discriminatorValue)) {
                     return MessageTextFilePathAnnotation.fromJson(readerToUse.reset());
+                } else if ("url_citation".equals(discriminatorValue)) {
+                    return MessageTextUrlCitationAnnotation.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

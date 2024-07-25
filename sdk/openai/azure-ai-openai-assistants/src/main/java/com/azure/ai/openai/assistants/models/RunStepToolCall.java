@@ -88,6 +88,8 @@ public class RunStepToolCall implements JsonSerializable<RunStepToolCall> {
                     return RunStepFileSearchToolCall.fromJson(readerToUse.reset());
                 } else if ("function".equals(discriminatorValue)) {
                     return RunStepFunctionToolCall.fromJson(readerToUse.reset());
+                } else if ("browser".equals(discriminatorValue)) {
+                    return RunStepBingSearchToolCall.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
