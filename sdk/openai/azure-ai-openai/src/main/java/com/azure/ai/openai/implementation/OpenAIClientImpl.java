@@ -1029,6 +1029,9 @@ public final class OpenAIClientImpl {
      *     presence_penalty: Double (Optional)
      *     frequency_penalty: Double (Optional)
      *     stream: Boolean (Optional)
+     *     stream_options (Optional): {
+     *         include_usage: Boolean (Optional)
+     *     }
      *     model: String (Optional)
      *     data_sources (Optional): [
      *          (Optional){
@@ -1055,6 +1058,7 @@ public final class OpenAIClientImpl {
      *         }
      *     ]
      *     tool_choice: BinaryData (Optional)
+     *     parallel_tool_calls: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -1130,9 +1134,6 @@ public final class OpenAIClientImpl {
      *             }
      *             index: int (Required)
      *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
-     *             finish_details (Optional): {
-     *                 type: String (Required)
-     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
@@ -1283,6 +1284,9 @@ public final class OpenAIClientImpl {
      *     presence_penalty: Double (Optional)
      *     frequency_penalty: Double (Optional)
      *     stream: Boolean (Optional)
+     *     stream_options (Optional): {
+     *         include_usage: Boolean (Optional)
+     *     }
      *     model: String (Optional)
      *     data_sources (Optional): [
      *          (Optional){
@@ -1309,6 +1313,7 @@ public final class OpenAIClientImpl {
      *         }
      *     ]
      *     tool_choice: BinaryData (Optional)
+     *     parallel_tool_calls: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -1384,9 +1389,6 @@ public final class OpenAIClientImpl {
      *             }
      *             index: int (Required)
      *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
-     *             finish_details (Optional): {
-     *                 type: String (Required)
-     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
