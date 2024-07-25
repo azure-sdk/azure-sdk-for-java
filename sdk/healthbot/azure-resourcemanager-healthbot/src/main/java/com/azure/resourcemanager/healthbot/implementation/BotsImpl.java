@@ -11,8 +11,12 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.healthbot.fluent.BotsClient;
 import com.azure.resourcemanager.healthbot.fluent.models.HealthBotInner;
+import com.azure.resourcemanager.healthbot.fluent.models.HealthBotKeyInner;
+import com.azure.resourcemanager.healthbot.fluent.models.HealthBotKeysResponseInner;
 import com.azure.resourcemanager.healthbot.models.Bots;
 import com.azure.resourcemanager.healthbot.models.HealthBot;
+import com.azure.resourcemanager.healthbot.models.HealthBotKey;
+import com.azure.resourcemanager.healthbot.models.HealthBotKeysResponse;
 
 public final class BotsImpl implements Bots {
     private static final ClientLogger LOGGER = new ClientLogger(BotsImpl.class);
@@ -26,25 +30,22 @@ public final class BotsImpl implements Bots {
         this.serviceManager = serviceManager;
     }
 
-    public HealthBot getByResourceGroup(String resourceGroupName, String botName) {
-        HealthBotInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, botName);
+    public Response<HealthBot> getByResourceGroupWithResponse(String resourceGroupName, String botName,
+        Context context) {
+        Response<HealthBotInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, botName, context);
         if (inner != null) {
-            return new HealthBotImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new HealthBotImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Response<HealthBot> getByResourceGroupWithResponse(
-        String resourceGroupName, String botName, Context context) {
-        Response<HealthBotInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, botName, context);
+    public HealthBot getByResourceGroup(String resourceGroupName, String botName) {
+        HealthBotInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, botName);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new HealthBotImpl(inner.getValue(), this.manager()));
+            return new HealthBotImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -58,98 +59,120 @@ public final class BotsImpl implements Bots {
         this.serviceClient().delete(resourceGroupName, botName, context);
     }
 
+    public Response<HealthBotKeysResponse> listSecretsWithResponse(String resourceGroupName, String botName,
+        Context context) {
+        Response<HealthBotKeysResponseInner> inner
+            = this.serviceClient().listSecretsWithResponse(resourceGroupName, botName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new HealthBotKeysResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public HealthBotKeysResponse listSecrets(String resourceGroupName, String botName) {
+        HealthBotKeysResponseInner inner = this.serviceClient().listSecrets(resourceGroupName, botName);
+        if (inner != null) {
+            return new HealthBotKeysResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<HealthBotKey> regenerateApiJwtSecretWithResponse(String resourceGroupName, String botName,
+        Context context) {
+        Response<HealthBotKeyInner> inner
+            = this.serviceClient().regenerateApiJwtSecretWithResponse(resourceGroupName, botName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new HealthBotKeyImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public HealthBotKey regenerateApiJwtSecret(String resourceGroupName, String botName) {
+        HealthBotKeyInner inner = this.serviceClient().regenerateApiJwtSecret(resourceGroupName, botName);
+        if (inner != null) {
+            return new HealthBotKeyImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PagedIterable<HealthBot> listByResourceGroup(String resourceGroupName) {
         PagedIterable<HealthBotInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
     }
 
     public PagedIterable<HealthBot> listByResourceGroup(String resourceGroupName, Context context) {
         PagedIterable<HealthBotInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
     }
 
     public PagedIterable<HealthBot> list() {
         PagedIterable<HealthBotInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
     }
 
     public PagedIterable<HealthBot> list(Context context) {
         PagedIterable<HealthBotInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HealthBotImpl(inner1, this.manager()));
     }
 
     public HealthBot getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String botName = Utils.getValueFromIdByName(id, "healthBots");
+        String botName = ResourceManagerUtils.getValueFromIdByName(id, "healthBots");
         if (botName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, botName, Context.NONE).getValue();
     }
 
     public Response<HealthBot> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String botName = Utils.getValueFromIdByName(id, "healthBots");
+        String botName = ResourceManagerUtils.getValueFromIdByName(id, "healthBots");
         if (botName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, botName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String botName = Utils.getValueFromIdByName(id, "healthBots");
+        String botName = ResourceManagerUtils.getValueFromIdByName(id, "healthBots");
         if (botName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
         }
         this.delete(resourceGroupName, botName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String botName = Utils.getValueFromIdByName(id, "healthBots");
+        String botName = ResourceManagerUtils.getValueFromIdByName(id, "healthBots");
         if (botName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'healthBots'.", id)));
         }
         this.delete(resourceGroupName, botName, context);
     }

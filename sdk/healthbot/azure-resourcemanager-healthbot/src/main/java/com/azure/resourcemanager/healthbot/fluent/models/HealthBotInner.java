@@ -6,31 +6,66 @@ package com.azure.resourcemanager.healthbot.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.healthbot.models.HealthBotProperties;
+import com.azure.resourcemanager.healthbot.models.Identity;
 import com.azure.resourcemanager.healthbot.models.Sku;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.Map;
 
-/** HealthBot resource definition. */
+/**
+ * Azure Health Bot resource definition.
+ */
 @Fluent
 public final class HealthBotInner extends Resource {
     /*
-     * SKU of the HealthBot.
+     * SKU of the Azure Health Bot.
      */
-    @JsonProperty(value = "sku", required = true)
     private Sku sku;
 
     /*
-     * HealthBotProperties The set of properties specific to Healthbot
-     * resource.
+     * The identity of the Azure Health Bot.
      */
-    @JsonProperty(value = "properties")
+    private Identity identity;
+
+    /*
+     * The set of properties specific to Azure Health Bot resource.
+     */
     private HealthBotProperties properties;
 
+    /*
+     * Metadata pertaining to creation and last modification of the resource
+     */
+    private SystemData systemData;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
     /**
-     * Get the sku property: SKU of the HealthBot.
-     *
+     * Creates an instance of HealthBotInner class.
+     */
+    public HealthBotInner() {
+    }
+
+    /**
+     * Get the sku property: SKU of the Azure Health Bot.
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -38,8 +73,8 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the sku property: SKU of the HealthBot.
-     *
+     * Set the sku property: SKU of the Azure Health Bot.
+     * 
      * @param sku the sku value to set.
      * @return the HealthBotInner object itself.
      */
@@ -49,8 +84,28 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Get the properties property: HealthBotProperties The set of properties specific to Healthbot resource.
-     *
+     * Get the identity property: The identity of the Azure Health Bot.
+     * 
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the Azure Health Bot.
+     * 
+     * @param identity the identity value to set.
+     * @return the HealthBotInner object itself.
+     */
+    public HealthBotInner withIdentity(Identity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the properties property: The set of properties specific to Azure Health Bot resource.
+     * 
      * @return the properties value.
      */
     public HealthBotProperties properties() {
@@ -58,8 +113,8 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the properties property: HealthBotProperties The set of properties specific to Healthbot resource.
-     *
+     * Set the properties property: The set of properties specific to Azure Health Bot resource.
+     * 
      * @param properties the properties value to set.
      * @return the HealthBotInner object itself.
      */
@@ -68,14 +123,57 @@ public final class HealthBotInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HealthBotInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HealthBotInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -84,16 +182,18 @@ public final class HealthBotInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sku in model HealthBotInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sku in model HealthBotInner"));
         } else {
             sku().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
         if (properties() != null) {
             properties().validate();
@@ -101,4 +201,62 @@ public final class HealthBotInner extends Resource {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(HealthBotInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HealthBotInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HealthBotInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the HealthBotInner.
+     */
+    public static HealthBotInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HealthBotInner deserializedHealthBotInner = new HealthBotInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedHealthBotInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedHealthBotInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedHealthBotInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedHealthBotInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedHealthBotInner.withTags(tags);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedHealthBotInner.sku = Sku.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedHealthBotInner.identity = Identity.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedHealthBotInner.properties = HealthBotProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedHealthBotInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHealthBotInner;
+        });
+    }
 }
