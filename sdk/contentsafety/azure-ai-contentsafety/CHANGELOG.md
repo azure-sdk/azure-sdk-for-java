@@ -4,12 +4,82 @@
 
 ### Features Added
 
-### Breaking Changes
+#### `models.AddOrUpdateTextBlocklistItemsResult` was modified
 
-### Bugs Fixed
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
-### Other Changes
+#### `BlocklistAsyncClient` was modified
 
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
+
+#### `models.AnalyzeTextResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklistMatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AnalyzeImageOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklistItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RemoveTextBlocklistItemsOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklist` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AnalyzeTextOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper$TextBlocklistAccessor` was modified
+
+* `isJsonMergePatch(models.TextBlocklist)` was added
+
+#### `models.ImageCategoriesAnalysis` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AnalyzeImageResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AddOrUpdateTextBlocklistItemsOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContentSafetyImageData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TextCategoriesAnalysis` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `BlocklistClient` was modified
+
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
 
 ## 1.0.4 (2024-06-27)
 
