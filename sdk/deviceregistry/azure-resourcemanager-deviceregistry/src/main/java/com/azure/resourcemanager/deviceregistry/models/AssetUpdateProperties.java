@@ -29,7 +29,7 @@ public final class AssetUpdateProperties implements JsonSerializable<AssetUpdate
     private Boolean enabled;
 
     /*
-     * Human-readable display name.
+     * Human-readable disasdasplay name.
      */
     private String displayName;
 
@@ -154,7 +154,7 @@ public final class AssetUpdateProperties implements JsonSerializable<AssetUpdate
     }
 
     /**
-     * Get the displayName property: Human-readable display name.
+     * Get the displayName property: Human-readable disasdasplay name.
      * 
      * @return the displayName value.
      */
@@ -163,7 +163,7 @@ public final class AssetUpdateProperties implements JsonSerializable<AssetUpdate
     }
 
     /**
-     * Set the displayName property: Human-readable display name.
+     * Set the displayName property: Human-readable disasdasplay name.
      * 
      * @param displayName the displayName value to set.
      * @return the AssetUpdateProperties object itself.

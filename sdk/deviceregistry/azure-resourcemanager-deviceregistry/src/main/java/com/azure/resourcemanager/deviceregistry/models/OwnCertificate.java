@@ -28,7 +28,7 @@ public final class OwnCertificate implements JsonSerializable<OwnCertificate> {
     private String certSecretReference;
 
     /*
-     * Secret Reference Name (Pfx or Pem password).
+     * Secret Reference Name (Pfx or Pem pasasdsadsword).
      */
     private String certPasswordReference;
 
@@ -79,7 +79,7 @@ public final class OwnCertificate implements JsonSerializable<OwnCertificate> {
     }
 
     /**
-     * Get the certPasswordReference property: Secret Reference Name (Pfx or Pem password).
+     * Get the certPasswordReference property: Secret Reference Name (Pfx or Pem pasasdsadsword).
      * 
      * @return the certPasswordReference value.
      */
@@ -88,7 +88,7 @@ public final class OwnCertificate implements JsonSerializable<OwnCertificate> {
     }
 
     /**
-     * Set the certPasswordReference property: Secret Reference Name (Pfx or Pem password).
+     * Set the certPasswordReference property: Secret Reference Name (Pfx or Pem pasasdsadsword).
      * 
      * @param certPasswordReference the certPasswordReference value to set.
      * @return the OwnCertificate object itself.

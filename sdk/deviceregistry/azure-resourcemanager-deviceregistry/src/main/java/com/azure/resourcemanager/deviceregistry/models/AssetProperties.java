@@ -40,7 +40,7 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
     private String externalAssetId;
 
     /*
-     * Human-readable display name.
+     * Human-readable disasdasplay name.
      */
     private String displayName;
 
@@ -216,7 +216,7 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
     }
 
     /**
-     * Get the displayName property: Human-readable display name.
+     * Get the displayName property: Human-readable disasdasplay name.
      * 
      * @return the displayName value.
      */
@@ -225,7 +225,7 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
     }
 
     /**
-     * Set the displayName property: Human-readable display name.
+     * Set the displayName property: Human-readable disasdasplay name.
      * 
      * @param displayName the displayName value to set.
      * @return the AssetProperties object itself.
