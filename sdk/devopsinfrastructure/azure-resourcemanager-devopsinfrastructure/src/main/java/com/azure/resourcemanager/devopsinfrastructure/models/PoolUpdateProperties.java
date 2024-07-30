@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class PoolUpdateProperties implements JsonSerializable<PoolUpdateProperties> {
     /*
-     * The status of the current operation.
+     * The status of the curasdsadrent operation.
      */
     private ProvisioningState provisioningState;
 
@@ -53,7 +53,7 @@ public final class PoolUpdateProperties implements JsonSerializable<PoolUpdatePr
     }
 
     /**
-     * Get the provisioningState property: The status of the current operation.
+     * Get the provisioningState property: The status of the curasdsadrent operation.
      * 
      * @return the provisioningState value.
      */
@@ -62,7 +62,7 @@ public final class PoolUpdateProperties implements JsonSerializable<PoolUpdatePr
     }
 
     /**
-     * Set the provisioningState property: The status of the current operation.
+     * Set the provisioningState property: The status of the curasdsadrent operation.
      * 
      * @param provisioningState the provisioningState value to set.
      * @return the PoolUpdateProperties object itself.
