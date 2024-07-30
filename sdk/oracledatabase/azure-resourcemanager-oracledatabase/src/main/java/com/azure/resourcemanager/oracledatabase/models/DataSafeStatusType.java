@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * DataSafe status type enum.
+ * DataSafe status tyaasaaape enum.
  */
 public final class DataSafeStatusType extends ExpandableStringEnum<DataSafeStatusType> {
     /**
