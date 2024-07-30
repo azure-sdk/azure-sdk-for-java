@@ -1,14 +1,56 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-07-30)
 
-### Features Added
+- Azure Resource Manager App Compliance Automation client library for Java. This package contains Microsoft Azure SDK for App Compliance Automation Management SDK. App Compliance Automation Tool for Microsoft 365 API spec. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.ReportResourceListResult` was removed
 
-### Other Changes
+* `models.OperationListResult` was removed
+
+* `models.WebhookResourceListResult` was removed
+
+* `models.EvidenceResourceListResult` was removed
+
+* `models.ScopingConfigurationResourceListResult` was removed
+
+* `models.SnapshotResourceListResult` was removed
+
+#### `models.Reports` was modified
+
+* `nestedResourceCheckNameAvailabilityWithResponse(java.lang.String,models.CheckNameAvailabilityRequest,com.azure.core.util.Context)` was removed
+* `nestedResourceCheckNameAvailability(java.lang.String,models.CheckNameAvailabilityRequest)` was removed
+
+#### `models.ResponsibilityResource` was modified
+
+* `withRecommendationIds(java.util.List)` was removed
+
+#### `models.Responsibility` was modified
+
+* `withEvidenceFiles(java.util.List)` was removed
+* `withTotalResourceCount(java.lang.Integer)` was removed
+* `withFailedResourceCount(java.lang.Integer)` was removed
+
+### Features Added
+
+* `implementation.models.EvidenceResourceListResult` was added
+
+* `implementation.models.ReportResourceListResult` was added
+
+* `implementation.models.ScopingConfigurationResourceListResult` was added
+
+* `implementation.models.WebhookResourceListResult` was added
+
+* `implementation.models.SnapshotResourceListResult` was added
+
+* `implementation.models.OperationListResult` was added
+
+#### `models.Reports` was modified
+
+* `checkNameAvailabilityWithResponse(java.lang.String,models.CheckNameAvailabilityRequest,com.azure.core.util.Context)` was added
+* `checkNameAvailability(java.lang.String,models.CheckNameAvailabilityRequest)` was added
 
 ## 1.0.0 (2024-06-27)
 

@@ -5,21 +5,20 @@
 package com.azure.resourcemanager.appcomplianceautomation.generated;
 
 /**
- * Samples for ScopingConfiguration Delete.
+ * Samples for Report CheckNameAvailability.
  */
-public final class ScopingConfigurationDeleteSamples {
+public final class ReportCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
-     * ScopingConfiguration_Delete.json
+     * Report_NestedResourceCheckNameAvailability_Report_Evidence_Check_Name_Availability.json
      */
     /**
-     * Sample code: ScopingConfiguration_Delete.
+     * Sample code: Report_EvidenceCheckNameAvailability.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void scopingConfigurationDelete(
+    public static void reportEvidenceCheckNameAvailability(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.scopingConfigurations()
-            .deleteByResourceGroupWithResponse("testReportName", "default", com.azure.core.util.Context.NONE);
+        manager.reports().checkNameAvailabilityWithResponse("reportABC", null, com.azure.core.util.Context.NONE);
     }
 }

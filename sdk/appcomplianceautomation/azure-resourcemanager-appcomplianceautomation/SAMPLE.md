@@ -24,13 +24,13 @@
 
 ## Report
 
+- [CheckNameAvailability](#report_checknameavailability)
 - [CreateOrUpdate](#report_createorupdate)
 - [Delete](#report_delete)
 - [Fix](#report_fix)
 - [Get](#report_get)
 - [GetScopingQuestions](#report_getscopingquestions)
 - [List](#report_list)
-- [NestedResourceCheckNameAvailability](#report_nestedresourcechecknameavailability)
 - [SyncCertRecord](#report_synccertrecord)
 - [Update](#report_update)
 - [Verify](#report_verify)
@@ -58,15 +58,17 @@
 ### Evidence_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.EvidenceResourceInner;
+import com.azure.resourcemanager.appcomplianceautomation.models.EvidenceProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.EvidenceType;
 
 /**
  * Samples for Evidence CreateOrUpdate.
  */
 public final class EvidenceCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_CreateOrUpdate.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Evidence_CreateOrUpdate.json
      */
     /**
      * Sample code: Evidence_CreateOrUpdate.
@@ -76,8 +78,12 @@ public final class EvidenceCreateOrUpdateSamples {
     public static void evidenceCreateOrUpdate(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.evidences()
-            .createOrUpdateWithResponse("testReportName", "evidence1", null, null, null,
-                com.azure.core.util.Context.NONE);
+            .createOrUpdateWithResponse("testReportName", "evidence1",
+                new EvidenceResourceInner().withProperties(new EvidenceProperties().withEvidenceType(EvidenceType.FILE)
+                    .withFilePath("/test-byos/evidence1.png")
+                    .withControlId("Operational_Security_10")
+                    .withResponsibilityId("authorized_ip_ranges_should_be_defined_on_kubernetes_services")),
+                null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -91,8 +97,7 @@ public final class EvidenceCreateOrUpdateSamples {
 public final class EvidenceDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Delete.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Evidence_Delete.json
      */
     /**
      * Sample code: Evidence_Delete.
@@ -117,8 +122,8 @@ public final class EvidenceDeleteSamples {
 public final class EvidenceDownloadSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Download.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Evidence_Download.
+     * json
      */
     /**
      * Sample code: Evidence_Download.
@@ -141,8 +146,7 @@ public final class EvidenceDownloadSamples {
 public final class EvidenceGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Get.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Evidence_Get.json
      */
     /**
      * Sample code: Evidence_Get.
@@ -164,9 +168,8 @@ public final class EvidenceGetSamples {
  */
 public final class EvidenceListByReportSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_ListByReport.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Evidence_ListByReport.json
      */
     /**
      * Sample code: Evidence_ListByReport.
@@ -190,8 +193,7 @@ public final class EvidenceListByReportSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Operations_List.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -214,9 +216,8 @@ public final class OperationsListSamples {
  */
 public final class ProviderActionsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_CheckNameAvailability.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_CheckNameAvailability.json
      */
     /**
      * Sample code: Report_CheckNameAvailability.
@@ -239,9 +240,8 @@ public final class ProviderActionsCheckNameAvailabilitySamples {
  */
 public final class ProviderActionsGetCollectionCountSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_GetCollectionCount.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_GetCollectionCount.json
      */
     /**
      * Sample code: Report_GetCollectionCount.
@@ -264,9 +264,8 @@ public final class ProviderActionsGetCollectionCountSamples {
  */
 public final class ProviderActionsGetOverviewStatusSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_GetOverviewStatus.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_GetOverviewStatus.json
      */
     /**
      * Sample code: Report_GetOverviewStatus.
@@ -289,9 +288,8 @@ public final class ProviderActionsGetOverviewStatusSamples {
  */
 public final class ProviderActionsListInUseStorageAccountsSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ListInUseStorageAccountsWithSubscriptions.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * ListInUseStorageAccountsWithSubscriptions.json
      */
     /**
      * Sample code: ListInUseStorageAccountsWithSubscriptions.
@@ -299,21 +297,6 @@ public final class ProviderActionsListInUseStorageAccountsSamples {
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void listInUseStorageAccountsWithSubscriptions(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.providerActions().listInUseStorageAccountsWithResponse(null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ListInUseStorageAccountsWithoutSubscriptions.json
-     */
-    /**
-     * Sample code: ListInUseStorageAccountsWithoutSubscriptions.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void listInUseStorageAccountsWithoutSubscriptions(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.providerActions().listInUseStorageAccountsWithResponse(null, com.azure.core.util.Context.NONE);
     }
@@ -330,8 +313,7 @@ public final class ProviderActionsListInUseStorageAccountsSamples {
 public final class ProviderActionsOnboardSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Onboard.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Onboard.json
      */
     /**
      * Sample code: Onboard.
@@ -355,8 +337,8 @@ public final class ProviderActionsOnboardSamples {
 public final class ProviderActionsTriggerEvaluationSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/TriggerEvaluation.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/TriggerEvaluation.
+     * json
      */
     /**
      * Sample code: TriggerEvaluation.
@@ -370,18 +352,48 @@ public final class ProviderActionsTriggerEvaluationSamples {
 }
 ```
 
+### Report_CheckNameAvailability
+
+```java
+
+/**
+ * Samples for Report CheckNameAvailability.
+ */
+public final class ReportCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_NestedResourceCheckNameAvailability_Report_Evidence_Check_Name_Availability.json
+     */
+    /**
+     * Sample code: Report_EvidenceCheckNameAvailability.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void reportEvidenceCheckNameAvailability(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().checkNameAvailabilityWithResponse("reportABC", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Report_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.ResourceMetadata;
+import com.azure.resourcemanager.appcomplianceautomation.models.ResourceOrigin;
+import com.azure.resourcemanager.appcomplianceautomation.models.StorageInfo;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 /**
  * Samples for Report CreateOrUpdate.
  */
 public final class ReportCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_CreateOrUpdate.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_CreateOrUpdate.json
      */
     /**
      * Sample code: Report_CreateOrUpdate.
@@ -390,7 +402,20 @@ public final class ReportCreateOrUpdateSamples {
      */
     public static void
         reportCreateOrUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().createOrUpdate("testReportName", null, com.azure.core.util.Context.NONE);
+        manager.reports()
+            .createOrUpdate("testReportName", new ReportResourceInner().withProperties(new ReportProperties()
+                .withTriggerTime(OffsetDateTime.parse("2022-03-04T05:00:00.000Z"))
+                .withTimeZone("GMT Standard Time")
+                .withResources(Arrays.asList(new ResourceMetadata().withResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.SignalRService/SignalR/mySignalRService")
+                    .withResourceType("Microsoft.SignalRService/SignalR")
+                    .withResourceOrigin(ResourceOrigin.AZURE)))
+                .withOfferGuid("00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002")
+                .withStorageInfo(new StorageInfo().withSubscriptionId("00000000-0000-0000-0000-000000000000")
+                    .withResourceGroup("testResourceGroup")
+                    .withAccountName("testStorageAccount")
+                    .withLocation("East US"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -404,8 +429,7 @@ public final class ReportCreateOrUpdateSamples {
 public final class ReportDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Delete.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_Delete.json
      */
     /**
      * Sample code: Report_Delete.
@@ -428,8 +452,7 @@ public final class ReportDeleteSamples {
 public final class ReportFixSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Fix.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_Fix.json
      */
     /**
      * Sample code: Report_Fix.
@@ -452,8 +475,7 @@ public final class ReportFixSamples {
 public final class ReportGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Get.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_Get.json
      */
     /**
      * Sample code: Report_Get.
@@ -475,9 +497,8 @@ public final class ReportGetSamples {
  */
 public final class ReportGetScopingQuestionsSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_GetScopingQuestions.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_GetScopingQuestions.json
      */
     /**
      * Sample code: Report_GetScopingQuestions.
@@ -500,8 +521,7 @@ public final class ReportGetScopingQuestionsSamples {
 public final class ReportListSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_List.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_List.json
      */
     /**
      * Sample code: Report_List.
@@ -517,64 +537,6 @@ public final class ReportListSamples {
 }
 ```
 
-### Report_NestedResourceCheckNameAvailability
-
-```java
-
-/**
- * Samples for Report NestedResourceCheckNameAvailability.
- */
-public final class ReportNestedResourceCheckNameAvailabilitySamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_NestedResourceCheckNameAvailability_Report_Snapshot_Check_Name_Availability.json
-     */
-    /**
-     * Sample code: Report_SnapshotCheckNameAvailability.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportSnapshotCheckNameAvailability(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports()
-            .nestedResourceCheckNameAvailabilityWithResponse("reportABC", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_NestedResourceCheckNameAvailability_Report_Evidence_Check_Name_Availability.json
-     */
-    /**
-     * Sample code: Report_EvidenceCheckNameAvailability.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportEvidenceCheckNameAvailability(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports()
-            .nestedResourceCheckNameAvailabilityWithResponse("reportABC", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_NestedResourceCheckNameAvailability_Report_Webhook_Check_Name_Availability.json
-     */
-    /**
-     * Sample code: Report_WebhookCheckNameAvailability.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportWebhookCheckNameAvailability(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports()
-            .nestedResourceCheckNameAvailabilityWithResponse("reportABC", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Report_SyncCertRecord
 
 ```java
@@ -584,9 +546,8 @@ public final class ReportNestedResourceCheckNameAvailabilitySamples {
  */
 public final class ReportSyncCertRecordSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_SyncCertRecord.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Report_SyncCertRecord.json
      */
     /**
      * Sample code: Report_SyncCertRecord.
@@ -610,8 +571,7 @@ public final class ReportSyncCertRecordSamples {
 public final class ReportUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Update.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_Update.json
      */
     /**
      * Sample code: Report_Update.
@@ -634,8 +594,7 @@ public final class ReportUpdateSamples {
 public final class ReportVerifySamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Verify.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Report_Verify.json
      */
     /**
      * Sample code: Report_Verify.
@@ -652,15 +611,18 @@ public final class ReportVerifySamples {
 ### ScopingConfiguration_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ScopingConfigurationResourceInner;
+import com.azure.resourcemanager.appcomplianceautomation.models.ScopingAnswer;
+import com.azure.resourcemanager.appcomplianceautomation.models.ScopingConfigurationProperties;
+import java.util.Arrays;
 
 /**
  * Samples for ScopingConfiguration CreateOrUpdate.
  */
 public final class ScopingConfigurationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_CreateOrUpdate.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * ScopingConfiguration_CreateOrUpdate.json
      */
     /**
      * Sample code: ScopingConfiguration_CreateOrUpdate.
@@ -670,7 +632,13 @@ public final class ScopingConfigurationCreateOrUpdateSamples {
     public static void scopingConfigurationCreateOrUpdate(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.scopingConfigurations()
-            .createOrUpdateWithResponse("testReportName", "default", null, com.azure.core.util.Context.NONE);
+            .createOrUpdateWithResponse("testReportName", "default", new ScopingConfigurationResourceInner()
+                .withProperties(new ScopingConfigurationProperties().withAnswers(Arrays.asList(
+                    new ScopingAnswer().withQuestionId("GEN20_hostingEnvironment").withAnswers(Arrays.asList("Azure")),
+                    new ScopingAnswer().withQuestionId("DHP_G07_customerDataProcess").withAnswers(Arrays.asList()),
+                    new ScopingAnswer().withQuestionId("Tier2InitSub_serviceCommunicate")
+                        .withAnswers(Arrays.asList())))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -683,9 +651,8 @@ public final class ScopingConfigurationCreateOrUpdateSamples {
  */
 public final class ScopingConfigurationDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_Delete.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * ScopingConfiguration_Delete.json
      */
     /**
      * Sample code: ScopingConfiguration_Delete.
@@ -708,9 +675,8 @@ public final class ScopingConfigurationDeleteSamples {
  */
 public final class ScopingConfigurationGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_Get.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * ScopingConfiguration_Get.json
      */
     /**
      * Sample code: ScopingConfiguration.
@@ -732,9 +698,8 @@ public final class ScopingConfigurationGetSamples {
  */
 public final class ScopingConfigurationListSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_List.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * ScopingConfiguration_List.json
      */
     /**
      * Sample code: ScopingConfiguration_List.
@@ -757,39 +722,8 @@ public final class ScopingConfigurationListSamples {
  */
 public final class SnapshotDownloadSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Download_Snapshot_Download_Compliance_Report.json
-     */
-    /**
-     * Sample code: Snapshot_Download_ComplianceReport.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void snapshotDownloadComplianceReport(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.snapshots().download("testReportName", "testSnapshotName", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Download_Snapshot_Download_Resource_List.json
-     */
-    /**
-     * Sample code: Snapshot_Download_ResourceList.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void snapshotDownloadResourceList(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.snapshots().download("testReportName", "testSnapshotName", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Download_Snapshot_Download_Compliance_Detailed_Pdf_Report.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Snapshot_Download_Snapshot_Download_Compliance_Detailed_Pdf_Report.json
      */
     /**
      * Sample code: Snapshot_Download_ComplianceDetailedPdfReport.
@@ -797,21 +731,6 @@ public final class SnapshotDownloadSamples {
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void snapshotDownloadComplianceDetailedPdfReport(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.snapshots().download("testReportName", "testSnapshotName", null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Download_Snapshot_Download_Compliance_Pdf_Report.json
-     */
-    /**
-     * Sample code: Snapshot_Download_CompliancePdfReport.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void snapshotDownloadCompliancePdfReport(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.snapshots().download("testReportName", "testSnapshotName", null, com.azure.core.util.Context.NONE);
     }
@@ -827,8 +746,7 @@ public final class SnapshotDownloadSamples {
 public final class SnapshotGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Get.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Snapshot_Get.json
      */
     /**
      * Sample code: Snapshot_Get.
@@ -851,8 +769,7 @@ public final class SnapshotGetSamples {
 public final class SnapshotListSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_List.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Snapshot_List.json
      */
     /**
      * Sample code: Snapshot_List.
@@ -871,15 +788,23 @@ public final class SnapshotListSamples {
 ### Webhook_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.WebhookResourceInner;
+import com.azure.resourcemanager.appcomplianceautomation.models.ContentType;
+import com.azure.resourcemanager.appcomplianceautomation.models.EnableSslVerification;
+import com.azure.resourcemanager.appcomplianceautomation.models.NotificationEvent;
+import com.azure.resourcemanager.appcomplianceautomation.models.SendAllEvents;
+import com.azure.resourcemanager.appcomplianceautomation.models.UpdateWebhookKey;
+import com.azure.resourcemanager.appcomplianceautomation.models.WebhookProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.WebhookStatus;
+import java.util.Arrays;
 
 /**
  * Samples for Webhook CreateOrUpdate.
  */
 public final class WebhookCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_CreateOrUpdate.json
+     * x-ms-original-file: specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/
+     * Webhook_CreateOrUpdate.json
      */
     /**
      * Sample code: Webhook_CreateOrUpdate.
@@ -889,7 +814,16 @@ public final class WebhookCreateOrUpdateSamples {
     public static void webhookCreateOrUpdate(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
         manager.webhooks()
-            .createOrUpdateWithResponse("testReportName", "testWebhookName", null, com.azure.core.util.Context.NONE);
+            .createOrUpdateWithResponse("testReportName", "testWebhookName",
+                new WebhookResourceInner().withProperties(new WebhookProperties().withStatus(WebhookStatus.ENABLED)
+                    .withSendAllEvents(SendAllEvents.FALSE)
+                    .withEvents(Arrays.asList(NotificationEvent.GENERATE_SNAPSHOT_FAILED))
+                    .withPayloadUrl("https://example.com")
+                    .withContentType(ContentType.APPLICATION_JSON)
+                    .withWebhookKey("fakeTokenPlaceholder")
+                    .withUpdateWebhookKey(UpdateWebhookKey.TRUE)
+                    .withEnableSslVerification(EnableSslVerification.TRUE)),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -903,8 +837,7 @@ public final class WebhookCreateOrUpdateSamples {
 public final class WebhookDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Delete.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Webhook_Delete.json
      */
     /**
      * Sample code: Webhook_Delete.
@@ -928,8 +861,7 @@ public final class WebhookDeleteSamples {
 public final class WebhookGetSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Get.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Webhook_Get.json
      */
     /**
      * Sample code: Webhook_Get.
@@ -952,8 +884,7 @@ public final class WebhookGetSamples {
 public final class WebhookListSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_List.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Webhook_List.json
      */
     /**
      * Sample code: Webhook_List.
@@ -978,8 +909,7 @@ public final class WebhookListSamples {
 public final class WebhookUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Update.json
+     * specification/appcomplianceautomation/AppComplianceAutomation.Management/examples/2024-06-27/Webhook_Update.json
      */
     /**
      * Sample code: Webhook_Update.
