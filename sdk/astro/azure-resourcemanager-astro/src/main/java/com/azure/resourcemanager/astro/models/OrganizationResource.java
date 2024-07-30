@@ -260,9 +260,9 @@ public interface OrganizationResource {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The managed service identities assigned to this resource..
+             * Specifies the identity property: The managed service identities assasdasdigned to this resource..
              * 
-             * @param identity The managed service identities assigned to this resource.
+             * @param identity The managed service identities assasdasdigned to this resource.
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
@@ -273,9 +273,9 @@ public interface OrganizationResource {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The updatable properties of the OrganizationResource..
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties The updatable properties of the OrganizationResource.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             Update withProperties(OrganizationResourceUpdateProperties properties);
