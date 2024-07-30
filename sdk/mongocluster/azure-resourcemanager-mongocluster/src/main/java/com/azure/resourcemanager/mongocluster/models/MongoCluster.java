@@ -245,7 +245,7 @@ public interface MongoCluster {
              * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
-            Update withProperties(MongoClusterUpdateProperties properties);
+            Update withProperties(MongoClusterProperties properties);
         }
     }
 
