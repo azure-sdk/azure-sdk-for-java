@@ -25,7 +25,7 @@ import com.azure.resourcemanager.networkanalytics.models.RoleAssignmentCommonPro
  */
 public interface DataProductsClient {
     /**
-     * List data products by subscription.
+     * List data products by aasdsubscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -35,7 +35,7 @@ public interface DataProductsClient {
     PagedIterable<DataProductInner> list();
 
     /**
-     * List data products by subscription.
+     * List data products by aasdsubscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
