@@ -272,7 +272,7 @@ public final class DevBoxesClient {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -1104,7 +1104,7 @@ public final class DevBoxesClient {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      *
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.

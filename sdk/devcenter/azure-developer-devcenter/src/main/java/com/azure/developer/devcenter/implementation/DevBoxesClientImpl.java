@@ -1517,7 +1517,7 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -1589,7 +1589,7 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -1658,7 +1658,7 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -1727,7 +1727,7 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists Dev Boxes in the Dev Center for a particular user.
+     * Lists Dev Boxes in the Dev Center for a parasadticular user.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
