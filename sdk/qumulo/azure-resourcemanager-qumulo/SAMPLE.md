@@ -19,79 +19,50 @@
 import com.azure.resourcemanager.qumulo.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.qumulo.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.qumulo.models.MarketplaceDetails;
-import com.azure.resourcemanager.qumulo.models.StorageSku;
 import com.azure.resourcemanager.qumulo.models.UserAssignedIdentity;
 import com.azure.resourcemanager.qumulo.models.UserDetails;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for FileSystems CreateOrUpdate. */
+/**
+ * Samples for FileSystems CreateOrUpdate.
+ */
 public final class FileSystemsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/FileSystems_CreateOrUpdate_MaximumSet_Gen
+     * .json
      */
     /**
-     * Sample code: FileSystems_CreateOrUpdate_MaximumSet_Gen.
-     *
+     * Sample code: FileSystems_CreateOrUpdate.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsCreateOrUpdateMaximumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager
-            .fileSystems()
-            .define("nauwwbfoqehgbhdsmkewoboyxeqg")
-            .withRegion("przdlsmlzsszphnixq")
+    public static void fileSystemsCreateOrUpdate(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems()
+            .define("hfcmtgaes")
+            .withRegion("pnb")
             .withExistingResourceGroup("rgQumulo")
-            .withMarketplaceDetails(
-                new MarketplaceDetails()
-                    .withMarketplaceSubscriptionId("ujrcqvxfnhxxheoth")
-                    .withPlanId("x")
-                    .withOfferId("eiyhbmpwgezcmzrrfoiskuxlcvwojf")
-                    .withPublisherId("wfmokfdjbwpjhz"))
-            .withStorageSku(StorageSku.STANDARD)
-            .withUserDetails(new UserDetails().withEmail("viptslwulnpaupfljvnjeq"))
-            .withDelegatedSubnetId("neqctctqdmjezfgt")
-            .withAdminPassword("ekceujoecaashtjlsgcymnrdozk")
-            .withInitialCapacity(9)
-            .withTags(mapOf("key6565", "cgdhmupta"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.NONE)
-                    .withUserAssignedIdentities(mapOf("key4522", new UserAssignedIdentity())))
-            .withClusterLoginUrl("jjqhgevy")
-            .withPrivateIPs(Arrays.asList("kslguxrwbwkrj"))
-            .withAvailabilityZone("maseyqhlnhoiwbabcqabtedbjpip")
+            .withTags(mapOf("key7090", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf("key7679", new UserAssignedIdentity())))
+            .withMarketplaceDetails(new MarketplaceDetails().withMarketplaceSubscriptionId("xaqtkloiyovmexqhn")
+                .withPlanId("fwtpz")
+                .withOfferId("s")
+                .withPublisherId("czxcfrwodazyaft")
+                .withTermUnit("cfwwczmygsimcyvoclcw"))
+            .withStorageSku("yhyzby")
+            .withUserDetails(new UserDetails().withEmail("aqsnzyroo"))
+            .withDelegatedSubnetId("jykmxrf")
+            .withClusterLoginUrl("ykaynsjvhihdthkkvvodjrgc")
+            .withPrivateIPs(Arrays.asList("gzken"))
+            .withAdminPassword("fakeTestSecretPlaceholder")
+            .withAvailabilityZone("eqdvbdiuwmhhzqzmksmwllpddqquwt")
             .create();
     }
 
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_CreateOrUpdate_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_CreateOrUpdate_MinimumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsCreateOrUpdateMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager
-            .fileSystems()
-            .define("aaaaaaaa")
-            .withRegion("aaaaaaaaaaaaaaaaaaaaaaaaa")
-            .withExistingResourceGroup("rgopenapi")
-            .withMarketplaceDetails(
-                new MarketplaceDetails()
-                    .withMarketplaceSubscriptionId("aaaaaaaaaaaaa")
-                    .withPlanId("aaaaaa")
-                    .withOfferId("aaaaaaaaaaaaaaaaaaaaaaaaa")
-                    .withPublisherId("aa"))
-            .withStorageSku(StorageSku.STANDARD)
-            .withUserDetails(new UserDetails().withEmail("viptslwulnpaupfljvnjeq"))
-            .withDelegatedSubnetId("aaaaaaaaaa")
-            .withAdminPassword("ekceujoecaashtjlsgcymnrdozk")
-            .withInitialCapacity(9)
-            .create();
-    }
-
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -108,30 +79,21 @@ public final class FileSystemsCreateOrUpdateSamples {
 ### FileSystems_Delete
 
 ```java
-/** Samples for FileSystems Delete. */
+/**
+ * Samples for FileSystems Delete.
+ */
 public final class FileSystemsDeleteSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Delete_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/FileSystems_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_Delete_MaximumSet_Gen.
-     *
+     * Sample code: FileSystems_Delete.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsDeleteMaximumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().delete("rgQumulo", "nauwwbfoqehgbhdsmkewoboyxeqg", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_Delete_MinimumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsDeleteMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().delete("rgQumulo", "nauwwbfoqehgbhdsmkewoboyxeqg", com.azure.core.util.Context.NONE);
+    public static void fileSystemsDelete(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems().delete("rgQumulo", "xoschzkccroahrykedlvbbnsddq", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -139,35 +101,22 @@ public final class FileSystemsDeleteSamples {
 ### FileSystems_GetByResourceGroup
 
 ```java
-/** Samples for FileSystems GetByResourceGroup. */
+/**
+ * Samples for FileSystems GetByResourceGroup.
+ */
 public final class FileSystemsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Get_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/FileSystems_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_Get_MaximumSet_Gen.
-     *
+     * Sample code: FileSystems_Get.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsGetMaximumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager
-            .fileSystems()
-            .getByResourceGroupWithResponse(
-                "rgQumulo", "nauwwbfoqehgbhdsmkewoboyxeqg", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Get_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_Get_MinimumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsGetMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager
-            .fileSystems()
-            .getByResourceGroupWithResponse("rgQumulo", "aaaaaaaaaaaaaaaaa", com.azure.core.util.Context.NONE);
+    public static void fileSystemsGet(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems()
+            .getByResourceGroupWithResponse("rgQumulo", "sihbehcisdqtqqyfiewiiaphgh", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -175,31 +124,20 @@ public final class FileSystemsGetByResourceGroupSamples {
 ### FileSystems_List
 
 ```java
-/** Samples for FileSystems List. */
+/**
+ * Samples for FileSystems List.
+ */
 public final class FileSystemsListSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_ListBySubscription_MinimumSet_Gen.json
+     * x-ms-original-file: specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/
+     * FileSystems_ListBySubscription_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_ListBySubscription_MinimumSet_Gen.
-     *
+     * Sample code: FileSystems_ListBySubscription.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsListBySubscriptionMinimumSetGen(
-        com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_ListBySubscription_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_ListBySubscription_MaximumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsListBySubscriptionMaximumSetGen(
-        com.azure.resourcemanager.qumulo.QumuloManager manager) {
+    public static void fileSystemsListBySubscription(com.azure.resourcemanager.qumulo.QumuloManager manager) {
         manager.fileSystems().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -208,31 +146,20 @@ public final class FileSystemsListSamples {
 ### FileSystems_ListByResourceGroup
 
 ```java
-/** Samples for FileSystems ListByResourceGroup. */
+/**
+ * Samples for FileSystems ListByResourceGroup.
+ */
 public final class FileSystemsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/
+     * FileSystems_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_ListByResourceGroup_MaximumSet_Gen.
-     *
+     * Sample code: FileSystems_ListByResourceGroup.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsListByResourceGroupMaximumSetGen(
-        com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().listByResourceGroup("rgQumulo", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_ListByResourceGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_ListByResourceGroup_MinimumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsListByResourceGroupMinimumSetGen(
-        com.azure.resourcemanager.qumulo.QumuloManager manager) {
+    public static void fileSystemsListByResourceGroup(com.azure.resourcemanager.qumulo.QumuloManager manager) {
         manager.fileSystems().listByResourceGroup("rgQumulo", com.azure.core.util.Context.NONE);
     }
 }
@@ -248,66 +175,42 @@ import com.azure.resourcemanager.qumulo.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.qumulo.models.MarketplaceDetails;
 import com.azure.resourcemanager.qumulo.models.UserAssignedIdentity;
 import com.azure.resourcemanager.qumulo.models.UserDetails;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for FileSystems Update. */
+/**
+ * Samples for FileSystems Update.
+ */
 public final class FileSystemsUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Update_MinimumSet_Gen.json
+     * x-ms-original-file:
+     * specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/FileSystems_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_Update_MinimumSet_Gen.
-     *
+     * Sample code: FileSystems_Update.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsUpdateMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        FileSystemResource resource =
-            manager
-                .fileSystems()
-                .getByResourceGroupWithResponse("rgQumulo", "aaaaaaaaaaaaaaaaa", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/FileSystems_Update_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_Update_MaximumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsUpdateMaximumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        FileSystemResource resource =
-            manager
-                .fileSystems()
-                .getByResourceGroupWithResponse(
-                    "rgQumulo", "nauwwbfoqehgbhdsmkewoboyxeqg", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("key7534", "jsgqvqbagquvxowbrkanyhzvo"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.NONE)
-                    .withUserAssignedIdentities(mapOf("key4522", new UserAssignedIdentity())))
-            .withProperties(
-                new FileSystemResourceUpdateProperties()
-                    .withMarketplaceDetails(
-                        new MarketplaceDetails()
-                            .withMarketplaceSubscriptionId("ujrcqvxfnhxxheoth")
-                            .withPlanId("x")
-                            .withOfferId("eiyhbmpwgezcmzrrfoiskuxlcvwojf")
-                            .withPublisherId("wfmokfdjbwpjhz"))
-                    .withUserDetails(new UserDetails().withEmail("aa"))
-                    .withDelegatedSubnetId("vjfirtaljehawmflyfianw")
-                    .withClusterLoginUrl("adabmuthwrbjshzfbo")
-                    .withPrivateIPs(Arrays.asList("eugjqbaoucgjsopzfrq")))
+    public static void fileSystemsUpdate(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        FileSystemResource resource = manager.fileSystems()
+            .getByResourceGroupWithResponse("rgQumulo", "ahpixnvykleksjlr", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key357", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf("key7679", new UserAssignedIdentity())))
+            .withProperties(new FileSystemResourceUpdateProperties()
+                .withMarketplaceDetails(new MarketplaceDetails().withMarketplaceSubscriptionId("xaqtkloiyovmexqhn")
+                    .withPlanId("fwtpz")
+                    .withOfferId("s")
+                    .withPublisherId("czxcfrwodazyaft")
+                    .withTermUnit("cfwwczmygsimcyvoclcw"))
+                .withUserDetails(new UserDetails().withEmail("aqsnzyroo"))
+                .withDelegatedSubnetId("bqaryqsjlackxphpmzffgoqsvm"))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -324,29 +227,20 @@ public final class FileSystemsUpdateSamples {
 ### Operations_List
 
 ```java
-/** Samples for Operations List. */
+/**
+ * Samples for Operations List.
+ */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/Operations_List_MinimumSet_Gen.json
+     * x-ms-original-file:
+     * specification/liftrqumulo/Qumulo.Storage.Management/examples/2024-06-19/Operations_List_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List_MinimumSet_Gen.
-     *
+     * Sample code: Operations_List.
+     * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void operationsListMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2022-10-12/examples/Operations_List_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Operations_List_MaximumSet_Gen.
-     *
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void operationsListMaximumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+    public static void operationsList(com.azure.resourcemanager.qumulo.QumuloManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
