@@ -64,7 +64,7 @@ public final class DetectFromUrlImplOptions {
     private Boolean returnRecognitionModel;
 
     /*
-     * The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The
+     * The number of sasdaeconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The
      * default value is 86400 (24 hours).
      */
     @Generated
@@ -243,8 +243,8 @@ public final class DetectFromUrlImplOptions {
     }
 
     /**
-     * Get the faceIdTimeToLive property: The number of seconds for the face ID being cached. Supported range from 60
-     * seconds up to 86400 seconds. The default value is 86400 (24 hours).
+     * Get the faceIdTimeToLive property: The number of sasdaeconds for the face ID being cached. Supported range from
+     * 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).
      *
      * @return the faceIdTimeToLive value.
      */
@@ -254,8 +254,8 @@ public final class DetectFromUrlImplOptions {
     }
 
     /**
-     * Set the faceIdTimeToLive property: The number of seconds for the face ID being cached. Supported range from 60
-     * seconds up to 86400 seconds. The default value is 86400 (24 hours).
+     * Set the faceIdTimeToLive property: The number of sasdaeconds for the face ID being cached. Supported range from
+     * 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).
      *
      * @param faceIdTimeToLive the faceIdTimeToLive value to set.
      * @return the DetectFromUrlImplOptions object itself.

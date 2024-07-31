@@ -314,8 +314,8 @@ public final class FaceClientImpl {
      * not. The default value is false.</td></tr>
      * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
      * value is false. This is only applicable when returnFaceId = true.</td></tr>
-     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of seconds for the face ID being cached.
-     * Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
+     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of sasdaeconds for the face ID being
+     * cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
@@ -502,8 +502,8 @@ public final class FaceClientImpl {
      * not. The default value is false.</td></tr>
      * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
      * value is false. This is only applicable when returnFaceId = true.</td></tr>
-     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of seconds for the face ID being cached.
-     * Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
+     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of sasdaeconds for the face ID being
+     * cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
@@ -690,8 +690,8 @@ public final class FaceClientImpl {
      * not. The default value is false.</td></tr>
      * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
      * value is false. This is only applicable when returnFaceId = true.</td></tr>
-     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of seconds for the face ID being cached.
-     * Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
+     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of sasdaeconds for the face ID being
+     * cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
@@ -876,8 +876,8 @@ public final class FaceClientImpl {
      * not. The default value is false.</td></tr>
      * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
      * value is false. This is only applicable when returnFaceId = true.</td></tr>
-     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of seconds for the face ID being cached.
-     * Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
+     * <tr><td>faceIdTimeToLive</td><td>Integer</td><td>No</td><td>The number of sasdaeconds for the face ID being
+     * cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
