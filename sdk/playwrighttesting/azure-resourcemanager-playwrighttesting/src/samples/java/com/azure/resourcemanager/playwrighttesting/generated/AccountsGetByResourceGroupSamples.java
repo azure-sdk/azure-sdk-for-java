@@ -10,7 +10,7 @@ package com.azure.resourcemanager.playwrighttesting.generated;
 public final class AccountsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-02-01-preview/
      * examples/Accounts_Get.json
      */
     /**
@@ -19,7 +19,7 @@ public final class AccountsGetByResourceGroupSamples {
      * @param manager Entry point to PlaywrightTestingManager.
      */
     public static void accountsGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accounts().getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount",
-            com.azure.core.util.Context.NONE);
+        manager.accounts()
+            .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
     }
 }
