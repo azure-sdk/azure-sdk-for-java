@@ -13,7 +13,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Details of the Compute Fleet.
@@ -38,7 +38,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     /*
      * List of VM sizes supported for Compute Fleet
      */
-    private List<VmSizeProfile> vmSizesProfile;
+    private VmSizeProfile vmSizesProfile;
 
     /*
      * Compute Profile to use for running user's workloads.
@@ -115,7 +115,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
      * 
      * @return the vmSizesProfile value.
      */
-    public List<VmSizeProfile> vmSizesProfile() {
+    public VmSizeProfile vmSizesProfile() {
         return this.vmSizesProfile;
     }
 
@@ -125,7 +125,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
      * @param vmSizesProfile the vmSizesProfile value to set.
      * @return the FleetProperties object itself.
      */
-    public FleetProperties withVmSizesProfile(List<VmSizeProfile> vmSizesProfile) {
+    public FleetProperties withVmSizesProfile(VmSizeProfile vmSizesProfile) {
         this.vmSizesProfile = vmSizesProfile;
         return this;
     }
@@ -160,6 +160,17 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     }
 
     /**
+     * Set the timeCreated property: Specifies the time at which the Compute Fleet is created.
+     * 
+     * @param timeCreated the timeCreated value to set.
+     * @return the FleetProperties object itself.
+     */
+    public FleetProperties withTimeCreated(OffsetDateTime timeCreated) {
+        this.timeCreated = timeCreated;
+        return this;
+    }
+
+    /**
      * Get the uniqueId property: Specifies the ID which uniquely identifies a Compute Fleet.
      * 
      * @return the uniqueId value.
@@ -184,7 +195,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property vmSizesProfile in model FleetProperties"));
         } else {
-            vmSizesProfile().forEach(e -> e.validate());
+            vmSizesProfile().validate();
         }
         if (computeProfile() == null) {
             throw LOGGER.atError()
@@ -202,11 +213,12 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("vmSizesProfile", this.vmSizesProfile,
-            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("vmSizesProfile", this.vmSizesProfile);
         jsonWriter.writeJsonField("computeProfile", this.computeProfile);
         jsonWriter.writeJsonField("spotPriorityProfile", this.spotPriorityProfile);
         jsonWriter.writeJsonField("regularPriorityProfile", this.regularPriorityProfile);
+        jsonWriter.writeStringField("timeCreated",
+            this.timeCreated == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.timeCreated));
         return jsonWriter.writeEndObject();
     }
 
@@ -227,8 +239,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
                 reader.nextToken();
 
                 if ("vmSizesProfile".equals(fieldName)) {
-                    List<VmSizeProfile> vmSizesProfile = reader.readArray(reader1 -> VmSizeProfile.fromJson(reader1));
-                    deserializedFleetProperties.vmSizesProfile = vmSizesProfile;
+                    deserializedFleetProperties.vmSizesProfile = VmSizeProfile.fromJson(reader);
                 } else if ("computeProfile".equals(fieldName)) {
                     deserializedFleetProperties.computeProfile = ComputeProfile.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
