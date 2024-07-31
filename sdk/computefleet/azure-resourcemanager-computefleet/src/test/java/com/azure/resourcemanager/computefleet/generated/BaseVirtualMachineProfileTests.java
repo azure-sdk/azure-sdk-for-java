@@ -5,18 +5,17 @@
 package com.azure.resourcemanager.computefleet.generated;
 
 import com.azure.core.util.BinaryData;
-import com.azure.resourcemanager.computefleet.models.UserAssignedIdentity;
+import com.azure.resourcemanager.computefleet.models.BaseVirtualMachineProfile;
 
-public final class UserAssignedIdentityTests {
+public final class BaseVirtualMachineProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        UserAssignedIdentity model = BinaryData.fromString("{\"principalId\":\"gc\",\"clientId\":\"wclxxwrl\"}")
-            .toObject(UserAssignedIdentity.class);
+        BaseVirtualMachineProfile model = BinaryData.fromString("{}").toObject(BaseVirtualMachineProfile.class);
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        UserAssignedIdentity model = new UserAssignedIdentity();
-        model = BinaryData.fromObject(model).toObject(UserAssignedIdentity.class);
+        BaseVirtualMachineProfile model = new BaseVirtualMachineProfile();
+        model = BinaryData.fromObject(model).toObject(BaseVirtualMachineProfile.class);
     }
 }

@@ -6,24 +6,22 @@ package com.azure.resourcemanager.computefleet.generated;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.http.HttpClient;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.http.MockHttpResponse;
 import com.azure.resourcemanager.computefleet.ComputeFleetManager;
-import com.azure.resourcemanager.computefleet.models.ActionType;
-import com.azure.resourcemanager.computefleet.models.Operation;
+import com.azure.resourcemanager.computefleet.models.VirtualMachineScaleSetListResult;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-public final class OperationsListMockTests {
+public final class FleetsListVirtualMachineScaleSetsWithResponseMockTests {
     @Test
-    public void testList() throws Exception {
+    public void testListVirtualMachineScaleSetsWithResponse() throws Exception {
         String responseStr
-            = "{\"value\":[{\"name\":\"npvswjdkirso\",\"isDataAction\":false,\"display\":{\"provider\":\"crmnohjtckwhds\",\"resource\":\"fiyipjxsqwpgrj\",\"operation\":\"norcjxvsnbyxqab\",\"description\":\"ocpcy\"},\"origin\":\"system\",\"actionType\":\"Internal\"}]}";
+            = "{\"value\":[{\"id\":\"daj\",\"type\":\"ysou\",\"operationStatus\":\"Succeeded\",\"error\":{}},{\"id\":\"canoaeupf\",\"type\":\"hltrpmopjmcmatuo\",\"operationStatus\":\"Updating\",\"error\":{}}],\"nextLink\":\"uiuaodsfcpkvxodp\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,8 +30,10 @@ public final class OperationsListMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
-        PagedIterable<Operation> response = manager.operations().list(com.azure.core.util.Context.NONE);
+        VirtualMachineScaleSetListResult response = manager.fleets()
+            .listVirtualMachineScaleSetsWithResponse("cczsq", "jh", com.azure.core.util.Context.NONE)
+            .getValue();
 
-        Assertions.assertEquals(ActionType.INTERNAL, response.iterator().next().actionType());
+        Assertions.assertEquals("uiuaodsfcpkvxodp", response.nextLink());
     }
 }

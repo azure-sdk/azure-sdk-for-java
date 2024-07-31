@@ -20,6 +20,7 @@ public final class FleetsListVirtualMachineScaleSetsSamples {
      */
     public static void
         fleetsListVirtualMachineScaleSets(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
-        manager.fleets().listVirtualMachineScaleSets("rgazurefleet", "myFleet", com.azure.core.util.Context.NONE);
+        manager.fleets()
+            .listVirtualMachineScaleSetsWithResponse("rgazurefleet", "myFleet", com.azure.core.util.Context.NONE);
     }
 }

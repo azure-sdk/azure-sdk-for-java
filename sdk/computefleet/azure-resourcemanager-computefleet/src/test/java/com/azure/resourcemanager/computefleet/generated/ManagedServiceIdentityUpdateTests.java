@@ -16,19 +16,18 @@ public final class ManagedServiceIdentityUpdateTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ManagedServiceIdentityUpdate model = BinaryData.fromString(
-            "{\"type\":\"None\",\"userAssignedIdentities\":{\"ntnev\":{\"principalId\":\"dzu\",\"clientId\":\"rsc\"},\"weriofzpyqsem\":{\"principalId\":\"wjmy\",\"clientId\":\"dsslswt\"},\"d\":{\"principalId\":\"bnetshh\",\"clientId\":\"h\"},\"lcxog\":{\"principalId\":\"vwiwubmwmbesld\",\"clientId\":\"wwtppj\"}}}")
+            "{\"type\":\"SystemAssigned\",\"userAssignedIdentities\":{\"ryplwckbasyypn\":{\"principalId\":\"tyxolniwpwc\",\"clientId\":\"jfkgiawxk\"}}}")
             .toObject(ManagedServiceIdentityUpdate.class);
-        Assertions.assertEquals(ManagedServiceIdentityType.NONE, model.type());
+        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, model.type());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         ManagedServiceIdentityUpdate model
-            = new ManagedServiceIdentityUpdate().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf("ntnev", new UserAssignedIdentity(), "weriofzpyqsem",
-                    new UserAssignedIdentity(), "d", new UserAssignedIdentity(), "lcxog", new UserAssignedIdentity()));
+            = new ManagedServiceIdentityUpdate().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
+                .withUserAssignedIdentities(mapOf("ryplwckbasyypn", new UserAssignedIdentity()));
         model = BinaryData.fromObject(model).toObject(ManagedServiceIdentityUpdate.class);
-        Assertions.assertEquals(ManagedServiceIdentityType.NONE, model.type());
+        Assertions.assertEquals(ManagedServiceIdentityType.SYSTEM_ASSIGNED, model.type());
     }
 
     // Use "Map.of" if available
