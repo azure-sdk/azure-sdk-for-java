@@ -3332,6 +3332,7 @@ public final class ContainerAppsSourceControlsCreateOrUpdateSamples {
                 .withBuildEnvironmentVariables(
                     Arrays.asList(new EnvironmentVariable().withName("foo1").withValue("bar1"),
                         new EnvironmentVariable().withName("foo2").withValue("bar2"))))
+            .withXMsGithubAuxiliary("githubaccesstoken")
             .create();
     }
 }
@@ -3356,7 +3357,8 @@ public final class ContainerAppsSourceControlsDeleteSamples {
     public static void
         deleteContainerAppSourceControl(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager.containerAppsSourceControls()
-            .delete("workerapps-rg-xj", "testcanadacentral", "current", com.azure.core.util.Context.NONE);
+            .delete("workerapps-rg-xj", "testcanadacentral", "current", "githubaccesstoken", false, false,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
