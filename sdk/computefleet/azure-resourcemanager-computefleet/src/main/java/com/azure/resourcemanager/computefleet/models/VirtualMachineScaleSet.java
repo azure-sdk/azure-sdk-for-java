@@ -4,46 +4,135 @@
 
 package com.azure.resourcemanager.computefleet.models;
 
-import com.azure.resourcemanager.computefleet.fluent.models.VirtualMachineScaleSetInner;
+import com.azure.core.annotation.Immutable;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
- * An immutable client-side representation of VirtualMachineScaleSet.
+ * An AzureFleet's virtualMachineScaleSet.
  */
-public interface VirtualMachineScaleSet {
+@Immutable
+public final class VirtualMachineScaleSet implements JsonSerializable<VirtualMachineScaleSet> {
+    /*
+     * The compute RP resource id of the virtualMachineScaleSet
+     * "subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}"
+     */
+    private String id;
+
+    /*
+     * Type of the virtualMachineScaleSet
+     */
+    private String type;
+
+    /*
+     * This represents the operationStatus of the VMSS in response to the last operation that was performed on it by
+     * Azure Fleet resource.
+     */
+    private ProvisioningState operationStatus;
+
+    /*
+     * Error Information when `operationStatus` is `Failed`
+     */
+    private ApiError error;
+
     /**
-     * Gets the id property: The compute RP resource id of the virtualMachineScaleSet
+     * Creates an instance of VirtualMachineScaleSet class.
+     */
+    private VirtualMachineScaleSet() {
+    }
+
+    /**
+     * Get the id property: The compute RP resource id of the virtualMachineScaleSet
      * "subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}".
      * 
      * @return the id value.
      */
-    String id();
+    public String id() {
+        return this.id;
+    }
 
     /**
-     * Gets the type property: Type of the virtualMachineScaleSet.
+     * Get the type property: Type of the virtualMachineScaleSet.
      * 
      * @return the type value.
      */
-    String type();
+    public String type() {
+        return this.type;
+    }
 
     /**
-     * Gets the operationStatus property: This represents the operationStatus of the VMSS in response to the last
+     * Get the operationStatus property: This represents the operationStatus of the VMSS in response to the last
      * operation that was performed on it by Azure Fleet resource.
      * 
      * @return the operationStatus value.
      */
-    ProvisioningState operationStatus();
+    public ProvisioningState operationStatus() {
+        return this.operationStatus;
+    }
 
     /**
-     * Gets the error property: Error Information when `operationStatus` is `Failed`.
+     * Get the error property: Error Information when `operationStatus` is `Failed`.
      * 
      * @return the error value.
      */
-    ApiError error();
+    public ApiError error() {
+        return this.error;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.computefleet.fluent.models.VirtualMachineScaleSetInner object.
+     * Validates the instance.
      * 
-     * @return the inner object.
+     * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    VirtualMachineScaleSetInner innerModel();
+    public void validate() {
+        if (error() != null) {
+            error().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineScaleSet from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineScaleSet if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the VirtualMachineScaleSet.
+     */
+    public static VirtualMachineScaleSet fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineScaleSet deserializedVirtualMachineScaleSet = new VirtualMachineScaleSet();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedVirtualMachineScaleSet.id = reader.getString();
+                } else if ("operationStatus".equals(fieldName)) {
+                    deserializedVirtualMachineScaleSet.operationStatus
+                        = ProvisioningState.fromString(reader.getString());
+                } else if ("type".equals(fieldName)) {
+                    deserializedVirtualMachineScaleSet.type = reader.getString();
+                } else if ("error".equals(fieldName)) {
+                    deserializedVirtualMachineScaleSet.error = ApiError.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineScaleSet;
+        });
+    }
 }

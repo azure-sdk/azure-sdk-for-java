@@ -34,9 +34,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.computefleet.fluent.FleetsClient;
 import com.azure.resourcemanager.computefleet.fluent.models.FleetInner;
-import com.azure.resourcemanager.computefleet.fluent.models.VirtualMachineScaleSetInner;
+import com.azure.resourcemanager.computefleet.fluent.models.VirtualMachineScaleSetListResultInner;
 import com.azure.resourcemanager.computefleet.implementation.models.FleetListResult;
-import com.azure.resourcemanager.computefleet.implementation.models.VirtualMachineScaleSetListResult;
 import com.azure.resourcemanager.computefleet.models.FleetUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -131,7 +130,7 @@ public final class FleetsClientImpl implements FleetsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachineScaleSets")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineScaleSetListResult>> listVirtualMachineScaleSets(
+        Mono<Response<VirtualMachineScaleSetListResultInner>> listVirtualMachineScaleSets(
             @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("name") String name,
@@ -150,14 +149,6 @@ public final class FleetsClientImpl implements FleetsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FleetListResult>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
-            @HeaderParam("accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("{nextLink}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineScaleSetListResult>> listVirtualMachineScaleSetsNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
             @HeaderParam("accept") String accept, Context context);
     }
@@ -1177,12 +1168,12 @@ public final class FleetsClientImpl implements FleetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation along with {@link PagedResponse} on successful
+     * @return the response of a VirtualMachineScaleSet list operation along with {@link Response} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineScaleSetInner>>
-        listVirtualMachineScaleSetsSinglePageAsync(String resourceGroupName, String name) {
+    private Mono<Response<VirtualMachineScaleSetListResultInner>>
+        listVirtualMachineScaleSetsWithResponseAsync(String resourceGroupName, String name) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1202,8 +1193,6 @@ public final class FleetsClientImpl implements FleetsClient {
         return FluxUtil
             .withContext(context -> service.listVirtualMachineScaleSets(this.client.getEndpoint(),
                 this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, name, accept, context))
-            .<PagedResponse<VirtualMachineScaleSetInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1216,12 +1205,12 @@ public final class FleetsClientImpl implements FleetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation along with {@link PagedResponse} on successful
+     * @return the response of a VirtualMachineScaleSet list operation along with {@link Response} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineScaleSetInner>>
-        listVirtualMachineScaleSetsSinglePageAsync(String resourceGroupName, String name, Context context) {
+    private Mono<Response<VirtualMachineScaleSetListResultInner>>
+        listVirtualMachineScaleSetsWithResponseAsync(String resourceGroupName, String name, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1239,11 +1228,8 @@ public final class FleetsClientImpl implements FleetsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listVirtualMachineScaleSets(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, name, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.listVirtualMachineScaleSets(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, name, accept, context);
     }
 
     /**
@@ -1254,13 +1240,13 @@ public final class FleetsClientImpl implements FleetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a VirtualMachineScaleSet list operation on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualMachineScaleSetInner> listVirtualMachineScaleSetsAsync(String resourceGroupName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VirtualMachineScaleSetListResultInner> listVirtualMachineScaleSetsAsync(String resourceGroupName,
         String name) {
-        return new PagedFlux<>(() -> listVirtualMachineScaleSetsSinglePageAsync(resourceGroupName, name),
-            nextLink -> listVirtualMachineScaleSetsNextSinglePageAsync(nextLink));
+        return listVirtualMachineScaleSetsWithResponseAsync(resourceGroupName, name)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1272,13 +1258,12 @@ public final class FleetsClientImpl implements FleetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a VirtualMachineScaleSet list operation along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualMachineScaleSetInner> listVirtualMachineScaleSetsAsync(String resourceGroupName,
-        String name, Context context) {
-        return new PagedFlux<>(() -> listVirtualMachineScaleSetsSinglePageAsync(resourceGroupName, name, context),
-            nextLink -> listVirtualMachineScaleSetsNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<VirtualMachineScaleSetListResultInner>
+        listVirtualMachineScaleSetsWithResponse(String resourceGroupName, String name, Context context) {
+        return listVirtualMachineScaleSetsWithResponseAsync(resourceGroupName, name, context).block();
     }
 
     /**
@@ -1289,29 +1274,11 @@ public final class FleetsClientImpl implements FleetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a VirtualMachineScaleSet list operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualMachineScaleSetInner> listVirtualMachineScaleSets(String resourceGroupName,
-        String name) {
-        return new PagedIterable<>(listVirtualMachineScaleSetsAsync(resourceGroupName, name));
-    }
-
-    /**
-     * List VirtualMachineScaleSet resources by Fleet.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param name The name of the Fleet.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualMachineScaleSetInner> listVirtualMachineScaleSets(String resourceGroupName, String name,
-        Context context) {
-        return new PagedIterable<>(listVirtualMachineScaleSetsAsync(resourceGroupName, name, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineScaleSetListResultInner listVirtualMachineScaleSets(String resourceGroupName, String name) {
+        return listVirtualMachineScaleSetsWithResponse(resourceGroupName, name, Context.NONE).getValue();
     }
 
     /**
@@ -1420,62 +1387,6 @@ public final class FleetsClientImpl implements FleetsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineScaleSetInner>>
-        listVirtualMachineScaleSetsNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-            context -> service.listVirtualMachineScaleSetsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualMachineScaleSetInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualMachineScaleSet list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineScaleSetInner>>
-        listVirtualMachineScaleSetsNextSinglePageAsync(String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listVirtualMachineScaleSetsNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

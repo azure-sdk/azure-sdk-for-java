@@ -5,14 +5,12 @@
 package com.azure.resourcemanager.computefleet.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -44,16 +42,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
      * Compute Profile to use for running user's workloads.
      */
     private ComputeProfile computeProfile;
-
-    /*
-     * Specifies the time at which the Compute Fleet is created.
-     */
-    private OffsetDateTime timeCreated;
-
-    /*
-     * Specifies the ID which uniquely identifies a Compute Fleet.
-     */
-    private String uniqueId;
 
     /**
      * Creates an instance of FleetProperties class.
@@ -151,24 +139,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     }
 
     /**
-     * Get the timeCreated property: Specifies the time at which the Compute Fleet is created.
-     * 
-     * @return the timeCreated value.
-     */
-    public OffsetDateTime timeCreated() {
-        return this.timeCreated;
-    }
-
-    /**
-     * Get the uniqueId property: Specifies the ID which uniquely identifies a Compute Fleet.
-     * 
-     * @return the uniqueId value.
-     */
-    public String uniqueId() {
-        return this.uniqueId;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -237,11 +207,6 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
                     deserializedFleetProperties.spotPriorityProfile = SpotPriorityProfile.fromJson(reader);
                 } else if ("regularPriorityProfile".equals(fieldName)) {
                     deserializedFleetProperties.regularPriorityProfile = RegularPriorityProfile.fromJson(reader);
-                } else if ("timeCreated".equals(fieldName)) {
-                    deserializedFleetProperties.timeCreated = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
-                } else if ("uniqueId".equals(fieldName)) {
-                    deserializedFleetProperties.uniqueId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

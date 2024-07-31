@@ -13,21 +13,21 @@ public final class RegularPriorityProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         RegularPriorityProfile model = BinaryData
-            .fromString("{\"capacity\":533859005,\"minCapacity\":2053508957,\"allocationStrategy\":\"LowestPrice\"}")
+            .fromString("{\"capacity\":1079537419,\"minCapacity\":510394239,\"allocationStrategy\":\"LowestPrice\"}")
             .toObject(RegularPriorityProfile.class);
-        Assertions.assertEquals(533859005, model.capacity());
-        Assertions.assertEquals(2053508957, model.minCapacity());
+        Assertions.assertEquals(1079537419, model.capacity());
+        Assertions.assertEquals(510394239, model.minCapacity());
         Assertions.assertEquals(RegularPriorityAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        RegularPriorityProfile model = new RegularPriorityProfile().withCapacity(533859005)
-            .withMinCapacity(2053508957)
+        RegularPriorityProfile model = new RegularPriorityProfile().withCapacity(1079537419)
+            .withMinCapacity(510394239)
             .withAllocationStrategy(RegularPriorityAllocationStrategy.LOWEST_PRICE);
         model = BinaryData.fromObject(model).toObject(RegularPriorityProfile.class);
-        Assertions.assertEquals(533859005, model.capacity());
-        Assertions.assertEquals(2053508957, model.minCapacity());
+        Assertions.assertEquals(1079537419, model.capacity());
+        Assertions.assertEquals(510394239, model.minCapacity());
         Assertions.assertEquals(RegularPriorityAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
     }
 }
