@@ -26,62 +26,62 @@ public final class VirtualMachineScaleSetOSDiskTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VirtualMachineScaleSetOSDisk model = BinaryData.fromString(
-            "{\"name\":\"ehzzvypyqrim\",\"caching\":\"None\",\"writeAcceleratorEnabled\":false,\"createOption\":\"Restore\",\"diffDiskSettings\":{\"option\":\"Local\",\"placement\":\"CacheDisk\"},\"diskSizeGB\":1230254023,\"osType\":\"Windows\",\"image\":{\"uri\":\"xhcr\"},\"vhdContainers\":[\"hjtckwhd\",\"oifiyipjxsqwpgr\"],\"managedDisk\":{\"storageAccountType\":\"StandardSSD_ZRS\",\"diskEncryptionSet\":{\"id\":\"cjxvsnbyxqab\"},\"securityProfile\":{\"securityEncryptionType\":\"NonPersistedTPM\",\"diskEncryptionSet\":{\"id\":\"ysh\"}}},\"deleteOption\":\"Delete\"}")
+            "{\"name\":\"tymw\",\"caching\":\"ReadOnly\",\"writeAcceleratorEnabled\":true,\"createOption\":\"Attach\",\"diffDiskSettings\":{\"option\":\"Local\",\"placement\":\"NvmeDisk\"},\"diskSizeGB\":270329607,\"osType\":\"Linux\",\"image\":{\"uri\":\"pvkmijcmmxdcuf\"},\"vhdContainers\":[\"rpymzidnsez\"],\"managedDisk\":{\"storageAccountType\":\"Premium_ZRS\",\"diskEncryptionSet\":{\"id\":\"gfycc\"},\"securityProfile\":{\"securityEncryptionType\":\"VMGuestStateOnly\",\"diskEncryptionSet\":{\"id\":\"wzjeiach\"}}},\"deleteOption\":\"Delete\"}")
             .toObject(VirtualMachineScaleSetOSDisk.class);
-        Assertions.assertEquals("ehzzvypyqrim", model.name());
-        Assertions.assertEquals(CachingTypes.NONE, model.caching());
-        Assertions.assertEquals(false, model.writeAcceleratorEnabled());
-        Assertions.assertEquals(DiskCreateOptionTypes.RESTORE, model.createOption());
+        Assertions.assertEquals("tymw", model.name());
+        Assertions.assertEquals(CachingTypes.READ_ONLY, model.caching());
+        Assertions.assertEquals(true, model.writeAcceleratorEnabled());
+        Assertions.assertEquals(DiskCreateOptionTypes.ATTACH, model.createOption());
         Assertions.assertEquals(DiffDiskOptions.LOCAL, model.diffDiskSettings().option());
-        Assertions.assertEquals(DiffDiskPlacement.CACHE_DISK, model.diffDiskSettings().placement());
-        Assertions.assertEquals(1230254023, model.diskSizeGB());
-        Assertions.assertEquals(OperatingSystemTypes.WINDOWS, model.osType());
-        Assertions.assertEquals("xhcr", model.image().uri());
-        Assertions.assertEquals("hjtckwhd", model.vhdContainers().get(0));
-        Assertions.assertEquals(StorageAccountTypes.STANDARD_SSD_ZRS, model.managedDisk().storageAccountType());
-        Assertions.assertEquals("cjxvsnbyxqab", model.managedDisk().diskEncryptionSet().id());
-        Assertions.assertEquals(SecurityEncryptionTypes.NON_PERSISTED_TPM,
+        Assertions.assertEquals(DiffDiskPlacement.NVME_DISK, model.diffDiskSettings().placement());
+        Assertions.assertEquals(270329607, model.diskSizeGB());
+        Assertions.assertEquals(OperatingSystemTypes.LINUX, model.osType());
+        Assertions.assertEquals("pvkmijcmmxdcuf", model.image().uri());
+        Assertions.assertEquals("rpymzidnsez", model.vhdContainers().get(0));
+        Assertions.assertEquals(StorageAccountTypes.PREMIUM_ZRS, model.managedDisk().storageAccountType());
+        Assertions.assertEquals("gfycc", model.managedDisk().diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY,
             model.managedDisk().securityProfile().securityEncryptionType());
-        Assertions.assertEquals("ysh", model.managedDisk().securityProfile().diskEncryptionSet().id());
+        Assertions.assertEquals("wzjeiach", model.managedDisk().securityProfile().diskEncryptionSet().id());
         Assertions.assertEquals(DiskDeleteOptionTypes.DELETE, model.deleteOption());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        VirtualMachineScaleSetOSDisk model = new VirtualMachineScaleSetOSDisk().withName("ehzzvypyqrim")
-            .withCaching(CachingTypes.NONE)
-            .withWriteAcceleratorEnabled(false)
-            .withCreateOption(DiskCreateOptionTypes.RESTORE)
-            .withDiffDiskSettings(
-                new DiffDiskSettings().withOption(DiffDiskOptions.LOCAL).withPlacement(DiffDiskPlacement.CACHE_DISK))
-            .withDiskSizeGB(1230254023)
-            .withOsType(OperatingSystemTypes.WINDOWS)
-            .withImage(new VirtualHardDisk().withUri("xhcr"))
-            .withVhdContainers(Arrays.asList("hjtckwhd", "oifiyipjxsqwpgr"))
-            .withManagedDisk(
-                new VirtualMachineScaleSetManagedDiskParameters()
-                    .withStorageAccountType(StorageAccountTypes.STANDARD_SSD_ZRS)
-                    .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("cjxvsnbyxqab"))
+        VirtualMachineScaleSetOSDisk model
+            = new VirtualMachineScaleSetOSDisk().withName("tymw")
+                .withCaching(CachingTypes.READ_ONLY)
+                .withWriteAcceleratorEnabled(true)
+                .withCreateOption(DiskCreateOptionTypes.ATTACH)
+                .withDiffDiskSettings(
+                    new DiffDiskSettings().withOption(DiffDiskOptions.LOCAL).withPlacement(DiffDiskPlacement.NVME_DISK))
+                .withDiskSizeGB(270329607)
+                .withOsType(OperatingSystemTypes.LINUX)
+                .withImage(new VirtualHardDisk().withUri("pvkmijcmmxdcuf"))
+                .withVhdContainers(Arrays.asList("rpymzidnsez"))
+                .withManagedDisk(new VirtualMachineScaleSetManagedDiskParameters()
+                    .withStorageAccountType(StorageAccountTypes.PREMIUM_ZRS)
+                    .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("gfycc"))
                     .withSecurityProfile(new VMDiskSecurityProfile()
-                        .withSecurityEncryptionType(SecurityEncryptionTypes.NON_PERSISTED_TPM)
-                        .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("ysh"))))
-            .withDeleteOption(DiskDeleteOptionTypes.DELETE);
+                        .withSecurityEncryptionType(SecurityEncryptionTypes.VMGUEST_STATE_ONLY)
+                        .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("wzjeiach"))))
+                .withDeleteOption(DiskDeleteOptionTypes.DELETE);
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetOSDisk.class);
-        Assertions.assertEquals("ehzzvypyqrim", model.name());
-        Assertions.assertEquals(CachingTypes.NONE, model.caching());
-        Assertions.assertEquals(false, model.writeAcceleratorEnabled());
-        Assertions.assertEquals(DiskCreateOptionTypes.RESTORE, model.createOption());
+        Assertions.assertEquals("tymw", model.name());
+        Assertions.assertEquals(CachingTypes.READ_ONLY, model.caching());
+        Assertions.assertEquals(true, model.writeAcceleratorEnabled());
+        Assertions.assertEquals(DiskCreateOptionTypes.ATTACH, model.createOption());
         Assertions.assertEquals(DiffDiskOptions.LOCAL, model.diffDiskSettings().option());
-        Assertions.assertEquals(DiffDiskPlacement.CACHE_DISK, model.diffDiskSettings().placement());
-        Assertions.assertEquals(1230254023, model.diskSizeGB());
-        Assertions.assertEquals(OperatingSystemTypes.WINDOWS, model.osType());
-        Assertions.assertEquals("xhcr", model.image().uri());
-        Assertions.assertEquals("hjtckwhd", model.vhdContainers().get(0));
-        Assertions.assertEquals(StorageAccountTypes.STANDARD_SSD_ZRS, model.managedDisk().storageAccountType());
-        Assertions.assertEquals("cjxvsnbyxqab", model.managedDisk().diskEncryptionSet().id());
-        Assertions.assertEquals(SecurityEncryptionTypes.NON_PERSISTED_TPM,
+        Assertions.assertEquals(DiffDiskPlacement.NVME_DISK, model.diffDiskSettings().placement());
+        Assertions.assertEquals(270329607, model.diskSizeGB());
+        Assertions.assertEquals(OperatingSystemTypes.LINUX, model.osType());
+        Assertions.assertEquals("pvkmijcmmxdcuf", model.image().uri());
+        Assertions.assertEquals("rpymzidnsez", model.vhdContainers().get(0));
+        Assertions.assertEquals(StorageAccountTypes.PREMIUM_ZRS, model.managedDisk().storageAccountType());
+        Assertions.assertEquals("gfycc", model.managedDisk().diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY,
             model.managedDisk().securityProfile().securityEncryptionType());
-        Assertions.assertEquals("ysh", model.managedDisk().securityProfile().diskEncryptionSet().id());
+        Assertions.assertEquals("wzjeiach", model.managedDisk().securityProfile().diskEncryptionSet().id());
         Assertions.assertEquals(DiskDeleteOptionTypes.DELETE, model.deleteOption());
     }
 }

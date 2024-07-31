@@ -13,18 +13,18 @@ public final class VirtualMachineScaleSetHardwareProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VirtualMachineScaleSetHardwareProfile model
-            = BinaryData.fromString("{\"vmSizeProperties\":{\"vCPUsAvailable\":221682106,\"vCPUsPerCore\":1461039431}}")
+            = BinaryData.fromString("{\"vmSizeProperties\":{\"vCPUsAvailable\":957944639,\"vCPUsPerCore\":1672254683}}")
                 .toObject(VirtualMachineScaleSetHardwareProfile.class);
-        Assertions.assertEquals(221682106, model.vmSizeProperties().vCPUsAvailable());
-        Assertions.assertEquals(1461039431, model.vmSizeProperties().vCPUsPerCore());
+        Assertions.assertEquals(957944639, model.vmSizeProperties().vCPUsAvailable());
+        Assertions.assertEquals(1672254683, model.vmSizeProperties().vCPUsPerCore());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VirtualMachineScaleSetHardwareProfile model = new VirtualMachineScaleSetHardwareProfile()
-            .withVmSizeProperties(new VMSizeProperties().withVCPUsAvailable(221682106).withVCPUsPerCore(1461039431));
+            .withVmSizeProperties(new VMSizeProperties().withVCPUsAvailable(957944639).withVCPUsPerCore(1672254683));
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetHardwareProfile.class);
-        Assertions.assertEquals(221682106, model.vmSizeProperties().vCPUsAvailable());
-        Assertions.assertEquals(1461039431, model.vmSizeProperties().vCPUsPerCore());
+        Assertions.assertEquals(957944639, model.vmSizeProperties().vCPUsAvailable());
+        Assertions.assertEquals(1672254683, model.vmSizeProperties().vCPUsPerCore());
     }
 }

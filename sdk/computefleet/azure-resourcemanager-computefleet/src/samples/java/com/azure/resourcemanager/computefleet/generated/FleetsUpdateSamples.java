@@ -141,7 +141,7 @@ public final class FleetsUpdateSamples {
                 .withRegularPriorityProfile(new RegularPriorityProfile().withCapacity(20)
                     .withMinCapacity(10)
                     .withAllocationStrategy(RegularPriorityAllocationStrategy.LOWEST_PRICE))
-                .withVmSizesProfile(Arrays.asList(new VmSizeProfile().withName("Standard_d1_v2").withRank(19225)))
+                .withVmSizesProfile(new VmSizeProfile())
                 .withComputeProfile(
                     new ComputeProfile()
                         .withBaseVirtualMachineProfile(

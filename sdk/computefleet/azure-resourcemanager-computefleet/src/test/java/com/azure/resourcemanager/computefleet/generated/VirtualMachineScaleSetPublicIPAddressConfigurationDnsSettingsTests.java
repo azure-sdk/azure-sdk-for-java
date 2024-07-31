@@ -12,21 +12,21 @@ import org.junit.jupiter.api.Assertions;
 public final class VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettingsTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings model = BinaryData
-            .fromString("{\"domainNameLabel\":\"plwzbhvgyugu\",\"domainNameLabelScope\":\"ResourceGroupReuse\"}")
-            .toObject(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings.class);
-        Assertions.assertEquals("plwzbhvgyugu", model.domainNameLabel());
-        Assertions.assertEquals(DomainNameLabelScopeTypes.RESOURCE_GROUP_REUSE, model.domainNameLabelScope());
+        VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings model
+            = BinaryData.fromString("{\"domainNameLabel\":\"l\",\"domainNameLabelScope\":\"TenantReuse\"}")
+                .toObject(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings.class);
+        Assertions.assertEquals("l", model.domainNameLabel());
+        Assertions.assertEquals(DomainNameLabelScopeTypes.TENANT_REUSE, model.domainNameLabelScope());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings model
-            = new VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings().withDomainNameLabel("plwzbhvgyugu")
-                .withDomainNameLabelScope(DomainNameLabelScopeTypes.RESOURCE_GROUP_REUSE);
+            = new VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings().withDomainNameLabel("l")
+                .withDomainNameLabelScope(DomainNameLabelScopeTypes.TENANT_REUSE);
         model = BinaryData.fromObject(model)
             .toObject(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings.class);
-        Assertions.assertEquals("plwzbhvgyugu", model.domainNameLabel());
-        Assertions.assertEquals(DomainNameLabelScopeTypes.RESOURCE_GROUP_REUSE, model.domainNameLabelScope());
+        Assertions.assertEquals("l", model.domainNameLabel());
+        Assertions.assertEquals(DomainNameLabelScopeTypes.TENANT_REUSE, model.domainNameLabelScope());
     }
 }
