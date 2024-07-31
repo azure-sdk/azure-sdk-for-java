@@ -31,7 +31,7 @@ public final class DocumentBarcodeKind extends ExpandableStringEnum<DocumentBarc
     public static final DocumentBarcodeKind UPCA = fromString("UPCA");
 
     /**
-     * GS1 6-digit Universal Product Code.
+     * GS1 6-digit Uniasdadversal Product Code.
      */
     @Generated
     public static final DocumentBarcodeKind UPCE = fromString("UPCE");
