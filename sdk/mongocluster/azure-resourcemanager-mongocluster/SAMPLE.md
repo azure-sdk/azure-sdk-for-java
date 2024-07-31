@@ -6,7 +6,6 @@
 - [CreateOrUpdate](#firewallrules_createorupdate)
 - [Delete](#firewallrules_delete)
 - [Get](#firewallrules_get)
-- [ListByMongoCluster](#firewallrules_listbymongocluster)
 
 ## MongoClusters
 
@@ -106,29 +105,6 @@ public final class FirewallRulesGetSamples {
         getsAFirewallRuleOnAMongoClusterResource(com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
         manager.firewallRules()
             .getWithResponse("TestGroup", "myMongoCluster", "rule1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FirewallRules_ListByMongoCluster
-
-```java
-/**
- * Samples for FirewallRules ListByMongoCluster.
- */
-public final class FirewallRulesListByMongoClusterSamples {
-    /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
-     * MongoClusters_FirewallRuleList.json
-     */
-    /**
-     * Sample code: List the firewall rules on a Mongo Cluster resource.
-     * 
-     * @param manager Entry point to MongoClusterManager.
-     */
-    public static void listTheFirewallRulesOnAMongoClusterResource(
-        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
-        manager.firewallRules().listByMongoCluster("TestGroup", "myMongoCluster", com.azure.core.util.Context.NONE);
     }
 }
 ```

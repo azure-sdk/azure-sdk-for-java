@@ -107,7 +107,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/firewallRules")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FirewallRuleListResult>> listByMongoCluster(@HostParam("endpoint") String endpoint,
+        Mono<Response<FirewallRuleListResult>> listByMongoClusterTest(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("mongoClusterName") String mongoClusterName, @HeaderParam("accept") String accept,
@@ -117,7 +117,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FirewallRuleListResult>> listByMongoClusterNext(
+        Mono<Response<FirewallRuleListResult>> listByMongoClusterTestNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
             @HeaderParam("accept") String accept, Context context);
     }
@@ -752,7 +752,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterTestSinglePageAsync(String resourceGroupName,
         String mongoClusterName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -772,8 +772,9 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByMongoCluster(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, mongoClusterName, accept, context))
+            .withContext(
+                context -> service.listByMongoClusterTest(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, mongoClusterName, accept, context))
             .<PagedResponse<FirewallRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -792,7 +793,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterTestSinglePageAsync(String resourceGroupName,
         String mongoClusterName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -813,8 +814,8 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByMongoCluster(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, mongoClusterName, accept, context)
+            .listByMongoClusterTest(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, mongoClusterName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -830,9 +831,10 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * @return the response of a FirewallRule list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FirewallRuleInner> listByMongoClusterAsync(String resourceGroupName, String mongoClusterName) {
-        return new PagedFlux<>(() -> listByMongoClusterSinglePageAsync(resourceGroupName, mongoClusterName),
-            nextLink -> listByMongoClusterNextSinglePageAsync(nextLink));
+    private PagedFlux<FirewallRuleInner> listByMongoClusterTestAsync(String resourceGroupName,
+        String mongoClusterName) {
+        return new PagedFlux<>(() -> listByMongoClusterTestSinglePageAsync(resourceGroupName, mongoClusterName),
+            nextLink -> listByMongoClusterTestNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -847,10 +849,11 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * @return the response of a FirewallRule list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FirewallRuleInner> listByMongoClusterAsync(String resourceGroupName, String mongoClusterName,
+    private PagedFlux<FirewallRuleInner> listByMongoClusterTestAsync(String resourceGroupName, String mongoClusterName,
         Context context) {
-        return new PagedFlux<>(() -> listByMongoClusterSinglePageAsync(resourceGroupName, mongoClusterName, context),
-            nextLink -> listByMongoClusterNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(
+            () -> listByMongoClusterTestSinglePageAsync(resourceGroupName, mongoClusterName, context),
+            nextLink -> listByMongoClusterTestNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -864,8 +867,8 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * @return the response of a FirewallRule list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FirewallRuleInner> listByMongoCluster(String resourceGroupName, String mongoClusterName) {
-        return new PagedIterable<>(listByMongoClusterAsync(resourceGroupName, mongoClusterName));
+    public PagedIterable<FirewallRuleInner> listByMongoClusterTest(String resourceGroupName, String mongoClusterName) {
+        return new PagedIterable<>(listByMongoClusterTestAsync(resourceGroupName, mongoClusterName));
     }
 
     /**
@@ -880,9 +883,9 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * @return the response of a FirewallRule list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<FirewallRuleInner> listByMongoCluster(String resourceGroupName, String mongoClusterName,
+    public PagedIterable<FirewallRuleInner> listByMongoClusterTest(String resourceGroupName, String mongoClusterName,
         Context context) {
-        return new PagedIterable<>(listByMongoClusterAsync(resourceGroupName, mongoClusterName, context));
+        return new PagedIterable<>(listByMongoClusterTestAsync(resourceGroupName, mongoClusterName, context));
     }
 
     /**
@@ -896,7 +899,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterTestNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -907,7 +910,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByMongoClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+                context -> service.listByMongoClusterTestNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<FirewallRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -925,7 +928,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<FirewallRuleInner>> listByMongoClusterTestNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -936,7 +939,7 @@ public final class FirewallRulesClientImpl implements FirewallRulesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByMongoClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByMongoClusterTestNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

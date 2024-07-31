@@ -23,7 +23,7 @@ public final class PrivateEndpointConnectionsListByMongoClusterMockTests {
     @Test
     public void testListByMongoCluster() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"groupIds\":[\"zfbuhf\"],\"privateEndpoint\":{\"id\":\"axkffei\"},\"privateLinkServiceConnectionState\":{\"status\":\"Rejected\",\"description\":\"vmezy\",\"actionsRequired\":\"hxmzsbbzoggig\"},\"provisioningState\":\"Failed\"},\"id\":\"ur\",\"name\":\"jx\",\"type\":\"jnspydp\"}]}";
+            = "{\"value\":[{\"properties\":{\"groupIds\":[\"uo\"],\"privateEndpoint\":{\"id\":\"kg\"},\"privateLinkServiceConnectionState\":{\"status\":\"Rejected\",\"description\":\"uimjmvx\",\"actionsRequired\":\"duugidyjr\"},\"provisioningState\":\"Succeeded\"},\"id\":\"aos\",\"name\":\"e\",\"type\":\"csonpclhoco\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,13 +33,13 @@ public final class PrivateEndpointConnectionsListByMongoClusterMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<PrivateEndpointConnectionResource> response = manager.privateEndpointConnections()
-            .listByMongoCluster("onpc", "hocohslkev", com.azure.core.util.Context.NONE);
+            .listByMongoCluster("rkcciwwzjuqk", "rsa", com.azure.core.util.Context.NONE);
 
         Assertions.assertEquals(PrivateEndpointServiceConnectionStatus.REJECTED,
             response.iterator().next().properties().privateLinkServiceConnectionState().status());
-        Assertions.assertEquals("vmezy",
+        Assertions.assertEquals("uimjmvx",
             response.iterator().next().properties().privateLinkServiceConnectionState().description());
-        Assertions.assertEquals("hxmzsbbzoggig",
+        Assertions.assertEquals("duugidyjr",
             response.iterator().next().properties().privateLinkServiceConnectionState().actionsRequired());
     }
 }

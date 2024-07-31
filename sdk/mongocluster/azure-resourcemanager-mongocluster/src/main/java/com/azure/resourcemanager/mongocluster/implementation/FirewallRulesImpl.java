@@ -56,16 +56,16 @@ public final class FirewallRulesImpl implements FirewallRules {
         this.serviceClient().delete(resourceGroupName, mongoClusterName, firewallRuleName, context);
     }
 
-    public PagedIterable<FirewallRule> listByMongoCluster(String resourceGroupName, String mongoClusterName) {
+    public PagedIterable<FirewallRule> listByMongoClusterTest(String resourceGroupName, String mongoClusterName) {
         PagedIterable<FirewallRuleInner> inner
-            = this.serviceClient().listByMongoCluster(resourceGroupName, mongoClusterName);
+            = this.serviceClient().listByMongoClusterTest(resourceGroupName, mongoClusterName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FirewallRuleImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<FirewallRule> listByMongoCluster(String resourceGroupName, String mongoClusterName,
+    public PagedIterable<FirewallRule> listByMongoClusterTest(String resourceGroupName, String mongoClusterName,
         Context context) {
         PagedIterable<FirewallRuleInner> inner
-            = this.serviceClient().listByMongoCluster(resourceGroupName, mongoClusterName, context);
+            = this.serviceClient().listByMongoClusterTest(resourceGroupName, mongoClusterName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new FirewallRuleImpl(inner1, this.manager()));
     }
 
