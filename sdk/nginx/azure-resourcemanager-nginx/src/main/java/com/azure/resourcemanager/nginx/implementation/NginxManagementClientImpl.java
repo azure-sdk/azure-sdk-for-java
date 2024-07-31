@@ -199,7 +199,7 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-01-01-preview";
+        this.apiVersion = "2024-06-01-preview";
         this.certificates = new CertificatesClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
         this.deployments = new DeploymentsClientImpl(this);
