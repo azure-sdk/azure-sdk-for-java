@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ManagedEnvironments_CustomInfrastructureResourceGroup_Create.json
      */
     /**
@@ -77,7 +77,7 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ManagedEnvironments_CreateOrUpdate.json
      */
     /**

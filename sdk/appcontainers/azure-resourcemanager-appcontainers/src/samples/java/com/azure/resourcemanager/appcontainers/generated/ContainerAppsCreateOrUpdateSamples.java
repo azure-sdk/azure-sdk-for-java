@@ -67,7 +67,7 @@ import java.util.Map;
  */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ContainerApps_SourceToCloudApp_CreateOrUpdate.json
      */
     /**
@@ -185,7 +185,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ContainerApps_CreateOrUpdate_ConnectedEnvironment.json
      */
     /**
@@ -287,7 +287,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ContainerApps_CreateOrUpdate
+     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/ContainerApps_CreateOrUpdate
      * .json
      */
     /**
@@ -431,7 +431,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ContainerApps_TcpApp_CreateOrUpdate.json
      */
     /**
@@ -468,7 +468,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ContainerApps_Kind_CreateOrUpdate.json
      */
     /**
@@ -497,7 +497,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
      * ContainerApps_ManagedBy_CreateOrUpdate.json
      */
     /**
