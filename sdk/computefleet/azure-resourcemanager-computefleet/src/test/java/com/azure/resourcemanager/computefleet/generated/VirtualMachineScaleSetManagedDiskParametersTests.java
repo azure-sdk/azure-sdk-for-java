@@ -16,28 +16,28 @@ public final class VirtualMachineScaleSetManagedDiskParametersTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VirtualMachineScaleSetManagedDiskParameters model = BinaryData.fromString(
-            "{\"storageAccountType\":\"Premium_LRS\",\"diskEncryptionSet\":{\"id\":\"qcjm\"},\"securityProfile\":{\"securityEncryptionType\":\"NonPersistedTPM\",\"diskEncryptionSet\":{\"id\":\"qidtqajzyu\"}}}")
+            "{\"storageAccountType\":\"Premium_ZRS\",\"diskEncryptionSet\":{\"id\":\"i\"},\"securityProfile\":{\"securityEncryptionType\":\"VMGuestStateOnly\",\"diskEncryptionSet\":{\"id\":\"swjdkirso\"}}}")
             .toObject(VirtualMachineScaleSetManagedDiskParameters.class);
-        Assertions.assertEquals(StorageAccountTypes.PREMIUM_LRS, model.storageAccountType());
-        Assertions.assertEquals("qcjm", model.diskEncryptionSet().id());
-        Assertions.assertEquals(SecurityEncryptionTypes.NON_PERSISTED_TPM,
+        Assertions.assertEquals(StorageAccountTypes.PREMIUM_ZRS, model.storageAccountType());
+        Assertions.assertEquals("i", model.diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY,
             model.securityProfile().securityEncryptionType());
-        Assertions.assertEquals("qidtqajzyu", model.securityProfile().diskEncryptionSet().id());
+        Assertions.assertEquals("swjdkirso", model.securityProfile().diskEncryptionSet().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VirtualMachineScaleSetManagedDiskParameters model
-            = new VirtualMachineScaleSetManagedDiskParameters().withStorageAccountType(StorageAccountTypes.PREMIUM_LRS)
-                .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("qcjm"))
+            = new VirtualMachineScaleSetManagedDiskParameters().withStorageAccountType(StorageAccountTypes.PREMIUM_ZRS)
+                .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("i"))
                 .withSecurityProfile(
-                    new VMDiskSecurityProfile().withSecurityEncryptionType(SecurityEncryptionTypes.NON_PERSISTED_TPM)
-                        .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("qidtqajzyu")));
+                    new VMDiskSecurityProfile().withSecurityEncryptionType(SecurityEncryptionTypes.VMGUEST_STATE_ONLY)
+                        .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("swjdkirso")));
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetManagedDiskParameters.class);
-        Assertions.assertEquals(StorageAccountTypes.PREMIUM_LRS, model.storageAccountType());
-        Assertions.assertEquals("qcjm", model.diskEncryptionSet().id());
-        Assertions.assertEquals(SecurityEncryptionTypes.NON_PERSISTED_TPM,
+        Assertions.assertEquals(StorageAccountTypes.PREMIUM_ZRS, model.storageAccountType());
+        Assertions.assertEquals("i", model.diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY,
             model.securityProfile().securityEncryptionType());
-        Assertions.assertEquals("qidtqajzyu", model.securityProfile().diskEncryptionSet().id());
+        Assertions.assertEquals("swjdkirso", model.securityProfile().diskEncryptionSet().id());
     }
 }

@@ -24,28 +24,28 @@ public final class VirtualMachineScaleSetNetworkProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VirtualMachineScaleSetNetworkProfile model = BinaryData.fromString(
-            "{\"healthProbe\":{\"id\":\"xgcp\"},\"networkInterfaceConfigurations\":[{\"name\":\"maajrmvdjwzrlo\",\"properties\":{\"primary\":true,\"enableAcceleratedNetworking\":false,\"disableTcpStateTracking\":false,\"enableFpga\":true,\"networkSecurityGroup\":{\"id\":\"ctbzaq\"},\"dnsSettings\":{\"dnsServers\":[\"cbkbfkg\"]},\"ipConfigurations\":[{\"name\":\"dkexxppofm\",\"properties\":{}},{\"name\":\"x\",\"properties\":{}}],\"enableIPForwarding\":false,\"deleteOption\":\"Detach\",\"auxiliaryMode\":\"AcceleratedConnections\",\"auxiliarySku\":\"A4\"}},{\"name\":\"jjxhvpmo\",\"properties\":{\"primary\":false,\"enableAcceleratedNetworking\":false,\"disableTcpStateTracking\":false,\"enableFpga\":true,\"networkSecurityGroup\":{\"id\":\"jnxqbzvddntwn\"},\"dnsSettings\":{\"dnsServers\":[\"btwnpzaoqvuhrhcf\",\"cyddglmjthjqk\",\"pyeicxm\",\"ciwqvhk\"]},\"ipConfigurations\":[{\"name\":\"xuigdtopbobj\",\"properties\":{}},{\"name\":\"hm\",\"properties\":{}},{\"name\":\"u\",\"properties\":{}},{\"name\":\"a\",\"properties\":{}}],\"enableIPForwarding\":false,\"deleteOption\":\"Detach\",\"auxiliaryMode\":\"AcceleratedConnections\",\"auxiliarySku\":\"None\"}}],\"networkApiVersion\":\"2020-11-01\"}")
+            "{\"healthProbe\":{\"id\":\"zyulp\"},\"networkInterfaceConfigurations\":[{\"name\":\"jkrlkhbzhfepg\",\"properties\":{\"primary\":false,\"enableAcceleratedNetworking\":false,\"disableTcpStateTracking\":true,\"enableFpga\":true,\"networkSecurityGroup\":{\"id\":\"paierh\"},\"dnsSettings\":{\"dnsServers\":[\"glu\",\"majtjaod\"]},\"ipConfigurations\":[{\"name\":\"bnbdxkqpxokajion\",\"properties\":{}},{\"name\":\"mexgstxgcp\",\"properties\":{}},{\"name\":\"gmaajrm\",\"properties\":{}},{\"name\":\"jwzrl\",\"properties\":{}}],\"enableIPForwarding\":true,\"deleteOption\":\"Detach\",\"auxiliaryMode\":\"None\",\"auxiliarySku\":\"A1\"}}],\"networkApiVersion\":\"2020-11-01\"}")
             .toObject(VirtualMachineScaleSetNetworkProfile.class);
-        Assertions.assertEquals("xgcp", model.healthProbe().id());
-        Assertions.assertEquals("maajrmvdjwzrlo", model.networkInterfaceConfigurations().get(0).name());
-        Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().primary());
+        Assertions.assertEquals("zyulp", model.healthProbe().id());
+        Assertions.assertEquals("jkrlkhbzhfepg", model.networkInterfaceConfigurations().get(0).name());
+        Assertions.assertEquals(false, model.networkInterfaceConfigurations().get(0).properties().primary());
         Assertions.assertEquals(false,
             model.networkInterfaceConfigurations().get(0).properties().enableAcceleratedNetworking());
-        Assertions.assertEquals(false,
+        Assertions.assertEquals(true,
             model.networkInterfaceConfigurations().get(0).properties().disableTcpStateTracking());
         Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().enableFpga());
-        Assertions.assertEquals("ctbzaq",
+        Assertions.assertEquals("paierh",
             model.networkInterfaceConfigurations().get(0).properties().networkSecurityGroup().id());
-        Assertions.assertEquals("cbkbfkg",
+        Assertions.assertEquals("glu",
             model.networkInterfaceConfigurations().get(0).properties().dnsSettings().dnsServers().get(0));
-        Assertions.assertEquals("dkexxppofm",
+        Assertions.assertEquals("bnbdxkqpxokajion",
             model.networkInterfaceConfigurations().get(0).properties().ipConfigurations().get(0).name());
-        Assertions.assertEquals(false, model.networkInterfaceConfigurations().get(0).properties().enableIPForwarding());
+        Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().enableIPForwarding());
         Assertions.assertEquals(DeleteOptions.DETACH,
             model.networkInterfaceConfigurations().get(0).properties().deleteOption());
-        Assertions.assertEquals(NetworkInterfaceAuxiliaryMode.ACCELERATED_CONNECTIONS,
+        Assertions.assertEquals(NetworkInterfaceAuxiliaryMode.NONE,
             model.networkInterfaceConfigurations().get(0).properties().auxiliaryMode());
-        Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A4,
+        Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A1,
             model.networkInterfaceConfigurations().get(0).properties().auxiliarySku());
         Assertions.assertEquals(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE, model.networkApiVersion());
     }
@@ -53,69 +53,51 @@ public final class VirtualMachineScaleSetNetworkProfileTests {
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VirtualMachineScaleSetNetworkProfile model
-            = new VirtualMachineScaleSetNetworkProfile().withHealthProbe(new ApiEntityReference().withId("xgcp"))
-                .withNetworkInterfaceConfigurations(Arrays.asList(
-                    new VirtualMachineScaleSetNetworkConfiguration().withName("maajrmvdjwzrlo")
-                        .withProperties(new VirtualMachineScaleSetNetworkConfigurationProperties()
-                            .withPrimary(true)
-                            .withEnableAcceleratedNetworking(false)
-                            .withDisableTcpStateTracking(false)
-                            .withEnableFpga(true)
-                            .withNetworkSecurityGroup(new SubResource().withId("ctbzaq"))
-                            .withDnsSettings(new VirtualMachineScaleSetNetworkConfigurationDnsSettings()
-                                .withDnsServers(Arrays.asList("cbkbfkg")))
-                            .withIpConfigurations(Arrays.asList(
-                                new VirtualMachineScaleSetIPConfiguration().withName("dkexxppofm")
-                                    .withProperties(new VirtualMachineScaleSetIPConfigurationProperties()),
-                                new VirtualMachineScaleSetIPConfiguration().withName("x")
-                                    .withProperties(new VirtualMachineScaleSetIPConfigurationProperties())))
-                            .withEnableIPForwarding(false)
-                            .withDeleteOption(DeleteOptions.DETACH)
-                            .withAuxiliaryMode(NetworkInterfaceAuxiliaryMode.ACCELERATED_CONNECTIONS)
-                            .withAuxiliarySku(NetworkInterfaceAuxiliarySku.A4)),
-                    new VirtualMachineScaleSetNetworkConfiguration().withName("jjxhvpmo")
+            = new VirtualMachineScaleSetNetworkProfile().withHealthProbe(new ApiEntityReference().withId("zyulp"))
+                .withNetworkInterfaceConfigurations(
+                    Arrays.asList(new VirtualMachineScaleSetNetworkConfiguration().withName("jkrlkhbzhfepg")
                         .withProperties(new VirtualMachineScaleSetNetworkConfigurationProperties().withPrimary(false)
                             .withEnableAcceleratedNetworking(false)
-                            .withDisableTcpStateTracking(false)
+                            .withDisableTcpStateTracking(true)
                             .withEnableFpga(true)
-                            .withNetworkSecurityGroup(new SubResource().withId("jnxqbzvddntwn"))
-                            .withDnsSettings(new VirtualMachineScaleSetNetworkConfigurationDnsSettings().withDnsServers(
-                                Arrays.asList("btwnpzaoqvuhrhcf", "cyddglmjthjqk", "pyeicxm", "ciwqvhk")))
+                            .withNetworkSecurityGroup(new SubResource().withId("paierh"))
+                            .withDnsSettings(new VirtualMachineScaleSetNetworkConfigurationDnsSettings()
+                                .withDnsServers(Arrays.asList("glu", "majtjaod")))
                             .withIpConfigurations(Arrays.asList(
-                                new VirtualMachineScaleSetIPConfiguration().withName("xuigdtopbobj")
+                                new VirtualMachineScaleSetIPConfiguration().withName("bnbdxkqpxokajion")
                                     .withProperties(new VirtualMachineScaleSetIPConfigurationProperties()),
-                                new VirtualMachineScaleSetIPConfiguration().withName("hm")
+                                new VirtualMachineScaleSetIPConfiguration().withName("mexgstxgcp")
                                     .withProperties(new VirtualMachineScaleSetIPConfigurationProperties()),
-                                new VirtualMachineScaleSetIPConfiguration().withName("u")
+                                new VirtualMachineScaleSetIPConfiguration().withName("gmaajrm")
                                     .withProperties(new VirtualMachineScaleSetIPConfigurationProperties()),
-                                new VirtualMachineScaleSetIPConfiguration().withName("a")
+                                new VirtualMachineScaleSetIPConfiguration().withName("jwzrl")
                                     .withProperties(new VirtualMachineScaleSetIPConfigurationProperties())))
-                            .withEnableIPForwarding(false)
+                            .withEnableIPForwarding(true)
                             .withDeleteOption(DeleteOptions.DETACH)
-                            .withAuxiliaryMode(NetworkInterfaceAuxiliaryMode.ACCELERATED_CONNECTIONS)
-                            .withAuxiliarySku(NetworkInterfaceAuxiliarySku.NONE))))
+                            .withAuxiliaryMode(NetworkInterfaceAuxiliaryMode.NONE)
+                            .withAuxiliarySku(NetworkInterfaceAuxiliarySku.A1))))
                 .withNetworkApiVersion(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE);
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetNetworkProfile.class);
-        Assertions.assertEquals("xgcp", model.healthProbe().id());
-        Assertions.assertEquals("maajrmvdjwzrlo", model.networkInterfaceConfigurations().get(0).name());
-        Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().primary());
+        Assertions.assertEquals("zyulp", model.healthProbe().id());
+        Assertions.assertEquals("jkrlkhbzhfepg", model.networkInterfaceConfigurations().get(0).name());
+        Assertions.assertEquals(false, model.networkInterfaceConfigurations().get(0).properties().primary());
         Assertions.assertEquals(false,
             model.networkInterfaceConfigurations().get(0).properties().enableAcceleratedNetworking());
-        Assertions.assertEquals(false,
+        Assertions.assertEquals(true,
             model.networkInterfaceConfigurations().get(0).properties().disableTcpStateTracking());
         Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().enableFpga());
-        Assertions.assertEquals("ctbzaq",
+        Assertions.assertEquals("paierh",
             model.networkInterfaceConfigurations().get(0).properties().networkSecurityGroup().id());
-        Assertions.assertEquals("cbkbfkg",
+        Assertions.assertEquals("glu",
             model.networkInterfaceConfigurations().get(0).properties().dnsSettings().dnsServers().get(0));
-        Assertions.assertEquals("dkexxppofm",
+        Assertions.assertEquals("bnbdxkqpxokajion",
             model.networkInterfaceConfigurations().get(0).properties().ipConfigurations().get(0).name());
-        Assertions.assertEquals(false, model.networkInterfaceConfigurations().get(0).properties().enableIPForwarding());
+        Assertions.assertEquals(true, model.networkInterfaceConfigurations().get(0).properties().enableIPForwarding());
         Assertions.assertEquals(DeleteOptions.DETACH,
             model.networkInterfaceConfigurations().get(0).properties().deleteOption());
-        Assertions.assertEquals(NetworkInterfaceAuxiliaryMode.ACCELERATED_CONNECTIONS,
+        Assertions.assertEquals(NetworkInterfaceAuxiliaryMode.NONE,
             model.networkInterfaceConfigurations().get(0).properties().auxiliaryMode());
-        Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A4,
+        Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A1,
             model.networkInterfaceConfigurations().get(0).properties().auxiliarySku());
         Assertions.assertEquals(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE, model.networkApiVersion());
     }
