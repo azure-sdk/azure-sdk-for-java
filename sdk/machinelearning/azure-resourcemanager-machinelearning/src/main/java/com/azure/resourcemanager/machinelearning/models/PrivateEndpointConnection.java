@@ -10,329 +10,400 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import java.util.Map;
 
-/** An immutable client-side representation of PrivateEndpointConnection. */
+/**
+ * An immutable client-side representation of PrivateEndpointConnection.
+ */
 public interface PrivateEndpointConnection {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the identity property: The identity of the resource.
-     *
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * 
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
 
     /**
-     * Gets the location property: Specifies the location of the resource.
-     *
+     * Gets the location property: Same as workspace location.
+     * 
      * @return the location value.
      */
     String location();
 
     /**
-     * Gets the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the sku property: The sku of the workspace.
-     *
+     * Gets the sku property: Optional. This field is required to be implemented by the RP because AML is supporting
+     * more than one tier.
+     * 
      * @return the sku value.
      */
     Sku sku();
 
     /**
+     * Gets the tags property: Dictionary of &lt;string&gt;.
+     * 
+     * @return the tags value.
+     */
+    Map<String, String> tags();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
-     * Gets the privateEndpoint property: The resource of private end point.
-     *
+     * Gets the privateEndpoint property: The Private Endpoint resource.
+     * 
      * @return the privateEndpoint value.
      */
-    PrivateEndpoint privateEndpoint();
+    WorkspacePrivateEndpointResource privateEndpoint();
 
     /**
-     * Gets the privateLinkServiceConnectionState property: A collection of information about the state of the
-     * connection between service consumer and provider.
-     *
+     * Gets the privateLinkServiceConnectionState property: The connection state.
+     * 
      * @return the privateLinkServiceConnectionState value.
      */
     PrivateLinkServiceConnectionState privateLinkServiceConnectionState();
 
     /**
-     * Gets the provisioningState property: The provisioning state of the private endpoint connection resource.
-     *
+     * Gets the provisioningState property: The current provisioning state.
+     * 
      * @return the provisioningState value.
      */
     PrivateEndpointConnectionProvisioningState provisioningState();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner object.
-     *
+     * 
      * @return the inner object.
      */
     PrivateEndpointConnectionInner innerModel();
 
-    /** The entirety of the PrivateEndpointConnection definition. */
+    /**
+     * The entirety of the PrivateEndpointConnection definition.
+     */
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
-    /** The PrivateEndpointConnection definition stages. */
+
+    /**
+     * The PrivateEndpointConnection definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the PrivateEndpointConnection definition. */
+        /**
+         * The first stage of the PrivateEndpointConnection definition.
+         */
         interface Blank extends WithParentResource {
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify parent resource. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify parent resource.
+         */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, workspaceName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param workspaceName Azure Machine Learning Workspace Name.
              * @return the next definition stage.
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the PrivateEndpointConnection definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithLocation,
-                DefinitionStages.WithTags,
-                DefinitionStages.WithIdentity,
-                DefinitionStages.WithSku,
-                DefinitionStages.WithPrivateEndpoint,
-                DefinitionStages.WithPrivateLinkServiceConnectionState {
+        interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithTags,
+            DefinitionStages.WithIdentity, DefinitionStages.WithSku, DefinitionStages.WithPrivateEndpoint,
+            DefinitionStages.WithPrivateLinkServiceConnectionState, DefinitionStages.WithProvisioningState {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             PrivateEndpointConnection create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             PrivateEndpointConnection create(Context context);
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify location. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
-             * @param location Specifies the location of the resource.
+             * 
+             * @param location Same as workspace location.
              * @return the next definition stage.
              */
             WithCreate withRegion(Region location);
 
             /**
              * Specifies the region for the resource.
-             *
-             * @param location Specifies the location of the resource.
+             * 
+             * @param location Same as workspace location.
              * @return the next definition stage.
              */
             WithCreate withRegion(String location);
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify tags. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify tags.
+         */
         interface WithTags {
             /**
-             * Specifies the tags property: Contains resource tags defined as key/value pairs..
-             *
-             * @param tags Contains resource tags defined as key/value pairs.
+             * Specifies the tags property: Dictionary of &lt;string&gt;.
+             * 
+             * @param tags Dictionary of &lt;string&gt;.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify identity. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify identity.
+         */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the resource..
-             *
-             * @param identity The identity of the resource.
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
+             * 
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify sku. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify sku.
+         */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku of the workspace..
-             *
-             * @param sku The sku of the workspace.
+             * Specifies the sku property: Optional. This field is required to be implemented by the RP because AML is
+             * supporting more than one tier.
+             * 
+             * @param sku Optional. This field is required to be implemented by the RP because AML is supporting more
+             * than one tier.
              * @return the next definition stage.
              */
             WithCreate withSku(Sku sku);
         }
-        /** The stage of the PrivateEndpointConnection definition allowing to specify privateEndpoint. */
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify privateEndpoint.
+         */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
-             *
-             * @param privateEndpoint The resource of private end point.
+             * Specifies the privateEndpoint property: The Private Endpoint resource..
+             * 
+             * @param privateEndpoint The Private Endpoint resource.
              * @return the next definition stage.
              */
-            WithCreate withPrivateEndpoint(PrivateEndpoint privateEndpoint);
+            WithCreate withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint);
         }
+
         /**
          * The stage of the PrivateEndpointConnection definition allowing to specify privateLinkServiceConnectionState.
          */
         interface WithPrivateLinkServiceConnectionState {
             /**
-             * Specifies the privateLinkServiceConnectionState property: A collection of information about the state of
-             * the connection between service consumer and provider..
-             *
-             * @param privateLinkServiceConnectionState A collection of information about the state of the connection
-             *     between service consumer and provider.
+             * Specifies the privateLinkServiceConnectionState property: The connection state..
+             * 
+             * @param privateLinkServiceConnectionState The connection state.
              * @return the next definition stage.
              */
             WithCreate withPrivateLinkServiceConnectionState(
                 PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
         }
+
+        /**
+         * The stage of the PrivateEndpointConnection definition allowing to specify provisioningState.
+         */
+        interface WithProvisioningState {
+            /**
+             * Specifies the provisioningState property: The current provisioning state..
+             * 
+             * @param provisioningState The current provisioning state.
+             * @return the next definition stage.
+             */
+            WithCreate withProvisioningState(PrivateEndpointConnectionProvisioningState provisioningState);
+        }
     }
+
     /**
      * Begins update for the PrivateEndpointConnection resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     PrivateEndpointConnection.Update update();
 
-    /** The template for PrivateEndpointConnection update. */
-    interface Update
-        extends UpdateStages.WithTags,
-            UpdateStages.WithIdentity,
-            UpdateStages.WithSku,
-            UpdateStages.WithPrivateEndpoint,
-            UpdateStages.WithPrivateLinkServiceConnectionState {
+    /**
+     * The template for PrivateEndpointConnection update.
+     */
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku,
+        UpdateStages.WithPrivateEndpoint, UpdateStages.WithPrivateLinkServiceConnectionState,
+        UpdateStages.WithProvisioningState {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         PrivateEndpointConnection apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         PrivateEndpointConnection apply(Context context);
     }
-    /** The PrivateEndpointConnection update stages. */
+
+    /**
+     * The PrivateEndpointConnection update stages.
+     */
     interface UpdateStages {
-        /** The stage of the PrivateEndpointConnection update allowing to specify tags. */
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify tags.
+         */
         interface WithTags {
             /**
-             * Specifies the tags property: Contains resource tags defined as key/value pairs..
-             *
-             * @param tags Contains resource tags defined as key/value pairs.
+             * Specifies the tags property: Dictionary of &lt;string&gt;.
+             * 
+             * @param tags Dictionary of &lt;string&gt;.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the PrivateEndpointConnection update allowing to specify identity. */
+
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify identity.
+         */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the resource..
-             *
-             * @param identity The identity of the resource.
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
+             * 
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
-        /** The stage of the PrivateEndpointConnection update allowing to specify sku. */
+
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify sku.
+         */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku of the workspace..
-             *
-             * @param sku The sku of the workspace.
+             * Specifies the sku property: Optional. This field is required to be implemented by the RP because AML is
+             * supporting more than one tier.
+             * 
+             * @param sku Optional. This field is required to be implemented by the RP because AML is supporting more
+             * than one tier.
              * @return the next definition stage.
              */
             Update withSku(Sku sku);
         }
-        /** The stage of the PrivateEndpointConnection update allowing to specify privateEndpoint. */
+
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify privateEndpoint.
+         */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
-             *
-             * @param privateEndpoint The resource of private end point.
+             * Specifies the privateEndpoint property: The Private Endpoint resource..
+             * 
+             * @param privateEndpoint The Private Endpoint resource.
              * @return the next definition stage.
              */
-            Update withPrivateEndpoint(PrivateEndpoint privateEndpoint);
+            Update withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint);
         }
-        /** The stage of the PrivateEndpointConnection update allowing to specify privateLinkServiceConnectionState. */
+
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify privateLinkServiceConnectionState.
+         */
         interface WithPrivateLinkServiceConnectionState {
             /**
-             * Specifies the privateLinkServiceConnectionState property: A collection of information about the state of
-             * the connection between service consumer and provider..
-             *
-             * @param privateLinkServiceConnectionState A collection of information about the state of the connection
-             *     between service consumer and provider.
+             * Specifies the privateLinkServiceConnectionState property: The connection state..
+             * 
+             * @param privateLinkServiceConnectionState The connection state.
              * @return the next definition stage.
              */
             Update withPrivateLinkServiceConnectionState(
                 PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
         }
+
+        /**
+         * The stage of the PrivateEndpointConnection update allowing to specify provisioningState.
+         */
+        interface WithProvisioningState {
+            /**
+             * Specifies the provisioningState property: The current provisioning state..
+             * 
+             * @param provisioningState The current provisioning state.
+             * @return the next definition stage.
+             */
+            Update withProvisioningState(PrivateEndpointConnectionProvisioningState provisioningState);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     PrivateEndpointConnection refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
