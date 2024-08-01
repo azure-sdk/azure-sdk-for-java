@@ -4,8 +4,8 @@
 
 /**
  * <!-- start generated doc -->
- * Package containing the implementations for LoadTesting.
+ * Package containing the data models for LoadTesting.
  * These APIs allow end users to create, view and run load tests using Azure Load Test Service.
  * <!-- end generated doc -->
  */
-package com.azure.developer.loadtesting.implementation;
+package com.azure.developer.loadtesting.models;
