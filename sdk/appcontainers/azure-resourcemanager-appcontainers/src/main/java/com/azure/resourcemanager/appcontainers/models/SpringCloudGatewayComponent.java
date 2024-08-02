@@ -12,14 +12,14 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Nacos properties.
+ * Spring Cloud Gateway properties.
  */
 @Fluent
-public final class NacosComponent extends JavaComponentProperties {
+public final class SpringCloudGatewayComponent extends JavaComponentProperties {
     /*
      * Type of the Java Component.
      */
-    private JavaComponentType componentType = JavaComponentType.NACOS;
+    private JavaComponentType componentType = JavaComponentType.SPRING_CLOUD_GATEWAY;
 
     /*
      * Java Component Ingress configurations.
@@ -27,14 +27,19 @@ public final class NacosComponent extends JavaComponentProperties {
     private JavaComponentIngress ingress;
 
     /*
+     * Gateway route definition
+     */
+    private List<ScgRoute> springCloudGatewayRoutes;
+
+    /*
      * Provisioning state of the Java Component.
      */
     private JavaComponentProvisioningState provisioningState;
 
     /**
-     * Creates an instance of NacosComponent class.
+     * Creates an instance of SpringCloudGatewayComponent class.
      */
-    public NacosComponent() {
+    public SpringCloudGatewayComponent() {
     }
 
     /**
@@ -60,10 +65,30 @@ public final class NacosComponent extends JavaComponentProperties {
      * Set the ingress property: Java Component Ingress configurations.
      * 
      * @param ingress the ingress value to set.
-     * @return the NacosComponent object itself.
+     * @return the SpringCloudGatewayComponent object itself.
      */
-    public NacosComponent withIngress(JavaComponentIngress ingress) {
+    public SpringCloudGatewayComponent withIngress(JavaComponentIngress ingress) {
         this.ingress = ingress;
+        return this;
+    }
+
+    /**
+     * Get the springCloudGatewayRoutes property: Gateway route definition.
+     * 
+     * @return the springCloudGatewayRoutes value.
+     */
+    public List<ScgRoute> springCloudGatewayRoutes() {
+        return this.springCloudGatewayRoutes;
+    }
+
+    /**
+     * Set the springCloudGatewayRoutes property: Gateway route definition.
+     * 
+     * @param springCloudGatewayRoutes the springCloudGatewayRoutes value to set.
+     * @return the SpringCloudGatewayComponent object itself.
+     */
+    public SpringCloudGatewayComponent withSpringCloudGatewayRoutes(List<ScgRoute> springCloudGatewayRoutes) {
+        this.springCloudGatewayRoutes = springCloudGatewayRoutes;
         return this;
     }
 
@@ -81,7 +106,7 @@ public final class NacosComponent extends JavaComponentProperties {
      * {@inheritDoc}
      */
     @Override
-    public NacosComponent withConfigurations(List<JavaComponentConfigurationProperty> configurations) {
+    public SpringCloudGatewayComponent withConfigurations(List<JavaComponentConfigurationProperty> configurations) {
         super.withConfigurations(configurations);
         return this;
     }
@@ -90,7 +115,7 @@ public final class NacosComponent extends JavaComponentProperties {
      * {@inheritDoc}
      */
     @Override
-    public NacosComponent withScale(JavaComponentPropertiesScale scale) {
+    public SpringCloudGatewayComponent withScale(JavaComponentPropertiesScale scale) {
         super.withScale(scale);
         return this;
     }
@@ -99,7 +124,7 @@ public final class NacosComponent extends JavaComponentProperties {
      * {@inheritDoc}
      */
     @Override
-    public NacosComponent withServiceBinds(List<JavaComponentServiceBind> serviceBinds) {
+    public SpringCloudGatewayComponent withServiceBinds(List<JavaComponentServiceBind> serviceBinds) {
         super.withServiceBinds(serviceBinds);
         return this;
     }
@@ -115,6 +140,9 @@ public final class NacosComponent extends JavaComponentProperties {
         if (ingress() != null) {
             ingress().validate();
         }
+        if (springCloudGatewayRoutes() != null) {
+            springCloudGatewayRoutes().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -128,47 +156,53 @@ public final class NacosComponent extends JavaComponentProperties {
         jsonWriter.writeArrayField("serviceBinds", serviceBinds(), (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("componentType", this.componentType == null ? null : this.componentType.toString());
         jsonWriter.writeJsonField("ingress", this.ingress);
+        jsonWriter.writeArrayField("springCloudGatewayRoutes", this.springCloudGatewayRoutes,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
     /**
-     * Reads an instance of NacosComponent from the JsonReader.
+     * Reads an instance of SpringCloudGatewayComponent from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of NacosComponent if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the NacosComponent.
+     * @return An instance of SpringCloudGatewayComponent if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the SpringCloudGatewayComponent.
      */
-    public static NacosComponent fromJson(JsonReader jsonReader) throws IOException {
+    public static SpringCloudGatewayComponent fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            NacosComponent deserializedNacosComponent = new NacosComponent();
+            SpringCloudGatewayComponent deserializedSpringCloudGatewayComponent = new SpringCloudGatewayComponent();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedNacosComponent.provisioningState
+                    deserializedSpringCloudGatewayComponent.provisioningState
                         = JavaComponentProvisioningState.fromString(reader.getString());
                 } else if ("configurations".equals(fieldName)) {
                     List<JavaComponentConfigurationProperty> configurations
                         = reader.readArray(reader1 -> JavaComponentConfigurationProperty.fromJson(reader1));
-                    deserializedNacosComponent.withConfigurations(configurations);
+                    deserializedSpringCloudGatewayComponent.withConfigurations(configurations);
                 } else if ("scale".equals(fieldName)) {
-                    deserializedNacosComponent.withScale(JavaComponentPropertiesScale.fromJson(reader));
+                    deserializedSpringCloudGatewayComponent.withScale(JavaComponentPropertiesScale.fromJson(reader));
                 } else if ("serviceBinds".equals(fieldName)) {
                     List<JavaComponentServiceBind> serviceBinds
                         = reader.readArray(reader1 -> JavaComponentServiceBind.fromJson(reader1));
-                    deserializedNacosComponent.withServiceBinds(serviceBinds);
+                    deserializedSpringCloudGatewayComponent.withServiceBinds(serviceBinds);
                 } else if ("componentType".equals(fieldName)) {
-                    deserializedNacosComponent.componentType = JavaComponentType.fromString(reader.getString());
+                    deserializedSpringCloudGatewayComponent.componentType
+                        = JavaComponentType.fromString(reader.getString());
                 } else if ("ingress".equals(fieldName)) {
-                    deserializedNacosComponent.ingress = JavaComponentIngress.fromJson(reader);
+                    deserializedSpringCloudGatewayComponent.ingress = JavaComponentIngress.fromJson(reader);
+                } else if ("springCloudGatewayRoutes".equals(fieldName)) {
+                    List<ScgRoute> springCloudGatewayRoutes = reader.readArray(reader1 -> ScgRoute.fromJson(reader1));
+                    deserializedSpringCloudGatewayComponent.springCloudGatewayRoutes = springCloudGatewayRoutes;
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedNacosComponent;
+            return deserializedSpringCloudGatewayComponent;
         });
     }
 }
