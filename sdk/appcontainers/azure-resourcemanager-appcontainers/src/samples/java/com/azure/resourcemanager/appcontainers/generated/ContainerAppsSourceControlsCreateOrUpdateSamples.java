@@ -44,6 +44,7 @@ public final class ContainerAppsSourceControlsCreateOrUpdateSamples {
                 .withBuildEnvironmentVariables(
                     Arrays.asList(new EnvironmentVariable().withName("foo1").withValue("bar1"),
                         new EnvironmentVariable().withName("foo2").withValue("bar2"))))
+            .withXMsGithubAuxiliary("githubaccesstoken")
             .create();
     }
 }
