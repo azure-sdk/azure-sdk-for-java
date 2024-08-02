@@ -5,41 +5,42 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** Abstract class for AutoML tasks that use table dataset as input - such as Classification/Regression/Forecasting. */
+/**
+ * Abstract class for AutoML tasks that use table dataset as input - such as Classification/Regression/Forecasting.
+ */
 @Fluent
-public class TableVertical {
+public class TableVertical implements JsonSerializable<TableVertical> {
     /*
      * Columns to use for CVSplit data.
      */
-    @JsonProperty(value = "cvSplitColumnNames")
     private List<String> cvSplitColumnNames;
 
     /*
      * Featurization inputs needed for AutoML job.
      */
-    @JsonProperty(value = "featurizationSettings")
     private TableVerticalFeaturizationSettings featurizationSettings;
 
     /*
      * Execution constraints for AutoMLJob.
      */
-    @JsonProperty(value = "limitSettings")
     private TableVerticalLimitSettings limitSettings;
 
     /*
      * Number of cross validation folds to be applied on training dataset
      * when validation dataset is not provided.
      */
-    @JsonProperty(value = "nCrossValidations")
     private NCrossValidations nCrossValidations;
 
     /*
      * Test data input.
      */
-    @JsonProperty(value = "testData")
     private MLTableJobInput testData;
 
     /*
@@ -47,13 +48,11 @@ public class TableVertical {
      * Values between (0.0 , 1.0)
      * Applied when validation dataset is not provided.
      */
-    @JsonProperty(value = "testDataSize")
     private Double testDataSize;
 
     /*
      * Validation data inputs.
      */
-    @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
     /*
@@ -61,23 +60,23 @@ public class TableVertical {
      * Values between (0.0 , 1.0)
      * Applied when validation dataset is not provided.
      */
-    @JsonProperty(value = "validationDataSize")
     private Double validationDataSize;
 
     /*
      * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
      * data to be weighted up or down.
      */
-    @JsonProperty(value = "weightColumnName")
     private String weightColumnName;
 
-    /** Creates an instance of TableVertical class. */
+    /**
+     * Creates an instance of TableVertical class.
+     */
     public TableVertical() {
     }
 
     /**
      * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @return the cvSplitColumnNames value.
      */
     public List<String> cvSplitColumnNames() {
@@ -86,7 +85,7 @@ public class TableVertical {
 
     /**
      * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @param cvSplitColumnNames the cvSplitColumnNames value to set.
      * @return the TableVertical object itself.
      */
@@ -97,7 +96,7 @@ public class TableVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public TableVerticalFeaturizationSettings featurizationSettings() {
@@ -106,7 +105,7 @@ public class TableVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TableVertical object itself.
      */
@@ -117,7 +116,7 @@ public class TableVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public TableVerticalLimitSettings limitSettings() {
@@ -126,7 +125,7 @@ public class TableVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TableVertical object itself.
      */
@@ -136,9 +135,9 @@ public class TableVertical {
     }
 
     /**
-     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @return the nCrossValidations value.
      */
     public NCrossValidations nCrossValidations() {
@@ -146,9 +145,9 @@ public class TableVertical {
     }
 
     /**
-     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @param nCrossValidations the nCrossValidations value to set.
      * @return the TableVertical object itself.
      */
@@ -159,7 +158,7 @@ public class TableVertical {
 
     /**
      * Get the testData property: Test data input.
-     *
+     * 
      * @return the testData value.
      */
     public MLTableJobInput testData() {
@@ -168,7 +167,7 @@ public class TableVertical {
 
     /**
      * Set the testData property: Test data input.
-     *
+     * 
      * @param testData the testData value to set.
      * @return the TableVertical object itself.
      */
@@ -179,8 +178,9 @@ public class TableVertical {
 
     /**
      * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the testDataSize value.
      */
     public Double testDataSize() {
@@ -189,8 +189,9 @@ public class TableVertical {
 
     /**
      * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param testDataSize the testDataSize value to set.
      * @return the TableVertical object itself.
      */
@@ -201,7 +202,7 @@ public class TableVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -210,7 +211,7 @@ public class TableVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TableVertical object itself.
      */
@@ -221,8 +222,10 @@ public class TableVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -231,8 +234,10 @@ public class TableVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the TableVertical object itself.
      */
@@ -244,7 +249,7 @@ public class TableVertical {
     /**
      * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @return the weightColumnName value.
      */
     public String weightColumnName() {
@@ -254,7 +259,7 @@ public class TableVertical {
     /**
      * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @param weightColumnName the weightColumnName value to set.
      * @return the TableVertical object itself.
      */
@@ -265,7 +270,7 @@ public class TableVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -284,5 +289,68 @@ public class TableVertical {
         if (validationData() != null) {
             validationData().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("cvSplitColumnNames", this.cvSplitColumnNames,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
+        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
+        jsonWriter.writeJsonField("testData", this.testData);
+        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
+        jsonWriter.writeJsonField("validationData", this.validationData);
+        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
+        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of TableVertical from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of TableVertical if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the TableVertical.
+     */
+    public static TableVertical fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            TableVertical deserializedTableVertical = new TableVertical();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("cvSplitColumnNames".equals(fieldName)) {
+                    List<String> cvSplitColumnNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedTableVertical.cvSplitColumnNames = cvSplitColumnNames;
+                } else if ("featurizationSettings".equals(fieldName)) {
+                    deserializedTableVertical.featurizationSettings
+                        = TableVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedTableVertical.limitSettings = TableVerticalLimitSettings.fromJson(reader);
+                } else if ("nCrossValidations".equals(fieldName)) {
+                    deserializedTableVertical.nCrossValidations = NCrossValidations.fromJson(reader);
+                } else if ("testData".equals(fieldName)) {
+                    deserializedTableVertical.testData = MLTableJobInput.fromJson(reader);
+                } else if ("testDataSize".equals(fieldName)) {
+                    deserializedTableVertical.testDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("validationData".equals(fieldName)) {
+                    deserializedTableVertical.validationData = MLTableJobInput.fromJson(reader);
+                } else if ("validationDataSize".equals(fieldName)) {
+                    deserializedTableVertical.validationDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("weightColumnName".equals(fieldName)) {
+                    deserializedTableVertical.weightColumnName = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedTableVertical;
+        });
     }
 }
