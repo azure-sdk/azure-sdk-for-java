@@ -151,15 +151,15 @@ public final class ContainerAppsApiManager {
 
     private ContainerApps containerApps;
 
-    private ContainerAppsRevisions containerAppsRevisions;
-
-    private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
-
     private ContainerAppsBuildsByContainerApps containerAppsBuildsByContainerApps;
 
     private ContainerAppsBuilds containerAppsBuilds;
 
     private ContainerAppsPatches containerAppsPatches;
+
+    private ContainerAppsRevisions containerAppsRevisions;
+
+    private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
 
     private ContainerAppsDiagnostics containerAppsDiagnostics;
 
@@ -171,6 +171,8 @@ public final class ContainerAppsApiManager {
 
     private DotNetComponents dotNetComponents;
 
+    private FunctionsExtensions functionsExtensions;
+
     private Operations operations;
 
     private JavaComponents javaComponents;
@@ -178,6 +180,8 @@ public final class ContainerAppsApiManager {
     private JobsExecutions jobsExecutions;
 
     private ResourceProviders resourceProviders;
+
+    private LogicApps logicApps;
 
     private ManagedEnvironments managedEnvironments;
 
@@ -199,17 +203,13 @@ public final class ContainerAppsApiManager {
 
     private ManagedEnvironmentsStorages managedEnvironmentsStorages;
 
+    private ContainerAppsSessionPools containerAppsSessionPools;
+
     private ContainerAppsSourceControls containerAppsSourceControls;
 
     private Usages usages;
 
     private ManagedEnvironmentUsages managedEnvironmentUsages;
-
-    private FunctionsExtensions functionsExtensions;
-
-    private LogicApps logicApps;
-
-    private ContainerAppsSessionPools containerAppsSessionPools;
 
     private final ContainerAppsApiClient clientObject;
 
@@ -375,7 +375,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.8");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -584,32 +584,6 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of ContainerAppsRevisions.
-     * 
-     * @return Resource collection API of ContainerAppsRevisions.
-     */
-    public ContainerAppsRevisions containerAppsRevisions() {
-        if (this.containerAppsRevisions == null) {
-            this.containerAppsRevisions
-                = new ContainerAppsRevisionsImpl(clientObject.getContainerAppsRevisions(), this);
-        }
-        return containerAppsRevisions;
-    }
-
-    /**
-     * Gets the resource collection API of ContainerAppsRevisionReplicas.
-     * 
-     * @return Resource collection API of ContainerAppsRevisionReplicas.
-     */
-    public ContainerAppsRevisionReplicas containerAppsRevisionReplicas() {
-        if (this.containerAppsRevisionReplicas == null) {
-            this.containerAppsRevisionReplicas
-                = new ContainerAppsRevisionReplicasImpl(clientObject.getContainerAppsRevisionReplicas(), this);
-        }
-        return containerAppsRevisionReplicas;
-    }
-
-    /**
      * Gets the resource collection API of ContainerAppsBuildsByContainerApps.
      * 
      * @return Resource collection API of ContainerAppsBuildsByContainerApps.
@@ -644,6 +618,32 @@ public final class ContainerAppsApiManager {
             this.containerAppsPatches = new ContainerAppsPatchesImpl(clientObject.getContainerAppsPatches(), this);
         }
         return containerAppsPatches;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsRevisions.
+     * 
+     * @return Resource collection API of ContainerAppsRevisions.
+     */
+    public ContainerAppsRevisions containerAppsRevisions() {
+        if (this.containerAppsRevisions == null) {
+            this.containerAppsRevisions
+                = new ContainerAppsRevisionsImpl(clientObject.getContainerAppsRevisions(), this);
+        }
+        return containerAppsRevisions;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsRevisionReplicas.
+     * 
+     * @return Resource collection API of ContainerAppsRevisionReplicas.
+     */
+    public ContainerAppsRevisionReplicas containerAppsRevisionReplicas() {
+        if (this.containerAppsRevisionReplicas == null) {
+            this.containerAppsRevisionReplicas
+                = new ContainerAppsRevisionReplicasImpl(clientObject.getContainerAppsRevisionReplicas(), this);
+        }
+        return containerAppsRevisionReplicas;
     }
 
     /**
@@ -710,6 +710,18 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of FunctionsExtensions.
+     * 
+     * @return Resource collection API of FunctionsExtensions.
+     */
+    public FunctionsExtensions functionsExtensions() {
+        if (this.functionsExtensions == null) {
+            this.functionsExtensions = new FunctionsExtensionsImpl(clientObject.getFunctionsExtensions(), this);
+        }
+        return functionsExtensions;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -755,6 +767,18 @@ public final class ContainerAppsApiManager {
             this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
         }
         return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of LogicApps. It manages LogicApp.
+     * 
+     * @return Resource collection API of LogicApps.
+     */
+    public LogicApps logicApps() {
+        if (this.logicApps == null) {
+            this.logicApps = new LogicAppsImpl(clientObject.getLogicApps(), this);
+        }
+        return logicApps;
     }
 
     /**
@@ -883,6 +907,19 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of ContainerAppsSessionPools. It manages SessionPool.
+     * 
+     * @return Resource collection API of ContainerAppsSessionPools.
+     */
+    public ContainerAppsSessionPools containerAppsSessionPools() {
+        if (this.containerAppsSessionPools == null) {
+            this.containerAppsSessionPools
+                = new ContainerAppsSessionPoolsImpl(clientObject.getContainerAppsSessionPools(), this);
+        }
+        return containerAppsSessionPools;
+    }
+
+    /**
      * Gets the resource collection API of ContainerAppsSourceControls. It manages SourceControl.
      * 
      * @return Resource collection API of ContainerAppsSourceControls.
@@ -918,43 +955,6 @@ public final class ContainerAppsApiManager {
                 = new ManagedEnvironmentUsagesImpl(clientObject.getManagedEnvironmentUsages(), this);
         }
         return managedEnvironmentUsages;
-    }
-
-    /**
-     * Gets the resource collection API of FunctionsExtensions.
-     * 
-     * @return Resource collection API of FunctionsExtensions.
-     */
-    public FunctionsExtensions functionsExtensions() {
-        if (this.functionsExtensions == null) {
-            this.functionsExtensions = new FunctionsExtensionsImpl(clientObject.getFunctionsExtensions(), this);
-        }
-        return functionsExtensions;
-    }
-
-    /**
-     * Gets the resource collection API of LogicApps. It manages LogicApp.
-     * 
-     * @return Resource collection API of LogicApps.
-     */
-    public LogicApps logicApps() {
-        if (this.logicApps == null) {
-            this.logicApps = new LogicAppsImpl(clientObject.getLogicApps(), this);
-        }
-        return logicApps;
-    }
-
-    /**
-     * Gets the resource collection API of ContainerAppsSessionPools. It manages SessionPool.
-     * 
-     * @return Resource collection API of ContainerAppsSessionPools.
-     */
-    public ContainerAppsSessionPools containerAppsSessionPools() {
-        if (this.containerAppsSessionPools == null) {
-            this.containerAppsSessionPools
-                = new ContainerAppsSessionPoolsImpl(clientObject.getContainerAppsSessionPools(), this);
-        }
-        return containerAppsSessionPools;
     }
 
     /**
