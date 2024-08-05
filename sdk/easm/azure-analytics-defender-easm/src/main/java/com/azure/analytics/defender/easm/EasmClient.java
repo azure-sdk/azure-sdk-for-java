@@ -147,9 +147,8 @@ public final class EasmClient {
 
     /**
      * Update labels on assets matching the provided filter.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     state: String(candidate/confirmed/dismissed/candidateInvestigate/associatedPartner/associatedThirdparty) (Optional)
@@ -160,9 +159,9 @@ public final class EasmClient {
      *     transfers: String(as/contact/domain/host/ipAddress/ipBlock/page/sslCert) (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -179,7 +178,7 @@ public final class EasmClient {
      * }</pre>
      *
      * @param filter An expression on the resource type that selects the resources to be returned.
-     * @param assetUpdateData A request body used to update an asset.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -189,18 +188,18 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> updateAssetsWithResponse(String filter, BinaryData assetUpdateData,
+    public Response<BinaryData> updateAssetsWithResponse(String filter, BinaryData body,
         RequestOptions requestOptions) {
-        return this.serviceClient.updateAssetsWithResponse(filter, assetUpdateData, requestOptions);
+        return this.serviceClient.updateAssetsWithResponse(filter, body, requestOptions);
     }
 
     /**
      * Retrieve an asset by assetId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Required)
      *     name: String (Optional)
      *     displayName: String (Optional)
@@ -304,20 +303,20 @@ public final class EasmClient {
 
     /**
      * Validate a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -335,28 +334,27 @@ public final class EasmClient {
      * }
      * }</pre>
      *
-     * @param dataConnectionData The dataConnectionData parameter.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
+     * @return validate result for validate action endpoints along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDataConnectionWithResponse(BinaryData dataConnectionData,
-        RequestOptions requestOptions) {
-        return this.serviceClient.validateDataConnectionWithResponse(dataConnectionData, requestOptions);
+    public Response<BinaryData> validateDataConnectionWithResponse(BinaryData body, RequestOptions requestOptions) {
+        return this.serviceClient.validateDataConnectionWithResponse(body, requestOptions);
     }
 
     /**
      * Retrieve a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -388,22 +386,23 @@ public final class EasmClient {
 
     /**
      * Create or replace a data connection with a given dataConnectionName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     name: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
+     *     kind: String (Required)
      *     id: String (Optional)
      *     name: String (Required)
      *     displayName: String (Optional)
@@ -419,7 +418,7 @@ public final class EasmClient {
      * }</pre>
      *
      * @param dataConnectionName The caller provided unique name for the resource.
-     * @param dataConnectionData The dataConnectionData parameter.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -429,10 +428,9 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrReplaceDataConnectionWithResponse(String dataConnectionName,
-        BinaryData dataConnectionData, RequestOptions requestOptions) {
-        return this.serviceClient.createOrReplaceDataConnectionWithResponse(dataConnectionName, dataConnectionData,
-            requestOptions);
+    public Response<BinaryData> createOrReplaceDataConnectionWithResponse(String dataConnectionName, BinaryData body,
+        RequestOptions requestOptions) {
+        return this.serviceClient.createOrReplaceDataConnectionWithResponse(dataConnectionName, body, requestOptions);
     }
 
     /**
@@ -454,9 +452,8 @@ public final class EasmClient {
 
     /**
      * Validate a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -478,9 +475,9 @@ public final class EasmClient {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     error (Optional): {
@@ -498,26 +495,24 @@ public final class EasmClient {
      * }
      * }</pre>
      *
-     * @param discoGroupData A request body used to create a discovery group.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
+     * @return validate result for validate action endpoints along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDiscoGroupWithResponse(BinaryData discoGroupData,
-        RequestOptions requestOptions) {
-        return this.serviceClient.validateDiscoGroupWithResponse(discoGroupData, requestOptions);
+    public Response<BinaryData> validateDiscoGroupWithResponse(BinaryData body, RequestOptions requestOptions) {
+        return this.serviceClient.validateDiscoGroupWithResponse(body, requestOptions);
     }
 
     /**
      * Retrieve a discovery group with a given groupName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -576,9 +571,8 @@ public final class EasmClient {
 
     /**
      * Create a discovery group with a given groupName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     name: String (Optional)
@@ -600,9 +594,9 @@ public final class EasmClient {
      *     templateId: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -646,7 +640,7 @@ public final class EasmClient {
      * }</pre>
      *
      * @param groupName The caller provided unique name for the resource.
-     * @param discoGroupData A request body used to create a discovery group.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -656,9 +650,9 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrReplaceDiscoGroupWithResponse(String groupName, BinaryData discoGroupData,
+    public Response<BinaryData> createOrReplaceDiscoGroupWithResponse(String groupName, BinaryData body,
         RequestOptions requestOptions) {
-        return this.serviceClient.createOrReplaceDiscoGroupWithResponse(groupName, discoGroupData, requestOptions);
+        return this.serviceClient.createOrReplaceDiscoGroupWithResponse(groupName, body, requestOptions);
     }
 
     /**
@@ -828,9 +822,8 @@ public final class EasmClient {
 
     /**
      * Retrieve a disco template with a given templateId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -869,9 +862,8 @@ public final class EasmClient {
 
     /**
      * Get billable assets summary for the workspace.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -904,9 +896,8 @@ public final class EasmClient {
 
     /**
      * Get the most recent snapshot of asset summary values for the snapshot request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metric: String (Optional)
@@ -915,9 +906,9 @@ public final class EasmClient {
      *     page: Integer (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     displayName: String (Optional)
@@ -931,6 +922,7 @@ public final class EasmClient {
      *         nextLink: String (Optional)
      *         value (Optional): [
      *              (Optional){
+     *                 kind: String (Required)
      *                 id: String (Required)
      *                 name: String (Optional)
      *                 displayName: String (Optional)
@@ -960,7 +952,7 @@ public final class EasmClient {
      * }
      * }</pre>
      *
-     * @param reportAssetSnapshotRequest A request body used to retrieve an asset report snapshot.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -970,16 +962,14 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getSnapshotWithResponse(BinaryData reportAssetSnapshotRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getSnapshotWithResponse(reportAssetSnapshotRequest, requestOptions);
+    public Response<BinaryData> getSnapshotWithResponse(BinaryData body, RequestOptions requestOptions) {
+        return this.serviceClient.getSnapshotWithResponse(body, requestOptions);
     }
 
     /**
      * Get asset summary details for the summary request.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     metricCategories (Optional): [
@@ -996,9 +986,9 @@ public final class EasmClient {
      *     labelName: String (Optional)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     assetSummaries (Optional): [
@@ -1020,8 +1010,7 @@ public final class EasmClient {
      * }
      * }</pre>
      *
-     * @param reportAssetSummaryRequest A request body used to retrieve summary asset information. One and only one
-     * collection of summary identifiers must be provided: filters, metrics, or metricCategories.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1031,9 +1020,8 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getSummaryWithResponse(BinaryData reportAssetSummaryRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getSummaryWithResponse(reportAssetSummaryRequest, requestOptions);
+    public Response<BinaryData> getSummaryWithResponse(BinaryData body, RequestOptions requestOptions) {
+        return this.serviceClient.getSummaryWithResponse(body, requestOptions);
     }
 
     /**
@@ -1099,9 +1087,8 @@ public final class EasmClient {
 
     /**
      * Retrieve a saved filter by filterName.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -1128,18 +1115,17 @@ public final class EasmClient {
 
     /**
      * Create or replace a saved filter with a given filterName.
-     * <p>
-     * <strong>Request Body Schema</strong>
-     * </p>
+     * <p><strong>Request Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     filter: String (Required)
      *     description: String (Required)
      * }
      * }</pre>
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Optional)
@@ -1151,7 +1137,7 @@ public final class EasmClient {
      * }</pre>
      *
      * @param filterName The caller provided unique name for the resource.
-     * @param savedFilterData A request body used to create a saved filter.
+     * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1161,9 +1147,9 @@ public final class EasmClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrReplaceSavedFilterWithResponse(String filterName, BinaryData savedFilterData,
+    public Response<BinaryData> createOrReplaceSavedFilterWithResponse(String filterName, BinaryData body,
         RequestOptions requestOptions) {
-        return this.serviceClient.createOrReplaceSavedFilterWithResponse(filterName, savedFilterData, requestOptions);
+        return this.serviceClient.createOrReplaceSavedFilterWithResponse(filterName, body, requestOptions);
     }
 
     /**
@@ -1257,9 +1243,8 @@ public final class EasmClient {
 
     /**
      * Retrieve a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
@@ -1291,9 +1276,8 @@ public final class EasmClient {
 
     /**
      * Cancel a task by taskId.
-     * <p>
-     * <strong>Response Body Schema</strong>
-     * </p>
+     * <p><strong>Response Body Schema</strong></p>
+     * 
      * <pre>{@code
      * {
      *     id: String (Required)
