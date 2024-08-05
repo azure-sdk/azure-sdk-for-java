@@ -1,14 +1,187 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2024-08-05)
+
+- Azure Resource Manager Nginx client library for Java. This package contains Microsoft Azure SDK for Nginx Management SDK.  Package tag package-2024-06-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.AnalysisCreateConfig` was added
 
-### Bugs Fixed
+* `models.ScaleProfileCapacity` was added
 
-### Other Changes
+* `models.WebApplicationFirewallSettings` was added
+
+* `models.AnalysisDiagnostic` was added
+
+* `models.NginxDeploymentPropertiesNginxAppProtect` was added
+
+* `models.NginxCertificateErrorResponseBody` was added
+
+* `models.WebApplicationFirewallComponentVersions` was added
+
+* `models.WebApplicationFirewallStatus` was added
+
+* `models.ActivationState` was added
+
+* `models.WebApplicationFirewallPackage` was added
+
+* `models.AutoUpgradeProfile` was added
+
+* `models.NginxDeploymentUpdatePropertiesNginxAppProtect` was added
+
+* `models.AnalysisCreate` was added
+
+* `models.ScaleProfile` was added
+
+* `models.AnalysisResultData` was added
+
+* `models.AnalysisResult` was added
+
+#### `models.IdentityProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxConfigurationFile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserIdentityProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxNetworkInterfaceConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxDeploymentListResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxDeploymentScalingProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `profiles()` was added
+* `withProfiles(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxConfigurationListResponse` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxDeploymentUpdateParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxFrontendIpConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Configurations` was modified
+
+* `analysis(java.lang.String,java.lang.String,java.lang.String)` was added
+* `analysisWithResponse(java.lang.String,java.lang.String,java.lang.String,models.AnalysisCreate,com.azure.core.util.Context)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxDeploymentUserProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxPublicIpAddress` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxConfigurationPackage` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxDeploymentUpdateProperties` was modified
+
+* `nginxAppProtect()` was added
+* `autoUpgradeProfile()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withAutoUpgradeProfile(models.AutoUpgradeProfile)` was added
+* `withNginxAppProtect(models.NginxDeploymentUpdatePropertiesNginxAppProtect)` was added
+
+#### `models.NginxLogging` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxDeploymentProperties` was modified
+
+* `withAutoUpgradeProfile(models.AutoUpgradeProfile)` was added
+* `nginxAppProtect()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNginxAppProtect(models.NginxDeploymentPropertiesNginxAppProtect)` was added
+* `autoUpgradeProfile()` was added
+
+#### `models.ResourceSku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxCertificateProperties` was modified
+
+* `keyVaultSecretCreated()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withCertificateError(models.NginxCertificateErrorResponseBody)` was added
+* `sha1Thumbprint()` was added
+* `certificateError()` was added
+* `keyVaultSecretVersion()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxNetworkProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxStorageAccount` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxCertificateListResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NginxConfiguration` was modified
+
+* `analysis()` was added
+* `analysisWithResponse(models.AnalysisCreate,com.azure.core.util.Context)` was added
+
+#### `models.NginxConfigurationProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NginxPrivateIpAddress` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.1.0-beta.1 (2024-05-20)
 
