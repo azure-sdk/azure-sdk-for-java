@@ -247,6 +247,15 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
+     * Get the deploymentErrors property: Any errors that occurred during deployment.
+     * 
+     * @return the deploymentErrors value.
+     */
+    public String deploymentErrors() {
+        return this.innerProperties() == null ? null : this.innerProperties().deploymentErrors();
+    }
+
+    /**
      * Get the managedEnvironmentId property: Deprecated. Resource ID of the Container App's environment.
      * 
      * @return the managedEnvironmentId value.
