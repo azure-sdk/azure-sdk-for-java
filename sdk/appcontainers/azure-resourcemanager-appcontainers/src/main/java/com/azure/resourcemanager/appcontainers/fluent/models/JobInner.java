@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.JobConfiguration;
 import com.azure.resourcemanager.appcontainers.models.JobProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.JobRunningState;
 import com.azure.resourcemanager.appcontainers.models.JobTemplate;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import java.io.IOException;
@@ -181,6 +182,15 @@ public final class JobInner extends Resource {
      */
     public JobProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the runningState property: Current running state of the job.
+     * 
+     * @return the runningState value.
+     */
+    public JobRunningState runningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().runningState();
     }
 
     /**
