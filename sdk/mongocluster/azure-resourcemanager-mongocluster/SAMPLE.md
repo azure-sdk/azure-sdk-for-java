@@ -157,21 +157,65 @@ public final class MongoClustersCheckNameAvailabilitySamples {
             .checkNameAvailabilityWithResponse("westus2", new CheckNameAvailabilityRequest().withName("newmongocluster")
                 .withType("Microsoft.DocumentDB/mongoClusters"), com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * MongoClusters_NameAvailability_AlreadyExists.json
+     */
+    /**
+     * Sample code: Checks and returns that the Mongo Cluster name is already in-use.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void checksAndReturnsThatTheMongoClusterNameIsAlreadyInUse(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        manager.mongoClusters()
+            .checkNameAvailabilityWithResponse("westus2",
+                new CheckNameAvailabilityRequest().withName("existingmongocluster")
+                    .withType("Microsoft.DocumentDB/mongoClusters"),
+                com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
 ### MongoClusters_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.mongocluster.models.CreateMode;
 import com.azure.resourcemanager.mongocluster.models.MongoClusterProperties;
+import com.azure.resourcemanager.mongocluster.models.MongoClusterRestoreParameters;
 import com.azure.resourcemanager.mongocluster.models.NodeGroupSpec;
 import com.azure.resourcemanager.mongocluster.models.NodeKind;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 /**
  * Samples for MongoClusters CreateOrUpdate.
  */
 public final class MongoClustersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * MongoClusters_CreatePITR.json
+     */
+    /**
+     * Sample code: Creates a Mongo Cluster resource from a point in time restore.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void createsAMongoClusterResourceFromAPointInTimeRestore(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        manager.mongoClusters()
+            .define("myMongoCluster")
+            .withRegion("westus2")
+            .withExistingResourceGroup("TestResourceGroup")
+            .withProperties(new MongoClusterProperties().withCreateMode(CreateMode.POINT_IN_TIME_RESTORE)
+                .withRestoreParameters(new MongoClusterRestoreParameters()
+                    .withPointInTimeUTC(OffsetDateTime.parse("2023-01-13T20:07:35Z"))
+                    .withSourceResourceId(
+                        "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/TestResourceGroup/providers/Microsoft.DocumentDB/mongoClusters/myOtherMongoCluster")))
+            .create();
+    }
+
     /*
      * x-ms-original-file:
      * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Create.
@@ -325,6 +369,7 @@ import com.azure.resourcemanager.mongocluster.models.MongoCluster;
 import com.azure.resourcemanager.mongocluster.models.MongoClusterUpdateProperties;
 import com.azure.resourcemanager.mongocluster.models.NodeGroupSpec;
 import com.azure.resourcemanager.mongocluster.models.NodeKind;
+import com.azure.resourcemanager.mongocluster.models.PublicNetworkAccess;
 import java.util.Arrays;
 
 /**
@@ -348,6 +393,53 @@ public final class MongoClustersUpdateSamples {
         resource.update()
             .withProperties(new MongoClusterUpdateProperties()
                 .withNodeGroupSpecs(Arrays.asList(new NodeGroupSpec().withDiskSizeGB(256L).withKind(NodeKind.SHARD))))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * MongoClusters_PatchPrivateNetworkAccess.json
+     */
+    /**
+     * Sample code: Disables public network access on a Mongo Cluster resource with a private endpoint connection.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void disablesPublicNetworkAccessOnAMongoClusterResourceWithAPrivateEndpointConnection(
+        com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        MongoCluster resource = manager.mongoClusters()
+            .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new MongoClusterUpdateProperties().withPublicNetworkAccess(PublicNetworkAccess.DISABLED))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Update.
+     * json
+     */
+    /**
+     * Sample code: Updates a Mongo Cluster resource.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void
+        updatesAMongoClusterResource(com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        MongoCluster resource = manager.mongoClusters()
+            .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new MongoClusterUpdateProperties().withAdministratorLogin("mongoAdmin")
+                .withAdministratorLoginPassword("fakeTokenPlaceholder")
+                .withServerVersion("5.0")
+                .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                .withNodeGroupSpecs(Arrays.asList(new NodeGroupSpec().withSku("M50")
+                    .withDiskSizeGB(256L)
+                    .withEnableHa(true)
+                    .withKind(NodeKind.SHARD)
+                    .withNodeCount(1))))
             .apply();
     }
 }
