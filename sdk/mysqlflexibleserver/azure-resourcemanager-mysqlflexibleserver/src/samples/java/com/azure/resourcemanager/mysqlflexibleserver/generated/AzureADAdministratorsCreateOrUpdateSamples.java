@@ -12,7 +12,8 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.AdministratorType;
  */
 public final class AzureADAdministratorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorCreate.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/
+     * AzureADAdministratorCreate.json
      */
     /**
      * Sample code: Create an azure ad administrator.
