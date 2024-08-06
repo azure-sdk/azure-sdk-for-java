@@ -5,29 +5,51 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** Properties specific to a KubernetesOnlineDeployment. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "endpointComputeType")
-@JsonTypeName("Kubernetes")
+/**
+ * Properties specific to a KubernetesOnlineDeployment.
+ */
 @Fluent
 public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties {
     /*
+     * [Required] The compute type of the endpoint.
+     */
+    private EndpointComputeType endpointComputeType = EndpointComputeType.KUBERNETES;
+
+    /*
      * The resource requirements for the container (cpu and memory).
      */
-    @JsonProperty(value = "containerResourceRequirements")
     private ContainerResourceRequirements containerResourceRequirements;
 
-    /** Creates an instance of KubernetesOnlineDeployment class. */
+    /*
+     * Provisioning state for the endpoint deployment.
+     */
+    private DeploymentProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of KubernetesOnlineDeployment class.
+     */
     public KubernetesOnlineDeployment() {
     }
 
     /**
+     * Get the endpointComputeType property: [Required] The compute type of the endpoint.
+     * 
+     * @return the endpointComputeType value.
+     */
+    @Override
+    public EndpointComputeType endpointComputeType() {
+        return this.endpointComputeType;
+    }
+
+    /**
      * Get the containerResourceRequirements property: The resource requirements for the container (cpu and memory).
-     *
+     * 
      * @return the containerResourceRequirements value.
      */
     public ContainerResourceRequirements containerResourceRequirements() {
@@ -36,109 +58,156 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
 
     /**
      * Set the containerResourceRequirements property: The resource requirements for the container (cpu and memory).
-     *
+     * 
      * @param containerResourceRequirements the containerResourceRequirements value to set.
      * @return the KubernetesOnlineDeployment object itself.
      */
-    public KubernetesOnlineDeployment withContainerResourceRequirements(
-        ContainerResourceRequirements containerResourceRequirements) {
+    public KubernetesOnlineDeployment
+        withContainerResourceRequirements(ContainerResourceRequirements containerResourceRequirements) {
         this.containerResourceRequirements = containerResourceRequirements;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the endpoint deployment.
+     * 
+     * @return the provisioningState value.
+     */
+    @Override
+    public DeploymentProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withAppInsightsEnabled(Boolean appInsightsEnabled) {
         super.withAppInsightsEnabled(appInsightsEnabled);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public KubernetesOnlineDeployment withEgressPublicNetworkAccess(
-        EgressPublicNetworkAccessType egressPublicNetworkAccess) {
+    public KubernetesOnlineDeployment withDataCollector(DataCollector dataCollector) {
+        super.withDataCollector(dataCollector);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public KubernetesOnlineDeployment
+        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         super.withEgressPublicNetworkAccess(egressPublicNetworkAccess);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withLivenessProbe(ProbeSettings livenessProbe) {
         super.withLivenessProbe(livenessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withModel(String model) {
         super.withModel(model);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withModelMountPath(String modelMountPath) {
         super.withModelMountPath(modelMountPath);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withReadinessProbe(ProbeSettings readinessProbe) {
         super.withReadinessProbe(readinessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withRequestSettings(OnlineRequestSettings requestSettings) {
         super.withRequestSettings(requestSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withScaleSettings(OnlineScaleSettings scaleSettings) {
         super.withScaleSettings(scaleSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withEnvironmentId(String environmentId) {
         super.withEnvironmentId(environmentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withEnvironmentVariables(Map<String, String> environmentVariables) {
         super.withEnvironmentVariables(environmentVariables);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -147,7 +216,7 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -156,5 +225,101 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
         if (containerResourceRequirements() != null) {
             containerResourceRequirements().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("codeConfiguration", codeConfiguration());
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeStringField("environmentId", environmentId());
+        jsonWriter.writeMapField("environmentVariables", environmentVariables(),
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeBooleanField("appInsightsEnabled", appInsightsEnabled());
+        jsonWriter.writeJsonField("dataCollector", dataCollector());
+        jsonWriter.writeStringField("egressPublicNetworkAccess",
+            egressPublicNetworkAccess() == null ? null : egressPublicNetworkAccess().toString());
+        jsonWriter.writeStringField("instanceType", instanceType());
+        jsonWriter.writeJsonField("livenessProbe", livenessProbe());
+        jsonWriter.writeStringField("model", model());
+        jsonWriter.writeStringField("modelMountPath", modelMountPath());
+        jsonWriter.writeJsonField("readinessProbe", readinessProbe());
+        jsonWriter.writeJsonField("requestSettings", requestSettings());
+        jsonWriter.writeJsonField("scaleSettings", scaleSettings());
+        jsonWriter.writeStringField("endpointComputeType",
+            this.endpointComputeType == null ? null : this.endpointComputeType.toString());
+        jsonWriter.writeJsonField("containerResourceRequirements", this.containerResourceRequirements);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of KubernetesOnlineDeployment from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of KubernetesOnlineDeployment if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the KubernetesOnlineDeployment.
+     */
+    public static KubernetesOnlineDeployment fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            KubernetesOnlineDeployment deserializedKubernetesOnlineDeployment = new KubernetesOnlineDeployment();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("codeConfiguration".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withCodeConfiguration(CodeConfiguration.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withDescription(reader.getString());
+                } else if ("environmentId".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withEnvironmentId(reader.getString());
+                } else if ("environmentVariables".equals(fieldName)) {
+                    Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
+                    deserializedKubernetesOnlineDeployment.withEnvironmentVariables(environmentVariables);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedKubernetesOnlineDeployment.withProperties(properties);
+                } else if ("appInsightsEnabled".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment
+                        .withAppInsightsEnabled(reader.getNullable(JsonReader::getBoolean));
+                } else if ("dataCollector".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withDataCollector(DataCollector.fromJson(reader));
+                } else if ("egressPublicNetworkAccess".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment
+                        .withEgressPublicNetworkAccess(EgressPublicNetworkAccessType.fromString(reader.getString()));
+                } else if ("instanceType".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withInstanceType(reader.getString());
+                } else if ("livenessProbe".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withLivenessProbe(ProbeSettings.fromJson(reader));
+                } else if ("model".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withModel(reader.getString());
+                } else if ("modelMountPath".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withModelMountPath(reader.getString());
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.provisioningState
+                        = DeploymentProvisioningState.fromString(reader.getString());
+                } else if ("readinessProbe".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withReadinessProbe(ProbeSettings.fromJson(reader));
+                } else if ("requestSettings".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withRequestSettings(OnlineRequestSettings.fromJson(reader));
+                } else if ("scaleSettings".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.withScaleSettings(OnlineScaleSettings.fromJson(reader));
+                } else if ("endpointComputeType".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.endpointComputeType
+                        = EndpointComputeType.fromString(reader.getString());
+                } else if ("containerResourceRequirements".equals(fieldName)) {
+                    deserializedKubernetesOnlineDeployment.containerResourceRequirements
+                        = ContainerResourceRequirements.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedKubernetesOnlineDeployment;
+        });
     }
 }

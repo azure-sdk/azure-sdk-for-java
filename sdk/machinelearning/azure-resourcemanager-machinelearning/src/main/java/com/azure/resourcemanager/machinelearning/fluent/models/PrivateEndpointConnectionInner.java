@@ -7,71 +7,76 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpoint;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.machinelearning.models.Sku;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.machinelearning.models.WorkspacePrivateEndpointResource;
+import java.io.IOException;
 import java.util.Map;
 
-/** The Private Endpoint Connection resource. */
+/**
+ * The Private Endpoint Connection resource.
+ */
 @Fluent
 public final class PrivateEndpointConnectionInner extends ProxyResource {
     /*
-     * Resource properties.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
-    @JsonProperty(value = "properties")
-    private PrivateEndpointConnectionProperties innerProperties;
-
-    /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
     /*
-     * Specifies the location of the resource.
+     * Same as workspace location.
      */
-    @JsonProperty(value = "location")
     private String location;
 
     /*
-     * Contains resource tags defined as key/value pairs.
+     * Private endpoint connection properties.
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
+    private PrivateEndpointConnectionProperties innerProperties;
 
     /*
-     * The sku of the workspace.
+     * Optional. This field is required to be implemented by the RP because AML is supporting more than one tier
      */
-    @JsonProperty(value = "sku")
     private Sku sku;
+
+    /*
+     * Dictionary of <string>
+     */
+    private Map<String, String> tags;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of PrivateEndpointConnectionInner class.
+     */
     public PrivateEndpointConnectionInner() {
     }
 
     /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
-     */
-    private PrivateEndpointConnectionProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the identity property: The identity of the resource.
-     *
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -79,8 +84,8 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the identity property: The identity of the resource.
-     *
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * 
      * @param identity the identity value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -90,8 +95,8 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the location property: Specifies the location of the resource.
-     *
+     * Get the location property: Same as workspace location.
+     * 
      * @return the location value.
      */
     public String location() {
@@ -99,8 +104,8 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the location property: Specifies the location of the resource.
-     *
+     * Set the location property: Same as workspace location.
+     * 
      * @param location the location value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -110,28 +115,18 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @return the tags value.
+     * Get the innerProperties property: Private endpoint connection properties.
+     * 
+     * @return the innerProperties value.
      */
-    public Map<String, String> tags() {
-        return this.tags;
+    private PrivateEndpointConnectionProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @param tags the tags value to set.
-     * @return the PrivateEndpointConnectionInner object itself.
-     */
-    public PrivateEndpointConnectionInner withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the sku property: The sku of the workspace.
-     *
+     * Get the sku property: Optional. This field is required to be implemented by the RP because AML is supporting more
+     * than one tier.
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -139,8 +134,9 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the sku property: The sku of the workspace.
-     *
+     * Set the sku property: Optional. This field is required to be implemented by the RP because AML is supporting more
+     * than one tier.
+     * 
      * @param sku the sku value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -150,8 +146,28 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
+     * Get the tags property: Dictionary of &lt;string&gt;.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Dictionary of &lt;string&gt;.
+     * 
+     * @param tags the tags value to set.
+     * @return the PrivateEndpointConnectionInner object itself.
+     */
+    public PrivateEndpointConnectionInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -159,21 +175,51 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
-     *
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the privateEndpoint property: The Private Endpoint resource.
+     * 
      * @return the privateEndpoint value.
      */
-    public PrivateEndpoint privateEndpoint() {
+    public WorkspacePrivateEndpointResource privateEndpoint() {
         return this.innerProperties() == null ? null : this.innerProperties().privateEndpoint();
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
-     *
+     * Set the privateEndpoint property: The Private Endpoint resource.
+     * 
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
-    public PrivateEndpointConnectionInner withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
+    public PrivateEndpointConnectionInner withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint) {
         if (this.innerProperties() == null) {
             this.innerProperties = new PrivateEndpointConnectionProperties();
         }
@@ -182,9 +228,8 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Get the privateLinkServiceConnectionState property: The connection state.
+     * 
      * @return the privateLinkServiceConnectionState value.
      */
     public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
@@ -192,14 +237,13 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Set the privateLinkServiceConnectionState property: The connection state.
+     * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
-    public PrivateEndpointConnectionInner withPrivateLinkServiceConnectionState(
-        PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
+    public PrivateEndpointConnectionInner
+        withPrivateLinkServiceConnectionState(PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
         if (this.innerProperties() == null) {
             this.innerProperties = new PrivateEndpointConnectionProperties();
         }
@@ -208,8 +252,8 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: The provisioning state of the private endpoint connection resource.
-     *
+     * Get the provisioningState property: The current provisioning state.
+     * 
      * @return the provisioningState value.
      */
     public PrivateEndpointConnectionProvisioningState provisioningState() {
@@ -217,19 +261,94 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
+     * Set the provisioningState property: The current provisioning state.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the PrivateEndpointConnectionInner object itself.
+     */
+    public PrivateEndpointConnectionInner
+        withProvisioningState(PrivateEndpointConnectionProvisioningState provisioningState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PrivateEndpointConnectionProperties();
+        }
+        this.innerProperties().withProvisioningState(provisioningState);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
         if (identity() != null) {
             identity().validate();
+        }
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
         if (sku() != null) {
             sku().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("location", this.location);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PrivateEndpointConnectionInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PrivateEndpointConnectionInner if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the PrivateEndpointConnectionInner.
+     */
+    public static PrivateEndpointConnectionInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PrivateEndpointConnectionInner deserializedPrivateEndpointConnectionInner
+                = new PrivateEndpointConnectionInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.type = reader.getString();
+                } else if ("identity".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("location".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.location = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.innerProperties
+                        = PrivateEndpointConnectionProperties.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.sku = Sku.fromJson(reader);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPrivateEndpointConnectionInner.tags = tags;
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPrivateEndpointConnectionInner;
+        });
     }
 }

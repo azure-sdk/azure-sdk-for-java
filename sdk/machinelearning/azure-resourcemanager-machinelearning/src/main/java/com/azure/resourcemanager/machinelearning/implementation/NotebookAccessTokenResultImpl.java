@@ -12,35 +12,30 @@ public final class NotebookAccessTokenResultImpl implements NotebookAccessTokenR
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    NotebookAccessTokenResultImpl(
-        NotebookAccessTokenResultInner innerObject,
+    NotebookAccessTokenResultImpl(NotebookAccessTokenResultInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-    }
-
-    public String notebookResourceId() {
-        return this.innerModel().notebookResourceId();
-    }
-
-    public String hostname() {
-        return this.innerModel().hostname();
-    }
-
-    public String publicDns() {
-        return this.innerModel().publicDns();
     }
 
     public String accessToken() {
         return this.innerModel().accessToken();
     }
 
-    public String tokenType() {
-        return this.innerModel().tokenType();
-    }
-
     public Integer expiresIn() {
         return this.innerModel().expiresIn();
+    }
+
+    public String hostname() {
+        return this.innerModel().hostname();
+    }
+
+    public String notebookResourceId() {
+        return this.innerModel().notebookResourceId();
+    }
+
+    public String publicDns() {
+        return this.innerModel().publicDns();
     }
 
     public String refreshToken() {
@@ -49,6 +44,10 @@ public final class NotebookAccessTokenResultImpl implements NotebookAccessTokenR
 
     public String scope() {
         return this.innerModel().scope();
+    }
+
+    public String tokenType() {
+        return this.innerModel().tokenType();
     }
 
     public NotebookAccessTokenResultInner innerModel() {

@@ -5,42 +5,46 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Service Token. */
+/**
+ * Service Token.
+ */
 @Fluent
-public final class EndpointAuthTokenInner {
+public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAuthTokenInner> {
     /*
      * Access token for endpoint authentication.
      */
-    @JsonProperty(value = "accessToken")
     private String accessToken;
 
     /*
      * Access token expiry time (UTC).
      */
-    @JsonProperty(value = "expiryTimeUtc")
     private Long expiryTimeUtc;
 
     /*
      * Refresh access token after time (UTC).
      */
-    @JsonProperty(value = "refreshAfterTimeUtc")
     private Long refreshAfterTimeUtc;
 
     /*
      * Access token type.
      */
-    @JsonProperty(value = "tokenType")
     private String tokenType;
 
-    /** Creates an instance of EndpointAuthTokenInner class. */
+    /**
+     * Creates an instance of EndpointAuthTokenInner class.
+     */
     public EndpointAuthTokenInner() {
     }
 
     /**
      * Get the accessToken property: Access token for endpoint authentication.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -49,7 +53,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the accessToken property: Access token for endpoint authentication.
-     *
+     * 
      * @param accessToken the accessToken value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -60,7 +64,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the expiryTimeUtc property: Access token expiry time (UTC).
-     *
+     * 
      * @return the expiryTimeUtc value.
      */
     public Long expiryTimeUtc() {
@@ -69,7 +73,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the expiryTimeUtc property: Access token expiry time (UTC).
-     *
+     * 
      * @param expiryTimeUtc the expiryTimeUtc value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -80,7 +84,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the refreshAfterTimeUtc property: Refresh access token after time (UTC).
-     *
+     * 
      * @return the refreshAfterTimeUtc value.
      */
     public Long refreshAfterTimeUtc() {
@@ -89,7 +93,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the refreshAfterTimeUtc property: Refresh access token after time (UTC).
-     *
+     * 
      * @param refreshAfterTimeUtc the refreshAfterTimeUtc value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -100,7 +104,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the tokenType property: Access token type.
-     *
+     * 
      * @return the tokenType value.
      */
     public String tokenType() {
@@ -109,7 +113,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the tokenType property: Access token type.
-     *
+     * 
      * @param tokenType the tokenType value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -120,9 +124,54 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("accessToken", this.accessToken);
+        jsonWriter.writeNumberField("expiryTimeUtc", this.expiryTimeUtc);
+        jsonWriter.writeNumberField("refreshAfterTimeUtc", this.refreshAfterTimeUtc);
+        jsonWriter.writeStringField("tokenType", this.tokenType);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EndpointAuthTokenInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EndpointAuthTokenInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the EndpointAuthTokenInner.
+     */
+    public static EndpointAuthTokenInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EndpointAuthTokenInner deserializedEndpointAuthTokenInner = new EndpointAuthTokenInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("accessToken".equals(fieldName)) {
+                    deserializedEndpointAuthTokenInner.accessToken = reader.getString();
+                } else if ("expiryTimeUtc".equals(fieldName)) {
+                    deserializedEndpointAuthTokenInner.expiryTimeUtc = reader.getNullable(JsonReader::getLong);
+                } else if ("refreshAfterTimeUtc".equals(fieldName)) {
+                    deserializedEndpointAuthTokenInner.refreshAfterTimeUtc = reader.getNullable(JsonReader::getLong);
+                } else if ("tokenType".equals(fieldName)) {
+                    deserializedEndpointAuthTokenInner.tokenType = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEndpointAuthTokenInner;
+        });
     }
 }

@@ -6,34 +6,50 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The MLTableJobInput model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
-@JsonTypeName("mltable")
+/**
+ * The MLTableJobInput model.
+ */
 @Fluent
 public final class MLTableJobInput extends JobInput {
     /*
+     * [Required] Specifies the type of job.
+     */
+    private JobInputType jobInputType = JobInputType.MLTABLE;
+
+    /*
      * Input Asset Delivery Mode.
      */
-    @JsonProperty(value = "mode")
     private InputDeliveryMode mode;
 
     /*
      * [Required] Input Asset URI.
      */
-    @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of MLTableJobInput class. */
+    /**
+     * Creates an instance of MLTableJobInput class.
+     */
     public MLTableJobInput() {
     }
 
     /**
+     * Get the jobInputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobInputType value.
+     */
+    @Override
+    public JobInputType jobInputType() {
+        return this.jobInputType;
+    }
+
+    /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -42,7 +58,7 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the MLTableJobInput object itself.
      */
@@ -53,7 +69,7 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -62,7 +78,7 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MLTableJobInput object itself.
      */
@@ -71,7 +87,9 @@ public final class MLTableJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableJobInput withDescription(String description) {
         super.withDescription(description);
@@ -80,18 +98,63 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model MLTableJobInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model MLTableJobInput"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MLTableJobInput.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeStringField("uri", this.uri);
+        jsonWriter.writeStringField("jobInputType", this.jobInputType == null ? null : this.jobInputType.toString());
+        jsonWriter.writeStringField("mode", this.mode == null ? null : this.mode.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MLTableJobInput from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MLTableJobInput if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the MLTableJobInput.
+     */
+    public static MLTableJobInput fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MLTableJobInput deserializedMLTableJobInput = new MLTableJobInput();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("description".equals(fieldName)) {
+                    deserializedMLTableJobInput.withDescription(reader.getString());
+                } else if ("uri".equals(fieldName)) {
+                    deserializedMLTableJobInput.uri = reader.getString();
+                } else if ("jobInputType".equals(fieldName)) {
+                    deserializedMLTableJobInput.jobInputType = JobInputType.fromString(reader.getString());
+                } else if ("mode".equals(fieldName)) {
+                    deserializedMLTableJobInput.mode = InputDeliveryMode.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMLTableJobInput;
+        });
+    }
 }
