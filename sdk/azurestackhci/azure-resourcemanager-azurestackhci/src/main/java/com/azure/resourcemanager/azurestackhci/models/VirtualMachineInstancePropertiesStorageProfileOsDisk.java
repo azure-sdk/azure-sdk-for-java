@@ -5,31 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** VHD to attach as OS disk. */
+/**
+ * VHD to attach as OS disk.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
+public final class VirtualMachineInstancePropertiesStorageProfileOsDisk
+    implements JsonSerializable<VirtualMachineInstancePropertiesStorageProfileOsDisk> {
     /*
      * Resource ID of the OS disk
      */
-    @JsonProperty(value = "id")
     private String id;
 
     /*
      * This property allows you to specify the type of the OS that is included in the disk if creating a VM from
      * user-image or a specialized VHD. Possible values are: **Windows,** **Linux.**
      */
-    @JsonProperty(value = "osType")
     private OperatingSystemTypes osType;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfileOsDisk class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfileOsDisk class.
+     */
     public VirtualMachineInstancePropertiesStorageProfileOsDisk() {
     }
 
     /**
      * Get the id property: Resource ID of the OS disk.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -38,7 +45,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
 
     /**
      * Set the id property: Resource ID of the OS disk.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileOsDisk object itself.
      */
@@ -50,7 +57,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     /**
      * Get the osType property: This property allows you to specify the type of the OS that is included in the disk if
      * creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.**.
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -60,7 +67,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     /**
      * Set the osType property: This property allows you to specify the type of the OS that is included in the disk if
      * creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.**.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileOsDisk object itself.
      */
@@ -71,9 +78,51 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("osType", this.osType == null ? null : this.osType.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesStorageProfileOsDisk from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesStorageProfileOsDisk if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstancePropertiesStorageProfileOsDisk.
+     */
+    public static VirtualMachineInstancePropertiesStorageProfileOsDisk fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesStorageProfileOsDisk deserializedVirtualMachineInstancePropertiesStorageProfileOsDisk
+                = new VirtualMachineInstancePropertiesStorageProfileOsDisk();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfileOsDisk.id = reader.getString();
+                } else if ("osType".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfileOsDisk.osType
+                        = OperatingSystemTypes.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesStorageProfileOsDisk;
+        });
     }
 }

@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for GalleryImagesOperation List. */
+/**
+ * Samples for GalleryImagesOperation List.
+ */
 public final class GalleryImagesOperationListSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/ListGalleryImageBySubscription.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * ListGalleryImageBySubscription.json
      */
     /**
      * Sample code: ListGalleryImageBySubscription.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void listGalleryImageBySubscription(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void
+        listGalleryImageBySubscription(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
         manager.galleryImagesOperations().list(com.azure.core.util.Context.NONE);
     }
 }

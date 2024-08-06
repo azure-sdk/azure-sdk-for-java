@@ -5,42 +5,47 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** HardwareProfile - Specifies the hardware settings for the virtual machine instance. */
+/**
+ * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesHardwareProfile {
+public final class VirtualMachineInstancePropertiesHardwareProfile
+    implements JsonSerializable<VirtualMachineInstancePropertiesHardwareProfile> {
     /*
      * The vmSize property.
      */
-    @JsonProperty(value = "vmSize")
     private VmSizeEnum vmSize;
 
     /*
      * number of processors for the virtual machine instance
      */
-    @JsonProperty(value = "processors")
     private Integer processors;
 
     /*
      * RAM in MB for the virtual machine instance
      */
-    @JsonProperty(value = "memoryMB")
     private Long memoryMB;
 
     /*
      * The dynamicMemoryConfig property.
      */
-    @JsonProperty(value = "dynamicMemoryConfig")
     private VirtualMachineInstancePropertiesHardwareProfileDynamicMemoryConfig dynamicMemoryConfig;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesHardwareProfile class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesHardwareProfile class.
+     */
     public VirtualMachineInstancePropertiesHardwareProfile() {
     }
 
     /**
      * Get the vmSize property: The vmSize property.
-     *
+     * 
      * @return the vmSize value.
      */
     public VmSizeEnum vmSize() {
@@ -49,7 +54,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the vmSize property: The vmSize property.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -60,7 +65,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @return the processors value.
      */
     public Integer processors() {
@@ -69,7 +74,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @param processors the processors value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -80,7 +85,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -89,7 +94,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -100,7 +105,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Get the dynamicMemoryConfig property: The dynamicMemoryConfig property.
-     *
+     * 
      * @return the dynamicMemoryConfig value.
      */
     public VirtualMachineInstancePropertiesHardwareProfileDynamicMemoryConfig dynamicMemoryConfig() {
@@ -109,7 +114,7 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Set the dynamicMemoryConfig property: The dynamicMemoryConfig property.
-     *
+     * 
      * @param dynamicMemoryConfig the dynamicMemoryConfig value to set.
      * @return the VirtualMachineInstancePropertiesHardwareProfile object itself.
      */
@@ -121,12 +126,62 @@ public final class VirtualMachineInstancePropertiesHardwareProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dynamicMemoryConfig() != null) {
             dynamicMemoryConfig().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("vmSize", this.vmSize == null ? null : this.vmSize.toString());
+        jsonWriter.writeNumberField("processors", this.processors);
+        jsonWriter.writeNumberField("memoryMB", this.memoryMB);
+        jsonWriter.writeJsonField("dynamicMemoryConfig", this.dynamicMemoryConfig);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesHardwareProfile from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesHardwareProfile if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstancePropertiesHardwareProfile.
+     */
+    public static VirtualMachineInstancePropertiesHardwareProfile fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesHardwareProfile deserializedVirtualMachineInstancePropertiesHardwareProfile
+                = new VirtualMachineInstancePropertiesHardwareProfile();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("vmSize".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesHardwareProfile.vmSize
+                        = VmSizeEnum.fromString(reader.getString());
+                } else if ("processors".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesHardwareProfile.processors
+                        = reader.getNullable(JsonReader::getInt);
+                } else if ("memoryMB".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesHardwareProfile.memoryMB
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("dynamicMemoryConfig".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesHardwareProfile.dynamicMemoryConfig
+                        = VirtualMachineInstancePropertiesHardwareProfileDynamicMemoryConfig.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesHardwareProfile;
+        });
     }
 }

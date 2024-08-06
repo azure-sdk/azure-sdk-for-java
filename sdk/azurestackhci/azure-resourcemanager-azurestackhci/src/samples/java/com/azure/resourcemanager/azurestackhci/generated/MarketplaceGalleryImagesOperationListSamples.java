@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for MarketplaceGalleryImagesOperation List. */
+/**
+ * Samples for MarketplaceGalleryImagesOperation List.
+ */
 public final class MarketplaceGalleryImagesOperationListSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/ListMarketplaceGalleryImageBySubscription.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * ListMarketplaceGalleryImageBySubscription.json
      */
     /**
      * Sample code: ListMarketplaceGalleryImageBySubscription.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void listMarketplaceGalleryImageBySubscription(
