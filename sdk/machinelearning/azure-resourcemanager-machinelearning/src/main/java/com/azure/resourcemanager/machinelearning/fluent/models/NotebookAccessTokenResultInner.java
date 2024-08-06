@@ -5,93 +5,66 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The NotebookAccessTokenResult model. */
+/**
+ * The NotebookAccessTokenResult model.
+ */
 @Immutable
-public final class NotebookAccessTokenResultInner {
-    /*
-     * The notebookResourceId property.
-     */
-    @JsonProperty(value = "notebookResourceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String notebookResourceId;
-
-    /*
-     * The hostName property.
-     */
-    @JsonProperty(value = "hostName", access = JsonProperty.Access.WRITE_ONLY)
-    private String hostname;
-
-    /*
-     * The publicDns property.
-     */
-    @JsonProperty(value = "publicDns", access = JsonProperty.Access.WRITE_ONLY)
-    private String publicDns;
-
+public final class NotebookAccessTokenResultInner implements JsonSerializable<NotebookAccessTokenResultInner> {
     /*
      * The accessToken property.
      */
-    @JsonProperty(value = "accessToken", access = JsonProperty.Access.WRITE_ONLY)
     private String accessToken;
-
-    /*
-     * The tokenType property.
-     */
-    @JsonProperty(value = "tokenType", access = JsonProperty.Access.WRITE_ONLY)
-    private String tokenType;
 
     /*
      * The expiresIn property.
      */
-    @JsonProperty(value = "expiresIn", access = JsonProperty.Access.WRITE_ONLY)
     private Integer expiresIn;
+
+    /*
+     * The hostName property.
+     */
+    private String hostname;
+
+    /*
+     * The notebookResourceId property.
+     */
+    private String notebookResourceId;
+
+    /*
+     * The publicDns property.
+     */
+    private String publicDns;
 
     /*
      * The refreshToken property.
      */
-    @JsonProperty(value = "refreshToken", access = JsonProperty.Access.WRITE_ONLY)
     private String refreshToken;
 
     /*
      * The scope property.
      */
-    @JsonProperty(value = "scope", access = JsonProperty.Access.WRITE_ONLY)
     private String scope;
 
-    /** Creates an instance of NotebookAccessTokenResultInner class. */
+    /*
+     * The tokenType property.
+     */
+    private String tokenType;
+
+    /**
+     * Creates an instance of NotebookAccessTokenResultInner class.
+     */
     public NotebookAccessTokenResultInner() {
     }
 
     /**
-     * Get the notebookResourceId property: The notebookResourceId property.
-     *
-     * @return the notebookResourceId value.
-     */
-    public String notebookResourceId() {
-        return this.notebookResourceId;
-    }
-
-    /**
-     * Get the hostname property: The hostName property.
-     *
-     * @return the hostname value.
-     */
-    public String hostname() {
-        return this.hostname;
-    }
-
-    /**
-     * Get the publicDns property: The publicDns property.
-     *
-     * @return the publicDns value.
-     */
-    public String publicDns() {
-        return this.publicDns;
-    }
-
-    /**
      * Get the accessToken property: The accessToken property.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -99,17 +72,8 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
-     * Get the tokenType property: The tokenType property.
-     *
-     * @return the tokenType value.
-     */
-    public String tokenType() {
-        return this.tokenType;
-    }
-
-    /**
      * Get the expiresIn property: The expiresIn property.
-     *
+     * 
      * @return the expiresIn value.
      */
     public Integer expiresIn() {
@@ -117,8 +81,35 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
+     * Get the hostname property: The hostName property.
+     * 
+     * @return the hostname value.
+     */
+    public String hostname() {
+        return this.hostname;
+    }
+
+    /**
+     * Get the notebookResourceId property: The notebookResourceId property.
+     * 
+     * @return the notebookResourceId value.
+     */
+    public String notebookResourceId() {
+        return this.notebookResourceId;
+    }
+
+    /**
+     * Get the publicDns property: The publicDns property.
+     * 
+     * @return the publicDns value.
+     */
+    public String publicDns() {
+        return this.publicDns;
+    }
+
+    /**
      * Get the refreshToken property: The refreshToken property.
-     *
+     * 
      * @return the refreshToken value.
      */
     public String refreshToken() {
@@ -127,7 +118,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the scope property: The scope property.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -135,10 +126,69 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
+     * Get the tokenType property: The tokenType property.
+     * 
+     * @return the tokenType value.
+     */
+    public String tokenType() {
+        return this.tokenType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NotebookAccessTokenResultInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NotebookAccessTokenResultInner if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NotebookAccessTokenResultInner.
+     */
+    public static NotebookAccessTokenResultInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NotebookAccessTokenResultInner deserializedNotebookAccessTokenResultInner
+                = new NotebookAccessTokenResultInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("accessToken".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.accessToken = reader.getString();
+                } else if ("expiresIn".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.expiresIn = reader.getNullable(JsonReader::getInt);
+                } else if ("hostName".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.hostname = reader.getString();
+                } else if ("notebookResourceId".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.notebookResourceId = reader.getString();
+                } else if ("publicDns".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.publicDns = reader.getString();
+                } else if ("refreshToken".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.refreshToken = reader.getString();
+                } else if ("scope".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.scope = reader.getString();
+                } else if ("tokenType".equals(fieldName)) {
+                    deserializedNotebookAccessTokenResultInner.tokenType = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNotebookAccessTokenResultInner;
+        });
     }
 }
