@@ -4,21 +4,24 @@
 
 package com.azure.resourcemanager.voiceservices.implementation;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.voiceservices.fluent.models.TestLineInner;
 import com.azure.resourcemanager.voiceservices.models.ProvisioningState;
 import com.azure.resourcemanager.voiceservices.models.TestLine;
 import com.azure.resourcemanager.voiceservices.models.TestLinePurpose;
-import com.azure.resourcemanager.voiceservices.models.TestLineUpdate;
 import java.util.Collections;
 import java.util.Map;
 
-public final class TestLineImpl implements TestLine, TestLine.Definition, TestLine.Update {
+public final class TestLineImpl implements TestLine {
     private TestLineInner innerObject;
 
     private final com.azure.resourcemanager.voiceservices.VoiceServicesManager serviceManager;
+
+    TestLineImpl(TestLineInner innerObject,
+        com.azure.resourcemanager.voiceservices.VoiceServicesManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -61,152 +64,11 @@ public final class TestLineImpl implements TestLine, TestLine.Definition, TestLi
         return this.innerModel().purpose();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public TestLineInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.voiceservices.VoiceServicesManager manager() {
         return this.serviceManager;
-    }
-
-    private String resourceGroupName;
-
-    private String communicationsGatewayName;
-
-    private String testLineName;
-
-    private TestLineUpdate updateProperties;
-
-    public TestLineImpl withExistingCommunicationsGateway(String resourceGroupName, String communicationsGatewayName) {
-        this.resourceGroupName = resourceGroupName;
-        this.communicationsGatewayName = communicationsGatewayName;
-        return this;
-    }
-
-    public TestLine create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .createOrUpdate(
-                    resourceGroupName, communicationsGatewayName, testLineName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public TestLine create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .createOrUpdate(resourceGroupName, communicationsGatewayName, testLineName, this.innerModel(), context);
-        return this;
-    }
-
-    TestLineImpl(String name, com.azure.resourcemanager.voiceservices.VoiceServicesManager serviceManager) {
-        this.innerObject = new TestLineInner();
-        this.serviceManager = serviceManager;
-        this.testLineName = name;
-    }
-
-    public TestLineImpl update() {
-        this.updateProperties = new TestLineUpdate();
-        return this;
-    }
-
-    public TestLine apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .updateWithResponse(
-                    resourceGroupName, communicationsGatewayName, testLineName, updateProperties, Context.NONE)
-                .getValue();
-        return this;
-    }
-
-    public TestLine apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .updateWithResponse(
-                    resourceGroupName, communicationsGatewayName, testLineName, updateProperties, context)
-                .getValue();
-        return this;
-    }
-
-    TestLineImpl(
-        TestLineInner innerObject, com.azure.resourcemanager.voiceservices.VoiceServicesManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.communicationsGatewayName = Utils.getValueFromIdByName(innerObject.id(), "communicationsGateways");
-        this.testLineName = Utils.getValueFromIdByName(innerObject.id(), "testLines");
-    }
-
-    public TestLine refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .getWithResponse(resourceGroupName, communicationsGatewayName, testLineName, Context.NONE)
-                .getValue();
-        return this;
-    }
-
-    public TestLine refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getTestLines()
-                .getWithResponse(resourceGroupName, communicationsGatewayName, testLineName, context)
-                .getValue();
-        return this;
-    }
-
-    public TestLineImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public TestLineImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public TestLineImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateProperties.withTags(tags);
-            return this;
-        }
-    }
-
-    public TestLineImpl withPhoneNumber(String phoneNumber) {
-        this.innerModel().withPhoneNumber(phoneNumber);
-        return this;
-    }
-
-    public TestLineImpl withPurpose(TestLinePurpose purpose) {
-        this.innerModel().withPurpose(purpose);
-        return this;
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }
