@@ -90,6 +90,20 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
     }
 
     /**
+     * Api Version.
+     */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
+    }
+
+    /**
      * The HTTP pipeline to send requests through.
      */
     private final HttpPipeline httpPipeline;
@@ -470,6 +484,7 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2023-12-30";
         this.azureADAdministrators = new AzureADAdministratorsClientImpl(this);
         this.backups = new BackupsClientImpl(this);
         this.backupAndExports = new BackupAndExportsClientImpl(this);

@@ -100,10 +100,9 @@ public final class ServersMigrationsClientImpl implements ServersMigrationsClien
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.cutoverMigration(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.cutoverMigration(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -137,11 +136,10 @@ public final class ServersMigrationsClientImpl implements ServersMigrationsClien
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.cutoverMigration(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, serverName, accept, context);
+        return service.cutoverMigration(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context);
     }
 
     /**
