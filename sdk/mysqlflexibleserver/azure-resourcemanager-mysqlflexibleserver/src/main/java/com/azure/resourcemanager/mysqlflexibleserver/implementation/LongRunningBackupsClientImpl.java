@@ -110,12 +110,9 @@ public final class LongRunningBackupsClientImpl implements LongRunningBackupsCli
         if (parameters != null) {
             parameters.validate();
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-                    resourceGroupName, serverName, backupName, parameters, accept, context))
+        return FluxUtil.withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serverName, backupName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -156,11 +153,10 @@ public final class LongRunningBackupsClientImpl implements LongRunningBackupsCli
         if (parameters != null) {
             parameters.validate();
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, backupName, parameters, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, backupName, parameters, accept, context);
     }
 
     /**

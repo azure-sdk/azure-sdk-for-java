@@ -120,10 +120,9 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -164,11 +163,10 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            serverName, parameters, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, serverName, parameters, accept, context);
     }
 
     /**
@@ -350,10 +348,9 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.validateBackup(this.client.getEndpoint(), apiVersion,
+            .withContext(context -> service.validateBackup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -388,11 +385,10 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.validateBackup(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, serverName, accept, context);
+        return service.validateBackup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serverName, accept, context);
     }
 
     /**
