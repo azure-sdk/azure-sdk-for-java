@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class OrganizationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_ListBySubscription_MaximumSet_Gen.json
      */
     /**
@@ -25,7 +25,7 @@ public final class OrganizationsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_ListBySubscription_MinimumSet_Gen.json
      */
     /**

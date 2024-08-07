@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class ServerlessRuntimesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_Delete_MaximumSet_Gen.json
      */
     /**
@@ -21,6 +21,7 @@ public final class ServerlessRuntimesDeleteSamples {
     public static void serverlessRuntimesDelete(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         manager.serverlessRuntimes()
-            .delete("rgopenapi", "orgName", "serverlessRuntimeName", com.azure.core.util.Context.NONE);
+            .delete("rgopenapi", "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE);
     }
 }

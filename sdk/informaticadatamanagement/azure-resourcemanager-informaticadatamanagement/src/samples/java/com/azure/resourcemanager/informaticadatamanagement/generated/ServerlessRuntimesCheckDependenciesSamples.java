@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class ServerlessRuntimesCheckDependenciesSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_CheckDependencies_MinimumSet_Gen.json
      */
     /**
@@ -26,7 +26,7 @@ public final class ServerlessRuntimesCheckDependenciesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_CheckDependencies_MaximumSet_Gen.json
      */
     /**
@@ -37,6 +37,8 @@ public final class ServerlessRuntimesCheckDependenciesSamples {
     public static void serverlessRuntimesCheckDependencies(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         manager.serverlessRuntimes()
-            .checkDependenciesWithResponse("rgopenapi", "3P", "M", com.azure.core.util.Context.NONE);
+            .checkDependenciesWithResponse("rgopenapi",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE);
     }
 }
