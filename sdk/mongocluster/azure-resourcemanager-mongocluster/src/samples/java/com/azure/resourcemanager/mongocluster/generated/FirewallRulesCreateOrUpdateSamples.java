@@ -11,7 +11,7 @@ import com.azure.resourcemanager.mongocluster.models.FirewallRuleProperties;
  */
 public final class FirewallRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-07-01/
      * MongoClusters_FirewallRuleCreate.json
      */
     /**
