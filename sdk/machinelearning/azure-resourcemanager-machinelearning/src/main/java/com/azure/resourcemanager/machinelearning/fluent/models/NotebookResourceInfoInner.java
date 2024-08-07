@@ -5,37 +5,47 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.NotebookPreparationError;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** The NotebookResourceInfo model. */
+/**
+ * The NotebookResourceInfo model.
+ */
 @Fluent
-public final class NotebookResourceInfoInner {
+public final class NotebookResourceInfoInner implements JsonSerializable<NotebookResourceInfoInner> {
     /*
      * The fqdn property.
      */
-    @JsonProperty(value = "fqdn")
     private String fqdn;
 
     /*
-     * the data plane resourceId that used to initialize notebook component
+     * The isPrivateLinkEnabled property.
      */
-    @JsonProperty(value = "resourceId")
-    private String resourceId;
+    private Boolean isPrivateLinkEnabled;
 
     /*
      * The error that occurs when preparing notebook.
      */
-    @JsonProperty(value = "notebookPreparationError")
     private NotebookPreparationError notebookPreparationError;
 
-    /** Creates an instance of NotebookResourceInfoInner class. */
+    /*
+     * the data plane resourceId that used to initialize notebook component
+     */
+    private String resourceId;
+
+    /**
+     * Creates an instance of NotebookResourceInfoInner class.
+     */
     public NotebookResourceInfoInner() {
     }
 
     /**
      * Get the fqdn property: The fqdn property.
-     *
+     * 
      * @return the fqdn value.
      */
     public String fqdn() {
@@ -44,7 +54,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Set the fqdn property: The fqdn property.
-     *
+     * 
      * @param fqdn the fqdn value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
@@ -54,28 +64,28 @@ public final class NotebookResourceInfoInner {
     }
 
     /**
-     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
-     *
-     * @return the resourceId value.
+     * Get the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
+     * 
+     * @return the isPrivateLinkEnabled value.
      */
-    public String resourceId() {
-        return this.resourceId;
+    public Boolean isPrivateLinkEnabled() {
+        return this.isPrivateLinkEnabled;
     }
 
     /**
-     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
-     *
-     * @param resourceId the resourceId value to set.
+     * Set the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
+     * 
+     * @param isPrivateLinkEnabled the isPrivateLinkEnabled value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
-    public NotebookResourceInfoInner withResourceId(String resourceId) {
-        this.resourceId = resourceId;
+    public NotebookResourceInfoInner withIsPrivateLinkEnabled(Boolean isPrivateLinkEnabled) {
+        this.isPrivateLinkEnabled = isPrivateLinkEnabled;
         return this;
     }
 
     /**
      * Get the notebookPreparationError property: The error that occurs when preparing notebook.
-     *
+     * 
      * @return the notebookPreparationError value.
      */
     public NotebookPreparationError notebookPreparationError() {
@@ -84,7 +94,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Set the notebookPreparationError property: The error that occurs when preparing notebook.
-     *
+     * 
      * @param notebookPreparationError the notebookPreparationError value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
@@ -94,13 +104,80 @@ public final class NotebookResourceInfoInner {
     }
 
     /**
+     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * 
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * 
+     * @param resourceId the resourceId value to set.
+     * @return the NotebookResourceInfoInner object itself.
+     */
+    public NotebookResourceInfoInner withResourceId(String resourceId) {
+        this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (notebookPreparationError() != null) {
             notebookPreparationError().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("fqdn", this.fqdn);
+        jsonWriter.writeBooleanField("isPrivateLinkEnabled", this.isPrivateLinkEnabled);
+        jsonWriter.writeJsonField("notebookPreparationError", this.notebookPreparationError);
+        jsonWriter.writeStringField("resourceId", this.resourceId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NotebookResourceInfoInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NotebookResourceInfoInner if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NotebookResourceInfoInner.
+     */
+    public static NotebookResourceInfoInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NotebookResourceInfoInner deserializedNotebookResourceInfoInner = new NotebookResourceInfoInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("fqdn".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.fqdn = reader.getString();
+                } else if ("isPrivateLinkEnabled".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.isPrivateLinkEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("notebookPreparationError".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.notebookPreparationError
+                        = NotebookPreparationError.fromJson(reader);
+                } else if ("resourceId".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.resourceId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNotebookResourceInfoInner;
+        });
     }
 }

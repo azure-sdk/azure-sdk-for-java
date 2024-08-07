@@ -5,44 +5,50 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Early termination policies enable canceling poor-performing runs before they complete. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "policyType",
-    defaultImpl = EarlyTerminationPolicy.class)
-@JsonTypeName("EarlyTerminationPolicy")
-@JsonSubTypes({
-    @JsonSubTypes.Type(name = "Bandit", value = BanditPolicy.class),
-    @JsonSubTypes.Type(name = "MedianStopping", value = MedianStoppingPolicy.class),
-    @JsonSubTypes.Type(name = "TruncationSelection", value = TruncationSelectionPolicy.class)
-})
+/**
+ * Early termination policies enable canceling poor-performing runs before they complete.
+ */
 @Fluent
-public class EarlyTerminationPolicy {
+public class EarlyTerminationPolicy implements JsonSerializable<EarlyTerminationPolicy> {
+    /*
+     * [Required] Name of policy configuration
+     */
+    private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.fromString("EarlyTerminationPolicy");
+
     /*
      * Number of intervals by which to delay the first evaluation.
      */
-    @JsonProperty(value = "delayEvaluation")
     private Integer delayEvaluation;
 
     /*
      * Interval (number of runs) between policy evaluations.
      */
-    @JsonProperty(value = "evaluationInterval")
     private Integer evaluationInterval;
 
-    /** Creates an instance of EarlyTerminationPolicy class. */
+    /**
+     * Creates an instance of EarlyTerminationPolicy class.
+     */
     public EarlyTerminationPolicy() {
     }
 
     /**
+     * Get the policyType property: [Required] Name of policy configuration.
+     * 
+     * @return the policyType value.
+     */
+    public EarlyTerminationPolicyType policyType() {
+        return this.policyType;
+    }
+
+    /**
      * Get the delayEvaluation property: Number of intervals by which to delay the first evaluation.
-     *
+     * 
      * @return the delayEvaluation value.
      */
     public Integer delayEvaluation() {
@@ -51,7 +57,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Set the delayEvaluation property: Number of intervals by which to delay the first evaluation.
-     *
+     * 
      * @param delayEvaluation the delayEvaluation value to set.
      * @return the EarlyTerminationPolicy object itself.
      */
@@ -62,7 +68,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Get the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     *
+     * 
      * @return the evaluationInterval value.
      */
     public Integer evaluationInterval() {
@@ -71,7 +77,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Set the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     *
+     * 
      * @param evaluationInterval the evaluationInterval value to set.
      * @return the EarlyTerminationPolicy object itself.
      */
@@ -82,9 +88,81 @@ public class EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("policyType", this.policyType == null ? null : this.policyType.toString());
+        jsonWriter.writeNumberField("delayEvaluation", this.delayEvaluation);
+        jsonWriter.writeNumberField("evaluationInterval", this.evaluationInterval);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EarlyTerminationPolicy from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EarlyTerminationPolicy if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the EarlyTerminationPolicy.
+     */
+    public static EarlyTerminationPolicy fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            String discriminatorValue = null;
+            try (JsonReader readerToUse = reader.bufferObject()) {
+                readerToUse.nextToken(); // Prepare for reading
+                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = readerToUse.getFieldName();
+                    readerToUse.nextToken();
+                    if ("policyType".equals(fieldName)) {
+                        discriminatorValue = readerToUse.getString();
+                        break;
+                    } else {
+                        readerToUse.skipChildren();
+                    }
+                }
+                // Use the discriminator value to determine which subtype should be deserialized.
+                if ("Bandit".equals(discriminatorValue)) {
+                    return BanditPolicy.fromJson(readerToUse.reset());
+                } else if ("MedianStopping".equals(discriminatorValue)) {
+                    return MedianStoppingPolicy.fromJson(readerToUse.reset());
+                } else if ("TruncationSelection".equals(discriminatorValue)) {
+                    return TruncationSelectionPolicy.fromJson(readerToUse.reset());
+                } else {
+                    return fromJsonKnownDiscriminator(readerToUse.reset());
+                }
+            }
+        });
+    }
+
+    static EarlyTerminationPolicy fromJsonKnownDiscriminator(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EarlyTerminationPolicy deserializedEarlyTerminationPolicy = new EarlyTerminationPolicy();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("policyType".equals(fieldName)) {
+                    deserializedEarlyTerminationPolicy.policyType
+                        = EarlyTerminationPolicyType.fromString(reader.getString());
+                } else if ("delayEvaluation".equals(fieldName)) {
+                    deserializedEarlyTerminationPolicy.delayEvaluation = reader.getNullable(JsonReader::getInt);
+                } else if ("evaluationInterval".equals(fieldName)) {
+                    deserializedEarlyTerminationPolicy.evaluationInterval = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEarlyTerminationPolicy;
+        });
     }
 }

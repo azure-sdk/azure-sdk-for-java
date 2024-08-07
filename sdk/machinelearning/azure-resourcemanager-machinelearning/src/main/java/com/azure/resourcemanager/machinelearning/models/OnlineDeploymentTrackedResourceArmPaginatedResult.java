@@ -5,33 +5,40 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.fluent.models.OnlineDeploymentInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** A paginated list of OnlineDeployment entities. */
+/**
+ * A paginated list of OnlineDeployment entities.
+ */
 @Fluent
-public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
+public final class OnlineDeploymentTrackedResourceArmPaginatedResult
+    implements JsonSerializable<OnlineDeploymentTrackedResourceArmPaginatedResult> {
     /*
      * The link to the next page of OnlineDeployment objects. If null, there are no additional pages.
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /*
      * An array of objects of type OnlineDeployment.
      */
-    @JsonProperty(value = "value")
     private List<OnlineDeploymentInner> value;
 
-    /** Creates an instance of OnlineDeploymentTrackedResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of OnlineDeploymentTrackedResourceArmPaginatedResult class.
+     */
     public OnlineDeploymentTrackedResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of OnlineDeployment objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +48,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of OnlineDeployment objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -52,7 +59,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type OnlineDeployment.
-     *
+     * 
      * @return the value value.
      */
     public List<OnlineDeploymentInner> value() {
@@ -61,7 +68,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type OnlineDeployment.
-     *
+     * 
      * @param value the value value to set.
      * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -72,12 +79,54 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OnlineDeploymentTrackedResourceArmPaginatedResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OnlineDeploymentTrackedResourceArmPaginatedResult if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the OnlineDeploymentTrackedResourceArmPaginatedResult.
+     */
+    public static OnlineDeploymentTrackedResourceArmPaginatedResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OnlineDeploymentTrackedResourceArmPaginatedResult deserializedOnlineDeploymentTrackedResourceArmPaginatedResult
+                = new OnlineDeploymentTrackedResourceArmPaginatedResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("nextLink".equals(fieldName)) {
+                    deserializedOnlineDeploymentTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
+                    List<OnlineDeploymentInner> value
+                        = reader.readArray(reader1 -> OnlineDeploymentInner.fromJson(reader1));
+                    deserializedOnlineDeploymentTrackedResourceArmPaginatedResult.value = value;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOnlineDeploymentTrackedResourceArmPaginatedResult;
+        });
     }
 }

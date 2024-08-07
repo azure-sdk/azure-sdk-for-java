@@ -6,30 +6,36 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Optimization objective. */
+/**
+ * Optimization objective.
+ */
 @Fluent
-public final class Objective {
+public final class Objective implements JsonSerializable<Objective> {
     /*
      * [Required] Defines supported metric goals for hyperparameter tuning
      */
-    @JsonProperty(value = "goal", required = true)
     private Goal goal;
 
     /*
      * [Required] Name of the metric to optimize.
      */
-    @JsonProperty(value = "primaryMetric", required = true)
     private String primaryMetric;
 
-    /** Creates an instance of Objective class. */
+    /**
+     * Creates an instance of Objective class.
+     */
     public Objective() {
     }
 
     /**
      * Get the goal property: [Required] Defines supported metric goals for hyperparameter tuning.
-     *
+     * 
      * @return the goal value.
      */
     public Goal goal() {
@@ -38,7 +44,7 @@ public final class Objective {
 
     /**
      * Set the goal property: [Required] Defines supported metric goals for hyperparameter tuning.
-     *
+     * 
      * @param goal the goal value to set.
      * @return the Objective object itself.
      */
@@ -49,7 +55,7 @@ public final class Objective {
 
     /**
      * Get the primaryMetric property: [Required] Name of the metric to optimize.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public String primaryMetric() {
@@ -58,7 +64,7 @@ public final class Objective {
 
     /**
      * Set the primaryMetric property: [Required] Name of the metric to optimize.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the Objective object itself.
      */
@@ -69,20 +75,59 @@ public final class Objective {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (goal() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property goal in model Objective"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property goal in model Objective"));
         }
         if (primaryMetric() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(Objective.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("goal", this.goal == null ? null : this.goal.toString());
+        jsonWriter.writeStringField("primaryMetric", this.primaryMetric);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Objective from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Objective if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the Objective.
+     */
+    public static Objective fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Objective deserializedObjective = new Objective();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("goal".equals(fieldName)) {
+                    deserializedObjective.goal = Goal.fromString(reader.getString());
+                } else if ("primaryMetric".equals(fieldName)) {
+                    deserializedObjective.primaryMetric = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedObjective;
+        });
+    }
 }
