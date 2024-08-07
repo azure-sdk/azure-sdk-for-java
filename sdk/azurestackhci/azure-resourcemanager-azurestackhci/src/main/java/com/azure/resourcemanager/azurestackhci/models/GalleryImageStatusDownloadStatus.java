@@ -5,24 +5,31 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The download status of the gallery image. */
+/**
+ * The download status of the gallery image.
+ */
 @Fluent
-public final class GalleryImageStatusDownloadStatus {
+public final class GalleryImageStatusDownloadStatus implements JsonSerializable<GalleryImageStatusDownloadStatus> {
     /*
      * The downloaded sized of the image in MB
      */
-    @JsonProperty(value = "downloadSizeInMB")
     private Long downloadSizeInMB;
 
-    /** Creates an instance of GalleryImageStatusDownloadStatus class. */
+    /**
+     * Creates an instance of GalleryImageStatusDownloadStatus class.
+     */
     public GalleryImageStatusDownloadStatus() {
     }
 
     /**
      * Get the downloadSizeInMB property: The downloaded sized of the image in MB.
-     *
+     * 
      * @return the downloadSizeInMB value.
      */
     public Long downloadSizeInMB() {
@@ -31,7 +38,7 @@ public final class GalleryImageStatusDownloadStatus {
 
     /**
      * Set the downloadSizeInMB property: The downloaded sized of the image in MB.
-     *
+     * 
      * @param downloadSizeInMB the downloadSizeInMB value to set.
      * @return the GalleryImageStatusDownloadStatus object itself.
      */
@@ -42,9 +49,47 @@ public final class GalleryImageStatusDownloadStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeNumberField("downloadSizeInMB", this.downloadSizeInMB);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImageStatusDownloadStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImageStatusDownloadStatus if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GalleryImageStatusDownloadStatus.
+     */
+    public static GalleryImageStatusDownloadStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImageStatusDownloadStatus deserializedGalleryImageStatusDownloadStatus
+                = new GalleryImageStatusDownloadStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("downloadSizeInMB".equals(fieldName)) {
+                    deserializedGalleryImageStatusDownloadStatus.downloadSizeInMB
+                        = reader.getNullable(JsonReader::getLong);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImageStatusDownloadStatus;
+        });
     }
 }

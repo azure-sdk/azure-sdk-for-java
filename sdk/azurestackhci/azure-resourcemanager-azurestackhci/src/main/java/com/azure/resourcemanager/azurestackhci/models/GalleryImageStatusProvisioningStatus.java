@@ -5,30 +5,37 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The GalleryImageStatusProvisioningStatus model. */
+/**
+ * The GalleryImageStatusProvisioningStatus model.
+ */
 @Fluent
-public final class GalleryImageStatusProvisioningStatus {
+public final class GalleryImageStatusProvisioningStatus
+    implements JsonSerializable<GalleryImageStatusProvisioningStatus> {
     /*
      * The ID of the operation performed on the gallery image
      */
-    @JsonProperty(value = "operationId")
     private String operationId;
 
     /*
      * The status of the operation performed on the gallery image [Succeeded, Failed, InProgress]
      */
-    @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of GalleryImageStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of GalleryImageStatusProvisioningStatus class.
+     */
     public GalleryImageStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the gallery image.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +44,7 @@ public final class GalleryImageStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the gallery image.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the GalleryImageStatusProvisioningStatus object itself.
      */
@@ -49,7 +56,7 @@ public final class GalleryImageStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the gallery image [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +66,7 @@ public final class GalleryImageStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the gallery image [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the GalleryImageStatusProvisioningStatus object itself.
      */
@@ -70,9 +77,49 @@ public final class GalleryImageStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("operationId", this.operationId);
+        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImageStatusProvisioningStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImageStatusProvisioningStatus if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GalleryImageStatusProvisioningStatus.
+     */
+    public static GalleryImageStatusProvisioningStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImageStatusProvisioningStatus deserializedGalleryImageStatusProvisioningStatus
+                = new GalleryImageStatusProvisioningStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("operationId".equals(fieldName)) {
+                    deserializedGalleryImageStatusProvisioningStatus.operationId = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedGalleryImageStatusProvisioningStatus.status = Status.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImageStatusProvisioningStatus;
+        });
     }
 }

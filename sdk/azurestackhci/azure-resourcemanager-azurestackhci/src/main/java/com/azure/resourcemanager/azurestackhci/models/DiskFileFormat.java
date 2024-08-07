@@ -5,20 +5,25 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The format of the actual VHD file [vhd, vhdx]. */
+/**
+ * The format of the actual VHD file [vhd, vhdx].
+ */
 public final class DiskFileFormat extends ExpandableStringEnum<DiskFileFormat> {
-    /** Static value vhdx for DiskFileFormat. */
+    /**
+     * Static value vhdx for DiskFileFormat.
+     */
     public static final DiskFileFormat VHDX = fromString("vhdx");
 
-    /** Static value vhd for DiskFileFormat. */
+    /**
+     * Static value vhd for DiskFileFormat.
+     */
     public static final DiskFileFormat VHD = fromString("vhd");
 
     /**
      * Creates a new instance of DiskFileFormat value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,18 +32,17 @@ public final class DiskFileFormat extends ExpandableStringEnum<DiskFileFormat> {
 
     /**
      * Creates or finds a DiskFileFormat from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DiskFileFormat.
      */
-    @JsonCreator
     public static DiskFileFormat fromString(String name) {
         return fromString(name, DiskFileFormat.class);
     }
 
     /**
      * Gets known DiskFileFormat values.
-     *
+     * 
      * @return known DiskFileFormat values.
      */
     public static Collection<DiskFileFormat> values() {

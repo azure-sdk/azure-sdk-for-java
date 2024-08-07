@@ -5,24 +5,31 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The StorageProfileUpdateDataDisksItem model. */
+/**
+ * The StorageProfileUpdateDataDisksItem model.
+ */
 @Fluent
-public final class StorageProfileUpdateDataDisksItem {
+public final class StorageProfileUpdateDataDisksItem implements JsonSerializable<StorageProfileUpdateDataDisksItem> {
     /*
      * The id property.
      */
-    @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of StorageProfileUpdateDataDisksItem class. */
+    /**
+     * Creates an instance of StorageProfileUpdateDataDisksItem class.
+     */
     public StorageProfileUpdateDataDisksItem() {
     }
 
     /**
      * Get the id property: The id property.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +38,7 @@ public final class StorageProfileUpdateDataDisksItem {
 
     /**
      * Set the id property: The id property.
-     *
+     * 
      * @param id the id value to set.
      * @return the StorageProfileUpdateDataDisksItem object itself.
      */
@@ -42,9 +49,46 @@ public final class StorageProfileUpdateDataDisksItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageProfileUpdateDataDisksItem from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageProfileUpdateDataDisksItem if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the StorageProfileUpdateDataDisksItem.
+     */
+    public static StorageProfileUpdateDataDisksItem fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageProfileUpdateDataDisksItem deserializedStorageProfileUpdateDataDisksItem
+                = new StorageProfileUpdateDataDisksItem();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedStorageProfileUpdateDataDisksItem.id = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageProfileUpdateDataDisksItem;
+        });
     }
 }

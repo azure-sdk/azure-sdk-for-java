@@ -7,43 +7,62 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.InterfaceDnsSettings;
 import com.azure.resourcemanager.azurestackhci.models.IpConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaceStatus;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/** The network interface resource definition. */
+/**
+ * The network interface resource definition.
+ */
 @Fluent
 public final class NetworkInterfacesInner extends Resource {
     /*
      * Properties under the network interface resource
      */
-    @JsonProperty(value = "properties")
     private NetworkInterfaceProperties innerProperties;
 
     /*
      * The extendedLocation of the resource.
      */
-    @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkInterfacesInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of NetworkInterfacesInner class.
+     */
     public NetworkInterfacesInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the network interface resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkInterfaceProperties innerProperties() {
@@ -52,7 +71,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,7 +80,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -72,21 +91,55 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfacesInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfacesInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -95,7 +148,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -104,7 +157,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -118,7 +171,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -127,7 +180,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @param macAddress the macAddress value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -141,7 +194,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @return the dnsSettings value.
      */
     public InterfaceDnsSettings dnsSettings() {
@@ -150,7 +203,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Set the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @param dnsSettings the dnsSettings value to set.
      * @return the NetworkInterfacesInner object itself.
      */
@@ -164,7 +217,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the network interface.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -173,7 +226,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Get the status property: The observed state of network interfaces.
-     *
+     * 
      * @return the status value.
      */
     public NetworkInterfaceStatus status() {
@@ -182,7 +235,7 @@ public final class NetworkInterfacesInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -192,5 +245,60 @@ public final class NetworkInterfacesInner extends Resource {
         if (extendedLocation() != null) {
             extendedLocation().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("extendedLocation", this.extendedLocation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NetworkInterfacesInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NetworkInterfacesInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the NetworkInterfacesInner.
+     */
+    public static NetworkInterfacesInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NetworkInterfacesInner deserializedNetworkInterfacesInner = new NetworkInterfacesInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedNetworkInterfacesInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.innerProperties = NetworkInterfaceProperties.fromJson(reader);
+                } else if ("extendedLocation".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.extendedLocation = ExtendedLocation.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedNetworkInterfacesInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNetworkInterfacesInner;
+        });
     }
 }

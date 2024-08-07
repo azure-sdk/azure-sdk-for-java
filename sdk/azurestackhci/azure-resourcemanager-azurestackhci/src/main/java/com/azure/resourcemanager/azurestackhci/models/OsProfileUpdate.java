@@ -5,36 +5,41 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** OsProfile - describes the update configuration of the operating system. */
+/**
+ * OsProfile - describes the update configuration of the operating system.
+ */
 @Fluent
-public final class OsProfileUpdate {
+public final class OsProfileUpdate implements JsonSerializable<OsProfileUpdate> {
     /*
      * ComputerName - name of the computer
      */
-    @JsonProperty(value = "computerName")
     private String computerName;
 
     /*
      * The linuxConfiguration property.
      */
-    @JsonProperty(value = "linuxConfiguration")
     private OsProfileUpdateLinuxConfiguration linuxConfiguration;
 
     /*
      * The windowsConfiguration property.
      */
-    @JsonProperty(value = "windowsConfiguration")
     private OsProfileUpdateWindowsConfiguration windowsConfiguration;
 
-    /** Creates an instance of OsProfileUpdate class. */
+    /**
+     * Creates an instance of OsProfileUpdate class.
+     */
     public OsProfileUpdate() {
     }
 
     /**
      * Get the computerName property: ComputerName - name of the computer.
-     *
+     * 
      * @return the computerName value.
      */
     public String computerName() {
@@ -43,7 +48,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the computerName property: ComputerName - name of the computer.
-     *
+     * 
      * @param computerName the computerName value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -54,7 +59,7 @@ public final class OsProfileUpdate {
 
     /**
      * Get the linuxConfiguration property: The linuxConfiguration property.
-     *
+     * 
      * @return the linuxConfiguration value.
      */
     public OsProfileUpdateLinuxConfiguration linuxConfiguration() {
@@ -63,7 +68,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the linuxConfiguration property: The linuxConfiguration property.
-     *
+     * 
      * @param linuxConfiguration the linuxConfiguration value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -74,7 +79,7 @@ public final class OsProfileUpdate {
 
     /**
      * Get the windowsConfiguration property: The windowsConfiguration property.
-     *
+     * 
      * @return the windowsConfiguration value.
      */
     public OsProfileUpdateWindowsConfiguration windowsConfiguration() {
@@ -83,7 +88,7 @@ public final class OsProfileUpdate {
 
     /**
      * Set the windowsConfiguration property: The windowsConfiguration property.
-     *
+     * 
      * @param windowsConfiguration the windowsConfiguration value to set.
      * @return the OsProfileUpdate object itself.
      */
@@ -94,7 +99,7 @@ public final class OsProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -104,5 +109,48 @@ public final class OsProfileUpdate {
         if (windowsConfiguration() != null) {
             windowsConfiguration().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("computerName", this.computerName);
+        jsonWriter.writeJsonField("linuxConfiguration", this.linuxConfiguration);
+        jsonWriter.writeJsonField("windowsConfiguration", this.windowsConfiguration);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OsProfileUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OsProfileUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the OsProfileUpdate.
+     */
+    public static OsProfileUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OsProfileUpdate deserializedOsProfileUpdate = new OsProfileUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("computerName".equals(fieldName)) {
+                    deserializedOsProfileUpdate.computerName = reader.getString();
+                } else if ("linuxConfiguration".equals(fieldName)) {
+                    deserializedOsProfileUpdate.linuxConfiguration = OsProfileUpdateLinuxConfiguration.fromJson(reader);
+                } else if ("windowsConfiguration".equals(fieldName)) {
+                    deserializedOsProfileUpdate.windowsConfiguration
+                        = OsProfileUpdateWindowsConfiguration.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOsProfileUpdate;
+        });
     }
 }
