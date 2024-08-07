@@ -12,6 +12,7 @@ import com.azure.resourcemanager.informaticadatamanagement.models.InformaticaSer
 import com.azure.resourcemanager.informaticadatamanagement.models.NetworkInterfaceConfigurationUpdate;
 import com.azure.resourcemanager.informaticadatamanagement.models.PlatformType;
 import com.azure.resourcemanager.informaticadatamanagement.models.ServerlessRuntimeConfigPropertiesUpdate;
+import com.azure.resourcemanager.informaticadatamanagement.models.ServerlessRuntimeDataDisk;
 import com.azure.resourcemanager.informaticadatamanagement.models.ServerlessRuntimeNetworkProfileUpdate;
 import com.azure.resourcemanager.informaticadatamanagement.models.ServerlessRuntimePropertiesCustomUpdate;
 import com.azure.resourcemanager.informaticadatamanagement.models.ServerlessRuntimeTag;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 public final class ServerlessRuntimesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_Update_MinimumSet_Gen.json
      */
     /**
@@ -42,7 +43,7 @@ public final class ServerlessRuntimesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_Update_MaximumSet_Gen.json
      */
     /**
@@ -53,46 +54,49 @@ public final class ServerlessRuntimesUpdateSamples {
     public static void serverlessRuntimesUpdate(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         InformaticaServerlessRuntimeResource resource = manager.serverlessRuntimes()
-            .getWithResponse("rgopenapi", "W5", "t_", com.azure.core.util.Context.NONE)
+            .getWithResponse("rgopenapi", "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withProperties(new ServerlessRuntimePropertiesCustomUpdate()
-                .withDescription("ocprslpljoikxyduackzqnkuhyzrh")
+            .withProperties(new ServerlessRuntimePropertiesCustomUpdate().withDescription("xecmsqsgyrnvhikjsbonpo")
                 .withPlatform(PlatformType.AZURE)
                 .withApplicationType(ApplicationType.CDI)
-                .withComputeUnits("uncwbpu")
-                .withExecutionTimeout("tjyfytuywriabt")
-                .withServerlessAccountLocation("goaugkyfanqfnvcmntreibqrswfpis")
-                .withServerlessRuntimeNetworkProfile(new ServerlessRuntimeNetworkProfileUpdate()
-                    .withNetworkInterfaceConfiguration(new NetworkInterfaceConfigurationUpdate().withVnetId(
-                        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/HypernetVnet1")
-                        .withSubnetId(
-                            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/subnet1")
-                        .withVnetResourceGuid("5328d299-1462-4be0-bef1-303a28e556a0")))
-                .withAdvancedCustomProperties(Arrays.asList(
-                    new AdvancedCustomProperties().withKey("fakeTokenPlaceholder").withValue("unraxmnohdmvutt")))
-                .withSupplementaryFileLocation("csxaqzpxu")
+                .withComputeUnits("xkdjz")
+                .withExecutionTimeout("yhuojjpgbyjorkasepklgwttua")
+                .withServerlessAccountLocation("patvfndjzeyflumzvskjdbjve")
+                .withServerlessRuntimeNetworkProfile(
+                    new ServerlessRuntimeNetworkProfileUpdate().withNetworkInterfaceConfiguration(
+                        new NetworkInterfaceConfigurationUpdate().withVnetId("idgmvcwxteetoai")
+                            .withSubnetId("bauxrifioknw")
+                            .withVnetResourceGuid("kaqd")))
+                .withAdvancedCustomProperties(
+                    Arrays.asList(new AdvancedCustomProperties().withKey("fakeTokenPlaceholder").withValue("xzkgo")))
+                .withSupplementaryFileLocation("soexqtehxrdxwckysaxmydvqu")
+                .withServerlessRuntimeDataDisks(
+                    Arrays.asList(new ServerlessRuntimeDataDisk().withType("rphytrclmmpywtaxoevezqxpzndi")
+                        .withServerHostOrIpAddress("nhrqlx")
+                        .withSourceMount("dvekzq")
+                        .withTargetMount("kbkzoeibgqsswvnwatsu")
+                        .withMountOptions("brmqwmjdsfquphudxtruhxn")))
                 .withServerlessRuntimeConfig(new ServerlessRuntimeConfigPropertiesUpdate()
-                    .withCdiConfigProps(
-                        Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
-                            .withEngineVersion("zlrlbg")
-                            .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
-                                .withName("upfvjrqcrwwedfujkmsodeinw")
-                                .withValue("mozgsetpwjmtyl")
-                                .withPlatform("dixfyeobngivyvf")
-                                .withCustomized("j")
-                                .withDefaultValue("zvgkqwmi")))))
-                    .withCdieConfigProps(
-                        Arrays.asList(new CdiConfigProps().withEngineName("hngsdqvtjdhwqlbqfotipaiwjuys")
-                            .withEngineVersion("zlrlbg")
-                            .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("lw")
-                                .withName("upfvjrqcrwwedfujkmsodeinw")
-                                .withValue("mozgsetpwjmtyl")
-                                .withPlatform("dixfyeobngivyvf")
-                                .withCustomized("j")
-                                .withDefaultValue("zvgkqwmi"))))))
+                    .withCdiConfigProps(Arrays.asList(new CdiConfigProps().withEngineName("vl")
+                        .withEngineVersion("uwtovwbq")
+                        .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("vzdrepvhg")
+                            .withName("aqmadlcjumssrvekk")
+                            .withValue("pcwzkv")
+                            .withPlatform("rsixjfovnm")
+                            .withCustomized("lbqdroeh")
+                            .withDefaultValue("dnhjcdvczfvjqiuqwvnzf")))))
+                    .withCdieConfigProps(Arrays.asList(new CdiConfigProps().withEngineName("vl")
+                        .withEngineVersion("uwtovwbq")
+                        .withApplicationConfigs(Arrays.asList(new ApplicationConfigs().withType("vzdrepvhg")
+                            .withName("aqmadlcjumssrvekk")
+                            .withValue("pcwzkv")
+                            .withPlatform("rsixjfovnm")
+                            .withCustomized("lbqdroeh")
+                            .withDefaultValue("dnhjcdvczfvjqiuqwvnzf"))))))
                 .withServerlessRuntimeTags(
-                    Arrays.asList(new ServerlessRuntimeTag().withName("korveuycuwhs").withValue("uyiuegxnkgp")))
+                    Arrays.asList(new ServerlessRuntimeTag().withName("kantckpejioqas").withValue("micxm")))
                 .withServerlessRuntimeUserContextProperties(
                     new ServerlessRuntimeUserContextPropertiesUpdate().withUserContextToken("fakeTokenPlaceholder")))
             .apply();

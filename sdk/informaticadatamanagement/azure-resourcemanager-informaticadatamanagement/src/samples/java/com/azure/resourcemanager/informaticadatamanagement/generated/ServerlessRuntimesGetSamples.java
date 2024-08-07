@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class ServerlessRuntimesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_Get_MaximumSet_Gen.json
      */
     /**
@@ -20,12 +20,14 @@ public final class ServerlessRuntimesGetSamples {
      */
     public static void serverlessRuntimesGet(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
-        manager.serverlessRuntimes().getWithResponse("rgopenapi", "e3Y", "48-", com.azure.core.util.Context.NONE);
+        manager.serverlessRuntimes()
+            .getWithResponse("rgopenapi", "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_Get_MinimumSet_Gen.json
      */
     /**

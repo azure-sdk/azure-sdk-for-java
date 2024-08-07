@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * InfaServerlessFetchConfigProperties for the fetch all serverless API as received from informatica API response.
@@ -41,6 +42,11 @@ public final class InfaServerlessFetchConfigProperties
      * Supplementary File location
      */
     private String supplementaryFileLocation;
+
+    /*
+     * Serverless runtime data disks
+     */
+    private List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks;
 
     /*
      * Serverless Account Platform
@@ -139,6 +145,15 @@ public final class InfaServerlessFetchConfigProperties
     }
 
     /**
+     * Get the serverlessRuntimeDataDisks property: Serverless runtime data disks.
+     * 
+     * @return the serverlessRuntimeDataDisks value.
+     */
+    public List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks() {
+        return this.serverlessRuntimeDataDisks;
+    }
+
+    /**
      * Get the platform property: Serverless Account Platform.
      * 
      * @return the platform value.
@@ -225,6 +240,9 @@ public final class InfaServerlessFetchConfigProperties
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (serverlessRuntimeDataDisks() != null) {
+            serverlessRuntimeDataDisks().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -238,6 +256,8 @@ public final class InfaServerlessFetchConfigProperties
         jsonWriter.writeStringField("resourceGroupName", this.resourceGroupName);
         jsonWriter.writeStringField("advancedCustomProperties", this.advancedCustomProperties);
         jsonWriter.writeStringField("supplementaryFileLocation", this.supplementaryFileLocation);
+        jsonWriter.writeArrayField("serverlessRuntimeDataDisks", this.serverlessRuntimeDataDisks,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("platform", this.platform);
         jsonWriter.writeStringField("tags", this.tags);
         jsonWriter.writeStringField("vnet", this.vnet);
@@ -276,6 +296,11 @@ public final class InfaServerlessFetchConfigProperties
                     deserializedInfaServerlessFetchConfigProperties.advancedCustomProperties = reader.getString();
                 } else if ("supplementaryFileLocation".equals(fieldName)) {
                     deserializedInfaServerlessFetchConfigProperties.supplementaryFileLocation = reader.getString();
+                } else if ("serverlessRuntimeDataDisks".equals(fieldName)) {
+                    List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks
+                        = reader.readArray(reader1 -> ServerlessRuntimeDataDisk.fromJson(reader1));
+                    deserializedInfaServerlessFetchConfigProperties.serverlessRuntimeDataDisks
+                        = serverlessRuntimeDataDisks;
                 } else if ("platform".equals(fieldName)) {
                     deserializedInfaServerlessFetchConfigProperties.platform = reader.getString();
                 } else if ("tags".equals(fieldName)) {
