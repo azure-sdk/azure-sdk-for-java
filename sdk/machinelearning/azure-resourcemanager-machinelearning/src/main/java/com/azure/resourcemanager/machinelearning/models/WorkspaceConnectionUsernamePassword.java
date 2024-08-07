@@ -5,50 +5,42 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The WorkspaceConnectionUsernamePassword model. */
+/**
+ * The WorkspaceConnectionUsernamePassword model.
+ */
 @Fluent
-public final class WorkspaceConnectionUsernamePassword {
-    /*
-     * The username property.
-     */
-    @JsonProperty(value = "username")
-    private String username;
-
+public final class WorkspaceConnectionUsernamePassword
+    implements JsonSerializable<WorkspaceConnectionUsernamePassword> {
     /*
      * The password property.
      */
-    @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of WorkspaceConnectionUsernamePassword class. */
+    /*
+     * Optional, required by connections like SalesForce for extra security in addition to UsernamePassword
+     */
+    private String securityToken;
+
+    /*
+     * The username property.
+     */
+    private String username;
+
+    /**
+     * Creates an instance of WorkspaceConnectionUsernamePassword class.
+     */
     public WorkspaceConnectionUsernamePassword() {
     }
 
     /**
-     * Get the username property: The username property.
-     *
-     * @return the username value.
-     */
-    public String username() {
-        return this.username;
-    }
-
-    /**
-     * Set the username property: The username property.
-     *
-     * @param username the username value to set.
-     * @return the WorkspaceConnectionUsernamePassword object itself.
-     */
-    public WorkspaceConnectionUsernamePassword withUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    /**
      * Get the password property: The password property.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +49,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the password property: The password property.
-     *
+     * 
      * @param password the password value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -67,10 +59,95 @@ public final class WorkspaceConnectionUsernamePassword {
     }
 
     /**
+     * Get the securityToken property: Optional, required by connections like SalesForce for extra security in addition
+     * to UsernamePassword.
+     * 
+     * @return the securityToken value.
+     */
+    public String securityToken() {
+        return this.securityToken;
+    }
+
+    /**
+     * Set the securityToken property: Optional, required by connections like SalesForce for extra security in addition
+     * to UsernamePassword.
+     * 
+     * @param securityToken the securityToken value to set.
+     * @return the WorkspaceConnectionUsernamePassword object itself.
+     */
+    public WorkspaceConnectionUsernamePassword withSecurityToken(String securityToken) {
+        this.securityToken = securityToken;
+        return this;
+    }
+
+    /**
+     * Get the username property: The username property.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: The username property.
+     * 
+     * @param username the username value to set.
+     * @return the WorkspaceConnectionUsernamePassword object itself.
+     */
+    public WorkspaceConnectionUsernamePassword withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("password", this.password);
+        jsonWriter.writeStringField("securityToken", this.securityToken);
+        jsonWriter.writeStringField("username", this.username);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of WorkspaceConnectionUsernamePassword from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of WorkspaceConnectionUsernamePassword if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the WorkspaceConnectionUsernamePassword.
+     */
+    public static WorkspaceConnectionUsernamePassword fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            WorkspaceConnectionUsernamePassword deserializedWorkspaceConnectionUsernamePassword
+                = new WorkspaceConnectionUsernamePassword();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("password".equals(fieldName)) {
+                    deserializedWorkspaceConnectionUsernamePassword.password = reader.getString();
+                } else if ("securityToken".equals(fieldName)) {
+                    deserializedWorkspaceConnectionUsernamePassword.securityToken = reader.getString();
+                } else if ("username".equals(fieldName)) {
+                    deserializedWorkspaceConnectionUsernamePassword.username = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedWorkspaceConnectionUsernamePassword;
+        });
     }
 }

@@ -5,63 +5,61 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** Forecasting task in AutoML Table vertical. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
-@JsonTypeName("Forecasting")
+/**
+ * Forecasting task in AutoML Table vertical.
+ */
 @Fluent
 public final class Forecasting extends AutoMLVertical {
     /*
+     * [Required] Task type for AutoMLJob.
+     */
+    private TaskType taskType = TaskType.FORECASTING;
+
+    /*
      * Forecasting task specific inputs.
      */
-    @JsonProperty(value = "forecastingSettings")
     private ForecastingSettings forecastingSettings;
 
     /*
      * Primary metric for forecasting task.
      */
-    @JsonProperty(value = "primaryMetric")
     private ForecastingPrimaryMetrics primaryMetric;
 
     /*
      * Inputs for training phase for an AutoML Job.
      */
-    @JsonProperty(value = "trainingSettings")
     private ForecastingTrainingSettings trainingSettings;
 
     /*
      * Columns to use for CVSplit data.
      */
-    @JsonProperty(value = "cvSplitColumnNames")
     private List<String> cvSplitColumnNames;
 
     /*
      * Featurization inputs needed for AutoML job.
      */
-    @JsonProperty(value = "featurizationSettings")
     private TableVerticalFeaturizationSettings featurizationSettings;
 
     /*
      * Execution constraints for AutoMLJob.
      */
-    @JsonProperty(value = "limitSettings")
     private TableVerticalLimitSettings limitSettings;
 
     /*
      * Number of cross validation folds to be applied on training dataset
      * when validation dataset is not provided.
      */
-    @JsonProperty(value = "nCrossValidations")
     private NCrossValidations nCrossValidations;
 
     /*
      * Test data input.
      */
-    @JsonProperty(value = "testData")
     private MLTableJobInput testData;
 
     /*
@@ -69,13 +67,11 @@ public final class Forecasting extends AutoMLVertical {
      * Values between (0.0 , 1.0)
      * Applied when validation dataset is not provided.
      */
-    @JsonProperty(value = "testDataSize")
     private Double testDataSize;
 
     /*
      * Validation data inputs.
      */
-    @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
     /*
@@ -83,23 +79,33 @@ public final class Forecasting extends AutoMLVertical {
      * Values between (0.0 , 1.0)
      * Applied when validation dataset is not provided.
      */
-    @JsonProperty(value = "validationDataSize")
     private Double validationDataSize;
 
     /*
      * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
      * data to be weighted up or down.
      */
-    @JsonProperty(value = "weightColumnName")
     private String weightColumnName;
 
-    /** Creates an instance of Forecasting class. */
+    /**
+     * Creates an instance of Forecasting class.
+     */
     public Forecasting() {
     }
 
     /**
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    @Override
+    public TaskType taskType() {
+        return this.taskType;
+    }
+
+    /**
      * Get the forecastingSettings property: Forecasting task specific inputs.
-     *
+     * 
      * @return the forecastingSettings value.
      */
     public ForecastingSettings forecastingSettings() {
@@ -108,7 +114,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the forecastingSettings property: Forecasting task specific inputs.
-     *
+     * 
      * @param forecastingSettings the forecastingSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -119,7 +125,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the primaryMetric property: Primary metric for forecasting task.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public ForecastingPrimaryMetrics primaryMetric() {
@@ -128,7 +134,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the primaryMetric property: Primary metric for forecasting task.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the Forecasting object itself.
      */
@@ -139,7 +145,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the trainingSettings property: Inputs for training phase for an AutoML Job.
-     *
+     * 
      * @return the trainingSettings value.
      */
     public ForecastingTrainingSettings trainingSettings() {
@@ -148,7 +154,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the trainingSettings property: Inputs for training phase for an AutoML Job.
-     *
+     * 
      * @param trainingSettings the trainingSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -159,7 +165,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @return the cvSplitColumnNames value.
      */
     public List<String> cvSplitColumnNames() {
@@ -168,7 +174,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @param cvSplitColumnNames the cvSplitColumnNames value to set.
      * @return the Forecasting object itself.
      */
@@ -179,7 +185,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public TableVerticalFeaturizationSettings featurizationSettings() {
@@ -188,7 +194,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -199,7 +205,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public TableVerticalLimitSettings limitSettings() {
@@ -208,7 +214,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -218,9 +224,9 @@ public final class Forecasting extends AutoMLVertical {
     }
 
     /**
-     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @return the nCrossValidations value.
      */
     public NCrossValidations nCrossValidations() {
@@ -228,9 +234,9 @@ public final class Forecasting extends AutoMLVertical {
     }
 
     /**
-     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @param nCrossValidations the nCrossValidations value to set.
      * @return the Forecasting object itself.
      */
@@ -241,7 +247,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the testData property: Test data input.
-     *
+     * 
      * @return the testData value.
      */
     public MLTableJobInput testData() {
@@ -250,7 +256,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the testData property: Test data input.
-     *
+     * 
      * @param testData the testData value to set.
      * @return the Forecasting object itself.
      */
@@ -261,8 +267,9 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the testDataSize value.
      */
     public Double testDataSize() {
@@ -271,8 +278,9 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param testDataSize the testDataSize value to set.
      * @return the Forecasting object itself.
      */
@@ -283,7 +291,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -292,7 +300,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the Forecasting object itself.
      */
@@ -303,8 +311,10 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -313,8 +323,10 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the Forecasting object itself.
      */
@@ -326,7 +338,7 @@ public final class Forecasting extends AutoMLVertical {
     /**
      * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @return the weightColumnName value.
      */
     public String weightColumnName() {
@@ -336,7 +348,7 @@ public final class Forecasting extends AutoMLVertical {
     /**
      * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @param weightColumnName the weightColumnName value to set.
      * @return the Forecasting object itself.
      */
@@ -345,21 +357,27 @@ public final class Forecasting extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -368,7 +386,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -395,5 +413,89 @@ public final class Forecasting extends AutoMLVertical {
         if (validationData() != null) {
             validationData().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("trainingData", trainingData());
+        jsonWriter.writeStringField("logVerbosity", logVerbosity() == null ? null : logVerbosity().toString());
+        jsonWriter.writeStringField("targetColumnName", targetColumnName());
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
+        jsonWriter.writeJsonField("forecastingSettings", this.forecastingSettings);
+        jsonWriter.writeStringField("primaryMetric", this.primaryMetric == null ? null : this.primaryMetric.toString());
+        jsonWriter.writeJsonField("trainingSettings", this.trainingSettings);
+        jsonWriter.writeArrayField("cvSplitColumnNames", this.cvSplitColumnNames,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
+        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
+        jsonWriter.writeJsonField("testData", this.testData);
+        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
+        jsonWriter.writeJsonField("validationData", this.validationData);
+        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
+        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Forecasting from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Forecasting if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the Forecasting.
+     */
+    public static Forecasting fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Forecasting deserializedForecasting = new Forecasting();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("trainingData".equals(fieldName)) {
+                    deserializedForecasting.withTrainingData(MLTableJobInput.fromJson(reader));
+                } else if ("logVerbosity".equals(fieldName)) {
+                    deserializedForecasting.withLogVerbosity(LogVerbosity.fromString(reader.getString()));
+                } else if ("targetColumnName".equals(fieldName)) {
+                    deserializedForecasting.withTargetColumnName(reader.getString());
+                } else if ("taskType".equals(fieldName)) {
+                    deserializedForecasting.taskType = TaskType.fromString(reader.getString());
+                } else if ("forecastingSettings".equals(fieldName)) {
+                    deserializedForecasting.forecastingSettings = ForecastingSettings.fromJson(reader);
+                } else if ("primaryMetric".equals(fieldName)) {
+                    deserializedForecasting.primaryMetric = ForecastingPrimaryMetrics.fromString(reader.getString());
+                } else if ("trainingSettings".equals(fieldName)) {
+                    deserializedForecasting.trainingSettings = ForecastingTrainingSettings.fromJson(reader);
+                } else if ("cvSplitColumnNames".equals(fieldName)) {
+                    List<String> cvSplitColumnNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedForecasting.cvSplitColumnNames = cvSplitColumnNames;
+                } else if ("featurizationSettings".equals(fieldName)) {
+                    deserializedForecasting.featurizationSettings = TableVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedForecasting.limitSettings = TableVerticalLimitSettings.fromJson(reader);
+                } else if ("nCrossValidations".equals(fieldName)) {
+                    deserializedForecasting.nCrossValidations = NCrossValidations.fromJson(reader);
+                } else if ("testData".equals(fieldName)) {
+                    deserializedForecasting.testData = MLTableJobInput.fromJson(reader);
+                } else if ("testDataSize".equals(fieldName)) {
+                    deserializedForecasting.testDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("validationData".equals(fieldName)) {
+                    deserializedForecasting.validationData = MLTableJobInput.fromJson(reader);
+                } else if ("validationDataSize".equals(fieldName)) {
+                    deserializedForecasting.validationDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("weightColumnName".equals(fieldName)) {
+                    deserializedForecasting.weightColumnName = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedForecasting;
+        });
     }
 }
