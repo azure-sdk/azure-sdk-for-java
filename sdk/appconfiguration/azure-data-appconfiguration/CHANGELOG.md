@@ -2,20 +2,168 @@
 
 ## 1.7.0-beta.1 (Unreleased)
 
-### Features Added
-
-- Added a new service API support: `2023-11-01`.
-- Added a new method `listLabels` to support listing labels capabilities.
-- Added new class `SettingLabel` and `SettingLabelSelector`, and a new enum `SettingLabelFields`.
-- Added a new property `tagsFilter` to `SettingSelector` to support filtering settings or revisions with tags filter.
-- Added a new property `tags` to `ConfigurationSettingsFilter` to support filtering settings with tags filter for snapshot.
-
 ### Breaking Changes
 
-### Bugs Fixed
+* `implementation.models.LabelFields` was removed
 
-### Other Changes
+* `implementation.models.KeyValueFields` was removed
 
+* `implementation.models.Label` was removed
+
+#### `implementation.AzureAppConfigurationImpl$AzureAppConfigurationService` was modified
+
+* `getRevisionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkKeyValuesSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyValuesSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkRevisionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.AzureAppConfigurationImpl` was modified
+
+* `checkKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyValuesSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `checkKeyValuesWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `checkKeyValuesWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `getKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getRevisionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `checkRevisionsWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `checkRevisionsWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `getKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getKeyValuesSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getKeyValuesSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `checkKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `checkRevisionsWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `getKeyValuesSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `checkKeyValuesWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getRevisionsSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `getRevisionsSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `getRevisionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+* `checkRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was removed
+* `checkKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `checkRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.Snapshot` was added
+
+* `models.OperationDetails` was added
+
+* `AzureAppConfigurationClient` was added
+
+* `models.KeyValueFields` was added
+
+* `implementation.OperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationServiceVersion` was added
+
+* `models.Label` was added
+
+* `models.Key` was added
+
+* `models.SettingLabel` was added
+
+* `models.CompositionType` was added
+
+* `models.OperationState` was added
+
+* `implementation.AzureAppConfigurationClientImpl$AzureAppConfigurationClientService` was added
+
+* `models.SettingLabelFields` was added
+
+* `models.KeyValue` was added
+
+* `AzureAppConfigurationAsyncClient` was added
+
+* `implementation.SyncOperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationClientBuilder` was added
+
+* `models.LabelFields` was added
+
+* `implementation.AzureAppConfigurationClientImpl` was added
+
+* `models.KeyValueFilter` was added
+
+* `models.SettingLabelSelector` was added
+
+* `models.SnapshotStatus` was added
+
+#### `ConfigurationClient` was modified
+
+* `listLabels(models.SettingLabelSelector,com.azure.core.util.Context)` was added
+* `listLabels()` was added
+* `listLabels(models.SettingLabelSelector)` was added
+
+#### `implementation.AzureAppConfigurationImpl$AzureAppConfigurationService` was modified
+
+* `checkKeyValuesSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `checkRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValuesSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `checkRevisionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+
+#### `implementation.AzureAppConfigurationImpl` was modified
+
+* `getKeyValuesSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getKeyValuesSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `checkRevisionsWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `checkRevisionsWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `checkKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `checkRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkKeyValuesWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkRevisionsWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkKeyValuesWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `checkKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkKeyValuesWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkRevisionsAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getKeyValues(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getRevisions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkKeyValuesAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getRevisionsSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+
+#### `models.SettingSelector` was modified
+
+* `getTagsFilter()` was added
+* `setTagsFilter(java.util.List)` was added
+
+#### `implementation.Utility` was modified
+
+* `getTagsFilterInString(java.util.Map)` was added
+
+#### `ConfigurationAsyncClient` was modified
+
+* `listLabels(models.SettingLabelSelector)` was added
+* `listLabels()` was added
+
+#### `models.ConfigurationSettingsFilter` was modified
+
+* `getTags()` was added
+* `setTags(java.util.List)` was added
 
 ## 1.6.3 (2024-07-26)
 
