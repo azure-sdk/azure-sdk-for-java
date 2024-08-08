@@ -6,50 +6,54 @@ package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.exception.ManagementError;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Defines the status of a guest agent installation. */
+/**
+ * Defines the status of a guest agent installation.
+ */
 @Immutable
-public final class GuestAgentInstallStatus {
+public final class GuestAgentInstallStatus implements JsonSerializable<GuestAgentInstallStatus> {
     /*
      * Specifies the VM's unique SMBIOS ID.
      */
-    @JsonProperty(value = "vmUuid", access = JsonProperty.Access.WRITE_ONLY)
     private String vmUuid;
 
     /*
      * The installation status of the hybrid machine agent installation.
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private StatusTypes status;
 
     /*
      * The time of the last status change.
      */
-    @JsonProperty(value = "lastStatusChange", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastStatusChange;
 
     /*
      * The hybrid machine agent full version.
      */
-    @JsonProperty(value = "agentVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String agentVersion;
 
     /*
      * Details about the error state.
      */
-    @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<ManagementError> errorDetails;
 
-    /** Creates an instance of GuestAgentInstallStatus class. */
+    /**
+     * Creates an instance of GuestAgentInstallStatus class.
+     */
     public GuestAgentInstallStatus() {
     }
 
     /**
      * Get the vmUuid property: Specifies the VM's unique SMBIOS ID.
-     *
+     * 
      * @return the vmUuid value.
      */
     public String vmUuid() {
@@ -58,7 +62,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the status property: The installation status of the hybrid machine agent installation.
-     *
+     * 
      * @return the status value.
      */
     public StatusTypes status() {
@@ -67,7 +71,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the lastStatusChange property: The time of the last status change.
-     *
+     * 
      * @return the lastStatusChange value.
      */
     public OffsetDateTime lastStatusChange() {
@@ -76,7 +80,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the agentVersion property: The hybrid machine agent full version.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -85,7 +89,7 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Get the errorDetails property: Details about the error state.
-     *
+     * 
      * @return the errorDetails value.
      */
     public List<ManagementError> errorDetails() {
@@ -94,9 +98,54 @@ public final class GuestAgentInstallStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GuestAgentInstallStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GuestAgentInstallStatus if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GuestAgentInstallStatus.
+     */
+    public static GuestAgentInstallStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GuestAgentInstallStatus deserializedGuestAgentInstallStatus = new GuestAgentInstallStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("vmUuid".equals(fieldName)) {
+                    deserializedGuestAgentInstallStatus.vmUuid = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedGuestAgentInstallStatus.status = StatusTypes.fromString(reader.getString());
+                } else if ("lastStatusChange".equals(fieldName)) {
+                    deserializedGuestAgentInstallStatus.lastStatusChange = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("agentVersion".equals(fieldName)) {
+                    deserializedGuestAgentInstallStatus.agentVersion = reader.getString();
+                } else if ("errorDetails".equals(fieldName)) {
+                    List<ManagementError> errorDetails = reader.readArray(reader1 -> ManagementError.fromJson(reader1));
+                    deserializedGuestAgentInstallStatus.errorDetails = errorDetails;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGuestAgentInstallStatus;
+        });
     }
 }

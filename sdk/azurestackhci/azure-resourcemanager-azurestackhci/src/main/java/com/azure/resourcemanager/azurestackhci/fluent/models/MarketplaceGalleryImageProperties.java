@@ -6,6 +6,10 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.CloudInitDataSource;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageIdentifier;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageVersion;
@@ -13,67 +17,63 @@ import com.azure.resourcemanager.azurestackhci.models.HyperVGeneration;
 import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImageStatus;
 import com.azure.resourcemanager.azurestackhci.models.OperatingSystemTypes;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Properties under the marketplace gallery image resource. */
+/**
+ * Properties under the marketplace gallery image resource.
+ */
 @Fluent
-public final class MarketplaceGalleryImageProperties {
+public final class MarketplaceGalleryImageProperties implements JsonSerializable<MarketplaceGalleryImageProperties> {
     /*
      * Storage ContainerID of the storage container to be used for marketplace gallery image
      */
-    @JsonProperty(value = "containerId")
     private String containerId;
 
     /*
      * Operating system type that the gallery image uses [Windows, Linux]
      */
-    @JsonProperty(value = "osType", required = true)
     private OperatingSystemTypes osType;
 
     /*
      * Datasource for the gallery image when provisioning with cloud-init [NoCloud, Azure]
      */
-    @JsonProperty(value = "cloudInitDataSource")
     private CloudInitDataSource cloudInitDataSource;
 
     /*
      * The hypervisor generation of the Virtual Machine [V1, V2]
      */
-    @JsonProperty(value = "hyperVGeneration")
     private HyperVGeneration hyperVGeneration;
 
     /*
      * This is the gallery image definition identifier.
      */
-    @JsonProperty(value = "identifier")
     private GalleryImageIdentifier identifier;
 
     /*
      * Specifies information about the gallery image version that you want to create or update.
      */
-    @JsonProperty(value = "version")
     private GalleryImageVersion version;
 
     /*
      * Provisioning state of the marketplace gallery image.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * The observed state of marketplace gallery images
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private MarketplaceGalleryImageStatus status;
 
-    /** Creates an instance of MarketplaceGalleryImageProperties class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImageProperties class.
+     */
     public MarketplaceGalleryImageProperties() {
     }
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for marketplace gallery
      * image.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -83,7 +83,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for marketplace gallery
      * image.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -94,7 +94,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -103,7 +103,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @param osType the osType value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -115,7 +115,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Get the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @return the cloudInitDataSource value.
      */
     public CloudInitDataSource cloudInitDataSource() {
@@ -125,7 +125,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @param cloudInitDataSource the cloudInitDataSource value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -136,7 +136,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -145,7 +145,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -156,7 +156,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @return the identifier value.
      */
     public GalleryImageIdentifier identifier() {
@@ -165,7 +165,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -177,7 +177,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Get the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @return the version value.
      */
     public GalleryImageVersion version() {
@@ -187,7 +187,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @param version the version value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -198,7 +198,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the marketplace gallery image.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -207,7 +207,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the status property: The observed state of marketplace gallery images.
-     *
+     * 
      * @return the status value.
      */
     public MarketplaceGalleryImageStatus status() {
@@ -216,15 +216,14 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (osType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property osType in model MarketplaceGalleryImageProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property osType in model MarketplaceGalleryImageProperties"));
         }
         if (identifier() != null) {
             identifier().validate();
@@ -238,4 +237,68 @@ public final class MarketplaceGalleryImageProperties {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MarketplaceGalleryImageProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("osType", this.osType == null ? null : this.osType.toString());
+        jsonWriter.writeStringField("containerId", this.containerId);
+        jsonWriter.writeStringField("cloudInitDataSource",
+            this.cloudInitDataSource == null ? null : this.cloudInitDataSource.toString());
+        jsonWriter.writeStringField("hyperVGeneration",
+            this.hyperVGeneration == null ? null : this.hyperVGeneration.toString());
+        jsonWriter.writeJsonField("identifier", this.identifier);
+        jsonWriter.writeJsonField("version", this.version);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MarketplaceGalleryImageProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MarketplaceGalleryImageProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the MarketplaceGalleryImageProperties.
+     */
+    public static MarketplaceGalleryImageProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MarketplaceGalleryImageProperties deserializedMarketplaceGalleryImageProperties
+                = new MarketplaceGalleryImageProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("osType".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.osType
+                        = OperatingSystemTypes.fromString(reader.getString());
+                } else if ("containerId".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.containerId = reader.getString();
+                } else if ("cloudInitDataSource".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.cloudInitDataSource
+                        = CloudInitDataSource.fromString(reader.getString());
+                } else if ("hyperVGeneration".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.hyperVGeneration
+                        = HyperVGeneration.fromString(reader.getString());
+                } else if ("identifier".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.identifier = GalleryImageIdentifier.fromJson(reader);
+                } else if ("version".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.version = GalleryImageVersion.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("status".equals(fieldName)) {
+                    deserializedMarketplaceGalleryImageProperties.status
+                        = MarketplaceGalleryImageStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMarketplaceGalleryImageProperties;
+        });
+    }
 }

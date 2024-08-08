@@ -5,36 +5,41 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The observed state of network interfaces. */
+/**
+ * The observed state of network interfaces.
+ */
 @Fluent
-public final class NetworkInterfaceStatus {
+public final class NetworkInterfaceStatus implements JsonSerializable<NetworkInterfaceStatus> {
     /*
      * NetworkInterface provisioning error code
      */
-    @JsonProperty(value = "errorCode")
     private String errorCode;
 
     /*
      * Descriptive error message
      */
-    @JsonProperty(value = "errorMessage")
     private String errorMessage;
 
     /*
      * The provisioningStatus property.
      */
-    @JsonProperty(value = "provisioningStatus")
     private NetworkInterfaceStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of NetworkInterfaceStatus class. */
+    /**
+     * Creates an instance of NetworkInterfaceStatus class.
+     */
     public NetworkInterfaceStatus() {
     }
 
     /**
      * Get the errorCode property: NetworkInterface provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -43,7 +48,7 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Set the errorCode property: NetworkInterface provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the NetworkInterfaceStatus object itself.
      */
@@ -54,7 +59,7 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -63,7 +68,7 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the NetworkInterfaceStatus object itself.
      */
@@ -74,7 +79,7 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public NetworkInterfaceStatusProvisioningStatus provisioningStatus() {
@@ -83,7 +88,7 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the NetworkInterfaceStatus object itself.
      */
@@ -94,12 +99,55 @@ public final class NetworkInterfaceStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (provisioningStatus() != null) {
             provisioningStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("errorCode", this.errorCode);
+        jsonWriter.writeStringField("errorMessage", this.errorMessage);
+        jsonWriter.writeJsonField("provisioningStatus", this.provisioningStatus);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NetworkInterfaceStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NetworkInterfaceStatus if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NetworkInterfaceStatus.
+     */
+    public static NetworkInterfaceStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NetworkInterfaceStatus deserializedNetworkInterfaceStatus = new NetworkInterfaceStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("errorCode".equals(fieldName)) {
+                    deserializedNetworkInterfaceStatus.errorCode = reader.getString();
+                } else if ("errorMessage".equals(fieldName)) {
+                    deserializedNetworkInterfaceStatus.errorMessage = reader.getString();
+                } else if ("provisioningStatus".equals(fieldName)) {
+                    deserializedNetworkInterfaceStatus.provisioningStatus
+                        = NetworkInterfaceStatusProvisioningStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNetworkInterfaceStatus;
+        });
     }
 }

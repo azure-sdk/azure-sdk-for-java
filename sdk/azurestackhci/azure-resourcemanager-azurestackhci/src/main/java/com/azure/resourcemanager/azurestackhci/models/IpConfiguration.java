@@ -5,32 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** InterfaceIPConfiguration iPConfiguration in a network interface. */
+/**
+ * InterfaceIPConfiguration iPConfiguration in a network interface.
+ */
 @Fluent
-public final class IpConfiguration {
+public final class IpConfiguration implements JsonSerializable<IpConfiguration> {
     /*
      * Name - The name of the resource that is unique within a resource group. This name can be used to access the
      * resource.
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
      */
-    @JsonProperty(value = "properties")
     private IpConfigurationProperties properties;
 
-    /** Creates an instance of IpConfiguration class. */
+    /**
+     * Creates an instance of IpConfiguration class.
+     */
     public IpConfiguration() {
     }
 
     /**
      * Get the name property: Name - The name of the resource that is unique within a resource group. This name can be
      * used to access the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -40,7 +46,7 @@ public final class IpConfiguration {
     /**
      * Set the name property: Name - The name of the resource that is unique within a resource group. This name can be
      * used to access the resource.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpConfiguration object itself.
      */
@@ -51,7 +57,7 @@ public final class IpConfiguration {
 
     /**
      * Get the properties property: InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
-     *
+     * 
      * @return the properties value.
      */
     public IpConfigurationProperties properties() {
@@ -60,7 +66,7 @@ public final class IpConfiguration {
 
     /**
      * Set the properties property: InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the IpConfiguration object itself.
      */
@@ -71,12 +77,51 @@ public final class IpConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() != null) {
             properties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IpConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IpConfiguration if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the IpConfiguration.
+     */
+    public static IpConfiguration fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IpConfiguration deserializedIpConfiguration = new IpConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedIpConfiguration.name = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedIpConfiguration.properties = IpConfigurationProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIpConfiguration;
+        });
     }
 }

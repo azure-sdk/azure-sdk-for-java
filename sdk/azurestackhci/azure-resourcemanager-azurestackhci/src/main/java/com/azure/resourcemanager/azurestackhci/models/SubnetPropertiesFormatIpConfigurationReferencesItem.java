@@ -5,24 +5,32 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** IPConfigurationReference - Describes a IPConfiguration under the virtual network. */
+/**
+ * IPConfigurationReference - Describes a IPConfiguration under the virtual network.
+ */
 @Fluent
-public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
+public final class SubnetPropertiesFormatIpConfigurationReferencesItem
+    implements JsonSerializable<SubnetPropertiesFormatIpConfigurationReferencesItem> {
     /*
      * IPConfigurationID
      */
-    @JsonProperty(value = "ID")
     private String id;
 
-    /** Creates an instance of SubnetPropertiesFormatIpConfigurationReferencesItem class. */
+    /**
+     * Creates an instance of SubnetPropertiesFormatIpConfigurationReferencesItem class.
+     */
     public SubnetPropertiesFormatIpConfigurationReferencesItem() {
     }
 
     /**
      * Get the id property: IPConfigurationID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +39,7 @@ public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
 
     /**
      * Set the id property: IPConfigurationID.
-     *
+     * 
      * @param id the id value to set.
      * @return the SubnetPropertiesFormatIpConfigurationReferencesItem object itself.
      */
@@ -42,9 +50,47 @@ public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("ID", this.id);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SubnetPropertiesFormatIpConfigurationReferencesItem from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SubnetPropertiesFormatIpConfigurationReferencesItem if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the SubnetPropertiesFormatIpConfigurationReferencesItem.
+     */
+    public static SubnetPropertiesFormatIpConfigurationReferencesItem fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            SubnetPropertiesFormatIpConfigurationReferencesItem deserializedSubnetPropertiesFormatIpConfigurationReferencesItem
+                = new SubnetPropertiesFormatIpConfigurationReferencesItem();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("ID".equals(fieldName)) {
+                    deserializedSubnetPropertiesFormatIpConfigurationReferencesItem.id = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSubnetPropertiesFormatIpConfigurationReferencesItem;
+        });
     }
 }

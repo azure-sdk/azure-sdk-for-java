@@ -5,32 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.fluent.models.GalleryImagesInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** List of gallery images. */
+/**
+ * List of gallery images.
+ */
 @Fluent
-public final class GalleryImagesListResult {
+public final class GalleryImagesListResult implements JsonSerializable<GalleryImagesListResult> {
     /*
      * The value property.
      */
-    @JsonProperty(value = "value")
     private List<GalleryImagesInner> value;
 
     /*
      * Link to the next set of results.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of GalleryImagesListResult class. */
+    /**
+     * Creates an instance of GalleryImagesListResult class.
+     */
     public GalleryImagesListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<GalleryImagesInner> value() {
@@ -39,7 +45,7 @@ public final class GalleryImagesListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the GalleryImagesListResult object itself.
      */
@@ -50,7 +56,7 @@ public final class GalleryImagesListResult {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,12 +65,51 @@ public final class GalleryImagesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImagesListResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImagesListResult if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GalleryImagesListResult.
+     */
+    public static GalleryImagesListResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImagesListResult deserializedGalleryImagesListResult = new GalleryImagesListResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<GalleryImagesInner> value = reader.readArray(reader1 -> GalleryImagesInner.fromJson(reader1));
+                    deserializedGalleryImagesListResult.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedGalleryImagesListResult.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImagesListResult;
+        });
     }
 }
