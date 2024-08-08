@@ -19,8 +19,7 @@ public final class GuestAgentsOperationsImpl implements GuestAgentsOperations {
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public GuestAgentsOperationsImpl(
-        GuestAgentsOperationsClient innerClient,
+    public GuestAgentsOperationsImpl(GuestAgentsOperationsClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -28,12 +27,12 @@ public final class GuestAgentsOperationsImpl implements GuestAgentsOperations {
 
     public PagedIterable<GuestAgent> list(String resourceUri) {
         PagedIterable<GuestAgentInner> inner = this.serviceClient().list(resourceUri);
-        return Utils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
     }
 
     public PagedIterable<GuestAgent> list(String resourceUri, Context context) {
         PagedIterable<GuestAgentInner> inner = this.serviceClient().list(resourceUri, context);
-        return Utils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
     }
 
     private GuestAgentsOperationsClient serviceClient() {

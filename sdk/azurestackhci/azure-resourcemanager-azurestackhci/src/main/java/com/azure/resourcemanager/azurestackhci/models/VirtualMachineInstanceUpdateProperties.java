@@ -5,43 +5,48 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Defines the resource properties for the update. */
+/**
+ * Defines the resource properties for the update.
+ */
 @Fluent
-public final class VirtualMachineInstanceUpdateProperties {
+public final class VirtualMachineInstanceUpdateProperties
+    implements JsonSerializable<VirtualMachineInstanceUpdateProperties> {
     /*
      * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
      */
-    @JsonProperty(value = "hardwareProfile")
     private HardwareProfileUpdate hardwareProfile;
 
     /*
      * The storageProfile property.
      */
-    @JsonProperty(value = "storageProfile")
     private StorageProfileUpdate storageProfile;
 
     /*
      * NetworkProfile - describes the network update configuration the virtual machine instance
      */
-    @JsonProperty(value = "networkProfile")
     private NetworkProfileUpdate networkProfile;
 
     /*
      * OsProfile - describes the update configuration of the operating system
      */
-    @JsonProperty(value = "osProfile")
     private OsProfileUpdate osProfile;
 
-    /** Creates an instance of VirtualMachineInstanceUpdateProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceUpdateProperties class.
+     */
     public VirtualMachineInstanceUpdateProperties() {
     }
 
     /**
      * Get the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfileUpdate hardwareProfile() {
@@ -51,7 +56,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Set the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -62,7 +67,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the storageProfile property: The storageProfile property.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfileUpdate storageProfile() {
@@ -71,7 +76,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the storageProfile property: The storageProfile property.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -83,7 +88,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Get the networkProfile property: NetworkProfile - describes the network update configuration the virtual machine
      * instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfileUpdate networkProfile() {
@@ -93,7 +98,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Set the networkProfile property: NetworkProfile - describes the network update configuration the virtual machine
      * instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -104,7 +109,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the osProfile property: OsProfile - describes the update configuration of the operating system.
-     *
+     * 
      * @return the osProfile value.
      */
     public OsProfileUpdate osProfile() {
@@ -113,7 +118,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the osProfile property: OsProfile - describes the update configuration of the operating system.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -124,7 +129,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -140,5 +145,54 @@ public final class VirtualMachineInstanceUpdateProperties {
         if (osProfile() != null) {
             osProfile().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("hardwareProfile", this.hardwareProfile);
+        jsonWriter.writeJsonField("storageProfile", this.storageProfile);
+        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
+        jsonWriter.writeJsonField("osProfile", this.osProfile);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstanceUpdateProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstanceUpdateProperties if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstanceUpdateProperties.
+     */
+    public static VirtualMachineInstanceUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstanceUpdateProperties deserializedVirtualMachineInstanceUpdateProperties
+                = new VirtualMachineInstanceUpdateProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("hardwareProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceUpdateProperties.hardwareProfile
+                        = HardwareProfileUpdate.fromJson(reader);
+                } else if ("storageProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceUpdateProperties.storageProfile
+                        = StorageProfileUpdate.fromJson(reader);
+                } else if ("networkProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceUpdateProperties.networkProfile
+                        = NetworkProfileUpdate.fromJson(reader);
+                } else if ("osProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceUpdateProperties.osProfile = OsProfileUpdate.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstanceUpdateProperties;
+        });
     }
 }

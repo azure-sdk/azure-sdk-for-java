@@ -8,31 +8,51 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.Identity;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Defines the HybridIdentityMetadata. */
+/**
+ * Defines the HybridIdentityMetadata.
+ */
 @Fluent
 public final class HybridIdentityMetadataInner extends ProxyResource {
     /*
      * Resource properties.
      */
-    @JsonProperty(value = "properties", required = true)
     private HybridIdentityMetadataProperties innerProperties = new HybridIdentityMetadataProperties();
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of HybridIdentityMetadataInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of HybridIdentityMetadataInner class.
+     */
     public HybridIdentityMetadataInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HybridIdentityMetadataProperties innerProperties() {
@@ -41,7 +61,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -49,8 +69,38 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
      * Get the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -59,7 +109,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the HybridIdentityMetadataInner object itself.
      */
@@ -73,7 +123,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the publicKey property: The Public Key.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -82,7 +132,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the publicKey property: The Public Key.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the HybridIdentityMetadataInner object itself.
      */
@@ -96,7 +146,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -105,7 +155,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -114,19 +164,64 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model HybridIdentityMetadataInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model HybridIdentityMetadataInner"));
         } else {
             innerProperties().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(HybridIdentityMetadataInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HybridIdentityMetadataInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HybridIdentityMetadataInner if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the HybridIdentityMetadataInner.
+     */
+    public static HybridIdentityMetadataInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HybridIdentityMetadataInner deserializedHybridIdentityMetadataInner = new HybridIdentityMetadataInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataInner.innerProperties
+                        = HybridIdentityMetadataProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHybridIdentityMetadataInner;
+        });
+    }
 }

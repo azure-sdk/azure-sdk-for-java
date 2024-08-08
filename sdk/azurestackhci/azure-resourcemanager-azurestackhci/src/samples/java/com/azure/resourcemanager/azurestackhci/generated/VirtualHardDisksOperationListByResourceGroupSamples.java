@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for VirtualHardDisksOperation ListByResourceGroup. */
+/**
+ * Samples for VirtualHardDisksOperation ListByResourceGroup.
+ */
 public final class VirtualHardDisksOperationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/ListVirtualHardDiskByResourceGroup.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * ListVirtualHardDiskByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualHardDiskByResourceGroup.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void listVirtualHardDiskByResourceGroup(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void
+        listVirtualHardDiskByResourceGroup(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
         manager.virtualHardDisksOperations().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
     }
 }

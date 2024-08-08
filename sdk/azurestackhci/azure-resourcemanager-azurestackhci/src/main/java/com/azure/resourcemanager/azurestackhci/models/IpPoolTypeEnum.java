@@ -4,18 +4,23 @@
 
 package com.azure.resourcemanager.azurestackhci.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-/** Type of the IP Pool [vm, vippool]. */
+/**
+ * Type of the IP Pool [vm, vippool].
+ */
 public enum IpPoolTypeEnum {
-    /** Enum value vm. */
+    /**
+     * Enum value vm.
+     */
     VM("vm"),
 
-    /** Enum value vippool. */
+    /**
+     * Enum value vippool.
+     */
     VIPPOOL("vippool");
 
-    /** The actual serialized value for a IpPoolTypeEnum instance. */
+    /**
+     * The actual serialized value for a IpPoolTypeEnum instance.
+     */
     private final String value;
 
     IpPoolTypeEnum(String value) {
@@ -24,11 +29,10 @@ public enum IpPoolTypeEnum {
 
     /**
      * Parses a serialized value to a IpPoolTypeEnum instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed IpPoolTypeEnum object, or null if unable to parse.
      */
-    @JsonCreator
     public static IpPoolTypeEnum fromString(String value) {
         if (value == null) {
             return null;
@@ -42,8 +46,9 @@ public enum IpPoolTypeEnum {
         return null;
     }
 
-    /** {@inheritDoc} */
-    @JsonValue
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return this.value;
