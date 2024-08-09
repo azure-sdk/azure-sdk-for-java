@@ -48,25 +48,25 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureApiCenterImpl client;
+    private final AzureApiCenterTestImpl client;
 
     /**
      * Initializes an instance of WorkspacesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspacesClientImpl(AzureApiCenterImpl client) {
+    WorkspacesClientImpl(AzureApiCenterTestImpl client) {
         this.service
             = RestProxy.create(WorkspacesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureApiCenterWorkspaces to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for AzureApiCenterTestWorkspaces to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AzureApiCenterWorksp")
+    @ServiceInterface(name = "AzureApiCenterTestWo")
     public interface WorkspacesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces")
@@ -823,9 +823,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -851,9 +849,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -48,25 +48,25 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureApiCenterImpl client;
+    private final AzureApiCenterTestImpl client;
 
     /**
      * Initializes an instance of ApiVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ApiVersionsClientImpl(AzureApiCenterImpl client) {
+    ApiVersionsClientImpl(AzureApiCenterTestImpl client) {
         this.service
             = RestProxy.create(ApiVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureApiCenterApiVersions to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for AzureApiCenterTestApiVersions to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AzureApiCenterApiVer")
+    @ServiceInterface(name = "AzureApiCenterTestAp")
     public interface ApiVersionsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions")
@@ -966,9 +966,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -994,9 +992,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
