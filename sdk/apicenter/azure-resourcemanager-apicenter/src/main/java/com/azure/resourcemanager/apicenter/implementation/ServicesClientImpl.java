@@ -55,24 +55,24 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureApiCenterImpl client;
+    private final AzureApiCenterForTestingImpl client;
 
     /**
      * Initializes an instance of ServicesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ServicesClientImpl(AzureApiCenterImpl client) {
+    ServicesClientImpl(AzureApiCenterForTestingImpl client) {
         this.service = RestProxy.create(ServicesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureApiCenterServices to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for AzureApiCenterForTestingServices to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AzureApiCenterServic")
+    @ServiceInterface(name = "AzureApiCenterForTes")
     public interface ServicesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ApiCenter/services")
@@ -1131,9 +1131,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1161,9 +1159,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1190,9 +1186,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1220,9 +1214,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
