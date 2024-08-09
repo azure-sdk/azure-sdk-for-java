@@ -23,7 +23,7 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManager;
+import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManagerForTesting;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseBackupsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseCharacterSetsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseNationalCharacterSetsImpl;
@@ -38,7 +38,7 @@ import com.azure.resourcemanager.oracledatabase.implementation.DnsPrivateViewsIm
 import com.azure.resourcemanager.oracledatabase.implementation.DnsPrivateZonesImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.GiVersionsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.OperationsImpl;
-import com.azure.resourcemanager.oracledatabase.implementation.OracleDatabaseResourceManagerBuilder;
+import com.azure.resourcemanager.oracledatabase.implementation.OracleDatabaseResourceManagerForTestingBuilder;
 import com.azure.resourcemanager.oracledatabase.implementation.OracleSubscriptionsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.SystemVersionsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.VirtualNetworkAddressesImpl;
@@ -104,12 +104,12 @@ public final class OracleDatabaseManager {
 
     private VirtualNetworkAddresses virtualNetworkAddresses;
 
-    private final OracleDatabaseResourceManager clientObject;
+    private final OracleDatabaseResourceManagerForTesting clientObject;
 
     private OracleDatabaseManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new OracleDatabaseResourceManagerBuilder().pipeline(httpPipeline)
+        this.clientObject = new OracleDatabaseResourceManagerForTestingBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -268,7 +268,7 @@ public final class OracleDatabaseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.oracledatabase")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -525,12 +525,12 @@ public final class OracleDatabaseManager {
     }
 
     /**
-     * Gets wrapped service client OracleDatabaseResourceManager providing direct access to the underlying
+     * Gets wrapped service client OracleDatabaseResourceManagerForTesting providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client OracleDatabaseResourceManager.
+     * @return Wrapped service client OracleDatabaseResourceManagerForTesting.
      */
-    public OracleDatabaseResourceManager serviceClient() {
+    public OracleDatabaseResourceManagerForTesting serviceClient() {
         return this.clientObject;
     }
 }

@@ -53,22 +53,22 @@ public final class CloudExadataInfrastructuresClientImpl implements CloudExadata
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of CloudExadataInfrastructuresClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    CloudExadataInfrastructuresClientImpl(OracleDatabaseResourceManagerImpl client) {
+    CloudExadataInfrastructuresClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service = RestProxy.create(CloudExadataInfrastructuresService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerCloudExadataInfrastructures to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingCloudExadataInfrastructures to
+     * be used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")

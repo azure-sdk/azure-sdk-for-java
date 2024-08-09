@@ -42,22 +42,22 @@ public final class DbSystemShapesClientImpl implements DbSystemShapesClient {
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of DbSystemShapesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    DbSystemShapesClientImpl(OracleDatabaseResourceManagerImpl client) {
+    DbSystemShapesClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service
             = RestProxy.create(DbSystemShapesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerDbSystemShapes to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingDbSystemShapes to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")

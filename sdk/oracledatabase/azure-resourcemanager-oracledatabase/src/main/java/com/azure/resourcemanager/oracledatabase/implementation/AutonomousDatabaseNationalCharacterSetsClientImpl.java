@@ -44,22 +44,23 @@ public final class AutonomousDatabaseNationalCharacterSetsClientImpl
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of AutonomousDatabaseNationalCharacterSetsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    AutonomousDatabaseNationalCharacterSetsClientImpl(OracleDatabaseResourceManagerImpl client) {
+    AutonomousDatabaseNationalCharacterSetsClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service = RestProxy.create(AutonomousDatabaseNationalCharacterSetsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerAutonomousDatabaseNationalCharacterSets
-     * to be used by the proxy service to perform REST calls.
+     * The interface defining all the services for
+     * OracleDatabaseResourceManagerForTestingAutonomousDatabaseNationalCharacterSets to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")
