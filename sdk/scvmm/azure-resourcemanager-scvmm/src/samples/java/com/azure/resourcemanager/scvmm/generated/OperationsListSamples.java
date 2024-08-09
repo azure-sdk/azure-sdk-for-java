@@ -10,7 +10,7 @@ package com.azure.resourcemanager.scvmm.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MinimumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Operations_List_MinimumSet_Gen.
      * json
      */
     /**
@@ -24,7 +24,7 @@ public final class OperationsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Operations_List_MaximumSet_Gen.
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Operations_List_MaximumSet_Gen.
      * json
      */
     /**
