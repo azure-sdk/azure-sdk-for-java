@@ -28,18 +28,6 @@ import com.azure.ai.vision.imageanalysis.models.ImageAnalysisOptions;
 
 /**
  * Initializes a new instance of the synchronous ImageAnalysisClient type.
- *
- * <!-- src_embed com.azure.ai.vision.imageanalysis.sync-client -->
- * <pre>
- * &#47;&#47;
- * &#47;&#47; Create a synchronous Image Analysis client.
- * &#47;&#47;
- * ImageAnalysisClient client = new ImageAnalysisClientBuilder&#40;&#41;
- *     .endpoint&#40;endpoint&#41;
- *     .credential&#40;new KeyCredential&#40;key&#41;&#41;
- *     .buildClient&#40;&#41;;
- * </pre>
- * <!-- end com.azure.ai.vision.imageanalysis.sync-client -->
  */
 @ServiceClient(builder = ImageAnalysisClientBuilder.class)
 public final class ImageAnalysisClient {
@@ -87,15 +75,15 @@ public final class ImageAnalysisClient {
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     url: String (Required)
      * }
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     captionResult (Optional): {
@@ -316,13 +304,13 @@ public final class ImageAnalysisClient {
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * BinaryData
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     captionResult (Optional): {
