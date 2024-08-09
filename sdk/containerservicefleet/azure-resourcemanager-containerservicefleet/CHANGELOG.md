@@ -1,14 +1,160 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-08-09)
+
+- Azure Resource Manager ContainerServiceFleet client library for Java. This package contains Microsoft Azure SDK for ContainerServiceFleet Management SDK. Azure Kubernetes Fleet Manager Client. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.ApiServerAccessProfile` was modified
 
-### Bugs Fixed
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
-### Other Changes
+#### `models.FleetMemberListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WaitStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AgentProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateRunListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateStageStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateGroupStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetHubProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateRunStrategy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeImageSelection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeImageSelectionStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FleetMemberUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FleetUpdateStrategyListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateGroup` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ManagedClusterUpgradeSpec` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateStage` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkipProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MemberUpdateStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetCredentialResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedClusterUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkipTarget` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeImageVersion` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateRunStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0 (2024-05-17)
 
