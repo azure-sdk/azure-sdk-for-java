@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.containerservicefleet.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -37,7 +36,6 @@ public final class NodeImageSelectionType extends ExpandableStringEnum<NodeImage
      * @param name a name to look for.
      * @return the corresponding NodeImageSelectionType.
      */
-    @JsonCreator
     public static NodeImageSelectionType fromString(String name) {
         return fromString(name, NodeImageSelectionType.class);
     }
