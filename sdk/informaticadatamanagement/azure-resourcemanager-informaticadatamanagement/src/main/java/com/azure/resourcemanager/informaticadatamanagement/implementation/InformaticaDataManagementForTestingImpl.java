@@ -23,7 +23,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.informaticadatamanagement.fluent.InformaticaDataManagement;
+import com.azure.resourcemanager.informaticadatamanagement.fluent.InformaticaDataManagementForTesting;
 import com.azure.resourcemanager.informaticadatamanagement.fluent.OperationsClient;
 import com.azure.resourcemanager.informaticadatamanagement.fluent.OrganizationsClient;
 import com.azure.resourcemanager.informaticadatamanagement.fluent.ServerlessRuntimesClient;
@@ -37,10 +37,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the InformaticaDataManagementImpl type.
+ * Initializes a new instance of the InformaticaDataManagementForTestingImpl type.
  */
-@ServiceClient(builder = InformaticaDataManagementBuilder.class)
-public final class InformaticaDataManagementImpl implements InformaticaDataManagement {
+@ServiceClient(builder = InformaticaDataManagementForTestingBuilder.class)
+public final class InformaticaDataManagementForTestingImpl implements InformaticaDataManagementForTesting {
     /**
      * The ID of the target subscription.
      */
@@ -168,7 +168,7 @@ public final class InformaticaDataManagementImpl implements InformaticaDataManag
     }
 
     /**
-     * Initializes an instance of InformaticaDataManagement client.
+     * Initializes an instance of InformaticaDataManagementForTesting client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -177,7 +177,7 @@ public final class InformaticaDataManagementImpl implements InformaticaDataManag
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    InformaticaDataManagementImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+    InformaticaDataManagementForTestingImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
         Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
@@ -316,5 +316,5 @@ public final class InformaticaDataManagementImpl implements InformaticaDataManag
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(InformaticaDataManagementImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(InformaticaDataManagementForTestingImpl.class);
 }

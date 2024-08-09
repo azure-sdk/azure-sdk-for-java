@@ -55,22 +55,22 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * The service client containing this operation class.
      */
-    private final InformaticaDataManagementImpl client;
+    private final InformaticaDataManagementForTestingImpl client;
 
     /**
      * Initializes an instance of OrganizationsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    OrganizationsClientImpl(InformaticaDataManagementImpl client) {
+    OrganizationsClientImpl(InformaticaDataManagementForTestingImpl client) {
         this.service
             = RestProxy.create(OrganizationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for InformaticaDataManagementOrganizations to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for InformaticaDataManagementForTestingOrganizations to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "InformaticaDataManag")

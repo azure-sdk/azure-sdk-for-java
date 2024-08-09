@@ -15,10 +15,10 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
 /**
- * A builder for creating a new instance of the InformaticaDataManagementImpl type.
+ * A builder for creating a new instance of the InformaticaDataManagementForTestingImpl type.
  */
-@ServiceClientBuilder(serviceClients = { InformaticaDataManagementImpl.class })
-public final class InformaticaDataManagementBuilder {
+@ServiceClientBuilder(serviceClients = { InformaticaDataManagementForTestingImpl.class })
+public final class InformaticaDataManagementForTestingBuilder {
     /*
      * The ID of the target subscription.
      */
@@ -28,9 +28,9 @@ public final class InformaticaDataManagementBuilder {
      * Sets The ID of the target subscription.
      * 
      * @param subscriptionId the subscriptionId value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder subscriptionId(String subscriptionId) {
+    public InformaticaDataManagementForTestingBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -44,9 +44,9 @@ public final class InformaticaDataManagementBuilder {
      * Sets server parameter.
      * 
      * @param endpoint the endpoint value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder endpoint(String endpoint) {
+    public InformaticaDataManagementForTestingBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -60,9 +60,9 @@ public final class InformaticaDataManagementBuilder {
      * Sets The environment to connect to.
      * 
      * @param environment the environment value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder environment(AzureEnvironment environment) {
+    public InformaticaDataManagementForTestingBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -76,9 +76,9 @@ public final class InformaticaDataManagementBuilder {
      * Sets The HTTP pipeline to send requests through.
      * 
      * @param pipeline the pipeline value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder pipeline(HttpPipeline pipeline) {
+    public InformaticaDataManagementForTestingBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -92,9 +92,9 @@ public final class InformaticaDataManagementBuilder {
      * Sets The default poll interval for long-running operation.
      * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public InformaticaDataManagementForTestingBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -108,19 +108,19 @@ public final class InformaticaDataManagementBuilder {
      * Sets The serializer to serialize an object into a string.
      * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the InformaticaDataManagementBuilder.
+     * @return the InformaticaDataManagementForTestingBuilder.
      */
-    public InformaticaDataManagementBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public InformaticaDataManagementForTestingBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of InformaticaDataManagementImpl with the provided parameters.
+     * Builds an instance of InformaticaDataManagementForTestingImpl with the provided parameters.
      * 
-     * @return an instance of InformaticaDataManagementImpl.
+     * @return an instance of InformaticaDataManagementForTestingImpl.
      */
-    public InformaticaDataManagementImpl buildClient() {
+    public InformaticaDataManagementForTestingImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline = (pipeline != null)
@@ -131,8 +131,8 @@ public final class InformaticaDataManagementBuilder {
         SerializerAdapter localSerializerAdapter = (serializerAdapter != null)
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
-        InformaticaDataManagementImpl client = new InformaticaDataManagementImpl(localPipeline, localSerializerAdapter,
-            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
+        InformaticaDataManagementForTestingImpl client = new InformaticaDataManagementForTestingImpl(localPipeline,
+            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

@@ -54,22 +54,22 @@ public final class ServerlessRuntimesClientImpl implements ServerlessRuntimesCli
     /**
      * The service client containing this operation class.
      */
-    private final InformaticaDataManagementImpl client;
+    private final InformaticaDataManagementForTestingImpl client;
 
     /**
      * Initializes an instance of ServerlessRuntimesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ServerlessRuntimesClientImpl(InformaticaDataManagementImpl client) {
+    ServerlessRuntimesClientImpl(InformaticaDataManagementForTestingImpl client) {
         this.service = RestProxy.create(ServerlessRuntimesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for InformaticaDataManagementServerlessRuntimes to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for InformaticaDataManagementForTestingServerlessRuntimes to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "InformaticaDataManag")
