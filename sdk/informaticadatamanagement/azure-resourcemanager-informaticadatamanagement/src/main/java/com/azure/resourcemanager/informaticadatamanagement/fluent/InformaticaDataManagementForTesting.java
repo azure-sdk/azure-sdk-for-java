@@ -8,9 +8,9 @@ import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
 /**
- * The interface for InformaticaDataManagement class.
+ * The interface for InformaticaDataManagementForTesting class.
  */
-public interface InformaticaDataManagement {
+public interface InformaticaDataManagementForTesting {
     /**
      * Gets The ID of the target subscription.
      * 
