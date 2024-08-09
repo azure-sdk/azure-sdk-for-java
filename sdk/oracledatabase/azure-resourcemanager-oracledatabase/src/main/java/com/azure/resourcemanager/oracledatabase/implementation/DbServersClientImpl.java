@@ -42,22 +42,22 @@ public final class DbServersClientImpl implements DbServersClient {
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of DbServersClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    DbServersClientImpl(OracleDatabaseResourceManagerImpl client) {
+    DbServersClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service
             = RestProxy.create(DbServersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerDbServers to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingDbServers to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")
