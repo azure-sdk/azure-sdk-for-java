@@ -5,31 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** The instance view of the VM Config Agent running on the virtual machine. */
+/**
+ * The instance view of the VM Config Agent running on the virtual machine.
+ */
 @Fluent
-public final class VirtualMachineConfigAgentInstanceView {
+public final class VirtualMachineConfigAgentInstanceView
+    implements JsonSerializable<VirtualMachineConfigAgentInstanceView> {
     /*
      * The VM Config Agent full version.
      */
-    @JsonProperty(value = "vmConfigAgentVersion")
     private String vmConfigAgentVersion;
 
     /*
      * The resource status information.
      */
-    @JsonProperty(value = "statuses")
     private List<InstanceViewStatus> statuses;
 
-    /** Creates an instance of VirtualMachineConfigAgentInstanceView class. */
+    /**
+     * Creates an instance of VirtualMachineConfigAgentInstanceView class.
+     */
     public VirtualMachineConfigAgentInstanceView() {
     }
 
     /**
      * Get the vmConfigAgentVersion property: The VM Config Agent full version.
-     *
+     * 
      * @return the vmConfigAgentVersion value.
      */
     public String vmConfigAgentVersion() {
@@ -38,7 +45,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Set the vmConfigAgentVersion property: The VM Config Agent full version.
-     *
+     * 
      * @param vmConfigAgentVersion the vmConfigAgentVersion value to set.
      * @return the VirtualMachineConfigAgentInstanceView object itself.
      */
@@ -49,7 +56,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<InstanceViewStatus> statuses() {
@@ -58,7 +65,7 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Set the statuses property: The resource status information.
-     *
+     * 
      * @param statuses the statuses value to set.
      * @return the VirtualMachineConfigAgentInstanceView object itself.
      */
@@ -69,12 +76,54 @@ public final class VirtualMachineConfigAgentInstanceView {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (statuses() != null) {
             statuses().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("vmConfigAgentVersion", this.vmConfigAgentVersion);
+        jsonWriter.writeArrayField("statuses", this.statuses, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineConfigAgentInstanceView from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineConfigAgentInstanceView if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineConfigAgentInstanceView.
+     */
+    public static VirtualMachineConfigAgentInstanceView fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineConfigAgentInstanceView deserializedVirtualMachineConfigAgentInstanceView
+                = new VirtualMachineConfigAgentInstanceView();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("vmConfigAgentVersion".equals(fieldName)) {
+                    deserializedVirtualMachineConfigAgentInstanceView.vmConfigAgentVersion = reader.getString();
+                } else if ("statuses".equals(fieldName)) {
+                    List<InstanceViewStatus> statuses
+                        = reader.readArray(reader1 -> InstanceViewStatus.fromJson(reader1));
+                    deserializedVirtualMachineConfigAgentInstanceView.statuses = statuses;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineConfigAgentInstanceView;
+        });
     }
 }

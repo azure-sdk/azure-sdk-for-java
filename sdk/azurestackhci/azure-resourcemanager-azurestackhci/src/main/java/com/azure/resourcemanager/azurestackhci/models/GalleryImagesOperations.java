@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of GalleryImagesOperations. */
+/**
+ * Resource collection API of GalleryImagesOperations.
+ */
 public interface GalleryImagesOperations {
     /**
      * Gets a gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param galleryImageName Name of the gallery image.
      * @param context The context to associate with this operation.
@@ -21,12 +23,12 @@ public interface GalleryImagesOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a gallery image along with {@link Response}.
      */
-    Response<GalleryImages> getByResourceGroupWithResponse(
-        String resourceGroupName, String galleryImageName, Context context);
+    Response<GalleryImages> getByResourceGroupWithResponse(String resourceGroupName, String galleryImageName,
+        Context context);
 
     /**
      * Gets a gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param galleryImageName Name of the gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -38,7 +40,7 @@ public interface GalleryImagesOperations {
 
     /**
      * The operation to delete a gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param galleryImageName Name of the gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -49,7 +51,7 @@ public interface GalleryImagesOperations {
 
     /**
      * The operation to delete a gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param galleryImageName Name of the gallery image.
      * @param context The context to associate with this operation.
@@ -62,7 +64,7 @@ public interface GalleryImagesOperations {
     /**
      * Lists all of the gallery images in the specified resource group. Use the nextLink property in the response to get
      * the next page of gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -74,7 +76,7 @@ public interface GalleryImagesOperations {
     /**
      * Lists all of the gallery images in the specified resource group. Use the nextLink property in the response to get
      * the next page of gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,7 +89,7 @@ public interface GalleryImagesOperations {
     /**
      * Lists all of the gallery images in the specified subscription. Use the nextLink property in the response to get
      * the next page of gallery images.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of gallery images as paginated response with {@link PagedIterable}.
@@ -97,7 +99,7 @@ public interface GalleryImagesOperations {
     /**
      * Lists all of the gallery images in the specified subscription. Use the nextLink property in the response to get
      * the next page of gallery images.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -108,7 +110,7 @@ public interface GalleryImagesOperations {
 
     /**
      * Gets a gallery image.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -119,7 +121,7 @@ public interface GalleryImagesOperations {
 
     /**
      * Gets a gallery image.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -131,7 +133,7 @@ public interface GalleryImagesOperations {
 
     /**
      * The operation to delete a gallery image.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -141,7 +143,7 @@ public interface GalleryImagesOperations {
 
     /**
      * The operation to delete a gallery image.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -152,7 +154,7 @@ public interface GalleryImagesOperations {
 
     /**
      * Begins definition for a new GalleryImages resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new GalleryImages definition.
      */

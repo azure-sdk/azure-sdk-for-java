@@ -15,8 +15,8 @@ public final class GuestAgentImpl implements GuestAgent {
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    GuestAgentImpl(
-        GuestAgentInner innerObject, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    GuestAgentImpl(GuestAgentInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

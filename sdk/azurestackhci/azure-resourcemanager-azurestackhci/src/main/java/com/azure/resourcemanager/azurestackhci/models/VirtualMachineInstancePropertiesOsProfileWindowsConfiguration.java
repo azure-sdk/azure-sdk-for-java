@@ -5,49 +5,53 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Windows Configuration for the virtual machine instance. */
+/**
+ * Windows Configuration for the virtual machine instance.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration {
+public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
+    implements JsonSerializable<VirtualMachineInstancePropertiesOsProfileWindowsConfiguration> {
     /*
      * Whether to EnableAutomaticUpdates on the machine
      */
-    @JsonProperty(value = "enableAutomaticUpdates")
     private Boolean enableAutomaticUpdates;
 
     /*
      * Specifies the ssh key configuration for Windows OS.
      */
-    @JsonProperty(value = "ssh")
     private SshConfiguration ssh;
 
     /*
      * TimeZone for the virtual machine instance
      */
-    @JsonProperty(value = "timeZone")
     private String timeZone;
 
     /*
-     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine
-     * instance creation process.
+     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine instance
+     * creation process.
      */
-    @JsonProperty(value = "provisionVMAgent")
     private Boolean provisionVMAgent;
 
     /*
      * Used to indicate whether the VM Config Agent should be installed during the virtual machine creation process.
      */
-    @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesOsProfileWindowsConfiguration class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesOsProfileWindowsConfiguration class.
+     */
     public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration() {
     }
 
     /**
      * Get the enableAutomaticUpdates property: Whether to EnableAutomaticUpdates on the machine.
-     *
+     * 
      * @return the enableAutomaticUpdates value.
      */
     public Boolean enableAutomaticUpdates() {
@@ -56,19 +60,19 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
 
     /**
      * Set the enableAutomaticUpdates property: Whether to EnableAutomaticUpdates on the machine.
-     *
+     * 
      * @param enableAutomaticUpdates the enableAutomaticUpdates value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileWindowsConfiguration object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration withEnableAutomaticUpdates(
-        Boolean enableAutomaticUpdates) {
+    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
+        withEnableAutomaticUpdates(Boolean enableAutomaticUpdates) {
         this.enableAutomaticUpdates = enableAutomaticUpdates;
         return this;
     }
 
     /**
      * Get the ssh property: Specifies the ssh key configuration for Windows OS.
-     *
+     * 
      * @return the ssh value.
      */
     public SshConfiguration ssh() {
@@ -77,7 +81,7 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
 
     /**
      * Set the ssh property: Specifies the ssh key configuration for Windows OS.
-     *
+     * 
      * @param ssh the ssh value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileWindowsConfiguration object itself.
      */
@@ -88,7 +92,7 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
 
     /**
      * Get the timeZone property: TimeZone for the virtual machine instance.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -97,7 +101,7 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
 
     /**
      * Set the timeZone property: TimeZone for the virtual machine instance.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileWindowsConfiguration object itself.
      */
@@ -109,7 +113,7 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -119,12 +123,12 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileWindowsConfiguration object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration withProvisionVMAgent(
-        Boolean provisionVMAgent) {
+    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
+        withProvisionVMAgent(Boolean provisionVMAgent) {
         this.provisionVMAgent = provisionVMAgent;
         return this;
     }
@@ -132,7 +136,7 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -142,24 +146,80 @@ public final class VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileWindowsConfiguration object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration withProvisionVMConfigAgent(
-        Boolean provisionVMConfigAgent) {
+    public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration
+        withProvisionVMConfigAgent(Boolean provisionVMConfigAgent) {
         this.provisionVMConfigAgent = provisionVMConfigAgent;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ssh() != null) {
             ssh().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("enableAutomaticUpdates", this.enableAutomaticUpdates);
+        jsonWriter.writeJsonField("ssh", this.ssh);
+        jsonWriter.writeStringField("timeZone", this.timeZone);
+        jsonWriter.writeBooleanField("provisionVMAgent", this.provisionVMAgent);
+        jsonWriter.writeBooleanField("provisionVMConfigAgent", this.provisionVMConfigAgent);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesOsProfileWindowsConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesOsProfileWindowsConfiguration if the JsonReader was
+     * pointing to an instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the
+     * VirtualMachineInstancePropertiesOsProfileWindowsConfiguration.
+     */
+    public static VirtualMachineInstancePropertiesOsProfileWindowsConfiguration fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesOsProfileWindowsConfiguration deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration
+                = new VirtualMachineInstancePropertiesOsProfileWindowsConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("enableAutomaticUpdates".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration.enableAutomaticUpdates
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("ssh".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration.ssh
+                        = SshConfiguration.fromJson(reader);
+                } else if ("timeZone".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration.timeZone
+                        = reader.getString();
+                } else if ("provisionVMAgent".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration.provisionVMAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("provisionVMConfigAgent".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration.provisionVMConfigAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesOsProfileWindowsConfiguration;
+        });
     }
 }

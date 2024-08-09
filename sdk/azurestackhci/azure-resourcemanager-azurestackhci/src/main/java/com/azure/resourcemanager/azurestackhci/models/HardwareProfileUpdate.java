@@ -5,36 +5,41 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** HardwareProfile - Specifies the hardware settings for the virtual machine instance. */
+/**
+ * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
+ */
 @Fluent
-public final class HardwareProfileUpdate {
+public final class HardwareProfileUpdate implements JsonSerializable<HardwareProfileUpdate> {
     /*
      * The vmSize property.
      */
-    @JsonProperty(value = "vmSize")
     private VmSizeEnum vmSize;
 
     /*
      * number of processors for the virtual machine instance
      */
-    @JsonProperty(value = "processors")
     private Integer processors;
 
     /*
      * RAM in MB for the virtual machine instance
      */
-    @JsonProperty(value = "memoryMB")
     private Long memoryMB;
 
-    /** Creates an instance of HardwareProfileUpdate class. */
+    /**
+     * Creates an instance of HardwareProfileUpdate class.
+     */
     public HardwareProfileUpdate() {
     }
 
     /**
      * Get the vmSize property: The vmSize property.
-     *
+     * 
      * @return the vmSize value.
      */
     public VmSizeEnum vmSize() {
@@ -43,7 +48,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the vmSize property: The vmSize property.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -54,7 +59,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Get the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @return the processors value.
      */
     public Integer processors() {
@@ -63,7 +68,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the processors property: number of processors for the virtual machine instance.
-     *
+     * 
      * @param processors the processors value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -74,7 +79,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Get the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -83,7 +88,7 @@ public final class HardwareProfileUpdate {
 
     /**
      * Set the memoryMB property: RAM in MB for the virtual machine instance.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the HardwareProfileUpdate object itself.
      */
@@ -94,9 +99,51 @@ public final class HardwareProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("vmSize", this.vmSize == null ? null : this.vmSize.toString());
+        jsonWriter.writeNumberField("processors", this.processors);
+        jsonWriter.writeNumberField("memoryMB", this.memoryMB);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HardwareProfileUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HardwareProfileUpdate if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the HardwareProfileUpdate.
+     */
+    public static HardwareProfileUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HardwareProfileUpdate deserializedHardwareProfileUpdate = new HardwareProfileUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("vmSize".equals(fieldName)) {
+                    deserializedHardwareProfileUpdate.vmSize = VmSizeEnum.fromString(reader.getString());
+                } else if ("processors".equals(fieldName)) {
+                    deserializedHardwareProfileUpdate.processors = reader.getNullable(JsonReader::getInt);
+                } else if ("memoryMB".equals(fieldName)) {
+                    deserializedHardwareProfileUpdate.memoryMB = reader.getNullable(JsonReader::getLong);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHardwareProfileUpdate;
+        });
     }
 }

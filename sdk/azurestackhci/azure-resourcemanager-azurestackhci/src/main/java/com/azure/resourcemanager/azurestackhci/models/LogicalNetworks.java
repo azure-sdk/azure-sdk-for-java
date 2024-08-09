@@ -11,53 +11,55 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.LogicalNetworksInne
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of LogicalNetworks. */
+/**
+ * An immutable client-side representation of LogicalNetworks.
+ */
 public interface LogicalNetworks {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
      * Gets the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
@@ -65,86 +67,91 @@ public interface LogicalNetworks {
     /**
      * Gets the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @return the dhcpOptions value.
      */
     LogicalNetworkPropertiesDhcpOptions dhcpOptions();
 
     /**
      * Gets the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @return the subnets value.
      */
     List<Subnet> subnets();
 
     /**
      * Gets the provisioningState property: Provisioning state of the logical network.
-     *
+     * 
      * @return the provisioningState value.
      */
     ProvisioningStateEnum provisioningState();
 
     /**
      * Gets the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @return the vmSwitchName value.
      */
     String vmSwitchName();
 
     /**
      * Gets the status property: The observed state of logical networks.
-     *
+     * 
      * @return the status value.
      */
     LogicalNetworkStatus status();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.azurestackhci.fluent.models.LogicalNetworksInner object.
-     *
+     * 
      * @return the inner object.
      */
     LogicalNetworksInner innerModel();
 
-    /** The entirety of the LogicalNetworks definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the LogicalNetworks definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
-    /** The LogicalNetworks definition stages. */
+    /**
+     * The LogicalNetworks definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the LogicalNetworks definition. */
+        /**
+         * The first stage of the LogicalNetworks definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify location. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -152,18 +159,20 @@ public interface LogicalNetworks {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify parent resource. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
@@ -174,80 +183,86 @@ public interface LogicalNetworks {
          * The stage of the LogicalNetworks definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags,
-                DefinitionStages.WithExtendedLocation,
-                DefinitionStages.WithDhcpOptions,
-                DefinitionStages.WithSubnets,
-                DefinitionStages.WithVmSwitchName {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation,
+            DefinitionStages.WithDhcpOptions, DefinitionStages.WithSubnets, DefinitionStages.WithVmSwitchName {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             LogicalNetworks create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             LogicalNetworks create(Context context);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify tags. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify extendedLocation. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify extendedLocation.
+         */
         interface WithExtendedLocation {
             /**
              * Specifies the extendedLocation property: The extendedLocation of the resource..
-             *
+             * 
              * @param extendedLocation The extendedLocation of the resource.
              * @return the next definition stage.
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify dhcpOptions. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify dhcpOptions.
+         */
         interface WithDhcpOptions {
             /**
              * Specifies the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs
              * deployed in the logical network. Standard DHCP option for a subnet overrides logical network DHCP
              * options..
-             *
+             * 
              * @param dhcpOptions DhcpOptions contains an array of DNS servers available to VMs deployed in the logical
-             *     network. Standard DHCP option for a subnet overrides logical network DHCP options.
+             * network. Standard DHCP option for a subnet overrides logical network DHCP options.
              * @return the next definition stage.
              */
             WithCreate withDhcpOptions(LogicalNetworkPropertiesDhcpOptions dhcpOptions);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify subnets. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify subnets.
+         */
         interface WithSubnets {
             /**
              * Specifies the subnets property: Subnet - list of subnets under the logical network.
-             *
+             * 
              * @param subnets Subnet - list of subnets under the logical network.
              * @return the next definition stage.
              */
             WithCreate withSubnets(List<Subnet> subnets);
         }
 
-        /** The stage of the LogicalNetworks definition allowing to specify vmSwitchName. */
+        /**
+         * The stage of the LogicalNetworks definition allowing to specify vmSwitchName.
+         */
         interface WithVmSwitchName {
             /**
              * Specifies the vmSwitchName property: name of the network switch to be used for VMs.
-             *
+             * 
              * @param vmSwitchName name of the network switch to be used for VMs.
              * @return the next definition stage.
              */
@@ -257,36 +272,42 @@ public interface LogicalNetworks {
 
     /**
      * Begins update for the LogicalNetworks resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     LogicalNetworks.Update update();
 
-    /** The template for LogicalNetworks update. */
+    /**
+     * The template for LogicalNetworks update.
+     */
     interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         LogicalNetworks apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         LogicalNetworks apply(Context context);
     }
 
-    /** The LogicalNetworks update stages. */
+    /**
+     * The LogicalNetworks update stages.
+     */
     interface UpdateStages {
-        /** The stage of the LogicalNetworks update allowing to specify tags. */
+        /**
+         * The stage of the LogicalNetworks update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags.
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
@@ -296,14 +317,14 @@ public interface LogicalNetworks {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     LogicalNetworks refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

@@ -5,48 +5,51 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The IpPool model. */
+/**
+ * The IpPool model.
+ */
 @Fluent
-public final class IpPool {
+public final class IpPool implements JsonSerializable<IpPool> {
     /*
      * Name of the IP-Pool
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Type of the IP Pool [vm, vippool]
      */
-    @JsonProperty(value = "ipPoolType")
     private IpPoolTypeEnum ipPoolType;
 
     /*
      * Start of the IP address pool
      */
-    @JsonProperty(value = "start")
     private String start;
 
     /*
      * End of the IP address pool
      */
-    @JsonProperty(value = "end")
     private String end;
 
     /*
      * The info property.
      */
-    @JsonProperty(value = "info")
     private IpPoolInfo info;
 
-    /** Creates an instance of IpPool class. */
+    /**
+     * Creates an instance of IpPool class.
+     */
     public IpPool() {
     }
 
     /**
      * Get the name property: Name of the IP-Pool.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +58,7 @@ public final class IpPool {
 
     /**
      * Set the name property: Name of the IP-Pool.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpPool object itself.
      */
@@ -66,7 +69,7 @@ public final class IpPool {
 
     /**
      * Get the ipPoolType property: Type of the IP Pool [vm, vippool].
-     *
+     * 
      * @return the ipPoolType value.
      */
     public IpPoolTypeEnum ipPoolType() {
@@ -75,7 +78,7 @@ public final class IpPool {
 
     /**
      * Set the ipPoolType property: Type of the IP Pool [vm, vippool].
-     *
+     * 
      * @param ipPoolType the ipPoolType value to set.
      * @return the IpPool object itself.
      */
@@ -86,7 +89,7 @@ public final class IpPool {
 
     /**
      * Get the start property: Start of the IP address pool.
-     *
+     * 
      * @return the start value.
      */
     public String start() {
@@ -95,7 +98,7 @@ public final class IpPool {
 
     /**
      * Set the start property: Start of the IP address pool.
-     *
+     * 
      * @param start the start value to set.
      * @return the IpPool object itself.
      */
@@ -106,7 +109,7 @@ public final class IpPool {
 
     /**
      * Get the end property: End of the IP address pool.
-     *
+     * 
      * @return the end value.
      */
     public String end() {
@@ -115,7 +118,7 @@ public final class IpPool {
 
     /**
      * Set the end property: End of the IP address pool.
-     *
+     * 
      * @param end the end value to set.
      * @return the IpPool object itself.
      */
@@ -126,7 +129,7 @@ public final class IpPool {
 
     /**
      * Get the info property: The info property.
-     *
+     * 
      * @return the info value.
      */
     public IpPoolInfo info() {
@@ -135,7 +138,7 @@ public final class IpPool {
 
     /**
      * Set the info property: The info property.
-     *
+     * 
      * @param info the info value to set.
      * @return the IpPool object itself.
      */
@@ -146,12 +149,60 @@ public final class IpPool {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (info() != null) {
             info().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeStringField("ipPoolType", this.ipPoolType == null ? null : this.ipPoolType.toString());
+        jsonWriter.writeStringField("start", this.start);
+        jsonWriter.writeStringField("end", this.end);
+        jsonWriter.writeJsonField("info", this.info);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IpPool from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IpPool if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
+     * @throws IOException If an error occurs while reading the IpPool.
+     */
+    public static IpPool fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IpPool deserializedIpPool = new IpPool();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedIpPool.name = reader.getString();
+                } else if ("ipPoolType".equals(fieldName)) {
+                    deserializedIpPool.ipPoolType = IpPoolTypeEnum.fromString(reader.getString());
+                } else if ("start".equals(fieldName)) {
+                    deserializedIpPool.start = reader.getString();
+                } else if ("end".equals(fieldName)) {
+                    deserializedIpPool.end = reader.getString();
+                } else if ("info".equals(fieldName)) {
+                    deserializedIpPool.info = IpPoolInfo.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIpPool;
+        });
     }
 }

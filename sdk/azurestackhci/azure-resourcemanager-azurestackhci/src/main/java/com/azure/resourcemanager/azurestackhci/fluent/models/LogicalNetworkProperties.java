@@ -5,55 +5,58 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkPropertiesDhcpOptions;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkStatus;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.Subnet;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Properties under the logical network resource. */
+/**
+ * Properties under the logical network resource.
+ */
 @Fluent
-public final class LogicalNetworkProperties {
+public final class LogicalNetworkProperties implements JsonSerializable<LogicalNetworkProperties> {
     /*
      * DhcpOptions contains an array of DNS servers available to VMs deployed in the logical network. Standard DHCP
      * option for a subnet overrides logical network DHCP options.
      */
-    @JsonProperty(value = "dhcpOptions")
     private LogicalNetworkPropertiesDhcpOptions dhcpOptions;
 
     /*
      * Subnet - list of subnets under the logical network
      */
-    @JsonProperty(value = "subnets")
     private List<Subnet> subnets;
 
     /*
      * Provisioning state of the logical network.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * name of the network switch to be used for VMs
      */
-    @JsonProperty(value = "vmSwitchName")
     private String vmSwitchName;
 
     /*
      * The observed state of logical networks
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private LogicalNetworkStatus status;
 
-    /** Creates an instance of LogicalNetworkProperties class. */
+    /**
+     * Creates an instance of LogicalNetworkProperties class.
+     */
     public LogicalNetworkProperties() {
     }
 
     /**
      * Get the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @return the dhcpOptions value.
      */
     public LogicalNetworkPropertiesDhcpOptions dhcpOptions() {
@@ -63,7 +66,7 @@ public final class LogicalNetworkProperties {
     /**
      * Set the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @param dhcpOptions the dhcpOptions value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -74,7 +77,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @return the subnets value.
      */
     public List<Subnet> subnets() {
@@ -83,7 +86,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Set the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @param subnets the subnets value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -94,7 +97,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the logical network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -103,7 +106,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @return the vmSwitchName value.
      */
     public String vmSwitchName() {
@@ -112,7 +115,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Set the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @param vmSwitchName the vmSwitchName value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -123,7 +126,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the status property: The observed state of logical networks.
-     *
+     * 
      * @return the status value.
      */
     public LogicalNetworkStatus status() {
@@ -132,7 +135,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -145,5 +148,54 @@ public final class LogicalNetworkProperties {
         if (status() != null) {
             status().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("dhcpOptions", this.dhcpOptions);
+        jsonWriter.writeArrayField("subnets", this.subnets, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("vmSwitchName", this.vmSwitchName);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of LogicalNetworkProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of LogicalNetworkProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the LogicalNetworkProperties.
+     */
+    public static LogicalNetworkProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            LogicalNetworkProperties deserializedLogicalNetworkProperties = new LogicalNetworkProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("dhcpOptions".equals(fieldName)) {
+                    deserializedLogicalNetworkProperties.dhcpOptions
+                        = LogicalNetworkPropertiesDhcpOptions.fromJson(reader);
+                } else if ("subnets".equals(fieldName)) {
+                    List<Subnet> subnets = reader.readArray(reader1 -> Subnet.fromJson(reader1));
+                    deserializedLogicalNetworkProperties.subnets = subnets;
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedLogicalNetworkProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("vmSwitchName".equals(fieldName)) {
+                    deserializedLogicalNetworkProperties.vmSwitchName = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedLogicalNetworkProperties.status = LogicalNetworkStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedLogicalNetworkProperties;
+        });
     }
 }
