@@ -5,31 +5,37 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.fluent.models.GalleryImageVersionProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Specifies information about the gallery image version that you want to create or update. */
+/**
+ * Specifies information about the gallery image version that you want to create or update.
+ */
 @Fluent
-public final class GalleryImageVersion {
+public final class GalleryImageVersion implements JsonSerializable<GalleryImageVersion> {
     /*
      * This is the version of the gallery image.
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Describes the properties of a gallery image version.
      */
-    @JsonProperty(value = "properties")
     private GalleryImageVersionProperties innerProperties;
 
-    /** Creates an instance of GalleryImageVersion class. */
+    /**
+     * Creates an instance of GalleryImageVersion class.
+     */
     public GalleryImageVersion() {
     }
 
     /**
      * Get the name property: This is the version of the gallery image.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +44,7 @@ public final class GalleryImageVersion {
 
     /**
      * Set the name property: This is the version of the gallery image.
-     *
+     * 
      * @param name the name value to set.
      * @return the GalleryImageVersion object itself.
      */
@@ -49,7 +55,7 @@ public final class GalleryImageVersion {
 
     /**
      * Get the innerProperties property: Describes the properties of a gallery image version.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GalleryImageVersionProperties innerProperties() {
@@ -58,7 +64,7 @@ public final class GalleryImageVersion {
 
     /**
      * Get the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @return the storageProfile value.
      */
     public GalleryImageVersionStorageProfile storageProfile() {
@@ -67,7 +73,7 @@ public final class GalleryImageVersion {
 
     /**
      * Set the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the GalleryImageVersion object itself.
      */
@@ -81,12 +87,51 @@ public final class GalleryImageVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImageVersion from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImageVersion if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GalleryImageVersion.
+     */
+    public static GalleryImageVersion fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImageVersion deserializedGalleryImageVersion = new GalleryImageVersion();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedGalleryImageVersion.name = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedGalleryImageVersion.innerProperties = GalleryImageVersionProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImageVersion;
+        });
     }
 }

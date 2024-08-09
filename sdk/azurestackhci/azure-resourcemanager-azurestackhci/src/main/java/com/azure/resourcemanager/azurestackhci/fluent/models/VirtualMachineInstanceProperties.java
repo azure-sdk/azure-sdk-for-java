@@ -5,6 +5,10 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.GuestAgentInstallStatus;
 import com.azure.resourcemanager.azurestackhci.models.HttpProxyConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
@@ -15,91 +19,83 @@ import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceProp
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstancePropertiesStorageProfile;
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceStatus;
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceView;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Properties under the virtual machine instance resource. */
+/**
+ * Properties under the virtual machine instance resource.
+ */
 @Fluent
-public final class VirtualMachineInstanceProperties {
+public final class VirtualMachineInstanceProperties implements JsonSerializable<VirtualMachineInstanceProperties> {
     /*
      * HardwareProfile - Specifies the hardware settings for the virtual machine instance.
      */
-    @JsonProperty(value = "hardwareProfile")
     private VirtualMachineInstancePropertiesHardwareProfile hardwareProfile;
 
     /*
      * NetworkProfile - describes the network configuration the virtual machine instance
      */
-    @JsonProperty(value = "networkProfile")
     private VirtualMachineInstancePropertiesNetworkProfile networkProfile;
 
     /*
      * OsProfile - describes the configuration of the operating system and sets login data
      */
-    @JsonProperty(value = "osProfile")
     private VirtualMachineInstancePropertiesOsProfile osProfile;
 
     /*
      * SecurityProfile - Specifies the security settings for the virtual machine instance.
      */
-    @JsonProperty(value = "securityProfile")
     private VirtualMachineInstancePropertiesSecurityProfile securityProfile;
 
     /*
      * StorageProfile - contains information about the disks and storage information for the virtual machine instance
      */
-    @JsonProperty(value = "storageProfile")
     private VirtualMachineInstancePropertiesStorageProfile storageProfile;
 
     /*
      * HTTP Proxy configuration for the VM.
      */
-    @JsonProperty(value = "httpProxyConfig")
     private HttpProxyConfiguration httpProxyConfig;
 
     /*
      * Provisioning state of the virtual machine instance.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * The virtual machine instance view.
      */
-    @JsonProperty(value = "instanceView", access = JsonProperty.Access.WRITE_ONLY)
     private VirtualMachineInstanceView instanceView;
 
     /*
      * The observed state of virtual machine instances
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private VirtualMachineInstanceStatus status;
 
     /*
      * Guest agent install status.
      */
-    @JsonProperty(value = "guestAgentInstallStatus")
     private GuestAgentInstallStatus guestAgentInstallStatus;
 
     /*
      * Unique identifier for the vm resource.
      */
-    @JsonProperty(value = "vmId", access = JsonProperty.Access.WRITE_ONLY)
     private String vmId;
 
     /*
      * Unique identifier defined by ARC to identify the guest of the VM.
      */
-    @JsonProperty(value = "resourceUid")
     private String resourceUid;
 
-    /** Creates an instance of VirtualMachineInstanceProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceProperties class.
+     */
     public VirtualMachineInstanceProperties() {
     }
 
     /**
      * Get the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public VirtualMachineInstancePropertiesHardwareProfile hardwareProfile() {
@@ -109,12 +105,12 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withHardwareProfile(
-        VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
+    public VirtualMachineInstanceProperties
+        withHardwareProfile(VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
         this.hardwareProfile = hardwareProfile;
         return this;
     }
@@ -122,7 +118,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public VirtualMachineInstancePropertiesNetworkProfile networkProfile() {
@@ -132,19 +128,19 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withNetworkProfile(
-        VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
+    public VirtualMachineInstanceProperties
+        withNetworkProfile(VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
         this.networkProfile = networkProfile;
         return this;
     }
 
     /**
      * Get the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @return the osProfile value.
      */
     public VirtualMachineInstancePropertiesOsProfile osProfile() {
@@ -153,7 +149,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -165,7 +161,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the securityProfile value.
      */
     public VirtualMachineInstancePropertiesSecurityProfile securityProfile() {
@@ -175,12 +171,12 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @param securityProfile the securityProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withSecurityProfile(
-        VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
+    public VirtualMachineInstanceProperties
+        withSecurityProfile(VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
         this.securityProfile = securityProfile;
         return this;
     }
@@ -188,7 +184,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @return the storageProfile value.
      */
     public VirtualMachineInstancePropertiesStorageProfile storageProfile() {
@@ -198,19 +194,19 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withStorageProfile(
-        VirtualMachineInstancePropertiesStorageProfile storageProfile) {
+    public VirtualMachineInstanceProperties
+        withStorageProfile(VirtualMachineInstancePropertiesStorageProfile storageProfile) {
         this.storageProfile = storageProfile;
         return this;
     }
 
     /**
      * Get the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @return the httpProxyConfig value.
      */
     public HttpProxyConfiguration httpProxyConfig() {
@@ -219,7 +215,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @param httpProxyConfig the httpProxyConfig value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -230,7 +226,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the virtual machine instance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -239,7 +235,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the instanceView property: The virtual machine instance view.
-     *
+     * 
      * @return the instanceView value.
      */
     public VirtualMachineInstanceView instanceView() {
@@ -248,7 +244,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the status property: The observed state of virtual machine instances.
-     *
+     * 
      * @return the status value.
      */
     public VirtualMachineInstanceStatus status() {
@@ -257,7 +253,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @return the guestAgentInstallStatus value.
      */
     public GuestAgentInstallStatus guestAgentInstallStatus() {
@@ -266,19 +262,19 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @param guestAgentInstallStatus the guestAgentInstallStatus value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withGuestAgentInstallStatus(
-        GuestAgentInstallStatus guestAgentInstallStatus) {
+    public VirtualMachineInstanceProperties
+        withGuestAgentInstallStatus(GuestAgentInstallStatus guestAgentInstallStatus) {
         this.guestAgentInstallStatus = guestAgentInstallStatus;
         return this;
     }
 
     /**
      * Get the vmId property: Unique identifier for the vm resource.
-     *
+     * 
      * @return the vmId value.
      */
     public String vmId() {
@@ -287,7 +283,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -296,7 +292,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -307,7 +303,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -338,5 +334,80 @@ public final class VirtualMachineInstanceProperties {
         if (guestAgentInstallStatus() != null) {
             guestAgentInstallStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("hardwareProfile", this.hardwareProfile);
+        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
+        jsonWriter.writeJsonField("osProfile", this.osProfile);
+        jsonWriter.writeJsonField("securityProfile", this.securityProfile);
+        jsonWriter.writeJsonField("storageProfile", this.storageProfile);
+        jsonWriter.writeJsonField("httpProxyConfig", this.httpProxyConfig);
+        jsonWriter.writeJsonField("guestAgentInstallStatus", this.guestAgentInstallStatus);
+        jsonWriter.writeStringField("resourceUid", this.resourceUid);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstanceProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstanceProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstanceProperties.
+     */
+    public static VirtualMachineInstanceProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstanceProperties deserializedVirtualMachineInstanceProperties
+                = new VirtualMachineInstanceProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("hardwareProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.hardwareProfile
+                        = VirtualMachineInstancePropertiesHardwareProfile.fromJson(reader);
+                } else if ("networkProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.networkProfile
+                        = VirtualMachineInstancePropertiesNetworkProfile.fromJson(reader);
+                } else if ("osProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.osProfile
+                        = VirtualMachineInstancePropertiesOsProfile.fromJson(reader);
+                } else if ("securityProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.securityProfile
+                        = VirtualMachineInstancePropertiesSecurityProfile.fromJson(reader);
+                } else if ("storageProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.storageProfile
+                        = VirtualMachineInstancePropertiesStorageProfile.fromJson(reader);
+                } else if ("httpProxyConfig".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.httpProxyConfig
+                        = HttpProxyConfiguration.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("instanceView".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.instanceView
+                        = VirtualMachineInstanceView.fromJson(reader);
+                } else if ("status".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.status = VirtualMachineInstanceStatus.fromJson(reader);
+                } else if ("guestAgentInstallStatus".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.guestAgentInstallStatus
+                        = GuestAgentInstallStatus.fromJson(reader);
+                } else if ("vmId".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.vmId = reader.getString();
+                } else if ("resourceUid".equals(fieldName)) {
+                    deserializedVirtualMachineInstanceProperties.resourceUid = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstanceProperties;
+        });
     }
 }

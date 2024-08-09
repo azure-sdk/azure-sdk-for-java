@@ -5,23 +5,30 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The installation status of the hybrid machine agent installation. */
+/**
+ * The installation status of the hybrid machine agent installation.
+ */
 public final class StatusTypes extends ExpandableStringEnum<StatusTypes> {
-    /** Static value Succeeded for StatusTypes. */
+    /**
+     * Static value Succeeded for StatusTypes.
+     */
     public static final StatusTypes SUCCEEDED = fromString("Succeeded");
 
-    /** Static value InProgress for StatusTypes. */
+    /**
+     * Static value InProgress for StatusTypes.
+     */
     public static final StatusTypes IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Failed for StatusTypes. */
+    /**
+     * Static value Failed for StatusTypes.
+     */
     public static final StatusTypes FAILED = fromString("Failed");
 
     /**
      * Creates a new instance of StatusTypes value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,18 +37,17 @@ public final class StatusTypes extends ExpandableStringEnum<StatusTypes> {
 
     /**
      * Creates or finds a StatusTypes from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding StatusTypes.
      */
-    @JsonCreator
     public static StatusTypes fromString(String name) {
         return fromString(name, StatusTypes.class);
     }
 
     /**
      * Gets known StatusTypes values.
-     *
+     * 
      * @return known StatusTypes values.
      */
     public static Collection<StatusTypes> values() {

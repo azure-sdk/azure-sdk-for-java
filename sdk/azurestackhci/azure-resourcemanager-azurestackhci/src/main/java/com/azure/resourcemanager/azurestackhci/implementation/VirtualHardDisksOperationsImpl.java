@@ -21,22 +21,18 @@ public final class VirtualHardDisksOperationsImpl implements VirtualHardDisksOpe
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public VirtualHardDisksOperationsImpl(
-        VirtualHardDisksOperationsClient innerClient,
+    public VirtualHardDisksOperationsImpl(VirtualHardDisksOperationsClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<VirtualHardDisks> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
-        Response<VirtualHardDisksInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, context);
+    public Response<VirtualHardDisks> getByResourceGroupWithResponse(String resourceGroupName,
+        String virtualHardDiskName, Context context) {
+        Response<VirtualHardDisksInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VirtualHardDisksImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -62,105 +58,77 @@ public final class VirtualHardDisksOperationsImpl implements VirtualHardDisksOpe
 
     public PagedIterable<VirtualHardDisks> listByResourceGroup(String resourceGroupName) {
         PagedIterable<VirtualHardDisksInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
     }
 
     public PagedIterable<VirtualHardDisks> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<VirtualHardDisksInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
+        PagedIterable<VirtualHardDisksInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
     }
 
     public PagedIterable<VirtualHardDisks> list() {
         PagedIterable<VirtualHardDisksInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
     }
 
     public PagedIterable<VirtualHardDisks> list(Context context) {
         PagedIterable<VirtualHardDisksInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualHardDisksImpl(inner1, this.manager()));
     }
 
     public VirtualHardDisks getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String virtualHardDiskName = Utils.getValueFromIdByName(id, "virtualHardDisks");
+        String virtualHardDiskName = ResourceManagerUtils.getValueFromIdByName(id, "virtualHardDisks");
         if (virtualHardDiskName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, Context.NONE).getValue();
     }
 
     public Response<VirtualHardDisks> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String virtualHardDiskName = Utils.getValueFromIdByName(id, "virtualHardDisks");
+        String virtualHardDiskName = ResourceManagerUtils.getValueFromIdByName(id, "virtualHardDisks");
         if (virtualHardDiskName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String virtualHardDiskName = Utils.getValueFromIdByName(id, "virtualHardDisks");
+        String virtualHardDiskName = ResourceManagerUtils.getValueFromIdByName(id, "virtualHardDisks");
         if (virtualHardDiskName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
         }
         this.delete(resourceGroupName, virtualHardDiskName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String virtualHardDiskName = Utils.getValueFromIdByName(id, "virtualHardDisks");
+        String virtualHardDiskName = ResourceManagerUtils.getValueFromIdByName(id, "virtualHardDisks");
         if (virtualHardDiskName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualHardDisks'.", id)));
         }
         this.delete(resourceGroupName, virtualHardDiskName, context);
     }

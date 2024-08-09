@@ -5,32 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.fluent.models.StorageContainersInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** The StorageContainersListResult model. */
+/**
+ * The StorageContainersListResult model.
+ */
 @Fluent
-public final class StorageContainersListResult {
+public final class StorageContainersListResult implements JsonSerializable<StorageContainersListResult> {
     /*
      * The value property.
      */
-    @JsonProperty(value = "value")
     private List<StorageContainersInner> value;
 
     /*
      * The nextLink property.
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of StorageContainersListResult class. */
+    /**
+     * Creates an instance of StorageContainersListResult class.
+     */
     public StorageContainersListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageContainersInner> value() {
@@ -39,7 +45,7 @@ public final class StorageContainersListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the StorageContainersListResult object itself.
      */
@@ -50,7 +56,7 @@ public final class StorageContainersListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +65,7 @@ public final class StorageContainersListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the StorageContainersListResult object itself.
      */
@@ -70,12 +76,53 @@ public final class StorageContainersListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageContainersListResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageContainersListResult if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the StorageContainersListResult.
+     */
+    public static StorageContainersListResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageContainersListResult deserializedStorageContainersListResult = new StorageContainersListResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<StorageContainersInner> value
+                        = reader.readArray(reader1 -> StorageContainersInner.fromJson(reader1));
+                    deserializedStorageContainersListResult.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedStorageContainersListResult.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageContainersListResult;
+        });
     }
 }
