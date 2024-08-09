@@ -14,21 +14,23 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the LoadTestClientImpl type. */
-@ServiceClientBuilder(serviceClients = {LoadTestClientImpl.class})
-public final class LoadTestClientBuilder {
+/**
+ * A builder for creating a new instance of the LoadTestClientForTestingImpl type.
+ */
+@ServiceClientBuilder(serviceClients = { LoadTestClientForTestingImpl.class })
+public final class LoadTestClientForTestingBuilder {
     /*
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The ID of the target subscription.
-     *
+     * Sets The ID of the target subscription. The value must be an UUID.
+     * 
      * @param subscriptionId the subscriptionId value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder subscriptionId(String subscriptionId) {
+    public LoadTestClientForTestingBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -40,11 +42,11 @@ public final class LoadTestClientBuilder {
 
     /**
      * Sets server parameter.
-     *
+     * 
      * @param endpoint the endpoint value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder endpoint(String endpoint) {
+    public LoadTestClientForTestingBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -56,11 +58,11 @@ public final class LoadTestClientBuilder {
 
     /**
      * Sets The environment to connect to.
-     *
+     * 
      * @param environment the environment value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder environment(AzureEnvironment environment) {
+    public LoadTestClientForTestingBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -72,11 +74,11 @@ public final class LoadTestClientBuilder {
 
     /**
      * Sets The HTTP pipeline to send requests through.
-     *
+     * 
      * @param pipeline the pipeline value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder pipeline(HttpPipeline pipeline) {
+    public LoadTestClientForTestingBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -88,11 +90,11 @@ public final class LoadTestClientBuilder {
 
     /**
      * Sets The default poll interval for long-running operation.
-     *
+     * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public LoadTestClientForTestingBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -104,41 +106,33 @@ public final class LoadTestClientBuilder {
 
     /**
      * Sets The serializer to serialize an object into a string.
-     *
+     * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the LoadTestClientBuilder.
+     * @return the LoadTestClientForTestingBuilder.
      */
-    public LoadTestClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public LoadTestClientForTestingBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of LoadTestClientImpl with the provided parameters.
-     *
-     * @return an instance of LoadTestClientImpl.
+     * Builds an instance of LoadTestClientForTestingImpl with the provided parameters.
+     * 
+     * @return an instance of LoadTestClientForTestingImpl.
      */
-    public LoadTestClientImpl buildClient() {
+    public LoadTestClientForTestingImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
-        HttpPipeline localPipeline =
-            (pipeline != null)
-                ? pipeline
-                : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        Duration localDefaultPollInterval =
-            (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
-        SerializerAdapter localSerializerAdapter =
-            (serializerAdapter != null)
-                ? serializerAdapter
-                : SerializerFactory.createDefaultManagementSerializerAdapter();
-        LoadTestClientImpl client =
-            new LoadTestClientImpl(
-                localPipeline,
-                localSerializerAdapter,
-                localDefaultPollInterval,
-                localEnvironment,
-                subscriptionId,
-                localEndpoint);
+        HttpPipeline localPipeline = (pipeline != null)
+            ? pipeline
+            : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
+        Duration localDefaultPollInterval
+            = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
+        SerializerAdapter localSerializerAdapter = (serializerAdapter != null)
+            ? serializerAdapter
+            : SerializerFactory.createDefaultManagementSerializerAdapter();
+        LoadTestClientForTestingImpl client = new LoadTestClientForTestingImpl(localPipeline, localSerializerAdapter,
+            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

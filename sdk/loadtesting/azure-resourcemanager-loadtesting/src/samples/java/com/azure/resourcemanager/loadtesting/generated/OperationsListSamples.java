@@ -4,17 +4,22 @@
 
 package com.azure.resourcemanager.loadtesting.generated;
 
-/** Samples for Operations List. */
+/**
+ * Samples for Operations List.
+ */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/Operations_List.json
+     * x-ms-original-file:
+     * specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/
+     * Operations_List.json
      */
     /**
-     * Sample code: Operations_List.
-     *
-     * @param manager Entry point to LoadTestManager.
+     * Sample code: List the operations for the provider.
+     * 
+     * @param manager Entry point to LoadtestingManager.
      */
-    public static void operationsList(com.azure.resourcemanager.loadtesting.LoadTestManager manager) {
+    public static void
+        listTheOperationsForTheProvider(com.azure.resourcemanager.loadtesting.LoadtestingManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

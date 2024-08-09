@@ -13,11 +13,10 @@ import java.util.List;
 public final class OutboundEnvironmentEndpointImpl implements OutboundEnvironmentEndpoint {
     private OutboundEnvironmentEndpointInner innerObject;
 
-    private final com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager;
+    private final com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager;
 
-    OutboundEnvironmentEndpointImpl(
-        OutboundEnvironmentEndpointInner innerObject,
-        com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager) {
+    OutboundEnvironmentEndpointImpl(OutboundEnvironmentEndpointInner innerObject,
+        com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -39,7 +38,7 @@ public final class OutboundEnvironmentEndpointImpl implements OutboundEnvironmen
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.loadtesting.LoadTestManager manager() {
+    private com.azure.resourcemanager.loadtesting.LoadtestingManager manager() {
         return this.serviceManager;
     }
 }
