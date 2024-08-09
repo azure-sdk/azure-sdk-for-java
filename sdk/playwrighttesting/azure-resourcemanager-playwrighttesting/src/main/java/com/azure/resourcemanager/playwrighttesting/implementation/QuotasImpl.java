@@ -38,8 +38,8 @@ public final class QuotasImpl implements Quotas {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new QuotaImpl(inner1, this.manager()));
     }
 
-    public Response<Quota> getWithResponse(String location, QuotaNames name, Context context) {
-        Response<QuotaInner> inner = this.serviceClient().getWithResponse(location, name, context);
+    public Response<Quota> getWithResponse(String location, QuotaNames quotaName, Context context) {
+        Response<QuotaInner> inner = this.serviceClient().getWithResponse(location, quotaName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new QuotaImpl(inner.getValue(), this.manager()));
@@ -48,8 +48,8 @@ public final class QuotasImpl implements Quotas {
         }
     }
 
-    public Quota get(String location, QuotaNames name) {
-        QuotaInner inner = this.serviceClient().get(location, name);
+    public Quota get(String location, QuotaNames quotaName) {
+        QuotaInner inner = this.serviceClient().get(location, quotaName);
         if (inner != null) {
             return new QuotaImpl(inner, this.manager());
         } else {
