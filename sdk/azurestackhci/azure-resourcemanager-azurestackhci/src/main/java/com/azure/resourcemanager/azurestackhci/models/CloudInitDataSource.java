@@ -5,20 +5,25 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Datasource for the gallery image when provisioning with cloud-init [NoCloud, Azure]. */
+/**
+ * Datasource for the gallery image when provisioning with cloud-init [NoCloud, Azure].
+ */
 public final class CloudInitDataSource extends ExpandableStringEnum<CloudInitDataSource> {
-    /** Static value NoCloud for CloudInitDataSource. */
+    /**
+     * Static value NoCloud for CloudInitDataSource.
+     */
     public static final CloudInitDataSource NO_CLOUD = fromString("NoCloud");
 
-    /** Static value Azure for CloudInitDataSource. */
+    /**
+     * Static value Azure for CloudInitDataSource.
+     */
     public static final CloudInitDataSource AZURE = fromString("Azure");
 
     /**
      * Creates a new instance of CloudInitDataSource value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,18 +32,17 @@ public final class CloudInitDataSource extends ExpandableStringEnum<CloudInitDat
 
     /**
      * Creates or finds a CloudInitDataSource from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CloudInitDataSource.
      */
-    @JsonCreator
     public static CloudInitDataSource fromString(String name) {
         return fromString(name, CloudInitDataSource.class);
     }
 
     /**
      * Gets known CloudInitDataSource values.
-     *
+     * 
      * @return known CloudInitDataSource values.
      */
     public static Collection<CloudInitDataSource> values() {
