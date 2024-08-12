@@ -520,11 +520,12 @@ public final class JobsClientImpl implements JobsClient {
     }
 
     /**
+     * Get the properties for a given Container App Job.
+     * 
      * Get the properties of a Container App Job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param apiName Proxy API Name for Container App Job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -532,8 +533,7 @@ public final class JobsClientImpl implements JobsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<JobInner>> proxyGetWithResponseAsync(String resourceGroupName, String jobName,
-        String apiName) {
+    private Mono<Response<JobInner>> proxyGetWithResponseAsync(String resourceGroupName, String jobName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -549,9 +549,7 @@ public final class JobsClientImpl implements JobsClient {
         if (jobName == null) {
             return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
         }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
+        final String apiName = "rootApi";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.proxyGet(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -560,11 +558,12 @@ public final class JobsClientImpl implements JobsClient {
     }
 
     /**
+     * Get the properties for a given Container App Job.
+     * 
      * Get the properties of a Container App Job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param apiName Proxy API Name for Container App Job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -573,7 +572,7 @@ public final class JobsClientImpl implements JobsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<JobInner>> proxyGetWithResponseAsync(String resourceGroupName, String jobName, String apiName,
+    private Mono<Response<JobInner>> proxyGetWithResponseAsync(String resourceGroupName, String jobName,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -590,9 +589,7 @@ public final class JobsClientImpl implements JobsClient {
         if (jobName == null) {
             return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
         }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
+        final String apiName = "rootApi";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.proxyGet(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, jobName,
@@ -600,28 +597,29 @@ public final class JobsClientImpl implements JobsClient {
     }
 
     /**
+     * Get the properties for a given Container App Job.
+     * 
      * Get the properties of a Container App Job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param apiName Proxy API Name for Container App Job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of a Container App Job on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<JobInner> proxyGetAsync(String resourceGroupName, String jobName, String apiName) {
-        return proxyGetWithResponseAsync(resourceGroupName, jobName, apiName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<JobInner> proxyGetAsync(String resourceGroupName, String jobName) {
+        return proxyGetWithResponseAsync(resourceGroupName, jobName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Get the properties for a given Container App Job.
+     * 
      * Get the properties of a Container App Job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param apiName Proxy API Name for Container App Job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
@@ -629,25 +627,25 @@ public final class JobsClientImpl implements JobsClient {
      * @return the properties of a Container App Job along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<JobInner> proxyGetWithResponse(String resourceGroupName, String jobName, String apiName,
-        Context context) {
-        return proxyGetWithResponseAsync(resourceGroupName, jobName, apiName, context).block();
+    public Response<JobInner> proxyGetWithResponse(String resourceGroupName, String jobName, Context context) {
+        return proxyGetWithResponseAsync(resourceGroupName, jobName, context).block();
     }
 
     /**
+     * Get the properties for a given Container App Job.
+     * 
      * Get the properties of a Container App Job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param jobName Job Name.
-     * @param apiName Proxy API Name for Container App Job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of a Container App Job.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobInner proxyGet(String resourceGroupName, String jobName, String apiName) {
-        return proxyGetWithResponse(resourceGroupName, jobName, apiName, Context.NONE).getValue();
+    public JobInner proxyGet(String resourceGroupName, String jobName) {
+        return proxyGetWithResponse(resourceGroupName, jobName, Context.NONE).getValue();
     }
 
     /**
@@ -1952,7 +1950,7 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return stop Job Execution Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopExecutionWithResponseAsync(String resourceGroupName, String jobName,
@@ -1993,7 +1991,7 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return stop Job Execution Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopExecutionWithResponseAsync(String resourceGroupName, String jobName,
@@ -2032,14 +2030,14 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginStopExecutionAsync(String resourceGroupName, String jobName,
+    private PollerFlux<PollResult<String>, String> beginStopExecutionAsync(String resourceGroupName, String jobName,
         String jobExecutionName) {
         Mono<Response<Flux<ByteBuffer>>> mono
             = stopExecutionWithResponseAsync(resourceGroupName, jobName, jobExecutionName);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+        return this.client.<String, String>getLroResult(mono, this.client.getHttpPipeline(), String.class, String.class,
             this.client.getContext());
     }
 
@@ -2053,15 +2051,15 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginStopExecutionAsync(String resourceGroupName, String jobName,
+    private PollerFlux<PollResult<String>, String> beginStopExecutionAsync(String resourceGroupName, String jobName,
         String jobExecutionName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
             = stopExecutionWithResponseAsync(resourceGroupName, jobName, jobExecutionName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+        return this.client.<String, String>getLroResult(mono, this.client.getHttpPipeline(), String.class, String.class,
             context);
     }
 
@@ -2074,10 +2072,10 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStopExecution(String resourceGroupName, String jobName,
+    public SyncPoller<PollResult<String>, String> beginStopExecution(String resourceGroupName, String jobName,
         String jobExecutionName) {
         return this.beginStopExecutionAsync(resourceGroupName, jobName, jobExecutionName).getSyncPoller();
     }
@@ -2092,10 +2090,10 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStopExecution(String resourceGroupName, String jobName,
+    public SyncPoller<PollResult<String>, String> beginStopExecution(String resourceGroupName, String jobName,
         String jobExecutionName, Context context) {
         return this.beginStopExecutionAsync(resourceGroupName, jobName, jobExecutionName, context).getSyncPoller();
     }
@@ -2109,10 +2107,10 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return stop Job Execution Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> stopExecutionAsync(String resourceGroupName, String jobName, String jobExecutionName) {
+    private Mono<String> stopExecutionAsync(String resourceGroupName, String jobName, String jobExecutionName) {
         return beginStopExecutionAsync(resourceGroupName, jobName, jobExecutionName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -2127,10 +2125,10 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return stop Job Execution Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> stopExecutionAsync(String resourceGroupName, String jobName, String jobExecutionName,
+    private Mono<String> stopExecutionAsync(String resourceGroupName, String jobName, String jobExecutionName,
         Context context) {
         return beginStopExecutionAsync(resourceGroupName, jobName, jobExecutionName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -2145,10 +2143,11 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stopExecution(String resourceGroupName, String jobName, String jobExecutionName) {
-        stopExecutionAsync(resourceGroupName, jobName, jobExecutionName).block();
+    public String stopExecution(String resourceGroupName, String jobName, String jobExecutionName) {
+        return stopExecutionAsync(resourceGroupName, jobName, jobExecutionName).block();
     }
 
     /**
@@ -2161,10 +2160,11 @@ public final class JobsClientImpl implements JobsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return stop Job Execution Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context) {
-        stopExecutionAsync(resourceGroupName, jobName, jobExecutionName, context).block();
+    public String stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context) {
+        return stopExecutionAsync(resourceGroupName, jobName, jobExecutionName, context).block();
     }
 
     /**
