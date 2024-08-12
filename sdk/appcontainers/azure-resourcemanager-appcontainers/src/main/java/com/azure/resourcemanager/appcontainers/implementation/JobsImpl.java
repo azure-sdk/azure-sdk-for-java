@@ -67,10 +67,8 @@ public final class JobsImpl implements Jobs {
         }
     }
 
-    public Response<Job> proxyGetWithResponse(String resourceGroupName, String jobName, String apiName,
-        Context context) {
-        Response<JobInner> inner
-            = this.serviceClient().proxyGetWithResponse(resourceGroupName, jobName, apiName, context);
+    public Response<Job> proxyGetWithResponse(String resourceGroupName, String jobName, Context context) {
+        Response<JobInner> inner = this.serviceClient().proxyGetWithResponse(resourceGroupName, jobName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new JobImpl(inner.getValue(), this.manager()));
@@ -79,8 +77,8 @@ public final class JobsImpl implements Jobs {
         }
     }
 
-    public Job proxyGet(String resourceGroupName, String jobName, String apiName) {
-        JobInner inner = this.serviceClient().proxyGet(resourceGroupName, jobName, apiName);
+    public Job proxyGet(String resourceGroupName, String jobName) {
+        JobInner inner = this.serviceClient().proxyGet(resourceGroupName, jobName);
         if (inner != null) {
             return new JobImpl(inner, this.manager());
         } else {
@@ -155,12 +153,12 @@ public final class JobsImpl implements Jobs {
         }
     }
 
-    public void stopExecution(String resourceGroupName, String jobName, String jobExecutionName) {
-        this.serviceClient().stopExecution(resourceGroupName, jobName, jobExecutionName);
+    public String stopExecution(String resourceGroupName, String jobName, String jobExecutionName) {
+        return this.serviceClient().stopExecution(resourceGroupName, jobName, jobExecutionName);
     }
 
-    public void stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context) {
-        this.serviceClient().stopExecution(resourceGroupName, jobName, jobExecutionName, context);
+    public String stopExecution(String resourceGroupName, String jobName, String jobExecutionName, Context context) {
+        return this.serviceClient().stopExecution(resourceGroupName, jobName, jobExecutionName, context);
     }
 
     public ContainerAppJobExecutions stopMultipleExecutions(String resourceGroupName, String jobName) {
