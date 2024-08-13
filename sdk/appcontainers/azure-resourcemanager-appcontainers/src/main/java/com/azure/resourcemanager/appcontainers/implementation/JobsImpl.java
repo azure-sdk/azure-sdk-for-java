@@ -67,10 +67,8 @@ public final class JobsImpl implements Jobs {
         }
     }
 
-    public Response<Job> proxyGetWithResponse(String resourceGroupName, String jobName, String apiName,
-        Context context) {
-        Response<JobInner> inner
-            = this.serviceClient().proxyGetWithResponse(resourceGroupName, jobName, apiName, context);
+    public Response<Job> proxyGetWithResponse(String resourceGroupName, String jobName, Context context) {
+        Response<JobInner> inner = this.serviceClient().proxyGetWithResponse(resourceGroupName, jobName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new JobImpl(inner.getValue(), this.manager()));
@@ -79,8 +77,8 @@ public final class JobsImpl implements Jobs {
         }
     }
 
-    public Job proxyGet(String resourceGroupName, String jobName, String apiName) {
-        JobInner inner = this.serviceClient().proxyGet(resourceGroupName, jobName, apiName);
+    public Job proxyGet(String resourceGroupName, String jobName) {
+        JobInner inner = this.serviceClient().proxyGet(resourceGroupName, jobName);
         if (inner != null) {
             return new JobImpl(inner, this.manager());
         } else {
