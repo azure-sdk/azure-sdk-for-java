@@ -5,30 +5,37 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The NetworkInterfaceStatusProvisioningStatus model. */
+/**
+ * The NetworkInterfaceStatusProvisioningStatus model.
+ */
 @Fluent
-public final class NetworkInterfaceStatusProvisioningStatus {
+public final class NetworkInterfaceStatusProvisioningStatus
+    implements JsonSerializable<NetworkInterfaceStatusProvisioningStatus> {
     /*
      * The ID of the operation performed on the network interface
      */
-    @JsonProperty(value = "operationId")
     private String operationId;
 
     /*
      * The status of the operation performed on the network interface [Succeeded, Failed, InProgress]
      */
-    @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of NetworkInterfaceStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of NetworkInterfaceStatusProvisioningStatus class.
+     */
     public NetworkInterfaceStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the network interface.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +44,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the network interface.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the NetworkInterfaceStatusProvisioningStatus object itself.
      */
@@ -49,7 +56,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the network interface [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +66,7 @@ public final class NetworkInterfaceStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the network interface [Succeeded, Failed,
      * InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the NetworkInterfaceStatusProvisioningStatus object itself.
      */
@@ -70,9 +77,49 @@ public final class NetworkInterfaceStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("operationId", this.operationId);
+        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NetworkInterfaceStatusProvisioningStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NetworkInterfaceStatusProvisioningStatus if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NetworkInterfaceStatusProvisioningStatus.
+     */
+    public static NetworkInterfaceStatusProvisioningStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NetworkInterfaceStatusProvisioningStatus deserializedNetworkInterfaceStatusProvisioningStatus
+                = new NetworkInterfaceStatusProvisioningStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("operationId".equals(fieldName)) {
+                    deserializedNetworkInterfaceStatusProvisioningStatus.operationId = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedNetworkInterfaceStatusProvisioningStatus.status = Status.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNetworkInterfaceStatusProvisioningStatus;
+        });
     }
 }
