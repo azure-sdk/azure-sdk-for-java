@@ -10,8 +10,8 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.LogicalNetworksInner;
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkPropertiesDhcpOptions;
-import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkStatus;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworks;
+import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkStatus;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworksUpdateRequest;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.Subnet;
@@ -114,20 +114,16 @@ public final class LogicalNetworksImpl implements LogicalNetworks, LogicalNetwor
     }
 
     public LogicalNetworks create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .createOrUpdate(resourceGroupName, logicalNetworkName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .createOrUpdate(resourceGroupName, logicalNetworkName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public LogicalNetworks create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .createOrUpdate(resourceGroupName, logicalNetworkName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .createOrUpdate(resourceGroupName, logicalNetworkName, this.innerModel(), context);
         return this;
     }
 
@@ -143,48 +139,40 @@ public final class LogicalNetworksImpl implements LogicalNetworks, LogicalNetwor
     }
 
     public LogicalNetworks apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .update(resourceGroupName, logicalNetworkName, updateLogicalNetworks, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .update(resourceGroupName, logicalNetworkName, updateLogicalNetworks, Context.NONE);
         return this;
     }
 
     public LogicalNetworks apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .update(resourceGroupName, logicalNetworkName, updateLogicalNetworks, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .update(resourceGroupName, logicalNetworkName, updateLogicalNetworks, context);
         return this;
     }
 
-    LogicalNetworksImpl(
-        LogicalNetworksInner innerObject, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    LogicalNetworksImpl(LogicalNetworksInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.logicalNetworkName = Utils.getValueFromIdByName(innerObject.id(), "logicalNetworks");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.logicalNetworkName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "logicalNetworks");
     }
 
     public LogicalNetworks refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, logicalNetworkName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, logicalNetworkName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public LogicalNetworks refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getLogicalNetworksOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, logicalNetworkName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getLogicalNetworksOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, logicalNetworkName, context)
+            .getValue();
         return this;
     }
 

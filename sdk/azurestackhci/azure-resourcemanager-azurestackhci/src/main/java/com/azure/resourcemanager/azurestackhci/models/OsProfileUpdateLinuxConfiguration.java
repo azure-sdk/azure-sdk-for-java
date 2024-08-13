@@ -5,32 +5,38 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The OsProfileUpdateLinuxConfiguration model. */
+/**
+ * The OsProfileUpdateLinuxConfiguration model.
+ */
 @Fluent
-public final class OsProfileUpdateLinuxConfiguration {
+public final class OsProfileUpdateLinuxConfiguration implements JsonSerializable<OsProfileUpdateLinuxConfiguration> {
     /*
-     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine
-     * instance creation process.
+     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine instance
+     * creation process.
      */
-    @JsonProperty(value = "provisionVMAgent")
     private Boolean provisionVMAgent;
 
     /*
      * Used to indicate whether the VM Config Agent should be installed during the virtual machine creation process.
      */
-    @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of OsProfileUpdateLinuxConfiguration class. */
+    /**
+     * Creates an instance of OsProfileUpdateLinuxConfiguration class.
+     */
     public OsProfileUpdateLinuxConfiguration() {
     }
 
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -40,7 +46,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the OsProfileUpdateLinuxConfiguration object itself.
      */
@@ -52,7 +58,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -62,7 +68,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the OsProfileUpdateLinuxConfiguration object itself.
      */
@@ -73,9 +79,51 @@ public final class OsProfileUpdateLinuxConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("provisionVMAgent", this.provisionVMAgent);
+        jsonWriter.writeBooleanField("provisionVMConfigAgent", this.provisionVMConfigAgent);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OsProfileUpdateLinuxConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OsProfileUpdateLinuxConfiguration if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the OsProfileUpdateLinuxConfiguration.
+     */
+    public static OsProfileUpdateLinuxConfiguration fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OsProfileUpdateLinuxConfiguration deserializedOsProfileUpdateLinuxConfiguration
+                = new OsProfileUpdateLinuxConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisionVMAgent".equals(fieldName)) {
+                    deserializedOsProfileUpdateLinuxConfiguration.provisionVMAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("provisionVMConfigAgent".equals(fieldName)) {
+                    deserializedOsProfileUpdateLinuxConfiguration.provisionVMConfigAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOsProfileUpdateLinuxConfiguration;
+        });
     }
 }

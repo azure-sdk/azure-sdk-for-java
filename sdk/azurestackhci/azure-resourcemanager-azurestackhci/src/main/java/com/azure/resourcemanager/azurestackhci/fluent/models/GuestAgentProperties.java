@@ -5,44 +5,48 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.GuestCredential;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningAction;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
-public final class GuestAgentProperties {
+public final class GuestAgentProperties implements JsonSerializable<GuestAgentProperties> {
     /*
      * Username / Password Credentials to provision guest agent.
      */
-    @JsonProperty(value = "credentials")
     private GuestCredential credentials;
 
     /*
      * The guest agent provisioning action.
      */
-    @JsonProperty(value = "provisioningAction")
     private ProvisioningAction provisioningAction;
 
     /*
      * The guest agent status.
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
     /*
      * The provisioning state.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
-    /** Creates an instance of GuestAgentProperties class. */
+    /**
+     * Creates an instance of GuestAgentProperties class.
+     */
     public GuestAgentProperties() {
     }
 
     /**
      * Get the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @return the credentials value.
      */
     public GuestCredential credentials() {
@@ -51,7 +55,7 @@ public final class GuestAgentProperties {
 
     /**
      * Set the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the GuestAgentProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @return the provisioningAction value.
      */
     public ProvisioningAction provisioningAction() {
@@ -71,7 +75,7 @@ public final class GuestAgentProperties {
 
     /**
      * Set the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @param provisioningAction the provisioningAction value to set.
      * @return the GuestAgentProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the status property: The guest agent status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -91,7 +95,7 @@ public final class GuestAgentProperties {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -100,12 +104,57 @@ public final class GuestAgentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (credentials() != null) {
             credentials().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("credentials", this.credentials);
+        jsonWriter.writeStringField("provisioningAction",
+            this.provisioningAction == null ? null : this.provisioningAction.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GuestAgentProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GuestAgentProperties if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GuestAgentProperties.
+     */
+    public static GuestAgentProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GuestAgentProperties deserializedGuestAgentProperties = new GuestAgentProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("credentials".equals(fieldName)) {
+                    deserializedGuestAgentProperties.credentials = GuestCredential.fromJson(reader);
+                } else if ("provisioningAction".equals(fieldName)) {
+                    deserializedGuestAgentProperties.provisioningAction
+                        = ProvisioningAction.fromString(reader.getString());
+                } else if ("status".equals(fieldName)) {
+                    deserializedGuestAgentProperties.status = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedGuestAgentProperties.provisioningState = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGuestAgentProperties;
+        });
     }
 }
