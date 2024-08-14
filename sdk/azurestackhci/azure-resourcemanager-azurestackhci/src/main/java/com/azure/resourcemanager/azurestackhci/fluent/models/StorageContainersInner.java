@@ -7,40 +7,59 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.StorageContainerStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.Map;
 
-/** The storage container resource definition. */
+/**
+ * The storage container resource definition.
+ */
 @Fluent
 public final class StorageContainersInner extends Resource {
     /*
      * Properties under the storage container resource
      */
-    @JsonProperty(value = "properties")
     private StorageContainerProperties innerProperties;
 
     /*
      * The extendedLocation of the resource.
      */
-    @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of StorageContainersInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of StorageContainersInner class.
+     */
     public StorageContainersInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the storage container resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StorageContainerProperties innerProperties() {
@@ -49,7 +68,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -58,7 +77,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the StorageContainersInner object itself.
      */
@@ -69,21 +88,55 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageContainersInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageContainersInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -92,7 +145,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the path property: Path of the storage container on the disk.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -101,7 +154,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Set the path property: Path of the storage container on the disk.
-     *
+     * 
      * @param path the path value to set.
      * @return the StorageContainersInner object itself.
      */
@@ -115,7 +168,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the storage container.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -124,7 +177,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Get the status property: The observed state of storage containers.
-     *
+     * 
      * @return the status value.
      */
     public StorageContainerStatus status() {
@@ -133,7 +186,7 @@ public final class StorageContainersInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -143,5 +196,60 @@ public final class StorageContainersInner extends Resource {
         if (extendedLocation() != null) {
             extendedLocation().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("extendedLocation", this.extendedLocation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageContainersInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageContainersInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the StorageContainersInner.
+     */
+    public static StorageContainersInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageContainersInner deserializedStorageContainersInner = new StorageContainersInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedStorageContainersInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedStorageContainersInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedStorageContainersInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedStorageContainersInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedStorageContainersInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedStorageContainersInner.innerProperties = StorageContainerProperties.fromJson(reader);
+                } else if ("extendedLocation".equals(fieldName)) {
+                    deserializedStorageContainersInner.extendedLocation = ExtendedLocation.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedStorageContainersInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageContainersInner;
+        });
     }
 }

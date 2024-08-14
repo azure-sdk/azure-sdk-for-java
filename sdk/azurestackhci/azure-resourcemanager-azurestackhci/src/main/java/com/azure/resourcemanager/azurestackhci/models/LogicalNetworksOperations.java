@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of LogicalNetworksOperations. */
+/**
+ * Resource collection API of LogicalNetworksOperations.
+ */
 public interface LogicalNetworksOperations {
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param context The context to associate with this operation.
@@ -21,12 +23,12 @@ public interface LogicalNetworksOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the logical network resource definition along with {@link Response}.
      */
-    Response<LogicalNetworks> getByResourceGroupWithResponse(
-        String resourceGroupName, String logicalNetworkName, Context context);
+    Response<LogicalNetworks> getByResourceGroupWithResponse(String resourceGroupName, String logicalNetworkName,
+        Context context);
 
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -38,7 +40,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -49,7 +51,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param logicalNetworkName Name of the logical network.
      * @param context The context to associate with this operation.
@@ -62,7 +64,7 @@ public interface LogicalNetworksOperations {
     /**
      * Lists all of the logical networks in the specified resource group. Use the nextLink property in the response to
      * get the next page of logical networks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -74,7 +76,7 @@ public interface LogicalNetworksOperations {
     /**
      * Lists all of the logical networks in the specified resource group. Use the nextLink property in the response to
      * get the next page of logical networks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,7 +89,7 @@ public interface LogicalNetworksOperations {
     /**
      * Lists all of the logical networks in the specified subscription. Use the nextLink property in the response to get
      * the next page of logical networks.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -97,7 +99,7 @@ public interface LogicalNetworksOperations {
     /**
      * Lists all of the logical networks in the specified subscription. Use the nextLink property in the response to get
      * the next page of logical networks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -108,7 +110,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -119,7 +121,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The getByResourceGroup operation.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -131,7 +133,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -141,7 +143,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * The operation to delete a logical network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -152,7 +154,7 @@ public interface LogicalNetworksOperations {
 
     /**
      * Begins definition for a new LogicalNetworks resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new LogicalNetworks definition.
      */
