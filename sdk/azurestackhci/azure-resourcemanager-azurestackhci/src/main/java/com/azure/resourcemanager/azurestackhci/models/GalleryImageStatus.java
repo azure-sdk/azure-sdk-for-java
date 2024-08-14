@@ -5,48 +5,51 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The observed state of gallery images. */
+/**
+ * The observed state of gallery images.
+ */
 @Fluent
-public final class GalleryImageStatus {
+public final class GalleryImageStatus implements JsonSerializable<GalleryImageStatus> {
     /*
      * GalleryImage provisioning error code
      */
-    @JsonProperty(value = "errorCode")
     private String errorCode;
 
     /*
      * Descriptive error message
      */
-    @JsonProperty(value = "errorMessage")
     private String errorMessage;
 
     /*
      * The provisioningStatus property.
      */
-    @JsonProperty(value = "provisioningStatus")
     private GalleryImageStatusProvisioningStatus provisioningStatus;
 
     /*
      * The download status of the gallery image
      */
-    @JsonProperty(value = "downloadStatus")
     private GalleryImageStatusDownloadStatus downloadStatus;
 
     /*
      * The progress of the operation in percentage
      */
-    @JsonProperty(value = "progressPercentage")
     private Long progressPercentage;
 
-    /** Creates an instance of GalleryImageStatus class. */
+    /**
+     * Creates an instance of GalleryImageStatus class.
+     */
     public GalleryImageStatus() {
     }
 
     /**
      * Get the errorCode property: GalleryImage provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -55,7 +58,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the errorCode property: GalleryImage provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -66,7 +69,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -75,7 +78,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -86,7 +89,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public GalleryImageStatusProvisioningStatus provisioningStatus() {
@@ -95,7 +98,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -106,7 +109,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @return the downloadStatus value.
      */
     public GalleryImageStatusDownloadStatus downloadStatus() {
@@ -115,7 +118,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the downloadStatus property: The download status of the gallery image.
-     *
+     * 
      * @param downloadStatus the downloadStatus value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -126,7 +129,7 @@ public final class GalleryImageStatus {
 
     /**
      * Get the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @return the progressPercentage value.
      */
     public Long progressPercentage() {
@@ -135,7 +138,7 @@ public final class GalleryImageStatus {
 
     /**
      * Set the progressPercentage property: The progress of the operation in percentage.
-     *
+     * 
      * @param progressPercentage the progressPercentage value to set.
      * @return the GalleryImageStatus object itself.
      */
@@ -146,7 +149,7 @@ public final class GalleryImageStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -156,5 +159,54 @@ public final class GalleryImageStatus {
         if (downloadStatus() != null) {
             downloadStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("errorCode", this.errorCode);
+        jsonWriter.writeStringField("errorMessage", this.errorMessage);
+        jsonWriter.writeJsonField("provisioningStatus", this.provisioningStatus);
+        jsonWriter.writeJsonField("downloadStatus", this.downloadStatus);
+        jsonWriter.writeNumberField("progressPercentage", this.progressPercentage);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GalleryImageStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GalleryImageStatus if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GalleryImageStatus.
+     */
+    public static GalleryImageStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GalleryImageStatus deserializedGalleryImageStatus = new GalleryImageStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("errorCode".equals(fieldName)) {
+                    deserializedGalleryImageStatus.errorCode = reader.getString();
+                } else if ("errorMessage".equals(fieldName)) {
+                    deserializedGalleryImageStatus.errorMessage = reader.getString();
+                } else if ("provisioningStatus".equals(fieldName)) {
+                    deserializedGalleryImageStatus.provisioningStatus
+                        = GalleryImageStatusProvisioningStatus.fromJson(reader);
+                } else if ("downloadStatus".equals(fieldName)) {
+                    deserializedGalleryImageStatus.downloadStatus = GalleryImageStatusDownloadStatus.fromJson(reader);
+                } else if ("progressPercentage".equals(fieldName)) {
+                    deserializedGalleryImageStatus.progressPercentage = reader.getNullable(JsonReader::getLong);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGalleryImageStatus;
+        });
     }
 }

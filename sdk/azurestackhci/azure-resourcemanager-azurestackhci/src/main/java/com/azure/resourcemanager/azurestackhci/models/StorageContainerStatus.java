@@ -5,48 +5,51 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The observed state of storage containers. */
+/**
+ * The observed state of storage containers.
+ */
 @Fluent
-public final class StorageContainerStatus {
+public final class StorageContainerStatus implements JsonSerializable<StorageContainerStatus> {
     /*
      * StorageContainer provisioning error code
      */
-    @JsonProperty(value = "errorCode")
     private String errorCode;
 
     /*
      * Descriptive error message
      */
-    @JsonProperty(value = "errorMessage")
     private String errorMessage;
 
     /*
      * Amount of space available on the disk in MB
      */
-    @JsonProperty(value = "availableSizeMB")
     private Long availableSizeMB;
 
     /*
      * Total size of the disk in MB
      */
-    @JsonProperty(value = "containerSizeMB")
     private Long containerSizeMB;
 
     /*
      * The provisioningStatus property.
      */
-    @JsonProperty(value = "provisioningStatus")
     private StorageContainerStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of StorageContainerStatus class. */
+    /**
+     * Creates an instance of StorageContainerStatus class.
+     */
     public StorageContainerStatus() {
     }
 
     /**
      * Get the errorCode property: StorageContainer provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -55,7 +58,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the errorCode property: StorageContainer provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -66,7 +69,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -75,7 +78,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -86,7 +89,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the availableSizeMB property: Amount of space available on the disk in MB.
-     *
+     * 
      * @return the availableSizeMB value.
      */
     public Long availableSizeMB() {
@@ -95,7 +98,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the availableSizeMB property: Amount of space available on the disk in MB.
-     *
+     * 
      * @param availableSizeMB the availableSizeMB value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -106,7 +109,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the containerSizeMB property: Total size of the disk in MB.
-     *
+     * 
      * @return the containerSizeMB value.
      */
     public Long containerSizeMB() {
@@ -115,7 +118,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the containerSizeMB property: Total size of the disk in MB.
-     *
+     * 
      * @param containerSizeMB the containerSizeMB value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -126,7 +129,7 @@ public final class StorageContainerStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public StorageContainerStatusProvisioningStatus provisioningStatus() {
@@ -135,7 +138,7 @@ public final class StorageContainerStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the StorageContainerStatus object itself.
      */
@@ -146,12 +149,61 @@ public final class StorageContainerStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (provisioningStatus() != null) {
             provisioningStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("errorCode", this.errorCode);
+        jsonWriter.writeStringField("errorMessage", this.errorMessage);
+        jsonWriter.writeNumberField("availableSizeMB", this.availableSizeMB);
+        jsonWriter.writeNumberField("containerSizeMB", this.containerSizeMB);
+        jsonWriter.writeJsonField("provisioningStatus", this.provisioningStatus);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageContainerStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageContainerStatus if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the StorageContainerStatus.
+     */
+    public static StorageContainerStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageContainerStatus deserializedStorageContainerStatus = new StorageContainerStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("errorCode".equals(fieldName)) {
+                    deserializedStorageContainerStatus.errorCode = reader.getString();
+                } else if ("errorMessage".equals(fieldName)) {
+                    deserializedStorageContainerStatus.errorMessage = reader.getString();
+                } else if ("availableSizeMB".equals(fieldName)) {
+                    deserializedStorageContainerStatus.availableSizeMB = reader.getNullable(JsonReader::getLong);
+                } else if ("containerSizeMB".equals(fieldName)) {
+                    deserializedStorageContainerStatus.containerSizeMB = reader.getNullable(JsonReader::getLong);
+                } else if ("provisioningStatus".equals(fieldName)) {
+                    deserializedStorageContainerStatus.provisioningStatus
+                        = StorageContainerStatusProvisioningStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageContainerStatus;
+        });
     }
 }
