@@ -5,42 +5,46 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** InterfaceIPConfigurationPropertiesFormat properties of IP configuration. */
+/**
+ * InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
+ */
 @Fluent
-public final class IpConfigurationProperties {
+public final class IpConfigurationProperties implements JsonSerializable<IpConfigurationProperties> {
     /*
      * Gateway for network interface
      */
-    @JsonProperty(value = "gateway", access = JsonProperty.Access.WRITE_ONLY)
     private String gateway;
 
     /*
      * prefixLength for network interface
      */
-    @JsonProperty(value = "prefixLength", access = JsonProperty.Access.WRITE_ONLY)
     private String prefixLength;
 
     /*
      * PrivateIPAddress - Private IP address of the IP configuration.
      */
-    @JsonProperty(value = "privateIPAddress")
     private String privateIpAddress;
 
     /*
      * Subnet - Name of Subnet bound to the IP configuration.
      */
-    @JsonProperty(value = "subnet")
     private IpConfigurationPropertiesSubnet subnet;
 
-    /** Creates an instance of IpConfigurationProperties class. */
+    /**
+     * Creates an instance of IpConfigurationProperties class.
+     */
     public IpConfigurationProperties() {
     }
 
     /**
      * Get the gateway property: Gateway for network interface.
-     *
+     * 
      * @return the gateway value.
      */
     public String gateway() {
@@ -49,7 +53,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the prefixLength property: prefixLength for network interface.
-     *
+     * 
      * @return the prefixLength value.
      */
     public String prefixLength() {
@@ -58,7 +62,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the privateIpAddress property: PrivateIPAddress - Private IP address of the IP configuration.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -67,7 +71,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the privateIpAddress property: PrivateIPAddress - Private IP address of the IP configuration.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the subnet property: Subnet - Name of Subnet bound to the IP configuration.
-     *
+     * 
      * @return the subnet value.
      */
     public IpConfigurationPropertiesSubnet subnet() {
@@ -87,7 +91,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the subnet property: Subnet - Name of Subnet bound to the IP configuration.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -98,12 +102,55 @@ public final class IpConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (subnet() != null) {
             subnet().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("privateIPAddress", this.privateIpAddress);
+        jsonWriter.writeJsonField("subnet", this.subnet);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IpConfigurationProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IpConfigurationProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the IpConfigurationProperties.
+     */
+    public static IpConfigurationProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IpConfigurationProperties deserializedIpConfigurationProperties = new IpConfigurationProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("gateway".equals(fieldName)) {
+                    deserializedIpConfigurationProperties.gateway = reader.getString();
+                } else if ("prefixLength".equals(fieldName)) {
+                    deserializedIpConfigurationProperties.prefixLength = reader.getString();
+                } else if ("privateIPAddress".equals(fieldName)) {
+                    deserializedIpConfigurationProperties.privateIpAddress = reader.getString();
+                } else if ("subnet".equals(fieldName)) {
+                    deserializedIpConfigurationProperties.subnet = IpConfigurationPropertiesSubnet.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIpConfigurationProperties;
+        });
     }
 }

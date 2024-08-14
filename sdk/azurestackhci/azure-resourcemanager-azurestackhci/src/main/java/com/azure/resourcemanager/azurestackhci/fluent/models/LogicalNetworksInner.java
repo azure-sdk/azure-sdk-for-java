@@ -7,43 +7,62 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkPropertiesDhcpOptions;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworkStatus;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.Subnet;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/** The logical network resource definition. */
+/**
+ * The logical network resource definition.
+ */
 @Fluent
 public final class LogicalNetworksInner extends Resource {
     /*
      * Properties under the logical network resource
      */
-    @JsonProperty(value = "properties")
     private LogicalNetworkProperties innerProperties;
 
     /*
      * The extendedLocation of the resource.
      */
-    @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of LogicalNetworksInner class. */
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /**
+     * Creates an instance of LogicalNetworksInner class.
+     */
     public LogicalNetworksInner() {
     }
 
     /**
      * Get the innerProperties property: Properties under the logical network resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LogicalNetworkProperties innerProperties() {
@@ -52,7 +71,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,7 +80,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -72,21 +91,55 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogicalNetworksInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogicalNetworksInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -96,7 +149,7 @@ public final class LogicalNetworksInner extends Resource {
     /**
      * Get the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @return the dhcpOptions value.
      */
     public LogicalNetworkPropertiesDhcpOptions dhcpOptions() {
@@ -106,7 +159,7 @@ public final class LogicalNetworksInner extends Resource {
     /**
      * Set the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @param dhcpOptions the dhcpOptions value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -120,7 +173,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @return the subnets value.
      */
     public List<Subnet> subnets() {
@@ -129,7 +182,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @param subnets the subnets value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -143,7 +196,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the logical network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -152,7 +205,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @return the vmSwitchName value.
      */
     public String vmSwitchName() {
@@ -161,7 +214,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Set the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @param vmSwitchName the vmSwitchName value to set.
      * @return the LogicalNetworksInner object itself.
      */
@@ -175,7 +228,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Get the status property: The observed state of logical networks.
-     *
+     * 
      * @return the status value.
      */
     public LogicalNetworkStatus status() {
@@ -184,7 +237,7 @@ public final class LogicalNetworksInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -194,5 +247,60 @@ public final class LogicalNetworksInner extends Resource {
         if (extendedLocation() != null) {
             extendedLocation().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("extendedLocation", this.extendedLocation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of LogicalNetworksInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of LogicalNetworksInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the LogicalNetworksInner.
+     */
+    public static LogicalNetworksInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            LogicalNetworksInner deserializedLogicalNetworksInner = new LogicalNetworksInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedLogicalNetworksInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.innerProperties = LogicalNetworkProperties.fromJson(reader);
+                } else if ("extendedLocation".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.extendedLocation = ExtendedLocation.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedLogicalNetworksInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedLogicalNetworksInner;
+        });
     }
 }
