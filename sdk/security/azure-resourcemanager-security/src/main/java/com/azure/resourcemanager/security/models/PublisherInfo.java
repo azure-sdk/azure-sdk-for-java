@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Represents the publisher information of a process/rule.
  */
 @Fluent
-public final class PublisherInfo {
+public final class PublisherInfo implements JsonSerializable<PublisherInfo> {
     /*
-     * The Subject field of the x.509 certificate used to sign the code, using the following fields -  O = Organization, L = Locality, S = State or Province, and C = Country
+     * The Subject field of the x.509 certificate used to sign the code, using the following fields - O = Organization,
+     * L = Locality, S = State or Province, and C = Country
      */
-    @JsonProperty(value = "publisherName")
     private String publisherName;
 
     /*
      * The product name taken from the file's version resource
      */
-    @JsonProperty(value = "productName")
     private String productName;
 
     /*
      * The "OriginalName" field taken from the file's version resource
      */
-    @JsonProperty(value = "binaryName")
     private String binaryName;
 
     /*
      * The binary file version taken from the file's version resource
      */
-    @JsonProperty(value = "version")
     private String version;
 
     /**
@@ -130,5 +131,50 @@ public final class PublisherInfo {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("publisherName", this.publisherName);
+        jsonWriter.writeStringField("productName", this.productName);
+        jsonWriter.writeStringField("binaryName", this.binaryName);
+        jsonWriter.writeStringField("version", this.version);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PublisherInfo from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PublisherInfo if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the PublisherInfo.
+     */
+    public static PublisherInfo fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PublisherInfo deserializedPublisherInfo = new PublisherInfo();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("publisherName".equals(fieldName)) {
+                    deserializedPublisherInfo.publisherName = reader.getString();
+                } else if ("productName".equals(fieldName)) {
+                    deserializedPublisherInfo.productName = reader.getString();
+                } else if ("binaryName".equals(fieldName)) {
+                    deserializedPublisherInfo.binaryName = reader.getString();
+                } else if ("version".equals(fieldName)) {
+                    deserializedPublisherInfo.version = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPublisherInfo;
+        });
     }
 }

@@ -201,13 +201,6 @@ public interface SecurityCenter {
     SecurityConnectorApplicationOperationsClient getSecurityConnectorApplicationOperations();
 
     /**
-     * Gets the DefenderForStoragesClient object to access its operations.
-     * 
-     * @return the DefenderForStoragesClient object.
-     */
-    DefenderForStoragesClient getDefenderForStorages();
-
-    /**
      * Gets the SecurityOperatorsClient object to access its operations.
      * 
      * @return the SecurityOperatorsClient object.
@@ -269,6 +262,90 @@ public interface SecurityCenter {
      * @return the SecurityConnectorsClient object.
      */
     SecurityConnectorsClient getSecurityConnectors();
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     * 
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    AzureDevOpsOrgsClient getAzureDevOpsOrgs();
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     * 
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    AzureDevOpsProjectsClient getAzureDevOpsProjects();
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     * 
+     * @return the AzureDevOpsReposClient object.
+     */
+    AzureDevOpsReposClient getAzureDevOpsRepos();
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     * 
+     * @return the DevOpsConfigurationsClient object.
+     */
+    DevOpsConfigurationsClient getDevOpsConfigurations();
+
+    /**
+     * Gets the DevOpsPoliciesClient object to access its operations.
+     * 
+     * @return the DevOpsPoliciesClient object.
+     */
+    DevOpsPoliciesClient getDevOpsPolicies();
+
+    /**
+     * Gets the DevOpsPolicyAssignmentsClient object to access its operations.
+     * 
+     * @return the DevOpsPolicyAssignmentsClient object.
+     */
+    DevOpsPolicyAssignmentsClient getDevOpsPolicyAssignments();
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     * 
+     * @return the GitHubOwnersClient object.
+     */
+    GitHubOwnersClient getGitHubOwners();
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     * 
+     * @return the GitHubReposClient object.
+     */
+    GitHubReposClient getGitHubRepos();
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     * 
+     * @return the GitLabGroupsClient object.
+     */
+    GitLabGroupsClient getGitLabGroups();
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     * 
+     * @return the GitLabSubgroupsClient object.
+     */
+    GitLabSubgroupsClient getGitLabSubgroups();
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     * 
+     * @return the GitLabProjectsClient object.
+     */
+    GitLabProjectsClient getGitLabProjects();
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     * 
+     * @return the DevOpsOperationResultsClient object.
+     */
+    DevOpsOperationResultsClient getDevOpsOperationResults();
 
     /**
      * Gets the ComplianceResultsClient object to access its operations.
@@ -460,72 +537,9 @@ public interface SecurityCenter {
     PricingsClient getPricings();
 
     /**
-     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     * Gets the DefenderForStoragesClient object to access its operations.
      * 
-     * @return the AzureDevOpsOrgsClient object.
+     * @return the DefenderForStoragesClient object.
      */
-    AzureDevOpsOrgsClient getAzureDevOpsOrgs();
-
-    /**
-     * Gets the AzureDevOpsProjectsClient object to access its operations.
-     * 
-     * @return the AzureDevOpsProjectsClient object.
-     */
-    AzureDevOpsProjectsClient getAzureDevOpsProjects();
-
-    /**
-     * Gets the AzureDevOpsReposClient object to access its operations.
-     * 
-     * @return the AzureDevOpsReposClient object.
-     */
-    AzureDevOpsReposClient getAzureDevOpsRepos();
-
-    /**
-     * Gets the DevOpsConfigurationsClient object to access its operations.
-     * 
-     * @return the DevOpsConfigurationsClient object.
-     */
-    DevOpsConfigurationsClient getDevOpsConfigurations();
-
-    /**
-     * Gets the GitHubOwnersClient object to access its operations.
-     * 
-     * @return the GitHubOwnersClient object.
-     */
-    GitHubOwnersClient getGitHubOwners();
-
-    /**
-     * Gets the GitHubReposClient object to access its operations.
-     * 
-     * @return the GitHubReposClient object.
-     */
-    GitHubReposClient getGitHubRepos();
-
-    /**
-     * Gets the GitLabGroupsClient object to access its operations.
-     * 
-     * @return the GitLabGroupsClient object.
-     */
-    GitLabGroupsClient getGitLabGroups();
-
-    /**
-     * Gets the GitLabSubgroupsClient object to access its operations.
-     * 
-     * @return the GitLabSubgroupsClient object.
-     */
-    GitLabSubgroupsClient getGitLabSubgroups();
-
-    /**
-     * Gets the GitLabProjectsClient object to access its operations.
-     * 
-     * @return the GitLabProjectsClient object.
-     */
-    GitLabProjectsClient getGitLabProjects();
-
-    /**
-     * Gets the DevOpsOperationResultsClient object to access its operations.
-     * 
-     * @return the DevOpsOperationResultsClient object.
-     */
-    DevOpsOperationResultsClient getDevOpsOperationResults();
+    DefenderForStoragesClient getDefenderForStorages();
 }

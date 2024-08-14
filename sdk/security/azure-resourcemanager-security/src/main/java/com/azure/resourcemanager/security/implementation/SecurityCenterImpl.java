@@ -48,6 +48,8 @@ import com.azure.resourcemanager.security.fluent.DefenderForStoragesClient;
 import com.azure.resourcemanager.security.fluent.DeviceSecurityGroupsClient;
 import com.azure.resourcemanager.security.fluent.DevOpsConfigurationsClient;
 import com.azure.resourcemanager.security.fluent.DevOpsOperationResultsClient;
+import com.azure.resourcemanager.security.fluent.DevOpsPoliciesClient;
+import com.azure.resourcemanager.security.fluent.DevOpsPolicyAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.GitHubOwnersClient;
@@ -501,20 +503,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
     }
 
     /**
-     * The DefenderForStoragesClient object to access its operations.
-     */
-    private final DefenderForStoragesClient defenderForStorages;
-
-    /**
-     * Gets the DefenderForStoragesClient object to access its operations.
-     * 
-     * @return the DefenderForStoragesClient object.
-     */
-    public DefenderForStoragesClient getDefenderForStorages() {
-        return this.defenderForStorages;
-    }
-
-    /**
      * The SecurityOperatorsClient object to access its operations.
      */
     private final SecurityOperatorsClient securityOperators;
@@ -638,6 +626,174 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SecurityConnectorsClient getSecurityConnectors() {
         return this.securityConnectors;
+    }
+
+    /**
+     * The AzureDevOpsOrgsClient object to access its operations.
+     */
+    private final AzureDevOpsOrgsClient azureDevOpsOrgs;
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     * 
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    public AzureDevOpsOrgsClient getAzureDevOpsOrgs() {
+        return this.azureDevOpsOrgs;
+    }
+
+    /**
+     * The AzureDevOpsProjectsClient object to access its operations.
+     */
+    private final AzureDevOpsProjectsClient azureDevOpsProjects;
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     * 
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    public AzureDevOpsProjectsClient getAzureDevOpsProjects() {
+        return this.azureDevOpsProjects;
+    }
+
+    /**
+     * The AzureDevOpsReposClient object to access its operations.
+     */
+    private final AzureDevOpsReposClient azureDevOpsRepos;
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     * 
+     * @return the AzureDevOpsReposClient object.
+     */
+    public AzureDevOpsReposClient getAzureDevOpsRepos() {
+        return this.azureDevOpsRepos;
+    }
+
+    /**
+     * The DevOpsConfigurationsClient object to access its operations.
+     */
+    private final DevOpsConfigurationsClient devOpsConfigurations;
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     * 
+     * @return the DevOpsConfigurationsClient object.
+     */
+    public DevOpsConfigurationsClient getDevOpsConfigurations() {
+        return this.devOpsConfigurations;
+    }
+
+    /**
+     * The DevOpsPoliciesClient object to access its operations.
+     */
+    private final DevOpsPoliciesClient devOpsPolicies;
+
+    /**
+     * Gets the DevOpsPoliciesClient object to access its operations.
+     * 
+     * @return the DevOpsPoliciesClient object.
+     */
+    public DevOpsPoliciesClient getDevOpsPolicies() {
+        return this.devOpsPolicies;
+    }
+
+    /**
+     * The DevOpsPolicyAssignmentsClient object to access its operations.
+     */
+    private final DevOpsPolicyAssignmentsClient devOpsPolicyAssignments;
+
+    /**
+     * Gets the DevOpsPolicyAssignmentsClient object to access its operations.
+     * 
+     * @return the DevOpsPolicyAssignmentsClient object.
+     */
+    public DevOpsPolicyAssignmentsClient getDevOpsPolicyAssignments() {
+        return this.devOpsPolicyAssignments;
+    }
+
+    /**
+     * The GitHubOwnersClient object to access its operations.
+     */
+    private final GitHubOwnersClient gitHubOwners;
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     * 
+     * @return the GitHubOwnersClient object.
+     */
+    public GitHubOwnersClient getGitHubOwners() {
+        return this.gitHubOwners;
+    }
+
+    /**
+     * The GitHubReposClient object to access its operations.
+     */
+    private final GitHubReposClient gitHubRepos;
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     * 
+     * @return the GitHubReposClient object.
+     */
+    public GitHubReposClient getGitHubRepos() {
+        return this.gitHubRepos;
+    }
+
+    /**
+     * The GitLabGroupsClient object to access its operations.
+     */
+    private final GitLabGroupsClient gitLabGroups;
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     * 
+     * @return the GitLabGroupsClient object.
+     */
+    public GitLabGroupsClient getGitLabGroups() {
+        return this.gitLabGroups;
+    }
+
+    /**
+     * The GitLabSubgroupsClient object to access its operations.
+     */
+    private final GitLabSubgroupsClient gitLabSubgroups;
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     * 
+     * @return the GitLabSubgroupsClient object.
+     */
+    public GitLabSubgroupsClient getGitLabSubgroups() {
+        return this.gitLabSubgroups;
+    }
+
+    /**
+     * The GitLabProjectsClient object to access its operations.
+     */
+    private final GitLabProjectsClient gitLabProjects;
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     * 
+     * @return the GitLabProjectsClient object.
+     */
+    public GitLabProjectsClient getGitLabProjects() {
+        return this.gitLabProjects;
+    }
+
+    /**
+     * The DevOpsOperationResultsClient object to access its operations.
+     */
+    private final DevOpsOperationResultsClient devOpsOperationResults;
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     * 
+     * @return the DevOpsOperationResultsClient object.
+     */
+    public DevOpsOperationResultsClient getDevOpsOperationResults() {
+        return this.devOpsOperationResults;
     }
 
     /**
@@ -1019,143 +1175,17 @@ public final class SecurityCenterImpl implements SecurityCenter {
     }
 
     /**
-     * The AzureDevOpsOrgsClient object to access its operations.
+     * The DefenderForStoragesClient object to access its operations.
      */
-    private final AzureDevOpsOrgsClient azureDevOpsOrgs;
+    private final DefenderForStoragesClient defenderForStorages;
 
     /**
-     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     * Gets the DefenderForStoragesClient object to access its operations.
      * 
-     * @return the AzureDevOpsOrgsClient object.
+     * @return the DefenderForStoragesClient object.
      */
-    public AzureDevOpsOrgsClient getAzureDevOpsOrgs() {
-        return this.azureDevOpsOrgs;
-    }
-
-    /**
-     * The AzureDevOpsProjectsClient object to access its operations.
-     */
-    private final AzureDevOpsProjectsClient azureDevOpsProjects;
-
-    /**
-     * Gets the AzureDevOpsProjectsClient object to access its operations.
-     * 
-     * @return the AzureDevOpsProjectsClient object.
-     */
-    public AzureDevOpsProjectsClient getAzureDevOpsProjects() {
-        return this.azureDevOpsProjects;
-    }
-
-    /**
-     * The AzureDevOpsReposClient object to access its operations.
-     */
-    private final AzureDevOpsReposClient azureDevOpsRepos;
-
-    /**
-     * Gets the AzureDevOpsReposClient object to access its operations.
-     * 
-     * @return the AzureDevOpsReposClient object.
-     */
-    public AzureDevOpsReposClient getAzureDevOpsRepos() {
-        return this.azureDevOpsRepos;
-    }
-
-    /**
-     * The DevOpsConfigurationsClient object to access its operations.
-     */
-    private final DevOpsConfigurationsClient devOpsConfigurations;
-
-    /**
-     * Gets the DevOpsConfigurationsClient object to access its operations.
-     * 
-     * @return the DevOpsConfigurationsClient object.
-     */
-    public DevOpsConfigurationsClient getDevOpsConfigurations() {
-        return this.devOpsConfigurations;
-    }
-
-    /**
-     * The GitHubOwnersClient object to access its operations.
-     */
-    private final GitHubOwnersClient gitHubOwners;
-
-    /**
-     * Gets the GitHubOwnersClient object to access its operations.
-     * 
-     * @return the GitHubOwnersClient object.
-     */
-    public GitHubOwnersClient getGitHubOwners() {
-        return this.gitHubOwners;
-    }
-
-    /**
-     * The GitHubReposClient object to access its operations.
-     */
-    private final GitHubReposClient gitHubRepos;
-
-    /**
-     * Gets the GitHubReposClient object to access its operations.
-     * 
-     * @return the GitHubReposClient object.
-     */
-    public GitHubReposClient getGitHubRepos() {
-        return this.gitHubRepos;
-    }
-
-    /**
-     * The GitLabGroupsClient object to access its operations.
-     */
-    private final GitLabGroupsClient gitLabGroups;
-
-    /**
-     * Gets the GitLabGroupsClient object to access its operations.
-     * 
-     * @return the GitLabGroupsClient object.
-     */
-    public GitLabGroupsClient getGitLabGroups() {
-        return this.gitLabGroups;
-    }
-
-    /**
-     * The GitLabSubgroupsClient object to access its operations.
-     */
-    private final GitLabSubgroupsClient gitLabSubgroups;
-
-    /**
-     * Gets the GitLabSubgroupsClient object to access its operations.
-     * 
-     * @return the GitLabSubgroupsClient object.
-     */
-    public GitLabSubgroupsClient getGitLabSubgroups() {
-        return this.gitLabSubgroups;
-    }
-
-    /**
-     * The GitLabProjectsClient object to access its operations.
-     */
-    private final GitLabProjectsClient gitLabProjects;
-
-    /**
-     * Gets the GitLabProjectsClient object to access its operations.
-     * 
-     * @return the GitLabProjectsClient object.
-     */
-    public GitLabProjectsClient getGitLabProjects() {
-        return this.gitLabProjects;
-    }
-
-    /**
-     * The DevOpsOperationResultsClient object to access its operations.
-     */
-    private final DevOpsOperationResultsClient devOpsOperationResults;
-
-    /**
-     * Gets the DevOpsOperationResultsClient object to access its operations.
-     * 
-     * @return the DevOpsOperationResultsClient object.
-     */
-    public DevOpsOperationResultsClient getDevOpsOperationResults() {
-        return this.devOpsOperationResults;
+    public DefenderForStoragesClient getDefenderForStorages() {
+        return this.defenderForStorages;
     }
 
     /**
@@ -1198,7 +1228,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.applicationOperations = new ApplicationOperationsClientImpl(this);
         this.securityConnectorApplications = new SecurityConnectorApplicationsClientImpl(this);
         this.securityConnectorApplicationOperations = new SecurityConnectorApplicationOperationsClientImpl(this);
-        this.defenderForStorages = new DefenderForStoragesClientImpl(this);
         this.securityOperators = new SecurityOperatorsClientImpl(this);
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
@@ -1208,6 +1237,18 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.automations = new AutomationsClientImpl(this);
         this.securityContacts = new SecurityContactsClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
+        this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);
+        this.azureDevOpsProjects = new AzureDevOpsProjectsClientImpl(this);
+        this.azureDevOpsRepos = new AzureDevOpsReposClientImpl(this);
+        this.devOpsConfigurations = new DevOpsConfigurationsClientImpl(this);
+        this.devOpsPolicies = new DevOpsPoliciesClientImpl(this);
+        this.devOpsPolicyAssignments = new DevOpsPolicyAssignmentsClientImpl(this);
+        this.gitHubOwners = new GitHubOwnersClientImpl(this);
+        this.gitHubRepos = new GitHubReposClientImpl(this);
+        this.gitLabGroups = new GitLabGroupsClientImpl(this);
+        this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
+        this.gitLabProjects = new GitLabProjectsClientImpl(this);
+        this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
         this.complianceResults = new ComplianceResultsClientImpl(this);
         this.advancedThreatProtections = new AdvancedThreatProtectionsClientImpl(this);
         this.deviceSecurityGroups = new DeviceSecurityGroupsClientImpl(this);
@@ -1237,16 +1278,7 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.serverVulnerabilityAssessmentsSettings = new ServerVulnerabilityAssessmentsSettingsClientImpl(this);
         this.apiCollections = new ApiCollectionsClientImpl(this);
         this.pricings = new PricingsClientImpl(this);
-        this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);
-        this.azureDevOpsProjects = new AzureDevOpsProjectsClientImpl(this);
-        this.azureDevOpsRepos = new AzureDevOpsReposClientImpl(this);
-        this.devOpsConfigurations = new DevOpsConfigurationsClientImpl(this);
-        this.gitHubOwners = new GitHubOwnersClientImpl(this);
-        this.gitHubRepos = new GitHubReposClientImpl(this);
-        this.gitLabGroups = new GitLabGroupsClientImpl(this);
-        this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
-        this.gitLabProjects = new GitLabProjectsClientImpl(this);
-        this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
+        this.defenderForStorages = new DefenderForStoragesClientImpl(this);
     }
 
     /**

@@ -6,24 +6,28 @@ package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * The AdaptiveNetworkHardeningEnforceRequest model.
  */
 @Fluent
-public final class AdaptiveNetworkHardeningEnforceRequest {
+public final class AdaptiveNetworkHardeningEnforceRequest
+    implements JsonSerializable<AdaptiveNetworkHardeningEnforceRequest> {
     /*
      * The rules to enforce
      */
-    @JsonProperty(value = "rules", required = true)
     private List<Rule> rules;
 
     /*
-     * The Azure resource IDs of the effective network security groups that will be updated with the created security rules from the Adaptive Network Hardening rules
+     * The Azure resource IDs of the effective network security groups that will be updated with the created security
+     * rules from the Adaptive Network Hardening rules
      */
-    @JsonProperty(value = "networkSecurityGroups", required = true)
     private List<String> networkSecurityGroups;
 
     /**
@@ -95,4 +99,48 @@ public final class AdaptiveNetworkHardeningEnforceRequest {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(AdaptiveNetworkHardeningEnforceRequest.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("rules", this.rules, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("networkSecurityGroups", this.networkSecurityGroups,
+            (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AdaptiveNetworkHardeningEnforceRequest from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AdaptiveNetworkHardeningEnforceRequest if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the AdaptiveNetworkHardeningEnforceRequest.
+     */
+    public static AdaptiveNetworkHardeningEnforceRequest fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AdaptiveNetworkHardeningEnforceRequest deserializedAdaptiveNetworkHardeningEnforceRequest
+                = new AdaptiveNetworkHardeningEnforceRequest();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("rules".equals(fieldName)) {
+                    List<Rule> rules = reader.readArray(reader1 -> Rule.fromJson(reader1));
+                    deserializedAdaptiveNetworkHardeningEnforceRequest.rules = rules;
+                } else if ("networkSecurityGroups".equals(fieldName)) {
+                    List<String> networkSecurityGroups = reader.readArray(reader1 -> reader1.getString());
+                    deserializedAdaptiveNetworkHardeningEnforceRequest.networkSecurityGroups = networkSecurityGroups;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAdaptiveNetworkHardeningEnforceRequest;
+        });
+    }
 }

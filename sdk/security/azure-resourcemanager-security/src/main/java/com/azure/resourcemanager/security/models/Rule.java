@@ -5,7 +5,11 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -13,35 +17,31 @@ import java.util.List;
  * Direction). All other remote addresses are recommended to be blocked.
  */
 @Fluent
-public final class Rule {
+public final class Rule implements JsonSerializable<Rule> {
     /*
      * The name of the rule
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * The rule's direction
      */
-    @JsonProperty(value = "direction")
     private Direction direction;
 
     /*
      * The rule's destination port
      */
-    @JsonProperty(value = "destinationPort")
     private Integer destinationPort;
 
     /*
      * The rule's transport protocols
      */
-    @JsonProperty(value = "protocols")
     private List<TransportProtocol> protocols;
 
     /*
-     * The remote IP addresses that should be able to communicate with the Azure resource on the rule's destination port and protocol
+     * The remote IP addresses that should be able to communicate with the Azure resource on the rule's destination port
+     * and protocol
      */
-    @JsonProperty(value = "ipAddresses")
     private List<String> ipAddresses;
 
     /**
@@ -158,5 +158,57 @@ public final class Rule {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeStringField("direction", this.direction == null ? null : this.direction.toString());
+        jsonWriter.writeNumberField("destinationPort", this.destinationPort);
+        jsonWriter.writeArrayField("protocols", this.protocols,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeArrayField("ipAddresses", this.ipAddresses, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Rule from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Rule if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
+     * @throws IOException If an error occurs while reading the Rule.
+     */
+    public static Rule fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Rule deserializedRule = new Rule();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedRule.name = reader.getString();
+                } else if ("direction".equals(fieldName)) {
+                    deserializedRule.direction = Direction.fromString(reader.getString());
+                } else if ("destinationPort".equals(fieldName)) {
+                    deserializedRule.destinationPort = reader.getNullable(JsonReader::getInt);
+                } else if ("protocols".equals(fieldName)) {
+                    List<TransportProtocol> protocols
+                        = reader.readArray(reader1 -> TransportProtocol.fromString(reader1.getString()));
+                    deserializedRule.protocols = protocols;
+                } else if ("ipAddresses".equals(fieldName)) {
+                    List<String> ipAddresses = reader.readArray(reader1 -> reader1.getString());
+                    deserializedRule.ipAddresses = ipAddresses;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedRule;
+        });
     }
 }

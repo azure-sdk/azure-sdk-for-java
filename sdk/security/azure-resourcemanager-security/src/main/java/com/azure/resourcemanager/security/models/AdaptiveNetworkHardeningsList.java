@@ -5,25 +5,27 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.security.fluent.models.AdaptiveNetworkHardeningInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Response for ListAdaptiveNetworkHardenings API service call.
  */
 @Fluent
-public final class AdaptiveNetworkHardeningsList {
+public final class AdaptiveNetworkHardeningsList implements JsonSerializable<AdaptiveNetworkHardeningsList> {
     /*
      * A list of Adaptive Network Hardenings resources
      */
-    @JsonProperty(value = "value")
     private List<AdaptiveNetworkHardeningInner> value;
 
     /*
      * The URL to get the next set of results
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
@@ -81,5 +83,47 @@ public final class AdaptiveNetworkHardeningsList {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AdaptiveNetworkHardeningsList from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AdaptiveNetworkHardeningsList if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AdaptiveNetworkHardeningsList.
+     */
+    public static AdaptiveNetworkHardeningsList fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AdaptiveNetworkHardeningsList deserializedAdaptiveNetworkHardeningsList
+                = new AdaptiveNetworkHardeningsList();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<AdaptiveNetworkHardeningInner> value
+                        = reader.readArray(reader1 -> AdaptiveNetworkHardeningInner.fromJson(reader1));
+                    deserializedAdaptiveNetworkHardeningsList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedAdaptiveNetworkHardeningsList.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAdaptiveNetworkHardeningsList;
+        });
     }
 }

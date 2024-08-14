@@ -5,23 +5,26 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Represents a summary of the alerts of the machine group.
  */
 @Fluent
-public final class AdaptiveApplicationControlIssueSummary {
+public final class AdaptiveApplicationControlIssueSummary
+    implements JsonSerializable<AdaptiveApplicationControlIssueSummary> {
     /*
      * An alert that machines within a group can have
      */
-    @JsonProperty(value = "issue")
     private AdaptiveApplicationControlIssue issue;
 
     /*
      * The number of machines in the group that have this alert
      */
-    @JsonProperty(value = "numberOfVms")
     private Float numberOfVms;
 
     /**
@@ -76,5 +79,47 @@ public final class AdaptiveApplicationControlIssueSummary {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("issue", this.issue == null ? null : this.issue.toString());
+        jsonWriter.writeNumberField("numberOfVms", this.numberOfVms);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of AdaptiveApplicationControlIssueSummary from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of AdaptiveApplicationControlIssueSummary if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AdaptiveApplicationControlIssueSummary.
+     */
+    public static AdaptiveApplicationControlIssueSummary fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            AdaptiveApplicationControlIssueSummary deserializedAdaptiveApplicationControlIssueSummary
+                = new AdaptiveApplicationControlIssueSummary();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("issue".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlIssueSummary.issue
+                        = AdaptiveApplicationControlIssue.fromString(reader.getString());
+                } else if ("numberOfVms".equals(fieldName)) {
+                    deserializedAdaptiveApplicationControlIssueSummary.numberOfVms
+                        = reader.getNullable(JsonReader::getFloat);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedAdaptiveApplicationControlIssueSummary;
+        });
     }
 }
