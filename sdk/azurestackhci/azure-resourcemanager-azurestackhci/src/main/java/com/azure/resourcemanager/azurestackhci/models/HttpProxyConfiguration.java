@@ -5,43 +5,47 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** HTTP Proxy configuration for the VM. */
+/**
+ * HTTP Proxy configuration for the VM.
+ */
 @Fluent
-public final class HttpProxyConfiguration {
+public final class HttpProxyConfiguration implements JsonSerializable<HttpProxyConfiguration> {
     /*
      * The HTTP proxy server endpoint to use.
      */
-    @JsonProperty(value = "httpProxy")
     private String httpProxy;
 
     /*
      * The HTTPS proxy server endpoint to use.
      */
-    @JsonProperty(value = "httpsProxy")
     private String httpsProxy;
 
     /*
      * The endpoints that should not go through proxy.
      */
-    @JsonProperty(value = "noProxy")
     private List<String> noProxy;
 
     /*
      * Alternative CA cert to use for connecting to proxy servers.
      */
-    @JsonProperty(value = "trustedCa")
     private String trustedCa;
 
-    /** Creates an instance of HttpProxyConfiguration class. */
+    /**
+     * Creates an instance of HttpProxyConfiguration class.
+     */
     public HttpProxyConfiguration() {
     }
 
     /**
      * Get the httpProxy property: The HTTP proxy server endpoint to use.
-     *
+     * 
      * @return the httpProxy value.
      */
     public String httpProxy() {
@@ -50,7 +54,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the httpProxy property: The HTTP proxy server endpoint to use.
-     *
+     * 
      * @param httpProxy the httpProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -61,7 +65,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the httpsProxy property: The HTTPS proxy server endpoint to use.
-     *
+     * 
      * @return the httpsProxy value.
      */
     public String httpsProxy() {
@@ -70,7 +74,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the httpsProxy property: The HTTPS proxy server endpoint to use.
-     *
+     * 
      * @param httpsProxy the httpsProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -81,7 +85,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the noProxy property: The endpoints that should not go through proxy.
-     *
+     * 
      * @return the noProxy value.
      */
     public List<String> noProxy() {
@@ -90,7 +94,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the noProxy property: The endpoints that should not go through proxy.
-     *
+     * 
      * @param noProxy the noProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -101,7 +105,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Get the trustedCa property: Alternative CA cert to use for connecting to proxy servers.
-     *
+     * 
      * @return the trustedCa value.
      */
     public String trustedCa() {
@@ -110,7 +114,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the trustedCa property: Alternative CA cert to use for connecting to proxy servers.
-     *
+     * 
      * @param trustedCa the trustedCa value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -121,9 +125,55 @@ public final class HttpProxyConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("httpProxy", this.httpProxy);
+        jsonWriter.writeStringField("httpsProxy", this.httpsProxy);
+        jsonWriter.writeArrayField("noProxy", this.noProxy, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("trustedCa", this.trustedCa);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HttpProxyConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HttpProxyConfiguration if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the HttpProxyConfiguration.
+     */
+    public static HttpProxyConfiguration fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HttpProxyConfiguration deserializedHttpProxyConfiguration = new HttpProxyConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("httpProxy".equals(fieldName)) {
+                    deserializedHttpProxyConfiguration.httpProxy = reader.getString();
+                } else if ("httpsProxy".equals(fieldName)) {
+                    deserializedHttpProxyConfiguration.httpsProxy = reader.getString();
+                } else if ("noProxy".equals(fieldName)) {
+                    List<String> noProxy = reader.readArray(reader1 -> reader1.getString());
+                    deserializedHttpProxyConfiguration.noProxy = noProxy;
+                } else if ("trustedCa".equals(fieldName)) {
+                    deserializedHttpProxyConfiguration.trustedCa = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHttpProxyConfiguration;
+        });
     }
 }

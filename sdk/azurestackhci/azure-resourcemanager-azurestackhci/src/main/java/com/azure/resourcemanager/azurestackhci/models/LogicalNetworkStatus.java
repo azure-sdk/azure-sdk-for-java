@@ -5,36 +5,41 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The observed state of logical networks. */
+/**
+ * The observed state of logical networks.
+ */
 @Fluent
-public final class LogicalNetworkStatus {
+public final class LogicalNetworkStatus implements JsonSerializable<LogicalNetworkStatus> {
     /*
      * LogicalNetwork provisioning error code
      */
-    @JsonProperty(value = "errorCode")
     private String errorCode;
 
     /*
      * Descriptive error message
      */
-    @JsonProperty(value = "errorMessage")
     private String errorMessage;
 
     /*
      * The provisioningStatus property.
      */
-    @JsonProperty(value = "provisioningStatus")
     private LogicalNetworkStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of LogicalNetworkStatus class. */
+    /**
+     * Creates an instance of LogicalNetworkStatus class.
+     */
     public LogicalNetworkStatus() {
     }
 
     /**
      * Get the errorCode property: LogicalNetwork provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -43,7 +48,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the errorCode property: LogicalNetwork provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -54,7 +59,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -63,7 +68,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -74,7 +79,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public LogicalNetworkStatusProvisioningStatus provisioningStatus() {
@@ -83,7 +88,7 @@ public final class LogicalNetworkStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the LogicalNetworkStatus object itself.
      */
@@ -94,12 +99,55 @@ public final class LogicalNetworkStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (provisioningStatus() != null) {
             provisioningStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("errorCode", this.errorCode);
+        jsonWriter.writeStringField("errorMessage", this.errorMessage);
+        jsonWriter.writeJsonField("provisioningStatus", this.provisioningStatus);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of LogicalNetworkStatus from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of LogicalNetworkStatus if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the LogicalNetworkStatus.
+     */
+    public static LogicalNetworkStatus fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            LogicalNetworkStatus deserializedLogicalNetworkStatus = new LogicalNetworkStatus();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("errorCode".equals(fieldName)) {
+                    deserializedLogicalNetworkStatus.errorCode = reader.getString();
+                } else if ("errorMessage".equals(fieldName)) {
+                    deserializedLogicalNetworkStatus.errorMessage = reader.getString();
+                } else if ("provisioningStatus".equals(fieldName)) {
+                    deserializedLogicalNetworkStatus.provisioningStatus
+                        = LogicalNetworkStatusProvisioningStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedLogicalNetworkStatus;
+        });
     }
 }
