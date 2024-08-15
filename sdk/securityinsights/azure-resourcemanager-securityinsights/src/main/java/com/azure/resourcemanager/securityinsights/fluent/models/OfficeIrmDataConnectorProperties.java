@@ -5,22 +5,32 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataConnector;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** OfficeIRM (Microsoft Insider Risk Management) data connector properties. */
+/**
+ * OfficeIRM (Microsoft Insider Risk Management) data connector properties.
+ */
 @Fluent
 public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantId {
     /*
      * The available data types for the connector.
      */
-    @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of OfficeIrmDataConnectorProperties class.
+     */
+    public OfficeIrmDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -29,7 +39,7 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficeIrmDataConnectorProperties object itself.
      */
@@ -38,7 +48,9 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeIrmDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -47,7 +59,7 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -56,5 +68,47 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
         if (dataTypes() != null) {
             dataTypes().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("tenantId", tenantId());
+        jsonWriter.writeJsonField("dataTypes", this.dataTypes);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OfficeIrmDataConnectorProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OfficeIrmDataConnectorProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the OfficeIrmDataConnectorProperties.
+     */
+    public static OfficeIrmDataConnectorProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OfficeIrmDataConnectorProperties deserializedOfficeIrmDataConnectorProperties
+                = new OfficeIrmDataConnectorProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tenantId".equals(fieldName)) {
+                    deserializedOfficeIrmDataConnectorProperties.withTenantId(reader.getString());
+                } else if ("dataTypes".equals(fieldName)) {
+                    deserializedOfficeIrmDataConnectorProperties.dataTypes
+                        = AlertsDataTypeOfDataConnector.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOfficeIrmDataConnectorProperties;
+        });
     }
 }
