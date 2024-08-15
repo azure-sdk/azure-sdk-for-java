@@ -1,14 +1,328 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-08-15)
 
-### Features Added
+- Azure Resource Manager ApplicationInsights client library for Java. This package contains Microsoft Azure SDK for ApplicationInsights Management SDK. Composite Swagger for Application Insights Management Client. Package tag package-2024-08-01-only. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.MyWorkbooksListResult` was removed
 
-### Other Changes
+* `models.MyWorkbookManagedIdentityType` was removed
+
+* `models.MyWorkbook` was removed
+
+* `models.MyWorkbookUserAssignedIdentities` was removed
+
+* `models.MyWorkbookResource` was removed
+
+* `models.MyWorkbookManagedIdentity` was removed
+
+* `models.MyWorkbooks` was removed
+
+* `models.MyWorkbook$UpdateStages` was removed
+
+* `models.MyWorkbook$DefinitionStages` was removed
+
+* `models.Kind` was removed
+
+* `models.MyWorkbook$Update` was removed
+
+* `models.MyWorkbook$Definition` was removed
+
+* `models.ErrorDefinitionException` was removed
+
+* `models.ErrorDefinition` was removed
+
+#### `ApplicationInsightsManager` was modified
+
+* `myWorkbooks()` was removed
+
+### Features Added
+
+* `models.ComponentLinkedStorageAccounts` was added
+
+* `models.ComponentLinkedStorageAccounts$Update` was added
+
+* `models.ComponentLinkedStorageAccounts$DefinitionStages` was added
+
+* `models.DeletedWorkbookResource` was added
+
+* `models.DeletedWorkbooks` was added
+
+* `models.ComponentLinkedStorageAccountsOperations` was added
+
+* `models.DeletedWorkbooksListResult` was added
+
+* `models.DeletedWorkbookErrorDefinitionException` was added
+
+* `models.ComponentLinkedStorageAccountsPatch` was added
+
+* `models.DeletedWorkbookInnerErrorTrace` was added
+
+* `models.StorageType` was added
+
+* `models.DeletedWorkbookErrorDefinition` was added
+
+* `models.DeletedWorkbook` was added
+
+* `models.ComponentLinkedStorageAccounts$Definition` was added
+
+* `models.ComponentLinkedStorageAccounts$UpdateStages` was added
+
+#### `models.WorkbookUpdateParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkbookTemplateLocalizedGallery` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkbooksListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentFeature` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WebTestPropertiesConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsWebTestLocationsListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkbookTemplateUpdateParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkbookResource` was modified
+
+* `name()` was added
+* `id()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ApplicationInsightsComponentAnalyticsItemProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AnnotationError` was modified
+
+* `getDetails()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getTarget()` was added
+* `getMessage()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getAdditionalInfo()` was added
+* `getCode()` was added
+
+#### `models.InnerError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkbookInnerErrorTrace` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkbookErrorDefinition` was modified
+
+* `getCode()` was added
+* `getDetails()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getAdditionalInfo()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getMessage()` was added
+* `getTarget()` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AnnotationsListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentDataVolumeCap` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkbookResourceIdentity` was modified
+
+* `tenantId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `principalId()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentExportRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WebTestPropertiesRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WebTestPropertiesValidationRules` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HeaderField` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WebtestsResource` was modified
+
+* `name()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `id()` was added
+
+#### `ApplicationInsightsManager` was modified
+
+* `componentLinkedStorageAccountsOperations()` was added
+* `deletedWorkbooks()` was added
+
+#### `models.ComponentsResource` was modified
+
+* `name()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `id()` was added
+
+#### `models.WebTestGeolocation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkItemCreateConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ApplicationInsightsComponentFeatureCapability` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WebTestPropertiesValidationRulesContentValidation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkItemConfigurationError` was modified
+
+* `getMessage()` was added
+* `getAdditionalInfo()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getDetails()` was added
+* `getCode()` was added
+* `getTarget()` was added
+
+#### `models.ComponentPurgeBody` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WebTestListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationInsightsComponentApiKeyListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkItemConfigurationsListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkbookTemplateGallery` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ComponentPurgeBodyFilters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApiKeyRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkScopedResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkbookTemplatesListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TagsResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkbookTemplateResource` was modified
+
+* `id()` was added
+* `name()` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.0.0 (2023-10-27)
 
