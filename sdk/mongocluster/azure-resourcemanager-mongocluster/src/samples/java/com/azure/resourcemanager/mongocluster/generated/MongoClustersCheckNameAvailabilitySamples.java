@@ -11,7 +11,8 @@ import com.azure.resourcemanager.mongocluster.models.CheckNameAvailabilityReques
  */
 public final class MongoClustersCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
      * MongoClusters_NameAvailability.json
      */
     /**
@@ -27,7 +28,8 @@ public final class MongoClustersCheckNameAvailabilitySamples {
     }
 
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
      * MongoClusters_NameAvailability_AlreadyExists.json
      */
     /**

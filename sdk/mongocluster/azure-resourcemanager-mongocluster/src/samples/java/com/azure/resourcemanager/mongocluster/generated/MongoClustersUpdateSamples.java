@@ -16,7 +16,29 @@ import java.util.Arrays;
  */
 public final class MongoClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
+     * MongoClusters_ResetPassword.json
+     */
+    /**
+     * Sample code: Resets the administrator login password.
+     * 
+     * @param manager Entry point to MongoClusterManager.
+     */
+    public static void
+        resetsTheAdministratorLoginPassword(com.azure.resourcemanager.mongocluster.MongoClusterManager manager) {
+        MongoCluster resource = manager.mongoClusters()
+            .getByResourceGroupWithResponse("TestResourceGroup", "myMongoCluster", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new MongoClusterUpdateProperties().withAdministratorLogin("mongoAdmin")
+                .withAdministratorLoginPassword("fakeTokenPlaceholder"))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
      * MongoClusters_PatchDiskSize.json
      */
     /**
@@ -36,7 +58,8 @@ public final class MongoClustersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/
+     * x-ms-original-file:
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
      * MongoClusters_PatchPrivateNetworkAccess.json
      */
     /**
@@ -56,8 +79,8 @@ public final class MongoClustersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mongocluster/DocumentDB.MongoCluster.Management/examples/2024-03-01-preview/MongoClusters_Update.
-     * json
+     * specification/mongoclustertest/DocumentDB.MongoCluster.Management/examples/2024-06-01-preview/
+     * MongoClusters_Update.json
      */
     /**
      * Sample code: Updates a Mongo Cluster resource.
