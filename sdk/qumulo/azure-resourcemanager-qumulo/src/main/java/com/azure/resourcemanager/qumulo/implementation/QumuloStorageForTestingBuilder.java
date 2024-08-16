@@ -14,9 +14,11 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the QumuloStorageImpl type. */
-@ServiceClientBuilder(serviceClients = {QumuloStorageImpl.class})
-public final class QumuloStorageBuilder {
+/**
+ * A builder for creating a new instance of the QumuloStorageForTestingImpl type.
+ */
+@ServiceClientBuilder(serviceClients = { QumuloStorageForTestingImpl.class })
+public final class QumuloStorageForTestingBuilder {
     /*
      * The ID of the target subscription.
      */
@@ -24,11 +26,11 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets The ID of the target subscription.
-     *
+     * 
      * @param subscriptionId the subscriptionId value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder subscriptionId(String subscriptionId) {
+    public QumuloStorageForTestingBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -40,11 +42,11 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets server parameter.
-     *
+     * 
      * @param endpoint the endpoint value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder endpoint(String endpoint) {
+    public QumuloStorageForTestingBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -56,11 +58,11 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets The environment to connect to.
-     *
+     * 
      * @param environment the environment value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder environment(AzureEnvironment environment) {
+    public QumuloStorageForTestingBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -72,11 +74,11 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets The HTTP pipeline to send requests through.
-     *
+     * 
      * @param pipeline the pipeline value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder pipeline(HttpPipeline pipeline) {
+    public QumuloStorageForTestingBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -88,11 +90,11 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets The default poll interval for long-running operation.
-     *
+     * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public QumuloStorageForTestingBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -104,41 +106,33 @@ public final class QumuloStorageBuilder {
 
     /**
      * Sets The serializer to serialize an object into a string.
-     *
+     * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the QumuloStorageBuilder.
+     * @return the QumuloStorageForTestingBuilder.
      */
-    public QumuloStorageBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public QumuloStorageForTestingBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of QumuloStorageImpl with the provided parameters.
-     *
-     * @return an instance of QumuloStorageImpl.
+     * Builds an instance of QumuloStorageForTestingImpl with the provided parameters.
+     * 
+     * @return an instance of QumuloStorageForTestingImpl.
      */
-    public QumuloStorageImpl buildClient() {
+    public QumuloStorageForTestingImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
-        HttpPipeline localPipeline =
-            (pipeline != null)
-                ? pipeline
-                : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        Duration localDefaultPollInterval =
-            (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
-        SerializerAdapter localSerializerAdapter =
-            (serializerAdapter != null)
-                ? serializerAdapter
-                : SerializerFactory.createDefaultManagementSerializerAdapter();
-        QumuloStorageImpl client =
-            new QumuloStorageImpl(
-                localPipeline,
-                localSerializerAdapter,
-                localDefaultPollInterval,
-                localEnvironment,
-                subscriptionId,
-                localEndpoint);
+        HttpPipeline localPipeline = (pipeline != null)
+            ? pipeline
+            : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
+        Duration localDefaultPollInterval
+            = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
+        SerializerAdapter localSerializerAdapter = (serializerAdapter != null)
+            ? serializerAdapter
+            : SerializerFactory.createDefaultManagementSerializerAdapter();
+        QumuloStorageForTestingImpl client = new QumuloStorageForTestingImpl(localPipeline, localSerializerAdapter,
+            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }
