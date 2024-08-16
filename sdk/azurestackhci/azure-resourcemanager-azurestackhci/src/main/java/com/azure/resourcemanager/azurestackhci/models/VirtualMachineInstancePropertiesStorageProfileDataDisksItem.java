@@ -5,24 +5,32 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The VirtualMachineInstancePropertiesStorageProfileDataDisksItem model. */
+/**
+ * The VirtualMachineInstancePropertiesStorageProfileDataDisksItem model.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
+public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem
+    implements JsonSerializable<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> {
     /*
      * Resource ID of the data disk
      */
-    @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem class.
+     */
     public VirtualMachineInstancePropertiesStorageProfileDataDisksItem() {
     }
 
     /**
      * Get the id property: Resource ID of the data disk.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +39,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
 
     /**
      * Set the id property: Resource ID of the data disk.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileDataDisksItem object itself.
      */
@@ -42,9 +50,48 @@ public final class VirtualMachineInstancePropertiesStorageProfileDataDisksItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesStorageProfileDataDisksItem if the JsonReader was pointing
+     * to an instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the
+     * VirtualMachineInstancePropertiesStorageProfileDataDisksItem.
+     */
+    public static VirtualMachineInstancePropertiesStorageProfileDataDisksItem fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesStorageProfileDataDisksItem deserializedVirtualMachineInstancePropertiesStorageProfileDataDisksItem
+                = new VirtualMachineInstancePropertiesStorageProfileDataDisksItem();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfileDataDisksItem.id = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesStorageProfileDataDisksItem;
+        });
     }
 }

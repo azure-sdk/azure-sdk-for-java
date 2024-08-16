@@ -5,82 +5,80 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.DiskFileFormat;
 import com.azure.resourcemanager.azurestackhci.models.HyperVGeneration;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.VirtualHardDiskStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Properties under the virtual hard disk resource. */
+/**
+ * Properties under the virtual hard disk resource.
+ */
 @Fluent
-public final class VirtualHardDiskProperties {
+public final class VirtualHardDiskProperties implements JsonSerializable<VirtualHardDiskProperties> {
     /*
      * The blockSizeBytes property.
      */
-    @JsonProperty(value = "blockSizeBytes")
     private Integer blockSizeBytes;
 
     /*
      * Size of the disk in GB
      */
-    @JsonProperty(value = "diskSizeGB")
     private Long diskSizeGB;
 
     /*
      * Boolean for enabling dynamic sizing on the virtual hard disk
      */
-    @JsonProperty(value = "dynamic")
     private Boolean dynamic;
 
     /*
      * The logicalSectorBytes property.
      */
-    @JsonProperty(value = "logicalSectorBytes")
     private Integer logicalSectorBytes;
 
     /*
      * The physicalSectorBytes property.
      */
-    @JsonProperty(value = "physicalSectorBytes")
     private Integer physicalSectorBytes;
 
     /*
      * The hypervisor generation of the Virtual Machine [V1, V2]
      */
-    @JsonProperty(value = "hyperVGeneration")
     private HyperVGeneration hyperVGeneration;
 
     /*
      * The format of the actual VHD file [vhd, vhdx]
      */
-    @JsonProperty(value = "diskFileFormat")
     private DiskFileFormat diskFileFormat;
 
     /*
      * Provisioning state of the virtual hard disk.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * Storage ContainerID of the storage container to be used for VHD
      */
-    @JsonProperty(value = "containerId")
     private String containerId;
 
     /*
      * The observed state of virtual hard disks
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private VirtualHardDiskStatus status;
 
-    /** Creates an instance of VirtualHardDiskProperties class. */
+    /**
+     * Creates an instance of VirtualHardDiskProperties class.
+     */
     public VirtualHardDiskProperties() {
     }
 
     /**
      * Get the blockSizeBytes property: The blockSizeBytes property.
-     *
+     * 
      * @return the blockSizeBytes value.
      */
     public Integer blockSizeBytes() {
@@ -89,7 +87,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the blockSizeBytes property: The blockSizeBytes property.
-     *
+     * 
      * @param blockSizeBytes the blockSizeBytes value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -100,7 +98,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the diskSizeGB property: Size of the disk in GB.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Long diskSizeGB() {
@@ -109,7 +107,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the diskSizeGB property: Size of the disk in GB.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -120,7 +118,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the dynamic property: Boolean for enabling dynamic sizing on the virtual hard disk.
-     *
+     * 
      * @return the dynamic value.
      */
     public Boolean dynamic() {
@@ -129,7 +127,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the dynamic property: Boolean for enabling dynamic sizing on the virtual hard disk.
-     *
+     * 
      * @param dynamic the dynamic value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -140,7 +138,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the logicalSectorBytes property: The logicalSectorBytes property.
-     *
+     * 
      * @return the logicalSectorBytes value.
      */
     public Integer logicalSectorBytes() {
@@ -149,7 +147,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the logicalSectorBytes property: The logicalSectorBytes property.
-     *
+     * 
      * @param logicalSectorBytes the logicalSectorBytes value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -160,7 +158,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the physicalSectorBytes property: The physicalSectorBytes property.
-     *
+     * 
      * @return the physicalSectorBytes value.
      */
     public Integer physicalSectorBytes() {
@@ -169,7 +167,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the physicalSectorBytes property: The physicalSectorBytes property.
-     *
+     * 
      * @param physicalSectorBytes the physicalSectorBytes value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -180,7 +178,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -189,7 +187,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -200,7 +198,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the diskFileFormat property: The format of the actual VHD file [vhd, vhdx].
-     *
+     * 
      * @return the diskFileFormat value.
      */
     public DiskFileFormat diskFileFormat() {
@@ -209,7 +207,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the diskFileFormat property: The format of the actual VHD file [vhd, vhdx].
-     *
+     * 
      * @param diskFileFormat the diskFileFormat value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -220,7 +218,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the virtual hard disk.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -229,7 +227,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for VHD.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -238,7 +236,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for VHD.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the VirtualHardDiskProperties object itself.
      */
@@ -249,7 +247,7 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Get the status property: The observed state of virtual hard disks.
-     *
+     * 
      * @return the status value.
      */
     public VirtualHardDiskStatus status() {
@@ -258,12 +256,78 @@ public final class VirtualHardDiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (status() != null) {
             status().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeNumberField("blockSizeBytes", this.blockSizeBytes);
+        jsonWriter.writeNumberField("diskSizeGB", this.diskSizeGB);
+        jsonWriter.writeBooleanField("dynamic", this.dynamic);
+        jsonWriter.writeNumberField("logicalSectorBytes", this.logicalSectorBytes);
+        jsonWriter.writeNumberField("physicalSectorBytes", this.physicalSectorBytes);
+        jsonWriter.writeStringField("hyperVGeneration",
+            this.hyperVGeneration == null ? null : this.hyperVGeneration.toString());
+        jsonWriter.writeStringField("diskFileFormat",
+            this.diskFileFormat == null ? null : this.diskFileFormat.toString());
+        jsonWriter.writeStringField("containerId", this.containerId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualHardDiskProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualHardDiskProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualHardDiskProperties.
+     */
+    public static VirtualHardDiskProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualHardDiskProperties deserializedVirtualHardDiskProperties = new VirtualHardDiskProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("blockSizeBytes".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.blockSizeBytes = reader.getNullable(JsonReader::getInt);
+                } else if ("diskSizeGB".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.diskSizeGB = reader.getNullable(JsonReader::getLong);
+                } else if ("dynamic".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.dynamic = reader.getNullable(JsonReader::getBoolean);
+                } else if ("logicalSectorBytes".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.logicalSectorBytes = reader.getNullable(JsonReader::getInt);
+                } else if ("physicalSectorBytes".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.physicalSectorBytes = reader.getNullable(JsonReader::getInt);
+                } else if ("hyperVGeneration".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.hyperVGeneration
+                        = HyperVGeneration.fromString(reader.getString());
+                } else if ("diskFileFormat".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.diskFileFormat
+                        = DiskFileFormat.fromString(reader.getString());
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("containerId".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.containerId = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedVirtualHardDiskProperties.status = VirtualHardDiskStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualHardDiskProperties;
+        });
     }
 }

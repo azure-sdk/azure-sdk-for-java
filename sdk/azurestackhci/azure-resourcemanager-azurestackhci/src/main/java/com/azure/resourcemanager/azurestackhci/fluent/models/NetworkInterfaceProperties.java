@@ -5,53 +5,56 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.InterfaceDnsSettings;
 import com.azure.resourcemanager.azurestackhci.models.IpConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaceStatus;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Properties under the network interface resource. */
+/**
+ * Properties under the network interface resource.
+ */
 @Fluent
-public final class NetworkInterfaceProperties {
+public final class NetworkInterfaceProperties implements JsonSerializable<NetworkInterfaceProperties> {
     /*
      * IPConfigurations - A list of IPConfigurations of the network interface.
      */
-    @JsonProperty(value = "ipConfigurations")
     private List<IpConfiguration> ipConfigurations;
 
     /*
      * MacAddress - The MAC address of the network interface.
      */
-    @JsonProperty(value = "macAddress")
     private String macAddress;
 
     /*
      * DNS Settings for the interface
      */
-    @JsonProperty(value = "dnsSettings")
     private InterfaceDnsSettings dnsSettings;
 
     /*
      * Provisioning state of the network interface.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * The observed state of network interfaces
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private NetworkInterfaceStatus status;
 
-    /** Creates an instance of NetworkInterfaceProperties class. */
+    /**
+     * Creates an instance of NetworkInterfaceProperties class.
+     */
     public NetworkInterfaceProperties() {
     }
 
     /**
      * Get the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -60,7 +63,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -71,7 +74,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -80,7 +83,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @param macAddress the macAddress value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -91,7 +94,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @return the dnsSettings value.
      */
     public InterfaceDnsSettings dnsSettings() {
@@ -100,7 +103,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Set the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @param dnsSettings the dnsSettings value to set.
      * @return the NetworkInterfaceProperties object itself.
      */
@@ -111,7 +114,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the network interface.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -120,7 +123,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Get the status property: The observed state of network interfaces.
-     *
+     * 
      * @return the status value.
      */
     public NetworkInterfaceStatus status() {
@@ -129,7 +132,7 @@ public final class NetworkInterfaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -142,5 +145,55 @@ public final class NetworkInterfaceProperties {
         if (status() != null) {
             status().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("ipConfigurations", this.ipConfigurations,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("macAddress", this.macAddress);
+        jsonWriter.writeJsonField("dnsSettings", this.dnsSettings);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of NetworkInterfaceProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of NetworkInterfaceProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the NetworkInterfaceProperties.
+     */
+    public static NetworkInterfaceProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            NetworkInterfaceProperties deserializedNetworkInterfaceProperties = new NetworkInterfaceProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("ipConfigurations".equals(fieldName)) {
+                    List<IpConfiguration> ipConfigurations
+                        = reader.readArray(reader1 -> IpConfiguration.fromJson(reader1));
+                    deserializedNetworkInterfaceProperties.ipConfigurations = ipConfigurations;
+                } else if ("macAddress".equals(fieldName)) {
+                    deserializedNetworkInterfaceProperties.macAddress = reader.getString();
+                } else if ("dnsSettings".equals(fieldName)) {
+                    deserializedNetworkInterfaceProperties.dnsSettings = InterfaceDnsSettings.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedNetworkInterfaceProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("status".equals(fieldName)) {
+                    deserializedNetworkInterfaceProperties.status = NetworkInterfaceStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedNetworkInterfaceProperties;
+        });
     }
 }

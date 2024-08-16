@@ -5,43 +5,48 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** StorageProfile - contains information about the disks and storage information for the virtual machine instance. */
+/**
+ * StorageProfile - contains information about the disks and storage information for the virtual machine instance.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesStorageProfile {
+public final class VirtualMachineInstancePropertiesStorageProfile
+    implements JsonSerializable<VirtualMachineInstancePropertiesStorageProfile> {
     /*
      * adds data disks to the virtual machine instance
      */
-    @JsonProperty(value = "dataDisks")
     private List<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> dataDisks;
 
     /*
      * Which Image to use for the virtual machine instance
      */
-    @JsonProperty(value = "imageReference")
     private VirtualMachineInstancePropertiesStorageProfileImageReference imageReference;
 
     /*
      * VHD to attach as OS disk
      */
-    @JsonProperty(value = "osDisk")
     private VirtualMachineInstancePropertiesStorageProfileOsDisk osDisk;
 
     /*
      * Id of the storage container that hosts the VM configuration file
      */
-    @JsonProperty(value = "vmConfigStoragePathId")
     private String vmConfigStoragePathId;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfile class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfile class.
+     */
     public VirtualMachineInstancePropertiesStorageProfile() {
     }
 
     /**
      * Get the dataDisks property: adds data disks to the virtual machine instance.
-     *
+     * 
      * @return the dataDisks value.
      */
     public List<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> dataDisks() {
@@ -50,19 +55,19 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
 
     /**
      * Set the dataDisks property: adds data disks to the virtual machine instance.
-     *
+     * 
      * @param dataDisks the dataDisks value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfile object itself.
      */
-    public VirtualMachineInstancePropertiesStorageProfile withDataDisks(
-        List<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> dataDisks) {
+    public VirtualMachineInstancePropertiesStorageProfile
+        withDataDisks(List<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> dataDisks) {
         this.dataDisks = dataDisks;
         return this;
     }
 
     /**
      * Get the imageReference property: Which Image to use for the virtual machine instance.
-     *
+     * 
      * @return the imageReference value.
      */
     public VirtualMachineInstancePropertiesStorageProfileImageReference imageReference() {
@@ -71,19 +76,19 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
 
     /**
      * Set the imageReference property: Which Image to use for the virtual machine instance.
-     *
+     * 
      * @param imageReference the imageReference value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfile object itself.
      */
-    public VirtualMachineInstancePropertiesStorageProfile withImageReference(
-        VirtualMachineInstancePropertiesStorageProfileImageReference imageReference) {
+    public VirtualMachineInstancePropertiesStorageProfile
+        withImageReference(VirtualMachineInstancePropertiesStorageProfileImageReference imageReference) {
         this.imageReference = imageReference;
         return this;
     }
 
     /**
      * Get the osDisk property: VHD to attach as OS disk.
-     *
+     * 
      * @return the osDisk value.
      */
     public VirtualMachineInstancePropertiesStorageProfileOsDisk osDisk() {
@@ -92,19 +97,19 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
 
     /**
      * Set the osDisk property: VHD to attach as OS disk.
-     *
+     * 
      * @param osDisk the osDisk value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfile object itself.
      */
-    public VirtualMachineInstancePropertiesStorageProfile withOsDisk(
-        VirtualMachineInstancePropertiesStorageProfileOsDisk osDisk) {
+    public VirtualMachineInstancePropertiesStorageProfile
+        withOsDisk(VirtualMachineInstancePropertiesStorageProfileOsDisk osDisk) {
         this.osDisk = osDisk;
         return this;
     }
 
     /**
      * Get the vmConfigStoragePathId property: Id of the storage container that hosts the VM configuration file.
-     *
+     * 
      * @return the vmConfigStoragePathId value.
      */
     public String vmConfigStoragePathId() {
@@ -113,7 +118,7 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
 
     /**
      * Set the vmConfigStoragePathId property: Id of the storage container that hosts the VM configuration file.
-     *
+     * 
      * @param vmConfigStoragePathId the vmConfigStoragePathId value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfile object itself.
      */
@@ -124,7 +129,7 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -137,5 +142,56 @@ public final class VirtualMachineInstancePropertiesStorageProfile {
         if (osDisk() != null) {
             osDisk().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("dataDisks", this.dataDisks, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("imageReference", this.imageReference);
+        jsonWriter.writeJsonField("osDisk", this.osDisk);
+        jsonWriter.writeStringField("vmConfigStoragePathId", this.vmConfigStoragePathId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesStorageProfile from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesStorageProfile if the JsonReader was pointing to an
+     * instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstancePropertiesStorageProfile.
+     */
+    public static VirtualMachineInstancePropertiesStorageProfile fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesStorageProfile deserializedVirtualMachineInstancePropertiesStorageProfile
+                = new VirtualMachineInstancePropertiesStorageProfile();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("dataDisks".equals(fieldName)) {
+                    List<VirtualMachineInstancePropertiesStorageProfileDataDisksItem> dataDisks = reader.readArray(
+                        reader1 -> VirtualMachineInstancePropertiesStorageProfileDataDisksItem.fromJson(reader1));
+                    deserializedVirtualMachineInstancePropertiesStorageProfile.dataDisks = dataDisks;
+                } else if ("imageReference".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfile.imageReference
+                        = VirtualMachineInstancePropertiesStorageProfileImageReference.fromJson(reader);
+                } else if ("osDisk".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfile.osDisk
+                        = VirtualMachineInstancePropertiesStorageProfileOsDisk.fromJson(reader);
+                } else if ("vmConfigStoragePathId".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesStorageProfile.vmConfigStoragePathId
+                        = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesStorageProfile;
+        });
     }
 }
