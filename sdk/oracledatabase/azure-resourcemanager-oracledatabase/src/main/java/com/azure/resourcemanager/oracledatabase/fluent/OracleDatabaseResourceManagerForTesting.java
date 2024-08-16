@@ -8,9 +8,9 @@ import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
 /**
- * The interface for OracleDatabaseResourceManager class.
+ * The interface for OracleDatabaseResourceManagerForTesting class.
  */
-public interface OracleDatabaseResourceManager {
+public interface OracleDatabaseResourceManagerForTesting {
     /**
      * Gets The ID of the target subscription. The value must be an UUID.
      * 
