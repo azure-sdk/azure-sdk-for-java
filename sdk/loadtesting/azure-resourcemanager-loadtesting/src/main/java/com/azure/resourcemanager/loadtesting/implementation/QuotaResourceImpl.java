@@ -12,10 +12,10 @@ import com.azure.resourcemanager.loadtesting.models.ResourceState;
 public final class QuotaResourceImpl implements QuotaResource {
     private QuotaResourceInner innerObject;
 
-    private final com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager;
+    private final com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager;
 
-    QuotaResourceImpl(
-        QuotaResourceInner innerObject, com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager) {
+    QuotaResourceImpl(QuotaResourceInner innerObject,
+        com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -52,7 +52,7 @@ public final class QuotaResourceImpl implements QuotaResource {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.loadtesting.LoadTestManager manager() {
+    private com.azure.resourcemanager.loadtesting.LoadtestingManager manager() {
         return this.serviceManager;
     }
 }
