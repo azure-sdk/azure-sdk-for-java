@@ -17,8 +17,7 @@ import java.util.Map;
 public final class StandbyVirtualMachinePoolsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/standbypool/StandbyPool.Management/examples/2024-03-01-preview/StandbyVirtualMachinePools_Update.
-     * json
+     * specification/standbypool/StandbyPool.Management/examples/2024-03-01/StandbyVirtualMachinePools_Update.json
      */
     /**
      * Sample code: StandbyVirtualMachinePools_Update.
