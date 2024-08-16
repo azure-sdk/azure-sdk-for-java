@@ -5,40 +5,46 @@
 package com.azure.resourcemanager.elasticsan.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.elasticsan.models.DeleteRetentionPolicy;
 import com.azure.resourcemanager.elasticsan.models.EncryptionProperties;
 import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.NetworkRuleSet;
 import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * VolumeGroup response properties.
  */
 @Fluent
-public final class VolumeGroupUpdateProperties {
+public final class VolumeGroupUpdateProperties implements JsonSerializable<VolumeGroupUpdateProperties> {
     /*
      * Type of storage target
      */
-    @JsonProperty(value = "protocolType")
     private StorageTargetType protocolType;
 
     /*
      * Type of encryption
      */
-    @JsonProperty(value = "encryption")
     private EncryptionType encryption;
 
     /*
      * Encryption Properties describing Key Vault and Identity information
      */
-    @JsonProperty(value = "encryptionProperties")
     private EncryptionProperties encryptionProperties;
 
     /*
      * A collection of rules governing the accessibility from specific network locations.
      */
-    @JsonProperty(value = "networkAcls")
     private NetworkRuleSet networkAcls;
+
+    /*
+     * The retention policy for the deleted volumes.
+     */
+    private DeleteRetentionPolicy deleteRetentionPolicy;
 
     /**
      * Creates an instance of VolumeGroupUpdateProperties class.
@@ -127,6 +133,26 @@ public final class VolumeGroupUpdateProperties {
     }
 
     /**
+     * Get the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @return the deleteRetentionPolicy value.
+     */
+    public DeleteRetentionPolicy deleteRetentionPolicy() {
+        return this.deleteRetentionPolicy;
+    }
+
+    /**
+     * Set the deleteRetentionPolicy property: The retention policy for the deleted volumes.
+     * 
+     * @param deleteRetentionPolicy the deleteRetentionPolicy value to set.
+     * @return the VolumeGroupUpdateProperties object itself.
+     */
+    public VolumeGroupUpdateProperties withDeleteRetentionPolicy(DeleteRetentionPolicy deleteRetentionPolicy) {
+        this.deleteRetentionPolicy = deleteRetentionPolicy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -138,5 +164,59 @@ public final class VolumeGroupUpdateProperties {
         if (networkAcls() != null) {
             networkAcls().validate();
         }
+        if (deleteRetentionPolicy() != null) {
+            deleteRetentionPolicy().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("protocolType", this.protocolType == null ? null : this.protocolType.toString());
+        jsonWriter.writeStringField("encryption", this.encryption == null ? null : this.encryption.toString());
+        jsonWriter.writeJsonField("encryptionProperties", this.encryptionProperties);
+        jsonWriter.writeJsonField("networkAcls", this.networkAcls);
+        jsonWriter.writeJsonField("deleteRetentionPolicy", this.deleteRetentionPolicy);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VolumeGroupUpdateProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VolumeGroupUpdateProperties if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VolumeGroupUpdateProperties.
+     */
+    public static VolumeGroupUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VolumeGroupUpdateProperties deserializedVolumeGroupUpdateProperties = new VolumeGroupUpdateProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("protocolType".equals(fieldName)) {
+                    deserializedVolumeGroupUpdateProperties.protocolType
+                        = StorageTargetType.fromString(reader.getString());
+                } else if ("encryption".equals(fieldName)) {
+                    deserializedVolumeGroupUpdateProperties.encryption = EncryptionType.fromString(reader.getString());
+                } else if ("encryptionProperties".equals(fieldName)) {
+                    deserializedVolumeGroupUpdateProperties.encryptionProperties
+                        = EncryptionProperties.fromJson(reader);
+                } else if ("networkAcls".equals(fieldName)) {
+                    deserializedVolumeGroupUpdateProperties.networkAcls = NetworkRuleSet.fromJson(reader);
+                } else if ("deleteRetentionPolicy".equals(fieldName)) {
+                    deserializedVolumeGroupUpdateProperties.deleteRetentionPolicy
+                        = DeleteRetentionPolicy.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVolumeGroupUpdateProperties;
+        });
     }
 }

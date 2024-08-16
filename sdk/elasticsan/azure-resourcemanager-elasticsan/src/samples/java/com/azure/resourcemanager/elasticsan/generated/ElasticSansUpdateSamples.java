@@ -14,7 +14,8 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * ElasticSans_Update_MinimumSet_Gen.json
      */
     /**
@@ -30,7 +31,8 @@ public final class ElasticSansUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
@@ -42,8 +44,12 @@ public final class ElasticSansUpdateSamples {
         ElasticSan resource = manager.elasticSans()
             .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("key1931", "fakeTokenPlaceholder")).withBaseSizeTiB(13L)
-            .withExtendedCapacitySizeTiB(29L).withPublicNetworkAccess(PublicNetworkAccess.ENABLED).apply();
+        resource.update()
+            .withTags(mapOf("key1931", "fakeTokenPlaceholder"))
+            .withBaseSizeTiB(13L)
+            .withExtendedCapacitySizeTiB(29L)
+            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .apply();
     }
 
     // Use "Map.of" if available

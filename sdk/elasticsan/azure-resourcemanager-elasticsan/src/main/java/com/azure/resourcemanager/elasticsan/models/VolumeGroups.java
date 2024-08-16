@@ -29,13 +29,15 @@ public interface VolumeGroups {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
+     * @param xMsAccessSoftDeletedResources Optional, used to get soft deleted volumes if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of Volume Groups as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VolumeGroup> listByElasticSan(String resourceGroupName, String elasticSanName, Context context);
+    PagedIterable<VolumeGroup> listByElasticSan(String resourceGroupName, String elasticSanName,
+        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
 
     /**
      * Delete an VolumeGroup.
@@ -55,12 +57,13 @@ public interface VolumeGroups {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
+     * @param purge Optional, used to purge soft deleted volume groups if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Context context);
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Purge purge, Context context);
 
     /**
      * Get an VolumeGroups.
@@ -68,6 +71,7 @@ public interface VolumeGroups {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
+     * @param xMsAccessSoftDeletedResources Optional, used to get soft deleted volume groups if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -75,7 +79,7 @@ public interface VolumeGroups {
      * @return an VolumeGroups along with {@link Response}.
      */
     Response<VolumeGroup> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        Context context);
+        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
 
     /**
      * Get an VolumeGroups.
@@ -105,13 +109,15 @@ public interface VolumeGroups {
      * Get an VolumeGroups.
      * 
      * @param id the resource ID.
+     * @param xMsAccessSoftDeletedResources Optional, used to get soft deleted volume groups if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an VolumeGroups along with {@link Response}.
      */
-    Response<VolumeGroup> getByIdWithResponse(String id, Context context);
+    Response<VolumeGroup> getByIdWithResponse(String id, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources,
+        Context context);
 
     /**
      * Delete an VolumeGroup.
@@ -127,12 +133,13 @@ public interface VolumeGroups {
      * Delete an VolumeGroup.
      * 
      * @param id the resource ID.
+     * @param purge Optional, used to purge soft deleted volume groups if set to true.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Purge purge, Context context);
 
     /**
      * Begins definition for a new VolumeGroup resource.

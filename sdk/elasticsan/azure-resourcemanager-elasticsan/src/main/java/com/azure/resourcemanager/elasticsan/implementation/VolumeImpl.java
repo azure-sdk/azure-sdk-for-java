@@ -13,6 +13,7 @@ import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.Volume;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
+import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources;
 
 public final class VolumeImpl implements Volume, Volume.Definition, Volume.Update {
     private VolumeInner innerObject;
@@ -89,14 +90,16 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
     }
 
     public Volume create() {
-        this.innerObject = serviceManager.serviceClient().getVolumes().create(resourceGroupName, elasticSanName,
-            volumeGroupName, volumeName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Volume create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getVolumes().create(resourceGroupName, elasticSanName,
-            volumeGroupName, volumeName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .create(resourceGroupName, elasticSanName, volumeGroupName, volumeName, this.innerModel(), context);
         return this;
     }
 
@@ -112,14 +115,16 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
     }
 
     public Volume apply() {
-        this.innerObject = serviceManager.serviceClient().getVolumes().update(resourceGroupName, elasticSanName,
-            volumeGroupName, volumeName, updateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .update(resourceGroupName, elasticSanName, volumeGroupName, volumeName, updateParameters, Context.NONE);
         return this;
     }
 
     public Volume apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getVolumes().update(resourceGroupName, elasticSanName,
-            volumeGroupName, volumeName, updateParameters, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .update(resourceGroupName, elasticSanName, volumeGroupName, volumeName, updateParameters, context);
         return this;
     }
 
@@ -133,14 +138,22 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
     }
 
     public Volume refresh() {
-        this.innerObject = serviceManager.serviceClient().getVolumes()
-            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, Context.NONE).getValue();
+        XMsAccessSoftDeletedResources localXMsAccessSoftDeletedResources = null;
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName,
+                localXMsAccessSoftDeletedResources, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Volume refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getVolumes()
-            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context).getValue();
+        XMsAccessSoftDeletedResources localXMsAccessSoftDeletedResources = null;
+        this.innerObject = serviceManager.serviceClient()
+            .getVolumes()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName,
+                localXMsAccessSoftDeletedResources, context)
+            .getValue();
         return this;
     }
 

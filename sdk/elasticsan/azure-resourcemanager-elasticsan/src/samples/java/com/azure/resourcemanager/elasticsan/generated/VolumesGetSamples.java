@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources;
+
 /**
  * Samples for Volumes Get.
  */
 public final class VolumesGetSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * Volumes_Get_MaximumSet_Gen.json
      */
     /**
@@ -18,12 +21,14 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
+                XMsAccessSoftDeletedResources.TRUE, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * Volumes_Get_MinimumSet_Gen.json
      */
     /**
@@ -32,7 +37,8 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
+                XMsAccessSoftDeletedResources.TRUE, com.azure.core.util.Context.NONE);
     }
 }

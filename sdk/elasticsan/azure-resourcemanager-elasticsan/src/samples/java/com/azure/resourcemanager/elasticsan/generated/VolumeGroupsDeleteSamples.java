@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.Purge;
+
 /**
  * Samples for VolumeGroups Delete.
  */
 public final class VolumeGroupsDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * VolumeGroups_Delete_MinimumSet_Gen.json
      */
     /**
@@ -18,12 +21,14 @@ public final class VolumeGroupsDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().delete("resourcegroupname", "elasticsanname", "volumegroupname",
-            com.azure.core.util.Context.NONE);
+        manager.volumeGroups()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", Purge.TRUE,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * x-ms-original-file:
+     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/
      * VolumeGroups_Delete_MaximumSet_Gen.json
      */
     /**
@@ -32,7 +37,8 @@ public final class VolumeGroupsDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumeGroupsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeGroups().delete("resourcegroupname", "elasticsanname", "volumegroupname",
-            com.azure.core.util.Context.NONE);
+        manager.volumeGroups()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", Purge.TRUE,
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.elasticsan.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -53,6 +52,21 @@ public final class ProvisioningStates extends ExpandableStringEnum<ProvisioningS
     public static final ProvisioningStates DELETING = fromString("Deleting");
 
     /**
+     * Static value Deleted for ProvisioningStates.
+     */
+    public static final ProvisioningStates DELETED = fromString("Deleted");
+
+    /**
+     * Static value Restoring for ProvisioningStates.
+     */
+    public static final ProvisioningStates RESTORING = fromString("Restoring");
+
+    /**
+     * Static value SoftDeleting for ProvisioningStates.
+     */
+    public static final ProvisioningStates SOFT_DELETING = fromString("SoftDeleting");
+
+    /**
      * Creates a new instance of ProvisioningStates value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -67,7 +81,6 @@ public final class ProvisioningStates extends ExpandableStringEnum<ProvisioningS
      * @param name a name to look for.
      * @return the corresponding ProvisioningStates.
      */
-    @JsonCreator
     public static ProvisioningStates fromString(String name) {
         return fromString(name, ProvisioningStates.class);
     }
