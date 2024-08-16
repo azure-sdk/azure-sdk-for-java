@@ -7,53 +7,97 @@ package com.azure.resourcemanager.hybridconnectivity.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for HybridConnectivityManagementApi class. */
+/**
+ * The interface for HybridConnectivityManagementApi class.
+ */
 public interface HybridConnectivityManagementApi {
     /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    String getSubscriptionId();
+
+    /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the SolutionConfigurationsClient object to access its operations.
+     * 
+     * @return the SolutionConfigurationsClient object.
+     */
+    SolutionConfigurationsClient getSolutionConfigurations();
+
+    /**
+     * Gets the InventoriesClient object to access its operations.
+     * 
+     * @return the InventoriesClient object.
+     */
+    InventoriesClient getInventories();
+
+    /**
+     * Gets the GenerateAwsTemplatesClient object to access its operations.
+     * 
+     * @return the GenerateAwsTemplatesClient object.
+     */
+    GenerateAwsTemplatesClient getGenerateAwsTemplates();
+
+    /**
+     * Gets the PublicCloudConnectorsClient object to access its operations.
+     * 
+     * @return the PublicCloudConnectorsClient object.
+     */
+    PublicCloudConnectorsClient getPublicCloudConnectors();
+
+    /**
+     * Gets the SolutionTypesClient object to access its operations.
+     * 
+     * @return the SolutionTypesClient object.
+     */
+    SolutionTypesClient getSolutionTypes();
+
+    /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
      * Gets the EndpointsClient object to access its operations.
-     *
+     * 
      * @return the EndpointsClient object.
      */
     EndpointsClient getEndpoints();
 
     /**
      * Gets the ServiceConfigurationsClient object to access its operations.
-     *
+     * 
      * @return the ServiceConfigurationsClient object.
      */
     ServiceConfigurationsClient getServiceConfigurations();

@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -25,12 +25,22 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridconnectivity.fluent.HybridConnectivityManagementApi;
 import com.azure.resourcemanager.hybridconnectivity.implementation.EndpointsImpl;
+import com.azure.resourcemanager.hybridconnectivity.implementation.GenerateAwsTemplatesImpl;
 import com.azure.resourcemanager.hybridconnectivity.implementation.HybridConnectivityManagementApiBuilder;
+import com.azure.resourcemanager.hybridconnectivity.implementation.InventoriesImpl;
 import com.azure.resourcemanager.hybridconnectivity.implementation.OperationsImpl;
+import com.azure.resourcemanager.hybridconnectivity.implementation.PublicCloudConnectorsImpl;
 import com.azure.resourcemanager.hybridconnectivity.implementation.ServiceConfigurationsImpl;
+import com.azure.resourcemanager.hybridconnectivity.implementation.SolutionConfigurationsImpl;
+import com.azure.resourcemanager.hybridconnectivity.implementation.SolutionTypesImpl;
 import com.azure.resourcemanager.hybridconnectivity.models.Endpoints;
+import com.azure.resourcemanager.hybridconnectivity.models.GenerateAwsTemplates;
+import com.azure.resourcemanager.hybridconnectivity.models.Inventories;
 import com.azure.resourcemanager.hybridconnectivity.models.Operations;
+import com.azure.resourcemanager.hybridconnectivity.models.PublicCloudConnectors;
 import com.azure.resourcemanager.hybridconnectivity.models.ServiceConfigurations;
+import com.azure.resourcemanager.hybridconnectivity.models.SolutionConfigurations;
+import com.azure.resourcemanager.hybridconnectivity.models.SolutionTypes;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -38,8 +48,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to HybridConnectivityManager. REST API for Hybrid Connectivity. */
+/**
+ * Entry point to HybridConnectivityManager.
+ * REST API for public clouds.
+ */
 public final class HybridConnectivityManager {
+    private SolutionConfigurations solutionConfigurations;
+
+    private Inventories inventories;
+
+    private GenerateAwsTemplates generateAwsTemplates;
+
+    private PublicCloudConnectors publicCloudConnectors;
+
+    private SolutionTypes solutionTypes;
+
     private Operations operations;
 
     private Endpoints endpoints;
@@ -51,17 +74,16 @@ public final class HybridConnectivityManager {
     private HybridConnectivityManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new HybridConnectivityManagementApiBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new HybridConnectivityManagementApiBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
      * Creates an instance of HybridConnectivity service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the HybridConnectivity service API instance.
@@ -74,7 +96,7 @@ public final class HybridConnectivityManager {
 
     /**
      * Creates an instance of HybridConnectivity service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the HybridConnectivity service API instance.
@@ -87,14 +109,16 @@ public final class HybridConnectivityManager {
 
     /**
      * Gets a Configurable instance that can be used to create HybridConnectivityManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new HybridConnectivityManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -166,8 +190,8 @@ public final class HybridConnectivityManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -184,8 +208,8 @@ public final class HybridConnectivityManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -205,15 +229,13 @@ public final class HybridConnectivityManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
+            userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.hybridconnectivity")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
+                userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ")
                     .append(Configuration.getGlobalConfiguration().get("os.name"))
@@ -238,38 +260,89 @@ public final class HybridConnectivityManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new HybridConnectivityManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
+     * Gets the resource collection API of SolutionConfigurations. It manages SolutionConfiguration.
+     * 
+     * @return Resource collection API of SolutionConfigurations.
+     */
+    public SolutionConfigurations solutionConfigurations() {
+        if (this.solutionConfigurations == null) {
+            this.solutionConfigurations
+                = new SolutionConfigurationsImpl(clientObject.getSolutionConfigurations(), this);
+        }
+        return solutionConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of Inventories.
+     * 
+     * @return Resource collection API of Inventories.
+     */
+    public Inventories inventories() {
+        if (this.inventories == null) {
+            this.inventories = new InventoriesImpl(clientObject.getInventories(), this);
+        }
+        return inventories;
+    }
+
+    /**
+     * Gets the resource collection API of GenerateAwsTemplates.
+     * 
+     * @return Resource collection API of GenerateAwsTemplates.
+     */
+    public GenerateAwsTemplates generateAwsTemplates() {
+        if (this.generateAwsTemplates == null) {
+            this.generateAwsTemplates = new GenerateAwsTemplatesImpl(clientObject.getGenerateAwsTemplates(), this);
+        }
+        return generateAwsTemplates;
+    }
+
+    /**
+     * Gets the resource collection API of PublicCloudConnectors. It manages PublicCloudConnector.
+     * 
+     * @return Resource collection API of PublicCloudConnectors.
+     */
+    public PublicCloudConnectors publicCloudConnectors() {
+        if (this.publicCloudConnectors == null) {
+            this.publicCloudConnectors = new PublicCloudConnectorsImpl(clientObject.getPublicCloudConnectors(), this);
+        }
+        return publicCloudConnectors;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionTypes.
+     * 
+     * @return Resource collection API of SolutionTypes.
+     */
+    public SolutionTypes solutionTypes() {
+        if (this.solutionTypes == null) {
+            this.solutionTypes = new SolutionTypesImpl(clientObject.getSolutionTypes(), this);
+        }
+        return solutionTypes;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -281,7 +354,7 @@ public final class HybridConnectivityManager {
 
     /**
      * Gets the resource collection API of Endpoints. It manages EndpointResource.
-     *
+     * 
      * @return Resource collection API of Endpoints.
      */
     public Endpoints endpoints() {
@@ -293,7 +366,7 @@ public final class HybridConnectivityManager {
 
     /**
      * Gets the resource collection API of ServiceConfigurations. It manages ServiceConfigurationResource.
-     *
+     * 
      * @return Resource collection API of ServiceConfigurations.
      */
     public ServiceConfigurations serviceConfigurations() {
@@ -306,7 +379,7 @@ public final class HybridConnectivityManager {
     /**
      * Gets wrapped service client HybridConnectivityManagementApi providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client HybridConnectivityManagementApi.
      */
     public HybridConnectivityManagementApi serviceClient() {
