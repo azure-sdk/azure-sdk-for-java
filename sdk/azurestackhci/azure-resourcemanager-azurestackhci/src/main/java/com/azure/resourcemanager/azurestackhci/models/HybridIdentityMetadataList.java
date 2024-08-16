@@ -6,32 +6,38 @@ package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.fluent.models.HybridIdentityMetadataInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** List of HybridIdentityMetadata. */
+/**
+ * List of HybridIdentityMetadata.
+ */
 @Fluent
-public final class HybridIdentityMetadataList {
+public final class HybridIdentityMetadataList implements JsonSerializable<HybridIdentityMetadataList> {
     /*
      * Url to follow for getting next page of HybridIdentityMetadata.
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /*
      * Array of HybridIdentityMetadata
      */
-    @JsonProperty(value = "value", required = true)
     private List<HybridIdentityMetadataInner> value;
 
-    /** Creates an instance of HybridIdentityMetadataList class. */
+    /**
+     * Creates an instance of HybridIdentityMetadataList class.
+     */
     public HybridIdentityMetadataList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of HybridIdentityMetadata.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +46,7 @@ public final class HybridIdentityMetadataList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of HybridIdentityMetadata.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the HybridIdentityMetadataList object itself.
      */
@@ -51,7 +57,7 @@ public final class HybridIdentityMetadataList {
 
     /**
      * Get the value property: Array of HybridIdentityMetadata.
-     *
+     * 
      * @return the value value.
      */
     public List<HybridIdentityMetadataInner> value() {
@@ -60,7 +66,7 @@ public final class HybridIdentityMetadataList {
 
     /**
      * Set the value property: Array of HybridIdentityMetadata.
-     *
+     * 
      * @param value the value value to set.
      * @return the HybridIdentityMetadataList object itself.
      */
@@ -71,19 +77,60 @@ public final class HybridIdentityMetadataList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model HybridIdentityMetadataList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model HybridIdentityMetadataList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(HybridIdentityMetadataList.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HybridIdentityMetadataList from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HybridIdentityMetadataList if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the HybridIdentityMetadataList.
+     */
+    public static HybridIdentityMetadataList fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HybridIdentityMetadataList deserializedHybridIdentityMetadataList = new HybridIdentityMetadataList();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("value".equals(fieldName)) {
+                    List<HybridIdentityMetadataInner> value
+                        = reader.readArray(reader1 -> HybridIdentityMetadataInner.fromJson(reader1));
+                    deserializedHybridIdentityMetadataList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedHybridIdentityMetadataList.nextLink = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHybridIdentityMetadataList;
+        });
+    }
 }
