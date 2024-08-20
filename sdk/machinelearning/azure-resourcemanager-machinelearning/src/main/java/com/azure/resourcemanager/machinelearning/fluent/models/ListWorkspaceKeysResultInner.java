@@ -4,68 +4,53 @@
 
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.RegistryListCredentialsResult;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** The ListWorkspaceKeysResult model. */
-@Immutable
-public final class ListWorkspaceKeysResultInner {
+/**
+ * The ListWorkspaceKeysResult model.
+ */
+@Fluent
+public final class ListWorkspaceKeysResultInner implements JsonSerializable<ListWorkspaceKeysResultInner> {
     /*
-     * The userStorageKey property.
+     * The access key of the workspace app insights
      */
-    @JsonProperty(value = "userStorageKey", access = JsonProperty.Access.WRITE_ONLY)
-    private String userStorageKey;
-
-    /*
-     * The userStorageResourceId property.
-     */
-    @JsonProperty(value = "userStorageResourceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String userStorageResourceId;
-
-    /*
-     * The appInsightsInstrumentationKey property.
-     */
-    @JsonProperty(value = "appInsightsInstrumentationKey", access = JsonProperty.Access.WRITE_ONLY)
     private String appInsightsInstrumentationKey;
 
     /*
      * The containerRegistryCredentials property.
      */
-    @JsonProperty(value = "containerRegistryCredentials", access = JsonProperty.Access.WRITE_ONLY)
     private RegistryListCredentialsResult containerRegistryCredentials;
 
     /*
      * The notebookAccessKeys property.
      */
-    @JsonProperty(value = "notebookAccessKeys", access = JsonProperty.Access.WRITE_ONLY)
     private ListNotebookKeysResultInner notebookAccessKeys;
 
-    /** Creates an instance of ListWorkspaceKeysResultInner class. */
+    /*
+     * The arm Id key of the workspace storage
+     */
+    private String userStorageArmId;
+
+    /*
+     * The access key of the workspace storage
+     */
+    private String userStorageKey;
+
+    /**
+     * Creates an instance of ListWorkspaceKeysResultInner class.
+     */
     public ListWorkspaceKeysResultInner() {
     }
 
     /**
-     * Get the userStorageKey property: The userStorageKey property.
-     *
-     * @return the userStorageKey value.
-     */
-    public String userStorageKey() {
-        return this.userStorageKey;
-    }
-
-    /**
-     * Get the userStorageResourceId property: The userStorageResourceId property.
-     *
-     * @return the userStorageResourceId value.
-     */
-    public String userStorageResourceId() {
-        return this.userStorageResourceId;
-    }
-
-    /**
-     * Get the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
-     *
+     * Get the appInsightsInstrumentationKey property: The access key of the workspace app insights.
+     * 
      * @return the appInsightsInstrumentationKey value.
      */
     public String appInsightsInstrumentationKey() {
@@ -74,7 +59,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Get the containerRegistryCredentials property: The containerRegistryCredentials property.
-     *
+     * 
      * @return the containerRegistryCredentials value.
      */
     public RegistryListCredentialsResult containerRegistryCredentials() {
@@ -82,8 +67,20 @@ public final class ListWorkspaceKeysResultInner {
     }
 
     /**
+     * Set the containerRegistryCredentials property: The containerRegistryCredentials property.
+     * 
+     * @param containerRegistryCredentials the containerRegistryCredentials value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner
+        withContainerRegistryCredentials(RegistryListCredentialsResult containerRegistryCredentials) {
+        this.containerRegistryCredentials = containerRegistryCredentials;
+        return this;
+    }
+
+    /**
      * Get the notebookAccessKeys property: The notebookAccessKeys property.
-     *
+     * 
      * @return the notebookAccessKeys value.
      */
     public ListNotebookKeysResultInner notebookAccessKeys() {
@@ -91,8 +88,37 @@ public final class ListWorkspaceKeysResultInner {
     }
 
     /**
+     * Set the notebookAccessKeys property: The notebookAccessKeys property.
+     * 
+     * @param notebookAccessKeys the notebookAccessKeys value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner withNotebookAccessKeys(ListNotebookKeysResultInner notebookAccessKeys) {
+        this.notebookAccessKeys = notebookAccessKeys;
+        return this;
+    }
+
+    /**
+     * Get the userStorageArmId property: The arm Id key of the workspace storage.
+     * 
+     * @return the userStorageArmId value.
+     */
+    public String userStorageArmId() {
+        return this.userStorageArmId;
+    }
+
+    /**
+     * Get the userStorageKey property: The access key of the workspace storage.
+     * 
+     * @return the userStorageKey value.
+     */
+    public String userStorageKey() {
+        return this.userStorageKey;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -102,5 +128,52 @@ public final class ListWorkspaceKeysResultInner {
         if (notebookAccessKeys() != null) {
             notebookAccessKeys().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("containerRegistryCredentials", this.containerRegistryCredentials);
+        jsonWriter.writeJsonField("notebookAccessKeys", this.notebookAccessKeys);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ListWorkspaceKeysResultInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ListWorkspaceKeysResultInner if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ListWorkspaceKeysResultInner.
+     */
+    public static ListWorkspaceKeysResultInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ListWorkspaceKeysResultInner deserializedListWorkspaceKeysResultInner = new ListWorkspaceKeysResultInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("appInsightsInstrumentationKey".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.appInsightsInstrumentationKey = reader.getString();
+                } else if ("containerRegistryCredentials".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.containerRegistryCredentials
+                        = RegistryListCredentialsResult.fromJson(reader);
+                } else if ("notebookAccessKeys".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.notebookAccessKeys
+                        = ListNotebookKeysResultInner.fromJson(reader);
+                } else if ("userStorageArmId".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.userStorageArmId = reader.getString();
+                } else if ("userStorageKey".equals(fieldName)) {
+                    deserializedListWorkspaceKeysResultInner.userStorageKey = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedListWorkspaceKeysResultInner;
+        });
     }
 }
