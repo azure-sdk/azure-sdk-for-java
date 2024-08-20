@@ -5,33 +5,40 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** A paginated list of CodeVersion entities. */
+/**
+ * A paginated list of CodeVersion entities.
+ */
 @Fluent
-public final class CodeVersionResourceArmPaginatedResult {
+public final class CodeVersionResourceArmPaginatedResult
+    implements JsonSerializable<CodeVersionResourceArmPaginatedResult> {
     /*
      * The link to the next page of CodeVersion objects. If null, there are no additional pages.
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /*
      * An array of objects of type CodeVersion.
      */
-    @JsonProperty(value = "value")
     private List<CodeVersionInner> value;
 
-    /** Creates an instance of CodeVersionResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of CodeVersionResourceArmPaginatedResult class.
+     */
     public CodeVersionResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of CodeVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +48,7 @@ public final class CodeVersionResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of CodeVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CodeVersionResourceArmPaginatedResult object itself.
      */
@@ -52,7 +59,7 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type CodeVersion.
-     *
+     * 
      * @return the value value.
      */
     public List<CodeVersionInner> value() {
@@ -61,7 +68,7 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type CodeVersion.
-     *
+     * 
      * @param value the value value to set.
      * @return the CodeVersionResourceArmPaginatedResult object itself.
      */
@@ -72,12 +79,53 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of CodeVersionResourceArmPaginatedResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of CodeVersionResourceArmPaginatedResult if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the CodeVersionResourceArmPaginatedResult.
+     */
+    public static CodeVersionResourceArmPaginatedResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            CodeVersionResourceArmPaginatedResult deserializedCodeVersionResourceArmPaginatedResult
+                = new CodeVersionResourceArmPaginatedResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("nextLink".equals(fieldName)) {
+                    deserializedCodeVersionResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
+                    List<CodeVersionInner> value = reader.readArray(reader1 -> CodeVersionInner.fromJson(reader1));
+                    deserializedCodeVersionResourceArmPaginatedResult.value = value;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedCodeVersionResourceArmPaginatedResult;
+        });
     }
 }

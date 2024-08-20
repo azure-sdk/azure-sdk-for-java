@@ -5,33 +5,40 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeContainerInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** A paginated list of CodeContainer entities. */
+/**
+ * A paginated list of CodeContainer entities.
+ */
 @Fluent
-public final class CodeContainerResourceArmPaginatedResult {
+public final class CodeContainerResourceArmPaginatedResult
+    implements JsonSerializable<CodeContainerResourceArmPaginatedResult> {
     /*
      * The link to the next page of CodeContainer objects. If null, there are no additional pages.
      */
-    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /*
      * An array of objects of type CodeContainer.
      */
-    @JsonProperty(value = "value")
     private List<CodeContainerInner> value;
 
-    /** Creates an instance of CodeContainerResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of CodeContainerResourceArmPaginatedResult class.
+     */
     public CodeContainerResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of CodeContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +48,7 @@ public final class CodeContainerResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of CodeContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CodeContainerResourceArmPaginatedResult object itself.
      */
@@ -52,7 +59,7 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type CodeContainer.
-     *
+     * 
      * @return the value value.
      */
     public List<CodeContainerInner> value() {
@@ -61,7 +68,7 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type CodeContainer.
-     *
+     * 
      * @param value the value value to set.
      * @return the CodeContainerResourceArmPaginatedResult object itself.
      */
@@ -72,12 +79,53 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() != null) {
             value().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of CodeContainerResourceArmPaginatedResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of CodeContainerResourceArmPaginatedResult if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the CodeContainerResourceArmPaginatedResult.
+     */
+    public static CodeContainerResourceArmPaginatedResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            CodeContainerResourceArmPaginatedResult deserializedCodeContainerResourceArmPaginatedResult
+                = new CodeContainerResourceArmPaginatedResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("nextLink".equals(fieldName)) {
+                    deserializedCodeContainerResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
+                    List<CodeContainerInner> value = reader.readArray(reader1 -> CodeContainerInner.fromJson(reader1));
+                    deserializedCodeContainerResourceArmPaginatedResult.value = value;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedCodeContainerResourceArmPaginatedResult;
+        });
     }
 }
