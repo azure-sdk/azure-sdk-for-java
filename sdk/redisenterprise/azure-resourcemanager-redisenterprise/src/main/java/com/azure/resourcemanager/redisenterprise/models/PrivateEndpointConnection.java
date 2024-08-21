@@ -4,8 +4,10 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of PrivateEndpointConnection.
@@ -33,7 +35,21 @@ public interface PrivateEndpointConnection {
     String type();
 
     /**
-     * Gets the privateEndpoint property: The resource of private end point.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the groupIds property: The group ids for the private endpoint resource.
+     * 
+     * @return the groupIds value.
+     */
+    List<String> groupIds();
+
+    /**
+     * Gets the privateEndpoint property: The private endpoint resource.
      * 
      * @return the privateEndpoint value.
      */
@@ -126,9 +142,9 @@ public interface PrivateEndpointConnection {
          */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
+             * Specifies the privateEndpoint property: The private endpoint resource..
              * 
-             * @param privateEndpoint The resource of private end point.
+             * @param privateEndpoint The private endpoint resource.
              * @return the next definition stage.
              */
             WithCreate withPrivateEndpoint(PrivateEndpoint privateEndpoint);
@@ -187,9 +203,9 @@ public interface PrivateEndpointConnection {
          */
         interface WithPrivateEndpoint {
             /**
-             * Specifies the privateEndpoint property: The resource of private end point..
+             * Specifies the privateEndpoint property: The private endpoint resource..
              * 
-             * @param privateEndpoint The resource of private end point.
+             * @param privateEndpoint The private endpoint resource.
              * @return the next definition stage.
              */
             Update withPrivateEndpoint(PrivateEndpoint privateEndpoint);

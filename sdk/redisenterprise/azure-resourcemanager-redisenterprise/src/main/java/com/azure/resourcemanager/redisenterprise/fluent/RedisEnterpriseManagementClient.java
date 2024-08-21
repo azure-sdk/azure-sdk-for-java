@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface RedisEnterpriseManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -73,6 +73,20 @@ public interface RedisEnterpriseManagementClient {
      * @return the DatabasesClient object.
      */
     DatabasesClient getDatabases();
+
+    /**
+     * Gets the AccessPolicyAssignmentsClient object to access its operations.
+     * 
+     * @return the AccessPolicyAssignmentsClient object.
+     */
+    AccessPolicyAssignmentsClient getAccessPolicyAssignments();
+
+    /**
+     * Gets the AccessPolicyAssignmentsOperationsClient object to access its operations.
+     * 
+     * @return the AccessPolicyAssignmentsOperationsClient object.
+     */
+    AccessPolicyAssignmentsOperationsClient getAccessPolicyAssignmentsOperations();
 
     /**
      * Gets the PrivateEndpointConnectionsClient object to access its operations.

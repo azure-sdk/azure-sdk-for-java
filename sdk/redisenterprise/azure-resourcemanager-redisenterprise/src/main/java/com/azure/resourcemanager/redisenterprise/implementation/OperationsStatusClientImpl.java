@@ -22,7 +22,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.redisenterprise.fluent.OperationsStatusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
+import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusResultInner;
 import reactor.core.publisher.Mono;
 
 /**
@@ -61,7 +61,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/operationsStatus/{operationId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationStatusInner>> get(@HostParam("$host") String endpoint,
+        Mono<Response<OperationStatusResultInner>> get(@HostParam("$host") String endpoint,
             @PathParam("location") String location, @PathParam("operationId") String operationId,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept, Context context);
@@ -70,7 +70,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
     /**
      * Gets the status of operation.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -78,7 +78,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
      * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String operationId) {
+    private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(String location, String operationId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -103,7 +103,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
     /**
      * Gets the status of operation.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -112,7 +112,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
      * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String operationId,
+    private Mono<Response<OperationStatusResultInner>> getWithResponseAsync(String location, String operationId,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -137,7 +137,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
     /**
      * Gets the status of operation.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -145,14 +145,14 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
      * @return the status of operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusInner> getAsync(String location, String operationId) {
+    private Mono<OperationStatusResultInner> getAsync(String location, String operationId) {
         return getWithResponseAsync(location, operationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the status of operation.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -161,14 +161,14 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
      * @return the status of operation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationStatusInner> getWithResponse(String location, String operationId, Context context) {
+    public Response<OperationStatusResultInner> getWithResponse(String location, String operationId, Context context) {
         return getWithResponseAsync(location, operationId, context).block();
     }
 
     /**
      * Gets the status of operation.
      * 
-     * @param location The name of Azure region.
+     * @param location The name of the Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -176,7 +176,7 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
      * @return the status of operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusInner get(String location, String operationId) {
+    public OperationStatusResultInner get(String location, String operationId) {
         return getWithResponse(location, operationId, Context.NONE).getValue();
     }
 }

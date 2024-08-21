@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -34,6 +35,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterprisesClient;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
+import com.azure.resourcemanager.redisenterprise.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.redisenterprise.models.ClusterList;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
 import java.nio.ByteBuffer;
@@ -127,6 +129,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/checkNameAvailability")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> checkNameAvailability(@HostParam("$host") String endpoint,
+            @PathParam("location") String location, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") CheckNameAvailabilityParameters parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -147,11 +159,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return describes the Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -189,12 +201,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return describes the Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -231,11 +243,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link PollerFlux} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginCreateAsync(String resourceGroupName,
@@ -250,12 +262,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link PollerFlux} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginCreateAsync(String resourceGroupName,
@@ -272,11 +284,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(String resourceGroupName, String clusterName,
@@ -289,12 +301,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(String resourceGroupName, String clusterName,
@@ -307,11 +319,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster on successful completion of {@link Mono}.
+     * @return describes the Redis Enterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterInner> createAsync(String resourceGroupName, String clusterName, ClusterInner parameters) {
@@ -324,12 +336,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster on successful completion of {@link Mono}.
+     * @return describes the Redis Enterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterInner> createAsync(String resourceGroupName, String clusterName, ClusterInner parameters,
@@ -343,11 +355,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
+     * @return describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters) {
@@ -359,12 +371,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
+     * @return describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters, Context context) {
@@ -372,15 +384,15 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return describes the Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -414,16 +426,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return describes the Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -456,15 +468,15 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link PollerFlux} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginUpdateAsync(String resourceGroupName,
@@ -475,16 +487,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link PollerFlux} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterInner>, ClusterInner> beginUpdateAsync(String resourceGroupName,
@@ -497,15 +509,15 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(String resourceGroupName, String clusterName,
@@ -514,16 +526,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(String resourceGroupName, String clusterName,
@@ -532,15 +544,15 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster on successful completion of {@link Mono}.
+     * @return describes the Redis Enterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterInner> updateAsync(String resourceGroupName, String clusterName, ClusterUpdate parameters) {
@@ -549,16 +561,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster on successful completion of {@link Mono}.
+     * @return describes the Redis Enterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterInner> updateAsync(String resourceGroupName, String clusterName, ClusterUpdate parameters,
@@ -568,15 +580,15 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
+     * @return describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters) {
@@ -584,16 +596,16 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Updates an existing RedisEnterprise cluster.
+     * Updates an existing Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
+     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the RedisEnterprise cluster.
+     * @return describes the Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters,
@@ -602,7 +614,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -636,7 +648,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -671,7 +683,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -688,7 +700,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -708,7 +720,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -723,7 +735,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -740,7 +752,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -755,7 +767,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -772,7 +784,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -786,7 +798,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Deletes a RedisEnterprise cache cluster.
+     * Deletes a Redis Enterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -801,14 +813,14 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets information about a RedisEnterprise cluster.
+     * Gets information about a Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return information about a Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -837,7 +849,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets information about a RedisEnterprise cluster.
+     * Gets information about a Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -845,7 +857,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response} on successful completion of
+     * @return information about a Redis Enterprise cluster along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -873,14 +885,14 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets information about a RedisEnterprise cluster.
+     * Gets information about a Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster on successful completion of {@link Mono}.
+     * @return information about a Redis Enterprise cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterInner> getByResourceGroupAsync(String resourceGroupName, String clusterName) {
@@ -889,7 +901,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets information about a RedisEnterprise cluster.
+     * Gets information about a Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
@@ -897,7 +909,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response}.
+     * @return information about a Redis Enterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ClusterInner> getByResourceGroupWithResponse(String resourceGroupName, String clusterName,
@@ -906,14 +918,14 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets information about a RedisEnterprise cluster.
+     * Gets information about a Redis Enterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the Redis Enterprise cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster.
+     * @return information about a Redis Enterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ClusterInner getByResourceGroup(String resourceGroupName, String clusterName) {
@@ -921,7 +933,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -954,7 +966,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -989,7 +1001,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1004,7 +1016,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -1020,7 +1032,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1034,7 +1046,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Lists all RedisEnterprise clusters in a resource group.
+     * Lists all Redis Enterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -1049,12 +1061,12 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a list-all operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listSinglePageAsync() {
@@ -1076,14 +1088,14 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a list-all operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterInner>> listSinglePageAsync(Context context) {
@@ -1105,11 +1117,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link PagedFlux}.
+     * @return the response of a list-all operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ClusterInner> listAsync() {
@@ -1117,13 +1129,13 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link PagedFlux}.
+     * @return the response of a list-all operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ClusterInner> listAsync(Context context) {
@@ -1132,12 +1144,11 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ClusterInner> list() {
@@ -1145,14 +1156,13 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
-     * Gets all RedisEnterprise clusters in the specified subscription.
+     * Lists all Redis Enterprise clusters in the specified subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with
-     * {@link PagedIterable}.
+     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ClusterInner> list(Context context) {
@@ -1160,11 +1170,132 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     }
 
     /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     * type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> checkNameAvailabilityWithResponseAsync(String location,
+        CheckNameAvailabilityParameters parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.checkNameAvailability(this.client.getEndpoint(), location,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     * type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> checkNameAvailabilityWithResponseAsync(String location,
+        CheckNameAvailabilityParameters parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.checkNameAvailability(this.client.getEndpoint(), location, this.client.getApiVersion(),
+            this.client.getSubscriptionId(), parameters, accept, context);
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     * type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> checkNameAvailabilityAsync(String location, CheckNameAvailabilityParameters parameters) {
+        return checkNameAvailabilityWithResponseAsync(location, parameters).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     * type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> checkNameAvailabilityWithResponse(String location, CheckNameAvailabilityParameters parameters,
+        Context context) {
+        return checkNameAvailabilityWithResponseAsync(location, parameters, context).block();
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     * type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void checkNameAvailability(String location, CheckNameAvailabilityParameters parameters) {
+        checkNameAvailabilityWithResponse(location, parameters, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1192,9 +1323,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1221,9 +1350,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1249,9 +1376,7 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -6,23 +6,29 @@ package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
- * SKU parameters supplied to the create RedisEnterprise operation.
+ * SKU parameters supplied to the create Redis Enterprise cluster operation.
  */
 @Fluent
-public final class Sku {
+public final class Sku implements JsonSerializable<Sku> {
     /*
-     * The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)
+     * The level of Redis Enterprise cluster to deploy. Possible values: ('GeneralPurpose_G5', 'MemoryOptimized_M20',
+     * etc.). For more information on SKUs see the latest pricing documentation. Note that additional SKUs may become
+     * supported in the future.
      */
-    @JsonProperty(value = "name", required = true)
     private SkuName name;
 
     /*
-     * The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
+     * The size of the Redis Enterprise cluster. Valid values depend upon the SKU, and are (2, 4, 6, ...) for
+     * Enterprise_E SKUs and (3, 9, 15, ...) for EnterpriseFlash_ SKUs. This parameter is not used with the other
+     * (GeneralPurpose, MemoryOptimized, ComputeOptimized) SKUs. They operate without any capacity value.
      */
-    @JsonProperty(value = "capacity")
     private Integer capacity;
 
     /**
@@ -32,8 +38,9 @@ public final class Sku {
     }
 
     /**
-     * Get the name property: The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10,
-     * EnterpriseFlash_F300 etc.).
+     * Get the name property: The level of Redis Enterprise cluster to deploy. Possible values: ('GeneralPurpose_G5',
+     * 'MemoryOptimized_M20', etc.). For more information on SKUs see the latest pricing documentation. Note that
+     * additional SKUs may become supported in the future.
      * 
      * @return the name value.
      */
@@ -42,8 +49,9 @@ public final class Sku {
     }
 
     /**
-     * Set the name property: The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10,
-     * EnterpriseFlash_F300 etc.).
+     * Set the name property: The level of Redis Enterprise cluster to deploy. Possible values: ('GeneralPurpose_G5',
+     * 'MemoryOptimized_M20', etc.). For more information on SKUs see the latest pricing documentation. Note that
+     * additional SKUs may become supported in the future.
      * 
      * @param name the name value to set.
      * @return the Sku object itself.
@@ -54,8 +62,9 @@ public final class Sku {
     }
 
     /**
-     * Get the capacity property: The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid
-     * values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
+     * Get the capacity property: The size of the Redis Enterprise cluster. Valid values depend upon the SKU, and are
+     * (2, 4, 6, ...) for Enterprise_E SKUs and (3, 9, 15, ...) for EnterpriseFlash_ SKUs. This parameter is not used
+     * with the other (GeneralPurpose, MemoryOptimized, ComputeOptimized) SKUs. They operate without any capacity value.
      * 
      * @return the capacity value.
      */
@@ -64,8 +73,9 @@ public final class Sku {
     }
 
     /**
-     * Set the capacity property: The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid
-     * values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
+     * Set the capacity property: The size of the Redis Enterprise cluster. Valid values depend upon the SKU, and are
+     * (2, 4, 6, ...) for Enterprise_E SKUs and (3, 9, 15, ...) for EnterpriseFlash_ SKUs. This parameter is not used
+     * with the other (GeneralPurpose, MemoryOptimized, ComputeOptimized) SKUs. They operate without any capacity value.
      * 
      * @param capacity the capacity value to set.
      * @return the Sku object itself.
@@ -87,4 +97,44 @@ public final class Sku {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(Sku.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name == null ? null : this.name.toString());
+        jsonWriter.writeNumberField("capacity", this.capacity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Sku from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Sku if the JsonReader was pointing to an instance of it, or null if it was pointing to
+     * JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the Sku.
+     */
+    public static Sku fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Sku deserializedSku = new Sku();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedSku.name = SkuName.fromString(reader.getString());
+                } else if ("capacity".equals(fieldName)) {
+                    deserializedSku.capacity = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSku;
+        });
+    }
 }

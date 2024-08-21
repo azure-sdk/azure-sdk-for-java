@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.redisenterprise.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateLinkResourceInner;
 import java.util.List;
 
@@ -33,6 +34,13 @@ public interface PrivateLinkResource {
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the groupId property: The private link resource group id.
      * 
      * @return the groupId value.
@@ -47,7 +55,7 @@ public interface PrivateLinkResource {
     List<String> requiredMembers();
 
     /**
-     * Gets the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * Gets the requiredZoneNames property: The private link resource private link DNS zone name.
      * 
      * @return the requiredZoneNames value.
      */

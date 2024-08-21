@@ -24,6 +24,8 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterpriseManagementClient;
+import com.azure.resourcemanager.redisenterprise.implementation.AccessPolicyAssignmentsImpl;
+import com.azure.resourcemanager.redisenterprise.implementation.AccessPolicyAssignmentsOperationsImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.DatabasesImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.OperationsImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.OperationsStatusImpl;
@@ -31,6 +33,8 @@ import com.azure.resourcemanager.redisenterprise.implementation.PrivateEndpointC
 import com.azure.resourcemanager.redisenterprise.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterpriseManagementClientBuilder;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterprisesImpl;
+import com.azure.resourcemanager.redisenterprise.models.AccessPolicyAssignments;
+import com.azure.resourcemanager.redisenterprise.models.AccessPolicyAssignmentsOperations;
 import com.azure.resourcemanager.redisenterprise.models.Databases;
 import com.azure.resourcemanager.redisenterprise.models.Operations;
 import com.azure.resourcemanager.redisenterprise.models.OperationsStatus;
@@ -56,6 +60,10 @@ public final class RedisEnterpriseManager {
     private RedisEnterprises redisEnterprises;
 
     private Databases databases;
+
+    private AccessPolicyAssignments accessPolicyAssignments;
+
+    private AccessPolicyAssignmentsOperations accessPolicyAssignmentsOperations;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
@@ -225,7 +233,7 @@ public final class RedisEnterpriseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.redisenterprise")
                 .append("/")
-                .append("2.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -317,6 +325,32 @@ public final class RedisEnterpriseManager {
             this.databases = new DatabasesImpl(clientObject.getDatabases(), this);
         }
         return databases;
+    }
+
+    /**
+     * Gets the resource collection API of AccessPolicyAssignments.
+     * 
+     * @return Resource collection API of AccessPolicyAssignments.
+     */
+    public AccessPolicyAssignments accessPolicyAssignments() {
+        if (this.accessPolicyAssignments == null) {
+            this.accessPolicyAssignments
+                = new AccessPolicyAssignmentsImpl(clientObject.getAccessPolicyAssignments(), this);
+        }
+        return accessPolicyAssignments;
+    }
+
+    /**
+     * Gets the resource collection API of AccessPolicyAssignmentsOperations.
+     * 
+     * @return Resource collection API of AccessPolicyAssignmentsOperations.
+     */
+    public AccessPolicyAssignmentsOperations accessPolicyAssignmentsOperations() {
+        if (this.accessPolicyAssignmentsOperations == null) {
+            this.accessPolicyAssignmentsOperations
+                = new AccessPolicyAssignmentsOperationsImpl(clientObject.getAccessPolicyAssignmentsOperations(), this);
+        }
+        return accessPolicyAssignmentsOperations;
     }
 
     /**

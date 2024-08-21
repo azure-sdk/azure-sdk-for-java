@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.redisenterprise.generated;
 
+import com.azure.resourcemanager.redisenterprise.models.AccessKeysAuthentication;
 import com.azure.resourcemanager.redisenterprise.models.AofFrequency;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
@@ -20,7 +21,9 @@ import java.util.Arrays;
  */
 public final class DatabasesCreateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-03-01-preview/examples/RedisEnterpriseDatabasesCreate.json
+     * x-ms-original-file:
+     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * RedisEnterpriseDatabasesCreate.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesCreate.
@@ -41,11 +44,14 @@ public final class DatabasesCreateSamples {
                 new Module().withName("RedisTimeSeries").withArgs("RETENTION_POLICY 20"),
                 new Module().withName("RediSearch")))
             .withDeferUpgrade(DeferUpgradeSetting.NOT_DEFERRED)
+            .withAccessKeysAuthentication(AccessKeysAuthentication.ENABLED)
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-03-01-preview/examples/RedisEnterpriseDatabasesCreateWithGeoReplication.json
+     * x-ms-original-file:
+     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * RedisEnterpriseDatabasesCreateWithGeoReplication.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesCreate With Active Geo Replication.
@@ -66,6 +72,7 @@ public final class DatabasesCreateSamples {
                     "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default"),
                     new LinkedDatabase().withId(
                         "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"))))
+            .withAccessKeysAuthentication(AccessKeysAuthentication.ENABLED)
             .create();
     }
 }

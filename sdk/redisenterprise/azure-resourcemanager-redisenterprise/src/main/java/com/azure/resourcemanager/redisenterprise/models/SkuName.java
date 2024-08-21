@@ -5,13 +5,19 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.).
+ * The level of Redis Enterprise cluster to deploy. Possible values: ('GeneralPurpose_G5', 'MemoryOptimized_M20', etc.).
+ * For more information on SKUs see the latest pricing documentation. Note that additional SKUs may become supported in
+ * the future.
  */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
+    /**
+     * Static value Enterprise_E1 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E1 = fromString("Enterprise_E1");
+
     /**
      * Static value Enterprise_E5 for SkuName.
      */
@@ -38,6 +44,16 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
     public static final SkuName ENTERPRISE_E100 = fromString("Enterprise_E100");
 
     /**
+     * Static value Enterprise_E200 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E200 = fromString("Enterprise_E200");
+
+    /**
+     * Static value Enterprise_E400 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E400 = fromString("Enterprise_E400");
+
+    /**
      * Static value EnterpriseFlash_F300 for SkuName.
      */
     public static final SkuName ENTERPRISE_FLASH_F300 = fromString("EnterpriseFlash_F300");
@@ -51,6 +67,231 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
      * Static value EnterpriseFlash_F1500 for SkuName.
      */
     public static final SkuName ENTERPRISE_FLASH_F1500 = fromString("EnterpriseFlash_F1500");
+
+    /**
+     * Static value GeneralPurpose_G0 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G0 = fromString("GeneralPurpose_G0");
+
+    /**
+     * Static value GeneralPurpose_G1 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G1 = fromString("GeneralPurpose_G1");
+
+    /**
+     * Static value GeneralPurpose_G3 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G3 = fromString("GeneralPurpose_G3");
+
+    /**
+     * Static value GeneralPurpose_G5 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G5 = fromString("GeneralPurpose_G5");
+
+    /**
+     * Static value GeneralPurpose_G10 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G10 = fromString("GeneralPurpose_G10");
+
+    /**
+     * Static value GeneralPurpose_G20 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G20 = fromString("GeneralPurpose_G20");
+
+    /**
+     * Static value GeneralPurpose_G50 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G50 = fromString("GeneralPurpose_G50");
+
+    /**
+     * Static value GeneralPurpose_G100 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G100 = fromString("GeneralPurpose_G100");
+
+    /**
+     * Static value GeneralPurpose_G150 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G150 = fromString("GeneralPurpose_G150");
+
+    /**
+     * Static value GeneralPurpose_G250 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G250 = fromString("GeneralPurpose_G250");
+
+    /**
+     * Static value GeneralPurpose_G350 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G350 = fromString("GeneralPurpose_G350");
+
+    /**
+     * Static value GeneralPurpose_G500 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G500 = fromString("GeneralPurpose_G500");
+
+    /**
+     * Static value GeneralPurpose_G700 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G700 = fromString("GeneralPurpose_G700");
+
+    /**
+     * Static value GeneralPurpose_G1000 for SkuName.
+     */
+    public static final SkuName GENERAL_PURPOSE_G1000 = fromString("GeneralPurpose_G1000");
+
+    /**
+     * Static value MemoryOptimized_M10 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M10 = fromString("MemoryOptimized_M10");
+
+    /**
+     * Static value MemoryOptimized_M20 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M20 = fromString("MemoryOptimized_M20");
+
+    /**
+     * Static value MemoryOptimized_M50 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M50 = fromString("MemoryOptimized_M50");
+
+    /**
+     * Static value MemoryOptimized_M100 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M100 = fromString("MemoryOptimized_M100");
+
+    /**
+     * Static value MemoryOptimized_M150 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M150 = fromString("MemoryOptimized_M150");
+
+    /**
+     * Static value MemoryOptimized_M250 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M250 = fromString("MemoryOptimized_M250");
+
+    /**
+     * Static value MemoryOptimized_M350 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M350 = fromString("MemoryOptimized_M350");
+
+    /**
+     * Static value MemoryOptimized_M500 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M500 = fromString("MemoryOptimized_M500");
+
+    /**
+     * Static value MemoryOptimized_M700 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M700 = fromString("MemoryOptimized_M700");
+
+    /**
+     * Static value MemoryOptimized_M1000 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M1000 = fromString("MemoryOptimized_M1000");
+
+    /**
+     * Static value MemoryOptimized_M1500 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M1500 = fromString("MemoryOptimized_M1500");
+
+    /**
+     * Static value MemoryOptimized_M2000 for SkuName.
+     */
+    public static final SkuName MEMORY_OPTIMIZED_M2000 = fromString("MemoryOptimized_M2000");
+
+    /**
+     * Static value ComputeOptimized_X1 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X1 = fromString("ComputeOptimized_X1");
+
+    /**
+     * Static value ComputeOptimized_X3 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X3 = fromString("ComputeOptimized_X3");
+
+    /**
+     * Static value ComputeOptimized_X5 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X5 = fromString("ComputeOptimized_X5");
+
+    /**
+     * Static value ComputeOptimized_X10 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X10 = fromString("ComputeOptimized_X10");
+
+    /**
+     * Static value ComputeOptimized_X20 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X20 = fromString("ComputeOptimized_X20");
+
+    /**
+     * Static value ComputeOptimized_X50 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X50 = fromString("ComputeOptimized_X50");
+
+    /**
+     * Static value ComputeOptimized_X100 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X100 = fromString("ComputeOptimized_X100");
+
+    /**
+     * Static value ComputeOptimized_X150 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X150 = fromString("ComputeOptimized_X150");
+
+    /**
+     * Static value ComputeOptimized_X250 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X250 = fromString("ComputeOptimized_X250");
+
+    /**
+     * Static value ComputeOptimized_X350 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X350 = fromString("ComputeOptimized_X350");
+
+    /**
+     * Static value ComputeOptimized_X500 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X500 = fromString("ComputeOptimized_X500");
+
+    /**
+     * Static value ComputeOptimized_X700 for SkuName.
+     */
+    public static final SkuName COMPUTE_OPTIMIZED_X700 = fromString("ComputeOptimized_X700");
+
+    /**
+     * Static value AutoTiering_T250 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T250 = fromString("AutoTiering_T250");
+
+    /**
+     * Static value AutoTiering_T500 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T500 = fromString("AutoTiering_T500");
+
+    /**
+     * Static value AutoTiering_T700 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T700 = fromString("AutoTiering_T700");
+
+    /**
+     * Static value AutoTiering_T1000 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T1000 = fromString("AutoTiering_T1000");
+
+    /**
+     * Static value AutoTiering_T1500 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T1500 = fromString("AutoTiering_T1500");
+
+    /**
+     * Static value AutoTiering_T2000 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T2000 = fromString("AutoTiering_T2000");
+
+    /**
+     * Static value AutoTiering_T4500 for SkuName.
+     */
+    public static final SkuName AUTO_TIERING_T4500 = fromString("AutoTiering_T4500");
 
     /**
      * Creates a new instance of SkuName value.
@@ -67,7 +308,6 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
      * @param name a name to look for.
      * @return the corresponding SkuName.
      */
-    @JsonCreator
     public static SkuName fromString(String name) {
         return fromString(name, SkuName.class);
     }

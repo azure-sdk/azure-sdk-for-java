@@ -23,6 +23,8 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.redisenterprise.fluent.AccessPolicyAssignmentsClient;
+import com.azure.resourcemanager.redisenterprise.fluent.AccessPolicyAssignmentsOperationsClient;
 import com.azure.resourcemanager.redisenterprise.fluent.DatabasesClient;
 import com.azure.resourcemanager.redisenterprise.fluent.OperationsClient;
 import com.azure.resourcemanager.redisenterprise.fluent.OperationsStatusClient;
@@ -45,12 +47,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = RedisEnterpriseManagementClientBuilder.class)
 public final class RedisEnterpriseManagementClientImpl implements RedisEnterpriseManagementClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -185,6 +187,34 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
     }
 
     /**
+     * The AccessPolicyAssignmentsClient object to access its operations.
+     */
+    private final AccessPolicyAssignmentsClient accessPolicyAssignments;
+
+    /**
+     * Gets the AccessPolicyAssignmentsClient object to access its operations.
+     * 
+     * @return the AccessPolicyAssignmentsClient object.
+     */
+    public AccessPolicyAssignmentsClient getAccessPolicyAssignments() {
+        return this.accessPolicyAssignments;
+    }
+
+    /**
+     * The AccessPolicyAssignmentsOperationsClient object to access its operations.
+     */
+    private final AccessPolicyAssignmentsOperationsClient accessPolicyAssignmentsOperations;
+
+    /**
+     * Gets the AccessPolicyAssignmentsOperationsClient object to access its operations.
+     * 
+     * @return the AccessPolicyAssignmentsOperationsClient object.
+     */
+    public AccessPolicyAssignmentsOperationsClient getAccessPolicyAssignmentsOperations() {
+        return this.accessPolicyAssignmentsOperations;
+    }
+
+    /**
      * The PrivateEndpointConnectionsClient object to access its operations.
      */
     private final PrivateEndpointConnectionsClient privateEndpointConnections;
@@ -219,7 +249,7 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     RedisEnterpriseManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -229,11 +259,13 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01-preview";
+        this.apiVersion = "2024-09-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.operationsStatus = new OperationsStatusClientImpl(this);
         this.redisEnterprises = new RedisEnterprisesClientImpl(this);
         this.databases = new DatabasesClientImpl(this);
+        this.accessPolicyAssignments = new AccessPolicyAssignmentsClientImpl(this);
+        this.accessPolicyAssignmentsOperations = new AccessPolicyAssignmentsOperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
     }
