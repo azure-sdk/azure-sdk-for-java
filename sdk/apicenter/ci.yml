@@ -34,6 +34,10 @@ parameters:
     displayName: azure-resourcemanager-apicenter
     type: boolean
     default: false
+  - name: release_azureapicenter
+    displayName: azure-apicenter
+    type: boolean
+    default: true
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -44,3 +48,7 @@ extends:
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerapicenter
         releaseInBatch: ${{ parameters.release_azureresourcemanagerapicenter }}
+      - name: azure-apicenter
+        groupId: com.azure
+        safeName: azureapicenter
+        releaseInBatch: ${{ parameters.release_azureapicenter }}
