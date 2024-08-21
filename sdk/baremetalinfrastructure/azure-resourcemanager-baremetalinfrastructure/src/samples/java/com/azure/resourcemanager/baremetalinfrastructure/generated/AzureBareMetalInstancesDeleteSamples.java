@@ -5,22 +5,23 @@
 package com.azure.resourcemanager.baremetalinfrastructure.generated;
 
 /**
- * Samples for AzureBareMetalInstances Restart.
+ * Samples for AzureBareMetalInstances Delete.
  */
-public final class AzureBareMetalInstancesRestartSamples {
+public final class AzureBareMetalInstancesDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2024-08-01-
-     * preview/examples/AzureBareMetalInstances_Restart.json
+     * preview/examples/AzureBareMetalInstances_Delete.json
      */
     /**
-     * Sample code: Restart an Azure Bare Metal Instance.
+     * Sample code: AzureBareMetalInstances_Delete.
      * 
      * @param manager Entry point to BareMetalInfrastructureManager.
      */
-    public static void restartAnAzureBareMetalInstance(
+    public static void azureBareMetalInstancesDelete(
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager) {
         manager.azureBareMetalInstances()
-            .restart("myResourceGroup", "myABMInstance", null, com.azure.core.util.Context.NONE);
+            .deleteByResourceGroupWithResponse("myResourceGroup", "myAzureBareMetalInstance",
+                com.azure.core.util.Context.NONE);
     }
 }
