@@ -13,8 +13,8 @@ import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageIdentifier;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageVersion;
 import com.azure.resourcemanager.azurestackhci.models.HyperVGeneration;
-import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImageStatus;
 import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImages;
+import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImageStatus;
 import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImagesUpdateRequest;
 import com.azure.resourcemanager.azurestackhci.models.OperatingSystemTypes;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
@@ -25,7 +25,7 @@ public final class MarketplaceGalleryImagesImpl
     implements MarketplaceGalleryImages, MarketplaceGalleryImages.Definition, MarketplaceGalleryImages.Update {
     private MarketplaceGalleryImagesInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -108,7 +108,7 @@ public final class MarketplaceGalleryImagesImpl
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 
@@ -124,25 +124,21 @@ public final class MarketplaceGalleryImagesImpl
     }
 
     public MarketplaceGalleryImages create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .createOrUpdate(resourceGroupName, marketplaceGalleryImageName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .createOrUpdate(resourceGroupName, marketplaceGalleryImageName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public MarketplaceGalleryImages create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .createOrUpdate(resourceGroupName, marketplaceGalleryImageName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .createOrUpdate(resourceGroupName, marketplaceGalleryImageName, this.innerModel(), context);
         return this;
     }
 
-    MarketplaceGalleryImagesImpl(
-        String name, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    MarketplaceGalleryImagesImpl(String name,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = new MarketplaceGalleryImagesInner();
         this.serviceManager = serviceManager;
         this.marketplaceGalleryImageName = name;
@@ -154,49 +150,41 @@ public final class MarketplaceGalleryImagesImpl
     }
 
     public MarketplaceGalleryImages apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .update(resourceGroupName, marketplaceGalleryImageName, updateMarketplaceGalleryImages, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .update(resourceGroupName, marketplaceGalleryImageName, updateMarketplaceGalleryImages, Context.NONE);
         return this;
     }
 
     public MarketplaceGalleryImages apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .update(resourceGroupName, marketplaceGalleryImageName, updateMarketplaceGalleryImages, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .update(resourceGroupName, marketplaceGalleryImageName, updateMarketplaceGalleryImages, context);
         return this;
     }
 
-    MarketplaceGalleryImagesImpl(
-        MarketplaceGalleryImagesInner innerObject,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    MarketplaceGalleryImagesImpl(MarketplaceGalleryImagesInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.marketplaceGalleryImageName = Utils.getValueFromIdByName(innerObject.id(), "marketplaceGalleryImages");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.marketplaceGalleryImageName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "marketplaceGalleryImages");
     }
 
     public MarketplaceGalleryImages refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public MarketplaceGalleryImages refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMarketplaceGalleryImagesOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMarketplaceGalleryImagesOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, context)
+            .getValue();
         return this;
     }
 

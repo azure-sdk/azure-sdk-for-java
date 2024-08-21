@@ -4,19 +4,22 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for VirtualMachineInstances Delete. */
+/**
+ * Samples for VirtualMachineInstances Delete.
+ */
 public final class VirtualMachineInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteVirtualMachineInstance.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteVirtualMachineInstance.json
      */
     /**
      * Sample code: DeleteVirtualMachine.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void deleteVirtualMachine(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager
-            .virtualMachineInstances()
+    public static void deleteVirtualMachine(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
+        manager.virtualMachineInstances()
             .delete(
                 "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/Microsoft.HybridCompute/machines/DemoVM",
                 com.azure.core.util.Context.NONE);

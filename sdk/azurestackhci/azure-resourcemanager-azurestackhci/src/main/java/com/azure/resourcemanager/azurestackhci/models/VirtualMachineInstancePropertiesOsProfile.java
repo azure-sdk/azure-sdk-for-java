@@ -5,48 +5,52 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** OsProfile - describes the configuration of the operating system and sets login data. */
+/**
+ * OsProfile - describes the configuration of the operating system and sets login data.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesOsProfile {
+public final class VirtualMachineInstancePropertiesOsProfile
+    implements JsonSerializable<VirtualMachineInstancePropertiesOsProfile> {
     /*
      * AdminPassword - admin password
      */
-    @JsonProperty(value = "adminPassword")
     private String adminPassword;
 
     /*
      * AdminUsername - admin username
      */
-    @JsonProperty(value = "adminUsername")
     private String adminUsername;
 
     /*
      * ComputerName - name of the compute
      */
-    @JsonProperty(value = "computerName")
     private String computerName;
 
     /*
      * LinuxConfiguration - linux specific configuration values for the virtual machine instance
      */
-    @JsonProperty(value = "linuxConfiguration")
     private VirtualMachineInstancePropertiesOsProfileLinuxConfiguration linuxConfiguration;
 
     /*
      * Windows Configuration for the virtual machine instance
      */
-    @JsonProperty(value = "windowsConfiguration")
     private VirtualMachineInstancePropertiesOsProfileWindowsConfiguration windowsConfiguration;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesOsProfile class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesOsProfile class.
+     */
     public VirtualMachineInstancePropertiesOsProfile() {
     }
 
     /**
      * Get the adminPassword property: AdminPassword - admin password.
-     *
+     * 
      * @return the adminPassword value.
      */
     public String adminPassword() {
@@ -55,7 +59,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Set the adminPassword property: AdminPassword - admin password.
-     *
+     * 
      * @param adminPassword the adminPassword value to set.
      * @return the VirtualMachineInstancePropertiesOsProfile object itself.
      */
@@ -66,7 +70,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Get the adminUsername property: AdminUsername - admin username.
-     *
+     * 
      * @return the adminUsername value.
      */
     public String adminUsername() {
@@ -75,7 +79,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Set the adminUsername property: AdminUsername - admin username.
-     *
+     * 
      * @param adminUsername the adminUsername value to set.
      * @return the VirtualMachineInstancePropertiesOsProfile object itself.
      */
@@ -86,7 +90,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Get the computerName property: ComputerName - name of the compute.
-     *
+     * 
      * @return the computerName value.
      */
     public String computerName() {
@@ -95,7 +99,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Set the computerName property: ComputerName - name of the compute.
-     *
+     * 
      * @param computerName the computerName value to set.
      * @return the VirtualMachineInstancePropertiesOsProfile object itself.
      */
@@ -107,7 +111,7 @@ public final class VirtualMachineInstancePropertiesOsProfile {
     /**
      * Get the linuxConfiguration property: LinuxConfiguration - linux specific configuration values for the virtual
      * machine instance.
-     *
+     * 
      * @return the linuxConfiguration value.
      */
     public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration linuxConfiguration() {
@@ -117,19 +121,19 @@ public final class VirtualMachineInstancePropertiesOsProfile {
     /**
      * Set the linuxConfiguration property: LinuxConfiguration - linux specific configuration values for the virtual
      * machine instance.
-     *
+     * 
      * @param linuxConfiguration the linuxConfiguration value to set.
      * @return the VirtualMachineInstancePropertiesOsProfile object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfile withLinuxConfiguration(
-        VirtualMachineInstancePropertiesOsProfileLinuxConfiguration linuxConfiguration) {
+    public VirtualMachineInstancePropertiesOsProfile
+        withLinuxConfiguration(VirtualMachineInstancePropertiesOsProfileLinuxConfiguration linuxConfiguration) {
         this.linuxConfiguration = linuxConfiguration;
         return this;
     }
 
     /**
      * Get the windowsConfiguration property: Windows Configuration for the virtual machine instance.
-     *
+     * 
      * @return the windowsConfiguration value.
      */
     public VirtualMachineInstancePropertiesOsProfileWindowsConfiguration windowsConfiguration() {
@@ -138,19 +142,19 @@ public final class VirtualMachineInstancePropertiesOsProfile {
 
     /**
      * Set the windowsConfiguration property: Windows Configuration for the virtual machine instance.
-     *
+     * 
      * @param windowsConfiguration the windowsConfiguration value to set.
      * @return the VirtualMachineInstancePropertiesOsProfile object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfile withWindowsConfiguration(
-        VirtualMachineInstancePropertiesOsProfileWindowsConfiguration windowsConfiguration) {
+    public VirtualMachineInstancePropertiesOsProfile
+        withWindowsConfiguration(VirtualMachineInstancePropertiesOsProfileWindowsConfiguration windowsConfiguration) {
         this.windowsConfiguration = windowsConfiguration;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -160,5 +164,56 @@ public final class VirtualMachineInstancePropertiesOsProfile {
         if (windowsConfiguration() != null) {
             windowsConfiguration().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("adminPassword", this.adminPassword);
+        jsonWriter.writeStringField("adminUsername", this.adminUsername);
+        jsonWriter.writeStringField("computerName", this.computerName);
+        jsonWriter.writeJsonField("linuxConfiguration", this.linuxConfiguration);
+        jsonWriter.writeJsonField("windowsConfiguration", this.windowsConfiguration);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesOsProfile from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesOsProfile if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualMachineInstancePropertiesOsProfile.
+     */
+    public static VirtualMachineInstancePropertiesOsProfile fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesOsProfile deserializedVirtualMachineInstancePropertiesOsProfile
+                = new VirtualMachineInstancePropertiesOsProfile();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("adminPassword".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfile.adminPassword = reader.getString();
+                } else if ("adminUsername".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfile.adminUsername = reader.getString();
+                } else if ("computerName".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfile.computerName = reader.getString();
+                } else if ("linuxConfiguration".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfile.linuxConfiguration
+                        = VirtualMachineInstancePropertiesOsProfileLinuxConfiguration.fromJson(reader);
+                } else if ("windowsConfiguration".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfile.windowsConfiguration
+                        = VirtualMachineInstancePropertiesOsProfileWindowsConfiguration.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesOsProfile;
+        });
     }
 }

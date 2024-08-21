@@ -5,25 +5,32 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** The StorageProfileUpdate model. */
+/**
+ * The StorageProfileUpdate model.
+ */
 @Fluent
-public final class StorageProfileUpdate {
+public final class StorageProfileUpdate implements JsonSerializable<StorageProfileUpdate> {
     /*
      * adds data disks to the virtual machine instance for the update call
      */
-    @JsonProperty(value = "dataDisks")
     private List<StorageProfileUpdateDataDisksItem> dataDisks;
 
-    /** Creates an instance of StorageProfileUpdate class. */
+    /**
+     * Creates an instance of StorageProfileUpdate class.
+     */
     public StorageProfileUpdate() {
     }
 
     /**
      * Get the dataDisks property: adds data disks to the virtual machine instance for the update call.
-     *
+     * 
      * @return the dataDisks value.
      */
     public List<StorageProfileUpdateDataDisksItem> dataDisks() {
@@ -32,7 +39,7 @@ public final class StorageProfileUpdate {
 
     /**
      * Set the dataDisks property: adds data disks to the virtual machine instance for the update call.
-     *
+     * 
      * @param dataDisks the dataDisks value to set.
      * @return the StorageProfileUpdate object itself.
      */
@@ -43,12 +50,50 @@ public final class StorageProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dataDisks() != null) {
             dataDisks().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("dataDisks", this.dataDisks, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageProfileUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageProfileUpdate if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the StorageProfileUpdate.
+     */
+    public static StorageProfileUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageProfileUpdate deserializedStorageProfileUpdate = new StorageProfileUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("dataDisks".equals(fieldName)) {
+                    List<StorageProfileUpdateDataDisksItem> dataDisks
+                        = reader.readArray(reader1 -> StorageProfileUpdateDataDisksItem.fromJson(reader1));
+                    deserializedStorageProfileUpdate.dataDisks = dataDisks;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageProfileUpdate;
+        });
     }
 }

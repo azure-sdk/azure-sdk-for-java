@@ -4,17 +4,21 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for StorageContainersOperation Delete. */
+/**
+ * Samples for StorageContainersOperation Delete.
+ */
 public final class StorageContainersOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteStorageContainer.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteStorageContainer.json
      */
     /**
      * Sample code: DeleteStorageContainer.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void deleteStorageContainer(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void deleteStorageContainer(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.storageContainersOperations().delete("test-rg", "Default_Container", com.azure.core.util.Context.NONE);
     }
 }

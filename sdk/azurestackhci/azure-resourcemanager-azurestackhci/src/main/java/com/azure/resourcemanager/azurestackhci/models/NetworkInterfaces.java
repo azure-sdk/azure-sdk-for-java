@@ -11,139 +11,146 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.NetworkInterfacesIn
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of NetworkInterfaces. */
+/**
+ * An immutable client-side representation of NetworkInterfaces.
+ */
 public interface NetworkInterfaces {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
      * Gets the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network interface.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     List<IpConfiguration> ipConfigurations();
 
     /**
      * Gets the macAddress property: MacAddress - The MAC address of the network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     String macAddress();
 
     /**
      * Gets the dnsSettings property: DNS Settings for the interface.
-     *
+     * 
      * @return the dnsSettings value.
      */
     InterfaceDnsSettings dnsSettings();
 
     /**
      * Gets the provisioningState property: Provisioning state of the network interface.
-     *
+     * 
      * @return the provisioningState value.
      */
     ProvisioningStateEnum provisioningState();
 
     /**
      * Gets the status property: The observed state of network interfaces.
-     *
+     * 
      * @return the status value.
      */
     NetworkInterfaceStatus status();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.azurestackhci.fluent.models.NetworkInterfacesInner object.
-     *
+     * 
      * @return the inner object.
      */
     NetworkInterfacesInner innerModel();
 
-    /** The entirety of the NetworkInterfaces definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the NetworkInterfaces definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
-    /** The NetworkInterfaces definition stages. */
+    /**
+     * The NetworkInterfaces definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the NetworkInterfaces definition. */
+        /**
+         * The first stage of the NetworkInterfaces definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify location. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -151,18 +158,20 @@ public interface NetworkInterfaces {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify parent resource. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
@@ -173,78 +182,84 @@ public interface NetworkInterfaces {
          * The stage of the NetworkInterfaces definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags,
-                DefinitionStages.WithExtendedLocation,
-                DefinitionStages.WithIpConfigurations,
-                DefinitionStages.WithMacAddress,
-                DefinitionStages.WithDnsSettings {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation,
+            DefinitionStages.WithIpConfigurations, DefinitionStages.WithMacAddress, DefinitionStages.WithDnsSettings {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             NetworkInterfaces create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             NetworkInterfaces create(Context context);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify tags. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify extendedLocation. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify extendedLocation.
+         */
         interface WithExtendedLocation {
             /**
              * Specifies the extendedLocation property: The extendedLocation of the resource..
-             *
+             * 
              * @param extendedLocation The extendedLocation of the resource.
              * @return the next definition stage.
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify ipConfigurations. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify ipConfigurations.
+         */
         interface WithIpConfigurations {
             /**
              * Specifies the ipConfigurations property: IPConfigurations - A list of IPConfigurations of the network
              * interface..
-             *
+             * 
              * @param ipConfigurations IPConfigurations - A list of IPConfigurations of the network interface.
              * @return the next definition stage.
              */
             WithCreate withIpConfigurations(List<IpConfiguration> ipConfigurations);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify macAddress. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify macAddress.
+         */
         interface WithMacAddress {
             /**
              * Specifies the macAddress property: MacAddress - The MAC address of the network interface..
-             *
+             * 
              * @param macAddress MacAddress - The MAC address of the network interface.
              * @return the next definition stage.
              */
             WithCreate withMacAddress(String macAddress);
         }
 
-        /** The stage of the NetworkInterfaces definition allowing to specify dnsSettings. */
+        /**
+         * The stage of the NetworkInterfaces definition allowing to specify dnsSettings.
+         */
         interface WithDnsSettings {
             /**
              * Specifies the dnsSettings property: DNS Settings for the interface.
-             *
+             * 
              * @param dnsSettings DNS Settings for the interface.
              * @return the next definition stage.
              */
@@ -254,36 +269,42 @@ public interface NetworkInterfaces {
 
     /**
      * Begins update for the NetworkInterfaces resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     NetworkInterfaces.Update update();
 
-    /** The template for NetworkInterfaces update. */
+    /**
+     * The template for NetworkInterfaces update.
+     */
     interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         NetworkInterfaces apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         NetworkInterfaces apply(Context context);
     }
 
-    /** The NetworkInterfaces update stages. */
+    /**
+     * The NetworkInterfaces update stages.
+     */
     interface UpdateStages {
-        /** The stage of the NetworkInterfaces update allowing to specify tags. */
+        /**
+         * The stage of the NetworkInterfaces update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags.
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
@@ -293,14 +314,14 @@ public interface NetworkInterfaces {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     NetworkInterfaces refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

@@ -4,17 +4,21 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for GalleryImagesOperation Delete. */
+/**
+ * Samples for GalleryImagesOperation Delete.
+ */
 public final class GalleryImagesOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteGalleryImage.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteGalleryImage.json
      */
     /**
      * Sample code: DeleteGalleryImage.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void deleteGalleryImage(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void deleteGalleryImage(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.galleryImagesOperations().delete("test-rg", "test-gallery-image", com.azure.core.util.Context.NONE);
     }
 }

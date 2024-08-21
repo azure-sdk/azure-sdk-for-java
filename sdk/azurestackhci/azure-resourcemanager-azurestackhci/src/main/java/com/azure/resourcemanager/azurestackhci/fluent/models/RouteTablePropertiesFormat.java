@@ -5,26 +5,33 @@
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.Route;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** RouteTablePropertiesFormat - Route Table resource. */
+/**
+ * RouteTablePropertiesFormat - Route Table resource.
+ */
 @Fluent
-public final class RouteTablePropertiesFormat {
+public final class RouteTablePropertiesFormat implements JsonSerializable<RouteTablePropertiesFormat> {
     /*
      * Collection of routes contained within a route table.
      */
-    @JsonProperty(value = "routes")
     private List<Route> routes;
 
-    /** Creates an instance of RouteTablePropertiesFormat class. */
+    /**
+     * Creates an instance of RouteTablePropertiesFormat class.
+     */
     public RouteTablePropertiesFormat() {
     }
 
     /**
      * Get the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @return the routes value.
      */
     public List<Route> routes() {
@@ -33,7 +40,7 @@ public final class RouteTablePropertiesFormat {
 
     /**
      * Set the routes property: Collection of routes contained within a route table.
-     *
+     * 
      * @param routes the routes value to set.
      * @return the RouteTablePropertiesFormat object itself.
      */
@@ -44,12 +51,49 @@ public final class RouteTablePropertiesFormat {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (routes() != null) {
             routes().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("routes", this.routes, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of RouteTablePropertiesFormat from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of RouteTablePropertiesFormat if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the RouteTablePropertiesFormat.
+     */
+    public static RouteTablePropertiesFormat fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            RouteTablePropertiesFormat deserializedRouteTablePropertiesFormat = new RouteTablePropertiesFormat();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("routes".equals(fieldName)) {
+                    List<Route> routes = reader.readArray(reader1 -> Route.fromJson(reader1));
+                    deserializedRouteTablePropertiesFormat.routes = routes;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedRouteTablePropertiesFormat;
+        });
     }
 }

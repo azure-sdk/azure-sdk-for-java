@@ -4,17 +4,21 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for VirtualHardDisksOperation Delete. */
+/**
+ * Samples for VirtualHardDisksOperation Delete.
+ */
 public final class VirtualHardDisksOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteVirtualHardDisk.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteVirtualHardDisk.json
      */
     /**
      * Sample code: DeleteVirtualHardDisk.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void deleteVirtualHardDisk(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void deleteVirtualHardDisk(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.virtualHardDisksOperations().delete("test-rg", "test-vhd", com.azure.core.util.Context.NONE);
     }
 }
