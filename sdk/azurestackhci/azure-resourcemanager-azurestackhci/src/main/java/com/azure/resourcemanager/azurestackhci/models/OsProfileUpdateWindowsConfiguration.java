@@ -5,32 +5,39 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The OsProfileUpdateWindowsConfiguration model. */
+/**
+ * The OsProfileUpdateWindowsConfiguration model.
+ */
 @Fluent
-public final class OsProfileUpdateWindowsConfiguration {
+public final class OsProfileUpdateWindowsConfiguration
+    implements JsonSerializable<OsProfileUpdateWindowsConfiguration> {
     /*
-     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine
-     * instance creation process.
+     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine instance
+     * creation process.
      */
-    @JsonProperty(value = "provisionVMAgent")
     private Boolean provisionVMAgent;
 
     /*
      * Used to indicate whether the VM Config Agent should be installed during the virtual machine creation process.
      */
-    @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of OsProfileUpdateWindowsConfiguration class. */
+    /**
+     * Creates an instance of OsProfileUpdateWindowsConfiguration class.
+     */
     public OsProfileUpdateWindowsConfiguration() {
     }
 
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -40,7 +47,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the OsProfileUpdateWindowsConfiguration object itself.
      */
@@ -52,7 +59,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -62,7 +69,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the OsProfileUpdateWindowsConfiguration object itself.
      */
@@ -73,9 +80,51 @@ public final class OsProfileUpdateWindowsConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("provisionVMAgent", this.provisionVMAgent);
+        jsonWriter.writeBooleanField("provisionVMConfigAgent", this.provisionVMConfigAgent);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OsProfileUpdateWindowsConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OsProfileUpdateWindowsConfiguration if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the OsProfileUpdateWindowsConfiguration.
+     */
+    public static OsProfileUpdateWindowsConfiguration fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OsProfileUpdateWindowsConfiguration deserializedOsProfileUpdateWindowsConfiguration
+                = new OsProfileUpdateWindowsConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisionVMAgent".equals(fieldName)) {
+                    deserializedOsProfileUpdateWindowsConfiguration.provisionVMAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("provisionVMConfigAgent".equals(fieldName)) {
+                    deserializedOsProfileUpdateWindowsConfiguration.provisionVMConfigAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOsProfileUpdateWindowsConfiguration;
+        });
     }
 }
