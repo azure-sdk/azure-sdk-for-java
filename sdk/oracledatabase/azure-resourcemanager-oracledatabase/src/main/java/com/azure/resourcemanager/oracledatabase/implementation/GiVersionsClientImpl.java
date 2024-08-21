@@ -42,22 +42,22 @@ public final class GiVersionsClientImpl implements GiVersionsClient {
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of GiVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    GiVersionsClientImpl(OracleDatabaseResourceManagerImpl client) {
+    GiVersionsClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service
             = RestProxy.create(GiVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerGiVersions to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingGiVersions to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")
