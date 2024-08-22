@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for SapCentralInstances Create.
+ * Samples for SapCentralServerInstances Create.
  */
-public final class SapCentralInstancesCreateSamples {
+public final class SapCentralServerInstancesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_Create_HA_AvSet.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_CreateForHaWithAvailabilitySet.json
      */
     /**
      * Sample code: Create SAP Central Instances for HA System with Availability Set.
@@ -24,26 +24,34 @@ public final class SapCentralInstancesCreateSamples {
      */
     public static void createSAPCentralInstancesForHASystemWithAvailabilitySet(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapCentralInstances().define("centralServer").withRegion("eastus")
-            .withExistingSapVirtualInstance("test-rg", "X00").withTags(mapOf())
-            .withProperties(new SapCentralServerProperties()).create();
+        manager.sapCentralServerInstances()
+            .define("centralServer")
+            .withRegion("westcentralus")
+            .withExistingSapVirtualInstance("test-rg", "X00")
+            .withTags(mapOf())
+            .withProperties(new SapCentralServerProperties())
+            .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_Create.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_Create.json
      */
     /**
-     * Sample code: SAPCentralInstances_Create.
+     * Sample code: SapCentralServerInstances_Create.
      * 
      * @param manager Entry point to WorkloadsSapVirtualInstanceManager.
      */
-    public static void sAPCentralInstancesCreate(
+    public static void sapCentralServerInstancesCreate(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapCentralInstances().define("centralServer").withRegion("eastus")
-            .withExistingSapVirtualInstance("test-rg", "X00").withTags(mapOf())
-            .withProperties(new SapCentralServerProperties()).create();
+        manager.sapCentralServerInstances()
+            .define("centralServer")
+            .withRegion("westcentralus")
+            .withExistingSapVirtualInstance("test-rg", "X00")
+            .withTags(mapOf())
+            .withProperties(new SapCentralServerProperties())
+            .create();
     }
 
     // Use "Map.of" if available
