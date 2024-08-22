@@ -5,44 +5,49 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** LinuxConfiguration - linux specific configuration values for the virtual machine instance. */
+/**
+ * LinuxConfiguration - linux specific configuration values for the virtual machine instance.
+ */
 @Fluent
-public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
+public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration
+    implements JsonSerializable<VirtualMachineInstancePropertiesOsProfileLinuxConfiguration> {
     /*
      * DisablePasswordAuthentication - whether password authentication should be disabled
      */
-    @JsonProperty(value = "disablePasswordAuthentication")
     private Boolean disablePasswordAuthentication;
 
     /*
      * Specifies the ssh key configuration for a Linux OS.
      */
-    @JsonProperty(value = "ssh")
     private SshConfiguration ssh;
 
     /*
-     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine
-     * instance creation process.
+     * Used to indicate whether Arc for Servers agent onboarding should be triggered during the virtual machine instance
+     * creation process.
      */
-    @JsonProperty(value = "provisionVMAgent")
     private Boolean provisionVMAgent;
 
     /*
      * Used to indicate whether the VM Config Agent should be installed during the virtual machine creation process.
      */
-    @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesOsProfileLinuxConfiguration class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesOsProfileLinuxConfiguration class.
+     */
     public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration() {
     }
 
     /**
      * Get the disablePasswordAuthentication property: DisablePasswordAuthentication - whether password authentication
      * should be disabled.
-     *
+     * 
      * @return the disablePasswordAuthentication value.
      */
     public Boolean disablePasswordAuthentication() {
@@ -52,19 +57,19 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
     /**
      * Set the disablePasswordAuthentication property: DisablePasswordAuthentication - whether password authentication
      * should be disabled.
-     *
+     * 
      * @param disablePasswordAuthentication the disablePasswordAuthentication value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileLinuxConfiguration object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration withDisablePasswordAuthentication(
-        Boolean disablePasswordAuthentication) {
+    public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration
+        withDisablePasswordAuthentication(Boolean disablePasswordAuthentication) {
         this.disablePasswordAuthentication = disablePasswordAuthentication;
         return this;
     }
 
     /**
      * Get the ssh property: Specifies the ssh key configuration for a Linux OS.
-     *
+     * 
      * @return the ssh value.
      */
     public SshConfiguration ssh() {
@@ -73,7 +78,7 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
 
     /**
      * Set the ssh property: Specifies the ssh key configuration for a Linux OS.
-     *
+     * 
      * @param ssh the ssh value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileLinuxConfiguration object itself.
      */
@@ -85,7 +90,7 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -95,7 +100,7 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileLinuxConfiguration object itself.
      */
@@ -107,7 +112,7 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -117,24 +122,76 @@ public final class VirtualMachineInstancePropertiesOsProfileLinuxConfiguration {
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the VirtualMachineInstancePropertiesOsProfileLinuxConfiguration object itself.
      */
-    public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration withProvisionVMConfigAgent(
-        Boolean provisionVMConfigAgent) {
+    public VirtualMachineInstancePropertiesOsProfileLinuxConfiguration
+        withProvisionVMConfigAgent(Boolean provisionVMConfigAgent) {
         this.provisionVMConfigAgent = provisionVMConfigAgent;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ssh() != null) {
             ssh().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("disablePasswordAuthentication", this.disablePasswordAuthentication);
+        jsonWriter.writeJsonField("ssh", this.ssh);
+        jsonWriter.writeBooleanField("provisionVMAgent", this.provisionVMAgent);
+        jsonWriter.writeBooleanField("provisionVMConfigAgent", this.provisionVMConfigAgent);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualMachineInstancePropertiesOsProfileLinuxConfiguration from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualMachineInstancePropertiesOsProfileLinuxConfiguration if the JsonReader was pointing
+     * to an instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the
+     * VirtualMachineInstancePropertiesOsProfileLinuxConfiguration.
+     */
+    public static VirtualMachineInstancePropertiesOsProfileLinuxConfiguration fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualMachineInstancePropertiesOsProfileLinuxConfiguration deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration
+                = new VirtualMachineInstancePropertiesOsProfileLinuxConfiguration();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("disablePasswordAuthentication".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration.disablePasswordAuthentication
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("ssh".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration.ssh
+                        = SshConfiguration.fromJson(reader);
+                } else if ("provisionVMAgent".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration.provisionVMAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("provisionVMConfigAgent".equals(fieldName)) {
+                    deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration.provisionVMConfigAgent
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualMachineInstancePropertiesOsProfileLinuxConfiguration;
+        });
     }
 }

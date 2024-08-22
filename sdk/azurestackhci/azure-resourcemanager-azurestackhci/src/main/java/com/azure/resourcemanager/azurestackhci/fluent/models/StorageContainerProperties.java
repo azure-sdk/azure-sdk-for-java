@@ -6,38 +6,43 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.StorageContainerStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Properties under the storage container resource. */
+/**
+ * Properties under the storage container resource.
+ */
 @Fluent
-public final class StorageContainerProperties {
+public final class StorageContainerProperties implements JsonSerializable<StorageContainerProperties> {
     /*
      * Path of the storage container on the disk
      */
-    @JsonProperty(value = "path", required = true)
     private String path;
 
     /*
      * Provisioning state of the storage container.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
 
     /*
      * The observed state of storage containers
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private StorageContainerStatus status;
 
-    /** Creates an instance of StorageContainerProperties class. */
+    /**
+     * Creates an instance of StorageContainerProperties class.
+     */
     public StorageContainerProperties() {
     }
 
     /**
      * Get the path property: Path of the storage container on the disk.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -46,7 +51,7 @@ public final class StorageContainerProperties {
 
     /**
      * Set the path property: Path of the storage container on the disk.
-     *
+     * 
      * @param path the path value to set.
      * @return the StorageContainerProperties object itself.
      */
@@ -57,7 +62,7 @@ public final class StorageContainerProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the storage container.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -66,7 +71,7 @@ public final class StorageContainerProperties {
 
     /**
      * Get the status property: The observed state of storage containers.
-     *
+     * 
      * @return the status value.
      */
     public StorageContainerStatus status() {
@@ -75,13 +80,13 @@ public final class StorageContainerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (path() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property path in model StorageContainerProperties"));
         }
         if (status() != null) {
@@ -90,4 +95,46 @@ public final class StorageContainerProperties {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(StorageContainerProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("path", this.path);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of StorageContainerProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of StorageContainerProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the StorageContainerProperties.
+     */
+    public static StorageContainerProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            StorageContainerProperties deserializedStorageContainerProperties = new StorageContainerProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("path".equals(fieldName)) {
+                    deserializedStorageContainerProperties.path = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedStorageContainerProperties.provisioningState
+                        = ProvisioningStateEnum.fromString(reader.getString());
+                } else if ("status".equals(fieldName)) {
+                    deserializedStorageContainerProperties.status = StorageContainerStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedStorageContainerProperties;
+        });
+    }
 }
