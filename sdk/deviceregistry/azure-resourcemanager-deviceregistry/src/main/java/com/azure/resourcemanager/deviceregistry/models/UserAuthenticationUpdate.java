@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.deviceregistry.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.io.IOException;
  * Definition of the client authentication mechanism to the server.
  */
 @Fluent
-public final class UserAuthentication implements JsonSerializable<UserAuthentication> {
+public final class UserAuthenticationUpdate implements JsonSerializable<UserAuthenticationUpdate> {
     /*
      * Defines the mode to authenticate the user of the client at the server.
      */
@@ -25,17 +24,17 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
     /*
      * Defines the username and password references when UsernamePassword user authentication mode is selected.
      */
-    private UsernamePasswordCredentials usernamePasswordCredentials;
+    private UsernamePasswordCredentialsUpdate usernamePasswordCredentials;
 
     /*
      * Defines the certificate reference when Certificate user authentication mode is selected.
      */
-    private X509Credentials x509Credentials;
+    private X509CredentialsUpdate x509Credentials;
 
     /**
-     * Creates an instance of UserAuthentication class.
+     * Creates an instance of UserAuthenticationUpdate class.
      */
-    public UserAuthentication() {
+    public UserAuthenticationUpdate() {
     }
 
     /**
@@ -51,9 +50,9 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * Set the mode property: Defines the mode to authenticate the user of the client at the server.
      * 
      * @param mode the mode value to set.
-     * @return the UserAuthentication object itself.
+     * @return the UserAuthenticationUpdate object itself.
      */
-    public UserAuthentication withMode(UserAuthenticationMode mode) {
+    public UserAuthenticationUpdate withMode(UserAuthenticationMode mode) {
         this.mode = mode;
         return this;
     }
@@ -64,7 +63,7 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * 
      * @return the usernamePasswordCredentials value.
      */
-    public UsernamePasswordCredentials usernamePasswordCredentials() {
+    public UsernamePasswordCredentialsUpdate usernamePasswordCredentials() {
         return this.usernamePasswordCredentials;
     }
 
@@ -73,9 +72,10 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * user authentication mode is selected.
      * 
      * @param usernamePasswordCredentials the usernamePasswordCredentials value to set.
-     * @return the UserAuthentication object itself.
+     * @return the UserAuthenticationUpdate object itself.
      */
-    public UserAuthentication withUsernamePasswordCredentials(UsernamePasswordCredentials usernamePasswordCredentials) {
+    public UserAuthenticationUpdate
+        withUsernamePasswordCredentials(UsernamePasswordCredentialsUpdate usernamePasswordCredentials) {
         this.usernamePasswordCredentials = usernamePasswordCredentials;
         return this;
     }
@@ -86,7 +86,7 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * 
      * @return the x509Credentials value.
      */
-    public X509Credentials x509Credentials() {
+    public X509CredentialsUpdate x509Credentials() {
         return this.x509Credentials;
     }
 
@@ -95,9 +95,9 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * selected.
      * 
      * @param x509Credentials the x509Credentials value to set.
-     * @return the UserAuthentication object itself.
+     * @return the UserAuthenticationUpdate object itself.
      */
-    public UserAuthentication withX509Credentials(X509Credentials x509Credentials) {
+    public UserAuthenticationUpdate withX509Credentials(X509CredentialsUpdate x509Credentials) {
         this.x509Credentials = x509Credentials;
         return this;
     }
@@ -108,10 +108,6 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (mode() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property mode in model UserAuthentication"));
-        }
         if (usernamePasswordCredentials() != null) {
             usernamePasswordCredentials().validate();
         }
@@ -119,8 +115,6 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
             x509Credentials().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UserAuthentication.class);
 
     /**
      * {@inheritDoc}
@@ -135,34 +129,33 @@ public final class UserAuthentication implements JsonSerializable<UserAuthentica
     }
 
     /**
-     * Reads an instance of UserAuthentication from the JsonReader.
+     * Reads an instance of UserAuthenticationUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of UserAuthentication if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the UserAuthentication.
+     * @return An instance of UserAuthenticationUpdate if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the UserAuthenticationUpdate.
      */
-    public static UserAuthentication fromJson(JsonReader jsonReader) throws IOException {
+    public static UserAuthenticationUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            UserAuthentication deserializedUserAuthentication = new UserAuthentication();
+            UserAuthenticationUpdate deserializedUserAuthenticationUpdate = new UserAuthenticationUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("mode".equals(fieldName)) {
-                    deserializedUserAuthentication.mode = UserAuthenticationMode.fromString(reader.getString());
+                    deserializedUserAuthenticationUpdate.mode = UserAuthenticationMode.fromString(reader.getString());
                 } else if ("usernamePasswordCredentials".equals(fieldName)) {
-                    deserializedUserAuthentication.usernamePasswordCredentials
-                        = UsernamePasswordCredentials.fromJson(reader);
+                    deserializedUserAuthenticationUpdate.usernamePasswordCredentials
+                        = UsernamePasswordCredentialsUpdate.fromJson(reader);
                 } else if ("x509Credentials".equals(fieldName)) {
-                    deserializedUserAuthentication.x509Credentials = X509Credentials.fromJson(reader);
+                    deserializedUserAuthenticationUpdate.x509Credentials = X509CredentialsUpdate.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedUserAuthentication;
+            return deserializedUserAuthenticationUpdate;
         });
     }
 }
