@@ -13,9 +13,9 @@ import com.azure.resourcemanager.loadtesting.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager;
+    private final com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager;
 
-    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager) {
+    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -44,7 +44,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.loadtesting.LoadTestManager manager() {
+    private com.azure.resourcemanager.loadtesting.LoadtestingManager manager() {
         return this.serviceManager;
     }
 }
