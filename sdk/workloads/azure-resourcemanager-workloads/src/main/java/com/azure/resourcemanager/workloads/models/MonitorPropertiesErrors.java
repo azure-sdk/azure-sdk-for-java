@@ -4,22 +4,125 @@
 
 package com.azure.resourcemanager.workloads.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.util.List;
 
-/** Defines the SAP monitor errors. */
-@Immutable
+/**
+ * Defines the SAP monitor errors.
+ */
+@Fluent
 public final class MonitorPropertiesErrors extends Error {
-    /** Creates an instance of MonitorPropertiesErrors class. */
+    /**
+     * Creates an instance of MonitorPropertiesErrors class.
+     */
     public MonitorPropertiesErrors() {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MonitorPropertiesErrors withCode(String code) {
+        super.withCode(code);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MonitorPropertiesErrors withMessage(String message) {
+        super.withMessage(message);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MonitorPropertiesErrors withTarget(String target) {
+        super.withTarget(target);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MonitorPropertiesErrors withDetails(List<ErrorDetails> details) {
+        super.withDetails(details);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MonitorPropertiesErrors withInnerError(String innerError) {
+        super.withInnerError(innerError);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("code", code());
+        jsonWriter.writeStringField("message", message());
+        jsonWriter.writeStringField("target", target());
+        jsonWriter.writeArrayField("details", details(), (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("innerError", innerError());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MonitorPropertiesErrors from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MonitorPropertiesErrors if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MonitorPropertiesErrors.
+     */
+    public static MonitorPropertiesErrors fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MonitorPropertiesErrors deserializedMonitorPropertiesErrors = new MonitorPropertiesErrors();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("code".equals(fieldName)) {
+                    deserializedMonitorPropertiesErrors.withCode(reader.getString());
+                } else if ("message".equals(fieldName)) {
+                    deserializedMonitorPropertiesErrors.withMessage(reader.getString());
+                } else if ("target".equals(fieldName)) {
+                    deserializedMonitorPropertiesErrors.withTarget(reader.getString());
+                } else if ("details".equals(fieldName)) {
+                    List<ErrorDetails> details = reader.readArray(reader1 -> ErrorDetails.fromJson(reader1));
+                    deserializedMonitorPropertiesErrors.withDetails(details);
+                } else if ("innerError".equals(fieldName)) {
+                    deserializedMonitorPropertiesErrors.withInnerError(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMonitorPropertiesErrors;
+        });
     }
 }

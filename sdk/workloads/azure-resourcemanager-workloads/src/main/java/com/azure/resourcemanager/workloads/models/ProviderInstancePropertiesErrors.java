@@ -4,22 +4,126 @@
 
 package com.azure.resourcemanager.workloads.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.util.List;
 
-/** Defines the provider instance errors. */
-@Immutable
+/**
+ * Defines the provider instance errors.
+ */
+@Fluent
 public final class ProviderInstancePropertiesErrors extends Error {
-    /** Creates an instance of ProviderInstancePropertiesErrors class. */
+    /**
+     * Creates an instance of ProviderInstancePropertiesErrors class.
+     */
     public ProviderInstancePropertiesErrors() {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProviderInstancePropertiesErrors withCode(String code) {
+        super.withCode(code);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProviderInstancePropertiesErrors withMessage(String message) {
+        super.withMessage(message);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProviderInstancePropertiesErrors withTarget(String target) {
+        super.withTarget(target);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProviderInstancePropertiesErrors withDetails(List<ErrorDetails> details) {
+        super.withDetails(details);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProviderInstancePropertiesErrors withInnerError(String innerError) {
+        super.withInnerError(innerError);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("code", code());
+        jsonWriter.writeStringField("message", message());
+        jsonWriter.writeStringField("target", target());
+        jsonWriter.writeArrayField("details", details(), (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("innerError", innerError());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ProviderInstancePropertiesErrors from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ProviderInstancePropertiesErrors if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ProviderInstancePropertiesErrors.
+     */
+    public static ProviderInstancePropertiesErrors fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ProviderInstancePropertiesErrors deserializedProviderInstancePropertiesErrors
+                = new ProviderInstancePropertiesErrors();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("code".equals(fieldName)) {
+                    deserializedProviderInstancePropertiesErrors.withCode(reader.getString());
+                } else if ("message".equals(fieldName)) {
+                    deserializedProviderInstancePropertiesErrors.withMessage(reader.getString());
+                } else if ("target".equals(fieldName)) {
+                    deserializedProviderInstancePropertiesErrors.withTarget(reader.getString());
+                } else if ("details".equals(fieldName)) {
+                    List<ErrorDetails> details = reader.readArray(reader1 -> ErrorDetails.fromJson(reader1));
+                    deserializedProviderInstancePropertiesErrors.withDetails(details);
+                } else if ("innerError".equals(fieldName)) {
+                    deserializedProviderInstancePropertiesErrors.withInnerError(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedProviderInstancePropertiesErrors;
+        });
     }
 }
