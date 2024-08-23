@@ -5,30 +5,36 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The IpPoolInfo model. */
+/**
+ * The IpPoolInfo model.
+ */
 @Immutable
-public final class IpPoolInfo {
+public final class IpPoolInfo implements JsonSerializable<IpPoolInfo> {
     /*
      * Number of IP addresses allocated from the IP Pool
      */
-    @JsonProperty(value = "used", access = JsonProperty.Access.WRITE_ONLY)
     private String used;
 
     /*
      * Number of IP addresses available in the IP Pool
      */
-    @JsonProperty(value = "available", access = JsonProperty.Access.WRITE_ONLY)
     private String available;
 
-    /** Creates an instance of IpPoolInfo class. */
+    /**
+     * Creates an instance of IpPoolInfo class.
+     */
     public IpPoolInfo() {
     }
 
     /**
      * Get the used property: Number of IP addresses allocated from the IP Pool.
-     *
+     * 
      * @return the used value.
      */
     public String used() {
@@ -37,7 +43,7 @@ public final class IpPoolInfo {
 
     /**
      * Get the available property: Number of IP addresses available in the IP Pool.
-     *
+     * 
      * @return the available value.
      */
     public String available() {
@@ -46,9 +52,46 @@ public final class IpPoolInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of IpPoolInfo from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of IpPoolInfo if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the IpPoolInfo.
+     */
+    public static IpPoolInfo fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            IpPoolInfo deserializedIpPoolInfo = new IpPoolInfo();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("used".equals(fieldName)) {
+                    deserializedIpPoolInfo.used = reader.getString();
+                } else if ("available".equals(fieldName)) {
+                    deserializedIpPoolInfo.available = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedIpPoolInfo;
+        });
     }
 }
