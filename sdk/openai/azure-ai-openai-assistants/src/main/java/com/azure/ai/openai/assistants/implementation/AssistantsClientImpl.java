@@ -1419,7 +1419,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -1510,7 +1510,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -1652,7 +1652,9 @@ public final class AssistantsClientImpl {
      *                  (Optional){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -1731,7 +1733,9 @@ public final class AssistantsClientImpl {
      *                  (Optional){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -1887,7 +1891,7 @@ public final class AssistantsClientImpl {
      * {
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -1954,7 +1958,7 @@ public final class AssistantsClientImpl {
      * {
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -2078,7 +2082,9 @@ public final class AssistantsClientImpl {
      *          (Optional){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2114,7 +2120,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2155,7 +2163,9 @@ public final class AssistantsClientImpl {
      *          (Optional){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2191,7 +2201,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2268,7 +2280,9 @@ public final class AssistantsClientImpl {
      *                  (Required){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -2348,7 +2362,9 @@ public final class AssistantsClientImpl {
      *                  (Required){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -2405,7 +2421,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2461,7 +2479,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2525,7 +2545,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2592,7 +2614,9 @@ public final class AssistantsClientImpl {
      *          (Required){
      *             file_id: String (Required)
      *             tools (Required): [
-     *                 BinaryData (Required)
+     *                  (Required){
+     *                     type: String(file_search/code_interpreter) (Required)
+     *                 }
      *             ]
      *         }
      *     ]
@@ -2654,7 +2678,9 @@ public final class AssistantsClientImpl {
      *                  (Required){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -2788,7 +2814,9 @@ public final class AssistantsClientImpl {
      *                  (Required){
      *                     file_id: String (Required)
      *                     tools (Required): [
-     *                         BinaryData (Required)
+     *                          (Required){
+     *                             type: String(file_search/code_interpreter) (Required)
+     *                         }
      *                     ]
      *                 }
      *             ]
@@ -3703,7 +3731,9 @@ public final class AssistantsClientImpl {
      *                      (Optional){
      *                         file_id: String (Required)
      *                         tools (Required): [
-     *                             BinaryData (Required)
+     *                              (Required){
+     *                                 type: String(file_search/code_interpreter) (Required)
+     *                             }
      *                         ]
      *                     }
      *                 ]
@@ -3733,7 +3763,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -3844,7 +3874,9 @@ public final class AssistantsClientImpl {
      *                      (Optional){
      *                         file_id: String (Required)
      *                         tools (Required): [
-     *                             BinaryData (Required)
+     *                              (Required){
+     *                                 type: String(file_search/code_interpreter) (Required)
+     *                             }
      *                         ]
      *                     }
      *                 ]
@@ -3874,7 +3906,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
-     *             fileIds (Optional): [
+     *             file_ids (Optional): [
      *                 String (Optional)
      *             ]
      *         }
@@ -4704,6 +4736,9 @@ public final class AssistantsClientImpl {
      *         anchor: String(last_active_at) (Required)
      *         days: int (Required)
      *     }
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
+     *     }
      *     metadata (Optional): {
      *         String: String (Required)
      *     }
@@ -4769,6 +4804,9 @@ public final class AssistantsClientImpl {
      *     expires_after (Optional): {
      *         anchor: String(last_active_at) (Required)
      *         days: int (Required)
+     *     }
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
      *     }
      *     metadata (Optional): {
      *         String: String (Required)
@@ -5137,6 +5175,9 @@ public final class AssistantsClientImpl {
      *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *                 message: String (Required)
      *             }
+     *             chunking_strategy (Required): {
+     *                 type: String(other/static) (Required)
+     *             }
      *         }
      *     ]
      *     first_id: String (Required)
@@ -5200,6 +5241,9 @@ public final class AssistantsClientImpl {
      *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *                 message: String (Required)
      *             }
+     *             chunking_strategy (Required): {
+     *                 type: String(other/static) (Required)
+     *             }
      *         }
      *     ]
      *     first_id: String (Required)
@@ -5230,6 +5274,9 @@ public final class AssistantsClientImpl {
      * <pre>{@code
      * {
      *     file_id: String (Required)
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
+     *     }
      * }
      * }</pre>
      * 
@@ -5246,6 +5293,9 @@ public final class AssistantsClientImpl {
      *     last_error (Required): {
      *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *         message: String (Required)
+     *     }
+     *     chunking_strategy (Required): {
+     *         type: String(other/static) (Required)
      *     }
      * }
      * }</pre>
@@ -5275,6 +5325,9 @@ public final class AssistantsClientImpl {
      * <pre>{@code
      * {
      *     file_id: String (Required)
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
+     *     }
      * }
      * }</pre>
      * 
@@ -5291,6 +5344,9 @@ public final class AssistantsClientImpl {
      *     last_error (Required): {
      *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *         message: String (Required)
+     *     }
+     *     chunking_strategy (Required): {
+     *         type: String(other/static) (Required)
      *     }
      * }
      * }</pre>
@@ -5328,6 +5384,9 @@ public final class AssistantsClientImpl {
      *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *         message: String (Required)
      *     }
+     *     chunking_strategy (Required): {
+     *         type: String(other/static) (Required)
+     *     }
      * }
      * }</pre>
      * 
@@ -5364,6 +5423,9 @@ public final class AssistantsClientImpl {
      *     last_error (Required): {
      *         code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *         message: String (Required)
+     *     }
+     *     chunking_strategy (Required): {
+     *         type: String(other/static) (Required)
      *     }
      * }
      * }</pre>
@@ -5457,6 +5519,9 @@ public final class AssistantsClientImpl {
      *     file_ids (Required): [
      *         String (Required)
      *     ]
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
+     *     }
      * }
      * }</pre>
      * 
@@ -5506,6 +5571,9 @@ public final class AssistantsClientImpl {
      *     file_ids (Required): [
      *         String (Required)
      *     ]
+     *     chunking_strategy (Optional): {
+     *         type: String(auto/static) (Required)
+     *     }
      * }
      * }</pre>
      * 
@@ -5739,6 +5807,9 @@ public final class AssistantsClientImpl {
      *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *                 message: String (Required)
      *             }
+     *             chunking_strategy (Required): {
+     *                 type: String(other/static) (Required)
+     *             }
      *         }
      *     ]
      *     first_id: String (Required)
@@ -5802,6 +5873,9 @@ public final class AssistantsClientImpl {
      *             last_error (Required): {
      *                 code: String(internal_error/file_not_found/parsing_error/unhandled_mime_type) (Required)
      *                 message: String (Required)
+     *             }
+     *             chunking_strategy (Required): {
+     *                 type: String(other/static) (Required)
      *             }
      *         }
      *     ]

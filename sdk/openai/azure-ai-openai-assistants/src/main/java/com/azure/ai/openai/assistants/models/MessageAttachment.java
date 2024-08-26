@@ -5,7 +5,6 @@ package com.azure.ai.openai.assistants.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -29,7 +28,7 @@ public final class MessageAttachment implements JsonSerializable<MessageAttachme
      * The tools to add to this file.
      */
     @Generated
-    private final List<BinaryData> tools;
+    private final List<MessageAttachmentToolAssignment> tools;
 
     /**
      * Creates an instance of MessageAttachment class.
@@ -38,7 +37,7 @@ public final class MessageAttachment implements JsonSerializable<MessageAttachme
      * @param tools the tools value to set.
      */
     @Generated
-    public MessageAttachment(String fileId, List<BinaryData> tools) {
+    public MessageAttachment(String fileId, List<MessageAttachmentToolAssignment> tools) {
         this.fileId = fileId;
         this.tools = tools;
     }
@@ -59,7 +58,7 @@ public final class MessageAttachment implements JsonSerializable<MessageAttachme
      * @return the tools value.
      */
     @Generated
-    public List<BinaryData> getTools() {
+    public List<MessageAttachmentToolAssignment> getTools() {
         return this.tools;
     }
 
@@ -71,8 +70,7 @@ public final class MessageAttachment implements JsonSerializable<MessageAttachme
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("file_id", this.fileId);
-        jsonWriter.writeArrayField("tools", this.tools,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+        jsonWriter.writeArrayField("tools", this.tools, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -89,15 +87,14 @@ public final class MessageAttachment implements JsonSerializable<MessageAttachme
     public static MessageAttachment fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             String fileId = null;
-            List<BinaryData> tools = null;
+            List<MessageAttachmentToolAssignment> tools = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("file_id".equals(fieldName)) {
                     fileId = reader.getString();
                 } else if ("tools".equals(fieldName)) {
-                    tools = reader.readArray(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    tools = reader.readArray(reader1 -> MessageAttachmentToolAssignment.fromJson(reader1));
                 } else {
                     reader.skipChildren();
                 }
