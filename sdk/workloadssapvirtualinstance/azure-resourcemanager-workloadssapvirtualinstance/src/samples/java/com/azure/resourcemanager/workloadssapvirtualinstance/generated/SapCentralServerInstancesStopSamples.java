@@ -7,13 +7,13 @@ package com.azure.resourcemanager.workloadssapvirtualinstance.generated;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.StopRequest;
 
 /**
- * Samples for SapCentralInstances StopInstance.
+ * Samples for SapCentralServerInstances Stop.
  */
-public final class SapCentralInstancesStopInstanceSamples {
+public final class SapCentralServerInstancesStopSamples {
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_StopInstance.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_StopInstance.json
      */
     /**
      * Sample code: Stop the SAP Central Services Instance.
@@ -22,14 +22,15 @@ public final class SapCentralInstancesStopInstanceSamples {
      */
     public static void stopTheSAPCentralServicesInstance(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapCentralInstances().stopInstance("test-rg", "X00", "centralServer",
-            new StopRequest().withSoftStopTimeoutSeconds(1200L), com.azure.core.util.Context.NONE);
+        manager.sapCentralServerInstances()
+            .stop("test-rg", "X00", "centralServer", new StopRequest().withSoftStopTimeoutSeconds(1200L),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_StopInstance_WithInfraOperations.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_StopInstanceVM.json
      */
     /**
      * Sample code: Stop the SAP Central Services Instance and its underlying Virtual Machine(s).
@@ -38,7 +39,8 @@ public final class SapCentralInstancesStopInstanceSamples {
      */
     public static void stopTheSAPCentralServicesInstanceAndItsUnderlyingVirtualMachineS(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapCentralInstances().stopInstance("test-rg", "X00", "centralServer",
-            new StopRequest().withDeallocateVm(true), com.azure.core.util.Context.NONE);
+        manager.sapCentralServerInstances()
+            .stop("test-rg", "X00", "centralServer", new StopRequest().withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
     }
 }
