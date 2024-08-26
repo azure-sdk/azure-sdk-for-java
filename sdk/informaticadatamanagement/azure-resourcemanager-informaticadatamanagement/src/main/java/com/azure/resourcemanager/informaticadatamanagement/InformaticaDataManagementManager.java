@@ -23,8 +23,8 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.informaticadatamanagement.fluent.InformaticaDataManagement;
-import com.azure.resourcemanager.informaticadatamanagement.implementation.InformaticaDataManagementBuilder;
+import com.azure.resourcemanager.informaticadatamanagement.fluent.InformaticaDataManagementForTesting;
+import com.azure.resourcemanager.informaticadatamanagement.implementation.InformaticaDataManagementForTestingBuilder;
 import com.azure.resourcemanager.informaticadatamanagement.implementation.OperationsImpl;
 import com.azure.resourcemanager.informaticadatamanagement.implementation.OrganizationsImpl;
 import com.azure.resourcemanager.informaticadatamanagement.implementation.ServerlessRuntimesImpl;
@@ -48,13 +48,13 @@ public final class InformaticaDataManagementManager {
 
     private ServerlessRuntimes serverlessRuntimes;
 
-    private final InformaticaDataManagement clientObject;
+    private final InformaticaDataManagementForTesting clientObject;
 
     private InformaticaDataManagementManager(HttpPipeline httpPipeline, AzureProfile profile,
         Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new InformaticaDataManagementBuilder().pipeline(httpPipeline)
+        this.clientObject = new InformaticaDataManagementForTestingBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -214,7 +214,7 @@ public final class InformaticaDataManagementManager {
                 .append("-")
                 .append("com.azure.resourcemanager.informaticadatamanagement")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -297,12 +297,12 @@ public final class InformaticaDataManagementManager {
     }
 
     /**
-     * Gets wrapped service client InformaticaDataManagement providing direct access to the underlying auto-generated
-     * API implementation, based on Azure REST API.
+     * Gets wrapped service client InformaticaDataManagementForTesting providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client InformaticaDataManagement.
+     * @return Wrapped service client InformaticaDataManagementForTesting.
      */
-    public InformaticaDataManagement serviceClient() {
+    public InformaticaDataManagementForTesting serviceClient() {
         return this.clientObject;
     }
 }
