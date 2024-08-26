@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public final class OrganizationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2024-08-23/examples/
      * Organizations_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -33,22 +33,36 @@ public final class OrganizationsCreateOrUpdateSamples {
      */
     public static void
         organizationsCreateOrUpdateGeneratedByMaximumSetRule(com.azure.resourcemanager.astro.AstroManager manager) {
-        manager.organizations().define("U.1-:7").withRegion("mhqthlsatwvqkl").withExistingResourceGroup("rgastronomer")
+        manager.organizations()
+            .define("U.1-:7")
+            .withRegion("izalvuwqjjgahbildxqijgzemsny")
+            .withExistingResourceGroup("rgastronomer")
             .withTags(mapOf())
             .withProperties(new LiftrBaseDataOrganizationProperties()
-                .withMarketplace(new LiftrBaseMarketplaceDetails().withSubscriptionId("ntthclydlpqmasr")
+                .withMarketplace(new LiftrBaseMarketplaceDetails().withSubscriptionId("bdyjzjbtwgvb")
                     .withSubscriptionStatus(MarketplaceSubscriptionStatus.PENDING_FULFILLMENT_START)
-                    .withOfferDetails(new LiftrBaseOfferDetails().withPublisherId("gfsqxygpnerxmvols")
-                        .withOfferId("krzkefmpxztqyusidzgpchfaswuyce").withPlanId("kndxzygsanuiqzwbfbbvoipv")
-                        .withPlanName("pwqjwlq").withTermUnit("xyygyzcazkuelz").withTermId("pwds")))
-                .withUser(new LiftrBaseUserDetails().withFirstName("nfh").withLastName("lazfbstcccykibvcrxpmglqam")
-                    .withEmailAddress(".K_@e7N-g1.xjqnbPs").withUpn("xtutvycpxjrtoftx").withPhoneNumber("inxkscllh"))
+                    .withOfferDetails(new LiftrBaseOfferDetails().withPublisherId("hhigosazmxxjxmsvhqytppqdsdnz")
+                        .withOfferId("hjicdqsxtzashh")
+                        .withPlanId("rgjdpmewnjuhxflolgxmloqab")
+                        .withPlanName("jtrdhfnrkznayvwrur")
+                        .withTermUnit("sawvannuprusggtouacwnx")
+                        .withTermId("dyfuysdm")
+                        .withAutoRenew(true)))
+                .withUser(new LiftrBaseUserDetails().withFirstName("ya")
+                    .withLastName("bonkfxtnitwtreabiihxrilsj")
+                    .withEmailAddress(".K_@e7N-g1.xjqnbPs")
+                    .withUpn("ckifrizteafihkl")
+                    .withPhoneNumber("eaqrsnxmnm"))
                 .withPartnerOrganizationProperties(
-                    new LiftrBaseDataPartnerOrganizationProperties().withOrganizationId("lskgzdmziusgrsucv")
-                        .withWorkspaceId("vcrupxwpaba").withOrganizationName("3-").withWorkspaceName("9.:06")
-                        .withSingleSignOnProperties(new LiftrBaseSingleSignOnProperties()
-                            .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("mklfypyujwumgwdzae")
-                            .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr").withAadDomains(Arrays.asList("kfbleh")))))
+                    new LiftrBaseDataPartnerOrganizationProperties().withOrganizationId("oguncicusostvrsfqvrs")
+                        .withWorkspaceId("avel")
+                        .withOrganizationName("U.1-:7")
+                        .withWorkspaceName("9.:06")
+                        .withSingleSignOnProperties(
+                            new LiftrBaseSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                                .withEnterpriseAppId("nlrhnqejokwheluyeupd")
+                                .withSingleSignOnUrl("nmscpgenxxrdshhxt")
+                                .withAadDomains(Arrays.asList("gtbnsdovowedvkq")))))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
                 .withUserAssignedIdentities(mapOf()))
             .create();
