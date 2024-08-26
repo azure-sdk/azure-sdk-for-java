@@ -161,29 +161,6 @@ public final class UpdateSummariesInner extends ProxyResource {
     }
 
     /**
-     * Get the currentOemVersion property: Current OEM Version.
-     * 
-     * @return the currentOemVersion value.
-     */
-    public String currentOemVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().currentOemVersion();
-    }
-
-    /**
-     * Set the currentOemVersion property: Current OEM Version.
-     * 
-     * @param currentOemVersion the currentOemVersion value to set.
-     * @return the UpdateSummariesInner object itself.
-     */
-    public UpdateSummariesInner withCurrentOemVersion(String currentOemVersion) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UpdateSummariesProperties();
-        }
-        this.innerProperties().withCurrentOemVersion(currentOemVersion);
-        return this;
-    }
-
-    /**
      * Get the hardwareModel property: Name of the hardware model.
      * 
      * @return the hardwareModel value.
@@ -249,29 +226,6 @@ public final class UpdateSummariesInner extends ProxyResource {
             this.innerProperties = new UpdateSummariesProperties();
         }
         this.innerProperties().withCurrentVersion(currentVersion);
-        return this;
-    }
-
-    /**
-     * Get the currentSbeVersion property: Current Sbe version of the stamp.
-     * 
-     * @return the currentSbeVersion value.
-     */
-    public String currentSbeVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().currentSbeVersion();
-    }
-
-    /**
-     * Set the currentSbeVersion property: Current Sbe version of the stamp.
-     * 
-     * @param currentSbeVersion the currentSbeVersion value to set.
-     * @return the UpdateSummariesInner object itself.
-     */
-    public UpdateSummariesInner withCurrentSbeVersion(String currentSbeVersion) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UpdateSummariesProperties();
-        }
-        this.innerProperties().withCurrentSbeVersion(currentSbeVersion);
         return this;
     }
 
