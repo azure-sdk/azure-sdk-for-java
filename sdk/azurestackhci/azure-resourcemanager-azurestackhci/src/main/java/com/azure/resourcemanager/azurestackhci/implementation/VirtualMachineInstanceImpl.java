@@ -23,11 +23,10 @@ import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceView
 public final class VirtualMachineInstanceImpl implements VirtualMachineInstance {
     private VirtualMachineInstanceInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
-    VirtualMachineInstanceImpl(
-        VirtualMachineInstanceInner innerObject,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    VirtualMachineInstanceImpl(VirtualMachineInstanceInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -108,7 +107,7 @@ public final class VirtualMachineInstanceImpl implements VirtualMachineInstance 
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

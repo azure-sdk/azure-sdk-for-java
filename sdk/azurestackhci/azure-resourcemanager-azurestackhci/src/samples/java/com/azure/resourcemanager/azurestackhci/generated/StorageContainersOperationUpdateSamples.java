@@ -8,22 +8,24 @@ import com.azure.resourcemanager.azurestackhci.models.StorageContainers;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for StorageContainersOperation Update. */
+/**
+ * Samples for StorageContainersOperation Update.
+ */
 public final class StorageContainersOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/UpdateStorageContainer.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * UpdateStorageContainer.json
      */
     /**
      * Sample code: UpdateStorageContainer.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void updateStorageContainer(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        StorageContainers resource =
-            manager
-                .storageContainersOperations()
-                .getByResourceGroupWithResponse("test-rg", "Default_Container", com.azure.core.util.Context.NONE)
-                .getValue();
+    public static void updateStorageContainer(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
+        StorageContainers resource = manager.storageContainersOperations()
+            .getByResourceGroupWithResponse("test-rg", "Default_Container", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
     }
 

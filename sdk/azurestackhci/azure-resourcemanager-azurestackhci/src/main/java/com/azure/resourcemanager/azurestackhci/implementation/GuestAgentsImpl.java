@@ -18,10 +18,10 @@ public final class GuestAgentsImpl implements GuestAgents {
 
     private final GuestAgentsClient innerClient;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
-    public GuestAgentsImpl(
-        GuestAgentsClient innerClient, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    public GuestAgentsImpl(GuestAgentsClient innerClient,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -47,10 +47,7 @@ public final class GuestAgentsImpl implements GuestAgents {
     public Response<GuestAgent> getWithResponse(String resourceUri, Context context) {
         Response<GuestAgentInner> inner = this.serviceClient().getWithResponse(resourceUri, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new GuestAgentImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -78,7 +75,7 @@ public final class GuestAgentsImpl implements GuestAgents {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

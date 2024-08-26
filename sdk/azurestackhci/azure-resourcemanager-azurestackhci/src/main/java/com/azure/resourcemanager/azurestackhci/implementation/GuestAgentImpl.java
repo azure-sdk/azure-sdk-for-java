@@ -13,10 +13,10 @@ import com.azure.resourcemanager.azurestackhci.models.ProvisioningAction;
 public final class GuestAgentImpl implements GuestAgent {
     private GuestAgentInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
-    GuestAgentImpl(
-        GuestAgentInner innerObject, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    GuestAgentImpl(GuestAgentInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -57,7 +57,7 @@ public final class GuestAgentImpl implements GuestAgent {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

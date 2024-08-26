@@ -12,11 +12,10 @@ import com.azure.resourcemanager.azurestackhci.models.Identity;
 public final class HybridIdentityMetadataImpl implements HybridIdentityMetadata {
     private HybridIdentityMetadataInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
-    HybridIdentityMetadataImpl(
-        HybridIdentityMetadataInner innerObject,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    HybridIdentityMetadataImpl(HybridIdentityMetadataInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -57,7 +56,7 @@ public final class HybridIdentityMetadataImpl implements HybridIdentityMetadata 
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 }

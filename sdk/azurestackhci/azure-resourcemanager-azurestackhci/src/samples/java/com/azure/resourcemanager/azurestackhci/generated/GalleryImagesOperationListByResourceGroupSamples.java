@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for GalleryImagesOperation ListByResourceGroup. */
+/**
+ * Samples for GalleryImagesOperation ListByResourceGroup.
+ */
 public final class GalleryImagesOperationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/ListGalleryImageByResourceGroup.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * ListGalleryImageByResourceGroup.json
      */
     /**
      * Sample code: ListGalleryImageByResourceGroup.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void listGalleryImageByResourceGroup(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void
+        listGalleryImageByResourceGroup(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.galleryImagesOperations().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
     }
 }

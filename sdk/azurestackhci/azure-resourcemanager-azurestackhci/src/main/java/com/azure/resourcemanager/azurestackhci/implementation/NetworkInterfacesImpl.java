@@ -11,8 +11,8 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.NetworkInterfacesIn
 import com.azure.resourcemanager.azurestackhci.models.ExtendedLocation;
 import com.azure.resourcemanager.azurestackhci.models.InterfaceDnsSettings;
 import com.azure.resourcemanager.azurestackhci.models.IpConfiguration;
-import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaceStatus;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaces;
+import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaceStatus;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfacesUpdateRequest;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import java.util.Collections;
@@ -23,7 +23,7 @@ public final class NetworkInterfacesImpl
     implements NetworkInterfaces, NetworkInterfaces.Definition, NetworkInterfaces.Update {
     private NetworkInterfacesInner innerObject;
 
-    private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
+    private final com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -99,7 +99,7 @@ public final class NetworkInterfacesImpl
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager() {
+    private com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager() {
         return this.serviceManager;
     }
 
@@ -115,24 +115,20 @@ public final class NetworkInterfacesImpl
     }
 
     public NetworkInterfaces create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .createOrUpdate(resourceGroupName, networkInterfaceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .createOrUpdate(resourceGroupName, networkInterfaceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public NetworkInterfaces create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .createOrUpdate(resourceGroupName, networkInterfaceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .createOrUpdate(resourceGroupName, networkInterfaceName, this.innerModel(), context);
         return this;
     }
 
-    NetworkInterfacesImpl(String name, com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    NetworkInterfacesImpl(String name, com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = new NetworkInterfacesInner();
         this.serviceManager = serviceManager;
         this.networkInterfaceName = name;
@@ -144,49 +140,40 @@ public final class NetworkInterfacesImpl
     }
 
     public NetworkInterfaces apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .update(resourceGroupName, networkInterfaceName, updateNetworkInterfaces, Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .update(resourceGroupName, networkInterfaceName, updateNetworkInterfaces, Context.NONE);
         return this;
     }
 
     public NetworkInterfaces apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .update(resourceGroupName, networkInterfaceName, updateNetworkInterfaces, context);
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .update(resourceGroupName, networkInterfaceName, updateNetworkInterfaces, context);
         return this;
     }
 
-    NetworkInterfacesImpl(
-        NetworkInterfacesInner innerObject,
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
+    NetworkInterfacesImpl(NetworkInterfacesInner innerObject,
+        com.azure.resourcemanager.azurestackhci.AzurestackhciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.networkInterfaceName = Utils.getValueFromIdByName(innerObject.id(), "networkInterfaces");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.networkInterfaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "networkInterfaces");
     }
 
     public NetworkInterfaces refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public NetworkInterfaces refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkInterfacesOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getNetworkInterfacesOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, context)
+            .getValue();
         return this;
     }
 

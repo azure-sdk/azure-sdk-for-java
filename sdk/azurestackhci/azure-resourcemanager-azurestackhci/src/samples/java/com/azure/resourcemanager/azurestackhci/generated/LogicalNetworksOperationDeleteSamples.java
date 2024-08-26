@@ -4,17 +4,21 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for LogicalNetworksOperation Delete. */
+/**
+ * Samples for LogicalNetworksOperation Delete.
+ */
 public final class LogicalNetworksOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteLogicalNetwork.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteLogicalNetwork.json
      */
     /**
      * Sample code: DeleteLogicalNetwork.
-     *
-     * @param manager Entry point to AzureStackHciManager.
+     * 
+     * @param manager Entry point to AzurestackhciManager.
      */
-    public static void deleteLogicalNetwork(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void deleteLogicalNetwork(com.azure.resourcemanager.azurestackhci.AzurestackhciManager manager) {
         manager.logicalNetworksOperations().delete("test-rg", "test-lnet", com.azure.core.util.Context.NONE);
     }
 }
