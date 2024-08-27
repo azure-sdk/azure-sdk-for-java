@@ -5,36 +5,47 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Hyper-V Managed disk details.
  */
 @Fluent
-public final class HyperVReplicaAzureManagedDiskDetails {
+public final class HyperVReplicaAzureManagedDiskDetails
+    implements JsonSerializable<HyperVReplicaAzureManagedDiskDetails> {
     /*
      * The disk Id.
      */
-    @JsonProperty(value = "diskId")
     private String diskId;
 
     /*
      * Seed managed disk Id.
      */
-    @JsonProperty(value = "seedManagedDiskId")
     private String seedManagedDiskId;
 
     /*
      * The replica disk type.
      */
-    @JsonProperty(value = "replicaDiskType")
     private String replicaDiskType;
 
     /*
      * The disk encryption set ARM Id.
      */
-    @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
+
+    /*
+     * The disk type.
+     */
+    private DiskAccountType targetDiskAccountType;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    private Integer sectorSizeInBytes;
 
     /**
      * Creates an instance of HyperVReplicaAzureManagedDiskDetails class.
@@ -123,10 +134,105 @@ public final class HyperVReplicaAzureManagedDiskDetails {
     }
 
     /**
+     * Get the targetDiskAccountType property: The disk type.
+     * 
+     * @return the targetDiskAccountType value.
+     */
+    public DiskAccountType targetDiskAccountType() {
+        return this.targetDiskAccountType;
+    }
+
+    /**
+     * Set the targetDiskAccountType property: The disk type.
+     * 
+     * @param targetDiskAccountType the targetDiskAccountType value to set.
+     * @return the HyperVReplicaAzureManagedDiskDetails object itself.
+     */
+    public HyperVReplicaAzureManagedDiskDetails withTargetDiskAccountType(DiskAccountType targetDiskAccountType) {
+        this.targetDiskAccountType = targetDiskAccountType;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the HyperVReplicaAzureManagedDiskDetails object itself.
+     */
+    public HyperVReplicaAzureManagedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("diskId", this.diskId);
+        jsonWriter.writeStringField("seedManagedDiskId", this.seedManagedDiskId);
+        jsonWriter.writeStringField("replicaDiskType", this.replicaDiskType);
+        jsonWriter.writeStringField("diskEncryptionSetId", this.diskEncryptionSetId);
+        jsonWriter.writeStringField("targetDiskAccountType",
+            this.targetDiskAccountType == null ? null : this.targetDiskAccountType.toString());
+        jsonWriter.writeNumberField("sectorSizeInBytes", this.sectorSizeInBytes);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HyperVReplicaAzureManagedDiskDetails from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HyperVReplicaAzureManagedDiskDetails if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the HyperVReplicaAzureManagedDiskDetails.
+     */
+    public static HyperVReplicaAzureManagedDiskDetails fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HyperVReplicaAzureManagedDiskDetails deserializedHyperVReplicaAzureManagedDiskDetails
+                = new HyperVReplicaAzureManagedDiskDetails();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("diskId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.diskId = reader.getString();
+                } else if ("seedManagedDiskId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.seedManagedDiskId = reader.getString();
+                } else if ("replicaDiskType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.replicaDiskType = reader.getString();
+                } else if ("diskEncryptionSetId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.diskEncryptionSetId = reader.getString();
+                } else if ("targetDiskAccountType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.targetDiskAccountType
+                        = DiskAccountType.fromString(reader.getString());
+                } else if ("sectorSizeInBytes".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureManagedDiskDetails.sectorSizeInBytes
+                        = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHyperVReplicaAzureManagedDiskDetails;
+        });
     }
 }

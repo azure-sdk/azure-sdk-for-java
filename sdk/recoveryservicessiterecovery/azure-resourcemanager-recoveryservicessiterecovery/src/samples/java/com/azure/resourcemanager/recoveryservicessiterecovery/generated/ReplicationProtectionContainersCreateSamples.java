@@ -14,7 +14,7 @@ import java.util.Arrays;
 public final class ReplicationProtectionContainersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples
      * /ReplicationProtectionContainers_Create.json
      */
     /**
@@ -24,7 +24,8 @@ public final class ReplicationProtectionContainersCreateSamples {
      */
     public static void
         createAProtectionContainer(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().define("cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
+        manager.replicationProtectionContainers()
+            .define("cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
             .withExistingReplicationFabric("vault1", "resourceGroupPS1", "cloud1")
             .withProperties(new CreateProtectionContainerInputProperties()
                 .withProviderSpecificInput(Arrays.asList(new ReplicationProviderSpecificContainerCreationInput())))
