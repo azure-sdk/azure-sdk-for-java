@@ -124,60 +124,6 @@ public final class SecuritySettingInner extends ProxyResource {
     }
 
     /**
-     * Get the wdacComplianceAssignment property: WDAC Compliance Assignment.
-     * 
-     * @return the wdacComplianceAssignment value.
-     */
-    public ComplianceAssignmentType wdacComplianceAssignment() {
-        return this.innerProperties() == null ? null : this.innerProperties().wdacComplianceAssignment();
-    }
-
-    /**
-     * Set the wdacComplianceAssignment property: WDAC Compliance Assignment.
-     * 
-     * @param wdacComplianceAssignment the wdacComplianceAssignment value to set.
-     * @return the SecuritySettingInner object itself.
-     */
-    public SecuritySettingInner withWdacComplianceAssignment(ComplianceAssignmentType wdacComplianceAssignment) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SecurityProperties();
-        }
-        this.innerProperties().withWdacComplianceAssignment(wdacComplianceAssignment);
-        return this;
-    }
-
-    /**
-     * Get the smbEncryptionForIntraClusterTrafficComplianceAssignment property: SMB encryption for intra-cluster
-     * traffic Compliance Assignment.
-     * 
-     * @return the smbEncryptionForIntraClusterTrafficComplianceAssignment value.
-     */
-    public ComplianceAssignmentType smbEncryptionForIntraClusterTrafficComplianceAssignment() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().smbEncryptionForIntraClusterTrafficComplianceAssignment();
-    }
-
-    /**
-     * Set the smbEncryptionForIntraClusterTrafficComplianceAssignment property: SMB encryption for intra-cluster
-     * traffic Compliance Assignment.
-     * 
-     * @param smbEncryptionForIntraClusterTrafficComplianceAssignment the
-     * smbEncryptionForIntraClusterTrafficComplianceAssignment value to set.
-     * @return the SecuritySettingInner object itself.
-     */
-    public SecuritySettingInner withSmbEncryptionForIntraClusterTrafficComplianceAssignment(
-        ComplianceAssignmentType smbEncryptionForIntraClusterTrafficComplianceAssignment) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SecurityProperties();
-        }
-        this.innerProperties()
-            .withSmbEncryptionForIntraClusterTrafficComplianceAssignment(
-                smbEncryptionForIntraClusterTrafficComplianceAssignment);
-        return this;
-    }
-
-    /**
      * Get the securityComplianceStatus property: Security Compliance Status.
      * 
      * @return the securityComplianceStatus value.
