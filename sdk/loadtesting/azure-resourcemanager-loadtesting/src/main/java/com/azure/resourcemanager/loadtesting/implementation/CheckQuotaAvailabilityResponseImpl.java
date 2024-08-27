@@ -11,11 +11,10 @@ import com.azure.resourcemanager.loadtesting.models.CheckQuotaAvailabilityRespon
 public final class CheckQuotaAvailabilityResponseImpl implements CheckQuotaAvailabilityResponse {
     private CheckQuotaAvailabilityResponseInner innerObject;
 
-    private final com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager;
+    private final com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager;
 
-    CheckQuotaAvailabilityResponseImpl(
-        CheckQuotaAvailabilityResponseInner innerObject,
-        com.azure.resourcemanager.loadtesting.LoadTestManager serviceManager) {
+    CheckQuotaAvailabilityResponseImpl(CheckQuotaAvailabilityResponseInner innerObject,
+        com.azure.resourcemanager.loadtesting.LoadtestingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -24,16 +23,16 @@ public final class CheckQuotaAvailabilityResponseImpl implements CheckQuotaAvail
         return this.innerModel().id();
     }
 
-    public String name() {
-        return this.innerModel().name();
-    }
-
     public String type() {
         return this.innerModel().type();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String name() {
+        return this.innerModel().name();
     }
 
     public Boolean isAvailable() {
@@ -48,7 +47,7 @@ public final class CheckQuotaAvailabilityResponseImpl implements CheckQuotaAvail
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.loadtesting.LoadTestManager manager() {
+    private com.azure.resourcemanager.loadtesting.LoadtestingManager manager() {
         return this.serviceManager;
     }
 }
