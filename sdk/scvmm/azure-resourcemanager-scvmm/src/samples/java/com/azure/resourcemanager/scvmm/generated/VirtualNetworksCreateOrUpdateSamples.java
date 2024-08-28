@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualNetworks_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -39,7 +39,7 @@ public final class VirtualNetworksCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualNetworks_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
