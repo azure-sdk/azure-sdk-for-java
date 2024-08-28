@@ -42,22 +42,22 @@ public final class DnsPrivateZonesClientImpl implements DnsPrivateZonesClient {
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of DnsPrivateZonesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    DnsPrivateZonesClientImpl(OracleDatabaseResourceManagerImpl client) {
+    DnsPrivateZonesClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service
             = RestProxy.create(DnsPrivateZonesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerDnsPrivateZones to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingDnsPrivateZones to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")

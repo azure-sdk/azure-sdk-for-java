@@ -1,14 +1,31 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-08-28)
 
-### Features Added
+- Azure Resource Manager OracleDatabase client library for Java. This package contains Microsoft Azure SDK for OracleDatabase Management SDK.  Package tag package-2024-06-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `OracleDatabaseManager` was modified
 
-### Other Changes
+* `fluent.OracleDatabaseResourceManager serviceClient()` -> `fluent.OracleDatabaseResourceManagerForTesting serviceClient()`
+
+### Features Added
+
+* `models.AzureSubscriptions` was added
+
+* `models.AddSubscriptionOperationState` was added
+
+#### `models.OracleSubscriptions` was modified
+
+* `addAzureSubscriptions(models.AzureSubscriptions,com.azure.core.util.Context)` was added
+* `addAzureSubscriptions(models.AzureSubscriptions)` was added
+
+#### `models.OracleSubscriptionProperties` was modified
+
+* `azureSubscriptionIds()` was added
+* `lastOperationStatusDetail()` was added
+* `addSubscriptionOperationState()` was added
 
 ## 1.0.0 (2024-07-04)
 

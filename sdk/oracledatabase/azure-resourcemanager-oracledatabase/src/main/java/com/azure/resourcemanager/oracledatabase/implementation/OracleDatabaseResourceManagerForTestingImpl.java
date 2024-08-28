@@ -37,7 +37,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.DnsPrivateViewsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.DnsPrivateZonesClient;
 import com.azure.resourcemanager.oracledatabase.fluent.GiVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.OperationsClient;
-import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManager;
+import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManagerForTesting;
 import com.azure.resourcemanager.oracledatabase.fluent.OracleSubscriptionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.SystemVersionsClient;
 import com.azure.resourcemanager.oracledatabase.fluent.VirtualNetworkAddressesClient;
@@ -51,10 +51,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the OracleDatabaseResourceManagerImpl type.
+ * Initializes a new instance of the OracleDatabaseResourceManagerForTestingImpl type.
  */
-@ServiceClient(builder = OracleDatabaseResourceManagerBuilder.class)
-public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseResourceManager {
+@ServiceClient(builder = OracleDatabaseResourceManagerForTestingBuilder.class)
+public final class OracleDatabaseResourceManagerForTestingImpl implements OracleDatabaseResourceManagerForTesting {
     /**
      * The ID of the target subscription. The value must be an UUID.
      */
@@ -378,7 +378,7 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
     }
 
     /**
-     * Initializes an instance of OracleDatabaseResourceManager client.
+     * Initializes an instance of OracleDatabaseResourceManagerForTesting client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -387,14 +387,14 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
      * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
-    OracleDatabaseResourceManagerImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+    OracleDatabaseResourceManagerForTestingImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
         Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2024-06-01";
         this.operations = new OperationsClientImpl(this);
         this.autonomousDatabases = new AutonomousDatabasesClientImpl(this);
         this.cloudExadataInfrastructures = new CloudExadataInfrastructuresClientImpl(this);
@@ -540,5 +540,5 @@ public final class OracleDatabaseResourceManagerImpl implements OracleDatabaseRe
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(OracleDatabaseResourceManagerImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(OracleDatabaseResourceManagerForTestingImpl.class);
 }

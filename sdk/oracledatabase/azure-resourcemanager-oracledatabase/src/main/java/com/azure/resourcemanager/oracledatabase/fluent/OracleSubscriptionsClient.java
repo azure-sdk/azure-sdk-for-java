@@ -15,6 +15,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.ActivationLinksInn
 import com.azure.resourcemanager.oracledatabase.fluent.models.CloudAccountDetailsInner;
 import com.azure.resourcemanager.oracledatabase.fluent.models.OracleSubscriptionInner;
 import com.azure.resourcemanager.oracledatabase.fluent.models.SaasSubscriptionDetailsInner;
+import com.azure.resourcemanager.oracledatabase.models.AzureSubscriptions;
 import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptionUpdate;
 
 /**
@@ -210,6 +211,54 @@ public interface OracleSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(Context context);
+
+    /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginAddAzureSubscriptions(AzureSubscriptions body);
+
+    /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginAddAzureSubscriptions(AzureSubscriptions body, Context context);
+
+    /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void addAzureSubscriptions(AzureSubscriptions body);
+
+    /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void addAzureSubscriptions(AzureSubscriptions body, Context context);
 
     /**
      * List Activation Links.

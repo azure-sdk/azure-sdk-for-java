@@ -50,22 +50,22 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of VirtualNetworkAddressesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    VirtualNetworkAddressesClientImpl(OracleDatabaseResourceManagerImpl client) {
+    VirtualNetworkAddressesClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service = RestProxy.create(VirtualNetworkAddressesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerVirtualNetworkAddresses to be used by
-     * the proxy service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingVirtualNetworkAddresses to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")

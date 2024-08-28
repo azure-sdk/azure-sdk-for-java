@@ -15,10 +15,10 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
 /**
- * A builder for creating a new instance of the OracleDatabaseResourceManagerImpl type.
+ * A builder for creating a new instance of the OracleDatabaseResourceManagerForTestingImpl type.
  */
-@ServiceClientBuilder(serviceClients = { OracleDatabaseResourceManagerImpl.class })
-public final class OracleDatabaseResourceManagerBuilder {
+@ServiceClientBuilder(serviceClients = { OracleDatabaseResourceManagerForTestingImpl.class })
+public final class OracleDatabaseResourceManagerForTestingBuilder {
     /*
      * The ID of the target subscription. The value must be an UUID.
      */
@@ -28,9 +28,9 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets The ID of the target subscription. The value must be an UUID.
      * 
      * @param subscriptionId the subscriptionId value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder subscriptionId(String subscriptionId) {
+    public OracleDatabaseResourceManagerForTestingBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -44,9 +44,9 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets server parameter.
      * 
      * @param endpoint the endpoint value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder endpoint(String endpoint) {
+    public OracleDatabaseResourceManagerForTestingBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -60,9 +60,9 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets The environment to connect to.
      * 
      * @param environment the environment value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder environment(AzureEnvironment environment) {
+    public OracleDatabaseResourceManagerForTestingBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -76,9 +76,9 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets The HTTP pipeline to send requests through.
      * 
      * @param pipeline the pipeline value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder pipeline(HttpPipeline pipeline) {
+    public OracleDatabaseResourceManagerForTestingBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -92,9 +92,9 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets The default poll interval for long-running operation.
      * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public OracleDatabaseResourceManagerForTestingBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -108,19 +108,19 @@ public final class OracleDatabaseResourceManagerBuilder {
      * Sets The serializer to serialize an object into a string.
      * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the OracleDatabaseResourceManagerBuilder.
+     * @return the OracleDatabaseResourceManagerForTestingBuilder.
      */
-    public OracleDatabaseResourceManagerBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public OracleDatabaseResourceManagerForTestingBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of OracleDatabaseResourceManagerImpl with the provided parameters.
+     * Builds an instance of OracleDatabaseResourceManagerForTestingImpl with the provided parameters.
      * 
-     * @return an instance of OracleDatabaseResourceManagerImpl.
+     * @return an instance of OracleDatabaseResourceManagerForTestingImpl.
      */
-    public OracleDatabaseResourceManagerImpl buildClient() {
+    public OracleDatabaseResourceManagerForTestingImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline = (pipeline != null)
@@ -131,8 +131,9 @@ public final class OracleDatabaseResourceManagerBuilder {
         SerializerAdapter localSerializerAdapter = (serializerAdapter != null)
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
-        OracleDatabaseResourceManagerImpl client = new OracleDatabaseResourceManagerImpl(localPipeline,
-            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
+        OracleDatabaseResourceManagerForTestingImpl client
+            = new OracleDatabaseResourceManagerForTestingImpl(localPipeline, localSerializerAdapter,
+                localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }
