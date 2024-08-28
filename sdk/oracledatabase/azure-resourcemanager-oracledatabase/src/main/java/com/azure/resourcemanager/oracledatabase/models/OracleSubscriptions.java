@@ -118,6 +118,27 @@ public interface OracleSubscriptions {
     void delete(Context context);
 
     /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addAzureSubscriptions(AzureSubscriptions body);
+
+    /**
+     * Add Azure Subscriptions.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addAzureSubscriptions(AzureSubscriptions body, Context context);
+
+    /**
      * List Activation Links.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

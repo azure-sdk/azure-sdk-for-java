@@ -42,22 +42,22 @@ public final class SystemVersionsClientImpl implements SystemVersionsClient {
     /**
      * The service client containing this operation class.
      */
-    private final OracleDatabaseResourceManagerImpl client;
+    private final OracleDatabaseResourceManagerForTestingImpl client;
 
     /**
      * Initializes an instance of SystemVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    SystemVersionsClientImpl(OracleDatabaseResourceManagerImpl client) {
+    SystemVersionsClientImpl(OracleDatabaseResourceManagerForTestingImpl client) {
         this.service
             = RestProxy.create(SystemVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for OracleDatabaseResourceManagerSystemVersions to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for OracleDatabaseResourceManagerForTestingSystemVersions to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "OracleDatabaseResour")
