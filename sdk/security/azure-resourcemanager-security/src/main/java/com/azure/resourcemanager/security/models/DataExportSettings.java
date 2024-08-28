@@ -5,32 +5,42 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.security.fluent.models.DataExportSettingProperties;
 import com.azure.resourcemanager.security.fluent.models.SettingInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.io.IOException;
 
 /**
  * Represents a data export setting.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = DataExportSettings.class, visible = true)
-@JsonTypeName("DataExportSettings")
 @Fluent
 public final class DataExportSettings extends SettingInner {
     /*
      * the kind of the settings string
      */
-    @JsonTypeId
-    @JsonProperty(value = "kind", required = true)
     private SettingKind kind = SettingKind.DATA_EXPORT_SETTINGS;
 
     /*
      * Data export setting data
      */
-    @JsonProperty(value = "properties")
     private DataExportSettingProperties innerProperties;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
 
     /**
      * Creates an instance of DataExportSettings class.
@@ -55,6 +65,36 @@ public final class DataExportSettings extends SettingInner {
      */
     private DataExportSettingProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -91,5 +131,51 @@ public final class DataExportSettings extends SettingInner {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DataExportSettings from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DataExportSettings if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the DataExportSettings.
+     */
+    public static DataExportSettings fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DataExportSettings deserializedDataExportSettings = new DataExportSettings();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedDataExportSettings.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedDataExportSettings.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedDataExportSettings.type = reader.getString();
+                } else if ("kind".equals(fieldName)) {
+                    deserializedDataExportSettings.kind = SettingKind.fromString(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    deserializedDataExportSettings.innerProperties = DataExportSettingProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDataExportSettings;
+        });
     }
 }
