@@ -46,21 +46,21 @@ public final class EnvironmentContainersClientImpl implements EnvironmentContain
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of EnvironmentContainersClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    EnvironmentContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    EnvironmentContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(EnvironmentContainersService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesEnvironmentContainers to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesEnvironmentContainers to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")

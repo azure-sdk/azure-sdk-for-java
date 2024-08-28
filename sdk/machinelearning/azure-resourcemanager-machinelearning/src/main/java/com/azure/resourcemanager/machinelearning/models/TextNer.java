@@ -29,14 +29,14 @@ public final class TextNer extends AutoMLVertical {
     private ClassificationPrimaryMetrics primaryMetric;
 
     /*
-     * Execution constraints for AutoMLJob.
-     */
-    private NlpVerticalLimitSettings limitSettings;
-
-    /*
      * Featurization inputs needed for AutoML job.
      */
     private NlpVerticalFeaturizationSettings featurizationSettings;
+
+    /*
+     * Execution constraints for AutoMLJob.
+     */
+    private NlpVerticalLimitSettings limitSettings;
 
     /*
      * Validation data inputs.
@@ -70,26 +70,6 @@ public final class TextNer extends AutoMLVertical {
     }
 
     /**
-     * Get the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @return the limitSettings value.
-     */
-    public NlpVerticalLimitSettings limitSettings() {
-        return this.limitSettings;
-    }
-
-    /**
-     * Set the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @param limitSettings the limitSettings value to set.
-     * @return the TextNer object itself.
-     */
-    public TextNer withLimitSettings(NlpVerticalLimitSettings limitSettings) {
-        this.limitSettings = limitSettings;
-        return this;
-    }
-
-    /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
      * 
      * @return the featurizationSettings value.
@@ -106,6 +86,26 @@ public final class TextNer extends AutoMLVertical {
      */
     public TextNer withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
+        return this;
+    }
+
+    /**
+     * Get the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @return the limitSettings value.
+     */
+    public NlpVerticalLimitSettings limitSettings() {
+        return this.limitSettings;
+    }
+
+    /**
+     * Set the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @param limitSettings the limitSettings value to set.
+     * @return the TextNer object itself.
+     */
+    public TextNer withLimitSettings(NlpVerticalLimitSettings limitSettings) {
+        this.limitSettings = limitSettings;
         return this;
     }
 
@@ -142,8 +142,8 @@ public final class TextNer extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public TextNer withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public TextNer withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -151,8 +151,8 @@ public final class TextNer extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public TextNer withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public TextNer withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -164,11 +164,11 @@ public final class TextNer extends AutoMLVertical {
     @Override
     public void validate() {
         super.validate();
-        if (limitSettings() != null) {
-            limitSettings().validate();
-        }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
+        }
+        if (limitSettings() != null) {
+            limitSettings().validate();
         }
         if (validationData() != null) {
             validationData().validate();
@@ -185,8 +185,8 @@ public final class TextNer extends AutoMLVertical {
         jsonWriter.writeStringField("logVerbosity", logVerbosity() == null ? null : logVerbosity().toString());
         jsonWriter.writeStringField("targetColumnName", targetColumnName());
         jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
-        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("validationData", this.validationData);
         return jsonWriter.writeEndObject();
     }
@@ -217,10 +217,10 @@ public final class TextNer extends AutoMLVertical {
                     deserializedTextNer.taskType = TaskType.fromString(reader.getString());
                 } else if ("primaryMetric".equals(fieldName)) {
                     deserializedTextNer.primaryMetric = ClassificationPrimaryMetrics.fromString(reader.getString());
-                } else if ("limitSettings".equals(fieldName)) {
-                    deserializedTextNer.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
                 } else if ("featurizationSettings".equals(fieldName)) {
                     deserializedTextNer.featurizationSettings = NlpVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedTextNer.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
                 } else if ("validationData".equals(fieldName)) {
                     deserializedTextNer.validationData = MLTableJobInput.fromJson(reader);
                 } else {

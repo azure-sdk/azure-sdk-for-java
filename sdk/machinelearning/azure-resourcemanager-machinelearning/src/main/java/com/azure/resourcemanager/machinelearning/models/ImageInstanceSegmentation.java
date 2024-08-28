@@ -237,8 +237,8 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageInstanceSegmentation withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageInstanceSegmentation withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -246,8 +246,8 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageInstanceSegmentation withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageInstanceSegmentation withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 

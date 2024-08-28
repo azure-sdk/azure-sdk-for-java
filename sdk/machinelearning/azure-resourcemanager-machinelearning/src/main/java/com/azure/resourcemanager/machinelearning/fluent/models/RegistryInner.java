@@ -12,6 +12,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.ArmResourceId;
+import com.azure.resourcemanager.machinelearning.models.ManagedResourceGroupSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.RegistryPrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.RegistryRegionArmDetails;
@@ -265,6 +266,29 @@ public final class RegistryInner extends Resource {
             this.innerProperties = new RegistryProperties();
         }
         this.innerProperties().withManagedResourceGroup(managedResourceGroup);
+        return this;
+    }
+
+    /**
+     * Get the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @return the managedResourceGroupSettings value.
+     */
+    public ManagedResourceGroupSettings managedResourceGroupSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedResourceGroupSettings();
+    }
+
+    /**
+     * Set the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @param managedResourceGroupSettings the managedResourceGroupSettings value to set.
+     * @return the RegistryInner object itself.
+     */
+    public RegistryInner withManagedResourceGroupSettings(ManagedResourceGroupSettings managedResourceGroupSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RegistryProperties();
+        }
+        this.innerProperties().withManagedResourceGroupSettings(managedResourceGroupSettings);
         return this;
     }
 

@@ -19,14 +19,14 @@ import java.io.IOException;
 @Fluent
 public class ImageModelSettings implements JsonSerializable<ImageModelSettings> {
     /*
-     * Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     */
-    private Boolean amsGradient;
-
-    /*
      * Settings for advanced scenarios.
      */
     private String advancedSettings;
+
+    /*
+     * Enable AMSGrad when optimizer is 'adam' or 'adamw'.
+     */
+    private Boolean amsGradient;
 
     /*
      * Settings for using Augmentations.
@@ -49,14 +49,14 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     private Integer checkpointFrequency;
 
     /*
-     * The id of a previous run that has a pretrained checkpoint for incremental training.
-     */
-    private String checkpointRunId;
-
-    /*
      * The pretrained checkpoint model for incremental training.
      */
     private MLFlowModelJobInput checkpointModel;
+
+    /*
+     * The id of a previous run that has a pretrained checkpoint for incremental training.
+     */
+    private String checkpointRunId;
 
     /*
      * Whether to use distributed training.
@@ -81,14 +81,14 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     private Integer earlyStoppingPatience;
 
     /*
-     * Frequency to evaluate validation dataset to get metric scores. Must be a positive integer.
-     */
-    private Integer evaluationFrequency;
-
-    /*
      * Enable normalization when exporting ONNX model.
      */
     private Boolean enableOnnxNormalization;
+
+    /*
+     * Frequency to evaluate validation dataset to get metric scores. Must be a positive integer.
+     */
+    private Integer evaluationFrequency;
 
     /*
      * Gradient accumulation means running a configured number of "GradAccumulationStep" steps without
@@ -194,26 +194,6 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     }
 
     /**
-     * Get the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     * 
-     * @return the amsGradient value.
-     */
-    public Boolean amsGradient() {
-        return this.amsGradient;
-    }
-
-    /**
-     * Set the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     * 
-     * @param amsGradient the amsGradient value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withAmsGradient(Boolean amsGradient) {
-        this.amsGradient = amsGradient;
-        return this;
-    }
-
-    /**
      * Get the advancedSettings property: Settings for advanced scenarios.
      * 
      * @return the advancedSettings value.
@@ -230,6 +210,26 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
      */
     public ImageModelSettings withAdvancedSettings(String advancedSettings) {
         this.advancedSettings = advancedSettings;
+        return this;
+    }
+
+    /**
+     * Get the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
+     * 
+     * @return the amsGradient value.
+     */
+    public Boolean amsGradient() {
+        return this.amsGradient;
+    }
+
+    /**
+     * Set the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
+     * 
+     * @param amsGradient the amsGradient value to set.
+     * @return the ImageModelSettings object itself.
+     */
+    public ImageModelSettings withAmsGradient(Boolean amsGradient) {
+        this.amsGradient = amsGradient;
         return this;
     }
 
@@ -318,6 +318,26 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     }
 
     /**
+     * Get the checkpointModel property: The pretrained checkpoint model for incremental training.
+     * 
+     * @return the checkpointModel value.
+     */
+    public MLFlowModelJobInput checkpointModel() {
+        return this.checkpointModel;
+    }
+
+    /**
+     * Set the checkpointModel property: The pretrained checkpoint model for incremental training.
+     * 
+     * @param checkpointModel the checkpointModel value to set.
+     * @return the ImageModelSettings object itself.
+     */
+    public ImageModelSettings withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        this.checkpointModel = checkpointModel;
+        return this;
+    }
+
+    /**
      * Get the checkpointRunId property: The id of a previous run that has a pretrained checkpoint for incremental
      * training.
      * 
@@ -336,26 +356,6 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
      */
     public ImageModelSettings withCheckpointRunId(String checkpointRunId) {
         this.checkpointRunId = checkpointRunId;
-        return this;
-    }
-
-    /**
-     * Get the checkpointModel property: The pretrained checkpoint model for incremental training.
-     * 
-     * @return the checkpointModel value.
-     */
-    public MLFlowModelJobInput checkpointModel() {
-        return this.checkpointModel;
-    }
-
-    /**
-     * Set the checkpointModel property: The pretrained checkpoint model for incremental training.
-     * 
-     * @param checkpointModel the checkpointModel value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withCheckpointModel(MLFlowModelJobInput checkpointModel) {
-        this.checkpointModel = checkpointModel;
         return this;
     }
 
@@ -448,6 +448,26 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     }
 
     /**
+     * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
+     * 
+     * @return the enableOnnxNormalization value.
+     */
+    public Boolean enableOnnxNormalization() {
+        return this.enableOnnxNormalization;
+    }
+
+    /**
+     * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
+     * 
+     * @param enableOnnxNormalization the enableOnnxNormalization value to set.
+     * @return the ImageModelSettings object itself.
+     */
+    public ImageModelSettings withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
+        this.enableOnnxNormalization = enableOnnxNormalization;
+        return this;
+    }
+
+    /**
      * Get the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
      * 
@@ -466,26 +486,6 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
      */
     public ImageModelSettings withEvaluationFrequency(Integer evaluationFrequency) {
         this.evaluationFrequency = evaluationFrequency;
-        return this;
-    }
-
-    /**
-     * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     * 
-     * @return the enableOnnxNormalization value.
-     */
-    public Boolean enableOnnxNormalization() {
-        return this.enableOnnxNormalization;
-    }
-
-    /**
-     * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     * 
-     * @param enableOnnxNormalization the enableOnnxNormalization value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
-        this.enableOnnxNormalization = enableOnnxNormalization;
         return this;
     }
 
@@ -892,20 +892,20 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeBooleanField("amsGradient", this.amsGradient);
         jsonWriter.writeStringField("advancedSettings", this.advancedSettings);
+        jsonWriter.writeBooleanField("amsGradient", this.amsGradient);
         jsonWriter.writeStringField("augmentations", this.augmentations);
         jsonWriter.writeNumberField("beta1", this.beta1);
         jsonWriter.writeNumberField("beta2", this.beta2);
         jsonWriter.writeNumberField("checkpointFrequency", this.checkpointFrequency);
-        jsonWriter.writeStringField("checkpointRunId", this.checkpointRunId);
         jsonWriter.writeJsonField("checkpointModel", this.checkpointModel);
+        jsonWriter.writeStringField("checkpointRunId", this.checkpointRunId);
         jsonWriter.writeBooleanField("distributed", this.distributed);
         jsonWriter.writeBooleanField("earlyStopping", this.earlyStopping);
         jsonWriter.writeNumberField("earlyStoppingDelay", this.earlyStoppingDelay);
         jsonWriter.writeNumberField("earlyStoppingPatience", this.earlyStoppingPatience);
-        jsonWriter.writeNumberField("evaluationFrequency", this.evaluationFrequency);
         jsonWriter.writeBooleanField("enableOnnxNormalization", this.enableOnnxNormalization);
+        jsonWriter.writeNumberField("evaluationFrequency", this.evaluationFrequency);
         jsonWriter.writeNumberField("gradientAccumulationStep", this.gradientAccumulationStep);
         jsonWriter.writeNumberField("layersToFreeze", this.layersToFreeze);
         jsonWriter.writeNumberField("learningRate", this.learningRate);
@@ -943,10 +943,10 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("amsGradient".equals(fieldName)) {
-                    deserializedImageModelSettings.amsGradient = reader.getNullable(JsonReader::getBoolean);
-                } else if ("advancedSettings".equals(fieldName)) {
+                if ("advancedSettings".equals(fieldName)) {
                     deserializedImageModelSettings.advancedSettings = reader.getString();
+                } else if ("amsGradient".equals(fieldName)) {
+                    deserializedImageModelSettings.amsGradient = reader.getNullable(JsonReader::getBoolean);
                 } else if ("augmentations".equals(fieldName)) {
                     deserializedImageModelSettings.augmentations = reader.getString();
                 } else if ("beta1".equals(fieldName)) {
@@ -955,10 +955,10 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
                     deserializedImageModelSettings.beta2 = reader.getNullable(JsonReader::getFloat);
                 } else if ("checkpointFrequency".equals(fieldName)) {
                     deserializedImageModelSettings.checkpointFrequency = reader.getNullable(JsonReader::getInt);
-                } else if ("checkpointRunId".equals(fieldName)) {
-                    deserializedImageModelSettings.checkpointRunId = reader.getString();
                 } else if ("checkpointModel".equals(fieldName)) {
                     deserializedImageModelSettings.checkpointModel = MLFlowModelJobInput.fromJson(reader);
+                } else if ("checkpointRunId".equals(fieldName)) {
+                    deserializedImageModelSettings.checkpointRunId = reader.getString();
                 } else if ("distributed".equals(fieldName)) {
                     deserializedImageModelSettings.distributed = reader.getNullable(JsonReader::getBoolean);
                 } else if ("earlyStopping".equals(fieldName)) {
@@ -967,10 +967,10 @@ public class ImageModelSettings implements JsonSerializable<ImageModelSettings> 
                     deserializedImageModelSettings.earlyStoppingDelay = reader.getNullable(JsonReader::getInt);
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelSettings.earlyStoppingPatience = reader.getNullable(JsonReader::getInt);
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelSettings.evaluationFrequency = reader.getNullable(JsonReader::getInt);
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelSettings.enableOnnxNormalization = reader.getNullable(JsonReader::getBoolean);
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelSettings.evaluationFrequency = reader.getNullable(JsonReader::getInt);
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelSettings.gradientAccumulationStep = reader.getNullable(JsonReader::getInt);
                 } else if ("layersToFreeze".equals(fieldName)) {

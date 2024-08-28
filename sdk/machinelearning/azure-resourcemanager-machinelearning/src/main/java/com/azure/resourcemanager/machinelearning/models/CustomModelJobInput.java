@@ -22,14 +22,14 @@ public final class CustomModelJobInput extends JobInput {
     private JobInputType jobInputType = JobInputType.CUSTOM_MODEL;
 
     /*
-     * [Required] Input Asset URI.
-     */
-    private String uri;
-
-    /*
      * Input Asset Delivery Mode.
      */
     private InputDeliveryMode mode;
+
+    /*
+     * [Required] Input Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of CustomModelJobInput class.
@@ -45,26 +45,6 @@ public final class CustomModelJobInput extends JobInput {
     @Override
     public JobInputType jobInputType() {
         return this.jobInputType;
-    }
-
-    /**
-     * Get the uri property: [Required] Input Asset URI.
-     * 
-     * @return the uri value.
-     */
-    public String uri() {
-        return this.uri;
-    }
-
-    /**
-     * Set the uri property: [Required] Input Asset URI.
-     * 
-     * @param uri the uri value to set.
-     * @return the CustomModelJobInput object itself.
-     */
-    public CustomModelJobInput withUri(String uri) {
-        this.uri = uri;
-        return this;
     }
 
     /**
@@ -84,6 +64,26 @@ public final class CustomModelJobInput extends JobInput {
      */
     public CustomModelJobInput withMode(InputDeliveryMode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    /**
+     * Get the uri property: [Required] Input Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: [Required] Input Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the CustomModelJobInput object itself.
+     */
+    public CustomModelJobInput withUri(String uri) {
+        this.uri = uri;
         return this;
     }
 

@@ -15,7 +15,7 @@ import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.io.IOException;
 
 /**
- * Outbound Rule Basic Resource for the managed network of a machine learning workspace.
+ * The OutboundRuleBasicResource model.
  */
 @Fluent
 public final class OutboundRuleBasicResourceInner extends ProxyResource {

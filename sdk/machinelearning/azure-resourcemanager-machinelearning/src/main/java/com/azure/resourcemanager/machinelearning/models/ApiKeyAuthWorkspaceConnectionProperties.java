@@ -128,6 +128,15 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      * {@inheritDoc}
      */
     @Override
+    public ApiKeyAuthWorkspaceConnectionProperties withError(String error) {
+        super.withError(error);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ApiKeyAuthWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
         super.withExpiryTime(expiryTime);
         return this;
@@ -146,8 +155,8 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      * {@inheritDoc}
      */
     @Override
-    public ApiKeyAuthWorkspaceConnectionProperties withTarget(String target) {
-        super.withTarget(target);
+    public ApiKeyAuthWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
+        super.withMetadata(metadata);
         return this;
     }
 
@@ -155,8 +164,17 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      * {@inheritDoc}
      */
     @Override
-    public ApiKeyAuthWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
-        super.withMetadata(metadata);
+    public ApiKeyAuthWorkspaceConnectionProperties withPeRequirement(ManagedPERequirement peRequirement) {
+        super.withPeRequirement(peRequirement);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ApiKeyAuthWorkspaceConnectionProperties withPeStatus(ManagedPEStatus peStatus) {
+        super.withPeStatus(peStatus);
         return this;
     }
 
@@ -173,8 +191,8 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      * {@inheritDoc}
      */
     @Override
-    public ApiKeyAuthWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
+    public ApiKeyAuthWorkspaceConnectionProperties withTarget(String target) {
+        super.withTarget(target);
         return this;
     }
 
@@ -182,8 +200,9 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      * {@inheritDoc}
      */
     @Override
-    public ApiKeyAuthWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
+    public ApiKeyAuthWorkspaceConnectionProperties
+        withUseWorkspaceManagedIdentity(Boolean useWorkspaceManagedIdentity) {
+        super.withUseWorkspaceManagedIdentity(useWorkspaceManagedIdentity);
         return this;
     }
 
@@ -207,15 +226,17 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("category", category() == null ? null : category().toString());
+        jsonWriter.writeStringField("error", error());
         jsonWriter.writeStringField("expiryTime",
             expiryTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(expiryTime()));
         jsonWriter.writeBooleanField("isSharedToAll", isSharedToAll());
-        jsonWriter.writeStringField("target", target());
         jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("peRequirement", peRequirement() == null ? null : peRequirement().toString());
+        jsonWriter.writeStringField("peStatus", peStatus() == null ? null : peStatus().toString());
         jsonWriter.writeArrayField("sharedUserList", sharedUserList(),
             (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("value", value());
-        jsonWriter.writeStringField("valueFormat", valueFormat() == null ? null : valueFormat().toString());
+        jsonWriter.writeStringField("target", target());
+        jsonWriter.writeBooleanField("useWorkspaceManagedIdentity", useWorkspaceManagedIdentity());
         jsonWriter.writeStringField("authType", this.authType == null ? null : this.authType.toString());
         jsonWriter.writeJsonField("credentials", this.credentials);
         return jsonWriter.writeEndObject();
@@ -242,6 +263,8 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                } else if ("error".equals(fieldName)) {
+                    deserializedApiKeyAuthWorkspaceConnectionProperties.withError(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
@@ -251,19 +274,23 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));
-                } else if ("target".equals(fieldName)) {
-                    deserializedApiKeyAuthWorkspaceConnectionProperties.withTarget(reader.getString());
                 } else if ("metadata".equals(fieldName)) {
                     Map<String, String> metadata = reader.readMap(reader1 -> reader1.getString());
                     deserializedApiKeyAuthWorkspaceConnectionProperties.withMetadata(metadata);
+                } else if ("peRequirement".equals(fieldName)) {
+                    deserializedApiKeyAuthWorkspaceConnectionProperties
+                        .withPeRequirement(ManagedPERequirement.fromString(reader.getString()));
+                } else if ("peStatus".equals(fieldName)) {
+                    deserializedApiKeyAuthWorkspaceConnectionProperties
+                        .withPeStatus(ManagedPEStatus.fromString(reader.getString()));
                 } else if ("sharedUserList".equals(fieldName)) {
                     List<String> sharedUserList = reader.readArray(reader1 -> reader1.getString());
                     deserializedApiKeyAuthWorkspaceConnectionProperties.withSharedUserList(sharedUserList);
-                } else if ("value".equals(fieldName)) {
-                    deserializedApiKeyAuthWorkspaceConnectionProperties.withValue(reader.getString());
-                } else if ("valueFormat".equals(fieldName)) {
+                } else if ("target".equals(fieldName)) {
+                    deserializedApiKeyAuthWorkspaceConnectionProperties.withTarget(reader.getString());
+                } else if ("useWorkspaceManagedIdentity".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties
-                        .withValueFormat(ValueFormat.fromString(reader.getString()));
+                        .withUseWorkspaceManagedIdentity(reader.getNullable(JsonReader::getBoolean));
                 } else if ("authType".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties.authType
                         = ConnectionAuthType.fromString(reader.getString());

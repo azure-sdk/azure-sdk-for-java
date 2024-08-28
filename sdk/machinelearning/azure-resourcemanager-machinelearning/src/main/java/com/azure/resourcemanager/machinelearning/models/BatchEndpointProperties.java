@@ -97,24 +97,6 @@ public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
      * {@inheritDoc}
      */
     @Override
-    public BatchEndpointProperties withDescription(String description) {
-        super.withDescription(description);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BatchEndpointProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public BatchEndpointProperties withAuthMode(EndpointAuthMode authMode) {
         super.withAuthMode(authMode);
         return this;
@@ -124,8 +106,26 @@ public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
      * {@inheritDoc}
      */
     @Override
+    public BatchEndpointProperties withDescription(String description) {
+        super.withDescription(description);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public BatchEndpointProperties withKeys(EndpointAuthKeysInner keys) {
         super.withKeys(keys);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BatchEndpointProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -150,8 +150,8 @@ public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("authMode", authMode() == null ? null : authMode().toString());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("keys", keys());
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("defaults", this.defaults);
         return jsonWriter.writeEndObject();
     }
@@ -176,6 +176,8 @@ public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
                     deserializedBatchEndpointProperties.withAuthMode(EndpointAuthMode.fromString(reader.getString()));
                 } else if ("description".equals(fieldName)) {
                     deserializedBatchEndpointProperties.withDescription(reader.getString());
+                } else if ("keys".equals(fieldName)) {
+                    deserializedBatchEndpointProperties.withKeys(EndpointAuthKeysInner.fromJson(reader));
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedBatchEndpointProperties.withProperties(properties);
@@ -183,8 +185,6 @@ public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
                     deserializedBatchEndpointProperties.scoringUri = reader.getString();
                 } else if ("swaggerUri".equals(fieldName)) {
                     deserializedBatchEndpointProperties.swaggerUri = reader.getString();
-                } else if ("keys".equals(fieldName)) {
-                    deserializedBatchEndpointProperties.withKeys(EndpointAuthKeysInner.fromJson(reader));
                 } else if ("defaults".equals(fieldName)) {
                     deserializedBatchEndpointProperties.defaults = BatchEndpointDefaults.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {

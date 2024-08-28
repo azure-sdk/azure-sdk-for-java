@@ -238,8 +238,8 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageClassificationMultilabel withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -247,8 +247,8 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageClassificationMultilabel withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 

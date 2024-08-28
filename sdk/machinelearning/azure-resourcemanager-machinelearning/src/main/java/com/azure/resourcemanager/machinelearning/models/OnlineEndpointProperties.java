@@ -19,15 +19,21 @@ import java.util.Map;
 @Fluent
 public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner {
     /*
-     * Provisioning state for the endpoint.
-     */
-    private EndpointProvisioningState provisioningState;
-
-    /*
      * ARM resource ID of the compute if it exists.
      * optional
      */
     private String compute;
+
+    /*
+     * Percentage of traffic to be mirrored to each deployment without using returned scoring. Traffic values need to
+     * sum to utmost 50.
+     */
+    private Map<String, Integer> mirrorTraffic;
+
+    /*
+     * Provisioning state for the endpoint.
+     */
+    private EndpointProvisioningState provisioningState;
 
     /*
      * Set to "Enabled" for endpoints that should allow public access when Private Link is enabled.
@@ -38,12 +44,6 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      * Percentage of traffic from endpoint to divert to each deployment. Traffic values need to sum to 100.
      */
     private Map<String, Integer> traffic;
-
-    /*
-     * Percentage of traffic to be mirrored to each deployment without using returned scoring. Traffic values need to
-     * sum to utmost 50.
-     */
-    private Map<String, Integer> mirrorTraffic;
 
     /*
      * Endpoint URI.
@@ -59,15 +59,6 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      * Creates an instance of OnlineEndpointProperties class.
      */
     public OnlineEndpointProperties() {
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state for the endpoint.
-     * 
-     * @return the provisioningState value.
-     */
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
     }
 
     /**
@@ -90,6 +81,37 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     public OnlineEndpointProperties withCompute(String compute) {
         this.compute = compute;
         return this;
+    }
+
+    /**
+     * Get the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     * 
+     * @return the mirrorTraffic value.
+     */
+    public Map<String, Integer> mirrorTraffic() {
+        return this.mirrorTraffic;
+    }
+
+    /**
+     * Set the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     * 
+     * @param mirrorTraffic the mirrorTraffic value to set.
+     * @return the OnlineEndpointProperties object itself.
+     */
+    public OnlineEndpointProperties withMirrorTraffic(Map<String, Integer> mirrorTraffic) {
+        this.mirrorTraffic = mirrorTraffic;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the endpoint.
+     * 
+     * @return the provisioningState value.
+     */
+    public EndpointProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -137,28 +159,6 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     }
 
     /**
-     * Get the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
-     * scoring. Traffic values need to sum to utmost 50.
-     * 
-     * @return the mirrorTraffic value.
-     */
-    public Map<String, Integer> mirrorTraffic() {
-        return this.mirrorTraffic;
-    }
-
-    /**
-     * Set the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
-     * scoring. Traffic values need to sum to utmost 50.
-     * 
-     * @param mirrorTraffic the mirrorTraffic value to set.
-     * @return the OnlineEndpointProperties object itself.
-     */
-    public OnlineEndpointProperties withMirrorTraffic(Map<String, Integer> mirrorTraffic) {
-        this.mirrorTraffic = mirrorTraffic;
-        return this;
-    }
-
-    /**
      * Get the scoringUri property: Endpoint URI.
      * 
      * @return the scoringUri value.
@@ -182,24 +182,6 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      * {@inheritDoc}
      */
     @Override
-    public OnlineEndpointProperties withDescription(String description) {
-        super.withDescription(description);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public OnlineEndpointProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public OnlineEndpointProperties withAuthMode(EndpointAuthMode authMode) {
         super.withAuthMode(authMode);
         return this;
@@ -209,8 +191,26 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      * {@inheritDoc}
      */
     @Override
+    public OnlineEndpointProperties withDescription(String description) {
+        super.withDescription(description);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public OnlineEndpointProperties withKeys(EndpointAuthKeysInner keys) {
         super.withKeys(keys);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OnlineEndpointProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -232,13 +232,13 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("authMode", authMode() == null ? null : authMode().toString());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("keys", keys());
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("compute", this.compute);
+        jsonWriter.writeMapField("mirrorTraffic", this.mirrorTraffic, (writer, element) -> writer.writeInt(element));
         jsonWriter.writeStringField("publicNetworkAccess",
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
         jsonWriter.writeMapField("traffic", this.traffic, (writer, element) -> writer.writeInt(element));
-        jsonWriter.writeMapField("mirrorTraffic", this.mirrorTraffic, (writer, element) -> writer.writeInt(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -262,6 +262,8 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
                     deserializedOnlineEndpointProperties.withAuthMode(EndpointAuthMode.fromString(reader.getString()));
                 } else if ("description".equals(fieldName)) {
                     deserializedOnlineEndpointProperties.withDescription(reader.getString());
+                } else if ("keys".equals(fieldName)) {
+                    deserializedOnlineEndpointProperties.withKeys(EndpointAuthKeysInner.fromJson(reader));
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedOnlineEndpointProperties.withProperties(properties);
@@ -269,22 +271,20 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
                     deserializedOnlineEndpointProperties.scoringUri = reader.getString();
                 } else if ("swaggerUri".equals(fieldName)) {
                     deserializedOnlineEndpointProperties.swaggerUri = reader.getString();
-                } else if ("keys".equals(fieldName)) {
-                    deserializedOnlineEndpointProperties.withKeys(EndpointAuthKeysInner.fromJson(reader));
+                } else if ("compute".equals(fieldName)) {
+                    deserializedOnlineEndpointProperties.compute = reader.getString();
+                } else if ("mirrorTraffic".equals(fieldName)) {
+                    Map<String, Integer> mirrorTraffic = reader.readMap(reader1 -> reader1.getInt());
+                    deserializedOnlineEndpointProperties.mirrorTraffic = mirrorTraffic;
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedOnlineEndpointProperties.provisioningState
                         = EndpointProvisioningState.fromString(reader.getString());
-                } else if ("compute".equals(fieldName)) {
-                    deserializedOnlineEndpointProperties.compute = reader.getString();
                 } else if ("publicNetworkAccess".equals(fieldName)) {
                     deserializedOnlineEndpointProperties.publicNetworkAccess
                         = PublicNetworkAccessType.fromString(reader.getString());
                 } else if ("traffic".equals(fieldName)) {
                     Map<String, Integer> traffic = reader.readMap(reader1 -> reader1.getInt());
                     deserializedOnlineEndpointProperties.traffic = traffic;
-                } else if ("mirrorTraffic".equals(fieldName)) {
-                    Map<String, Integer> mirrorTraffic = reader.readMap(reader1 -> reader1.getInt());
-                    deserializedOnlineEndpointProperties.mirrorTraffic = mirrorTraffic;
                 } else {
                     reader.skipChildren();
                 }
