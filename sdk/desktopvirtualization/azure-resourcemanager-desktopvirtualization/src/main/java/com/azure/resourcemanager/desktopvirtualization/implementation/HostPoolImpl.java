@@ -12,19 +12,25 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInn
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolPatch;
-import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenList;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.util.Collections;
 import java.util.List;
@@ -72,15 +78,15 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
+    public Sku sku() {
         return this.innerModel().sku();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
     }
 
@@ -141,8 +147,21 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         return this.innerModel().vmTemplate();
     }
 
+    public ManagementType managementType() {
+        return this.innerModel().managementType();
+    }
+
     public List<String> applicationGroupReferences() {
         List<String> inner = this.innerModel().applicationGroupReferences();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> appAttachPackageReferences() {
+        List<String> inner = this.innerModel().appAttachPackageReferences();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -195,6 +214,22 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         }
     }
 
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerModel().managedPrivateUdp();
+    }
+
+    public DirectUdp directUdp() {
+        return this.innerModel().directUdp();
+    }
+
+    public PublicUdp publicUdp() {
+        return this.innerModel().publicUdp();
+    }
+
+    public RelayUdp relayUdp() {
+        return this.innerModel().relayUdp();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -227,27 +262,23 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     }
 
     public HostPool create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .createOrUpdateWithResponse(resourceGroupName, hostPoolName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .createOrUpdateWithResponse(resourceGroupName, hostPoolName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public HostPool create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .createOrUpdateWithResponse(resourceGroupName, hostPoolName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .createOrUpdateWithResponse(resourceGroupName, hostPoolName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
-    HostPoolImpl(
-        String name, com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
+    HostPoolImpl(String name,
+        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = new HostPoolInner();
         this.serviceManager = serviceManager;
         this.hostPoolName = name;
@@ -259,62 +290,60 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     }
 
     public HostPool apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, Context.NONE)
+            .getValue();
         return this;
     }
 
     public HostPool apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .updateWithResponse(resourceGroupName, hostPoolName, updateHostPool, context)
+            .getValue();
         return this;
     }
 
-    HostPoolImpl(
-        HostPoolInner innerObject,
+    HostPoolImpl(HostPoolInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.hostPoolName = Utils.getValueFromIdByName(innerObject.id(), "hostPools");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.hostPoolName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "hostPools");
     }
 
     public HostPool refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .getByResourceGroupWithResponse(resourceGroupName, hostPoolName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .getByResourceGroupWithResponse(resourceGroupName, hostPoolName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public HostPool refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHostPools()
-                .getByResourceGroupWithResponse(resourceGroupName, hostPoolName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getHostPools()
+            .getByResourceGroupWithResponse(resourceGroupName, hostPoolName, context)
+            .getValue();
         return this;
     }
 
     public Response<RegistrationInfo> retrieveRegistrationTokenWithResponse(Context context) {
-        return serviceManager
-            .hostPools()
+        return serviceManager.hostPools()
             .retrieveRegistrationTokenWithResponse(resourceGroupName, hostPoolName, context);
     }
 
     public RegistrationInfo retrieveRegistrationToken() {
         return serviceManager.hostPools().retrieveRegistrationToken(resourceGroupName, hostPoolName);
+    }
+
+    public Response<RegistrationTokenList> listRegistrationTokensWithResponse(Context context) {
+        return serviceManager.hostPools().listRegistrationTokensWithResponse(resourceGroupName, hostPoolName, context);
+    }
+
+    public RegistrationTokenList listRegistrationTokens() {
+        return serviceManager.hostPools().listRegistrationTokens(resourceGroupName, hostPoolName);
     }
 
     public HostPoolImpl withRegion(Region location) {
@@ -372,17 +401,17 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         return this;
     }
 
-    public HostPoolImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public HostPoolImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public HostPoolImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public HostPoolImpl withSku(Sku sku) {
         this.innerModel().withSku(sku);
         return this;
     }
 
-    public HostPoolImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public HostPoolImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }
@@ -472,6 +501,11 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         }
     }
 
+    public HostPoolImpl withManagementType(ManagementType managementType) {
+        this.innerModel().withManagementType(managementType);
+        return this;
+    }
+
     public HostPoolImpl withSsoadfsAuthority(String ssoadfsAuthority) {
         if (isInCreateMode()) {
             this.innerModel().withSsoadfsAuthority(ssoadfsAuthority);
@@ -535,6 +569,46 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     public HostPoolImpl withAgentUpdate(AgentUpdateProperties agentUpdate) {
         this.innerModel().withAgentUpdate(agentUpdate);
         return this;
+    }
+
+    public HostPoolImpl withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withManagedPrivateUdp(managedPrivateUdp);
+            return this;
+        } else {
+            this.updateHostPool.withManagedPrivateUdp(managedPrivateUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withDirectUdp(DirectUdp directUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withDirectUdp(directUdp);
+            return this;
+        } else {
+            this.updateHostPool.withDirectUdp(directUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withPublicUdp(PublicUdp publicUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublicUdp(publicUdp);
+            return this;
+        } else {
+            this.updateHostPool.withPublicUdp(publicUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withRelayUdp(RelayUdp relayUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withRelayUdp(relayUdp);
+            return this;
+        } else {
+            this.updateHostPool.withRelayUdp(relayUdp);
+            return this;
+        }
     }
 
     public HostPoolImpl withRegistrationInfo(RegistrationInfoPatch registrationInfo) {
