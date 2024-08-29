@@ -187,29 +187,6 @@ public final class HciUpdateInner extends ProxyResource {
     }
 
     /**
-     * Get the minSbeVersionRequired property: Minimum Sbe Version of the update.
-     * 
-     * @return the minSbeVersionRequired value.
-     */
-    public String minSbeVersionRequired() {
-        return this.innerProperties() == null ? null : this.innerProperties().minSbeVersionRequired();
-    }
-
-    /**
-     * Set the minSbeVersionRequired property: Minimum Sbe Version of the update.
-     * 
-     * @param minSbeVersionRequired the minSbeVersionRequired value to set.
-     * @return the HciUpdateInner object itself.
-     */
-    public HciUpdateInner withMinSbeVersionRequired(String minSbeVersionRequired) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UpdateProperties();
-        }
-        this.innerProperties().withMinSbeVersionRequired(minSbeVersionRequired);
-        return this;
-    }
-
-    /**
      * Get the state property: State of the update as it relates to this stamp.
      * 
      * @return the state value.
