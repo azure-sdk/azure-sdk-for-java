@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface PlaywrightTestingMgmtClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -66,4 +66,11 @@ public interface PlaywrightTestingMgmtClient {
      * @return the QuotasClient object.
      */
     QuotasClient getQuotas();
+
+    /**
+     * Gets the AccountQuotasClient object to access its operations.
+     * 
+     * @return the AccountQuotasClient object.
+     */
+    AccountQuotasClient getAccountQuotas();
 }
