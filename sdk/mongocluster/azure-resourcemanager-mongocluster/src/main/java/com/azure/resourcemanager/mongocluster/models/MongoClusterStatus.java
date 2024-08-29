@@ -47,6 +47,11 @@ public final class MongoClusterStatus extends ExpandableStringEnum<MongoClusterS
     public static final MongoClusterStatus DROPPING = fromString("Dropping");
 
     /**
+     * Static value Test123 for MongoClusterStatus.
+     */
+    public static final MongoClusterStatus TEST123 = fromString("Test123");
+
+    /**
      * Creates a new instance of MongoClusterStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
