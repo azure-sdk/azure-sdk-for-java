@@ -237,8 +237,8 @@ public final class ImageObjectDetection extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageObjectDetection withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageObjectDetection withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -246,8 +246,8 @@ public final class ImageObjectDetection extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageObjectDetection withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageObjectDetection withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 

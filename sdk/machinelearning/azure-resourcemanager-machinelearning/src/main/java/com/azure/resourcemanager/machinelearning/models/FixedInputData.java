@@ -41,6 +41,15 @@ public final class FixedInputData extends MonitoringInputDataBase {
      * {@inheritDoc}
      */
     @Override
+    public FixedInputData withColumns(Map<String, String> columns) {
+        super.withColumns(columns);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public FixedInputData withDataContext(String dataContext) {
         super.withDataContext(dataContext);
         return this;
@@ -65,15 +74,6 @@ public final class FixedInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public FixedInputData withColumns(Map<String, String> columns) {
-        super.withColumns(columns);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -91,8 +91,8 @@ public final class FixedInputData extends MonitoringInputDataBase {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("jobInputType", jobInputType() == null ? null : jobInputType().toString());
         jsonWriter.writeStringField("uri", uri());
-        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeMapField("columns", columns(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeStringField("inputDataType", this.inputDataType == null ? null : this.inputDataType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -117,11 +117,11 @@ public final class FixedInputData extends MonitoringInputDataBase {
                     deserializedFixedInputData.withJobInputType(JobInputType.fromString(reader.getString()));
                 } else if ("uri".equals(fieldName)) {
                     deserializedFixedInputData.withUri(reader.getString());
-                } else if ("dataContext".equals(fieldName)) {
-                    deserializedFixedInputData.withDataContext(reader.getString());
                 } else if ("columns".equals(fieldName)) {
                     Map<String, String> columns = reader.readMap(reader1 -> reader1.getString());
                     deserializedFixedInputData.withColumns(columns);
+                } else if ("dataContext".equals(fieldName)) {
+                    deserializedFixedInputData.withDataContext(reader.getString());
                 } else if ("inputDataType".equals(fieldName)) {
                     deserializedFixedInputData.inputDataType = MonitoringInputDataType.fromString(reader.getString());
                 } else {

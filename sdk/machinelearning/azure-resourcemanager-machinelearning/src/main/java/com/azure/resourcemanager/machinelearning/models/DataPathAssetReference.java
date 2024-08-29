@@ -21,14 +21,14 @@ public final class DataPathAssetReference extends AssetReferenceBase {
     private ReferenceType referenceType = ReferenceType.DATA_PATH;
 
     /*
-     * The path of the file/directory in the datastore.
-     */
-    private String path;
-
-    /*
      * ARM resource ID of the datastore where the asset is located.
      */
     private String datastoreId;
+
+    /*
+     * The path of the file/directory in the datastore.
+     */
+    private String path;
 
     /**
      * Creates an instance of DataPathAssetReference class.
@@ -44,26 +44,6 @@ public final class DataPathAssetReference extends AssetReferenceBase {
     @Override
     public ReferenceType referenceType() {
         return this.referenceType;
-    }
-
-    /**
-     * Get the path property: The path of the file/directory in the datastore.
-     * 
-     * @return the path value.
-     */
-    public String path() {
-        return this.path;
-    }
-
-    /**
-     * Set the path property: The path of the file/directory in the datastore.
-     * 
-     * @param path the path value to set.
-     * @return the DataPathAssetReference object itself.
-     */
-    public DataPathAssetReference withPath(String path) {
-        this.path = path;
-        return this;
     }
 
     /**
@@ -87,6 +67,26 @@ public final class DataPathAssetReference extends AssetReferenceBase {
     }
 
     /**
+     * Get the path property: The path of the file/directory in the datastore.
+     * 
+     * @return the path value.
+     */
+    public String path() {
+        return this.path;
+    }
+
+    /**
+     * Set the path property: The path of the file/directory in the datastore.
+     * 
+     * @param path the path value to set.
+     * @return the DataPathAssetReference object itself.
+     */
+    public DataPathAssetReference withPath(String path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -103,8 +103,8 @@ public final class DataPathAssetReference extends AssetReferenceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("referenceType", this.referenceType == null ? null : this.referenceType.toString());
-        jsonWriter.writeStringField("path", this.path);
         jsonWriter.writeStringField("datastoreId", this.datastoreId);
+        jsonWriter.writeStringField("path", this.path);
         return jsonWriter.writeEndObject();
     }
 
@@ -125,10 +125,10 @@ public final class DataPathAssetReference extends AssetReferenceBase {
 
                 if ("referenceType".equals(fieldName)) {
                     deserializedDataPathAssetReference.referenceType = ReferenceType.fromString(reader.getString());
-                } else if ("path".equals(fieldName)) {
-                    deserializedDataPathAssetReference.path = reader.getString();
                 } else if ("datastoreId".equals(fieldName)) {
                     deserializedDataPathAssetReference.datastoreId = reader.getString();
+                } else if ("path".equals(fieldName)) {
+                    deserializedDataPathAssetReference.path = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

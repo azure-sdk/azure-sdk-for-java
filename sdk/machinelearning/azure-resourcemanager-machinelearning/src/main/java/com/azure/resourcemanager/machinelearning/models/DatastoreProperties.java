@@ -23,14 +23,14 @@ public class DatastoreProperties extends ResourceBase {
     private DatastoreType datastoreType = DatastoreType.fromString("DatastoreProperties");
 
     /*
-     * Readonly property to indicate if datastore is the workspace default datastore
-     */
-    private Boolean isDefault;
-
-    /*
      * [Required] Account credentials.
      */
     private DatastoreCredentials credentials;
+
+    /*
+     * Readonly property to indicate if datastore is the workspace default datastore
+     */
+    private Boolean isDefault;
 
     /**
      * Creates an instance of DatastoreProperties class.
@@ -45,26 +45,6 @@ public class DatastoreProperties extends ResourceBase {
      */
     public DatastoreType datastoreType() {
         return this.datastoreType;
-    }
-
-    /**
-     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
-     * 
-     * @return the isDefault value.
-     */
-    public Boolean isDefault() {
-        return this.isDefault;
-    }
-
-    /**
-     * Set the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
-     * 
-     * @param isDefault the isDefault value to set.
-     * @return the DatastoreProperties object itself.
-     */
-    DatastoreProperties withIsDefault(Boolean isDefault) {
-        this.isDefault = isDefault;
-        return this;
     }
 
     /**
@@ -88,6 +68,26 @@ public class DatastoreProperties extends ResourceBase {
     }
 
     /**
+     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
+     * 
+     * @return the isDefault value.
+     */
+    public Boolean isDefault() {
+        return this.isDefault;
+    }
+
+    /**
+     * Set the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
+     * 
+     * @param isDefault the isDefault value to set.
+     * @return the DatastoreProperties object itself.
+     */
+    DatastoreProperties withIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -100,8 +100,8 @@ public class DatastoreProperties extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public DatastoreProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public DatastoreProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -109,8 +109,8 @@ public class DatastoreProperties extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public DatastoreProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public DatastoreProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -140,8 +140,8 @@ public class DatastoreProperties extends ResourceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("credentials", this.credentials);
         jsonWriter.writeStringField("datastoreType", this.datastoreType == null ? null : this.datastoreType.toString());
         return jsonWriter.writeEndObject();
@@ -198,12 +198,12 @@ public class DatastoreProperties extends ResourceBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedDatastoreProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedDatastoreProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedDatastoreProperties.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDatastoreProperties.withTags(tags);
                 } else if ("credentials".equals(fieldName)) {
                     deserializedDatastoreProperties.credentials = DatastoreCredentials.fromJson(reader);
                 } else if ("datastoreType".equals(fieldName)) {

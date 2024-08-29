@@ -21,14 +21,14 @@ public final class MLTableJobOutput extends JobOutput {
     private JobOutputType jobOutputType = JobOutputType.MLTABLE;
 
     /*
-     * Output Asset URI.
-     */
-    private String uri;
-
-    /*
      * Output Asset Delivery Mode.
      */
     private OutputDeliveryMode mode;
+
+    /*
+     * Output Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of MLTableJobOutput class.
@@ -44,26 +44,6 @@ public final class MLTableJobOutput extends JobOutput {
     @Override
     public JobOutputType jobOutputType() {
         return this.jobOutputType;
-    }
-
-    /**
-     * Get the uri property: Output Asset URI.
-     * 
-     * @return the uri value.
-     */
-    public String uri() {
-        return this.uri;
-    }
-
-    /**
-     * Set the uri property: Output Asset URI.
-     * 
-     * @param uri the uri value to set.
-     * @return the MLTableJobOutput object itself.
-     */
-    public MLTableJobOutput withUri(String uri) {
-        this.uri = uri;
-        return this;
     }
 
     /**
@@ -83,6 +63,26 @@ public final class MLTableJobOutput extends JobOutput {
      */
     public MLTableJobOutput withMode(OutputDeliveryMode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    /**
+     * Get the uri property: Output Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: Output Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the MLTableJobOutput object itself.
+     */
+    public MLTableJobOutput withUri(String uri) {
+        this.uri = uri;
         return this;
     }
 
@@ -113,8 +113,8 @@ public final class MLTableJobOutput extends JobOutput {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
         jsonWriter.writeStringField("jobOutputType", this.jobOutputType == null ? null : this.jobOutputType.toString());
-        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("mode", this.mode == null ? null : this.mode.toString());
+        jsonWriter.writeStringField("uri", this.uri);
         return jsonWriter.writeEndObject();
     }
 
@@ -137,10 +137,10 @@ public final class MLTableJobOutput extends JobOutput {
                     deserializedMLTableJobOutput.withDescription(reader.getString());
                 } else if ("jobOutputType".equals(fieldName)) {
                     deserializedMLTableJobOutput.jobOutputType = JobOutputType.fromString(reader.getString());
-                } else if ("uri".equals(fieldName)) {
-                    deserializedMLTableJobOutput.uri = reader.getString();
                 } else if ("mode".equals(fieldName)) {
                     deserializedMLTableJobOutput.mode = OutputDeliveryMode.fromString(reader.getString());
+                } else if ("uri".equals(fieldName)) {
+                    deserializedMLTableJobOutput.uri = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

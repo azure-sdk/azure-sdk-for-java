@@ -19,6 +19,11 @@ import java.io.IOException;
 @Fluent
 public final class SkuResourceInner implements JsonSerializable<SkuResourceInner> {
     /*
+     * Gets or sets the Sku Capacity.
+     */
+    private SkuCapacity capacity;
+
+    /*
      * The resource type name.
      */
     private String resourceType;
@@ -28,15 +33,30 @@ public final class SkuResourceInner implements JsonSerializable<SkuResourceInner
      */
     private SkuSetting sku;
 
-    /*
-     * Gets or sets the Sku Capacity.
-     */
-    private SkuCapacity capacity;
-
     /**
      * Creates an instance of SkuResourceInner class.
      */
     public SkuResourceInner() {
+    }
+
+    /**
+     * Get the capacity property: Gets or sets the Sku Capacity.
+     * 
+     * @return the capacity value.
+     */
+    public SkuCapacity capacity() {
+        return this.capacity;
+    }
+
+    /**
+     * Set the capacity property: Gets or sets the Sku Capacity.
+     * 
+     * @param capacity the capacity value to set.
+     * @return the SkuResourceInner object itself.
+     */
+    public SkuResourceInner withCapacity(SkuCapacity capacity) {
+        this.capacity = capacity;
+        return this;
     }
 
     /**
@@ -69,36 +89,16 @@ public final class SkuResourceInner implements JsonSerializable<SkuResourceInner
     }
 
     /**
-     * Get the capacity property: Gets or sets the Sku Capacity.
-     * 
-     * @return the capacity value.
-     */
-    public SkuCapacity capacity() {
-        return this.capacity;
-    }
-
-    /**
-     * Set the capacity property: Gets or sets the Sku Capacity.
-     * 
-     * @param capacity the capacity value to set.
-     * @return the SkuResourceInner object itself.
-     */
-    public SkuResourceInner withCapacity(SkuCapacity capacity) {
-        this.capacity = capacity;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sku() != null) {
-            sku().validate();
-        }
         if (capacity() != null) {
             capacity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 
@@ -108,8 +108,8 @@ public final class SkuResourceInner implements JsonSerializable<SkuResourceInner
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeJsonField("capacity", this.capacity);
+        jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
 
@@ -128,12 +128,12 @@ public final class SkuResourceInner implements JsonSerializable<SkuResourceInner
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("resourceType".equals(fieldName)) {
+                if ("capacity".equals(fieldName)) {
+                    deserializedSkuResourceInner.capacity = SkuCapacity.fromJson(reader);
+                } else if ("resourceType".equals(fieldName)) {
                     deserializedSkuResourceInner.resourceType = reader.getString();
                 } else if ("sku".equals(fieldName)) {
                     deserializedSkuResourceInner.sku = SkuSetting.fromJson(reader);
-                } else if ("capacity".equals(fieldName)) {
-                    deserializedSkuResourceInner.capacity = SkuCapacity.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
