@@ -16,7 +16,7 @@ import java.util.Map;
 public final class AccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-08-01-preview/
      * examples/Accounts_Update.json
      */
     /**
@@ -28,8 +28,10 @@ public final class AccountsUpdateSamples {
         Account resource = manager.accounts()
             .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("Division", "LT", "Team", "Dev Exp"))
-            .withProperties(new AccountUpdateProperties().withRegionalAffinity(EnablementStatus.ENABLED)).apply();
+        resource.update()
+            .withTags(mapOf("Division", "LT", "Team", "Dev Exp"))
+            .withProperties(new AccountUpdateProperties().withRegionalAffinity(EnablementStatus.ENABLED))
+            .apply();
     }
 
     // Use "Map.of" if available

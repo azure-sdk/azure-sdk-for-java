@@ -15,7 +15,7 @@ import java.util.Map;
 public final class AccountsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-08-01-preview/
      * examples/Accounts_CreateOrUpdate.json
      */
     /**
@@ -25,9 +25,13 @@ public final class AccountsCreateOrUpdateSamples {
      */
     public static void
         accountsCreateOrUpdate(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accounts().define("myPlaywrightAccount").withRegion("westus").withExistingResourceGroup("dummyrg")
+        manager.accounts()
+            .define("myPlaywrightAccount")
+            .withRegion("westus")
+            .withExistingResourceGroup("dummyrg")
             .withTags(mapOf("Team", "Dev Exp"))
-            .withProperties(new AccountProperties().withRegionalAffinity(EnablementStatus.ENABLED)).create();
+            .withProperties(new AccountProperties().withRegionalAffinity(EnablementStatus.ENABLED))
+            .create();
     }
 
     // Use "Map.of" if available

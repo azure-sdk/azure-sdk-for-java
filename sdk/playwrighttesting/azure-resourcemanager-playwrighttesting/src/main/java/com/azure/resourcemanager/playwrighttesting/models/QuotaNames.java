@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.playwrighttesting.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -16,6 +15,11 @@ public final class QuotaNames extends ExpandableStringEnum<QuotaNames> {
      * Static value ScalableExecution for QuotaNames.
      */
     public static final QuotaNames SCALABLE_EXECUTION = fromString("ScalableExecution");
+
+    /**
+     * Static value Reporting for QuotaNames.
+     */
+    public static final QuotaNames REPORTING = fromString("Reporting");
 
     /**
      * Creates a new instance of QuotaNames value.
@@ -32,7 +36,6 @@ public final class QuotaNames extends ExpandableStringEnum<QuotaNames> {
      * @param name a name to look for.
      * @return the corresponding QuotaNames.
      */
-    @JsonCreator
     public static QuotaNames fromString(String name) {
         return fromString(name, QuotaNames.class);
     }

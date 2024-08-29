@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.playwrighttesting.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -22,6 +23,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.playwrighttesting.fluent.AccountQuotasClient;
 import com.azure.resourcemanager.playwrighttesting.fluent.AccountsClient;
 import com.azure.resourcemanager.playwrighttesting.fluent.OperationsClient;
 import com.azure.resourcemanager.playwrighttesting.fluent.PlaywrightTestingMgmtClient;
@@ -41,12 +43,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = PlaywrightTestingMgmtClientBuilder.class)
 public final class PlaywrightTestingMgmtClientImpl implements PlaywrightTestingMgmtClient {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -167,13 +169,27 @@ public final class PlaywrightTestingMgmtClientImpl implements PlaywrightTestingM
     }
 
     /**
+     * The AccountQuotasClient object to access its operations.
+     */
+    private final AccountQuotasClient accountQuotas;
+
+    /**
+     * Gets the AccountQuotasClient object to access its operations.
+     * 
+     * @return the AccountQuotasClient object.
+     */
+    public AccountQuotasClient getAccountQuotas() {
+        return this.accountQuotas;
+    }
+
+    /**
      * Initializes an instance of PlaywrightTestingMgmtClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     PlaywrightTestingMgmtClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -183,10 +199,11 @@ public final class PlaywrightTestingMgmtClientImpl implements PlaywrightTestingM
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-10-01-preview";
+        this.apiVersion = "2024-08-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.accounts = new AccountsClientImpl(this);
         this.quotas = new QuotasClientImpl(this);
+        this.accountQuotas = new AccountQuotasClientImpl(this);
     }
 
     /**
@@ -249,8 +266,8 @@ public final class PlaywrightTestingMgmtClientImpl implements PlaywrightTestingM
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -291,7 +308,7 @@ public final class PlaywrightTestingMgmtClientImpl implements PlaywrightTestingM
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {
