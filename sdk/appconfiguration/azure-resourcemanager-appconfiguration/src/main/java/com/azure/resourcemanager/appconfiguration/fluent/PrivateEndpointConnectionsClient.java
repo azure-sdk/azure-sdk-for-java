@@ -13,12 +13,14 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.models.PrivateEndpointConnectionInner;
 
-/** An instance of this class provides access to all the operations defined in PrivateEndpointConnectionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in PrivateEndpointConnectionsClient.
+ */
 public interface PrivateEndpointConnectionsClient {
     /**
      * Lists all private endpoint connections for a configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -26,13 +28,13 @@ public interface PrivateEndpointConnectionsClient {
      * @return a list of private endpoint connections as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> listByConfigurationStore(
-        String resourceGroupName, String configStoreName);
+    PagedIterable<PrivateEndpointConnectionInner> listByConfigurationStore(String resourceGroupName,
+        String configStoreName);
 
     /**
      * Lists all private endpoint connections for a configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -41,30 +43,30 @@ public interface PrivateEndpointConnectionsClient {
      * @return a list of private endpoint connections as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateEndpointConnectionInner> listByConfigurationStore(
-        String resourceGroupName, String configStoreName, Context context);
+    PagedIterable<PrivateEndpointConnectionInner> listByConfigurationStore(String resourceGroupName,
+        String configStoreName, Context context);
 
     /**
      * Gets the specified private endpoint connection associated with the configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the configuration store along with {@link
-     *     Response}.
+     * @return the specified private endpoint connection associated with the configuration store along with
+     * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<PrivateEndpointConnectionInner> getWithResponse(
-        String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context);
+    Response<PrivateEndpointConnectionInner> getWithResponse(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName, Context context);
 
     /**
      * Gets the specified private endpoint connection associated with the configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -73,15 +75,15 @@ public interface PrivateEndpointConnectionsClient {
      * @return the specified private endpoint connection associated with the configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner get(
-        String resourceGroupName, String configStoreName, String privateEndpointConnectionName);
+    PrivateEndpointConnectionInner get(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName);
 
     /**
      * Update the state of the specified private endpoint connection associated with the configuration store. This
      * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
      * with the Network resource provider.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param privateEndpointConnection The private endpoint connection properties.
@@ -92,17 +94,15 @@ public interface PrivateEndpointConnectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        String privateEndpointConnectionName,
+        String resourceGroupName, String configStoreName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
      * Update the state of the specified private endpoint connection associated with the configuration store. This
      * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
      * with the Network resource provider.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param privateEndpointConnection The private endpoint connection properties.
@@ -114,18 +114,15 @@ public interface PrivateEndpointConnectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner privateEndpointConnection,
-        Context context);
+        String resourceGroupName, String configStoreName, String privateEndpointConnectionName,
+        PrivateEndpointConnectionInner privateEndpointConnection, Context context);
 
     /**
      * Update the state of the specified private endpoint connection associated with the configuration store. This
      * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
      * with the Network resource provider.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param privateEndpointConnection The private endpoint connection properties.
@@ -135,18 +132,15 @@ public interface PrivateEndpointConnectionsClient {
      * @return a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner privateEndpointConnection);
+    PrivateEndpointConnectionInner createOrUpdate(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
      * Update the state of the specified private endpoint connection associated with the configuration store. This
      * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
      * with the Network resource provider.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param privateEndpointConnection The private endpoint connection properties.
@@ -157,17 +151,14 @@ public interface PrivateEndpointConnectionsClient {
      * @return a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner privateEndpointConnection,
+    PrivateEndpointConnectionInner createOrUpdate(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection,
         Context context);
 
     /**
      * Deletes a private endpoint connection.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -176,13 +167,13 @@ public interface PrivateEndpointConnectionsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String privateEndpointConnectionName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName);
 
     /**
      * Deletes a private endpoint connection.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
@@ -192,13 +183,13 @@ public interface PrivateEndpointConnectionsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String configStoreName,
+        String privateEndpointConnectionName, Context context);
 
     /**
      * Deletes a private endpoint connection.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -210,8 +201,8 @@ public interface PrivateEndpointConnectionsClient {
 
     /**
      * Deletes a private endpoint connection.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param configStoreName The name of the configuration store.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
@@ -220,6 +211,6 @@ public interface PrivateEndpointConnectionsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(
-        String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context);
+    void delete(String resourceGroupName, String configStoreName, String privateEndpointConnectionName,
+        Context context);
 }
