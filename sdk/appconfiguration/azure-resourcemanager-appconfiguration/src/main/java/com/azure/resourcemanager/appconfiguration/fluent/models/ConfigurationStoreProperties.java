@@ -5,85 +5,108 @@
 package com.azure.resourcemanager.appconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The properties of a configuration store. */
+/**
+ * The properties of a configuration store.
+ */
 @Fluent
-public final class ConfigurationStoreProperties {
+public final class ConfigurationStoreProperties implements JsonSerializable<ConfigurationStoreProperties> {
     /*
      * The provisioning state of the configuration store.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * The creation date of configuration store.
      */
-    @JsonProperty(value = "creationDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime creationDate;
 
     /*
      * The DNS endpoint where the configuration store API will be available.
      */
-    @JsonProperty(value = "endpoint", access = JsonProperty.Access.WRITE_ONLY)
     private String endpoint;
 
     /*
      * The encryption settings of the configuration store.
      */
-    @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
     /*
      * The list of private endpoint connections that are set up for this resource.
      */
-    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionReference> privateEndpointConnections;
 
     /*
-     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
+     * Allow, disallow, or let network security perimeter configuration control public network access to the data plane.
      */
-    @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
      * Disables all authentication methods other than AAD authentication.
      */
-    @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;
 
     /*
      * The amount of time in days that the configuration store will be retained when it is soft deleted.
      */
-    @JsonProperty(value = "softDeleteRetentionInDays")
     private Integer softDeleteRetentionInDays;
+
+    /*
+     * The amount of time in seconds to retain new key value revisions. Defaults to 604800 (7 days) for Free SKU stores
+     * and 2592000 (30 days) for Standard SKU stores.
+     */
+    private Long revisionRetentionPeriodInSeconds;
 
     /*
      * Property specifying whether protection against purge is enabled for this configuration store.
      */
-    @JsonProperty(value = "enablePurgeProtection")
     private Boolean enablePurgeProtection;
+
+    /*
+     * Property specifying the configuration of data plane proxy for Azure Resource Manager (ARM).
+     */
+    private DataPlaneProxyProperties dataPlaneProxy;
 
     /*
      * Indicates whether the configuration store need to be recovered.
      */
-    @JsonProperty(value = "createMode")
     private CreateMode createMode;
 
-    /** Creates an instance of ConfigurationStoreProperties class. */
+    /*
+     * Property specifying the configuration of telemetry for this configuration store
+     */
+    private TelemetryProperties telemetry;
+
+    /*
+     * Property specifying the configuration of experimentation for this configuration store
+     */
+    private ExperimentationProperties experimentation;
+
+    /**
+     * Creates an instance of ConfigurationStoreProperties class.
+     */
     public ConfigurationStoreProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the configuration store.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -92,7 +115,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the creationDate property: The creation date of configuration store.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -101,7 +124,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the endpoint property: The DNS endpoint where the configuration store API will be available.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -110,7 +133,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -119,7 +142,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -131,7 +154,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Get the privateEndpointConnections property: The list of private endpoint connections that are set up for this
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionReference> privateEndpointConnections() {
@@ -139,9 +162,9 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
-     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Get the publicNetworkAccess property: Allow, disallow, or let network security perimeter configuration control
+     * public network access to the data plane.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -149,9 +172,9 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
-     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Set the publicNetworkAccess property: Allow, disallow, or let network security perimeter configuration control
+     * public network access to the data plane.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -162,7 +185,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -171,7 +194,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -183,7 +206,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @return the softDeleteRetentionInDays value.
      */
     public Integer softDeleteRetentionInDays() {
@@ -193,7 +216,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -203,9 +226,31 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
+     * Get the revisionRetentionPeriodInSeconds property: The amount of time in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores.
+     * 
+     * @return the revisionRetentionPeriodInSeconds value.
+     */
+    public Long revisionRetentionPeriodInSeconds() {
+        return this.revisionRetentionPeriodInSeconds;
+    }
+
+    /**
+     * Set the revisionRetentionPeriodInSeconds property: The amount of time in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores.
+     * 
+     * @param revisionRetentionPeriodInSeconds the revisionRetentionPeriodInSeconds value to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties withRevisionRetentionPeriodInSeconds(Long revisionRetentionPeriodInSeconds) {
+        this.revisionRetentionPeriodInSeconds = revisionRetentionPeriodInSeconds;
+        return this;
+    }
+
+    /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -215,7 +260,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -225,8 +270,30 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.dataPlaneProxy;
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        this.dataPlaneProxy = dataPlaneProxy;
+        return this;
+    }
+
+    /**
      * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @return the createMode value.
      */
     public CreateMode createMode() {
@@ -235,7 +302,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @param createMode the createMode value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -245,8 +312,50 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.telemetry;
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties withTelemetry(TelemetryProperties telemetry) {
+        this.telemetry = telemetry;
+        return this;
+    }
+
+    /**
+     * Get the experimentation property: Property specifying the configuration of experimentation for this configuration
+     * store.
+     * 
+     * @return the experimentation value.
+     */
+    public ExperimentationProperties experimentation() {
+        return this.experimentation;
+    }
+
+    /**
+     * Set the experimentation property: Property specifying the configuration of experimentation for this configuration
+     * store.
+     * 
+     * @param experimentation the experimentation value to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties withExperimentation(ExperimentationProperties experimentation) {
+        this.experimentation = experimentation;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -256,5 +365,96 @@ public final class ConfigurationStoreProperties {
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
         }
+        if (dataPlaneProxy() != null) {
+            dataPlaneProxy().validate();
+        }
+        if (telemetry() != null) {
+            telemetry().validate();
+        }
+        if (experimentation() != null) {
+            experimentation().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("encryption", this.encryption);
+        jsonWriter.writeStringField("publicNetworkAccess",
+            this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
+        jsonWriter.writeBooleanField("disableLocalAuth", this.disableLocalAuth);
+        jsonWriter.writeNumberField("softDeleteRetentionInDays", this.softDeleteRetentionInDays);
+        jsonWriter.writeNumberField("revisionRetentionPeriodInSeconds", this.revisionRetentionPeriodInSeconds);
+        jsonWriter.writeBooleanField("enablePurgeProtection", this.enablePurgeProtection);
+        jsonWriter.writeJsonField("dataPlaneProxy", this.dataPlaneProxy);
+        jsonWriter.writeStringField("createMode", this.createMode == null ? null : this.createMode.toString());
+        jsonWriter.writeJsonField("telemetry", this.telemetry);
+        jsonWriter.writeJsonField("experimentation", this.experimentation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ConfigurationStoreProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ConfigurationStoreProperties if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ConfigurationStoreProperties.
+     */
+    public static ConfigurationStoreProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ConfigurationStoreProperties deserializedConfigurationStoreProperties = new ConfigurationStoreProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
+                } else if ("creationDate".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.creationDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("endpoint".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.endpoint = reader.getString();
+                } else if ("encryption".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.encryption = EncryptionProperties.fromJson(reader);
+                } else if ("privateEndpointConnections".equals(fieldName)) {
+                    List<PrivateEndpointConnectionReference> privateEndpointConnections
+                        = reader.readArray(reader1 -> PrivateEndpointConnectionReference.fromJson(reader1));
+                    deserializedConfigurationStoreProperties.privateEndpointConnections = privateEndpointConnections;
+                } else if ("publicNetworkAccess".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.publicNetworkAccess
+                        = PublicNetworkAccess.fromString(reader.getString());
+                } else if ("disableLocalAuth".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.disableLocalAuth
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("softDeleteRetentionInDays".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.softDeleteRetentionInDays
+                        = reader.getNullable(JsonReader::getInt);
+                } else if ("revisionRetentionPeriodInSeconds".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.revisionRetentionPeriodInSeconds
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("enablePurgeProtection".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.enablePurgeProtection
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("dataPlaneProxy".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.dataPlaneProxy = DataPlaneProxyProperties.fromJson(reader);
+                } else if ("createMode".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.createMode = CreateMode.fromString(reader.getString());
+                } else if ("telemetry".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.telemetry = TelemetryProperties.fromJson(reader);
+                } else if ("experimentation".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.experimentation
+                        = ExperimentationProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedConfigurationStoreProperties;
+        });
     }
 }
