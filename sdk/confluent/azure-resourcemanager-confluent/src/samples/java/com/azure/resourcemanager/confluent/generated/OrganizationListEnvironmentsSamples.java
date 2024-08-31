@@ -9,7 +9,7 @@ package com.azure.resourcemanager.confluent.generated;
  */
 public final class OrganizationListEnvironmentsSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Organization_EnvironmentList.json
      */
     /**
@@ -18,7 +18,7 @@ public final class OrganizationListEnvironmentsSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListEnvironments(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listEnvironments("myResourceGroup", "myOrganization", 10, null,
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listEnvironments("myResourceGroup", "myOrganization", 10, null, com.azure.core.util.Context.NONE);
     }
 }

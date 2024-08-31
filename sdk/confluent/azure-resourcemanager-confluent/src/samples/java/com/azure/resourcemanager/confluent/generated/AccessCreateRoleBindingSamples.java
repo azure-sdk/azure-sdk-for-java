@@ -12,7 +12,7 @@ import com.azure.resourcemanager.confluent.models.AccessCreateRoleBindingRequest
 public final class AccessCreateRoleBindingSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_CreateRoleBinding.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_CreateRoleBinding.
      * json
      */
     /**
@@ -21,10 +21,12 @@ public final class AccessCreateRoleBindingSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessCreateRoleBinding(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().createRoleBindingWithResponse("myResourceGroup", "myOrganization",
-            new AccessCreateRoleBindingRequestModel().withPrincipal("User:u-111aaa").withRoleName("CloudClusterAdmin")
-                .withCrnPattern(
-                    "crn://confluent.cloud/organization=1111aaaa-11aa-11aa-11aa-111111aaaaaa/environment=env-aaa1111/cloud-cluster=lkc-1111aaa"),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .createRoleBindingWithResponse("myResourceGroup", "myOrganization",
+                new AccessCreateRoleBindingRequestModel().withPrincipal("User:u-111aaa")
+                    .withRoleName("CloudClusterAdmin")
+                    .withCrnPattern(
+                        "crn://confluent.cloud/organization=1111aaaa-11aa-11aa-11aa-111111aaaaaa/environment=env-aaa1111/cloud-cluster=lkc-1111aaa"),
+                com.azure.core.util.Context.NONE);
     }
 }

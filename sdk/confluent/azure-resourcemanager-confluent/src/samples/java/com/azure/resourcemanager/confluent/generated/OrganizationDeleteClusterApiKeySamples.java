@@ -9,7 +9,7 @@ package com.azure.resourcemanager.confluent.generated;
  */
 public final class OrganizationDeleteClusterApiKeySamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Organization_DeleteClusterAPIKey.json
      */
     /**
@@ -18,7 +18,8 @@ public final class OrganizationDeleteClusterApiKeySamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationDeleteClusterAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().deleteClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "ZFZ6SZZZWGYBEIFB",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .deleteClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "ZFZ6SZZZWGYBEIFB",
+                com.azure.core.util.Context.NONE);
     }
 }

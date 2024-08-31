@@ -14,7 +14,7 @@ import java.util.Map;
 public final class OrganizationListRegionsSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Organization_ListRegions.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Organization_ListRegions.
      * json
      */
     /**
@@ -23,10 +23,11 @@ public final class OrganizationListRegionsSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationListRegions(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listRegionsWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel()
-                .withSearchFilters(mapOf("cloud", "azure", "packages", "ADVANCED,ESSENTIALS", "region", "eastus")),
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listRegionsWithResponse("myResourceGroup", "myOrganization",
+                new ListAccessRequestModel()
+                    .withSearchFilters(mapOf("cloud", "azure", "packages", "ADVANCED,ESSENTIALS", "region", "eastus")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

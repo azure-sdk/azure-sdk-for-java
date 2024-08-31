@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -25,15 +25,23 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confluent.fluent.ConfluentManagementClient;
 import com.azure.resourcemanager.confluent.implementation.AccessImpl;
+import com.azure.resourcemanager.confluent.implementation.ClustersImpl;
 import com.azure.resourcemanager.confluent.implementation.ConfluentManagementClientBuilder;
+import com.azure.resourcemanager.confluent.implementation.ConnectorsImpl;
+import com.azure.resourcemanager.confluent.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.confluent.implementation.MarketplaceAgreementsImpl;
 import com.azure.resourcemanager.confluent.implementation.OrganizationOperationsImpl;
 import com.azure.resourcemanager.confluent.implementation.OrganizationsImpl;
+import com.azure.resourcemanager.confluent.implementation.TopicsImpl;
 import com.azure.resourcemanager.confluent.implementation.ValidationsImpl;
 import com.azure.resourcemanager.confluent.models.Access;
+import com.azure.resourcemanager.confluent.models.Clusters;
+import com.azure.resourcemanager.confluent.models.Connectors;
+import com.azure.resourcemanager.confluent.models.Environments;
 import com.azure.resourcemanager.confluent.models.MarketplaceAgreements;
 import com.azure.resourcemanager.confluent.models.OrganizationOperations;
 import com.azure.resourcemanager.confluent.models.Organizations;
+import com.azure.resourcemanager.confluent.models.Topics;
 import com.azure.resourcemanager.confluent.models.Validations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -56,14 +64,24 @@ public final class ConfluentManager {
 
     private Access access;
 
+    private Environments environments;
+
+    private Clusters clusters;
+
+    private Connectors connectors;
+
+    private Topics topics;
+
     private final ConfluentManagementClient clientObject;
 
     private ConfluentManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new ConfluentManagementClientBuilder().pipeline(httpPipeline)
-            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
-            .defaultPollInterval(defaultPollInterval).buildClient();
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
@@ -214,12 +232,19 @@ public final class ConfluentManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.confluent").append("/")
-                .append("1.1.0");
+            userAgentBuilder.append("azsdk-java")
+                .append("-")
+                .append("com.azure.resourcemanager.confluent")
+                .append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
+                userAgentBuilder.append(" (")
+                    .append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.name"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version"))
+                    .append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -238,18 +263,21 @@ public final class ConfluentManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
                 .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
-                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
-                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new ConfluentManager(httpPipeline, profile, defaultPollInterval);
         }
     }
@@ -313,6 +341,54 @@ public final class ConfluentManager {
             this.access = new AccessImpl(clientObject.getAccess(), this);
         }
         return access;
+    }
+
+    /**
+     * Gets the resource collection API of Environments. It manages SCEnvironmentRecord.
+     * 
+     * @return Resource collection API of Environments.
+     */
+    public Environments environments() {
+        if (this.environments == null) {
+            this.environments = new EnvironmentsImpl(clientObject.getEnvironments(), this);
+        }
+        return environments;
+    }
+
+    /**
+     * Gets the resource collection API of Clusters. It manages SCClusterRecord.
+     * 
+     * @return Resource collection API of Clusters.
+     */
+    public Clusters clusters() {
+        if (this.clusters == null) {
+            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
+        }
+        return clusters;
+    }
+
+    /**
+     * Gets the resource collection API of Connectors. It manages ConnectorResource.
+     * 
+     * @return Resource collection API of Connectors.
+     */
+    public Connectors connectors() {
+        if (this.connectors == null) {
+            this.connectors = new ConnectorsImpl(clientObject.getConnectors(), this);
+        }
+        return connectors;
+    }
+
+    /**
+     * Gets the resource collection API of Topics. It manages TopicRecord.
+     * 
+     * @return Resource collection API of Topics.
+     */
+    public Topics topics() {
+        if (this.topics == null) {
+            this.topics = new TopicsImpl(clientObject.getTopics(), this);
+        }
+        return topics;
     }
 
     /**

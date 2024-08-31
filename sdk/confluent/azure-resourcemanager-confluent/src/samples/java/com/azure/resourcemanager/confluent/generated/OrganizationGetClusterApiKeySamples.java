@@ -9,7 +9,7 @@ package com.azure.resourcemanager.confluent.generated;
  */
 public final class OrganizationGetClusterApiKeySamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Organization_GetClusterAPIKey.json
      */
     /**
@@ -18,7 +18,8 @@ public final class OrganizationGetClusterApiKeySamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void organizationGetClusterAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().getClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "apiKeyId-123",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getClusterApiKeyWithResponse("myResourceGroup", "myOrganization", "apiKeyId-123",
+                com.azure.core.util.Context.NONE);
     }
 }
