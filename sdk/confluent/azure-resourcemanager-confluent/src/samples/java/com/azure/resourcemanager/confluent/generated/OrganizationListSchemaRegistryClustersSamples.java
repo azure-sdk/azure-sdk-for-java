@@ -9,7 +9,7 @@ package com.azure.resourcemanager.confluent.generated;
  */
 public final class OrganizationListSchemaRegistryClustersSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Organization_ListSchemaRegistryClusters.json
      */
     /**
@@ -19,7 +19,8 @@ public final class OrganizationListSchemaRegistryClustersSamples {
      */
     public static void
         organizationListSchemaRegistryClusters(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.organizations().listSchemaRegistryClusters("myResourceGroup", "myOrganization", "env-stgcczjp2j3", null,
-            null, com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .listSchemaRegistryClusters("myResourceGroup", "myOrganization", "env-stgcczjp2j3", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }

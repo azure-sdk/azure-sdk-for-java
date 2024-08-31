@@ -5,24 +5,53 @@
 package com.azure.resourcemanager.confluent.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.confluent.models.StreamGovernanceConfig;
+import java.io.IOException;
 
 /**
  * Environment resource property.
  */
 @Fluent
-public final class EnvironmentProperties {
+public final class EnvironmentProperties implements JsonSerializable<EnvironmentProperties> {
+    /*
+     * Stream governance configuration
+     */
+    private StreamGovernanceConfig streamGovernanceConfig;
+
     /*
      * Metadata of the record
      */
-    @JsonProperty(value = "metadata")
     private SCMetadataEntity metadata;
 
     /**
      * Creates an instance of EnvironmentProperties class.
      */
     public EnvironmentProperties() {
+    }
+
+    /**
+     * Get the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @return the streamGovernanceConfig value.
+     */
+    public StreamGovernanceConfig streamGovernanceConfig() {
+        return this.streamGovernanceConfig;
+    }
+
+    /**
+     * Set the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @param streamGovernanceConfig the streamGovernanceConfig value to set.
+     * @return the EnvironmentProperties object itself.
+     */
+    public EnvironmentProperties withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig) {
+        this.streamGovernanceConfig = streamGovernanceConfig;
+        return this;
     }
 
     /**
@@ -51,8 +80,50 @@ public final class EnvironmentProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (streamGovernanceConfig() != null) {
+            streamGovernanceConfig().validate();
+        }
         if (metadata() != null) {
             metadata().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("streamGovernanceConfig", this.streamGovernanceConfig);
+        jsonWriter.writeJsonField("metadata", this.metadata);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EnvironmentProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EnvironmentProperties if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the EnvironmentProperties.
+     */
+    public static EnvironmentProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EnvironmentProperties deserializedEnvironmentProperties = new EnvironmentProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("streamGovernanceConfig".equals(fieldName)) {
+                    deserializedEnvironmentProperties.streamGovernanceConfig = StreamGovernanceConfig.fromJson(reader);
+                } else if ("metadata".equals(fieldName)) {
+                    deserializedEnvironmentProperties.metadata = SCMetadataEntity.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEnvironmentProperties;
+        });
     }
 }

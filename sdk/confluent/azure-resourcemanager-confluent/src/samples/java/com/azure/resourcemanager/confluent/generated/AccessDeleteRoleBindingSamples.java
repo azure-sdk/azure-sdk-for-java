@@ -10,7 +10,7 @@ package com.azure.resourcemanager.confluent.generated;
 public final class AccessDeleteRoleBindingSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_DeleteRoleBinding.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_DeleteRoleBinding.
      * json
      */
     /**
@@ -19,7 +19,8 @@ public final class AccessDeleteRoleBindingSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessDeleteRoleBinding(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().deleteRoleBindingWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .deleteRoleBindingWithResponse("myResourceGroup", "myOrganization", "dlz-f3a90de",
+                com.azure.core.util.Context.NONE);
     }
 }

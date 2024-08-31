@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.confluent.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -23,10 +24,14 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.confluent.fluent.AccessClient;
+import com.azure.resourcemanager.confluent.fluent.ClustersClient;
 import com.azure.resourcemanager.confluent.fluent.ConfluentManagementClient;
+import com.azure.resourcemanager.confluent.fluent.ConnectorsClient;
+import com.azure.resourcemanager.confluent.fluent.EnvironmentsClient;
 import com.azure.resourcemanager.confluent.fluent.MarketplaceAgreementsClient;
 import com.azure.resourcemanager.confluent.fluent.OrganizationOperationsClient;
 import com.azure.resourcemanager.confluent.fluent.OrganizationsClient;
+import com.azure.resourcemanager.confluent.fluent.TopicsClient;
 import com.azure.resourcemanager.confluent.fluent.ValidationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -197,6 +202,62 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
     }
 
     /**
+     * The EnvironmentsClient object to access its operations.
+     */
+    private final EnvironmentsClient environments;
+
+    /**
+     * Gets the EnvironmentsClient object to access its operations.
+     * 
+     * @return the EnvironmentsClient object.
+     */
+    public EnvironmentsClient getEnvironments() {
+        return this.environments;
+    }
+
+    /**
+     * The ClustersClient object to access its operations.
+     */
+    private final ClustersClient clusters;
+
+    /**
+     * Gets the ClustersClient object to access its operations.
+     * 
+     * @return the ClustersClient object.
+     */
+    public ClustersClient getClusters() {
+        return this.clusters;
+    }
+
+    /**
+     * The ConnectorsClient object to access its operations.
+     */
+    private final ConnectorsClient connectors;
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     * 
+     * @return the ConnectorsClient object.
+     */
+    public ConnectorsClient getConnectors() {
+        return this.connectors;
+    }
+
+    /**
+     * The TopicsClient object to access its operations.
+     */
+    private final TopicsClient topics;
+
+    /**
+     * Gets the TopicsClient object to access its operations.
+     * 
+     * @return the TopicsClient object.
+     */
+    public TopicsClient getTopics() {
+        return this.topics;
+    }
+
+    /**
      * Initializes an instance of ConfluentManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -213,12 +274,16 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-02-13";
+        this.apiVersion = "2024-07-01";
         this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
         this.organizationOperations = new OrganizationOperationsClientImpl(this);
         this.organizations = new OrganizationsClientImpl(this);
         this.validations = new ValidationsClientImpl(this);
         this.access = new AccessClientImpl(this);
+        this.environments = new EnvironmentsClientImpl(this);
+        this.clusters = new ClustersClientImpl(this);
+        this.connectors = new ConnectorsClientImpl(this);
+        this.topics = new TopicsClientImpl(this);
     }
 
     /**
@@ -281,8 +346,8 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -323,7 +388,7 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.confluent.models;
 
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.fluent.models.SCClusterRecordInner;
 
 /**
@@ -23,6 +24,13 @@ public interface SCClusterRecord {
      * @return the id value.
      */
     String id();
+
+    /**
+     * Gets the type property: Type of the resource.
+     * 
+     * @return the type value.
+     */
+    String type();
 
     /**
      * Gets the name property: Display name of the cluster.
@@ -53,9 +61,260 @@ public interface SCClusterRecord {
     ClusterStatusEntity status();
 
     /**
+     * Gets the name of the resource group.
+     * 
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.confluent.fluent.models.SCClusterRecordInner object.
      * 
      * @return the inner object.
      */
     SCClusterRecordInner innerModel();
+
+    /**
+     * The entirety of the SCClusterRecord definition.
+     */
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    }
+
+    /**
+     * The SCClusterRecord definition stages.
+     */
+    interface DefinitionStages {
+        /**
+         * The first stage of the SCClusterRecord definition.
+         */
+        interface Blank extends WithParentResource {
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify parent resource.
+         */
+        interface WithParentResource {
+            /**
+             * Specifies resourceGroupName, organizationName, environmentId.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param organizationName Organization resource name.
+             * @param environmentId Confluent environment id.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingEnvironment(String resourceGroupName, String organizationName, String environmentId);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition which contains all the minimum required properties for the
+         * resource to be created, but also allows for any other optional properties to be specified.
+         */
+        interface WithCreate extends DefinitionStages.WithKind, DefinitionStages.WithType, DefinitionStages.WithName,
+            DefinitionStages.WithMetadata, DefinitionStages.WithSpec, DefinitionStages.WithStatus {
+            /**
+             * Executes the create request.
+             * 
+             * @return the created resource.
+             */
+            SCClusterRecord create();
+
+            /**
+             * Executes the create request.
+             * 
+             * @param context The context to associate with this operation.
+             * @return the created resource.
+             */
+            SCClusterRecord create(Context context);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Type of cluster.
+             * 
+             * @param kind Type of cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify type.
+         */
+        interface WithType {
+            /**
+             * Specifies the type property: Type of the resource.
+             * 
+             * @param type Type of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withType(String type);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify name.
+         */
+        interface WithName {
+            /**
+             * Specifies the name property: Display name of the cluster.
+             * 
+             * @param name Display name of the cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withName(String name);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Metadata of the record.
+             * 
+             * @param metadata Metadata of the record.
+             * @return the next definition stage.
+             */
+            WithCreate withMetadata(SCMetadataEntity metadata);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify spec.
+         */
+        interface WithSpec {
+            /**
+             * Specifies the spec property: Specification of the cluster.
+             * 
+             * @param spec Specification of the cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withSpec(SCClusterSpecEntity spec);
+        }
+
+        /**
+         * The stage of the SCClusterRecord definition allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Specification of the cluster status.
+             * 
+             * @param status Specification of the cluster status.
+             * @return the next definition stage.
+             */
+            WithCreate withStatus(ClusterStatusEntity status);
+        }
+    }
+
+    /**
+     * Begins update for the SCClusterRecord resource.
+     * 
+     * @return the stage of resource update.
+     */
+    SCClusterRecord.Update update();
+
+    /**
+     * The template for SCClusterRecord update.
+     */
+    interface Update extends UpdateStages.WithKind, UpdateStages.WithType, UpdateStages.WithName,
+        UpdateStages.WithMetadata, UpdateStages.WithSpec, UpdateStages.WithStatus {
+        /**
+         * Executes the update request.
+         * 
+         * @return the updated resource.
+         */
+        SCClusterRecord apply();
+
+        /**
+         * Executes the update request.
+         * 
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        SCClusterRecord apply(Context context);
+    }
+
+    /**
+     * The SCClusterRecord update stages.
+     */
+    interface UpdateStages {
+        /**
+         * The stage of the SCClusterRecord update allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Type of cluster.
+             * 
+             * @param kind Type of cluster.
+             * @return the next definition stage.
+             */
+            Update withKind(String kind);
+        }
+
+        /**
+         * The stage of the SCClusterRecord update allowing to specify type.
+         */
+        interface WithType {
+            /**
+             * Specifies the type property: Type of the resource.
+             * 
+             * @param type Type of the resource.
+             * @return the next definition stage.
+             */
+            Update withType(String type);
+        }
+
+        /**
+         * The stage of the SCClusterRecord update allowing to specify name.
+         */
+        interface WithName {
+            /**
+             * Specifies the name property: Display name of the cluster.
+             * 
+             * @param name Display name of the cluster.
+             * @return the next definition stage.
+             */
+            Update withName(String name);
+        }
+
+        /**
+         * The stage of the SCClusterRecord update allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Metadata of the record.
+             * 
+             * @param metadata Metadata of the record.
+             * @return the next definition stage.
+             */
+            Update withMetadata(SCMetadataEntity metadata);
+        }
+
+        /**
+         * The stage of the SCClusterRecord update allowing to specify spec.
+         */
+        interface WithSpec {
+            /**
+             * Specifies the spec property: Specification of the cluster.
+             * 
+             * @param spec Specification of the cluster.
+             * @return the next definition stage.
+             */
+            Update withSpec(SCClusterSpecEntity spec);
+        }
+
+        /**
+         * The stage of the SCClusterRecord update allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Specification of the cluster status.
+             * 
+             * @param status Specification of the cluster status.
+             * @return the next definition stage.
+             */
+            Update withStatus(ClusterStatusEntity status);
+        }
+    }
 }

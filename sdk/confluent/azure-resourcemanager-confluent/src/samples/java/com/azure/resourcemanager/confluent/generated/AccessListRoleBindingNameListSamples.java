@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public final class AccessListRoleBindingNameListSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Access_RoleBindingNameList.json
      */
     /**
@@ -22,11 +22,12 @@ public final class AccessListRoleBindingNameListSamples {
      * @param manager Entry point to ConfluentManager.
      */
     public static void accessRoleBindingNameList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().listRoleBindingNameListWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel().withSearchFilters(mapOf("crn_pattern",
-                "crn://confluent.cloud/organization=1aa7de07-298e-479c-8f2f-16ac91fd8e76", "namespace",
-                "public,dataplane,networking,identity,datagovernance,connect,streamcatalog,pipelines,ksql")),
-            com.azure.core.util.Context.NONE);
+        manager.access()
+            .listRoleBindingNameListWithResponse("myResourceGroup", "myOrganization",
+                new ListAccessRequestModel().withSearchFilters(mapOf("crn_pattern",
+                    "crn://confluent.cloud/organization=1aa7de07-298e-479c-8f2f-16ac91fd8e76", "namespace",
+                    "public,dataplane,networking,identity,datagovernance,connect,streamcatalog,pipelines,ksql")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
