@@ -4,9 +4,13 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
+import com.azure.resourcemanager.devcenter.models.ImageReference;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
 import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
+import com.azure.resourcemanager.devcenter.models.Sku;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectEnableStatus;
 import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
@@ -17,7 +21,40 @@ import java.util.Arrays;
  */
 public final class PoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_Put.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * Pools_PutWithValueDevBoxDefinition.json
+     */
+    /**
+     * Sample code: Pools_CreateOrUpdateWithValueDevBoxDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        poolsCreateOrUpdateWithValueDevBoxDefinition(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools()
+            .define("DevPool")
+            .withRegion("centralus")
+            .withExistingProject("rg1", "DevProject")
+            .withDevBoxDefinitionType(PoolDevBoxDefinitionType.VALUE)
+            .withDevBoxDefinitionName("")
+            .withDevBoxDefinition(new PoolDevBoxDefinition().withImageReference(new ImageReference().withId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/projects/DevProject/images/exampleImage/version/1.0.0"))
+                .withSku(new Sku().withName("Preview")))
+            .withNetworkConnectionName("Network1-westus2")
+            .withLicenseType(LicenseType.WINDOWS_CLIENT)
+            .withLocalAdministrator(LocalAdminStatus.ENABLED)
+            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(60))
+            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
+            .withDisplayName("Developer Pool")
+            .withVirtualNetworkType(VirtualNetworkType.UNMANAGED)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/Pools_Put.json
      */
     /**
      * Sample code: Pools_CreateOrUpdate.
@@ -42,7 +79,9 @@ public final class PoolsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_PutWithManagedNetwork.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * Pools_PutWithManagedNetwork.json
      */
     /**
      * Sample code: Pools_CreateOrUpdateWithManagedNetwork.

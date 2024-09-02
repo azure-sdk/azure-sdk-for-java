@@ -16,7 +16,9 @@ import java.util.Map;
  */
 public final class ProjectsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Patch.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/Projects_Patch.
+     * json
      */
     /**
      * Sample code: Projects_Update.

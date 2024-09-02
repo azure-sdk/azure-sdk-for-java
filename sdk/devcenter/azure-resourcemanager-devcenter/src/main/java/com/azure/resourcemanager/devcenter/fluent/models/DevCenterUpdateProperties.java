@@ -5,37 +5,84 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterResourceType;
 import com.azure.resourcemanager.devcenter.models.Encryption;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Properties of the devcenter. These properties can be updated after the resource has been created.
  */
 @Fluent
-public class DevCenterUpdateProperties {
+public class DevCenterUpdateProperties implements JsonSerializable<DevCenterUpdateProperties> {
     /*
-     * Encryption settings to be used for server-side encryption for proprietary content (such as catalogs, logs, customizations).
+     * Resource Id of an associated Plan
      */
-    @JsonProperty(value = "encryption")
+    private String planId;
+
+    /*
+     * Encryption settings to be used for server-side encryption for proprietary content (such as catalogs, logs,
+     * customizations).
+     */
     private Encryption encryption;
 
     /*
      * The display name of the devcenter.
      */
-    @JsonProperty(value = "displayName")
     private String displayName;
 
     /*
      * Dev Center settings to be used when associating a project with a catalog.
      */
-    @JsonProperty(value = "projectCatalogSettings")
     private DevCenterProjectCatalogSettings projectCatalogSettings;
+
+    /*
+     * Network settings that will be enforced on network resources associated with the Dev Center.
+     */
+    private DevCenterNetworkSettings networkSettings;
+
+    /*
+     * Settings to be used in the provisioning of all Dev Boxes that belong to this dev center.
+     */
+    private DevBoxProvisioningSettings devBoxProvisioningSettings;
+
+    /*
+     * Indicates the resource types that are restricted from being accessed by a project unless allowed by a project
+     * policy.
+     */
+    private List<DevCenterResourceType> restrictedResourceTypes;
 
     /**
      * Creates an instance of DevCenterUpdateProperties class.
      */
     public DevCenterUpdateProperties() {
+    }
+
+    /**
+     * Get the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    public String planId() {
+        return this.planId;
+    }
+
+    /**
+     * Set the planId property: Resource Id of an associated Plan.
+     * 
+     * @param planId the planId value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withPlanId(String planId) {
+        this.planId = planId;
+        return this;
     }
 
     /**
@@ -104,6 +151,73 @@ public class DevCenterUpdateProperties {
     }
 
     /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.networkSettings;
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        this.networkSettings = networkSettings;
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.devBoxProvisioningSettings;
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties
+        withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        this.devBoxProvisioningSettings = devBoxProvisioningSettings;
+        return this;
+    }
+
+    /**
+     * Get the restrictedResourceTypes property: Indicates the resource types that are restricted from being accessed by
+     * a project unless allowed by a project policy.
+     * 
+     * @return the restrictedResourceTypes value.
+     */
+    public List<DevCenterResourceType> restrictedResourceTypes() {
+        return this.restrictedResourceTypes;
+    }
+
+    /**
+     * Set the restrictedResourceTypes property: Indicates the resource types that are restricted from being accessed by
+     * a project unless allowed by a project policy.
+     * 
+     * @param restrictedResourceTypes the restrictedResourceTypes value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes) {
+        this.restrictedResourceTypes = restrictedResourceTypes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -115,5 +229,70 @@ public class DevCenterUpdateProperties {
         if (projectCatalogSettings() != null) {
             projectCatalogSettings().validate();
         }
+        if (networkSettings() != null) {
+            networkSettings().validate();
+        }
+        if (devBoxProvisioningSettings() != null) {
+            devBoxProvisioningSettings().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("planId", this.planId);
+        jsonWriter.writeJsonField("encryption", this.encryption);
+        jsonWriter.writeStringField("displayName", this.displayName);
+        jsonWriter.writeJsonField("projectCatalogSettings", this.projectCatalogSettings);
+        jsonWriter.writeJsonField("networkSettings", this.networkSettings);
+        jsonWriter.writeJsonField("devBoxProvisioningSettings", this.devBoxProvisioningSettings);
+        jsonWriter.writeArrayField("restrictedResourceTypes", this.restrictedResourceTypes,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DevCenterUpdateProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DevCenterUpdateProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DevCenterUpdateProperties.
+     */
+    public static DevCenterUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DevCenterUpdateProperties deserializedDevCenterUpdateProperties = new DevCenterUpdateProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("planId".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.planId = reader.getString();
+                } else if ("encryption".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.encryption = Encryption.fromJson(reader);
+                } else if ("displayName".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.displayName = reader.getString();
+                } else if ("projectCatalogSettings".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.projectCatalogSettings
+                        = DevCenterProjectCatalogSettings.fromJson(reader);
+                } else if ("networkSettings".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.networkSettings = DevCenterNetworkSettings.fromJson(reader);
+                } else if ("devBoxProvisioningSettings".equals(fieldName)) {
+                    deserializedDevCenterUpdateProperties.devBoxProvisioningSettings
+                        = DevBoxProvisioningSettings.fromJson(reader);
+                } else if ("restrictedResourceTypes".equals(fieldName)) {
+                    List<DevCenterResourceType> restrictedResourceTypes
+                        = reader.readArray(reader1 -> DevCenterResourceType.fromString(reader1.getString()));
+                    deserializedDevCenterUpdateProperties.restrictedResourceTypes = restrictedResourceTypes;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDevCenterUpdateProperties;
+        });
     }
 }

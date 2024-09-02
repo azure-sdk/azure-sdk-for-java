@@ -64,6 +64,42 @@ public final class ImageVersionsImpl implements ImageVersions {
         }
     }
 
+    public PagedIterable<ImageVersion> listByProject(String resourceGroupName, String projectName, String imageName) {
+        PagedIterable<ImageVersionInner> inner
+            = this.serviceClient().listByProject(resourceGroupName, projectName, imageName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ImageVersionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ImageVersion> listByProject(String resourceGroupName, String projectName, String imageName,
+        Context context) {
+        PagedIterable<ImageVersionInner> inner
+            = this.serviceClient().listByProject(resourceGroupName, projectName, imageName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ImageVersionImpl(inner1, this.manager()));
+    }
+
+    public Response<ImageVersion> getByProjectWithResponse(String resourceGroupName, String projectName,
+        String imageName, String versionName, Context context) {
+        Response<ImageVersionInner> inner = this.serviceClient()
+            .getByProjectWithResponse(resourceGroupName, projectName, imageName, versionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ImageVersionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ImageVersion getByProject(String resourceGroupName, String projectName, String imageName,
+        String versionName) {
+        ImageVersionInner inner
+            = this.serviceClient().getByProject(resourceGroupName, projectName, imageName, versionName);
+        if (inner != null) {
+            return new ImageVersionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     private ImageVersionsClient serviceClient() {
         return this.innerClient;
     }
