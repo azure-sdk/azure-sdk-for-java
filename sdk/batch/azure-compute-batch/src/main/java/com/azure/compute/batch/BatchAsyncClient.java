@@ -21679,7 +21679,7 @@ public final class BatchAsyncClient {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
@@ -23801,7 +23801,7 @@ public final class BatchAsyncClient {
      *     properties (Optional): {
      *         creationTime: OffsetDateTime (Optional)
      *         lastModified: OffsetDateTime (Required)
-     *         contentLength: long (Required)
+     *         contentLength: String (Required)
      *         contentType: String (Optional)
      *         fileMode: String (Optional)
      *     }
