@@ -11,6 +11,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Replication properties.
@@ -33,14 +34,24 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
     private ReplicationSchedule replicationSchedule;
 
     /*
-     * The resource ID of the remote volume.
+     * The resource ID of the remote volume. Required for cross region and cross zone replication
      */
     private String remoteVolumeResourceId;
+
+    /*
+     * The full path to a volume that is to be migrated into ANF. Required for Migration volumes
+     */
+    private RemotePath remotePath;
 
     /*
      * The remote region for the other end of the Volume Replication.
      */
     private String remoteVolumeRegion;
+
+    /*
+     * A list of destination replications
+     */
+    private List<DestinationReplication> destinationReplications;
 
     /**
      * Creates an instance of ReplicationObject class.
@@ -100,7 +111,8 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
     }
 
     /**
-     * Get the remoteVolumeResourceId property: The resource ID of the remote volume.
+     * Get the remoteVolumeResourceId property: The resource ID of the remote volume. Required for cross region and
+     * cross zone replication.
      * 
      * @return the remoteVolumeResourceId value.
      */
@@ -109,13 +121,36 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
     }
 
     /**
-     * Set the remoteVolumeResourceId property: The resource ID of the remote volume.
+     * Set the remoteVolumeResourceId property: The resource ID of the remote volume. Required for cross region and
+     * cross zone replication.
      * 
      * @param remoteVolumeResourceId the remoteVolumeResourceId value to set.
      * @return the ReplicationObject object itself.
      */
     public ReplicationObject withRemoteVolumeResourceId(String remoteVolumeResourceId) {
         this.remoteVolumeResourceId = remoteVolumeResourceId;
+        return this;
+    }
+
+    /**
+     * Get the remotePath property: The full path to a volume that is to be migrated into ANF. Required for Migration
+     * volumes.
+     * 
+     * @return the remotePath value.
+     */
+    public RemotePath remotePath() {
+        return this.remotePath;
+    }
+
+    /**
+     * Set the remotePath property: The full path to a volume that is to be migrated into ANF. Required for Migration
+     * volumes.
+     * 
+     * @param remotePath the remotePath value to set.
+     * @return the ReplicationObject object itself.
+     */
+    public ReplicationObject withRemotePath(RemotePath remotePath) {
+        this.remotePath = remotePath;
         return this;
     }
 
@@ -140,6 +175,15 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
     }
 
     /**
+     * Get the destinationReplications property: A list of destination replications.
+     * 
+     * @return the destinationReplications value.
+     */
+    public List<DestinationReplication> destinationReplications() {
+        return this.destinationReplications;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -149,6 +193,12 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property remoteVolumeResourceId in model ReplicationObject"));
+        }
+        if (remotePath() != null) {
+            remotePath().validate();
+        }
+        if (destinationReplications() != null) {
+            destinationReplications().forEach(e -> e.validate());
         }
     }
 
@@ -164,6 +214,7 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
         jsonWriter.writeStringField("endpointType", this.endpointType == null ? null : this.endpointType.toString());
         jsonWriter.writeStringField("replicationSchedule",
             this.replicationSchedule == null ? null : this.replicationSchedule.toString());
+        jsonWriter.writeJsonField("remotePath", this.remotePath);
         jsonWriter.writeStringField("remoteVolumeRegion", this.remoteVolumeRegion);
         return jsonWriter.writeEndObject();
     }
@@ -193,8 +244,14 @@ public final class ReplicationObject implements JsonSerializable<ReplicationObje
                 } else if ("replicationSchedule".equals(fieldName)) {
                     deserializedReplicationObject.replicationSchedule
                         = ReplicationSchedule.fromString(reader.getString());
+                } else if ("remotePath".equals(fieldName)) {
+                    deserializedReplicationObject.remotePath = RemotePath.fromJson(reader);
                 } else if ("remoteVolumeRegion".equals(fieldName)) {
                     deserializedReplicationObject.remoteVolumeRegion = reader.getString();
+                } else if ("destinationReplications".equals(fieldName)) {
+                    List<DestinationReplication> destinationReplications
+                        = reader.readArray(reader1 -> DestinationReplication.fromJson(reader1));
+                    deserializedReplicationObject.destinationReplications = destinationReplications;
                 } else {
                     reader.skipChildren();
                 }

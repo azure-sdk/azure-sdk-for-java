@@ -1,14 +1,136 @@
 # Release History
 
-## 1.5.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-03)
+
+- Azure Resource Manager NetAppFiles client library for Java. This package contains Microsoft Azure SDK for NetAppFiles Management SDK. Microsoft NetApp Files Azure Resource Provider specification. Package tag package-preview-2024-05. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.AcceptGrowCapacityPoolForShortTermCloneSplit` was added
 
-### Bugs Fixed
+* `models.SvmPeerCommandResponse` was added
 
-### Other Changes
+* `models.PeerClusterForVolumeMigrationRequest` was added
+
+* `models.ListQuotaReportResponse` was added
+
+* `models.ClusterPeerCommandResponse` was added
+
+* `models.EncryptionTransitionRequest` was added
+
+* `models.RemotePath` was added
+
+* `models.VolumeLanguage` was added
+
+* `models.KeyVaultPrivateEndpoint` was added
+
+* `models.QuotaReport` was added
+
+* `models.DestinationReplication` was added
+
+* `models.ChangeKeyVault` was added
+
+* `models.ReplicationType` was added
+
+#### `models.NetAppAccount$Definition` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+
+#### `models.Volume` was modified
+
+* `peerExternalCluster(models.PeerClusterForVolumeMigrationRequest)` was added
+* `finalizeExternalReplication(com.azure.core.util.Context)` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+* `language()` was added
+* `splitCloneFromParent(com.azure.core.util.Context)` was added
+* `inheritedSizeInBytes()` was added
+* `authorizeExternalReplication(com.azure.core.util.Context)` was added
+* `finalizeExternalReplication()` was added
+* `splitCloneFromParent()` was added
+* `listQuotaReport(com.azure.core.util.Context)` was added
+* `authorizeExternalReplication()` was added
+* `peerExternalCluster(models.PeerClusterForVolumeMigrationRequest,com.azure.core.util.Context)` was added
+* `performReplicationTransfer()` was added
+* `listQuotaReport()` was added
+* `performReplicationTransfer(com.azure.core.util.Context)` was added
+
+#### `models.Backup` was modified
+
+* `isLargeVolume()` was added
+
+#### `models.EncryptionIdentity` was modified
+
+* `federatedClientId()` was added
+* `withFederatedClientId(java.lang.String)` was added
+
+#### `models.Volume$Definition` was modified
+
+* `withLanguage(models.VolumeLanguage)` was added
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+
+#### `models.ReplicationObject` was modified
+
+* `remotePath()` was added
+* `withRemotePath(models.RemotePath)` was added
+* `destinationReplications()` was added
+
+#### `models.Volumes` was modified
+
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `authorizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `performReplicationTransfer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `finalizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `performReplicationTransfer(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `listQuotaReport(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `splitCloneFromParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `peerExternalCluster(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PeerClusterForVolumeMigrationRequest,com.azure.core.util.Context)` was added
+* `authorizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `peerExternalCluster(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.PeerClusterForVolumeMigrationRequest)` was added
+* `finalizeExternalReplication(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetAppAccountPatch` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+* `isMultiAdEnabled()` was added
+* `nfsV4IdDomain()` was added
+
+#### `models.FilePathAvailabilityRequest` was modified
+
+* `availabilityZone()` was added
+* `withAvailabilityZone(java.lang.String)` was added
+
+#### `models.NetAppAccount$Update` was modified
+
+* `withNfsV4IdDomain(java.lang.String)` was added
+
+#### `models.VolumeGroupVolumeProperties` was modified
+
+* `language()` was added
+* `withAcceptGrowCapacityPoolForShortTermCloneSplit(models.AcceptGrowCapacityPoolForShortTermCloneSplit)` was added
+* `inheritedSizeInBytes()` was added
+* `acceptGrowCapacityPoolForShortTermCloneSplit()` was added
+* `withLanguage(models.VolumeLanguage)` was added
+
+#### `models.Accounts` was modified
+
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `transitionToCmk(java.lang.String,java.lang.String,models.EncryptionTransitionRequest,com.azure.core.util.Context)` was added
+* `changeKeyVault(java.lang.String,java.lang.String)` was added
+* `transitionToCmk(java.lang.String,java.lang.String)` was added
+* `changeKeyVault(java.lang.String,java.lang.String,models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation(java.lang.String,java.lang.String)` was added
+
+#### `models.NetAppAccount` was modified
+
+* `getChangeKeyVaultInformation()` was added
+* `nfsV4IdDomain()` was added
+* `transitionToCmk()` was added
+* `changeKeyVault(models.ChangeKeyVault,com.azure.core.util.Context)` was added
+* `getChangeKeyVaultInformation(com.azure.core.util.Context)` was added
+* `isMultiAdEnabled()` was added
+* `transitionToCmk(models.EncryptionTransitionRequest,com.azure.core.util.Context)` was added
+* `changeKeyVault()` was added
 
 ## 1.4.0 (2024-08-19)
 
