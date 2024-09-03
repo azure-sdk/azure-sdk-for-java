@@ -1,14 +1,176 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-03)
+
+- Azure Resource Manager AzureSphere client library for Java. This package contains Microsoft Azure SDK for AzureSphere Management SDK. Azure Sphere resource management API. Package tag package-2024-04-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.CountDeviceResponse` was modified
 
-### Bugs Fixed
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
-### Other Changes
+#### `models.DeviceGroupProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PagedDeviceInsight` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CatalogUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeviceGroupListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ProofOfPossessionNonceRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeploymentListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeviceProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProductListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNextLink(java.lang.String)` was added
+
+#### `models.DeviceUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CatalogListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeviceListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNextLink(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeploymentProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListDeviceGroupsRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeviceUpdateProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeviceGroupUpdateProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CountElementsResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.GenerateCapabilityImageRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CatalogProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProductUpdateProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Image$Update` was modified
+
+* `withProperties(models.ImageProperties)` was added
+
+#### `models.ProductUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClaimDevicesRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeviceGroupUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CertificateListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNextLink(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Deployment$Update` was modified
+
+* `withProperties(models.DeploymentProperties)` was added
+
+#### `models.ProductProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.0.0 (2024-03-26)
 
