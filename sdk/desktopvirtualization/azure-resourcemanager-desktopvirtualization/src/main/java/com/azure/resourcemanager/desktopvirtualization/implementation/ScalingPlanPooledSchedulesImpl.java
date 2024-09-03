@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledScheduleInner;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedule;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledSchedulePutInner;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedulePut;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedules;
 
 public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSchedules {
@@ -21,43 +21,38 @@ public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSc
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    public ScalingPlanPooledSchedulesImpl(
-        ScalingPlanPooledSchedulesClient innerClient,
+    public ScalingPlanPooledSchedulesImpl(ScalingPlanPooledSchedulesClient innerClient,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<ScalingPlanPooledSchedule> getWithResponse(
-        String resourceGroupName, String scalingPlanName, String scalingPlanScheduleName, Context context) {
-        Response<ScalingPlanPooledScheduleInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, context);
+    public Response<ScalingPlanPooledSchedulePut> getWithResponse(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName, Context context) {
+        Response<ScalingPlanPooledSchedulePutInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ScalingPlanPooledScheduleImpl(inner.getValue(), this.manager()));
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ScalingPlanPooledSchedulePutImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ScalingPlanPooledSchedule get(
-        String resourceGroupName, String scalingPlanName, String scalingPlanScheduleName) {
-        ScalingPlanPooledScheduleInner inner =
-            this.serviceClient().get(resourceGroupName, scalingPlanName, scalingPlanScheduleName);
+    public ScalingPlanPooledSchedulePut get(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName) {
+        ScalingPlanPooledSchedulePutInner inner
+            = this.serviceClient().get(resourceGroupName, scalingPlanName, scalingPlanScheduleName);
         if (inner != null) {
-            return new ScalingPlanPooledScheduleImpl(inner, this.manager());
+            return new ScalingPlanPooledSchedulePutImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String scalingPlanName, String scalingPlanScheduleName, Context context) {
-        return this
-            .serviceClient()
+    public Response<Void> deleteWithResponse(String resourceGroupName, String scalingPlanName,
+        String scalingPlanScheduleName, Context context) {
+        return this.serviceClient()
             .deleteWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, context);
     }
 
@@ -65,130 +60,94 @@ public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSc
         this.serviceClient().delete(resourceGroupName, scalingPlanName, scalingPlanScheduleName);
     }
 
-    public PagedIterable<ScalingPlanPooledSchedule> list(String resourceGroupName, String scalingPlanName) {
-        PagedIterable<ScalingPlanPooledScheduleInner> inner =
-            this.serviceClient().list(resourceGroupName, scalingPlanName);
-        return Utils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
+    public PagedIterable<ScalingPlanPooledSchedulePut> list(String resourceGroupName, String scalingPlanName) {
+        PagedIterable<ScalingPlanPooledSchedulePutInner> inner
+            = this.serviceClient().list(resourceGroupName, scalingPlanName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ScalingPlanPooledSchedulePutImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ScalingPlanPooledSchedule> list(
-        String resourceGroupName,
-        String scalingPlanName,
-        Integer pageSize,
-        Boolean isDescending,
-        Integer initialSkip,
-        Context context) {
-        PagedIterable<ScalingPlanPooledScheduleInner> inner =
-            this.serviceClient().list(resourceGroupName, scalingPlanName, pageSize, isDescending, initialSkip, context);
-        return Utils.mapPage(inner, inner1 -> new ScalingPlanPooledScheduleImpl(inner1, this.manager()));
+    public PagedIterable<ScalingPlanPooledSchedulePut> list(String resourceGroupName, String scalingPlanName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ScalingPlanPooledSchedulePutInner> inner = this.serviceClient()
+            .list(resourceGroupName, scalingPlanName, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ScalingPlanPooledSchedulePutImpl(inner1, this.manager()));
     }
 
-    public ScalingPlanPooledSchedule getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+    public ScalingPlanPooledSchedulePut getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String scalingPlanName = Utils.getValueFromIdByName(id, "scalingPlans");
+        String scalingPlanName = ResourceManagerUtils.getValueFromIdByName(id, "scalingPlans");
         if (scalingPlanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
         }
-        String scalingPlanScheduleName = Utils.getValueFromIdByName(id, "pooledSchedules");
+        String scalingPlanScheduleName = ResourceManagerUtils.getValueFromIdByName(id, "pooledSchedules");
         if (scalingPlanScheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
         }
-        return this
-            .getWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, Context.NONE)
+        return this.getWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, Context.NONE)
             .getValue();
     }
 
-    public Response<ScalingPlanPooledSchedule> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+    public Response<ScalingPlanPooledSchedulePut> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String scalingPlanName = Utils.getValueFromIdByName(id, "scalingPlans");
+        String scalingPlanName = ResourceManagerUtils.getValueFromIdByName(id, "scalingPlans");
         if (scalingPlanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
         }
-        String scalingPlanScheduleName = Utils.getValueFromIdByName(id, "pooledSchedules");
+        String scalingPlanScheduleName = ResourceManagerUtils.getValueFromIdByName(id, "pooledSchedules");
         if (scalingPlanScheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
         }
         return this.getWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String scalingPlanName = Utils.getValueFromIdByName(id, "scalingPlans");
+        String scalingPlanName = ResourceManagerUtils.getValueFromIdByName(id, "scalingPlans");
         if (scalingPlanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
         }
-        String scalingPlanScheduleName = Utils.getValueFromIdByName(id, "pooledSchedules");
+        String scalingPlanScheduleName = ResourceManagerUtils.getValueFromIdByName(id, "pooledSchedules");
         if (scalingPlanScheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
         }
         this.deleteWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String scalingPlanName = Utils.getValueFromIdByName(id, "scalingPlans");
+        String scalingPlanName = ResourceManagerUtils.getValueFromIdByName(id, "scalingPlans");
         if (scalingPlanName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scalingPlans'.", id)));
         }
-        String scalingPlanScheduleName = Utils.getValueFromIdByName(id, "pooledSchedules");
+        String scalingPlanScheduleName = ResourceManagerUtils.getValueFromIdByName(id, "pooledSchedules");
         if (scalingPlanScheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pooledSchedules'.", id)));
         }
         return this.deleteWithResponse(resourceGroupName, scalingPlanName, scalingPlanScheduleName, context);
     }
@@ -201,7 +160,7 @@ public final class ScalingPlanPooledSchedulesImpl implements ScalingPlanPooledSc
         return this.serviceManager;
     }
 
-    public ScalingPlanPooledScheduleImpl define(String name) {
-        return new ScalingPlanPooledScheduleImpl(name, this.manager());
+    public ScalingPlanPooledSchedulePutImpl define(String name) {
+        return new ScalingPlanPooledSchedulePutImpl(name, this.manager());
     }
 }

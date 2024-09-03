@@ -1,14 +1,650 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-03)
 
-### Features Added
+- Azure Resource Manager DesktopVirtualization client library for Java. This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-preview-2024-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.ScalingPlanPooledSchedule$Definition` was removed
 
-### Other Changes
+* `models.ScalingPlanPooledSchedule$Update` was removed
+
+* `models.ResourceIdentityType` was removed
+
+* `models.ScalingSchedule` was removed
+
+* `models.ResourceModelWithAllowedPropertySetPlan` was removed
+
+* `models.Identity` was removed
+
+* `models.ScalingPlanPooledSchedule` was removed
+
+* `models.ScalingPlanPooledSchedule$UpdateStages` was removed
+
+* `models.ScalingScheduleDaysOfWeekItem` was removed
+
+* `models.ResourceModelWithAllowedPropertySetIdentity` was removed
+
+* `models.ScalingPlanPooledSchedule$DefinitionStages` was removed
+
+* `models.ResourceModelWithAllowedPropertySetSku` was removed
+
+#### `models.Workspace` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.ApplicationGroup` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+
+#### `models.HostPool` was modified
+
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.ResourceModelWithAllowedPropertySet` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.ScalingPlanPooledSchedules` was modified
+
+* `models.ScalingPlanPooledSchedule getById(java.lang.String)` -> `models.ScalingPlanPooledSchedulePut getById(java.lang.String)`
+* `models.ScalingPlanPooledSchedule$DefinitionStages$Blank define(java.lang.String)` -> `models.ScalingPlanPooledSchedulePut$DefinitionStages$Blank define(java.lang.String)`
+* `models.ScalingPlanPooledSchedule get(java.lang.String,java.lang.String,java.lang.String)` -> `models.ScalingPlanPooledSchedulePut get(java.lang.String,java.lang.String,java.lang.String)`
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+#### `models.HostPool$Definition` was modified
+
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+#### `models.SessionHosts` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,com.azure.core.util.Context)` was removed
+
+#### `models.ScalingPlan` was modified
+
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+
+#### `models.Workspace$Definition` was modified
+
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+### Features Added
+
+* `models.SessionHostManagementList` was added
+
+* `models.VirtualMachineDiskType` was added
+
+* `models.MarketplaceInfoPatchProperties` was added
+
+* `models.AppAttachPackage$UpdateStages` was added
+
+* `models.ImportPackageInfoRequest` was added
+
+* `models.ActiveDirectoryInfoProperties` was added
+
+* `models.DiskInfoProperties` was added
+
+* `models.FailHealthCheckOnStagingFailure` was added
+
+* `models.AppAttachPackagePatch` was added
+
+* `models.SessionHostConfigurations` was added
+
+* `models.UserAssignedIdentity` was added
+
+* `models.AzureActiveDirectoryInfoProperties` was added
+
+* `models.SessionHostConfigurationList` was added
+
+* `models.AppAttachPackagePatchProperties` was added
+
+* `models.ProvisioningState` was added
+
+* `models.SessionHostManagementsUpdateStatus` was added
+
+* `models.SessionHostManagementUpdateStatus` was added
+
+* `models.PublicUdp` was added
+
+* `models.DomainInfoPatchProperties` was added
+
+* `models.ImageInfoPatchProperties` was added
+
+* `models.SessionHostManagementOperationProgress` was added
+
+* `models.KeyVaultCredentialsProperties` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.AppAttachPackageInfoProperties` was added
+
+* `models.KeyVaultCredentialsPatchProperties` was added
+
+* `models.SessionHostConfiguration` was added
+
+* `models.SecurityInfoPatchProperties` was added
+
+* `models.ScalingPlanPooledSchedulePut$Update` was added
+
+* `models.BootDiagnosticsInfoProperties` was added
+
+* `models.ActiveSessionHostConfiguration` was added
+
+* `models.ControlSessionHostUpdates` was added
+
+* `models.DomainInfoProperties` was added
+
+* `models.AppAttachPackage$Definition` was added
+
+* `models.ActiveSessionHostConfigurationList` was added
+
+* `models.ScalingPlanPooledSchedulePut` was added
+
+* `models.CustomInfoPatchProperties` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.ActiveSessionHostConfigurations` was added
+
+* `models.SessionHostConfigurationPatch` was added
+
+* `models.SessionHostManagementPatch` was added
+
+* `models.BootDiagnosticsInfoPatchProperties` was added
+
+* `models.DirectUdp` was added
+
+* `models.NetworkInfoPatchProperties` was added
+
+* `models.RegistrationTokenList` was added
+
+* `models.SessionHostManagement` was added
+
+* `models.MarketplaceInfoProperties` was added
+
+* `models.SecurityInfoProperties` was added
+
+* `models.AppAttachPackages` was added
+
+* `models.SessionHostOperations` was added
+
+* `models.HostPoolUpdateAction` was added
+
+* `models.AppAttachPackage$Update` was added
+
+* `models.ManagedPrivateUdp` was added
+
+* `models.ScalingPlanPooledSchedulePut$UpdateStages` was added
+
+* `models.UpdateSessionHostsRequestBody` was added
+
+* `models.InitiateSessionHostUpdates` was added
+
+* `models.ProvisioningStateShc` was added
+
+* `models.AppAttachPackageProperties` was added
+
+* `models.HostPoolUpdateControlParameter` was added
+
+* `models.ImageInfoProperties` was added
+
+* `models.AppAttachPackageList` was added
+
+* `models.DiskInfoPatchProperties` was added
+
+* `models.HostPoolUpdateConfigurationProperties` was added
+
+* `models.NetworkInfoProperties` was added
+
+* `models.AppAttachPackage` was added
+
+* `models.VirtualMachineSecurityType` was added
+
+* `models.ManagementType` was added
+
+* `models.SessionHostManagementUpdateStatusProperties` was added
+
+* `models.RelayUdp` was added
+
+* `models.ActiveDirectoryInfoPatchProperties` was added
+
+* `models.AppAttachPackageInfoes` was added
+
+* `models.DomainJoinType` was added
+
+* `models.HostPoolUpdateConfigurationPatchProperties` was added
+
+* `models.CustomInfoProperties` was added
+
+* `models.ScalingPlanPooledSchedulePut$DefinitionStages` was added
+
+* `models.ScalingPlanPooledSchedulePut$Definition` was added
+
+* `models.SessionHostManagements` was added
+
+* `models.PackageTimestamped` was added
+
+* `models.Type` was added
+
+* `models.AppAttachPackageArchitectures` was added
+
+* `models.RegistrationTokenMinimal` was added
+
+* `models.AppAttachPackage$DefinitionStages` was added
+
+#### `models.PrivateEndpointConnectionWithSystemData` was modified
+
+* `groupIds()` was added
+
+#### `models.ExpandMsixImageList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HostPoolList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SessionHostList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StartMenuItemList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SessionHostHealthCheckReport` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RegistrationInfoPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HostPool$Update` was modified
+
+* `withRelayUdp(models.RelayUdp)` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+
+#### `models.StartMenuItem` was modified
+
+* `systemData()` was added
+
+#### `models.OperationProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkspacePatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScalingHostPoolReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DesktopPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MsixPackageApplications` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScalingPlanPersonalScheduleList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MsixPackageList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HostPool` was modified
+
+* `directUdp()` was added
+* `appAttachPackageReferences()` was added
+* `listRegistrationTokens()` was added
+* `listRegistrationTokensWithResponse(com.azure.core.util.Context)` was added
+* `publicUdp()` was added
+* `relayUdp()` was added
+* `managedPrivateUdp()` was added
+* `managementType()` was added
+
+#### `models.ResourceProviderOperationList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HostPoolPatch` was modified
+
+* `name()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `systemData()` was added
+* `directUdp()` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `id()` was added
+* `publicUdp()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `managedPrivateUdp()` was added
+* `relayUdp()` was added
+* `type()` was added
+
+#### `models.ResourceModelWithAllowedPropertySet` was modified
+
+* `withPlan(models.Plan)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `id()` was added
+* `systemData()` was added
+* `name()` was added
+* `withSku(models.Sku)` was added
+
+#### `models.ResourceProviderOperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SessionHostHealthCheckFailureDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `systemData()` was added
+
+#### `models.WorkspaceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HostPoolProperties` was modified
+
+* `appAttachPackageReferences()` was added
+* `relayUdp()` was added
+* `managedPrivateUdp()` was added
+* `managementType()` was added
+* `publicUdp()` was added
+* `directUdp()` was added
+
+#### `DesktopVirtualizationManager` was modified
+
+* `sessionHostConfigurations()` was added
+* `initiateSessionHostUpdates()` was added
+* `activeSessionHostConfigurations()` was added
+* `sessionHostManagements()` was added
+* `sessionHostOperations()` was added
+* `sessionHostManagementsUpdateStatus()` was added
+* `appAttachPackageInfoes()` was added
+* `controlSessionHostUpdates()` was added
+* `appAttachPackages()` was added
+
+#### `models.ApplicationList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `type()` was added
+* `id()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `name()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `groupIds()` was added
+* `systemData()` was added
+
+#### `models.ApplicationGroupList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Sku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AgentUpdateProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LogSpecification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SendMessage` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AgentUpdatePatchProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScalingPlanPooledSchedulePatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `systemData()` was added
+* `type()` was added
+* `name()` was added
+* `id()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SessionHostPatch` was modified
+
+* `systemData()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `name()` was added
+* `id()` was added
+* `type()` was added
+
+#### `models.MsixPackagePatch` was modified
+
+* `id()` was added
+* `name()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `systemData()` was added
+
+#### `models.MsixImageUri` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withPlan(models.Plan)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withSku(models.Sku)` was added
+
+#### `models.ScalingPlanPooledScheduleList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationGroupPatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `id()` was added
+* `type()` was added
+* `name()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `systemData()` was added
+
+#### `models.HostPool$Definition` was modified
+
+* `withPublicUdp(models.PublicUdp)` was added
+* `withManagementType(models.ManagementType)` was added
+* `withSku(models.Sku)` was added
+* `withPlan(models.Plan)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MaintenanceWindowProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MaintenanceWindowPatchProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScalingPlanPatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SessionHost` was modified
+
+* `lastSessionHostUpdateTime()` was added
+* `sessionHostConfiguration()` was added
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExpandMsixImage` was modified
+
+* `certificateExpiry()` was added
+* `certificateName()` was added
+* `systemData()` was added
+
+#### `models.ServiceSpecification` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SessionHosts` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Time` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpointConnectionListResultWithSystemData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScalingPlanList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ScalingPlanPersonalSchedulePatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MsixPackageDependencies` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserSessionList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HostPools` was modified
+
+* `listRegistrationTokens(java.lang.String,java.lang.String)` was added
+* `listRegistrationTokensWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withSku(models.Sku)` was added
+* `withPlan(models.Plan)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPlan(models.Plan)` was added
+* `withSku(models.Sku)` was added
+
+#### `models.DesktopList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApplicationPatch` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Plan` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0 (2023-10-16)
 

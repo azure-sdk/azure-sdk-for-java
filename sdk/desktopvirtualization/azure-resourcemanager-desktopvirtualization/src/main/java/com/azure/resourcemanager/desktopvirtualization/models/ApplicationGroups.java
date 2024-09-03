@@ -8,62 +8,34 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of ApplicationGroups. */
+/**
+ * Resource collection API of ApplicationGroups.
+ */
 public interface ApplicationGroups {
     /**
-     * Get an application group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
+     * List applicationGroups in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicationGroupList as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApplicationGroup> list();
+
+    /**
+     * List applicationGroups in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application group along with {@link Response}.
+     * @return applicationGroupList as paginated response with {@link PagedIterable}.
      */
-    Response<ApplicationGroup> getByResourceGroupWithResponse(
-        String resourceGroupName, String applicationGroupName, Context context);
-
-    /**
-     * Get an application group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application group.
-     */
-    ApplicationGroup getByResourceGroup(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * Remove an applicationGroup.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String applicationGroupName, Context context);
-
-    /**
-     * Remove an applicationGroup.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByResourceGroup(String resourceGroupName, String applicationGroupName);
+    PagedIterable<ApplicationGroup> list(String filter, Context context);
 
     /**
      * List applicationGroups.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -74,7 +46,7 @@ public interface ApplicationGroups {
 
     /**
      * List applicationGroups.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
      * @param pageSize Number of items per page.
@@ -86,38 +58,63 @@ public interface ApplicationGroups {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return applicationGroupList as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ApplicationGroup> listByResourceGroup(
-        String resourceGroupName,
-        String filter,
-        Integer pageSize,
-        Boolean isDescending,
-        Integer initialSkip,
-        Context context);
+    PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context);
 
     /**
-     * List applicationGroups in subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ApplicationGroup> list();
-
-    /**
-     * List applicationGroups in subscription.
-     *
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * Get an application group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
+     * @return an application group along with {@link Response}.
      */
-    PagedIterable<ApplicationGroup> list(String filter, Context context);
+    Response<ApplicationGroup> getByResourceGroupWithResponse(String resourceGroupName, String applicationGroupName,
+        Context context);
 
     /**
      * Get an application group.
-     *
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an application group.
+     */
+    ApplicationGroup getByResourceGroup(String resourceGroupName, String applicationGroupName);
+
+    /**
+     * Remove an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String applicationGroupName,
+        Context context);
+
+    /**
+     * Remove an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String resourceGroupName, String applicationGroupName);
+
+    /**
+     * Get an application group.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -128,7 +125,7 @@ public interface ApplicationGroups {
 
     /**
      * Get an application group.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -140,7 +137,7 @@ public interface ApplicationGroups {
 
     /**
      * Remove an applicationGroup.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -150,7 +147,7 @@ public interface ApplicationGroups {
 
     /**
      * Remove an applicationGroup.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -162,7 +159,7 @@ public interface ApplicationGroups {
 
     /**
      * Begins definition for a new ApplicationGroup resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new ApplicationGroup definition.
      */

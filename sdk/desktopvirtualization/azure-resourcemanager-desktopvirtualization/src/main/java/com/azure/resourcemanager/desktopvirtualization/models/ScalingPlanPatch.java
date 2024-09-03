@@ -5,35 +5,40 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPatchProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledScheduleProperties;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/** Scaling plan properties that can be patched. */
+/**
+ * Scaling plan properties that can be patched.
+ */
 @Fluent
-public final class ScalingPlanPatch {
+public final class ScalingPlanPatch implements JsonSerializable<ScalingPlanPatch> {
     /*
      * tags to be updated
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*
      * Detailed properties for scaling plan
      */
-    @JsonProperty(value = "properties")
     private ScalingPlanPatchProperties innerProperties;
 
-    /** Creates an instance of ScalingPlanPatch class. */
+    /**
+     * Creates an instance of ScalingPlanPatch class.
+     */
     public ScalingPlanPatch() {
     }
 
     /**
      * Get the tags property: tags to be updated.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -42,7 +47,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the tags property: tags to be updated.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -53,7 +58,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the innerProperties property: Detailed properties for scaling plan.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScalingPlanPatchProperties innerProperties() {
@@ -62,7 +67,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the description property: Description of scaling plan.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -71,7 +76,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the description property: Description of scaling plan.
-     *
+     * 
      * @param description the description value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -85,7 +90,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -94,7 +99,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -108,7 +113,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -117,7 +122,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -131,7 +136,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @return the exclusionTag value.
      */
     public String exclusionTag() {
@@ -140,7 +145,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @param exclusionTag the exclusionTag value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -153,21 +158,21 @@ public final class ScalingPlanPatch {
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
-     *
+     * Get the schedules property: List of ScalingPlanPooledScheduleProperties definitions.
+     * 
      * @return the schedules value.
      */
-    public List<ScalingSchedule> schedules() {
+    public List<ScalingPlanPooledScheduleProperties> schedules() {
         return this.innerProperties() == null ? null : this.innerProperties().schedules();
     }
 
     /**
-     * Set the schedules property: List of ScalingSchedule definitions.
-     *
+     * Set the schedules property: List of ScalingPlanPooledScheduleProperties definitions.
+     * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanPatch object itself.
      */
-    public ScalingPlanPatch withSchedules(List<ScalingSchedule> schedules) {
+    public ScalingPlanPatch withSchedules(List<ScalingPlanPooledScheduleProperties> schedules) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPatchProperties();
         }
@@ -177,7 +182,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @return the hostPoolReferences value.
      */
     public List<ScalingHostPoolReference> hostPoolReferences() {
@@ -186,7 +191,7 @@ public final class ScalingPlanPatch {
 
     /**
      * Set the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @param hostPoolReferences the hostPoolReferences value to set.
      * @return the ScalingPlanPatch object itself.
      */
@@ -200,12 +205,52 @@ public final class ScalingPlanPatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ScalingPlanPatch from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ScalingPlanPatch if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ScalingPlanPatch.
+     */
+    public static ScalingPlanPatch fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ScalingPlanPatch deserializedScalingPlanPatch = new ScalingPlanPatch();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedScalingPlanPatch.tags = tags;
+                } else if ("properties".equals(fieldName)) {
+                    deserializedScalingPlanPatch.innerProperties = ScalingPlanPatchProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedScalingPlanPatch;
+        });
     }
 }
