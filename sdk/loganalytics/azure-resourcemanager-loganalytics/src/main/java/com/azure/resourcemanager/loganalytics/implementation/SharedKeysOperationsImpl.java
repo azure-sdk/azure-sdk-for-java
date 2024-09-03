@@ -20,30 +20,25 @@ public final class SharedKeysOperationsImpl implements SharedKeysOperations {
 
     private final com.azure.resourcemanager.loganalytics.LogAnalyticsManager serviceManager;
 
-    public SharedKeysOperationsImpl(
-        SharedKeysOperationsClient innerClient,
+    public SharedKeysOperationsImpl(SharedKeysOperationsClient innerClient,
         com.azure.resourcemanager.loganalytics.LogAnalyticsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<SharedKeys> getSharedKeysWithResponse(
-        String resourceGroupName, String workspaceName, Context context) {
-        Response<SharedKeysInner> inner =
-            this.serviceClient().getSharedKeysWithResponse(resourceGroupName, workspaceName, context);
+    public Response<SharedKeys> listWithResponse(String resourceGroupName, String workspaceName, Context context) {
+        Response<SharedKeysInner> inner
+            = this.serviceClient().listWithResponse(resourceGroupName, workspaceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SharedKeysImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public SharedKeys getSharedKeys(String resourceGroupName, String workspaceName) {
-        SharedKeysInner inner = this.serviceClient().getSharedKeys(resourceGroupName, workspaceName);
+    public SharedKeys list(String resourceGroupName, String workspaceName) {
+        SharedKeysInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
         if (inner != null) {
             return new SharedKeysImpl(inner, this.manager());
         } else {
@@ -51,23 +46,19 @@ public final class SharedKeysOperationsImpl implements SharedKeysOperations {
         }
     }
 
-    public Response<SharedKeys> regenerateWithResponse(
-        String resourceGroupName, String workspaceName, Context context) {
-        Response<SharedKeysInner> inner =
-            this.serviceClient().regenerateWithResponse(resourceGroupName, workspaceName, context);
+    public Response<SharedKeys> getWithResponse(String resourceGroupName, String workspaceName, Context context) {
+        Response<SharedKeysInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SharedKeysImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public SharedKeys regenerate(String resourceGroupName, String workspaceName) {
-        SharedKeysInner inner = this.serviceClient().regenerate(resourceGroupName, workspaceName);
+    public SharedKeys get(String resourceGroupName, String workspaceName) {
+        SharedKeysInner inner = this.serviceClient().get(resourceGroupName, workspaceName);
         if (inner != null) {
             return new SharedKeysImpl(inner, this.manager());
         } else {
