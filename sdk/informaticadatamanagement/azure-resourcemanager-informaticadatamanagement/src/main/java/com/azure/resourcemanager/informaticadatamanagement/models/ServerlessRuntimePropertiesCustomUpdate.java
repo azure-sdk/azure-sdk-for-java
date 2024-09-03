@@ -64,6 +64,11 @@ public final class ServerlessRuntimePropertiesCustomUpdate
     private String supplementaryFileLocation;
 
     /*
+     * Serverless runtime data disks
+     */
+    private List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks;
+
+    /*
      * Serverless config properties
      */
     private ServerlessRuntimeConfigPropertiesUpdate serverlessRuntimeConfig;
@@ -267,6 +272,27 @@ public final class ServerlessRuntimePropertiesCustomUpdate
     }
 
     /**
+     * Get the serverlessRuntimeDataDisks property: Serverless runtime data disks.
+     * 
+     * @return the serverlessRuntimeDataDisks value.
+     */
+    public List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks() {
+        return this.serverlessRuntimeDataDisks;
+    }
+
+    /**
+     * Set the serverlessRuntimeDataDisks property: Serverless runtime data disks.
+     * 
+     * @param serverlessRuntimeDataDisks the serverlessRuntimeDataDisks value to set.
+     * @return the ServerlessRuntimePropertiesCustomUpdate object itself.
+     */
+    public ServerlessRuntimePropertiesCustomUpdate
+        withServerlessRuntimeDataDisks(List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks) {
+        this.serverlessRuntimeDataDisks = serverlessRuntimeDataDisks;
+        return this;
+    }
+
+    /**
      * Get the serverlessRuntimeConfig property: Serverless config properties.
      * 
      * @return the serverlessRuntimeConfig value.
@@ -341,6 +367,9 @@ public final class ServerlessRuntimePropertiesCustomUpdate
         if (advancedCustomProperties() != null) {
             advancedCustomProperties().forEach(e -> e.validate());
         }
+        if (serverlessRuntimeDataDisks() != null) {
+            serverlessRuntimeDataDisks().forEach(e -> e.validate());
+        }
         if (serverlessRuntimeConfig() != null) {
             serverlessRuntimeConfig().validate();
         }
@@ -369,6 +398,8 @@ public final class ServerlessRuntimePropertiesCustomUpdate
         jsonWriter.writeArrayField("advancedCustomProperties", this.advancedCustomProperties,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("supplementaryFileLocation", this.supplementaryFileLocation);
+        jsonWriter.writeArrayField("serverlessRuntimeDataDisks", this.serverlessRuntimeDataDisks,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("serverlessRuntimeConfig", this.serverlessRuntimeConfig);
         jsonWriter.writeArrayField("serverlessRuntimeTags", this.serverlessRuntimeTags,
             (writer, element) -> writer.writeJson(element));
@@ -417,6 +448,11 @@ public final class ServerlessRuntimePropertiesCustomUpdate
                         = advancedCustomProperties;
                 } else if ("supplementaryFileLocation".equals(fieldName)) {
                     deserializedServerlessRuntimePropertiesCustomUpdate.supplementaryFileLocation = reader.getString();
+                } else if ("serverlessRuntimeDataDisks".equals(fieldName)) {
+                    List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks
+                        = reader.readArray(reader1 -> ServerlessRuntimeDataDisk.fromJson(reader1));
+                    deserializedServerlessRuntimePropertiesCustomUpdate.serverlessRuntimeDataDisks
+                        = serverlessRuntimeDataDisks;
                 } else if ("serverlessRuntimeConfig".equals(fieldName)) {
                     deserializedServerlessRuntimePropertiesCustomUpdate.serverlessRuntimeConfig
                         = ServerlessRuntimeConfigPropertiesUpdate.fromJson(reader);

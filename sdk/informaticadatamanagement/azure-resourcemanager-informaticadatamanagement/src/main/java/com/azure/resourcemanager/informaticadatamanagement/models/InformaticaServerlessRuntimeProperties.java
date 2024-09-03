@@ -70,6 +70,11 @@ public final class InformaticaServerlessRuntimeProperties
     private String supplementaryFileLocation;
 
     /*
+     * Serverless runtime data disks
+     */
+    private List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks;
+
+    /*
      * Serverless config properties
      */
     private ServerlessRuntimeConfigProperties serverlessRuntimeConfig;
@@ -282,6 +287,27 @@ public final class InformaticaServerlessRuntimeProperties
     }
 
     /**
+     * Get the serverlessRuntimeDataDisks property: Serverless runtime data disks.
+     * 
+     * @return the serverlessRuntimeDataDisks value.
+     */
+    public List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks() {
+        return this.serverlessRuntimeDataDisks;
+    }
+
+    /**
+     * Set the serverlessRuntimeDataDisks property: Serverless runtime data disks.
+     * 
+     * @param serverlessRuntimeDataDisks the serverlessRuntimeDataDisks value to set.
+     * @return the InformaticaServerlessRuntimeProperties object itself.
+     */
+    public InformaticaServerlessRuntimeProperties
+        withServerlessRuntimeDataDisks(List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks) {
+        this.serverlessRuntimeDataDisks = serverlessRuntimeDataDisks;
+        return this;
+    }
+
+    /**
      * Get the serverlessRuntimeConfig property: Serverless config properties.
      * 
      * @return the serverlessRuntimeConfig value.
@@ -361,6 +387,9 @@ public final class InformaticaServerlessRuntimeProperties
         if (advancedCustomProperties() != null) {
             advancedCustomProperties().forEach(e -> e.validate());
         }
+        if (serverlessRuntimeDataDisks() != null) {
+            serverlessRuntimeDataDisks().forEach(e -> e.validate());
+        }
         if (serverlessRuntimeConfig() != null) {
             serverlessRuntimeConfig().validate();
         }
@@ -391,6 +420,8 @@ public final class InformaticaServerlessRuntimeProperties
         jsonWriter.writeArrayField("advancedCustomProperties", this.advancedCustomProperties,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("supplementaryFileLocation", this.supplementaryFileLocation);
+        jsonWriter.writeArrayField("serverlessRuntimeDataDisks", this.serverlessRuntimeDataDisks,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("serverlessRuntimeConfig", this.serverlessRuntimeConfig);
         jsonWriter.writeArrayField("serverlessRuntimeTags", this.serverlessRuntimeTags,
             (writer, element) -> writer.writeJson(element));
@@ -443,6 +474,11 @@ public final class InformaticaServerlessRuntimeProperties
                         = advancedCustomProperties;
                 } else if ("supplementaryFileLocation".equals(fieldName)) {
                     deserializedInformaticaServerlessRuntimeProperties.supplementaryFileLocation = reader.getString();
+                } else if ("serverlessRuntimeDataDisks".equals(fieldName)) {
+                    List<ServerlessRuntimeDataDisk> serverlessRuntimeDataDisks
+                        = reader.readArray(reader1 -> ServerlessRuntimeDataDisk.fromJson(reader1));
+                    deserializedInformaticaServerlessRuntimeProperties.serverlessRuntimeDataDisks
+                        = serverlessRuntimeDataDisks;
                 } else if ("serverlessRuntimeConfig".equals(fieldName)) {
                     deserializedInformaticaServerlessRuntimeProperties.serverlessRuntimeConfig
                         = ServerlessRuntimeConfigProperties.fromJson(reader);

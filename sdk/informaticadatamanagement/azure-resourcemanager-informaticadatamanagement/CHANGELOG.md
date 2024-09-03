@@ -1,14 +1,26 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-03)
+
+- Azure Resource Manager Informatica DataManagement client library for Java. This package contains Microsoft Azure SDK for Informatica DataManagement Management SDK.  Package tag package-2024-07-22. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ServerlessRuntimeDataDisk` was added
 
-### Bugs Fixed
+#### `models.InfaServerlessFetchConfigProperties` was modified
 
-### Other Changes
+* `serverlessRuntimeDataDisks()` was added
+
+#### `models.InformaticaServerlessRuntimeProperties` was modified
+
+* `withServerlessRuntimeDataDisks(java.util.List)` was added
+* `serverlessRuntimeDataDisks()` was added
+
+#### `models.ServerlessRuntimePropertiesCustomUpdate` was modified
+
+* `withServerlessRuntimeDataDisks(java.util.List)` was added
+* `serverlessRuntimeDataDisks()` was added
 
 ## 1.0.0 (2024-07-15)
 

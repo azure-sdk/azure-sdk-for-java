@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class OrganizationsGetAllServerlessRuntimesSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_GetAllServerlessRuntimes_MinimumSet_Gen.json
      */
     /**
@@ -26,7 +26,7 @@ public final class OrganizationsGetAllServerlessRuntimesSamples {
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_GetAllServerlessRuntimes_MaximumSet_Gen.json
      */
     /**
@@ -37,6 +37,7 @@ public final class OrganizationsGetAllServerlessRuntimesSamples {
     public static void organizationsGetAllServerlessRuntimes(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         manager.organizations()
-            .getAllServerlessRuntimesWithResponse("rgopenapi", "t", com.azure.core.util.Context.NONE);
+            .getAllServerlessRuntimesWithResponse("rgopenapi",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE);
     }
 }

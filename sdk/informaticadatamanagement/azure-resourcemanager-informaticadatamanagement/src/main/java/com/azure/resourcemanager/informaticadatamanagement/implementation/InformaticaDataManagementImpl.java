@@ -184,7 +184,7 @@ public final class InformaticaDataManagementImpl implements InformaticaDataManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-08";
+        this.apiVersion = "2024-07-22";
         this.operations = new OperationsClientImpl(this);
         this.organizations = new OrganizationsClientImpl(this);
         this.serverlessRuntimes = new ServerlessRuntimesClientImpl(this);

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.informaticadatamanagement.generated;
 public final class ServerlessRuntimesStartFailedServerlessRuntimeSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * ServerlessRuntimes_StartFailedServerlessRuntime_MaximumSet_Gen.json
      */
     /**
@@ -21,6 +21,8 @@ public final class ServerlessRuntimesStartFailedServerlessRuntimeSamples {
     public static void serverlessRuntimesStartFailedServerlessRuntime(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         manager.serverlessRuntimes()
-            .startFailedServerlessRuntimeWithResponse("rgopenapi", "9M4", "-25-G_", com.azure.core.util.Context.NONE);
+            .startFailedServerlessRuntimeWithResponse("rgopenapi",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE);
     }
 }

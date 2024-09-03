@@ -19,7 +19,7 @@ import java.util.Map;
 public final class OrganizationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_Update_MaximumSet_Gen.json
      */
     /**
@@ -30,40 +30,41 @@ public final class OrganizationsUpdateSamples {
     public static void organizationsUpdate(
         com.azure.resourcemanager.informaticadatamanagement.InformaticaDataManagementManager manager) {
         InformaticaOrganizationResource resource = manager.organizations()
-            .getByResourceGroupWithResponse("rgopenapi", "_-", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rgopenapi",
+                "Replace this value with a string matching RegExp ^[a-zA-Z0-9_-]*$", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
-            .withTags(mapOf("key1918", "fakeTokenPlaceholder"))
+            .withTags(mapOf("key7635", "fakeTokenPlaceholder"))
             .withProperties(new OrganizationPropertiesCustomUpdate()
                 .withMarketplaceDetails(new MarketplaceDetailsUpdate()
-                    .withMarketplaceSubscriptionId("szhyxzgjtssjmlguivepc")
-                    .withOfferDetails(new OfferDetailsUpdate().withPublisherId(
-                        "ktzfghsyjqbsswhltoaemgotmnorhdogvkaxplutbjjqzuepxizliynyakersobagvpwvpzwjtjjxigsqgcyqaahaxdijghnexliofhfjlqzjmmbvrhcvjxdodnexxizbgfhjopbwzjojxsluasnwwsgcajefglbcvzpaeblanhmurcculndtfwnfjyxol")
-                        .withOfferId("idaxbflabvjsippplyenvrpgeydsjxcmyubgukffkcdvlvrtwpdhnvdblxjsldiuswrchsibk")
-                        .withPlanId("giihvvnwdwzkfqrhkpqzbgfotzyixnsvmxzauseebillhslauglzfxzvzvts")
+                    .withMarketplaceSubscriptionId("jtdcainfglxsdgcxujqx")
+                    .withOfferDetails(new OfferDetailsUpdate().withPublisherId("wehewpeiarivfyuszfxihzifsol")
+                        .withOfferId("spfkayqchinvbjvjordwiccmjlqlmzydpnoc")
+                        .withPlanId(
+                            "gkxxszqcbbjgeuhhkyhzoxblintfonwtstlmhznxjmrnbkgmqgecoyghyrgfvfnisydjtpplckoreyercglhwnxotzxieoujudwzwdjaeczsjmcupfukkiaqcecfbjbzvauxkfvycgtpxxafeoslyjhkjeglaphplbtupzsksylut")
                         .withPlanName(
-                            "tfqjenotaewzdeerliteqxdawuqxhwdzbtiiimsaedrlsnbdoonnloakjtvnwhhrcyxxsgoachguthqvlahpjyofpoqpfacfmiaauawazkmxkjgvktbptojknzojtjrfzvbbjjkvstabqyaczxinijhoxrjukftsagpwgsvpmczopztmplipyufhuaumfx")
-                        .withTermUnit("nykqoplazujcwmfldntifjqrnx")
-                        .withTermId("eolmwogtgpdncqoigqcdomupwummaicwvdxgbskpdsmjizdfbdgbxbuekcpwmenqzbhqxpdnjtup")))
-                .withUserDetails(new UserDetailsUpdate().withFirstName("qguqrmanyupoi")
-                    .withLastName("ugzg")
-                    .withEmailAddress("7_-46@13D--3.m-4x-.11.c-9-.DHLYFc")
-                    .withUpn("viwjrkn")
-                    .withPhoneNumber("uxa"))
-                .withCompanyDetails(new CompanyDetailsUpdate().withCompanyName("xkrvbozrjcvappqeeyt")
-                    .withOfficeAddress("sfcx")
-                    .withCountry("rvlzppgvopcw")
-                    .withDomain("dponvwnrdrnzahcurqssesukbsokdd")
-                    .withBusiness("mwqblnruflwpolgbxpqbqneve")
-                    .withNumberOfEmployees(22))
-                .withExistingResourceId(
-                    "/subscriptions/subid/resourceGroups/rg1/providers/Informatica.DataManagement/organizations/org1/serverlessRuntimes/serverlessRuntimeName"))
+                            "hojezrhbwkurkiqfgnmseidyfqzphlydtjbmairtbjlokbwauuydmagrkxebilnjwiehkfkqbdtnipaabnakmrenaizgbkoctxdfxixkqxkrjutoinniwnzdmwzgiuagmorcqbplfucebhurxuttvalqfwqdqxntyyehjvmmtnlaccvzfwpjncgzpypkiyjphyesjmbpeyterbenxqd")
+                        .withTermUnit("hkppskqgpjcmdhwtbzmqsdtzeimtfehftfas")
+                        .withTermId("pmliemwwcvpdybqqqglvjrgpuirulcrhljaptuoejaramacnemrtgbfql")))
+                .withUserDetails(new UserDetailsUpdate().withFirstName("iqhylcdxdddweblzlo")
+                    .withLastName("niejierxdxkhtprappvyouhmq")
+                    .withEmailAddress(
+                        "Replace this value with a string matching RegExp ^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$")
+                    .withUpn("qmosxykp")
+                    .withPhoneNumber("uqytos"))
+                .withCompanyDetails(new CompanyDetailsUpdate().withCompanyName("rcbluovcofnaayzbharx")
+                    .withOfficeAddress("abwtuqnqnikrvp")
+                    .withCountry("oitw")
+                    .withDomain("igbwijvqbzxinceeq")
+                    .withBusiness("orrm")
+                    .withNumberOfEmployees(7))
+                .withExistingResourceId("doaf"))
             .apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/informatica/resource-manager/Informatica.DataManagement/stable/2024-05-08/examples/
+     * specification/informatica/resource-manager/Informatica.DataManagement/preview/2024-07-22/examples/
      * Organizations_Update_MinimumSet_Gen.json
      */
     /**
