@@ -11,8 +11,20 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.SapVirtualInstancesClient;
 import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.OperationStatusResultInner;
+import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.SapAvailabilityZoneDetailsResultInner;
+import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.SapDiskConfigurationsResultInner;
+import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.SapSizingRecommendationResultInner;
+import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.SapSupportedResourceSkusResultInner;
 import com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models.SapVirtualInstanceInner;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.OperationStatusResult;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapAvailabilityZoneDetailsRequest;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapAvailabilityZoneDetailsResult;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapDiskConfigurationsRequest;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapDiskConfigurationsResult;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapSizingRecommendationRequest;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapSizingRecommendationResult;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapSupportedResourceSkusResult;
+import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapSupportedSkusRequest;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapVirtualInstance;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.SapVirtualInstances;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.StartRequest;
@@ -29,6 +41,113 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<SapAvailabilityZoneDetailsResult> getAvailabilityZoneDetailsWithResponse(String location,
+        SapAvailabilityZoneDetailsRequest body, Context context) {
+        Response<SapAvailabilityZoneDetailsResultInner> inner
+            = this.serviceClient().getAvailabilityZoneDetailsWithResponse(location, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SapAvailabilityZoneDetailsResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapAvailabilityZoneDetailsResult getAvailabilityZoneDetails(String location,
+        SapAvailabilityZoneDetailsRequest body) {
+        SapAvailabilityZoneDetailsResultInner inner = this.serviceClient().getAvailabilityZoneDetails(location, body);
+        if (inner != null) {
+            return new SapAvailabilityZoneDetailsResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<SapDiskConfigurationsResult> getDiskConfigurationsWithResponse(String location,
+        SapDiskConfigurationsRequest body, Context context) {
+        Response<SapDiskConfigurationsResultInner> inner
+            = this.serviceClient().getDiskConfigurationsWithResponse(location, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SapDiskConfigurationsResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapDiskConfigurationsResult getDiskConfigurations(String location, SapDiskConfigurationsRequest body) {
+        SapDiskConfigurationsResultInner inner = this.serviceClient().getDiskConfigurations(location, body);
+        if (inner != null) {
+            return new SapDiskConfigurationsResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<SapSupportedResourceSkusResult> getSapSupportedSkuWithResponse(String location,
+        SapSupportedSkusRequest body, Context context) {
+        Response<SapSupportedResourceSkusResultInner> inner
+            = this.serviceClient().getSapSupportedSkuWithResponse(location, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SapSupportedResourceSkusResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapSupportedResourceSkusResult getSapSupportedSku(String location, SapSupportedSkusRequest body) {
+        SapSupportedResourceSkusResultInner inner = this.serviceClient().getSapSupportedSku(location, body);
+        if (inner != null) {
+            return new SapSupportedResourceSkusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<SapSizingRecommendationResult> getSizingRecommendationsWithResponse(String location,
+        SapSizingRecommendationRequest body, Context context) {
+        Response<SapSizingRecommendationResultInner> inner
+            = this.serviceClient().getSizingRecommendationsWithResponse(location, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SapSizingRecommendationResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapSizingRecommendationResult getSizingRecommendations(String location,
+        SapSizingRecommendationRequest body) {
+        SapSizingRecommendationResultInner inner = this.serviceClient().getSizingRecommendations(location, body);
+        if (inner != null) {
+            return new SapSizingRecommendationResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<SapVirtualInstance> list() {
+        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SapVirtualInstance> list(Context context) {
+        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SapVirtualInstance> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SapVirtualInstance> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<SapVirtualInstanceInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
     }
 
     public Response<SapVirtualInstance> getByResourceGroupWithResponse(String resourceGroupName,
@@ -59,27 +178,6 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
 
     public void delete(String resourceGroupName, String sapVirtualInstanceName, Context context) {
         this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, context);
-    }
-
-    public PagedIterable<SapVirtualInstance> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SapVirtualInstance> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<SapVirtualInstanceInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SapVirtualInstance> list() {
-        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SapVirtualInstance> list(Context context) {
-        PagedIterable<SapVirtualInstanceInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SapVirtualInstanceImpl(inner1, this.manager()));
     }
 
     public OperationStatusResult start(String resourceGroupName, String sapVirtualInstanceName) {
