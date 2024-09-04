@@ -9,7 +9,8 @@ package com.azure.resourcemanager.newrelicobservability.generated;
  */
 public final class ConnectedPartnerResourcesListSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file:
+     * specification/newrelic/resource-manager/NewRelic.Observability/preview/2024-10-01-preview/examples/
      * ConnectedPartnerResources_List.json
      */
     /**
@@ -19,7 +20,7 @@ public final class ConnectedPartnerResourcesListSamples {
      */
     public static void connectedPartnerResourcesList(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.connectedPartnerResources().list("myResourceGroup", "myMonitor", null,
-            com.azure.core.util.Context.NONE);
+        manager.connectedPartnerResources()
+            .list("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
     }
 }

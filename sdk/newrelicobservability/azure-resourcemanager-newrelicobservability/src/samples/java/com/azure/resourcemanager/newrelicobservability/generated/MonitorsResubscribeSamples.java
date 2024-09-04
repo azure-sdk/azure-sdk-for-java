@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.newrelicobservability.generated;
 
 /**
- * Samples for Monitors GetByResourceGroup.
+ * Samples for Monitors Resubscribe.
  */
-public final class MonitorsGetByResourceGroupSamples {
+public final class MonitorsResubscribeSamples {
     /*
      * x-ms-original-file:
      * specification/newrelic/resource-manager/NewRelic.Observability/preview/2024-10-01-preview/examples/
-     * Monitors_Get_MaximumSet_Gen.json
+     * Monitors_Resubscribe.json
      */
     /**
-     * Sample code: Monitors_Get_MaximumSet_Gen.
+     * Sample code: Monitors_Resubscribe.
      * 
      * @param manager Entry point to NewRelicObservabilityManager.
      */
     public static void
-        monitorsGetMaximumSetGen(com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().getByResourceGroupWithResponse("rgNewRelic", "cdlymktqw", com.azure.core.util.Context.NONE);
+        monitorsResubscribe(com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
+        manager.monitors().resubscribe("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
     }
 }

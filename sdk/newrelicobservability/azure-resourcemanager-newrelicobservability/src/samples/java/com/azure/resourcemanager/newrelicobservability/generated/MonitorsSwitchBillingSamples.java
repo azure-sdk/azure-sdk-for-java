@@ -15,7 +15,8 @@ import java.time.OffsetDateTime;
  */
 public final class MonitorsSwitchBillingSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file:
+     * specification/newrelic/resource-manager/NewRelic.Observability/preview/2024-10-01-preview/examples/
      * Monitors_SwitchBilling_MinimumSet_Gen.json
      */
     /**
@@ -25,12 +26,14 @@ public final class MonitorsSwitchBillingSamples {
      */
     public static void monitorsSwitchBillingMinimumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().switchBillingWithResponse("rgNewRelic", "fhcjxnxumkdlgpwanewtkdnyuz",
-            new SwitchBillingRequest().withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"), com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .switchBillingWithResponse("rgNewRelic", "fhcjxnxumkdlgpwanewtkdnyuz",
+                new SwitchBillingRequest().withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"), com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file:
+     * specification/newrelic/resource-manager/NewRelic.Observability/preview/2024-10-01-preview/examples/
      * Monitors_SwitchBilling_MaximumSet_Gen.json
      */
     /**
@@ -40,13 +43,16 @@ public final class MonitorsSwitchBillingSamples {
      */
     public static void monitorsSwitchBillingMaximumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().switchBillingWithResponse("rgNewRelic", "fhcjxnxumkdlgpwanewtkdnyuz",
-            new SwitchBillingRequest().withAzureResourceId(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz")
-                .withOrganizationId("k")
-                .withPlanData(new PlanData().withUsageType(UsageType.PAYG).withBillingCycle(BillingCycle.YEARLY)
-                    .withPlanDetails("tbbiaga").withEffectiveDate(OffsetDateTime.parse("2022-12-05T14:11:37.786Z")))
-                .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
-            com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .switchBillingWithResponse("rgNewRelic", "fhcjxnxumkdlgpwanewtkdnyuz",
+                new SwitchBillingRequest().withAzureResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz")
+                    .withOrganizationId("k")
+                    .withPlanData(new PlanData().withUsageType(UsageType.PAYG)
+                        .withBillingCycle(BillingCycle.YEARLY)
+                        .withPlanDetails("tbbiaga")
+                        .withEffectiveDate(OffsetDateTime.parse("2022-12-05T14:11:37.786Z")))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                com.azure.core.util.Context.NONE);
     }
 }

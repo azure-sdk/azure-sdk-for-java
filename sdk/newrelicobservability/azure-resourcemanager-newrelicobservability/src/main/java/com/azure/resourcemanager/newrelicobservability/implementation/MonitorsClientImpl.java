@@ -52,6 +52,7 @@ import com.azure.resourcemanager.newrelicobservability.models.MonitoredResourceL
 import com.azure.resourcemanager.newrelicobservability.models.MonitorsSwitchBillingResponse;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicMonitorResourceListResult;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicMonitorResourceUpdate;
+import com.azure.resourcemanager.newrelicobservability.models.ResubscribeProperties;
 import com.azure.resourcemanager.newrelicobservability.models.SwitchBillingRequest;
 import com.azure.resourcemanager.newrelicobservability.models.VMHostsListResponse;
 import java.nio.ByteBuffer;
@@ -220,6 +221,16 @@ public final class MonitorsClientImpl implements MonitorsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/NewRelic.Observability/monitors/{monitorName}/resubscribe")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> resubscribe(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @BodyParam("application/json") ResubscribeProperties body, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -2357,11 +2368,273 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> resubscribeWithResponseAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.resubscribe(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> resubscribeWithResponseAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.resubscribe(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, body, accept, context);
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribeAsync(String resourceGroupName, String monitorName, ResubscribeProperties body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = resubscribeWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<NewRelicMonitorResourceInner, NewRelicMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NewRelicMonitorResourceInner.class, NewRelicMonitorResourceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribeAsync(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = resubscribeWithResponseAsync(resourceGroupName, monitorName, body);
+        return this.client.<NewRelicMonitorResourceInner, NewRelicMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NewRelicMonitorResourceInner.class, NewRelicMonitorResourceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner> beginResubscribeAsync(
+        String resourceGroupName, String monitorName, ResubscribeProperties body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = resubscribeWithResponseAsync(resourceGroupName, monitorName, body, context);
+        return this.client.<NewRelicMonitorResourceInner, NewRelicMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NewRelicMonitorResourceInner.class, NewRelicMonitorResourceInner.class,
+            context);
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return this.beginResubscribeAsync(resourceGroupName, monitorName, body).getSyncPoller();
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body, Context context) {
+        return this.beginResubscribeAsync(resourceGroupName, monitorName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NewRelicMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body) {
+        return beginResubscribeAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NewRelicMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return beginResubscribeAsync(resourceGroupName, monitorName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NewRelicMonitorResourceInner> resubscribeAsync(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        return beginResubscribeAsync(resourceGroupName, monitorName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NewRelicMonitorResourceInner resubscribe(String resourceGroupName, String monitorName) {
+        final ResubscribeProperties body = null;
+        return resubscribeAsync(resourceGroupName, monitorName, body).block();
+    }
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NewRelicMonitorResourceInner resubscribe(String resourceGroupName, String monitorName,
+        ResubscribeProperties body, Context context) {
+        return resubscribeAsync(resourceGroupName, monitorName, body, context).block();
+    }
+
+    /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2389,9 +2662,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2419,9 +2690,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2449,9 +2718,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2479,9 +2746,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2508,9 +2773,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2538,9 +2801,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2567,9 +2828,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2596,9 +2855,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2626,9 +2883,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2656,9 +2911,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2685,9 +2938,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -30,6 +30,7 @@ import com.azure.resourcemanager.newrelicobservability.models.NewRelicMonitorRes
 import com.azure.resourcemanager.newrelicobservability.models.OrgCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.PlanData;
 import com.azure.resourcemanager.newrelicobservability.models.ProvisioningState;
+import com.azure.resourcemanager.newrelicobservability.models.ResubscribeProperties;
 import com.azure.resourcemanager.newrelicobservability.models.SwitchBillingRequest;
 import com.azure.resourcemanager.newrelicobservability.models.UserInfo;
 import com.azure.resourcemanager.newrelicobservability.models.VMExtensionPayload;
@@ -160,14 +161,16 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource create() {
-        this.innerObject = serviceManager.serviceClient().getMonitors().createOrUpdate(resourceGroupName, monitorName,
-            this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .createOrUpdate(resourceGroupName, monitorName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public NewRelicMonitorResource create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMonitors().createOrUpdate(resourceGroupName, monitorName,
-            this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .createOrUpdate(resourceGroupName, monitorName, this.innerModel(), context);
         return this;
     }
 
@@ -184,14 +187,18 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource apply() {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateProperties, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateProperties, Context.NONE)
+            .getValue();
         return this;
     }
 
     public NewRelicMonitorResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateProperties, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateProperties, context)
+            .getValue();
         return this;
     }
 
@@ -204,14 +211,18 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource refresh() {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public NewRelicMonitorResource refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .getByResourceGroupWithResponse(resourceGroupName, monitorName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, context)
+            .getValue();
         return this;
     }
 
@@ -277,6 +288,14 @@ public final class NewRelicMonitorResourceImpl
 
     public VMExtensionPayload vmHostPayload() {
         return serviceManager.monitors().vmHostPayload(resourceGroupName, monitorName);
+    }
+
+    public NewRelicMonitorResource resubscribe() {
+        return serviceManager.monitors().resubscribe(resourceGroupName, monitorName);
+    }
+
+    public NewRelicMonitorResource resubscribe(ResubscribeProperties body, Context context) {
+        return serviceManager.monitors().resubscribe(resourceGroupName, monitorName, body, context);
     }
 
     public NewRelicMonitorResourceImpl withRegion(Region location) {
