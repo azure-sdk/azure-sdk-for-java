@@ -13,7 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.DiscoverPro
 public final class ReplicationProtectionContainersDiscoverProtecta {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_DiscoverProtectableItem.json
      */
     /**
@@ -23,10 +23,13 @@ public final class ReplicationProtectionContainersDiscoverProtecta {
      */
     public static void addsAProtectableItemToTheReplicationProtectionContainer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().discoverProtectableItem("MadhaviVault", "MadhaviVRG", "V2A-W2K12-660",
-            "cloud_7328549c-5c37-4459-a3c2-e35f9ef6893c",
-            new DiscoverProtectableItemRequest().withProperties(new DiscoverProtectableItemRequestProperties()
-                .withFriendlyName("Test").withIpAddress("10.150.2.3").withOsType("Windows")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .discoverProtectableItem("MadhaviVRG", "MadhaviVault", "V2A-W2K12-660",
+                "cloud_7328549c-5c37-4459-a3c2-e35f9ef6893c",
+                new DiscoverProtectableItemRequest()
+                    .withProperties(new DiscoverProtectableItemRequestProperties().withFriendlyName("Test")
+                        .withIpAddress("10.150.2.3")
+                        .withOsType("Windows")),
+                com.azure.core.util.Context.NONE);
     }
 }

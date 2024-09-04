@@ -5,102 +5,106 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * InMageRcm protected disk details.
  */
 @Fluent
-public final class InMageRcmProtectedDiskDetails {
+public final class InMageRcmProtectedDiskDetails implements JsonSerializable<InMageRcmProtectedDiskDetails> {
     /*
      * The disk Id.
      */
-    @JsonProperty(value = "diskId", access = JsonProperty.Access.WRITE_ONLY)
     private String diskId;
 
     /*
      * The disk name.
      */
-    @JsonProperty(value = "diskName", access = JsonProperty.Access.WRITE_ONLY)
     private String diskName;
 
     /*
      * A value indicating whether the disk is the OS disk.
      */
-    @JsonProperty(value = "isOSDisk", access = JsonProperty.Access.WRITE_ONLY)
     private String isOSDisk;
 
     /*
      * The disk capacity in bytes.
      */
-    @JsonProperty(value = "capacityInBytes", access = JsonProperty.Access.WRITE_ONLY)
     private Long capacityInBytes;
+
+    /*
+     * The disk state.
+     */
+    private DiskState diskState;
 
     /*
      * The log storage account ARM Id.
      */
-    @JsonProperty(value = "logStorageAccountId", access = JsonProperty.Access.WRITE_ONLY)
     private String logStorageAccountId;
 
     /*
      * The DiskEncryptionSet ARM Id.
      */
-    @JsonProperty(value = "diskEncryptionSetId", access = JsonProperty.Access.WRITE_ONLY)
     private String diskEncryptionSetId;
 
     /*
      * The ARM Id of the seed managed disk.
      */
-    @JsonProperty(value = "seedManagedDiskId", access = JsonProperty.Access.WRITE_ONLY)
     private String seedManagedDiskId;
 
     /*
      * The uri of the seed blob.
      */
-    @JsonProperty(value = "seedBlobUri", access = JsonProperty.Access.WRITE_ONLY)
     private String seedBlobUri;
 
     /*
      * The ARM Id of the target managed disk.
      */
-    @JsonProperty(value = "targetManagedDiskId", access = JsonProperty.Access.WRITE_ONLY)
     private String targetManagedDiskId;
 
     /*
      * The disk type.
      */
-    @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
 
     /*
      * The data pending in log data store in MB.
      */
-    @JsonProperty(value = "dataPendingInLogDataStoreInMB", access = JsonProperty.Access.WRITE_ONLY)
     private Double dataPendingInLogDataStoreInMB;
 
     /*
      * The data pending at source agent in MB.
      */
-    @JsonProperty(value = "dataPendingAtSourceAgentInMB", access = JsonProperty.Access.WRITE_ONLY)
     private Double dataPendingAtSourceAgentInMB;
 
     /*
      * A value indicating whether initial replication is complete or not.
      */
-    @JsonProperty(value = "isInitialReplicationComplete", access = JsonProperty.Access.WRITE_ONLY)
     private String isInitialReplicationComplete;
 
     /*
      * The initial replication details.
      */
-    @JsonProperty(value = "irDetails")
     private InMageRcmSyncDetails irDetails;
 
     /*
      * The resync details.
      */
-    @JsonProperty(value = "resyncDetails")
     private InMageRcmSyncDetails resyncDetails;
+
+    /*
+     * The custom target Azure disk name.
+     */
+    private String customTargetDiskName;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    private Integer sectorSizeInBytes;
 
     /**
      * Creates an instance of InMageRcmProtectedDiskDetails class.
@@ -142,6 +146,15 @@ public final class InMageRcmProtectedDiskDetails {
      */
     public Long capacityInBytes() {
         return this.capacityInBytes;
+    }
+
+    /**
+     * Get the diskState property: The disk state.
+     * 
+     * @return the diskState value.
+     */
+    public DiskState diskState() {
+        return this.diskState;
     }
 
     /**
@@ -228,8 +241,7 @@ public final class InMageRcmProtectedDiskDetails {
     }
 
     /**
-     * Get the isInitialReplicationComplete property: A value indicating whether initial replication is complete or
-     * not.
+     * Get the isInitialReplicationComplete property: A value indicating whether initial replication is complete or not.
      * 
      * @return the isInitialReplicationComplete value.
      */
@@ -278,6 +290,46 @@ public final class InMageRcmProtectedDiskDetails {
     }
 
     /**
+     * Get the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @return the customTargetDiskName value.
+     */
+    public String customTargetDiskName() {
+        return this.customTargetDiskName;
+    }
+
+    /**
+     * Set the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @param customTargetDiskName the customTargetDiskName value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withCustomTargetDiskName(String customTargetDiskName) {
+        this.customTargetDiskName = customTargetDiskName;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -289,5 +341,83 @@ public final class InMageRcmProtectedDiskDetails {
         if (resyncDetails() != null) {
             resyncDetails().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("diskType", this.diskType == null ? null : this.diskType.toString());
+        jsonWriter.writeJsonField("irDetails", this.irDetails);
+        jsonWriter.writeJsonField("resyncDetails", this.resyncDetails);
+        jsonWriter.writeStringField("customTargetDiskName", this.customTargetDiskName);
+        jsonWriter.writeNumberField("sectorSizeInBytes", this.sectorSizeInBytes);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of InMageRcmProtectedDiskDetails from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of InMageRcmProtectedDiskDetails if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the InMageRcmProtectedDiskDetails.
+     */
+    public static InMageRcmProtectedDiskDetails fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            InMageRcmProtectedDiskDetails deserializedInMageRcmProtectedDiskDetails
+                = new InMageRcmProtectedDiskDetails();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("diskId".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskId = reader.getString();
+                } else if ("diskName".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskName = reader.getString();
+                } else if ("isOSDisk".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.isOSDisk = reader.getString();
+                } else if ("capacityInBytes".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.capacityInBytes = reader.getNullable(JsonReader::getLong);
+                } else if ("diskState".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskState = DiskState.fromString(reader.getString());
+                } else if ("logStorageAccountId".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.logStorageAccountId = reader.getString();
+                } else if ("diskEncryptionSetId".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskEncryptionSetId = reader.getString();
+                } else if ("seedManagedDiskId".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.seedManagedDiskId = reader.getString();
+                } else if ("seedBlobUri".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.seedBlobUri = reader.getString();
+                } else if ("targetManagedDiskId".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.targetManagedDiskId = reader.getString();
+                } else if ("diskType".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.diskType = DiskAccountType.fromString(reader.getString());
+                } else if ("dataPendingInLogDataStoreInMB".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.dataPendingInLogDataStoreInMB
+                        = reader.getNullable(JsonReader::getDouble);
+                } else if ("dataPendingAtSourceAgentInMB".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.dataPendingAtSourceAgentInMB
+                        = reader.getNullable(JsonReader::getDouble);
+                } else if ("isInitialReplicationComplete".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.isInitialReplicationComplete = reader.getString();
+                } else if ("irDetails".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.irDetails = InMageRcmSyncDetails.fromJson(reader);
+                } else if ("resyncDetails".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.resyncDetails = InMageRcmSyncDetails.fromJson(reader);
+                } else if ("customTargetDiskName".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.customTargetDiskName = reader.getString();
+                } else if ("sectorSizeInBytes".equals(fieldName)) {
+                    deserializedInMageRcmProtectedDiskDetails.sectorSizeInBytes
+                        = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedInMageRcmProtectedDiskDetails;
+        });
     }
 }

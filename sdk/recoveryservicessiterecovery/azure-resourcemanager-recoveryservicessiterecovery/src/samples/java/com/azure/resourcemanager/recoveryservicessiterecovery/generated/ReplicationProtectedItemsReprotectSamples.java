@@ -14,7 +14,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReverseRepl
 public final class ReplicationProtectedItemsReprotectSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Reprotect.json
      */
     /**
@@ -24,11 +24,12 @@ public final class ReplicationProtectedItemsReprotectSamples {
      */
     public static void executeReverseReplicationReprotect(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().reprotect("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new ReverseReplicationInput()
-                .withProperties(new ReverseReplicationInputProperties().withFailoverDirection("PrimaryToRecovery")
-                    .withProviderSpecificDetails(new HyperVReplicaAzureReprotectInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .reprotect("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new ReverseReplicationInput()
+                    .withProperties(new ReverseReplicationInputProperties().withFailoverDirection("PrimaryToRecovery")
+                        .withProviderSpecificDetails(new HyperVReplicaAzureReprotectInput())),
+                com.azure.core.util.Context.NONE);
     }
 }

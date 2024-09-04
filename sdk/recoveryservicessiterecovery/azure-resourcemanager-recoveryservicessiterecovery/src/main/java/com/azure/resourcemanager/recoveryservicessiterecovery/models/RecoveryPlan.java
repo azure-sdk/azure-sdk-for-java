@@ -97,13 +97,13 @@ public interface RecoveryPlan {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceName, resourceGroupName.
+             * Specifies resourceGroupName, resourceName.
              * 
-             * @param resourceName The name of the recovery services vault.
              * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+             * @param resourceName The name of the recovery services vault.
              * @return the next definition stage.
              */
-            WithProperties withExistingVault(String resourceName, String resourceGroupName);
+            WithProperties withExistingVault(String resourceGroupName, String resourceName);
         }
 
         /**

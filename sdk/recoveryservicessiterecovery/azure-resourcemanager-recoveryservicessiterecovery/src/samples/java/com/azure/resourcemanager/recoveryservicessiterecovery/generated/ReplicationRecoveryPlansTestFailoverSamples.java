@@ -16,7 +16,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansTestFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_TestFailover.json
      */
     /**
@@ -26,13 +26,14 @@ public final class ReplicationRecoveryPlansTestFailoverSamples {
      */
     public static void executeTestFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().testFailover("vault1", "resourceGroupPS1", "RPtest1",
-            new RecoveryPlanTestFailoverInput().withProperties(new RecoveryPlanTestFailoverInputProperties()
-                .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
-                .withNetworkType("VmNetworkAsInput")
-                .withNetworkId(
-                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
-                .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .testFailover("resourceGroupPS1", "vault1", "RPtest1",
+                new RecoveryPlanTestFailoverInput().withProperties(new RecoveryPlanTestFailoverInputProperties()
+                    .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
+                    .withNetworkType("VmNetworkAsInput")
+                    .withNetworkId(
+                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
+                    .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
+                com.azure.core.util.Context.NONE);
     }
 }
