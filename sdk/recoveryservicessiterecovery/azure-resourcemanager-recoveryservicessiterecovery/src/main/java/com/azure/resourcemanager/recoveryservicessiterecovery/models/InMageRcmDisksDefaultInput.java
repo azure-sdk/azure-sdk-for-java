@@ -6,30 +6,36 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * InMageRcm disk input.
  */
 @Fluent
-public final class InMageRcmDisksDefaultInput {
+public final class InMageRcmDisksDefaultInput implements JsonSerializable<InMageRcmDisksDefaultInput> {
     /*
      * The log storage account ARM Id.
      */
-    @JsonProperty(value = "logStorageAccountId", required = true)
     private String logStorageAccountId;
 
     /*
      * The disk type.
      */
-    @JsonProperty(value = "diskType", required = true)
     private DiskAccountType diskType;
 
     /*
      * The DiskEncryptionSet ARM Id.
      */
-    @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    private Integer sectorSizeInBytes;
 
     /**
      * Creates an instance of InMageRcmDisksDefaultInput class.
@@ -98,20 +104,88 @@ public final class InMageRcmDisksDefaultInput {
     }
 
     /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmDisksDefaultInput object itself.
+     */
+    public InMageRcmDisksDefaultInput withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logStorageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property logStorageAccountId in model InMageRcmDisksDefaultInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property logStorageAccountId in model InMageRcmDisksDefaultInput"));
         }
         if (diskType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskType in model InMageRcmDisksDefaultInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property diskType in model InMageRcmDisksDefaultInput"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(InMageRcmDisksDefaultInput.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("logStorageAccountId", this.logStorageAccountId);
+        jsonWriter.writeStringField("diskType", this.diskType == null ? null : this.diskType.toString());
+        jsonWriter.writeStringField("diskEncryptionSetId", this.diskEncryptionSetId);
+        jsonWriter.writeNumberField("sectorSizeInBytes", this.sectorSizeInBytes);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of InMageRcmDisksDefaultInput from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of InMageRcmDisksDefaultInput if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the InMageRcmDisksDefaultInput.
+     */
+    public static InMageRcmDisksDefaultInput fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            InMageRcmDisksDefaultInput deserializedInMageRcmDisksDefaultInput = new InMageRcmDisksDefaultInput();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("logStorageAccountId".equals(fieldName)) {
+                    deserializedInMageRcmDisksDefaultInput.logStorageAccountId = reader.getString();
+                } else if ("diskType".equals(fieldName)) {
+                    deserializedInMageRcmDisksDefaultInput.diskType = DiskAccountType.fromString(reader.getString());
+                } else if ("diskEncryptionSetId".equals(fieldName)) {
+                    deserializedInMageRcmDisksDefaultInput.diskEncryptionSetId = reader.getString();
+                } else if ("sectorSizeInBytes".equals(fieldName)) {
+                    deserializedInMageRcmDisksDefaultInput.sectorSizeInBytes = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedInMageRcmDisksDefaultInput;
+        });
+    }
 }

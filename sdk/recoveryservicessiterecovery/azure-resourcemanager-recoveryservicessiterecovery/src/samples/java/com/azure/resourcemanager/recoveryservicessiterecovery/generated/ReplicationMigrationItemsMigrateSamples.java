@@ -14,7 +14,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtMi
 public final class ReplicationMigrationItemsMigrateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Migrate.json
      */
     /**
@@ -23,10 +23,10 @@ public final class ReplicationMigrationItemsMigrateSamples {
      * @param manager Entry point to SiteRecoveryManager.
      */
     public static void migrateItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().migrate("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new MigrateInput().withProperties(new MigrateInputProperties()
-                .withProviderSpecificDetails(new VMwareCbtMigrateInput().withPerformShutdown("true"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .migrate("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                new MigrateInput().withProperties(new MigrateInputProperties()
+                    .withProviderSpecificDetails(new VMwareCbtMigrateInput().withPerformShutdown("true"))),
+                com.azure.core.util.Context.NONE);
     }
 }

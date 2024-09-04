@@ -59,30 +59,33 @@ public final class AlertImpl implements Alert, Alert.Definition {
         return this.serviceManager;
     }
 
-    private String resourceName;
-
     private String resourceGroupName;
+
+    private String resourceName;
 
     private String alertSettingName;
 
     private ConfigureAlertRequest createRequest;
 
-    public AlertImpl withExistingVault(String resourceName, String resourceGroupName) {
-        this.resourceName = resourceName;
+    public AlertImpl withExistingVault(String resourceGroupName, String resourceName) {
         this.resourceGroupName = resourceGroupName;
+        this.resourceName = resourceName;
         return this;
     }
 
     public Alert create() {
-        this.innerObject = serviceManager.serviceClient().getReplicationAlertSettings()
-            .createWithResponse(resourceName, resourceGroupName, alertSettingName, createRequest, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getReplicationAlertSettings()
+            .createWithResponse(resourceGroupName, resourceName, alertSettingName, createRequest, Context.NONE)
             .getValue();
         return this;
     }
 
     public Alert create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getReplicationAlertSettings()
-            .createWithResponse(resourceName, resourceGroupName, alertSettingName, createRequest, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getReplicationAlertSettings()
+            .createWithResponse(resourceGroupName, resourceName, alertSettingName, createRequest, context)
+            .getValue();
         return this;
     }
 
@@ -94,14 +97,18 @@ public final class AlertImpl implements Alert, Alert.Definition {
     }
 
     public Alert refresh() {
-        this.innerObject = serviceManager.serviceClient().getReplicationAlertSettings()
-            .getWithResponse(resourceName, resourceGroupName, alertSettingName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getReplicationAlertSettings()
+            .getWithResponse(resourceGroupName, resourceName, alertSettingName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Alert refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getReplicationAlertSettings()
-            .getWithResponse(resourceName, resourceGroupName, alertSettingName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getReplicationAlertSettings()
+            .getWithResponse(resourceGroupName, resourceName, alertSettingName, context)
+            .getValue();
         return this;
     }
 

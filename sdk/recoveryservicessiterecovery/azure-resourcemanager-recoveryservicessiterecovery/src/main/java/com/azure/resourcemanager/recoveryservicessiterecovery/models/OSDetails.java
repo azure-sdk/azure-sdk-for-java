@@ -5,48 +5,51 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Disk Details.
  */
 @Fluent
-public final class OSDetails {
+public final class OSDetails implements JsonSerializable<OSDetails> {
     /*
      * VM Disk details.
      */
-    @JsonProperty(value = "osType")
     private String osType;
 
     /*
      * Product type.
      */
-    @JsonProperty(value = "productType")
     private String productType;
 
     /*
      * The OSEdition.
      */
-    @JsonProperty(value = "osEdition")
     private String osEdition;
 
     /*
      * The OS Version.
      */
-    @JsonProperty(value = "oSVersion")
     private String oSVersion;
 
     /*
      * The OS Major Version.
      */
-    @JsonProperty(value = "oSMajorVersion")
     private String oSMajorVersion;
 
     /*
      * The OS Minor Version.
      */
-    @JsonProperty(value = "oSMinorVersion")
     private String oSMinorVersion;
+
+    /*
+     * The OS name selected by user.
+     */
+    private String userSelectedOSName;
 
     /**
      * Creates an instance of OSDetails class.
@@ -175,10 +178,84 @@ public final class OSDetails {
     }
 
     /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the OSDetails object itself.
+     */
+    public OSDetails withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("osType", this.osType);
+        jsonWriter.writeStringField("productType", this.productType);
+        jsonWriter.writeStringField("osEdition", this.osEdition);
+        jsonWriter.writeStringField("oSVersion", this.oSVersion);
+        jsonWriter.writeStringField("oSMajorVersion", this.oSMajorVersion);
+        jsonWriter.writeStringField("oSMinorVersion", this.oSMinorVersion);
+        jsonWriter.writeStringField("userSelectedOSName", this.userSelectedOSName);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of OSDetails from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of OSDetails if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the OSDetails.
+     */
+    public static OSDetails fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            OSDetails deserializedOSDetails = new OSDetails();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("osType".equals(fieldName)) {
+                    deserializedOSDetails.osType = reader.getString();
+                } else if ("productType".equals(fieldName)) {
+                    deserializedOSDetails.productType = reader.getString();
+                } else if ("osEdition".equals(fieldName)) {
+                    deserializedOSDetails.osEdition = reader.getString();
+                } else if ("oSVersion".equals(fieldName)) {
+                    deserializedOSDetails.oSVersion = reader.getString();
+                } else if ("oSMajorVersion".equals(fieldName)) {
+                    deserializedOSDetails.oSMajorVersion = reader.getString();
+                } else if ("oSMinorVersion".equals(fieldName)) {
+                    deserializedOSDetails.oSMinorVersion = reader.getString();
+                } else if ("userSelectedOSName".equals(fieldName)) {
+                    deserializedOSDetails.userSelectedOSName = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedOSDetails;
+        });
     }
 }

@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.implementation;
 
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.SupportedOperatingSystemsInner;
-import com.azure.resourcemanager.recoveryservicessiterecovery.models.SupportedOSProperties;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.SupportedOperatingSystems;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SupportedOSProperties;
 
 public final class SupportedOperatingSystemsImpl implements SupportedOperatingSystems {
     private SupportedOperatingSystemsInner innerObject;

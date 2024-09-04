@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class ReplicationRecoveryServicesProvidersListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_List.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ReplicationRecoveryServicesProvidersListSamples {
      */
     public static void getsTheListOfRegisteredRecoveryServicesProvidersInTheVaultThisIsAViewOnlyApi(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().list("vault1", "resourceGroupPS1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
