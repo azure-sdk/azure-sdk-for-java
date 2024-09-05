@@ -124,7 +124,6 @@ public final class ServiceNowV2Source extends TabularSource {
      */
     @Override
     public void validate() {
-        super.validate();
         if (expression() != null) {
             expression().validate();
         }
