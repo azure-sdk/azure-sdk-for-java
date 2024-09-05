@@ -2,13 +2,148 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+* `implementation.models.MessageDataStream` was removed
 
-### Other Changes
+#### `implementation.NotificationMessagesClientImpl$NotificationMessagesClientService` was modified
+
+* `send(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `sendSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.CommunicationMessagesChannel` was added
+
+* `implementation.accesshelpers.MessageTemplateItemAccessHelper` was added
+
+* `implementation.accesshelpers.MessageTemplateItemAccessHelper$MessageTemplateItemAccessor` was added
+
+* `models.MessageTemplateValueKind` was added
+
+* `models.CommunicationMessageKind` was added
+
+* `models.MessageTemplateBindingsKind` was added
+
+#### `models.MessageTemplateImage` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `models.SendMessageResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MessageTemplate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MessageTemplateQuickAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MessageTemplateBindings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.channels.WhatsAppMessageTemplateBindings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `models.MessageTemplateVideo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.MessageTemplateText` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NotificationContent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.TextNotificationContent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.MediaNotificationContent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.MessageTemplateItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `getKind()` was added
+
+#### `models.MessageTemplateValue` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TemplateNotificationContent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+
+#### `models.MessageReceipt` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MessageTemplateLocation` was modified
+
+* `getKind()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.channels.WhatsAppMessageTemplateBindingsButton` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MessageTemplateDocument` was modified
+
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.channels.WhatsAppMessageTemplateItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `getKind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.channels.WhatsAppMessageTemplateBindingsComponent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `implementation.NotificationMessagesClientImpl$NotificationMessagesClientService` was modified
+
+* `send(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `sendSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
 
 ## 1.0.5 (2024-07-26)
 
