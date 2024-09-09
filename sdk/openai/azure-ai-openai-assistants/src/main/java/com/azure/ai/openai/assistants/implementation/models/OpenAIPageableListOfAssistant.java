@@ -47,23 +47,7 @@ public final class OpenAIPageableListOfAssistant implements JsonSerializable<Ope
      * A value indicating whether there are additional values available not captured in this list.
      */
     @Generated
-    private final boolean hasMore;
-
-    /**
-     * Creates an instance of OpenAIPageableListOfAssistant class.
-     *
-     * @param data the data value to set.
-     * @param firstId the firstId value to set.
-     * @param lastId the lastId value to set.
-     * @param hasMore the hasMore value to set.
-     */
-    @Generated
-    private OpenAIPageableListOfAssistant(List<Assistant> data, String firstId, String lastId, boolean hasMore) {
-        this.data = data;
-        this.firstId = firstId;
-        this.lastId = lastId;
-        this.hasMore = hasMore;
-    }
+    private Boolean hasMore;
 
     /**
      * Get the object property: The object type, which is always list.
@@ -112,7 +96,7 @@ public final class OpenAIPageableListOfAssistant implements JsonSerializable<Ope
      * @return the hasMore value.
      */
     @Generated
-    public boolean isHasMore() {
+    public Boolean isHasMore() {
         return this.hasMore;
     }
 
@@ -146,7 +130,7 @@ public final class OpenAIPageableListOfAssistant implements JsonSerializable<Ope
             List<Assistant> data = null;
             String firstId = null;
             String lastId = null;
-            boolean hasMore = false;
+            Boolean hasMore = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -157,12 +141,29 @@ public final class OpenAIPageableListOfAssistant implements JsonSerializable<Ope
                 } else if ("last_id".equals(fieldName)) {
                     lastId = reader.getString();
                 } else if ("has_more".equals(fieldName)) {
-                    hasMore = reader.getBoolean();
+                    hasMore = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new OpenAIPageableListOfAssistant(data, firstId, lastId, hasMore);
+            OpenAIPageableListOfAssistant deserializedOpenAIPageableListOfAssistant
+                = new OpenAIPageableListOfAssistant(data, firstId, lastId);
+            deserializedOpenAIPageableListOfAssistant.hasMore = hasMore;
+            return deserializedOpenAIPageableListOfAssistant;
         });
+    }
+
+    /**
+     * Creates an instance of OpenAIPageableListOfAssistant class.
+     *
+     * @param data the data value to set.
+     * @param firstId the firstId value to set.
+     * @param lastId the lastId value to set.
+     */
+    @Generated
+    private OpenAIPageableListOfAssistant(List<Assistant> data, String firstId, String lastId) {
+        this.data = data;
+        this.firstId = firstId;
+        this.lastId = lastId;
     }
 }

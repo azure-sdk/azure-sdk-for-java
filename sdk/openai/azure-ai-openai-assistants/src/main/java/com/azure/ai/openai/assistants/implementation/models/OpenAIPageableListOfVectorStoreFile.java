@@ -48,24 +48,7 @@ public final class OpenAIPageableListOfVectorStoreFile
      * A value indicating whether there are additional values available not captured in this list.
      */
     @Generated
-    private final boolean hasMore;
-
-    /**
-     * Creates an instance of OpenAIPageableListOfVectorStoreFile class.
-     *
-     * @param data the data value to set.
-     * @param firstId the firstId value to set.
-     * @param lastId the lastId value to set.
-     * @param hasMore the hasMore value to set.
-     */
-    @Generated
-    private OpenAIPageableListOfVectorStoreFile(List<VectorStoreFile> data, String firstId, String lastId,
-        boolean hasMore) {
-        this.data = data;
-        this.firstId = firstId;
-        this.lastId = lastId;
-        this.hasMore = hasMore;
-    }
+    private Boolean hasMore;
 
     /**
      * Get the object property: The object type, which is always list.
@@ -114,7 +97,7 @@ public final class OpenAIPageableListOfVectorStoreFile
      * @return the hasMore value.
      */
     @Generated
-    public boolean isHasMore() {
+    public Boolean isHasMore() {
         return this.hasMore;
     }
 
@@ -148,7 +131,7 @@ public final class OpenAIPageableListOfVectorStoreFile
             List<VectorStoreFile> data = null;
             String firstId = null;
             String lastId = null;
-            boolean hasMore = false;
+            Boolean hasMore = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -159,12 +142,29 @@ public final class OpenAIPageableListOfVectorStoreFile
                 } else if ("last_id".equals(fieldName)) {
                     lastId = reader.getString();
                 } else if ("has_more".equals(fieldName)) {
-                    hasMore = reader.getBoolean();
+                    hasMore = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new OpenAIPageableListOfVectorStoreFile(data, firstId, lastId, hasMore);
+            OpenAIPageableListOfVectorStoreFile deserializedOpenAIPageableListOfVectorStoreFile
+                = new OpenAIPageableListOfVectorStoreFile(data, firstId, lastId);
+            deserializedOpenAIPageableListOfVectorStoreFile.hasMore = hasMore;
+            return deserializedOpenAIPageableListOfVectorStoreFile;
         });
+    }
+
+    /**
+     * Creates an instance of OpenAIPageableListOfVectorStoreFile class.
+     *
+     * @param data the data value to set.
+     * @param firstId the firstId value to set.
+     * @param lastId the lastId value to set.
+     */
+    @Generated
+    private OpenAIPageableListOfVectorStoreFile(List<VectorStoreFile> data, String firstId, String lastId) {
+        this.data = data;
+        this.firstId = firstId;
+        this.lastId = lastId;
     }
 }

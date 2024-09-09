@@ -47,23 +47,7 @@ public final class OpenAIPageableListOfThreadRun implements JsonSerializable<Ope
      * A value indicating whether there are additional values available not captured in this list.
      */
     @Generated
-    private final boolean hasMore;
-
-    /**
-     * Creates an instance of OpenAIPageableListOfThreadRun class.
-     *
-     * @param data the data value to set.
-     * @param firstId the firstId value to set.
-     * @param lastId the lastId value to set.
-     * @param hasMore the hasMore value to set.
-     */
-    @Generated
-    private OpenAIPageableListOfThreadRun(List<ThreadRun> data, String firstId, String lastId, boolean hasMore) {
-        this.data = data;
-        this.firstId = firstId;
-        this.lastId = lastId;
-        this.hasMore = hasMore;
-    }
+    private Boolean hasMore;
 
     /**
      * Get the object property: The object type, which is always list.
@@ -112,7 +96,7 @@ public final class OpenAIPageableListOfThreadRun implements JsonSerializable<Ope
      * @return the hasMore value.
      */
     @Generated
-    public boolean isHasMore() {
+    public Boolean isHasMore() {
         return this.hasMore;
     }
 
@@ -146,7 +130,7 @@ public final class OpenAIPageableListOfThreadRun implements JsonSerializable<Ope
             List<ThreadRun> data = null;
             String firstId = null;
             String lastId = null;
-            boolean hasMore = false;
+            Boolean hasMore = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -157,12 +141,29 @@ public final class OpenAIPageableListOfThreadRun implements JsonSerializable<Ope
                 } else if ("last_id".equals(fieldName)) {
                     lastId = reader.getString();
                 } else if ("has_more".equals(fieldName)) {
-                    hasMore = reader.getBoolean();
+                    hasMore = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new OpenAIPageableListOfThreadRun(data, firstId, lastId, hasMore);
+            OpenAIPageableListOfThreadRun deserializedOpenAIPageableListOfThreadRun
+                = new OpenAIPageableListOfThreadRun(data, firstId, lastId);
+            deserializedOpenAIPageableListOfThreadRun.hasMore = hasMore;
+            return deserializedOpenAIPageableListOfThreadRun;
         });
+    }
+
+    /**
+     * Creates an instance of OpenAIPageableListOfThreadRun class.
+     *
+     * @param data the data value to set.
+     * @param firstId the firstId value to set.
+     * @param lastId the lastId value to set.
+     */
+    @Generated
+    private OpenAIPageableListOfThreadRun(List<ThreadRun> data, String firstId, String lastId) {
+        this.data = data;
+        this.firstId = firstId;
+        this.lastId = lastId;
     }
 }

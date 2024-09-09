@@ -1216,7 +1216,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -1295,7 +1295,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -2305,7 +2305,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -2385,7 +2385,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -2991,7 +2991,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -3085,7 +3085,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -4169,7 +4169,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -4248,7 +4248,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -4638,7 +4638,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -4709,7 +4709,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -5190,7 +5190,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -5256,7 +5256,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -5826,7 +5826,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -5893,7 +5893,7 @@ public final class AssistantsClientImpl {
      *     ]
      *     first_id: String (Required)
      *     last_id: String (Required)
-     *     has_more: boolean (Required)
+     *     has_more: Boolean (Optional)
      * }
      * }</pre>
      * 
