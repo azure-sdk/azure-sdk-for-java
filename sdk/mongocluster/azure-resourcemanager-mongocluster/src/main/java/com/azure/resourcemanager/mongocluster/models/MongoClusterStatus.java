@@ -12,11 +12,6 @@ import java.util.Collection;
  */
 public final class MongoClusterStatus extends ExpandableStringEnum<MongoClusterStatus> {
     /**
-     * Static value Ready for MongoClusterStatus.
-     */
-    public static final MongoClusterStatus READY = fromString("Ready");
-
-    /**
      * Static value Provisioning for MongoClusterStatus.
      */
     public static final MongoClusterStatus PROVISIONING = fromString("Provisioning");
