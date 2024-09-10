@@ -5,37 +5,44 @@
 package com.azure.resourcemanager.extendedlocation.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/** The Custom Locations patchable resource definition. */
+/**
+ * The Custom Locations patchable resource definition.
+ */
 @Fluent
-public final class PatchableCustomLocations {
+public final class PatchableCustomLocations implements JsonSerializable<PatchableCustomLocations> {
     /*
      * Identity for the resource.
      */
-    @JsonProperty(value = "identity")
     private Identity identity;
 
     /*
      * The Custom Locations patchable properties.
      */
-    @JsonProperty(value = "properties")
     private CustomLocationProperties innerProperties;
 
     /*
      * Resource tags
      */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of PatchableCustomLocations class.
+     */
+    public PatchableCustomLocations() {
+    }
+
+    /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -44,7 +51,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Set the identity property: Identity for the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -55,7 +62,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Get the innerProperties property: The Custom Locations patchable properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomLocationProperties innerProperties() {
@@ -64,7 +71,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -73,7 +80,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -85,7 +92,7 @@ public final class PatchableCustomLocations {
     /**
      * Get the authentication property: This is optional input that contains the authentication that should be used to
      * generate the namespace.
-     *
+     * 
      * @return the authentication value.
      */
     public CustomLocationPropertiesAuthentication authentication() {
@@ -95,7 +102,7 @@ public final class PatchableCustomLocations {
     /**
      * Set the authentication property: This is optional input that contains the authentication that should be used to
      * generate the namespace.
-     *
+     * 
      * @param authentication the authentication value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -109,8 +116,8 @@ public final class PatchableCustomLocations {
 
     /**
      * Get the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
-     *
+     * and operators. Optional for EdgeCluster hostType.
+     * 
      * @return the clusterExtensionIds value.
      */
     public List<String> clusterExtensionIds() {
@@ -119,8 +126,8 @@ public final class PatchableCustomLocations {
 
     /**
      * Set the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
-     *
+     * and operators. Optional for EdgeCluster hostType.
+     * 
      * @param clusterExtensionIds the clusterExtensionIds value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -134,7 +141,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Get the displayName property: Display name for the Custom Locations location.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -143,7 +150,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Set the displayName property: Display name for the Custom Locations location.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -156,9 +163,9 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Get the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
-     *
+     * Get the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
+     * 
      * @return the hostResourceId value.
      */
     public String hostResourceId() {
@@ -166,9 +173,9 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Set the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
-     *
+     * Set the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
+     * 
      * @param hostResourceId the hostResourceId value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -181,8 +188,8 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
-     *
+     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
+     * 
      * @return the hostType value.
      */
     public HostType hostType() {
@@ -190,8 +197,8 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
-     *
+     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
+     * 
      * @param hostType the hostType value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -204,8 +211,9 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster.
-     *
+     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -213,8 +221,9 @@ public final class PatchableCustomLocations {
     }
 
     /**
-     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster.
-     *
+     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
+     * 
      * @param namespace the namespace value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -228,7 +237,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Get the provisioningState property: Provisioning State for the Custom Location.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -237,7 +246,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Set the provisioningState property: Provisioning State for the Custom Location.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the PatchableCustomLocations object itself.
      */
@@ -251,7 +260,7 @@ public final class PatchableCustomLocations {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -261,5 +270,48 @@ public final class PatchableCustomLocations {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PatchableCustomLocations from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PatchableCustomLocations if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the PatchableCustomLocations.
+     */
+    public static PatchableCustomLocations fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PatchableCustomLocations deserializedPatchableCustomLocations = new PatchableCustomLocations();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("identity".equals(fieldName)) {
+                    deserializedPatchableCustomLocations.identity = Identity.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedPatchableCustomLocations.innerProperties = CustomLocationProperties.fromJson(reader);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPatchableCustomLocations.tags = tags;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPatchableCustomLocations;
+        });
     }
 }
