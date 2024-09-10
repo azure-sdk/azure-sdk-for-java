@@ -82,6 +82,13 @@ public interface RecoveryServicesManagementClient {
     RecoveryServicesClient getRecoveryServices();
 
     /**
+     * Gets the DeletedVaultsClient object to access its operations.
+     * 
+     * @return the DeletedVaultsClient object.
+     */
+    DeletedVaultsClient getDeletedVaults();
+
+    /**
      * Gets the VaultsClient object to access its operations.
      * 
      * @return the VaultsClient object.

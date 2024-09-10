@@ -24,6 +24,7 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.recoveryservices.fluent.RecoveryServicesManagementClient;
+import com.azure.resourcemanager.recoveryservices.implementation.DeletedVaultsImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.OperationsImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.PrivateLinkResourcesOperationsImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.RecoveryServicesImpl;
@@ -35,6 +36,7 @@ import com.azure.resourcemanager.recoveryservices.implementation.UsagesImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.VaultCertificatesImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.VaultExtendedInfoesImpl;
 import com.azure.resourcemanager.recoveryservices.implementation.VaultsImpl;
+import com.azure.resourcemanager.recoveryservices.models.DeletedVaults;
 import com.azure.resourcemanager.recoveryservices.models.Operations;
 import com.azure.resourcemanager.recoveryservices.models.PrivateLinkResourcesOperations;
 import com.azure.resourcemanager.recoveryservices.models.RecoveryServices;
@@ -66,6 +68,8 @@ public final class RecoveryServicesManager {
     private PrivateLinkResourcesOperations privateLinkResourcesOperations;
 
     private RecoveryServices recoveryServices;
+
+    private DeletedVaults deletedVaults;
 
     private Vaults vaults;
 
@@ -241,7 +245,7 @@ public final class RecoveryServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.recoveryservices")
                 .append("/")
-                .append("1.3.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -346,6 +350,18 @@ public final class RecoveryServicesManager {
             this.recoveryServices = new RecoveryServicesImpl(clientObject.getRecoveryServices(), this);
         }
         return recoveryServices;
+    }
+
+    /**
+     * Gets the resource collection API of DeletedVaults.
+     * 
+     * @return Resource collection API of DeletedVaults.
+     */
+    public DeletedVaults deletedVaults() {
+        if (this.deletedVaults == null) {
+            this.deletedVaults = new DeletedVaultsImpl(clientObject.getDeletedVaults(), this);
+        }
+        return deletedVaults;
     }
 
     /**
