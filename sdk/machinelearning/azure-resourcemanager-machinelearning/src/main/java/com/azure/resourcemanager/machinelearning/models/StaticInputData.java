@@ -26,9 +26,9 @@ public final class StaticInputData extends MonitoringInputDataBase {
     private MonitoringInputDataType inputDataType = MonitoringInputDataType.STATIC;
 
     /*
-     * [Required] The start date of the data window.
+     * Reference to the component asset used to preprocess the data.
      */
-    private OffsetDateTime windowStart;
+    private String preprocessingComponentId;
 
     /*
      * [Required] The end date of the data window.
@@ -36,9 +36,9 @@ public final class StaticInputData extends MonitoringInputDataBase {
     private OffsetDateTime windowEnd;
 
     /*
-     * Reference to the component asset used to preprocess the data.
+     * [Required] The start date of the data window.
      */
-    private String preprocessingComponentId;
+    private OffsetDateTime windowStart;
 
     /**
      * Creates an instance of StaticInputData class.
@@ -57,22 +57,22 @@ public final class StaticInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * Get the windowStart property: [Required] The start date of the data window.
+     * Get the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
      * 
-     * @return the windowStart value.
+     * @return the preprocessingComponentId value.
      */
-    public OffsetDateTime windowStart() {
-        return this.windowStart;
+    public String preprocessingComponentId() {
+        return this.preprocessingComponentId;
     }
 
     /**
-     * Set the windowStart property: [Required] The start date of the data window.
+     * Set the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
      * 
-     * @param windowStart the windowStart value to set.
+     * @param preprocessingComponentId the preprocessingComponentId value to set.
      * @return the StaticInputData object itself.
      */
-    public StaticInputData withWindowStart(OffsetDateTime windowStart) {
-        this.windowStart = windowStart;
+    public StaticInputData withPreprocessingComponentId(String preprocessingComponentId) {
+        this.preprocessingComponentId = preprocessingComponentId;
         return this;
     }
 
@@ -97,22 +97,31 @@ public final class StaticInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * Get the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
+     * Get the windowStart property: [Required] The start date of the data window.
      * 
-     * @return the preprocessingComponentId value.
+     * @return the windowStart value.
      */
-    public String preprocessingComponentId() {
-        return this.preprocessingComponentId;
+    public OffsetDateTime windowStart() {
+        return this.windowStart;
     }
 
     /**
-     * Set the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
+     * Set the windowStart property: [Required] The start date of the data window.
      * 
-     * @param preprocessingComponentId the preprocessingComponentId value to set.
+     * @param windowStart the windowStart value to set.
      * @return the StaticInputData object itself.
      */
-    public StaticInputData withPreprocessingComponentId(String preprocessingComponentId) {
-        this.preprocessingComponentId = preprocessingComponentId;
+    public StaticInputData withWindowStart(OffsetDateTime windowStart) {
+        this.windowStart = windowStart;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StaticInputData withColumns(Map<String, String> columns) {
+        super.withColumns(columns);
         return this;
     }
 
@@ -144,29 +153,27 @@ public final class StaticInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StaticInputData withColumns(Map<String, String> columns) {
-        super.withColumns(columns);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
+        if (windowEnd() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property windowEnd in model StaticInputData"));
+        }
         if (windowStart() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property windowStart in model StaticInputData"));
         }
-        if (windowEnd() == null) {
+        if (jobInputType() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property windowEnd in model StaticInputData"));
+                .log(new IllegalArgumentException("Missing required property jobInputType in model StaticInputData"));
+        }
+        if (uri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model StaticInputData"));
         }
     }
 
@@ -180,12 +187,12 @@ public final class StaticInputData extends MonitoringInputDataBase {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("jobInputType", jobInputType() == null ? null : jobInputType().toString());
         jsonWriter.writeStringField("uri", uri());
-        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeMapField("columns", columns(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("windowStart",
-            this.windowStart == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.windowStart));
+        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeStringField("windowEnd",
             this.windowEnd == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.windowEnd));
+        jsonWriter.writeStringField("windowStart",
+            this.windowStart == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.windowStart));
         jsonWriter.writeStringField("inputDataType", this.inputDataType == null ? null : this.inputDataType.toString());
         jsonWriter.writeStringField("preprocessingComponentId", this.preprocessingComponentId);
         return jsonWriter.writeEndObject();
@@ -211,16 +218,16 @@ public final class StaticInputData extends MonitoringInputDataBase {
                     deserializedStaticInputData.withJobInputType(JobInputType.fromString(reader.getString()));
                 } else if ("uri".equals(fieldName)) {
                     deserializedStaticInputData.withUri(reader.getString());
-                } else if ("dataContext".equals(fieldName)) {
-                    deserializedStaticInputData.withDataContext(reader.getString());
                 } else if ("columns".equals(fieldName)) {
                     Map<String, String> columns = reader.readMap(reader1 -> reader1.getString());
                     deserializedStaticInputData.withColumns(columns);
-                } else if ("windowStart".equals(fieldName)) {
-                    deserializedStaticInputData.windowStart = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("dataContext".equals(fieldName)) {
+                    deserializedStaticInputData.withDataContext(reader.getString());
                 } else if ("windowEnd".equals(fieldName)) {
                     deserializedStaticInputData.windowEnd = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("windowStart".equals(fieldName)) {
+                    deserializedStaticInputData.windowStart = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("inputDataType".equals(fieldName)) {
                     deserializedStaticInputData.inputDataType = MonitoringInputDataType.fromString(reader.getString());
