@@ -6,50 +6,60 @@ package com.azure.resourcemanager.signalr.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
+import java.util.List;
 
-/** Describes the properties of an existing Shared Private Link Resource. */
+/**
+ * Describes the properties of an existing Shared Private Link Resource.
+ */
 @Fluent
-public final class SharedPrivateLinkResourceProperties {
+public final class SharedPrivateLinkResourceProperties
+    implements JsonSerializable<SharedPrivateLinkResourceProperties> {
     /*
      * The group id from the provider of resource the shared private link resource is for
      */
-    @JsonProperty(value = "groupId", required = true)
     private String groupId;
 
     /*
      * The resource id of the resource the shared private link resource is for
      */
-    @JsonProperty(value = "privateLinkResourceId", required = true)
     private String privateLinkResourceId;
 
     /*
      * Provisioning state of the resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * The request message for requesting approval of the shared private link resource
      */
-    @JsonProperty(value = "requestMessage")
     private String requestMessage;
+
+    /*
+     * A list of FQDNs for third party private link service
+     */
+    private List<String> fqdns;
 
     /*
      * Status of the shared private link resource
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private SharedPrivateLinkResourceStatus status;
 
-    /** Creates an instance of SharedPrivateLinkResourceProperties class. */
+    /**
+     * Creates an instance of SharedPrivateLinkResourceProperties class.
+     */
     public SharedPrivateLinkResourceProperties() {
     }
 
     /**
      * Get the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -58,7 +68,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Set the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -69,7 +79,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -78,7 +88,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Set the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -89,7 +99,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -98,7 +108,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -107,7 +117,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Set the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -117,8 +127,28 @@ public final class SharedPrivateLinkResourceProperties {
     }
 
     /**
+     * Get the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @return the fqdns value.
+     */
+    public List<String> fqdns() {
+        return this.fqdns;
+    }
+
+    /**
+     * Set the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @param fqdns the fqdns value to set.
+     * @return the SharedPrivateLinkResourceProperties object itself.
+     */
+    public SharedPrivateLinkResourceProperties withFqdns(List<String> fqdns) {
+        this.fqdns = fqdns;
+        return this;
+    }
+
+    /**
      * Get the status property: Status of the shared private link resource.
-     *
+     * 
      * @return the status value.
      */
     public SharedPrivateLinkResourceStatus status() {
@@ -127,24 +157,75 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (groupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groupId in model SharedPrivateLinkResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property groupId in model SharedPrivateLinkResourceProperties"));
         }
         if (privateLinkResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateLinkResourceId in model"
-                            + " SharedPrivateLinkResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property privateLinkResourceId in model SharedPrivateLinkResourceProperties"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SharedPrivateLinkResourceProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("groupId", this.groupId);
+        jsonWriter.writeStringField("privateLinkResourceId", this.privateLinkResourceId);
+        jsonWriter.writeStringField("requestMessage", this.requestMessage);
+        jsonWriter.writeArrayField("fqdns", this.fqdns, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SharedPrivateLinkResourceProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SharedPrivateLinkResourceProperties if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SharedPrivateLinkResourceProperties.
+     */
+    public static SharedPrivateLinkResourceProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SharedPrivateLinkResourceProperties deserializedSharedPrivateLinkResourceProperties
+                = new SharedPrivateLinkResourceProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("groupId".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperties.groupId = reader.getString();
+                } else if ("privateLinkResourceId".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperties.privateLinkResourceId = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
+                } else if ("requestMessage".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperties.requestMessage = reader.getString();
+                } else if ("fqdns".equals(fieldName)) {
+                    List<String> fqdns = reader.readArray(reader1 -> reader1.getString());
+                    deserializedSharedPrivateLinkResourceProperties.fqdns = fqdns;
+                } else if ("status".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperties.status
+                        = SharedPrivateLinkResourceStatus.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSharedPrivateLinkResourceProperties;
+        });
+    }
 }
