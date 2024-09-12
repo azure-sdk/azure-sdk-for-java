@@ -82,12 +82,6 @@ public final class ReservationPurchaseRequestProperties
     private ReservationPurchaseRequestPropertiesReservedResourceProperties innerReservedResourceProperties;
 
     /*
-     * Allows reservation discount to be applied across skus within the same auto fit group. Not all skus support
-     * instance size flexibility.
-     */
-    private InstanceFlexibility instanceFlexibility;
-
-    /*
      * This is the date-time when the Azure hybrid benefit needs to be reviewed.
      */
     private OffsetDateTime reviewDateTime;
@@ -283,28 +277,6 @@ public final class ReservationPurchaseRequestProperties
     }
 
     /**
-     * Get the instanceFlexibility property: Allows reservation discount to be applied across skus within the same auto
-     * fit group. Not all skus support instance size flexibility.
-     * 
-     * @return the instanceFlexibility value.
-     */
-    public InstanceFlexibility instanceFlexibility() {
-        return this.instanceFlexibility;
-    }
-
-    /**
-     * Set the instanceFlexibility property: Allows reservation discount to be applied across skus within the same auto
-     * fit group. Not all skus support instance size flexibility.
-     * 
-     * @param instanceFlexibility the instanceFlexibility value to set.
-     * @return the ReservationPurchaseRequestProperties object itself.
-     */
-    public ReservationPurchaseRequestProperties withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
-        this.instanceFlexibility = instanceFlexibility;
-        return this;
-    }
-
-    /**
      * Get the reviewDateTime property: This is the date-time when the Azure hybrid benefit needs to be reviewed.
      * 
      * @return the reviewDateTime value.
@@ -330,7 +302,7 @@ public final class ReservationPurchaseRequestProperties
      * 
      * @return the instanceFlexibility value.
      */
-    public InstanceFlexibility instanceFlexibilityReservedResourcePropertiesInstanceFlexibility() {
+    public InstanceFlexibility instanceFlexibility() {
         return this.innerReservedResourceProperties() == null
             ? null
             : this.innerReservedResourceProperties().instanceFlexibility();
@@ -343,8 +315,7 @@ public final class ReservationPurchaseRequestProperties
      * @param instanceFlexibility the instanceFlexibility value to set.
      * @return the ReservationPurchaseRequestProperties object itself.
      */
-    public ReservationPurchaseRequestProperties
-        withInstanceFlexibilityReservedResourcePropertiesInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
+    public ReservationPurchaseRequestProperties withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
         if (this.innerReservedResourceProperties() == null) {
             this.innerReservedResourceProperties = new ReservationPurchaseRequestPropertiesReservedResourceProperties();
         }
@@ -382,8 +353,6 @@ public final class ReservationPurchaseRequestProperties
         jsonWriter.writeJsonField("appliedScopeProperties", this.appliedScopeProperties);
         jsonWriter.writeBooleanField("renew", this.renew);
         jsonWriter.writeJsonField("reservedResourceProperties", this.innerReservedResourceProperties);
-        jsonWriter.writeStringField("instanceFlexibility",
-            this.instanceFlexibility == null ? null : this.instanceFlexibility.toString());
         jsonWriter.writeStringField("reviewDateTime",
             this.reviewDateTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.reviewDateTime));
         return jsonWriter.writeEndObject();
@@ -432,9 +401,6 @@ public final class ReservationPurchaseRequestProperties
                 } else if ("reservedResourceProperties".equals(fieldName)) {
                     deserializedReservationPurchaseRequestProperties.innerReservedResourceProperties
                         = ReservationPurchaseRequestPropertiesReservedResourceProperties.fromJson(reader);
-                } else if ("instanceFlexibility".equals(fieldName)) {
-                    deserializedReservationPurchaseRequestProperties.instanceFlexibility
-                        = InstanceFlexibility.fromString(reader.getString());
                 } else if ("reviewDateTime".equals(fieldName)) {
                     deserializedReservationPurchaseRequestProperties.reviewDateTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));

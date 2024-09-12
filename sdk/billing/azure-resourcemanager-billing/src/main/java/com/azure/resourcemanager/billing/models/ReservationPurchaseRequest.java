@@ -285,31 +285,6 @@ public final class ReservationPurchaseRequest implements JsonSerializable<Reserv
     }
 
     /**
-     * Get the instanceFlexibility property: Allows reservation discount to be applied across skus within the same auto
-     * fit group. Not all skus support instance size flexibility.
-     * 
-     * @return the instanceFlexibility value.
-     */
-    public InstanceFlexibility instanceFlexibility() {
-        return this.innerProperties() == null ? null : this.innerProperties().instanceFlexibility();
-    }
-
-    /**
-     * Set the instanceFlexibility property: Allows reservation discount to be applied across skus within the same auto
-     * fit group. Not all skus support instance size flexibility.
-     * 
-     * @param instanceFlexibility the instanceFlexibility value to set.
-     * @return the ReservationPurchaseRequest object itself.
-     */
-    public ReservationPurchaseRequest withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ReservationPurchaseRequestProperties();
-        }
-        this.innerProperties().withInstanceFlexibility(instanceFlexibility);
-        return this;
-    }
-
-    /**
      * Get the reviewDateTime property: This is the date-time when the Azure hybrid benefit needs to be reviewed.
      * 
      * @return the reviewDateTime value.
@@ -333,35 +308,27 @@ public final class ReservationPurchaseRequest implements JsonSerializable<Reserv
     }
 
     /**
-     * Get the instanceFlexibilityReservedResourcePropertiesInstanceFlexibility property: Turning this on will apply the
-     * reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource
-     * type.
+     * Get the instanceFlexibility property: Turning this on will apply the reservation discount to other VMs in the
+     * same VM size group. Only specify for VirtualMachines reserved resource type.
      * 
-     * @return the instanceFlexibilityReservedResourcePropertiesInstanceFlexibility value.
+     * @return the instanceFlexibility value.
      */
-    public InstanceFlexibility instanceFlexibilityReservedResourcePropertiesInstanceFlexibility() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().instanceFlexibilityReservedResourcePropertiesInstanceFlexibility();
+    public InstanceFlexibility instanceFlexibility() {
+        return this.innerProperties() == null ? null : this.innerProperties().instanceFlexibility();
     }
 
     /**
-     * Set the instanceFlexibilityReservedResourcePropertiesInstanceFlexibility property: Turning this on will apply the
-     * reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource
-     * type.
+     * Set the instanceFlexibility property: Turning this on will apply the reservation discount to other VMs in the
+     * same VM size group. Only specify for VirtualMachines reserved resource type.
      * 
-     * @param instanceFlexibilityReservedResourcePropertiesInstanceFlexibility the
-     * instanceFlexibilityReservedResourcePropertiesInstanceFlexibility value to set.
+     * @param instanceFlexibility the instanceFlexibility value to set.
      * @return the ReservationPurchaseRequest object itself.
      */
-    public ReservationPurchaseRequest withInstanceFlexibilityReservedResourcePropertiesInstanceFlexibility(
-        InstanceFlexibility instanceFlexibilityReservedResourcePropertiesInstanceFlexibility) {
+    public ReservationPurchaseRequest withInstanceFlexibility(InstanceFlexibility instanceFlexibility) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ReservationPurchaseRequestProperties();
         }
-        this.innerProperties()
-            .withInstanceFlexibilityReservedResourcePropertiesInstanceFlexibility(
-                instanceFlexibilityReservedResourcePropertiesInstanceFlexibility);
+        this.innerProperties().withInstanceFlexibility(instanceFlexibility);
         return this;
     }
 

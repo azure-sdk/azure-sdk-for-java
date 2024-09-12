@@ -128,7 +128,7 @@ public final class InvoiceProperties implements JsonSerializable<InvoiceProperti
     /*
      * Rebill details for an invoice.
      */
-    private InvoicePropertiesRebillDetails rebillDetails;
+    private RebillDetails rebillDetails;
 
     /*
      * The current status of the invoice.
@@ -434,19 +434,8 @@ public final class InvoiceProperties implements JsonSerializable<InvoiceProperti
      * 
      * @return the rebillDetails value.
      */
-    public InvoicePropertiesRebillDetails rebillDetails() {
+    public RebillDetails rebillDetails() {
         return this.rebillDetails;
-    }
-
-    /**
-     * Set the rebillDetails property: Rebill details for an invoice.
-     * 
-     * @param rebillDetails the rebillDetails value to set.
-     * @return the InvoiceProperties object itself.
-     */
-    public InvoiceProperties withRebillDetails(InvoicePropertiesRebillDetails rebillDetails) {
-        this.rebillDetails = rebillDetails;
-        return this;
     }
 
     /**
@@ -631,7 +620,6 @@ public final class InvoiceProperties implements JsonSerializable<InvoiceProperti
         jsonWriter.writeJsonField("billedAmount", this.billedAmount);
         jsonWriter.writeJsonField("creditAmount", this.creditAmount);
         jsonWriter.writeJsonField("freeAzureCreditApplied", this.freeAzureCreditApplied);
-        jsonWriter.writeJsonField("rebillDetails", this.rebillDetails);
         jsonWriter.writeJsonField("subTotal", this.subTotal);
         jsonWriter.writeJsonField("taxAmount", this.taxAmount);
         jsonWriter.writeJsonField("totalAmount", this.totalAmount);
@@ -704,7 +692,7 @@ public final class InvoiceProperties implements JsonSerializable<InvoiceProperti
                 } else if ("purchaseOrderNumber".equals(fieldName)) {
                     deserializedInvoiceProperties.purchaseOrderNumber = reader.getString();
                 } else if ("rebillDetails".equals(fieldName)) {
-                    deserializedInvoiceProperties.rebillDetails = InvoicePropertiesRebillDetails.fromJson(reader);
+                    deserializedInvoiceProperties.rebillDetails = RebillDetails.fromJson(reader);
                 } else if ("status".equals(fieldName)) {
                     deserializedInvoiceProperties.status = InvoiceStatus.fromString(reader.getString());
                 } else if ("subscriptionDisplayName".equals(fieldName)) {

@@ -26,7 +26,7 @@ public final class BillingSubscriptionListResult implements JsonSerializable<Bil
     /*
      * Total number of records.
      */
-    private Integer totalCount;
+    private Float totalCount;
 
     /*
      * The list of resources.
@@ -53,7 +53,7 @@ public final class BillingSubscriptionListResult implements JsonSerializable<Bil
      * 
      * @return the totalCount value.
      */
-    public Integer totalCount() {
+    public Float totalCount() {
         return this.totalCount;
     }
 
@@ -105,7 +105,7 @@ public final class BillingSubscriptionListResult implements JsonSerializable<Bil
                 if ("nextLink".equals(fieldName)) {
                     deserializedBillingSubscriptionListResult.nextLink = reader.getString();
                 } else if ("totalCount".equals(fieldName)) {
-                    deserializedBillingSubscriptionListResult.totalCount = reader.getNullable(JsonReader::getInt);
+                    deserializedBillingSubscriptionListResult.totalCount = reader.getNullable(JsonReader::getFloat);
                 } else if ("value".equals(fieldName)) {
                     List<BillingSubscriptionInner> value
                         = reader.readArray(reader1 -> BillingSubscriptionInner.fromJson(reader1));

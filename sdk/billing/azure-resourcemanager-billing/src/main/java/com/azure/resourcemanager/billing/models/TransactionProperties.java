@@ -37,7 +37,7 @@ public final class TransactionProperties implements JsonSerializable<Transaction
     /*
      * The name of the billing profile.
      */
-    private Object billingProfileDisplayName;
+    private String billingProfileDisplayName;
 
     /*
      * The fully qualified ID that uniquely identifies a billing profile.
@@ -288,7 +288,7 @@ public final class TransactionProperties implements JsonSerializable<Transaction
      * 
      * @return the billingProfileDisplayName value.
      */
-    public Object billingProfileDisplayName() {
+    public String billingProfileDisplayName() {
         return this.billingProfileDisplayName;
     }
 
@@ -298,7 +298,7 @@ public final class TransactionProperties implements JsonSerializable<Transaction
      * @param billingProfileDisplayName the billingProfileDisplayName value to set.
      * @return the TransactionProperties object itself.
      */
-    public TransactionProperties withBillingProfileDisplayName(Object billingProfileDisplayName) {
+    public TransactionProperties withBillingProfileDisplayName(String billingProfileDisplayName) {
         this.billingProfileDisplayName = billingProfileDisplayName;
         return this;
     }
@@ -1064,7 +1064,7 @@ public final class TransactionProperties implements JsonSerializable<Transaction
         jsonWriter.writeJsonField("azureCreditApplied", this.azureCreditApplied);
         jsonWriter.writeStringField("azurePlan", this.azurePlan);
         jsonWriter.writeStringField("billingCurrency", this.billingCurrency);
-        jsonWriter.writeUntypedField("billingProfileDisplayName", this.billingProfileDisplayName);
+        jsonWriter.writeStringField("billingProfileDisplayName", this.billingProfileDisplayName);
         jsonWriter.writeStringField("billingProfileId", this.billingProfileId);
         jsonWriter.writeJsonField("consumptionCommitmentDecremented", this.consumptionCommitmentDecremented);
         jsonWriter.writeStringField("customerDisplayName", this.customerDisplayName);
@@ -1134,7 +1134,7 @@ public final class TransactionProperties implements JsonSerializable<Transaction
                 } else if ("billingCurrency".equals(fieldName)) {
                     deserializedTransactionProperties.billingCurrency = reader.getString();
                 } else if ("billingProfileDisplayName".equals(fieldName)) {
-                    deserializedTransactionProperties.billingProfileDisplayName = reader.readUntyped();
+                    deserializedTransactionProperties.billingProfileDisplayName = reader.getString();
                 } else if ("billingProfileId".equals(fieldName)) {
                     deserializedTransactionProperties.billingProfileId = reader.getString();
                 } else if ("consumptionCommitmentDecremented".equals(fieldName)) {

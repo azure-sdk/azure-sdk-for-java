@@ -15,7 +15,7 @@ import java.io.IOException;
  * The rebill details of an invoice.
  */
 @Immutable
-public class RebillDetails implements JsonSerializable<RebillDetails> {
+public final class RebillDetails implements JsonSerializable<RebillDetails> {
     /*
      * The ID of invoice.
      */
@@ -47,17 +47,6 @@ public class RebillDetails implements JsonSerializable<RebillDetails> {
     }
 
     /**
-     * Set the invoiceDocumentId property: The ID of invoice.
-     * 
-     * @param invoiceDocumentId the invoiceDocumentId value to set.
-     * @return the RebillDetails object itself.
-     */
-    RebillDetails withInvoiceDocumentId(String invoiceDocumentId) {
-        this.invoiceDocumentId = invoiceDocumentId;
-        return this;
-    }
-
-    /**
      * Get the creditNoteDocumentId property: The ID of credit note.
      * 
      * @return the creditNoteDocumentId value.
@@ -67,34 +56,12 @@ public class RebillDetails implements JsonSerializable<RebillDetails> {
     }
 
     /**
-     * Set the creditNoteDocumentId property: The ID of credit note.
-     * 
-     * @param creditNoteDocumentId the creditNoteDocumentId value to set.
-     * @return the RebillDetails object itself.
-     */
-    RebillDetails withCreditNoteDocumentId(String creditNoteDocumentId) {
-        this.creditNoteDocumentId = creditNoteDocumentId;
-        return this;
-    }
-
-    /**
      * Get the rebillDetails property: The rebill details of an invoice.
      * 
      * @return the rebillDetails value.
      */
     public RebillDetails rebillDetails() {
         return this.rebillDetails;
-    }
-
-    /**
-     * Set the rebillDetails property: The rebill details of an invoice.
-     * 
-     * @param rebillDetails the rebillDetails value to set.
-     * @return the RebillDetails object itself.
-     */
-    RebillDetails withRebillDetails(RebillDetails rebillDetails) {
-        this.rebillDetails = rebillDetails;
-        return this;
     }
 
     /**

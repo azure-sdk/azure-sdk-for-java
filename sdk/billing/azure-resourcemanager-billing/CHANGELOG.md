@@ -1,14 +1,37 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-12)
 
-### Features Added
+- Azure Resource Manager Billing client library for Java. This package contains Microsoft Azure SDK for Billing Management SDK. Billing Client. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.InvoicePropertiesRebillDetails` was removed
 
-### Other Changes
+#### `models.TransactionProperties` was modified
+
+* `java.lang.Object billingProfileDisplayName()` -> `java.lang.String billingProfileDisplayName()`
+* `withBillingProfileDisplayName(java.lang.Object)` was removed
+
+#### `models.InvoiceProperties` was modified
+
+* `models.InvoicePropertiesRebillDetails rebillDetails()` -> `models.RebillDetails rebillDetails()`
+* `withRebillDetails(models.InvoicePropertiesRebillDetails)` was removed
+
+#### `models.ReservationPurchaseRequest` was modified
+
+* `withInstanceFlexibilityReservedResourcePropertiesInstanceFlexibility(models.InstanceFlexibility)` was removed
+* `instanceFlexibilityReservedResourcePropertiesInstanceFlexibility()` was removed
+
+#### `models.BillingSubscriptionListResult` was modified
+
+* `java.lang.Integer totalCount()` -> `java.lang.Float totalCount()`
+
+### Features Added
+
+#### `models.TransactionProperties` was modified
+
+* `withBillingProfileDisplayName(java.lang.String)` was added
 
 ## 1.0.0 (2024-09-05)
 
