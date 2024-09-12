@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 public final class ArtifactStoresGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ArtifactStoreGet.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/ArtifactStoreGet.
      * json
      */
     /**
@@ -19,7 +19,7 @@ public final class ArtifactStoresGetSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getAArtifactStoreResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().getWithResponse("rg", "TestPublisher", "TestArtifactStoreName",
-            com.azure.core.util.Context.NONE);
+        manager.artifactStores()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
     }
 }

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 public final class ArtifactManifestsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestDelete.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ArtifactManifestsDeleteSamples {
      */
     public static void
         deleteAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest",
-            com.azure.core.util.Context.NONE);
+        manager.artifactManifests()
+            .delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
     }
 }

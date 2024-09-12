@@ -12,6 +12,8 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
 import com.azure.resourcemanager.hybridnetwork.models.TagsObject;
 
 /**
@@ -231,4 +233,324 @@ public interface ArtifactStoresClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ArtifactStoreInner update(String resourceGroupName, String publisherName, String artifactStoreName,
         TagsObject parameters);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginAddNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDeleteNetworkFabricControllerEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context);
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner> listNetworkFabricControllerPrivateEndPoints(
+        String resourceGroupName, String publisherName, String artifactStoreName);
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner> listNetworkFabricControllerPrivateEndPoints(
+        String resourceGroupName, String publisherName, String artifactStoreName, Context context);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginApprovePrivateEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginApprovePrivateEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRemovePrivateEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginRemovePrivateEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName);
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param publisherName The name of the publisher.
+     * @param artifactStoreName The name of the artifact store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ArtifactStorePrivateEndPointsFormatInner> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, Context context);
 }

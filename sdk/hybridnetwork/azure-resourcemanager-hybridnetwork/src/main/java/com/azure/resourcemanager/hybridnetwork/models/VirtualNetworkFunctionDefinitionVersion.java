@@ -5,27 +5,50 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Virtual network function network function definition version properties.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "networkFunctionType")
-@JsonTypeName("VirtualNetworkFunction")
 @Fluent
 public final class VirtualNetworkFunctionDefinitionVersion extends NetworkFunctionDefinitionVersionPropertiesFormat {
     /*
+     * The network function type.
+     */
+    private NetworkFunctionType networkFunctionType = NetworkFunctionType.VIRTUAL_NETWORK_FUNCTION;
+
+    /*
      * Virtual network function template.
      */
-    @JsonProperty(value = "networkFunctionTemplate")
     private VirtualNetworkFunctionTemplate networkFunctionTemplate;
+
+    /*
+     * The network function definition version state.
+     */
+    private VersionState versionState;
+
+    /*
+     * The provisioning state of the network function definition version resource.
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of VirtualNetworkFunctionDefinitionVersion class.
      */
     public VirtualNetworkFunctionDefinitionVersion() {
+    }
+
+    /**
+     * Get the networkFunctionType property: The network function type.
+     * 
+     * @return the networkFunctionType value.
+     */
+    @Override
+    public NetworkFunctionType networkFunctionType() {
+        return this.networkFunctionType;
     }
 
     /**
@@ -47,6 +70,26 @@ public final class VirtualNetworkFunctionDefinitionVersion extends NetworkFuncti
         withNetworkFunctionTemplate(VirtualNetworkFunctionTemplate networkFunctionTemplate) {
         this.networkFunctionTemplate = networkFunctionTemplate;
         return this;
+    }
+
+    /**
+     * Get the versionState property: The network function definition version state.
+     * 
+     * @return the versionState value.
+     */
+    @Override
+    public VersionState versionState() {
+        return this.versionState;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state of the network function definition version resource.
+     * 
+     * @return the provisioningState value.
+     */
+    @Override
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -74,9 +117,63 @@ public final class VirtualNetworkFunctionDefinitionVersion extends NetworkFuncti
      */
     @Override
     public void validate() {
-        super.validate();
         if (networkFunctionTemplate() != null) {
             networkFunctionTemplate().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("description", description());
+        jsonWriter.writeStringField("deployParameters", deployParameters());
+        jsonWriter.writeStringField("networkFunctionType",
+            this.networkFunctionType == null ? null : this.networkFunctionType.toString());
+        jsonWriter.writeJsonField("networkFunctionTemplate", this.networkFunctionTemplate);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of VirtualNetworkFunctionDefinitionVersion from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of VirtualNetworkFunctionDefinitionVersion if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the VirtualNetworkFunctionDefinitionVersion.
+     */
+    public static VirtualNetworkFunctionDefinitionVersion fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            VirtualNetworkFunctionDefinitionVersion deserializedVirtualNetworkFunctionDefinitionVersion
+                = new VirtualNetworkFunctionDefinitionVersion();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
+                } else if ("versionState".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.versionState
+                        = VersionState.fromString(reader.getString());
+                } else if ("description".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.withDescription(reader.getString());
+                } else if ("deployParameters".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.withDeployParameters(reader.getString());
+                } else if ("networkFunctionType".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.networkFunctionType
+                        = NetworkFunctionType.fromString(reader.getString());
+                } else if ("networkFunctionTemplate".equals(fieldName)) {
+                    deserializedVirtualNetworkFunctionDefinitionVersion.networkFunctionTemplate
+                        = VirtualNetworkFunctionTemplate.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedVirtualNetworkFunctionDefinitionVersion;
+        });
     }
 }

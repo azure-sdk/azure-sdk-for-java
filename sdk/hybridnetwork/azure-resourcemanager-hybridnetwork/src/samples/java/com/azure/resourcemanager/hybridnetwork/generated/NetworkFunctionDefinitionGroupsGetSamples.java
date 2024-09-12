@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 public final class NetworkFunctionDefinitionGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupGet.json
      */
     /**
@@ -20,7 +20,8 @@ public final class NetworkFunctionDefinitionGroupsGetSamples {
      */
     public static void getANetworkFunctionDefinitionGroupResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().getWithResponse("rg", "TestPublisher",
-            "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName",
+                com.azure.core.util.Context.NONE);
     }
 }

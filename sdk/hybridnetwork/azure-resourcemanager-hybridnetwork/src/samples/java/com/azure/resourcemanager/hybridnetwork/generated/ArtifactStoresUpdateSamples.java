@@ -14,7 +14,7 @@ import java.util.Map;
 public final class ArtifactStoresUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoreUpdateTags.json
      */
     /**
@@ -25,7 +25,8 @@ public final class ArtifactStoresUpdateSamples {
     public static void
         updateArtifactStoreResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         ArtifactStore resource = manager.artifactStores()
-            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE).getValue();
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

@@ -1,14 +1,676 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-12)
+
+- Azure Resource Manager HybridNetwork client library for Java. This package contains Microsoft Azure SDK for HybridNetwork Management SDK. The definitions in this swagger specification will be used to manage the Hybrid Network resources. Package tag package-2024-04-15. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ArtifactStorePrivateEndPointsListResult` was added
 
-### Bugs Fixed
+* `models.BackingResourcePublicNetworkAccess` was added
 
-### Other Changes
+* `models.ArtifactStoreNetworkFabricControllerEndPoints` was added
+
+* `models.ArtifactStoreNetworkFabricControllerEndPointsList` was added
+
+* `models.ArtifactStorePrivateEndPointsFormat` was added
+
+#### `models.DeploymentResourceIdReference` was modified
+
+* `idType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureCoreNfviDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `nfviType()` was added
+
+#### `models.NetworkFunctionDefinitionGroupPropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureOperatorNexusNetworkFunctionArmTemplateApplication` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `artifactType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConfigurationGroupSchemaPropertiesFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManifestArtifactFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArtifactStores` was modified
+
+* `removePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `listPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `removePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `deleteNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `listPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String)` was added
+* `addNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `addNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `approvePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `listNetworkFabricControllerPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String)` was added
+* `approvePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `listNetworkFabricControllerPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.NetworkServiceDesignGroupListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConfigurationGroupValuePropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `configurationType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkFunctionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceElementTemplate` was modified
+
+* `resourceElementType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionDefinitionVersionPropertiesFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `networkFunctionType()` was added
+
+#### `models.PodEvent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkServiceDesignGroupPropertiesFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureCoreNetworkFunctionTemplate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `nfviType()` was added
+
+#### `models.NfviDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureOperatorNexusNetworkFunctionApplication` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `artifactType()` was added
+
+#### `models.PublisherPropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProxyArtifactOverviewListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArtifactChangeState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkServiceDesignVersionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VirtualNetworkFunctionDefinitionVersion` was modified
+
+* `provisioningState()` was added
+* `networkFunctionType()` was added
+* `versionState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkFunctionApplication` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProxyArtifactOverviewPropertiesValue` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureOperatorNexusNetworkFunctionTemplate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `nfviType()` was added
+
+#### `models.ConfigurationGroupSchemaListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NfvIs` was modified
+
+* `nfviType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Resources` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ReplicaSet` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArtifactAccessCredential` was modified
+
+* `credentialType()` was added
+
+#### `models.HelmMappingRuleProfileOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureCoreNetworkFunctionArmTemplateApplication` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `artifactType()` was added
+
+#### `models.VhdImageMappingRuleProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SiteListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureCoreNetworkFunctionVhdApplication` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `artifactType()` was added
+
+#### `models.AzureCoreNetworkFunctionApplication` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `artifactType()` was added
+
+#### `models.AzureArcKubernetesArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureCoreVhdImageDeployMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DependsOnProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureArcK8SClusterNfviDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `nfviType()` was added
+
+#### `models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArtifactChangeStateProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionValueWithoutSecrets` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withNetworkFunctionDefinitionGroupName(java.lang.String)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withPublisherScope(models.PublisherScope)` was added
+* `configurationType()` was added
+* `withNetworkFunctionDefinitionVersion(java.lang.String)` was added
+* `provisioningState()` was added
+* `withPublisherName(java.lang.String)` was added
+* `withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` was added
+
+#### `models.AzureStorageAccountContainerCredential` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Deployment` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RequestMetadata` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExecuteRequestParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContainerizedNetworkFunctionTemplate` was modified
+
+* `nfviType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArmTemplateMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureOperatorNexusImageArtifactProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Sku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureCoreArmTemplateDeployMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StatefulSet` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ConfigurationValueWithSecrets` was modified
+
+* `publisherName()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `configurationGroupSchemaOfferingLocation()` was added
+* `configurationGroupSchemaName()` was added
+* `configurationType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `publisherScope()` was added
+
+#### `models.ArmTemplateArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureOperatorNexusArmTemplateDeployMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConfigurationValueWithoutSecrets` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `configurationType()` was added
+* `provisioningState()` was added
+* `publisherName()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `configurationGroupSchemaOfferingLocation()` was added
+* `configurationGroupSchemaName()` was added
+* `publisherScope()` was added
+
+#### `models.AzureArcKubernetesDeployMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ContainerizedNetworkFunctionDefinitionVersion` was modified
+
+* `provisioningState()` was added
+* `versionState()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `networkFunctionType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArtifactStorePropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `backingResourcePublicNetworkAccess()` was added
+* `withBackingResourcePublicNetworkAccess(models.BackingResourcePublicNetworkAccess)` was added
+
+#### `models.AzureArcKubernetesNetworkFunctionApplication` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `artifactType()` was added
+
+#### `models.HelmMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SitePropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureOperatorNexusImageDeployMappingRuleProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HelmInstallOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionValueWithSecrets` was modified
+
+* `withPublisherScope(models.PublisherScope)` was added
+* `withNetworkFunctionDefinitionGroupName(java.lang.String)` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withNetworkFunctionDefinitionVersion(java.lang.String)` was added
+* `withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` was added
+* `withPublisherName(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `configurationType()` was added
+
+#### `models.DaemonSet` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedResourceGroupConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualNetworkFunctionTemplate` was modified
+
+* `nfviType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArtifactManifestPropertiesFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureArcKubernetesNetworkFunctionTemplate` was modified
+
+* `nfviType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArmResourceDefinitionResourceElementTemplate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProxyArtifactVersionsOverviewListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArtifactStore` was modified
+
+* `approvePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `addNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `approvePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `listNetworkFabricControllerPrivateEndPoints(com.azure.core.util.Context)` was added
+* `addNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `removePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `listPrivateEndPoints(com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `listNetworkFabricControllerPrivateEndPoints()` was added
+* `removePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `listPrivateEndPoints()` was added
+
+#### `models.ReferencedResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComponentListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ArtifactManifestListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureOperatorNexusNetworkFunctionImageApplication` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `artifactType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionDefinitionVersionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureOperatorNexusArmTemplateArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureOperatorNexusClusterNfviDetails` was modified
+
+* `nfviType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NsdArtifactProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SiteNetworkServiceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArmResourceDefinitionResourceElementTemplateDetails` was modified
+
+* `resourceElementType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SiteNetworkServicePropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HelmArtifactProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VhdImageArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SecretDeploymentResourceReference` was modified
+
+* `idType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComponentProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ImageMappingRuleProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkFunctionDefinitionGroupListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureCoreArmTemplateArtifactProfile` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureStorageAccountCredential` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `credentialType()` was added
+
+#### `models.AzureCoreVhdImageArtifactProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ImageArtifactProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConfigurationGroupValueListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionPropertiesFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `configurationType()` was added
+* `withNetworkFunctionDefinitionGroupName(java.lang.String)` was added
+* `withPublisherName(java.lang.String)` was added
+* `withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withPublisherScope(models.PublisherScope)` was added
+* `withNetworkFunctionDefinitionVersion(java.lang.String)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NetworkServiceDesignVersionPropertiesFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TagsObject` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ArtifactStoreListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OpenDeploymentResourceReference` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `idType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureContainerRegistryScopedTokenCredential` was modified
+
+* `credentialType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkFunctionDefinitionResourceElementTemplateDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `resourceElementType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PublisherListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.HelmUpgradeOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureArcKubernetesHelmApplication` was modified
+
+* `artifactType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Pod` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeploymentStatusProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.0.0 (2023-11-20)
 

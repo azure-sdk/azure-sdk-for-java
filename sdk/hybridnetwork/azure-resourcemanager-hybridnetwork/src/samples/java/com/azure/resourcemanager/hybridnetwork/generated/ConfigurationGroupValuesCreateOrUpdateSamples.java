@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.hybridnetwork.generated;
 
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
 import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithoutSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
 import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
 import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
 
@@ -15,7 +15,7 @@ import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceRe
 public final class ConfigurationGroupValuesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueCreate.json
      */
     /**
@@ -25,7 +25,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void
         createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithoutSecrets()
                 .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
@@ -37,7 +39,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueFirstPartyCreate.json
      */
     /**
@@ -47,7 +49,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void createOrUpdateFirstPartyConfigurationGroupValue(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithoutSecrets()
                 .withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId(
@@ -59,7 +63,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupValueCreateSecret.json
      */
     /**
@@ -69,7 +73,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void createOrUpdateConfigurationGroupValueWithSecrets(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithSecrets()
                 .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(

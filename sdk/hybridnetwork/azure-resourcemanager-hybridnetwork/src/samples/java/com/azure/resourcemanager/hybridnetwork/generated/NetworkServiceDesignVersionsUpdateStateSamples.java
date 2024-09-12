@@ -13,7 +13,7 @@ import com.azure.resourcemanager.hybridnetwork.models.VersionState;
 public final class NetworkServiceDesignVersionsUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkServiceDesignVersionUpdateState.json
      */
     /**
@@ -23,8 +23,9 @@ public final class NetworkServiceDesignVersionsUpdateStateSamples {
      */
     public static void
         updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-            "1.0.0", new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
-            com.azure.core.util.Context.NONE);
+        manager.networkServiceDesignVersions()
+            .updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
     }
 }

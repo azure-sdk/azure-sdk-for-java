@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 public final class ConfigurationGroupSchemasDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ConfigurationGroupSchemaDelete.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ConfigurationGroupSchemasDeleteSamples {
      */
     public static void
         deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().delete("rg1", "testPublisher", "testConfigurationGroupSchema",
-            com.azure.core.util.Context.NONE);
+        manager.configurationGroupSchemas()
+            .delete("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
     }
 }
