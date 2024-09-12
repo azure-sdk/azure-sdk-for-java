@@ -7,6 +7,7 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -14,10 +15,8 @@ import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ConnectivityStatus;
 import com.azure.resourcemanager.azurestackhci.models.IsolatedVmAttestationConfiguration;
-import com.azure.resourcemanager.azurestackhci.models.LogCollectionProperties;
 import com.azure.resourcemanager.azurestackhci.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
-import com.azure.resourcemanager.azurestackhci.models.RemoteSupportProperties;
 import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.azure.resourcemanager.azurestackhci.models.UserAssignedIdentity;
@@ -47,9 +46,9 @@ public final class ClusterInner extends Resource {
     private SystemData systemData;
 
     /*
-     * Fully qualified resource Id for the resource.
+     * The type of the resource.
      */
-    private String id;
+    private String type;
 
     /*
      * The name of the resource.
@@ -57,9 +56,9 @@ public final class ClusterInner extends Resource {
     private String name;
 
     /*
-     * The type of the resource.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of ClusterInner class.
@@ -95,13 +94,13 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
+     * Get the type property: The type of the resource.
      * 
-     * @return the id value.
+     * @return the type value.
      */
     @Override
-    public String id() {
-        return this.id;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -115,13 +114,13 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the type property: The type of the resource.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the type value.
+     * @return the id value.
      */
     @Override
-    public String type() {
-        return this.type;
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -391,52 +390,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the logCollectionProperties property: Log Collection properties of the cluster.
-     * 
-     * @return the logCollectionProperties value.
-     */
-    public LogCollectionProperties logCollectionProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().logCollectionProperties();
-    }
-
-    /**
-     * Set the logCollectionProperties property: Log Collection properties of the cluster.
-     * 
-     * @param logCollectionProperties the logCollectionProperties value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withLogCollectionProperties(LogCollectionProperties logCollectionProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withLogCollectionProperties(logCollectionProperties);
-        return this;
-    }
-
-    /**
-     * Get the remoteSupportProperties property: RemoteSupport properties of the cluster.
-     * 
-     * @return the remoteSupportProperties value.
-     */
-    public RemoteSupportProperties remoteSupportProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().remoteSupportProperties();
-    }
-
-    /**
-     * Set the remoteSupportProperties property: RemoteSupport properties of the cluster.
-     * 
-     * @param remoteSupportProperties the remoteSupportProperties value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withRemoteSupportProperties(RemoteSupportProperties remoteSupportProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withRemoteSupportProperties(remoteSupportProperties);
-        return this;
-    }
-
-    /**
      * Get the desiredProperties property: Desired properties of the cluster.
      * 
      * @return the desiredProperties value.
@@ -553,7 +506,13 @@ public final class ClusterInner extends Resource {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+        if (location() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property location in model ClusterInner"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ClusterInner.class);
 
     /**
      * {@inheritDoc}
