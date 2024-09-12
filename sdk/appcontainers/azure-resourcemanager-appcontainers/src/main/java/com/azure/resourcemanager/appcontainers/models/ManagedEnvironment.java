@@ -59,6 +59,14 @@ public interface ManagedEnvironment {
     String kind();
 
     /**
+     * Gets the identity property: Managed identities for the Managed Environment to interact with other Azure services
+     * without maintaining any secrets or credentials in code.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
@@ -79,14 +87,6 @@ public interface ManagedEnvironment {
      * @return the daprAIInstrumentationKey value.
      */
     String daprAIInstrumentationKey();
-
-    /**
-     * Gets the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
-     * 
-     * @return the daprAIConnectionString value.
-     */
-    String daprAIConnectionString();
 
     /**
      * Gets the vnetConfiguration property: Vnet configuration for the environment.
@@ -124,6 +124,20 @@ public interface ManagedEnvironment {
      * @return the appLogsConfiguration value.
      */
     AppLogsConfiguration appLogsConfiguration();
+
+    /**
+     * Gets the appInsightsConfiguration property: Environment level Application Insights configuration.
+     * 
+     * @return the appInsightsConfiguration value.
+     */
+    AppInsightsConfiguration appInsightsConfiguration();
+
+    /**
+     * Gets the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+     * 
+     * @return the openTelemetryConfiguration value.
+     */
+    OpenTelemetryConfiguration openTelemetryConfiguration();
 
     /**
      * Gets the zoneRedundant property: Whether or not this Managed Environment is zone-redundant.
@@ -189,6 +203,21 @@ public interface ManagedEnvironment {
      * @return the peerTrafficConfiguration value.
      */
     ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration();
+
+    /**
+     * Gets the privateEndpointConnections property: Private endpoint connections to the resource.
+     * 
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
+
+    /**
+     * Gets the publicNetworkAccess property: Property to allow or block all public traffic. Allowed Values: 'Enabled',
+     * 'Disabled'.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccess publicNetworkAccess();
 
     /**
      * Gets the region of the resource.
@@ -273,13 +302,15 @@ public interface ManagedEnvironment {
          * The stage of the ManagedEnvironment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithDaprAIInstrumentationKey, DefinitionStages.WithDaprAIConnectionString,
-            DefinitionStages.WithVnetConfiguration, DefinitionStages.WithAppLogsConfiguration,
-            DefinitionStages.WithZoneRedundant, DefinitionStages.WithCustomDomainConfiguration,
-            DefinitionStages.WithWorkloadProfiles, DefinitionStages.WithKedaConfiguration,
-            DefinitionStages.WithDaprConfiguration, DefinitionStages.WithInfrastructureResourceGroup,
-            DefinitionStages.WithPeerAuthentication, DefinitionStages.WithPeerTrafficConfiguration {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithKind, DefinitionStages.WithIdentity,
+            DefinitionStages.WithDaprAIInstrumentationKey, DefinitionStages.WithVnetConfiguration,
+            DefinitionStages.WithAppLogsConfiguration, DefinitionStages.WithAppInsightsConfiguration,
+            DefinitionStages.WithOpenTelemetryConfiguration, DefinitionStages.WithZoneRedundant,
+            DefinitionStages.WithCustomDomainConfiguration, DefinitionStages.WithWorkloadProfiles,
+            DefinitionStages.WithKedaConfiguration, DefinitionStages.WithDaprConfiguration,
+            DefinitionStages.WithInfrastructureResourceGroup, DefinitionStages.WithPeerAuthentication,
+            DefinitionStages.WithPeerTrafficConfiguration, DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
              * 
@@ -323,6 +354,21 @@ public interface ManagedEnvironment {
         }
 
         /**
+         * The stage of the ManagedEnvironment definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Managed identities for the Managed Environment to interact with other
+             * Azure services without maintaining any secrets or credentials in code..
+             * 
+             * @param identity Managed identities for the Managed Environment to interact with other Azure services
+             * without maintaining any secrets or credentials in code.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
          * The stage of the ManagedEnvironment definition allowing to specify daprAIInstrumentationKey.
          */
         interface WithDaprAIInstrumentationKey {
@@ -335,21 +381,6 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withDaprAIInstrumentationKey(String daprAIInstrumentationKey);
-        }
-
-        /**
-         * The stage of the ManagedEnvironment definition allowing to specify daprAIConnectionString.
-         */
-        interface WithDaprAIConnectionString {
-            /**
-             * Specifies the daprAIConnectionString property: Application Insights connection string used by Dapr to
-             * export Service to Service communication telemetry.
-             * 
-             * @param daprAIConnectionString Application Insights connection string used by Dapr to export Service to
-             * Service communication telemetry.
-             * @return the next definition stage.
-             */
-            WithCreate withDaprAIConnectionString(String daprAIConnectionString);
         }
 
         /**
@@ -380,6 +411,32 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment definition allowing to specify appInsightsConfiguration.
+         */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             * 
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment definition allowing to specify openTelemetryConfiguration.
+         */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             * 
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
         }
 
         /**
@@ -490,6 +547,21 @@ public interface ManagedEnvironment {
             WithCreate withPeerTrafficConfiguration(
                 ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration);
         }
+
+        /**
+         * The stage of the ManagedEnvironment definition allowing to specify publicNetworkAccess.
+         */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Property to allow or block all public traffic. Allowed
+             * Values: 'Enabled', 'Disabled'..
+             * 
+             * @param publicNetworkAccess Property to allow or block all public traffic. Allowed Values: 'Enabled',
+             * 'Disabled'.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+        }
     }
 
     /**
@@ -502,11 +574,13 @@ public interface ManagedEnvironment {
     /**
      * The template for ManagedEnvironment update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithKind, UpdateStages.WithDaprAIInstrumentationKey,
-        UpdateStages.WithDaprAIConnectionString, UpdateStages.WithVnetConfiguration,
-        UpdateStages.WithAppLogsConfiguration, UpdateStages.WithCustomDomainConfiguration,
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithKind, UpdateStages.WithIdentity,
+        UpdateStages.WithDaprAIInstrumentationKey, UpdateStages.WithVnetConfiguration,
+        UpdateStages.WithAppLogsConfiguration, UpdateStages.WithAppInsightsConfiguration,
+        UpdateStages.WithOpenTelemetryConfiguration, UpdateStages.WithCustomDomainConfiguration,
         UpdateStages.WithWorkloadProfiles, UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration,
-        UpdateStages.WithPeerAuthentication, UpdateStages.WithPeerTrafficConfiguration {
+        UpdateStages.WithPeerAuthentication, UpdateStages.WithPeerTrafficConfiguration,
+        UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          * 
@@ -554,6 +628,21 @@ public interface ManagedEnvironment {
         }
 
         /**
+         * The stage of the ManagedEnvironment update allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Managed identities for the Managed Environment to interact with other
+             * Azure services without maintaining any secrets or credentials in code..
+             * 
+             * @param identity Managed identities for the Managed Environment to interact with other Azure services
+             * without maintaining any secrets or credentials in code.
+             * @return the next definition stage.
+             */
+            Update withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
          * The stage of the ManagedEnvironment update allowing to specify daprAIInstrumentationKey.
          */
         interface WithDaprAIInstrumentationKey {
@@ -566,21 +655,6 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withDaprAIInstrumentationKey(String daprAIInstrumentationKey);
-        }
-
-        /**
-         * The stage of the ManagedEnvironment update allowing to specify daprAIConnectionString.
-         */
-        interface WithDaprAIConnectionString {
-            /**
-             * Specifies the daprAIConnectionString property: Application Insights connection string used by Dapr to
-             * export Service to Service communication telemetry.
-             * 
-             * @param daprAIConnectionString Application Insights connection string used by Dapr to export Service to
-             * Service communication telemetry.
-             * @return the next definition stage.
-             */
-            Update withDaprAIConnectionString(String daprAIConnectionString);
         }
 
         /**
@@ -611,6 +685,32 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify appInsightsConfiguration.
+         */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             * 
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            Update withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify openTelemetryConfiguration.
+         */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             * 
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            Update withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
         }
 
         /**
@@ -690,6 +790,21 @@ public interface ManagedEnvironment {
              */
             Update withPeerTrafficConfiguration(
                 ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify publicNetworkAccess.
+         */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Property to allow or block all public traffic. Allowed
+             * Values: 'Enabled', 'Disabled'..
+             * 
+             * @param publicNetworkAccess Property to allow or block all public traffic. Allowed Values: 'Enabled',
+             * 'Disabled'.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
 
