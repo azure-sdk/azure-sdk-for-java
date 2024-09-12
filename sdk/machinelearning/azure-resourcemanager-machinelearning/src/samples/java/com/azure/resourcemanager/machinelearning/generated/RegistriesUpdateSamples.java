@@ -19,7 +19,7 @@ import java.util.Map;
 public final class RegistriesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registries/update-UserCreated.json
      */
     /**
@@ -36,17 +36,17 @@ public final class RegistriesUpdateSamples {
             .withTags(mapOf())
             .withIdentity(new RegistryPartialManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.BASIC)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.BASIC))
             .apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registries/update-SystemCreated.json
      */
     /**
@@ -64,11 +64,11 @@ public final class RegistriesUpdateSamples {
             .withIdentity(
                 new RegistryPartialManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                     .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.BASIC)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.BASIC))
             .apply();
     }
 
