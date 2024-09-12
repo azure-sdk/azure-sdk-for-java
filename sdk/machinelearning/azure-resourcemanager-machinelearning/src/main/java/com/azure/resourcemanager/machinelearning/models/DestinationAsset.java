@@ -17,11 +17,6 @@ import java.io.IOException;
 @Fluent
 public final class DestinationAsset implements JsonSerializable<DestinationAsset> {
     /*
-     * Destination registry name
-     */
-    private String registryName;
-
-    /*
      * Destination asset name
      */
     private String destinationName;
@@ -31,30 +26,15 @@ public final class DestinationAsset implements JsonSerializable<DestinationAsset
      */
     private String destinationVersion;
 
+    /*
+     * Destination registry name
+     */
+    private String registryName;
+
     /**
      * Creates an instance of DestinationAsset class.
      */
     public DestinationAsset() {
-    }
-
-    /**
-     * Get the registryName property: Destination registry name.
-     * 
-     * @return the registryName value.
-     */
-    public String registryName() {
-        return this.registryName;
-    }
-
-    /**
-     * Set the registryName property: Destination registry name.
-     * 
-     * @param registryName the registryName value to set.
-     * @return the DestinationAsset object itself.
-     */
-    public DestinationAsset withRegistryName(String registryName) {
-        this.registryName = registryName;
-        return this;
     }
 
     /**
@@ -98,6 +78,26 @@ public final class DestinationAsset implements JsonSerializable<DestinationAsset
     }
 
     /**
+     * Get the registryName property: Destination registry name.
+     * 
+     * @return the registryName value.
+     */
+    public String registryName() {
+        return this.registryName;
+    }
+
+    /**
+     * Set the registryName property: Destination registry name.
+     * 
+     * @param registryName the registryName value to set.
+     * @return the DestinationAsset object itself.
+     */
+    public DestinationAsset withRegistryName(String registryName) {
+        this.registryName = registryName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -111,9 +111,9 @@ public final class DestinationAsset implements JsonSerializable<DestinationAsset
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("registryName", this.registryName);
         jsonWriter.writeStringField("destinationName", this.destinationName);
         jsonWriter.writeStringField("destinationVersion", this.destinationVersion);
+        jsonWriter.writeStringField("registryName", this.registryName);
         return jsonWriter.writeEndObject();
     }
 
@@ -132,12 +132,12 @@ public final class DestinationAsset implements JsonSerializable<DestinationAsset
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("registryName".equals(fieldName)) {
-                    deserializedDestinationAsset.registryName = reader.getString();
-                } else if ("destinationName".equals(fieldName)) {
+                if ("destinationName".equals(fieldName)) {
                     deserializedDestinationAsset.destinationName = reader.getString();
                 } else if ("destinationVersion".equals(fieldName)) {
                     deserializedDestinationAsset.destinationVersion = reader.getString();
+                } else if ("registryName".equals(fieldName)) {
+                    deserializedDestinationAsset.registryName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
