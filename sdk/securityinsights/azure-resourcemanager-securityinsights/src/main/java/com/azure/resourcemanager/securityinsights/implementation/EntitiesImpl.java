@@ -13,7 +13,7 @@ import com.azure.resourcemanager.securityinsights.fluent.EntitiesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityExpandResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityGetInsightsResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.GetQueriesResponseInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryItemInner;
 import com.azure.resourcemanager.securityinsights.models.Entities;
 import com.azure.resourcemanager.securityinsights.models.Entity;
 import com.azure.resourcemanager.securityinsights.models.EntityExpandParameters;
@@ -21,7 +21,8 @@ import com.azure.resourcemanager.securityinsights.models.EntityExpandResponse;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsResponse;
 import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
-import com.azure.resourcemanager.securityinsights.models.GetQueriesResponse;
+import com.azure.resourcemanager.securityinsights.models.EntityManualTriggerRequestBody;
+import com.azure.resourcemanager.securityinsights.models.EntityQueryItem;
 
 public final class EntitiesImpl implements Entities {
     private static final ClientLogger LOGGER = new ClientLogger(EntitiesImpl.class);
@@ -30,20 +31,42 @@ public final class EntitiesImpl implements Entities {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public EntitiesImpl(
-        EntitiesClient innerClient, com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
+    public EntitiesImpl(EntitiesClient innerClient,
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
+    public Response<Void> runPlaybookWithResponse(String resourceGroupName, String workspaceName,
+        String entityIdentifier, EntityManualTriggerRequestBody requestBody, Context context) {
+        return this.serviceClient()
+            .runPlaybookWithResponse(resourceGroupName, workspaceName, entityIdentifier, requestBody, context);
+    }
+
+    public void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier) {
+        this.serviceClient().runPlaybook(resourceGroupName, workspaceName, entityIdentifier);
+    }
+
     public PagedIterable<Entity> list(String resourceGroupName, String workspaceName) {
         PagedIterable<EntityInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new EntityImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EntityImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Entity> list(String resourceGroupName, String workspaceName, Context context) {
         PagedIterable<EntityInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
-        return Utils.mapPage(inner, inner1 -> new EntityImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EntityImpl(inner1, this.manager()));
+    }
+
+    public Response<Entity> getWithResponse(String resourceGroupName, String workspaceName, String entityId,
+        Context context) {
+        Response<EntityInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, entityId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new EntityImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public Entity get(String resourceGroupName, String workspaceName, String entityId) {
@@ -55,25 +78,22 @@ public final class EntitiesImpl implements Entities {
         }
     }
 
-    public Response<Entity> getWithResponse(
-        String resourceGroupName, String workspaceName, String entityId, Context context) {
-        Response<EntityInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, entityId, context);
+    public Response<EntityExpandResponse> expandWithResponse(String resourceGroupName, String workspaceName,
+        String entityId, EntityExpandParameters parameters, Context context) {
+        Response<EntityExpandResponseInner> inner
+            = this.serviceClient().expandWithResponse(resourceGroupName, workspaceName, entityId, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new EntityImpl(inner.getValue(), this.manager()));
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new EntityExpandResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public EntityExpandResponse expand(
-        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters) {
-        EntityExpandResponseInner inner =
-            this.serviceClient().expand(resourceGroupName, workspaceName, entityId, parameters);
+    public EntityExpandResponse expand(String resourceGroupName, String workspaceName, String entityId,
+        EntityExpandParameters parameters) {
+        EntityExpandResponseInner inner
+            = this.serviceClient().expand(resourceGroupName, workspaceName, entityId, parameters);
         if (inner != null) {
             return new EntityExpandResponseImpl(inner, this.manager());
         } else {
@@ -81,77 +101,38 @@ public final class EntitiesImpl implements Entities {
         }
     }
 
-    public Response<EntityExpandResponse> expandWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String entityId,
-        EntityExpandParameters parameters,
-        Context context) {
-        Response<EntityExpandResponseInner> inner =
-            this.serviceClient().expandWithResponse(resourceGroupName, workspaceName, entityId, parameters, context);
+    public PagedIterable<EntityQueryItem> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind) {
+        PagedIterable<EntityQueryItemInner> inner
+            = this.serviceClient().queries(resourceGroupName, workspaceName, entityId, kind);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EntityQueryItemImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<EntityQueryItem> queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind, Context context) {
+        PagedIterable<EntityQueryItemInner> inner
+            = this.serviceClient().queries(resourceGroupName, workspaceName, entityId, kind, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EntityQueryItemImpl(inner1, this.manager()));
+    }
+
+    public Response<EntityGetInsightsResponse> getInsightsWithResponse(String resourceGroupName, String workspaceName,
+        String entityId, EntityGetInsightsParameters parameters, Context context) {
+        Response<EntityGetInsightsResponseInner> inner = this.serviceClient()
+            .getInsightsWithResponse(resourceGroupName, workspaceName, entityId, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new EntityExpandResponseImpl(inner.getValue(), this.manager()));
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new EntityGetInsightsResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public GetQueriesResponse queries(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind) {
-        GetQueriesResponseInner inner = this.serviceClient().queries(resourceGroupName, workspaceName, entityId, kind);
-        if (inner != null) {
-            return new GetQueriesResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<GetQueriesResponse> queriesWithResponse(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind, Context context) {
-        Response<GetQueriesResponseInner> inner =
-            this.serviceClient().queriesWithResponse(resourceGroupName, workspaceName, entityId, kind, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new GetQueriesResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public EntityGetInsightsResponse getInsights(
-        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters) {
-        EntityGetInsightsResponseInner inner =
-            this.serviceClient().getInsights(resourceGroupName, workspaceName, entityId, parameters);
+    public EntityGetInsightsResponse getInsights(String resourceGroupName, String workspaceName, String entityId,
+        EntityGetInsightsParameters parameters) {
+        EntityGetInsightsResponseInner inner
+            = this.serviceClient().getInsights(resourceGroupName, workspaceName, entityId, parameters);
         if (inner != null) {
             return new EntityGetInsightsResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<EntityGetInsightsResponse> getInsightsWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String entityId,
-        EntityGetInsightsParameters parameters,
-        Context context) {
-        Response<EntityGetInsightsResponseInner> inner =
-            this
-                .serviceClient()
-                .getInsightsWithResponse(resourceGroupName, workspaceName, entityId, parameters, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new EntityGetInsightsResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
