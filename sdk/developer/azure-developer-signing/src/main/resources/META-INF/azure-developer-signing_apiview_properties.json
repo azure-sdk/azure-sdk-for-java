@@ -1,0 +1,28 @@
+{
+  "flavor": "azure", 
+  "CrossLanguageDefinitionId": {
+    "com.azure.developer.signing.SigningAsyncClient": "null",
+    "com.azure.developer.signing.SigningAsyncClient.beginSign": "Azure.Developer.Signing.CertificateProfileOperations.sign",
+    "com.azure.developer.signing.SigningAsyncClient.beginSignWithModel": "Azure.Developer.Signing.CertificateProfileOperations.sign",
+    "com.azure.developer.signing.SigningAsyncClient.getSignRootCertificate": "Azure.Developer.Signing.CertificateProfileOperations.getSignRootCertificate",
+    "com.azure.developer.signing.SigningAsyncClient.getSignRootCertificateWithResponse": "Azure.Developer.Signing.CertificateProfileOperations.getSignRootCertificate",
+    "com.azure.developer.signing.SigningAsyncClient.getSigningStatus": "Azure.Developer.Signing.CertificateProfileOperations.getSigningStatus",
+    "com.azure.developer.signing.SigningAsyncClient.getSigningStatusWithResponse": "Azure.Developer.Signing.CertificateProfileOperations.getSigningStatus",
+    "com.azure.developer.signing.SigningAsyncClient.listExtendedKeyUsages": "Azure.Developer.Signing.CertificateProfileOperations.listExtendedKeyUsages",
+    "com.azure.developer.signing.SigningClient": "null",
+    "com.azure.developer.signing.SigningClient.beginSign": "Azure.Developer.Signing.CertificateProfileOperations.sign",
+    "com.azure.developer.signing.SigningClient.beginSignWithModel": "Azure.Developer.Signing.CertificateProfileOperations.sign",
+    "com.azure.developer.signing.SigningClient.getSignRootCertificate": "Azure.Developer.Signing.CertificateProfileOperations.getSignRootCertificate",
+    "com.azure.developer.signing.SigningClient.getSignRootCertificateWithResponse": "Azure.Developer.Signing.CertificateProfileOperations.getSignRootCertificate",
+    "com.azure.developer.signing.SigningClient.getSigningStatus": "Azure.Developer.Signing.CertificateProfileOperations.getSigningStatus",
+    "com.azure.developer.signing.SigningClient.getSigningStatusWithResponse": "Azure.Developer.Signing.CertificateProfileOperations.getSigningStatus",
+    "com.azure.developer.signing.SigningClient.listExtendedKeyUsages": "Azure.Developer.Signing.CertificateProfileOperations.listExtendedKeyUsages",
+    "com.azure.developer.signing.SigningClientBuilder": "Azure.Developer.Signing",
+    "com.azure.developer.signing.models.ExtendedKeyUsage": "Azure.Developer.Signing.ExtendedKeyUsage",
+    "com.azure.developer.signing.models.OperationState": "Azure.Core.Foundations.OperationState",
+    "com.azure.developer.signing.models.OperationStatusSignResultError": "Azure.Core.Foundations.OperationStatus",
+    "com.azure.developer.signing.models.SignResult": "Azure.Developer.Signing.SignResult",
+    "com.azure.developer.signing.models.SignatureAlgorithm": "Azure.Developer.Signing.SignatureAlgorithm",
+    "com.azure.developer.signing.models.SigningPayloadOptions": "Azure.Developer.Signing.SigningPayloadOptions"
+  }
+}
