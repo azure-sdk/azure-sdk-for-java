@@ -5,7 +5,7 @@
 package com.azure.ai.vision.face.implementation;
 
 import com.azure.ai.vision.face.FaceServiceVersion;
-import com.azure.ai.vision.face.models.FaceTrainingResult;
+import com.azure.ai.vision.face.models.TrainingResult;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -52,14 +52,14 @@ public final class LargeFaceListsImpl {
     /**
      * The service client containing this operation class.
      */
-    private final FaceAdministrationClientImpl client;
+    private final FaceServiceClientImpl client;
 
     /**
      * Initializes an instance of LargeFaceListsImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    LargeFaceListsImpl(FaceAdministrationClientImpl client) {
+    LargeFaceListsImpl(FaceServiceClientImpl client) {
         this.service
             = RestProxy.create(LargeFaceListsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
@@ -75,11 +75,11 @@ public final class LargeFaceListsImpl {
     }
 
     /**
-     * The interface defining all the services for FaceAdministrationClientLargeFaceLists to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for FaceServiceClientLargeFaceLists to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{endpoint}/face/{apiVersion}")
-    @ServiceInterface(name = "FaceAdministrationCl")
+    @ServiceInterface(name = "FaceServiceClientLar")
     public interface LargeFaceListsService {
         @Put("/largefacelists/{largeFaceListId}")
         @ExpectedResponses({ 200 })
@@ -89,7 +89,7 @@ public final class LargeFaceListsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> create(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largeFaceListId") String largeFaceListId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest2,
             RequestOptions requestOptions, Context context);
 
         @Put("/largefacelists/{largeFaceListId}")
@@ -100,7 +100,7 @@ public final class LargeFaceListsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> createSync(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largeFaceListId") String largeFaceListId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest2,
             RequestOptions requestOptions, Context context);
 
         @Delete("/largefacelists/{largeFaceListId}")
@@ -151,7 +151,7 @@ public final class LargeFaceListsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> update(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largeFaceListId") String largeFaceListId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest2,
             RequestOptions requestOptions, Context context);
 
         @Patch("/largefacelists/{largeFaceListId}")
@@ -162,7 +162,7 @@ public final class LargeFaceListsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> updateSync(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largeFaceListId") String largeFaceListId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest2,
             RequestOptions requestOptions, Context context);
 
         @Get("/largefacelists")
@@ -234,7 +234,7 @@ public final class LargeFaceListsImpl {
         Mono<Response<BinaryData>> addFaceFromUrlImpl(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largeFaceListId") String largeFaceListId,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BinaryData addFaceFromUrlRequest1, RequestOptions requestOptions,
+            @BodyParam("application/json") BinaryData addFaceFromUrlRequest2, RequestOptions requestOptions,
             Context context);
 
         @Post("/largefacelists/{largeFaceListId}/persistedfaces")
@@ -246,7 +246,7 @@ public final class LargeFaceListsImpl {
         Response<BinaryData> addFaceFromUrlImplSync(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largeFaceListId") String largeFaceListId,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BinaryData addFaceFromUrlRequest1, RequestOptions requestOptions,
+            @BodyParam("application/json") BinaryData addFaceFromUrlRequest2, RequestOptions requestOptions,
             Context context);
 
         @Post("/largefacelists/{largeFaceListId}/persistedfaces")
@@ -326,7 +326,7 @@ public final class LargeFaceListsImpl {
         Mono<Response<Void>> updateFace(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largeFaceListId") String largeFaceListId,
             @PathParam("persistedFaceId") String persistedFaceId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateFaceRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateFaceRequest2,
             RequestOptions requestOptions, Context context);
 
         @Patch("/largefacelists/{largeFaceListId}/persistedfaces/{persistedFaceId}")
@@ -338,7 +338,7 @@ public final class LargeFaceListsImpl {
         Response<Void> updateFaceSync(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largeFaceListId") String largeFaceListId,
             @PathParam("persistedFaceId") String persistedFaceId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateFaceRequest1,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateFaceRequest2,
             RequestOptions requestOptions, Context context);
 
         @Get("/largefacelists/{largeFaceListId}/persistedfaces")
@@ -379,7 +379,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param createRequest1 The createRequest1 parameter.
+     * @param createRequest2 The createRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -388,13 +388,13 @@ public final class LargeFaceListsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createWithResponseAsync(String largeFaceListId, BinaryData createRequest1,
+    public Mono<Response<Void>> createWithResponseAsync(String largeFaceListId, BinaryData createRequest2,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(
             context -> service.create(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-                largeFaceListId, contentType, accept, createRequest1, requestOptions, context));
+                largeFaceListId, contentType, accept, createRequest2, requestOptions, context));
     }
 
     /**
@@ -414,7 +414,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param createRequest1 The createRequest1 parameter.
+     * @param createRequest2 The createRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -423,12 +423,12 @@ public final class LargeFaceListsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createWithResponse(String largeFaceListId, BinaryData createRequest1,
+    public Response<Void> createWithResponse(String largeFaceListId, BinaryData createRequest2,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.createSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            largeFaceListId, contentType, accept, createRequest1, requestOptions, Context.NONE);
+            largeFaceListId, contentType, accept, createRequest2, requestOptions, Context.NONE);
     }
 
     /**
@@ -561,7 +561,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param updateRequest1 The updateRequest1 parameter.
+     * @param updateRequest2 The updateRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -570,13 +570,13 @@ public final class LargeFaceListsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updateWithResponseAsync(String largeFaceListId, BinaryData updateRequest1,
+    public Mono<Response<Void>> updateWithResponseAsync(String largeFaceListId, BinaryData updateRequest2,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(
             context -> service.update(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-                largeFaceListId, contentType, accept, updateRequest1, requestOptions, context));
+                largeFaceListId, contentType, accept, updateRequest2, requestOptions, context));
     }
 
     /**
@@ -592,7 +592,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param updateRequest1 The updateRequest1 parameter.
+     * @param updateRequest2 The updateRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -601,12 +601,12 @@ public final class LargeFaceListsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateWithResponse(String largeFaceListId, BinaryData updateRequest1,
+    public Response<Void> updateWithResponse(String largeFaceListId, BinaryData updateRequest2,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.updateSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            largeFaceListId, contentType, accept, updateRequest1, requestOptions, Context.NONE);
+            largeFaceListId, contentType, accept, updateRequest2, requestOptions, Context.NONE);
     }
 
     /**
@@ -873,7 +873,7 @@ public final class LargeFaceListsImpl {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<FaceTrainingResult, Void> beginTrainWithModelAsync(String largeFaceListId,
+    public PollerFlux<TrainingResult, Void> beginTrainWithModelAsync(String largeFaceListId,
         RequestOptions requestOptions) {
         return PollerFlux.create(Duration.ofSeconds(1),
             () -> this.trainWithResponseAsync(largeFaceListId, requestOptions),
@@ -884,7 +884,7 @@ public final class LargeFaceListsImpl {
                     ? requestOptions.getContext()
                     : Context.NONE)
                 .setServiceVersion(this.client.getServiceVersion().getVersion())),
-            TypeReference.createInstance(FaceTrainingResult.class), TypeReference.createInstance(Void.class));
+            TypeReference.createInstance(TrainingResult.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -902,8 +902,7 @@ public final class LargeFaceListsImpl {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<FaceTrainingResult, Void> beginTrainWithModel(String largeFaceListId,
-        RequestOptions requestOptions) {
+    public SyncPoller<TrainingResult, Void> beginTrainWithModel(String largeFaceListId, RequestOptions requestOptions) {
         return SyncPoller.createPoller(Duration.ofSeconds(1),
             () -> this.trainWithResponse(largeFaceListId, requestOptions),
             new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.client.getHttpPipeline())
@@ -913,7 +912,7 @@ public final class LargeFaceListsImpl {
                     ? requestOptions.getContext()
                     : Context.NONE)
                 .setServiceVersion(this.client.getServiceVersion().getVersion())),
-            TypeReference.createInstance(FaceTrainingResult.class), TypeReference.createInstance(Void.class));
+            TypeReference.createInstance(TrainingResult.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -952,7 +951,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
+     * @param addFaceFromUrlRequest2 The addFaceFromUrlRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -962,11 +961,11 @@ public final class LargeFaceListsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> addFaceFromUrlImplWithResponseAsync(String largeFaceListId,
-        BinaryData addFaceFromUrlRequest1, RequestOptions requestOptions) {
+        BinaryData addFaceFromUrlRequest2, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.addFaceFromUrlImpl(this.client.getEndpoint(),
-            this.client.getServiceVersion().getVersion(), largeFaceListId, contentType, accept, addFaceFromUrlRequest1,
+            this.client.getServiceVersion().getVersion(), largeFaceListId, contentType, accept, addFaceFromUrlRequest2,
             requestOptions, context));
     }
 
@@ -1006,7 +1005,7 @@ public final class LargeFaceListsImpl {
      * }</pre>
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
+     * @param addFaceFromUrlRequest2 The addFaceFromUrlRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1016,11 +1015,11 @@ public final class LargeFaceListsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> addFaceFromUrlImplWithResponse(String largeFaceListId,
-        BinaryData addFaceFromUrlRequest1, RequestOptions requestOptions) {
+        BinaryData addFaceFromUrlRequest2, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.addFaceFromUrlImplSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            largeFaceListId, contentType, accept, addFaceFromUrlRequest1, requestOptions, Context.NONE);
+            largeFaceListId, contentType, accept, addFaceFromUrlRequest2, requestOptions, Context.NONE);
     }
 
     /**
@@ -1241,7 +1240,7 @@ public final class LargeFaceListsImpl {
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
      * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
+     * @param updateFaceRequest2 The updateFaceRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1251,12 +1250,12 @@ public final class LargeFaceListsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> updateFaceWithResponseAsync(String largeFaceListId, String persistedFaceId,
-        BinaryData updateFaceRequest1, RequestOptions requestOptions) {
+        BinaryData updateFaceRequest2, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(
             context -> service.updateFace(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-                largeFaceListId, persistedFaceId, contentType, accept, updateFaceRequest1, requestOptions, context));
+                largeFaceListId, persistedFaceId, contentType, accept, updateFaceRequest2, requestOptions, context));
     }
 
     /**
@@ -1272,7 +1271,7 @@ public final class LargeFaceListsImpl {
      * 
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
      * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
+     * @param updateFaceRequest2 The updateFaceRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1282,11 +1281,11 @@ public final class LargeFaceListsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateFaceWithResponse(String largeFaceListId, String persistedFaceId,
-        BinaryData updateFaceRequest1, RequestOptions requestOptions) {
+        BinaryData updateFaceRequest2, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.updateFaceSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            largeFaceListId, persistedFaceId, contentType, accept, updateFaceRequest1, requestOptions, Context.NONE);
+            largeFaceListId, persistedFaceId, contentType, accept, updateFaceRequest2, requestOptions, Context.NONE);
     }
 
     /**
