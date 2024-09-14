@@ -1,14 +1,32 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-14)
+
+- Azure Resource Manager Scvmm client library for Java. This package contains Microsoft Azure SDK for Scvmm Management SDK. SCVMM Client. Package tag package-2024-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.GuestAgentProperties` was modified
 
-### Bugs Fixed
+* `privateLinkScopeResourceId()` was added
+* `withPrivateLinkScopeResourceId(java.lang.String)` was added
 
-### Other Changes
+#### `models.OsProfileForVmInstance` was modified
+
+* `withDomainPassword(java.lang.String)` was added
+* `withDomainName(java.lang.String)` was added
+* `timezone()` was added
+* `domainPassword()` was added
+* `withDomainUsername(java.lang.String)` was added
+* `productKey()` was added
+* `domainName()` was added
+* `withTimezone(java.lang.Integer)` was added
+* `withProductKey(java.lang.String)` was added
+* `domainUsername()` was added
+* `workgroup()` was added
+* `withWorkgroup(java.lang.String)` was added
+* `withRunOnceCommands(java.lang.String)` was added
+* `runOnceCommands()` was added
 
 ## 1.0.0 (2024-06-26)
 
