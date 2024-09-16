@@ -9,7 +9,7 @@ package com.azure.resourcemanager.newrelicobservability.generated;
  */
 public final class TagRulesListByNewRelicMonitorResourceSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * TagRules_ListByNewRelicMonitorResource_MinimumSet_Gen.json
      */
     /**
@@ -19,12 +19,13 @@ public final class TagRulesListByNewRelicMonitorResourceSamples {
      */
     public static void tagRulesListByNewRelicMonitorResourceMinimumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.tagRules().listByNewRelicMonitorResource("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
-            com.azure.core.util.Context.NONE);
+        manager.tagRules()
+            .listByNewRelicMonitorResource("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * TagRules_ListByNewRelicMonitorResource_MaximumSet_Gen.json
      */
     /**
@@ -34,7 +35,8 @@ public final class TagRulesListByNewRelicMonitorResourceSamples {
      */
     public static void tagRulesListByNewRelicMonitorResourceMaximumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.tagRules().listByNewRelicMonitorResource("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
-            com.azure.core.util.Context.NONE);
+        manager.tagRules()
+            .listByNewRelicMonitorResource("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
+                com.azure.core.util.Context.NONE);
     }
 }

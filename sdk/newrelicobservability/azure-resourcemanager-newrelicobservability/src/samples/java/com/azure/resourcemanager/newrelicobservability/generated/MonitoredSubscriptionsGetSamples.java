@@ -11,7 +11,7 @@ import com.azure.resourcemanager.newrelicobservability.models.ConfigurationName;
  */
 public final class MonitoredSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * MonitoredSubscriptions_Get.json
      */
     /**
@@ -21,7 +21,8 @@ public final class MonitoredSubscriptionsGetSamples {
      */
     public static void monitorsGetMonitoredSubscriptions(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitoredSubscriptions().getWithResponse("myResourceGroup", "myMonitor", ConfigurationName.DEFAULT,
-            com.azure.core.util.Context.NONE);
+        manager.monitoredSubscriptions()
+            .getWithResponse("myResourceGroup", "myMonitor", ConfigurationName.DEFAULT,
+                com.azure.core.util.Context.NONE);
     }
 }

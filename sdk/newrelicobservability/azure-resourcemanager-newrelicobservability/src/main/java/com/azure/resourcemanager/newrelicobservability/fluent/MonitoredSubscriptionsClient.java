@@ -92,7 +92,7 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginCreateorUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName);
+        beginCreateOrUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName);
 
     /**
      * Add the subscriptions that should be monitored by the NewRelic monitor resource.
@@ -100,7 +100,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Name of the Monitors resource.
      * @param configurationName The configuration name. Only 'default' value is supported.
-     * @param body The request to update subscriptions needed to be monitored by the NewRelic monitor resource.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -110,7 +110,7 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginCreateorUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName,
+        beginCreateOrUpdate(String resourceGroupName, String monitorName, ConfigurationName configurationName,
             MonitoredSubscriptionPropertiesInner body, Context context);
 
     /**
@@ -125,7 +125,7 @@ public interface MonitoredSubscriptionsClient {
      * @return the request to update subscriptions needed to be monitored by the NewRelic monitor resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoredSubscriptionPropertiesInner createorUpdate(String resourceGroupName, String monitorName,
+    MonitoredSubscriptionPropertiesInner createOrUpdate(String resourceGroupName, String monitorName,
         ConfigurationName configurationName);
 
     /**
@@ -134,7 +134,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Name of the Monitors resource.
      * @param configurationName The configuration name. Only 'default' value is supported.
-     * @param body The request to update subscriptions needed to be monitored by the NewRelic monitor resource.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -142,7 +142,7 @@ public interface MonitoredSubscriptionsClient {
      * @return the request to update subscriptions needed to be monitored by the NewRelic monitor resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoredSubscriptionPropertiesInner createorUpdate(String resourceGroupName, String monitorName,
+    MonitoredSubscriptionPropertiesInner createOrUpdate(String resourceGroupName, String monitorName,
         ConfigurationName configurationName, MonitoredSubscriptionPropertiesInner body, Context context);
 
     /**
@@ -167,7 +167,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Name of the Monitors resource.
      * @param configurationName The configuration name. Only 'default' value is supported.
-     * @param body The request to update subscriptions needed to be monitored by the NewRelic monitor resource.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -201,7 +201,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Name of the Monitors resource.
      * @param configurationName The configuration name. Only 'default' value is supported.
-     * @param body The request to update subscriptions needed to be monitored by the NewRelic monitor resource.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
