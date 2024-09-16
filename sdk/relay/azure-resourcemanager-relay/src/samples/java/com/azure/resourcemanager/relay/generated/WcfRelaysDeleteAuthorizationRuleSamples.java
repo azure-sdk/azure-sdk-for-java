@@ -4,26 +4,22 @@
 
 package com.azure.resourcemanager.relay.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for WcfRelays DeleteAuthorizationRule. */
+/**
+ * Samples for WcfRelays DeleteAuthorizationRule.
+ */
 public final class WcfRelaysDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayAutorizationRuleDelete.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2024-01-01/examples/Relay/
+     * RelayAuthorizationRuleDelete.json
      */
     /**
-     * Sample code: RelayAutorizationRuleDelete.
-     *
+     * Sample code: RelayAuthorizationRuleDelete.
+     * 
      * @param manager Entry point to RelayManager.
      */
-    public static void relayAutorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
-        manager
-            .wcfRelays()
-            .deleteAuthorizationRuleWithResponse(
-                "resourcegroup",
-                "example-RelayNamespace-01",
-                "example-Relay-wcf-01",
-                "example-RelayAuthRules-01",
-                Context.NONE);
+    public static void relayAuthorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
+        manager.wcfRelays()
+            .deleteAuthorizationRuleWithResponse("resourcegroup", "example-RelayNamespace-01", "example-Relay-wcf-01",
+                "example-RelayAuthRules-01", com.azure.core.util.Context.NONE);
     }
 }
