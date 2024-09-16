@@ -13,6 +13,7 @@ import com.azure.resourcemanager.astro.models.LiftrBaseUserDetails;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.astro.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.astro.models.MarketplaceSubscriptionStatus;
+import com.azure.resourcemanager.astro.models.RenewalMode;
 import com.azure.resourcemanager.astro.models.SingleSignOnStates;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import java.util.Map;
  */
 public final class OrganizationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2024-08-27/examples/
      * Organizations_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -33,22 +34,36 @@ public final class OrganizationsCreateOrUpdateSamples {
      */
     public static void
         organizationsCreateOrUpdateGeneratedByMaximumSetRule(com.azure.resourcemanager.astro.AstroManager manager) {
-        manager.organizations().define("U.1-:7").withRegion("mhqthlsatwvqkl").withExistingResourceGroup("rgastronomer")
+        manager.organizations()
+            .define("U.1-:7")
+            .withRegion("pgfkugslgnsxeqpjs")
+            .withExistingResourceGroup("rgastronomer")
             .withTags(mapOf())
             .withProperties(new LiftrBaseDataOrganizationProperties()
-                .withMarketplace(new LiftrBaseMarketplaceDetails().withSubscriptionId("ntthclydlpqmasr")
+                .withMarketplace(new LiftrBaseMarketplaceDetails().withSubscriptionId("emasc")
                     .withSubscriptionStatus(MarketplaceSubscriptionStatus.PENDING_FULFILLMENT_START)
-                    .withOfferDetails(new LiftrBaseOfferDetails().withPublisherId("gfsqxygpnerxmvols")
-                        .withOfferId("krzkefmpxztqyusidzgpchfaswuyce").withPlanId("kndxzygsanuiqzwbfbbvoipv")
-                        .withPlanName("pwqjwlq").withTermUnit("xyygyzcazkuelz").withTermId("pwds")))
-                .withUser(new LiftrBaseUserDetails().withFirstName("nfh").withLastName("lazfbstcccykibvcrxpmglqam")
-                    .withEmailAddress(".K_@e7N-g1.xjqnbPs").withUpn("xtutvycpxjrtoftx").withPhoneNumber("inxkscllh"))
+                    .withOfferDetails(new LiftrBaseOfferDetails().withPublisherId("kt")
+                        .withOfferId("tvidibzbxevtvnrdp")
+                        .withPlanId("lwcvzdqecwkeracahmixnh")
+                        .withPlanName("d")
+                        .withTermUnit("rs")
+                        .withTermId("kopnnjsp")
+                        .withRenewalMode(RenewalMode.AUTO)))
+                .withUser(new LiftrBaseUserDetails().withFirstName("ucowvrccqpqpkdg")
+                    .withLastName("fwwtnwggrtibghoijfzajrhgyo")
+                    .withEmailAddress(".K_@e7N-g1.xjqnbPs")
+                    .withUpn("zbdgbbqg")
+                    .withPhoneNumber("brnngpezmqecvflklbhsibq"))
                 .withPartnerOrganizationProperties(
-                    new LiftrBaseDataPartnerOrganizationProperties().withOrganizationId("lskgzdmziusgrsucv")
-                        .withWorkspaceId("vcrupxwpaba").withOrganizationName("3-").withWorkspaceName("9.:06")
-                        .withSingleSignOnProperties(new LiftrBaseSingleSignOnProperties()
-                            .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("mklfypyujwumgwdzae")
-                            .withSingleSignOnUrl("ymmtzkyghvinvhgnqlzwrr").withAadDomains(Arrays.asList("kfbleh")))))
+                    new LiftrBaseDataPartnerOrganizationProperties().withOrganizationId("juomtfzwkjwnhhpodfnrqdv")
+                        .withWorkspaceId("nnryjcmiohmkbvhngfgxigpodvhl")
+                        .withOrganizationName("U.1-:7")
+                        .withWorkspaceName("9.:06")
+                        .withSingleSignOnProperties(
+                            new LiftrBaseSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                                .withEnterpriseAppId("srkwxktx")
+                                .withSingleSignOnUrl("l")
+                                .withAadDomains(Arrays.asList("fcnqoizqxcdclmy")))))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
                 .withUserAssignedIdentities(mapOf()))
             .create();
