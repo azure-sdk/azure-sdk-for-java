@@ -9,7 +9,7 @@ package com.azure.resourcemanager.astro.generated;
  */
 public final class OrganizationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2024-08-27/examples/
      * Organizations_Delete_MaximumSet_Gen.json
      */
     /**
@@ -19,6 +19,6 @@ public final class OrganizationsDeleteSamples {
      */
     public static void
         organizationsDeleteGeneratedByMaximumSetRule(com.azure.resourcemanager.astro.AstroManager manager) {
-        manager.organizations().delete("rgastronomer", "q:", com.azure.core.util.Context.NONE);
+        manager.organizations().delete("rgastronomer", "U.1-:7", com.azure.core.util.Context.NONE);
     }
 }
