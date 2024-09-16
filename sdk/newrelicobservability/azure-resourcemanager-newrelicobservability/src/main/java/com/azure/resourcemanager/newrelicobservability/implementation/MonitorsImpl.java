@@ -30,6 +30,7 @@ import com.azure.resourcemanager.newrelicobservability.models.MonitoredResource;
 import com.azure.resourcemanager.newrelicobservability.models.Monitors;
 import com.azure.resourcemanager.newrelicobservability.models.MonitorsSwitchBillingResponse;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicMonitorResource;
+import com.azure.resourcemanager.newrelicobservability.models.ResubscribeProperties;
 import com.azure.resourcemanager.newrelicobservability.models.SwitchBillingRequest;
 import com.azure.resourcemanager.newrelicobservability.models.VMExtensionPayload;
 import com.azure.resourcemanager.newrelicobservability.models.VMInfo;
@@ -190,6 +191,15 @@ public final class MonitorsImpl implements Monitors {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VMInfoImpl(inner1, this.manager()));
     }
 
+    public Response<Void> refreshIngestionKeyWithResponse(String resourceGroupName, String monitorName,
+        Context context) {
+        return this.serviceClient().refreshIngestionKeyWithResponse(resourceGroupName, monitorName, context);
+    }
+
+    public void refreshIngestionKey(String resourceGroupName, String monitorName) {
+        this.serviceClient().refreshIngestionKey(resourceGroupName, monitorName);
+    }
+
     public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName) {
         PagedIterable<MonitoredResourceInner> inner
             = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName);
@@ -232,6 +242,26 @@ public final class MonitorsImpl implements Monitors {
         VMExtensionPayloadInner inner = this.serviceClient().vmHostPayload(resourceGroupName, monitorName);
         if (inner != null) {
             return new VMExtensionPayloadImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public NewRelicMonitorResource resubscribe(String resourceGroupName, String monitorName) {
+        NewRelicMonitorResourceInner inner = this.serviceClient().resubscribe(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new NewRelicMonitorResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public NewRelicMonitorResource resubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body,
+        Context context) {
+        NewRelicMonitorResourceInner inner
+            = this.serviceClient().resubscribe(resourceGroupName, monitorName, body, context);
+        if (inner != null) {
+            return new NewRelicMonitorResourceImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -10,8 +10,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.newrelicobservability.fluent.BillingInfoesClient;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.BillingInfoResponseInner;
-import com.azure.resourcemanager.newrelicobservability.models.BillingInfoResponse;
 import com.azure.resourcemanager.newrelicobservability.models.BillingInfoes;
+import com.azure.resourcemanager.newrelicobservability.models.BillingInfoResponse;
 
 public final class BillingInfoesImpl implements BillingInfoes {
     private static final ClientLogger LOGGER = new ClientLogger(BillingInfoesImpl.class);

@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.newrelicobservability.generated;
 
-import com.azure.resourcemanager.newrelicobservability.models.ConfigurationName;
-
 /**
- * Samples for MonitoredSubscriptions Delete.
+ * Samples for Monitors RefreshIngestionKey.
  */
-public final class MonitoredSubscriptionsDeleteSamples {
+public final class MonitorsRefreshIngestionKeySamples {
     /*
      * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
-     * MonitoredSubscriptions_Delete.json
+     * Monitors_RefreshIngestionKey.json
      */
     /**
-     * Sample code: Monitors_DeleteMonitoredSubscriptions.
+     * Sample code: Monitors_RefreshIngestionKey.
      * 
      * @param manager Entry point to NewRelicObservabilityManager.
      */
-    public static void monitorsDeleteMonitoredSubscriptions(
+    public static void monitorsRefreshIngestionKey(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitoredSubscriptions()
-            .delete("myResourceGroup", "myMonitor", ConfigurationName.DEFAULT, com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .refreshIngestionKeyWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
     }
 }

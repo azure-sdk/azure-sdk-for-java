@@ -6,13 +6,12 @@ package com.azure.resourcemanager.newrelicobservability.generated;
 
 import com.azure.resourcemanager.newrelicobservability.models.AccountCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.AccountInfo;
-import com.azure.resourcemanager.newrelicobservability.models.BillingCycle;
 import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicAccountProperties;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicSingleSignOnProperties;
-import com.azure.resourcemanager.newrelicobservability.models.OrgCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.OrganizationInfo;
+import com.azure.resourcemanager.newrelicobservability.models.OrgCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.PlanData;
 import com.azure.resourcemanager.newrelicobservability.models.ProvisioningState;
 import com.azure.resourcemanager.newrelicobservability.models.SingleSignOnStates;
@@ -28,7 +27,7 @@ import java.util.Map;
  */
 public final class MonitorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -38,24 +37,37 @@ public final class MonitorsCreateOrUpdateSamples {
      */
     public static void monitorsCreateOrUpdateMaximumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().define("cdlymktqw").withRegion("k").withExistingResourceGroup("rgNewRelic")
+        manager.monitors()
+            .define("cdlymktqw")
+            .withRegion("k")
+            .withExistingResourceGroup("rgNewRelic")
             .withTags(mapOf("key6976", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
                 .withUserAssignedIdentities(mapOf("key8903", new UserAssignedIdentity())))
             .withNewRelicAccountProperties(new NewRelicAccountProperties().withUserId("vcscxlncofcuduadesd")
-                .withAccountInfo(new AccountInfo()
-                    .withAccountId("xhqmg").withIngestionKey("fakeTokenPlaceholder").withRegion("ljcf"))
+                .withAccountInfo(new AccountInfo().withAccountId("xhqmg")
+                    .withIngestionKey("fakeTokenPlaceholder")
+                    .withRegion("ljcf"))
                 .withOrganizationInfo(new OrganizationInfo().withOrganizationId("k"))
-                .withSingleSignOnProperties(new NewRelicSingleSignOnProperties()
-                    .withSingleSignOnState(SingleSignOnStates.INITIAL).withEnterpriseAppId("kwiwfz")
-                    .withSingleSignOnUrl("kvseueuljsxmfwpqctz").withProvisioningState(ProvisioningState.ACCEPTED)))
+                .withSingleSignOnProperties(
+                    new NewRelicSingleSignOnProperties().withSingleSignOnState(SingleSignOnStates.INITIAL)
+                        .withEnterpriseAppId("kwiwfz")
+                        .withSingleSignOnUrl("kvseueuljsxmfwpqctz")
+                        .withProvisioningState(ProvisioningState.ACCEPTED)))
             .withUserInfo(new UserInfo().withFirstName("vdftzcggirefejajwahhwhyibutramdaotvnuf")
-                .withLastName("bcsztgqovdlmzfkjdrngidwzqsevagexzzilnlc").withEmailAddress("%6%@4-g.N1.3F-kI1.Ue-.lJso")
-                .withPhoneNumber("krf").withCountry("hslqnwdanrconqyekwbnttaetv"))
-            .withPlanData(new PlanData().withUsageType(UsageType.PAYG).withBillingCycle(BillingCycle.YEARLY)
-                .withPlanDetails("tbbiaga").withEffectiveDate(OffsetDateTime.parse("2022-12-05T14:11:37.786Z")))
-            .withOrgCreationSource(OrgCreationSource.LIFTR).withAccountCreationSource(AccountCreationSource.LIFTR)
-            .withSubscriptionState("Suspended").withSaaSAzureSubscriptionStatus("Subscribed").create();
+                .withLastName("bcsztgqovdlmzfkjdrngidwzqsevagexzzilnlc")
+                .withEmailAddress("%6%@4-g.N1.3F-kI1.Ue-.lJso")
+                .withPhoneNumber("krf")
+                .withCountry("hslqnwdanrconqyekwbnttaetv"))
+            .withPlanData(new PlanData().withUsageType(UsageType.PAYG)
+                .withBillingCycle("Yearly")
+                .withPlanDetails("tbbiaga")
+                .withEffectiveDate(OffsetDateTime.parse("2022-12-05T14:11:37.786Z")))
+            .withOrgCreationSource(OrgCreationSource.LIFTR)
+            .withAccountCreationSource(AccountCreationSource.LIFTR)
+            .withSubscriptionState("Suspended")
+            .withSaaSAzureSubscriptionStatus("Subscribed")
+            .create();
     }
 
     // Use "Map.of" if available

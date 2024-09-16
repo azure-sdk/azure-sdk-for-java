@@ -5,36 +5,38 @@
 package com.azure.resourcemanager.newrelicobservability.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Plan data of NewRelic Monitor resource.
  */
 @Fluent
-public final class PlanData {
+public final class PlanData implements JsonSerializable<PlanData> {
     /*
      * Different usage type like PAYG/COMMITTED. this could be enum
      */
-    @JsonProperty(value = "usageType")
     private UsageType usageType;
 
     /*
-     * Different billing cycles like MONTHLY/WEEKLY. this could be enum
+     * Different billing cycles like Monthly/Weekly.
      */
-    @JsonProperty(value = "billingCycle")
-    private BillingCycle billingCycle;
+    private String billingCycle;
 
     /*
      * plan id as published by NewRelic
      */
-    @JsonProperty(value = "planDetails")
     private String planDetails;
 
     /*
      * date when plan was applied
      */
-    @JsonProperty(value = "effectiveDate")
     private OffsetDateTime effectiveDate;
 
     /**
@@ -64,21 +66,21 @@ public final class PlanData {
     }
 
     /**
-     * Get the billingCycle property: Different billing cycles like MONTHLY/WEEKLY. this could be enum.
+     * Get the billingCycle property: Different billing cycles like Monthly/Weekly.
      * 
      * @return the billingCycle value.
      */
-    public BillingCycle billingCycle() {
+    public String billingCycle() {
         return this.billingCycle;
     }
 
     /**
-     * Set the billingCycle property: Different billing cycles like MONTHLY/WEEKLY. this could be enum.
+     * Set the billingCycle property: Different billing cycles like Monthly/Weekly.
      * 
      * @param billingCycle the billingCycle value to set.
      * @return the PlanData object itself.
      */
-    public PlanData withBillingCycle(BillingCycle billingCycle) {
+    public PlanData withBillingCycle(String billingCycle) {
         this.billingCycle = billingCycle;
         return this;
     }
@@ -129,5 +131,52 @@ public final class PlanData {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("usageType", this.usageType == null ? null : this.usageType.toString());
+        jsonWriter.writeStringField("billingCycle", this.billingCycle);
+        jsonWriter.writeStringField("planDetails", this.planDetails);
+        jsonWriter.writeStringField("effectiveDate",
+            this.effectiveDate == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.effectiveDate));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PlanData from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PlanData if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the PlanData.
+     */
+    public static PlanData fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PlanData deserializedPlanData = new PlanData();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("usageType".equals(fieldName)) {
+                    deserializedPlanData.usageType = UsageType.fromString(reader.getString());
+                } else if ("billingCycle".equals(fieldName)) {
+                    deserializedPlanData.billingCycle = reader.getString();
+                } else if ("planDetails".equals(fieldName)) {
+                    deserializedPlanData.planDetails = reader.getString();
+                } else if ("effectiveDate".equals(fieldName)) {
+                    deserializedPlanData.effectiveDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPlanData;
+        });
     }
 }

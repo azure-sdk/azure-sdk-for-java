@@ -7,12 +7,12 @@ package com.azure.resourcemanager.newrelicobservability.generated;
 import com.azure.resourcemanager.newrelicobservability.models.ConfigurationName;
 
 /**
- * Samples for MonitoredSubscriptions CreateorUpdate.
+ * Samples for MonitoredSubscriptions CreateOrUpdate.
  */
-public final class MonitoredSubscriptionsCreateorUpdateSamples {
+public final class MonitoredSubscriptionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
-     * MonitoredSubscriptions_CreateorUpdate.json
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
+     * MonitoredSubscriptions_CreateOrUpdate.json
      */
     /**
      * Sample code: Monitors_AddMonitoredSubscriptions.
@@ -21,7 +21,9 @@ public final class MonitoredSubscriptionsCreateorUpdateSamples {
      */
     public static void monitorsAddMonitoredSubscriptions(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitoredSubscriptions().define(ConfigurationName.DEFAULT)
-            .withExistingMonitor("myResourceGroup", "myMonitor").create();
+        manager.monitoredSubscriptions()
+            .define(ConfigurationName.DEFAULT)
+            .withExistingMonitor("myResourceGroup", "myMonitor")
+            .create();
     }
 }

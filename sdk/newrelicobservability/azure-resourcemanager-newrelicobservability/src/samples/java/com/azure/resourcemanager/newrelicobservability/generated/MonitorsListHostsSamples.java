@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class MonitorsListHostsSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_ListHosts_MinimumSet_Gen.json
      */
     /**
@@ -22,14 +22,15 @@ public final class MonitorsListHostsSamples {
      */
     public static void monitorsListHostsMinimumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().listHosts(
-            "rgopenapi", "ipxmlcbonyxtolzejcjshkmlron", new HostsGetRequest()
-                .withVmIds(Arrays.asList("xzphvxvfmvjrnsgyns")).withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
-            com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listHosts("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
+                new HostsGetRequest().withVmIds(Arrays.asList("xzphvxvfmvjrnsgyns"))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_ListHosts_MaximumSet_Gen.json
      */
     /**
@@ -39,9 +40,10 @@ public final class MonitorsListHostsSamples {
      */
     public static void monitorsListHostsMaximumSetGen(
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager manager) {
-        manager.monitors().listHosts(
-            "rgopenapi", "ipxmlcbonyxtolzejcjshkmlron", new HostsGetRequest()
-                .withVmIds(Arrays.asList("xzphvxvfmvjrnsgyns")).withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
-            com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listHosts("rgopenapi", "ipxmlcbonyxtolzejcjshkmlron",
+                new HostsGetRequest().withVmIds(Arrays.asList("xzphvxvfmvjrnsgyns"))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                com.azure.core.util.Context.NONE);
     }
 }
