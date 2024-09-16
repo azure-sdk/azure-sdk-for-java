@@ -12,8 +12,8 @@ import com.azure.resourcemanager.providerhub.models.ResourceProviderManifest;
 import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestFeaturesRule;
 import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestManagement;
 import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestProviderAuthentication;
-import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestReRegisterSubscriptionMetadata;
 import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestRequestHeaderOptions;
+import com.azure.resourcemanager.providerhub.models.ResourceProviderManifestReRegisterSubscriptionMetadata;
 import com.azure.resourcemanager.providerhub.models.ResourceProviderType;
 import com.azure.resourcemanager.providerhub.models.ResourceType;
 import java.util.Collections;
@@ -24,8 +24,7 @@ public final class ResourceProviderManifestImpl implements ResourceProviderManif
 
     private final com.azure.resourcemanager.providerhub.ProviderHubManager serviceManager;
 
-    ResourceProviderManifestImpl(
-        ResourceProviderManifestInner innerObject,
+    ResourceProviderManifestImpl(ResourceProviderManifestInner innerObject,
         com.azure.resourcemanager.providerhub.ProviderHubManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
