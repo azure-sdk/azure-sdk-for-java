@@ -8,6 +8,6 @@ module com.azure.resourcemanager.workloadssapvirtualinstance {
     exports com.azure.resourcemanager.workloadssapvirtualinstance.fluent;
     exports com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models;
     exports com.azure.resourcemanager.workloadssapvirtualinstance.models;
-    opens com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.workloadssapvirtualinstance.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.workloadssapvirtualinstance.fluent.models to com.azure.core;
+    opens com.azure.resourcemanager.workloadssapvirtualinstance.models to com.azure.core;
 }

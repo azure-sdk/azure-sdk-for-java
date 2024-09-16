@@ -7,13 +7,13 @@ package com.azure.resourcemanager.workloadssapvirtualinstance.generated;
 import com.azure.resourcemanager.workloadssapvirtualinstance.models.StartRequest;
 
 /**
- * Samples for SapApplicationServerInstances StartInstance.
+ * Samples for SapApplicationServerInstances Start.
  */
-public final class SapApplicationServerInstancesStartInstanceSamples {
+public final class SapApplicationServerInstancesStartSamples {
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance_WithInfraOperations.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapApplicationServerInstances_StartInstanceVM.json
      */
     /**
      * Sample code: Start Virtual Machine and the SAP Application Server Instance on it.
@@ -22,14 +22,14 @@ public final class SapApplicationServerInstancesStartInstanceSamples {
      */
     public static void startVirtualMachineAndTheSAPApplicationServerInstanceOnIt(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapApplicationServerInstances().startInstance("test-rg", "X00", "app01",
-            new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
+        manager.sapApplicationServerInstances()
+            .start("test-rg", "X00", "app01", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapApplicationServerInstances_StartInstance.json
      */
     /**
      * Sample code: Start the SAP Application Server Instance.
@@ -38,7 +38,7 @@ public final class SapApplicationServerInstancesStartInstanceSamples {
      */
     public static void startTheSAPApplicationServerInstance(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapApplicationServerInstances().startInstance("test-rg", "X00", "app01", null,
-            com.azure.core.util.Context.NONE);
+        manager.sapApplicationServerInstances()
+            .start("test-rg", "X00", "app01", new StartRequest(), com.azure.core.util.Context.NONE);
     }
 }
