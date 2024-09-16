@@ -10,28 +10,17 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.loadtesting.models.EncryptionProperties;
-import com.azure.resourcemanager.loadtesting.models.ResourceState;
 import java.io.IOException;
 
 /**
- * LoadTest resource properties.
+ * The updatable properties of the LoadTestResource.
  */
 @Fluent
-public final class LoadTestProperties implements JsonSerializable<LoadTestProperties> {
+public final class LoadTestResourceUpdateProperties implements JsonSerializable<LoadTestResourceUpdateProperties> {
     /*
      * Description of the resource.
      */
     private String description;
-
-    /*
-     * Resource provisioning state.
-     */
-    private ResourceState provisioningState;
-
-    /*
-     * Resource data plane URI.
-     */
-    private String dataPlaneUri;
 
     /*
      * CMK Encryption property.
@@ -39,9 +28,9 @@ public final class LoadTestProperties implements JsonSerializable<LoadTestProper
     private EncryptionProperties encryption;
 
     /**
-     * Creates an instance of LoadTestProperties class.
+     * Creates an instance of LoadTestResourceUpdateProperties class.
      */
-    public LoadTestProperties() {
+    public LoadTestResourceUpdateProperties() {
     }
 
     /**
@@ -57,29 +46,11 @@ public final class LoadTestProperties implements JsonSerializable<LoadTestProper
      * Set the description property: Description of the resource.
      * 
      * @param description the description value to set.
-     * @return the LoadTestProperties object itself.
+     * @return the LoadTestResourceUpdateProperties object itself.
      */
-    public LoadTestProperties withDescription(String description) {
+    public LoadTestResourceUpdateProperties withDescription(String description) {
         this.description = description;
         return this;
-    }
-
-    /**
-     * Get the provisioningState property: Resource provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    public ResourceState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the dataPlaneUri property: Resource data plane URI.
-     * 
-     * @return the dataPlaneUri value.
-     */
-    public String dataPlaneUri() {
-        return this.dataPlaneUri;
     }
 
     /**
@@ -95,9 +66,9 @@ public final class LoadTestProperties implements JsonSerializable<LoadTestProper
      * Set the encryption property: CMK Encryption property.
      * 
      * @param encryption the encryption value to set.
-     * @return the LoadTestProperties object itself.
+     * @return the LoadTestResourceUpdateProperties object itself.
      */
-    public LoadTestProperties withEncryption(EncryptionProperties encryption) {
+    public LoadTestResourceUpdateProperties withEncryption(EncryptionProperties encryption) {
         this.encryption = encryption;
         return this;
     }
@@ -125,34 +96,31 @@ public final class LoadTestProperties implements JsonSerializable<LoadTestProper
     }
 
     /**
-     * Reads an instance of LoadTestProperties from the JsonReader.
+     * Reads an instance of LoadTestResourceUpdateProperties from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of LoadTestProperties if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the LoadTestProperties.
+     * @return An instance of LoadTestResourceUpdateProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the LoadTestResourceUpdateProperties.
      */
-    public static LoadTestProperties fromJson(JsonReader jsonReader) throws IOException {
+    public static LoadTestResourceUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            LoadTestProperties deserializedLoadTestProperties = new LoadTestProperties();
+            LoadTestResourceUpdateProperties deserializedLoadTestResourceUpdateProperties
+                = new LoadTestResourceUpdateProperties();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("description".equals(fieldName)) {
-                    deserializedLoadTestProperties.description = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedLoadTestProperties.provisioningState = ResourceState.fromString(reader.getString());
-                } else if ("dataPlaneURI".equals(fieldName)) {
-                    deserializedLoadTestProperties.dataPlaneUri = reader.getString();
+                    deserializedLoadTestResourceUpdateProperties.description = reader.getString();
                 } else if ("encryption".equals(fieldName)) {
-                    deserializedLoadTestProperties.encryption = EncryptionProperties.fromJson(reader);
+                    deserializedLoadTestResourceUpdateProperties.encryption = EncryptionProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedLoadTestProperties;
+            return deserializedLoadTestResourceUpdateProperties;
         });
     }
 }
