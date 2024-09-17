@@ -24,7 +24,7 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
      * The type discriminator describing a sub-type of ExceptionAction.
      */
     @Generated
-    private ExceptionActionKind kind = ExceptionActionKind.MANUAL_RECLASSIFY;
+    private String kind = "manualReclassify";
 
     /*
      * Updated QueueId.
@@ -64,7 +64,7 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
      */
     @Generated
     @Override
-    public ExceptionActionKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -159,11 +159,15 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
         } else {
             jsonWriter.writeStartObject();
             jsonWriter.writeStringField("id", getId());
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("exceptionActionKind",
+                getExceptionActionKind() == null ? null : getExceptionActionKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("queueId", this.queueId);
             jsonWriter.writeNumberField("priority", this.priority);
             jsonWriter.writeArrayField("workerSelectors", this.workerSelectors,
                 (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("exceptionActionKind",
+                this.exceptionActionKind == null ? null : this.exceptionActionKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -178,7 +182,14 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
                 jsonWriter.writeStringField("id", getId());
             }
         }
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (getExceptionActionKind() == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", getExceptionActionKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("queueId")) {
             if (this.queueId == null) {
                 jsonWriter.writeNullField("queueId");
@@ -199,6 +210,13 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
             } else {
                 jsonWriter.writeArrayField("workerSelectors", this.workerSelectors,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (this.exceptionActionKind == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", this.exceptionActionKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -224,8 +242,7 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
                     JsonMergePatchHelper.getExceptionActionAccessor()
                         .setId(deserializedManualReclassifyExceptionAction, reader.getString());
                 } else if ("kind".equals(fieldName)) {
-                    deserializedManualReclassifyExceptionAction.kind
-                        = ExceptionActionKind.fromString(reader.getString());
+                    deserializedManualReclassifyExceptionAction.kind = reader.getString();
                 } else if ("queueId".equals(fieldName)) {
                     deserializedManualReclassifyExceptionAction.queueId = reader.getString();
                 } else if ("priority".equals(fieldName)) {
@@ -234,11 +251,44 @@ public final class ManualReclassifyExceptionAction extends ExceptionAction {
                     List<RouterWorkerSelector> workerSelectors
                         = reader.readArray(reader1 -> RouterWorkerSelector.fromJson(reader1));
                     deserializedManualReclassifyExceptionAction.workerSelectors = workerSelectors;
+                } else if ("exceptionActionKind".equals(fieldName)) {
+                    deserializedManualReclassifyExceptionAction.exceptionActionKind
+                        = ExceptionActionKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedManualReclassifyExceptionAction;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionAction.
+     */
+    @Generated
+    private ExceptionActionKind exceptionActionKind = ExceptionActionKind.MANUAL_RECLASSIFY;
+
+    /**
+     * Get the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     *
+     * @return the exceptionActionKind value.
+     */
+    @Generated
+    public ExceptionActionKind getExceptionActionKind() {
+        return this.exceptionActionKind;
+    }
+
+    /**
+     * Set the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionActionKind the exceptionActionKind value to set.
+     * @return the ManualReclassifyExceptionAction object itself.
+     */
+    @Generated
+    public ManualReclassifyExceptionAction setExceptionActionKind(ExceptionActionKind exceptionActionKind) {
+        this.exceptionActionKind = exceptionActionKind;
+        this.updatedProperties.add("exceptionActionKind");
+        return this;
     }
 }

@@ -129,7 +129,8 @@ public final class JobRouterAsyncClient {
      *     ]
      *     scheduledAt: OffsetDateTime (Optional)
      *     matchingMode (Optional): {
-     *         kind: String(queueAndMatch/scheduleAndSuspend/suspend) (Required)
+     *         kind: String (Required)
+     *         jobMatchingModeKind: String(queueAndMatch/scheduleAndSuspend/suspend) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -185,7 +186,8 @@ public final class JobRouterAsyncClient {
      *     ]
      *     scheduledAt: OffsetDateTime (Optional)
      *     matchingMode (Optional): {
-     *         kind: String(queueAndMatch/scheduleAndSuspend/suspend) (Required)
+     *         kind: String (Required)
+     *         jobMatchingModeKind: String(queueAndMatch/scheduleAndSuspend/suspend) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -639,7 +641,8 @@ public final class JobRouterAsyncClient {
      *     ]
      *     scheduledAt: OffsetDateTime (Optional)
      *     matchingMode (Optional): {
-     *         kind: String(queueAndMatch/scheduleAndSuspend/suspend) (Required)
+     *         kind: String (Required)
+     *         jobMatchingModeKind: String(queueAndMatch/scheduleAndSuspend/suspend) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -872,7 +875,8 @@ public final class JobRouterAsyncClient {
      *     ]
      *     scheduledAt: OffsetDateTime (Optional)
      *     matchingMode (Optional): {
-     *         kind: String(queueAndMatch/scheduleAndSuspend/suspend) (Required)
+     *         kind: String (Required)
+     *         jobMatchingModeKind: String(queueAndMatch/scheduleAndSuspend/suspend) (Optional, Required on create)
      *     }
      * }
      * }</pre>

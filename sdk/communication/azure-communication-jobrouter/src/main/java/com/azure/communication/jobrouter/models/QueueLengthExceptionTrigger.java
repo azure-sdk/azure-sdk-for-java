@@ -20,10 +20,10 @@ import java.util.Set;
 public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
 
     /*
-     * The type discriminator describing a sub-type of ExceptionTrigger.
+     * The type discriminator describing a kind of ExceptionTrigger.
      */
     @Generated
-    private ExceptionTriggerKind kind = ExceptionTriggerKind.QUEUE_LENGTH;
+    private String kind = "queueLength";
 
     /*
      * Threshold of number of jobs ahead in the queue to for this trigger to fire.
@@ -45,13 +45,13 @@ public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * Get the kind property: The type discriminator describing a kind of ExceptionTrigger.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public ExceptionTriggerKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -89,8 +89,12 @@ public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("exceptionTriggerKind",
+                getExceptionTriggerKind() == null ? null : getExceptionTriggerKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeIntField("threshold", this.threshold);
+            jsonWriter.writeStringField("exceptionTriggerKind",
+                this.exceptionTriggerKind == null ? null : this.exceptionTriggerKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -98,9 +102,23 @@ public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("exceptionTriggerKind")) {
+            if (getExceptionTriggerKind() == null) {
+                jsonWriter.writeNullField("exceptionTriggerKind");
+            } else {
+                jsonWriter.writeStringField("exceptionTriggerKind", getExceptionTriggerKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("threshold")) {
             jsonWriter.writeIntField("threshold", this.threshold);
+        }
+        if (updatedProperties.contains("exceptionTriggerKind")) {
+            if (this.exceptionTriggerKind == null) {
+                jsonWriter.writeNullField("exceptionTriggerKind");
+            } else {
+                jsonWriter.writeStringField("exceptionTriggerKind", this.exceptionTriggerKind.toString());
+            }
         }
         return jsonWriter.writeEndObject();
     }
@@ -121,9 +139,12 @@ public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedQueueLengthExceptionTrigger.kind = ExceptionTriggerKind.fromString(reader.getString());
+                    deserializedQueueLengthExceptionTrigger.kind = reader.getString();
                 } else if ("threshold".equals(fieldName)) {
                     deserializedQueueLengthExceptionTrigger.threshold = reader.getInt();
+                } else if ("exceptionTriggerKind".equals(fieldName)) {
+                    deserializedQueueLengthExceptionTrigger.exceptionTriggerKind
+                        = ExceptionTriggerKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -140,5 +161,35 @@ public final class QueueLengthExceptionTrigger extends ExceptionTrigger {
     public QueueLengthExceptionTrigger(int threshold) {
         this.threshold = threshold;
         this.updatedProperties.add("threshold");
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionTrigger.
+     */
+    @Generated
+    private ExceptionTriggerKind exceptionTriggerKind = ExceptionTriggerKind.QUEUE_LENGTH;
+
+    /**
+     * Get the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     *
+     * @return the exceptionTriggerKind value.
+     */
+    @Generated
+    public ExceptionTriggerKind getExceptionTriggerKind() {
+        return this.exceptionTriggerKind;
+    }
+
+    /**
+     * Set the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionTriggerKind the exceptionTriggerKind value to set.
+     * @return the QueueLengthExceptionTrigger object itself.
+     */
+    @Generated
+    public QueueLengthExceptionTrigger setExceptionTriggerKind(ExceptionTriggerKind exceptionTriggerKind) {
+        this.exceptionTriggerKind = exceptionTriggerKind;
+        this.updatedProperties.add("exceptionTriggerKind");
+        return this;
     }
 }

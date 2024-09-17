@@ -24,10 +24,10 @@ import java.util.Set;
 public final class ScheduleAndSuspendMode extends JobMatchingMode {
 
     /*
-     * The type discriminator describing a sub-type of JobMatchingMode.
+     * The type discriminator describing a kind of JobMatchingMode.
      */
     @Generated
-    private JobMatchingModeKind kind = JobMatchingModeKind.SCHEDULE_AND_SUSPEND;
+    private String kind = "scheduleAndSuspend";
 
     /*
      * Requested schedule time.
@@ -49,13 +49,13 @@ public final class ScheduleAndSuspendMode extends JobMatchingMode {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of JobMatchingMode.
+     * Get the kind property: The type discriminator describing a kind of JobMatchingMode.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public JobMatchingModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -93,9 +93,13 @@ public final class ScheduleAndSuspendMode extends JobMatchingMode {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("jobMatchingModeKind",
+                getJobMatchingModeKind() == null ? null : getJobMatchingModeKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("scheduleAt",
                 this.scheduleAt == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.scheduleAt));
+            jsonWriter.writeStringField("jobMatchingModeKind",
+                this.jobMatchingModeKind == null ? null : this.jobMatchingModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -103,13 +107,27 @@ public final class ScheduleAndSuspendMode extends JobMatchingMode {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("jobMatchingModeKind")) {
+            if (getJobMatchingModeKind() == null) {
+                jsonWriter.writeNullField("jobMatchingModeKind");
+            } else {
+                jsonWriter.writeStringField("jobMatchingModeKind", getJobMatchingModeKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("scheduleAt")) {
             if (this.scheduleAt == null) {
                 jsonWriter.writeNullField("scheduleAt");
             } else {
                 jsonWriter.writeStringField("scheduleAt",
                     this.scheduleAt == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.scheduleAt));
+            }
+        }
+        if (updatedProperties.contains("jobMatchingModeKind")) {
+            if (this.jobMatchingModeKind == null) {
+                jsonWriter.writeNullField("jobMatchingModeKind");
+            } else {
+                jsonWriter.writeStringField("jobMatchingModeKind", this.jobMatchingModeKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -131,10 +149,13 @@ public final class ScheduleAndSuspendMode extends JobMatchingMode {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedScheduleAndSuspendMode.kind = JobMatchingModeKind.fromString(reader.getString());
+                    deserializedScheduleAndSuspendMode.kind = reader.getString();
                 } else if ("scheduleAt".equals(fieldName)) {
                     deserializedScheduleAndSuspendMode.scheduleAt = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("jobMatchingModeKind".equals(fieldName)) {
+                    deserializedScheduleAndSuspendMode.jobMatchingModeKind
+                        = JobMatchingModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -151,5 +172,35 @@ public final class ScheduleAndSuspendMode extends JobMatchingMode {
     public ScheduleAndSuspendMode(OffsetDateTime scheduleAt) {
         this.scheduleAt = scheduleAt;
         this.updatedProperties.add("scheduleAt");
+    }
+
+    /*
+     * The type discriminator describing ScheduleAndSuspendMode
+     */
+    @Generated
+    private JobMatchingModeKind jobMatchingModeKind = JobMatchingModeKind.SCHEDULE_AND_SUSPEND;
+
+    /**
+     * Get the jobMatchingModeKind property: The type discriminator describing ScheduleAndSuspendMode.
+     *
+     * @return the jobMatchingModeKind value.
+     */
+    @Generated
+    public JobMatchingModeKind getJobMatchingModeKind() {
+        return this.jobMatchingModeKind;
+    }
+
+    /**
+     * Set the jobMatchingModeKind property: The type discriminator describing ScheduleAndSuspendMode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param jobMatchingModeKind the jobMatchingModeKind value to set.
+     * @return the ScheduleAndSuspendMode object itself.
+     */
+    @Generated
+    public ScheduleAndSuspendMode setJobMatchingModeKind(JobMatchingModeKind jobMatchingModeKind) {
+        this.jobMatchingModeKind = jobMatchingModeKind;
+        this.updatedProperties.add("jobMatchingModeKind");
+        return this;
     }
 }

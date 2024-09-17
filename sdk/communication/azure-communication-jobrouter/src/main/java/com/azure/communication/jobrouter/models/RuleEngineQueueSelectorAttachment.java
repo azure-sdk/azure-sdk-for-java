@@ -23,7 +23,7 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
      * The type discriminator describing a sub-type of QueueSelectorAttachment.
      */
     @Generated
-    private QueueSelectorAttachmentKind kind = QueueSelectorAttachmentKind.RULE_ENGINE;
+    private String kind = "ruleEngine";
 
     /*
      * A RouterRule that resolves a collection of queue selectors to attach.
@@ -51,7 +51,7 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
      */
     @Generated
     @Override
-    public QueueSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -89,8 +89,12 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                getQueueSelectorAttachmentKind() == null ? null : getQueueSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("rule", this.rule);
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                this.queueSelectorAttachmentKind == null ? null : this.queueSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -98,7 +102,14 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (getQueueSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", getQueueSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("rule")) {
             if (this.rule == null) {
                 jsonWriter.writeNullField("rule");
@@ -106,6 +117,13 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
                 JsonMergePatchHelper.getRouterRuleAccessor().prepareModelForJsonMergePatch(this.rule, true);
                 jsonWriter.writeJsonField("rule", this.rule);
                 JsonMergePatchHelper.getRouterRuleAccessor().prepareModelForJsonMergePatch(this.rule, false);
+            }
+        }
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (this.queueSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", this.queueSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -128,10 +146,12 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedRuleEngineQueueSelectorAttachment.kind
-                        = QueueSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedRuleEngineQueueSelectorAttachment.kind = reader.getString();
                 } else if ("rule".equals(fieldName)) {
                     deserializedRuleEngineQueueSelectorAttachment.rule = RouterRule.fromJson(reader);
+                } else if ("queueSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedRuleEngineQueueSelectorAttachment.queueSelectorAttachmentKind
+                        = QueueSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -148,5 +168,38 @@ public final class RuleEngineQueueSelectorAttachment extends QueueSelectorAttach
     public RuleEngineQueueSelectorAttachment(RouterRule rule) {
         this.rule = rule;
         this.updatedProperties.add("rule");
+    }
+
+    /*
+     * The type discriminator describing the type of queue selector attachment.
+     */
+    @Generated
+    private QueueSelectorAttachmentKind queueSelectorAttachmentKind = QueueSelectorAttachmentKind.RULE_ENGINE;
+
+    /**
+     * Get the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     *
+     * @return the queueSelectorAttachmentKind value.
+     */
+    @Generated
+    public QueueSelectorAttachmentKind getQueueSelectorAttachmentKind() {
+        return this.queueSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param queueSelectorAttachmentKind the queueSelectorAttachmentKind value to set.
+     * @return the RuleEngineQueueSelectorAttachment object itself.
+     */
+    @Generated
+    public RuleEngineQueueSelectorAttachment
+        setQueueSelectorAttachmentKind(QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+        this.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+        this.updatedProperties.add("queueSelectorAttachmentKind");
+        return this;
     }
 }

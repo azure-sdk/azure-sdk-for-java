@@ -20,10 +20,10 @@ import java.util.Set;
 public final class StaticRouterRule extends RouterRule {
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.STATIC;
+    private String kind = "static";
 
     /*
      * The static value this rule always returns. Values must be primitive values - number, string, boolean.
@@ -45,13 +45,13 @@ public final class StaticRouterRule extends RouterRule {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of RouterRule.
+     * Get the kind property: The type discriminator describing a kind of RouterRule.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public RouterRuleKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -76,8 +76,12 @@ public final class StaticRouterRule extends RouterRule {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("routerRuleKind",
+                getRouterRuleKind() == null ? null : getRouterRuleKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("value", this.value);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -85,12 +89,26 @@ public final class StaticRouterRule extends RouterRule {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (getRouterRuleKind() == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", getRouterRuleKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("value")) {
             if (this.value == null) {
                 jsonWriter.writeNullField("value");
             } else {
                 jsonWriter.writeJsonField("value", this.value);
+            }
+        }
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -112,9 +130,11 @@ public final class StaticRouterRule extends RouterRule {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedStaticRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedStaticRouterRule.kind = reader.getString();
                 } else if ("value".equals(fieldName)) {
                     deserializedStaticRouterRule.value = RouterValue.fromJson(reader);
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedStaticRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -134,6 +154,36 @@ public final class StaticRouterRule extends RouterRule {
     public StaticRouterRule setValue(RouterValue value) {
         this.value = value;
         this.updatedProperties.add("value");
+        return this;
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Rule.
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind = RouterRuleKind.STATIC;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the StaticRouterRule object itself.
+     */
+    @Generated
+    public StaticRouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
         return this;
     }
 }

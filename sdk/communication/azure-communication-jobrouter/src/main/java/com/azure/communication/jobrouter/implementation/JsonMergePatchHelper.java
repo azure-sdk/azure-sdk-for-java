@@ -5,15 +5,20 @@ package com.azure.communication.jobrouter.implementation;
 
 import com.azure.communication.jobrouter.models.ClassificationPolicy;
 import com.azure.communication.jobrouter.models.DistributionMode;
+import com.azure.communication.jobrouter.models.DistributionModeKind;
 import com.azure.communication.jobrouter.models.DistributionPolicy;
 import com.azure.communication.jobrouter.models.ExceptionAction;
+import com.azure.communication.jobrouter.models.ExceptionActionKind;
 import com.azure.communication.jobrouter.models.ExceptionPolicy;
 import com.azure.communication.jobrouter.models.ExceptionRule;
 import com.azure.communication.jobrouter.models.ExceptionTrigger;
+import com.azure.communication.jobrouter.models.ExceptionTriggerKind;
 import com.azure.communication.jobrouter.models.FunctionRouterRuleCredential;
 import com.azure.communication.jobrouter.models.JobMatchingMode;
+import com.azure.communication.jobrouter.models.JobMatchingModeKind;
 import com.azure.communication.jobrouter.models.OAuth2WebhookClientCredential;
 import com.azure.communication.jobrouter.models.QueueSelectorAttachment;
+import com.azure.communication.jobrouter.models.QueueSelectorAttachmentKind;
 import com.azure.communication.jobrouter.models.QueueWeightedAllocation;
 import com.azure.communication.jobrouter.models.RouterChannel;
 import com.azure.communication.jobrouter.models.RouterJob;
@@ -21,10 +26,12 @@ import com.azure.communication.jobrouter.models.RouterJobNote;
 import com.azure.communication.jobrouter.models.RouterQueue;
 import com.azure.communication.jobrouter.models.RouterQueueSelector;
 import com.azure.communication.jobrouter.models.RouterRule;
+import com.azure.communication.jobrouter.models.RouterRuleKind;
 import com.azure.communication.jobrouter.models.RouterWorker;
 import com.azure.communication.jobrouter.models.RouterWorkerSelector;
 import com.azure.communication.jobrouter.models.ScoringRuleOptions;
 import com.azure.communication.jobrouter.models.WorkerSelectorAttachment;
+import com.azure.communication.jobrouter.models.WorkerSelectorAttachmentKind;
 import com.azure.communication.jobrouter.models.WorkerWeightedAllocation;
 
 /**
@@ -66,6 +73,8 @@ public class JsonMergePatchHelper {
         void setMaxConcurrentOffers(DistributionMode distributionMode, Integer maxConcurrentOffers);
 
         void setBypassSelectors(DistributionMode distributionMode, Boolean bypassSelectors);
+
+        void setDistributionModeKind(DistributionMode distributionMode, DistributionModeKind distributionModeKind);
     }
 
     public static void setDistributionModeAccessor(DistributionModeAccessor accessor) {
@@ -83,6 +92,8 @@ public class JsonMergePatchHelper {
         RouterRule prepareModelForJsonMergePatch(RouterRule routerRule, boolean jsonMergePatchEnabled);
 
         boolean isJsonMergePatch(RouterRule routerRule);
+
+        void setRouterRuleKind(RouterRule routerRule, RouterRuleKind routerRuleKind);
     }
 
     public static void setRouterRuleAccessor(RouterRuleAccessor accessor) {
@@ -173,6 +184,9 @@ public class JsonMergePatchHelper {
             boolean jsonMergePatchEnabled);
 
         boolean isJsonMergePatch(QueueSelectorAttachment queueSelectorAttachment);
+
+        void setQueueSelectorAttachmentKind(QueueSelectorAttachment queueSelectorAttachment,
+            QueueSelectorAttachmentKind queueSelectorAttachmentKind);
     }
 
     public static void setQueueSelectorAttachmentAccessor(QueueSelectorAttachmentAccessor accessor) {
@@ -227,6 +241,9 @@ public class JsonMergePatchHelper {
             boolean jsonMergePatchEnabled);
 
         boolean isJsonMergePatch(WorkerSelectorAttachment workerSelectorAttachment);
+
+        void setWorkerSelectorAttachmentKind(WorkerSelectorAttachment workerSelectorAttachment,
+            WorkerSelectorAttachmentKind workerSelectorAttachmentKind);
     }
 
     public static void setWorkerSelectorAttachmentAccessor(WorkerSelectorAttachmentAccessor accessor) {
@@ -315,6 +332,8 @@ public class JsonMergePatchHelper {
             boolean jsonMergePatchEnabled);
 
         boolean isJsonMergePatch(ExceptionTrigger exceptionTrigger);
+
+        void setExceptionTriggerKind(ExceptionTrigger exceptionTrigger, ExceptionTriggerKind exceptionTriggerKind);
     }
 
     public static void setExceptionTriggerAccessor(ExceptionTriggerAccessor accessor) {
@@ -334,6 +353,8 @@ public class JsonMergePatchHelper {
         boolean isJsonMergePatch(ExceptionAction exceptionAction);
 
         void setId(ExceptionAction exceptionAction, String id);
+
+        void setExceptionActionKind(ExceptionAction exceptionAction, ExceptionActionKind exceptionActionKind);
     }
 
     public static void setExceptionActionAccessor(ExceptionActionAccessor accessor) {
@@ -402,6 +423,8 @@ public class JsonMergePatchHelper {
         JobMatchingMode prepareModelForJsonMergePatch(JobMatchingMode jobMatchingMode, boolean jsonMergePatchEnabled);
 
         boolean isJsonMergePatch(JobMatchingMode jobMatchingMode);
+
+        void setJobMatchingModeKind(JobMatchingMode jobMatchingMode, JobMatchingModeKind jobMatchingModeKind);
     }
 
     public static void setJobMatchingModeAccessor(JobMatchingModeAccessor accessor) {

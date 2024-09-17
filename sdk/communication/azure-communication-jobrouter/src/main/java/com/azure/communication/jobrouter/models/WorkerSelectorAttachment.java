@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -17,14 +17,14 @@ import java.util.Set;
 /**
  * An attachment which attaches worker selectors to a job.
  */
-@Immutable
+@Fluent
 public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelectorAttachment> {
 
     /*
      * The type discriminator describing a sub-type of WorkerSelectorAttachment.
      */
     @Generated
-    private WorkerSelectorAttachmentKind kind = WorkerSelectorAttachmentKind.fromString("WorkerSelectorAttachment");
+    private String kind = "WorkerSelectorAttachment";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -55,6 +55,12 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
                 public boolean isJsonMergePatch(WorkerSelectorAttachment model) {
                     return model.jsonMergePatch;
                 }
+
+                @Override
+                public void setWorkerSelectorAttachmentKind(WorkerSelectorAttachment model,
+                    WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+                    model.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+                }
             });
     }
 
@@ -71,7 +77,7 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
      * @return the kind value.
      */
     @Generated
-    public WorkerSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -85,7 +91,9 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                this.workerSelectorAttachmentKind == null ? null : this.workerSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -93,7 +101,15 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (this.workerSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    this.workerSelectorAttachmentKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -148,7 +164,9 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedWorkerSelectorAttachment.kind
+                    deserializedWorkerSelectorAttachment.kind = reader.getString();
+                } else if ("workerSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedWorkerSelectorAttachment.workerSelectorAttachmentKind
                         = WorkerSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
@@ -156,5 +174,38 @@ public class WorkerSelectorAttachment implements JsonSerializable<WorkerSelector
             }
             return deserializedWorkerSelectorAttachment;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of WorkerSelectorAttachment.
+     */
+    @Generated
+    private WorkerSelectorAttachmentKind workerSelectorAttachmentKind;
+
+    /**
+     * Get the workerSelectorAttachmentKind property: The type discriminator describing a sub-type of
+     * WorkerSelectorAttachment.
+     *
+     * @return the workerSelectorAttachmentKind value.
+     */
+    @Generated
+    public WorkerSelectorAttachmentKind getWorkerSelectorAttachmentKind() {
+        return this.workerSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the workerSelectorAttachmentKind property: The type discriminator describing a sub-type of
+     * WorkerSelectorAttachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param workerSelectorAttachmentKind the workerSelectorAttachmentKind value to set.
+     * @return the WorkerSelectorAttachment object itself.
+     */
+    @Generated
+    public WorkerSelectorAttachment
+        setWorkerSelectorAttachmentKind(WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+        this.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+        this.updatedProperties.add("workerSelectorAttachmentKind");
+        return this;
     }
 }

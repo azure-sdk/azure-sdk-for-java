@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -22,14 +22,14 @@ import java.util.Set;
  * FunctionRule: A rule providing a binding to an HTTP Triggered Azure Function.
  * WebhookRule: A rule providing a binding to a webserver following OAuth2.0 authentication protocol.
  */
-@Immutable
+@Fluent
 public class RouterRule implements JsonSerializable<RouterRule> {
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.fromString("RouterRule");
+    private String kind = "RouterRule";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -58,6 +58,11 @@ public class RouterRule implements JsonSerializable<RouterRule> {
             public boolean isJsonMergePatch(RouterRule model) {
                 return model.jsonMergePatch;
             }
+
+            @Override
+            public void setRouterRuleKind(RouterRule model, RouterRuleKind routerRuleKind) {
+                model.routerRuleKind = routerRuleKind;
+            }
         });
     }
 
@@ -69,12 +74,12 @@ public class RouterRule implements JsonSerializable<RouterRule> {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of RouterRule.
+     * Get the kind property: The type discriminator describing a kind of RouterRule.
      *
      * @return the kind value.
      */
     @Generated
-    public RouterRuleKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -88,7 +93,9 @@ public class RouterRule implements JsonSerializable<RouterRule> {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -96,7 +103,14 @@ public class RouterRule implements JsonSerializable<RouterRule> {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -151,12 +165,44 @@ public class RouterRule implements JsonSerializable<RouterRule> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedRouterRule.kind = reader.getString();
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedRouterRule;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of RouterRule
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of RouterRule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of RouterRule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the RouterRule object itself.
+     */
+    @Generated
+    public RouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
+        return this;
     }
 }

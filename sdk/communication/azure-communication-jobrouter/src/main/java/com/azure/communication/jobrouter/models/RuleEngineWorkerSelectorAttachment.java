@@ -23,7 +23,7 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
      * The type discriminator describing a sub-type of WorkerSelectorAttachment.
      */
     @Generated
-    private WorkerSelectorAttachmentKind kind = WorkerSelectorAttachmentKind.RULE_ENGINE;
+    private String kind = "ruleEngine";
 
     /*
      * A RouterRule that resolves a collection of worker selectors to attach.
@@ -51,7 +51,7 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
      */
     @Generated
     @Override
-    public WorkerSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -89,8 +89,12 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                getWorkerSelectorAttachmentKind() == null ? null : getWorkerSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("rule", this.rule);
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                this.workerSelectorAttachmentKind == null ? null : this.workerSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -98,7 +102,15 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (getWorkerSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    getWorkerSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("rule")) {
             if (this.rule == null) {
                 jsonWriter.writeNullField("rule");
@@ -106,6 +118,14 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
                 JsonMergePatchHelper.getRouterRuleAccessor().prepareModelForJsonMergePatch(this.rule, true);
                 jsonWriter.writeJsonField("rule", this.rule);
                 JsonMergePatchHelper.getRouterRuleAccessor().prepareModelForJsonMergePatch(this.rule, false);
+            }
+        }
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (this.workerSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    this.workerSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -128,10 +148,12 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedRuleEngineWorkerSelectorAttachment.kind
-                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedRuleEngineWorkerSelectorAttachment.kind = reader.getString();
                 } else if ("rule".equals(fieldName)) {
                     deserializedRuleEngineWorkerSelectorAttachment.rule = RouterRule.fromJson(reader);
+                } else if ("workerSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedRuleEngineWorkerSelectorAttachment.workerSelectorAttachmentKind
+                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -148,5 +170,38 @@ public final class RuleEngineWorkerSelectorAttachment extends WorkerSelectorAtta
     public RuleEngineWorkerSelectorAttachment(RouterRule rule) {
         this.rule = rule;
         this.updatedProperties.add("rule");
+    }
+
+    /*
+     * The type discriminator describing the type of worker selector attachment.
+     */
+    @Generated
+    private WorkerSelectorAttachmentKind workerSelectorAttachmentKind = WorkerSelectorAttachmentKind.RULE_ENGINE;
+
+    /**
+     * Get the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     *
+     * @return the workerSelectorAttachmentKind value.
+     */
+    @Generated
+    public WorkerSelectorAttachmentKind getWorkerSelectorAttachmentKind() {
+        return this.workerSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param workerSelectorAttachmentKind the workerSelectorAttachmentKind value to set.
+     * @return the RuleEngineWorkerSelectorAttachment object itself.
+     */
+    @Generated
+    public RuleEngineWorkerSelectorAttachment
+        setWorkerSelectorAttachmentKind(WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+        this.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+        this.updatedProperties.add("workerSelectorAttachmentKind");
+        return this;
     }
 }

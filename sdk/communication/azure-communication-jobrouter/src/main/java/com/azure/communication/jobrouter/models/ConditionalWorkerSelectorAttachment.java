@@ -24,7 +24,7 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
      * The type discriminator describing a sub-type of WorkerSelectorAttachment.
      */
     @Generated
-    private WorkerSelectorAttachmentKind kind = WorkerSelectorAttachmentKind.CONDITIONAL;
+    private String kind = "conditional";
 
     /*
      * The condition that must be true for the worker selectors to be attached.
@@ -58,7 +58,7 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
      */
     @Generated
     @Override
-    public WorkerSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -120,10 +120,14 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                getWorkerSelectorAttachmentKind() == null ? null : getWorkerSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("condition", this.condition);
             jsonWriter.writeArrayField("workerSelectors", this.workerSelectors,
                 (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                this.workerSelectorAttachmentKind == null ? null : this.workerSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -131,7 +135,15 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (getWorkerSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    getWorkerSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("condition")) {
             if (this.condition == null) {
                 jsonWriter.writeNullField("condition");
@@ -147,6 +159,14 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
             } else {
                 jsonWriter.writeArrayField("workerSelectors", this.workerSelectors,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (this.workerSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    this.workerSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -169,14 +189,16 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedConditionalWorkerSelectorAttachment.kind
-                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedConditionalWorkerSelectorAttachment.kind = reader.getString();
                 } else if ("condition".equals(fieldName)) {
                     deserializedConditionalWorkerSelectorAttachment.condition = RouterRule.fromJson(reader);
                 } else if ("workerSelectors".equals(fieldName)) {
                     List<RouterWorkerSelector> workerSelectors
                         = reader.readArray(reader1 -> RouterWorkerSelector.fromJson(reader1));
                     deserializedConditionalWorkerSelectorAttachment.workerSelectors = workerSelectors;
+                } else if ("workerSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedConditionalWorkerSelectorAttachment.workerSelectorAttachmentKind
+                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -196,5 +218,38 @@ public final class ConditionalWorkerSelectorAttachment extends WorkerSelectorAtt
         this.updatedProperties.add("condition");
         this.workerSelectors = workerSelectors;
         this.updatedProperties.add("workerSelectors");
+    }
+
+    /*
+     * The type discriminator describing the type of worker selector attachment.
+     */
+    @Generated
+    private WorkerSelectorAttachmentKind workerSelectorAttachmentKind = WorkerSelectorAttachmentKind.CONDITIONAL;
+
+    /**
+     * Get the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     *
+     * @return the workerSelectorAttachmentKind value.
+     */
+    @Generated
+    public WorkerSelectorAttachmentKind getWorkerSelectorAttachmentKind() {
+        return this.workerSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param workerSelectorAttachmentKind the workerSelectorAttachmentKind value to set.
+     * @return the ConditionalWorkerSelectorAttachment object itself.
+     */
+    @Generated
+    public ConditionalWorkerSelectorAttachment
+        setWorkerSelectorAttachmentKind(WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+        this.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+        this.updatedProperties.add("workerSelectorAttachmentKind");
+        return this;
     }
 }

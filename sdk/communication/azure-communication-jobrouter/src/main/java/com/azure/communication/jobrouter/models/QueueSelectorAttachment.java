@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -17,14 +17,14 @@ import java.util.Set;
 /**
  * An attachment of queue selectors to resolve a queue to a job from a classification policy.
  */
-@Immutable
+@Fluent
 public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAttachment> {
 
     /*
      * The type discriminator describing a sub-type of QueueSelectorAttachment.
      */
     @Generated
-    private QueueSelectorAttachmentKind kind = QueueSelectorAttachmentKind.fromString("QueueSelectorAttachment");
+    private String kind = "QueueSelectorAttachment";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -55,6 +55,12 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
                 public boolean isJsonMergePatch(QueueSelectorAttachment model) {
                     return model.jsonMergePatch;
                 }
+
+                @Override
+                public void setQueueSelectorAttachmentKind(QueueSelectorAttachment model,
+                    QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+                    model.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+                }
             });
     }
 
@@ -71,7 +77,7 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
      * @return the kind value.
      */
     @Generated
-    public QueueSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -85,7 +91,9 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                this.queueSelectorAttachmentKind == null ? null : this.queueSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -93,7 +101,14 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (this.queueSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", this.queueSelectorAttachmentKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -148,7 +163,9 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedQueueSelectorAttachment.kind
+                    deserializedQueueSelectorAttachment.kind = reader.getString();
+                } else if ("queueSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedQueueSelectorAttachment.queueSelectorAttachmentKind
                         = QueueSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
@@ -156,5 +173,38 @@ public class QueueSelectorAttachment implements JsonSerializable<QueueSelectorAt
             }
             return deserializedQueueSelectorAttachment;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of QueueSelectorAttachment.
+     */
+    @Generated
+    private QueueSelectorAttachmentKind queueSelectorAttachmentKind;
+
+    /**
+     * Get the queueSelectorAttachmentKind property: The type discriminator describing a sub-type of
+     * QueueSelectorAttachment.
+     *
+     * @return the queueSelectorAttachmentKind value.
+     */
+    @Generated
+    public QueueSelectorAttachmentKind getQueueSelectorAttachmentKind() {
+        return this.queueSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the queueSelectorAttachmentKind property: The type discriminator describing a sub-type of
+     * QueueSelectorAttachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param queueSelectorAttachmentKind the queueSelectorAttachmentKind value to set.
+     * @return the QueueSelectorAttachment object itself.
+     */
+    @Generated
+    public QueueSelectorAttachment
+        setQueueSelectorAttachmentKind(QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+        this.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+        this.updatedProperties.add("queueSelectorAttachmentKind");
+        return this;
     }
 }

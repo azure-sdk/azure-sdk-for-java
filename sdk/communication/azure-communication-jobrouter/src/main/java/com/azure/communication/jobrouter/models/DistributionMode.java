@@ -21,10 +21,10 @@ import java.util.Set;
 public class DistributionMode implements JsonSerializable<DistributionMode> {
 
     /*
-     * The type discriminator describing a sub-type of DistributionMode.
+     * The type discriminator describing a kind of DistributionMode.
      */
     @Generated
-    private DistributionModeKind kind = DistributionModeKind.fromString("DistributionMode");
+    private String kind = "DistributionMode";
 
     /*
      * Governs the minimum desired number of active concurrent offers a job can have.
@@ -54,12 +54,12 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of DistributionMode.
+     * Get the kind property: The type discriminator describing a kind of DistributionMode.
      *
      * @return the kind value.
      */
     @Generated
-    public DistributionModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -181,6 +181,11 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
             public void setBypassSelectors(DistributionMode model, Boolean bypassSelectors) {
                 model.bypassSelectors = bypassSelectors;
             }
+
+            @Override
+            public void setDistributionModeKind(DistributionMode model, DistributionModeKind distributionModeKind) {
+                model.distributionModeKind = distributionModeKind;
+            }
         });
     }
 
@@ -194,10 +199,12 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeNumberField("minConcurrentOffers", this.minConcurrentOffers);
             jsonWriter.writeNumberField("maxConcurrentOffers", this.maxConcurrentOffers);
             jsonWriter.writeBooleanField("bypassSelectors", this.bypassSelectors);
+            jsonWriter.writeStringField("distributionModeKind",
+                this.distributionModeKind == null ? null : this.distributionModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -205,7 +212,7 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("minConcurrentOffers")) {
             if (this.minConcurrentOffers == null) {
                 jsonWriter.writeNullField("minConcurrentOffers");
@@ -225,6 +232,13 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
                 jsonWriter.writeNullField("bypassSelectors");
             } else {
                 jsonWriter.writeBooleanField("bypassSelectors", this.bypassSelectors);
+            }
+        }
+        if (updatedProperties.contains("distributionModeKind")) {
+            if (this.distributionModeKind == null) {
+                jsonWriter.writeNullField("distributionModeKind");
+            } else {
+                jsonWriter.writeStringField("distributionModeKind", this.distributionModeKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -277,18 +291,51 @@ public class DistributionMode implements JsonSerializable<DistributionMode> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedDistributionMode.kind = DistributionModeKind.fromString(reader.getString());
+                    deserializedDistributionMode.kind = reader.getString();
                 } else if ("minConcurrentOffers".equals(fieldName)) {
                     deserializedDistributionMode.minConcurrentOffers = reader.getNullable(JsonReader::getInt);
                 } else if ("maxConcurrentOffers".equals(fieldName)) {
                     deserializedDistributionMode.maxConcurrentOffers = reader.getNullable(JsonReader::getInt);
                 } else if ("bypassSelectors".equals(fieldName)) {
                     deserializedDistributionMode.bypassSelectors = reader.getNullable(JsonReader::getBoolean);
+                } else if ("distributionModeKind".equals(fieldName)) {
+                    deserializedDistributionMode.distributionModeKind
+                        = DistributionModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedDistributionMode;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of DistributionMode.
+     */
+    @Generated
+    private DistributionModeKind distributionModeKind;
+
+    /**
+     * Get the distributionModeKind property: The type discriminator describing a sub-type of DistributionMode.
+     *
+     * @return the distributionModeKind value.
+     */
+    @Generated
+    public DistributionModeKind getDistributionModeKind() {
+        return this.distributionModeKind;
+    }
+
+    /**
+     * Set the distributionModeKind property: The type discriminator describing a sub-type of DistributionMode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param distributionModeKind the distributionModeKind value to set.
+     * @return the DistributionMode object itself.
+     */
+    @Generated
+    public DistributionMode setDistributionModeKind(DistributionModeKind distributionModeKind) {
+        this.distributionModeKind = distributionModeKind;
+        this.updatedProperties.add("distributionModeKind");
+        return this;
     }
 }

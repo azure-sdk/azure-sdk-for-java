@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -16,14 +16,14 @@ import java.util.Set;
 /**
  * Describes a matching mode where matching worker to a job is suspended.
  */
-@Immutable
+@Fluent
 public final class SuspendMode extends JobMatchingMode {
 
     /*
-     * The type discriminator describing a sub-type of JobMatchingMode.
+     * The type discriminator describing a kind of JobMatchingMode.
      */
     @Generated
-    private JobMatchingModeKind kind = JobMatchingModeKind.SUSPEND;
+    private String kind = "suspend";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -39,13 +39,13 @@ public final class SuspendMode extends JobMatchingMode {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of JobMatchingMode.
+     * Get the kind property: The type discriminator describing a kind of JobMatchingMode.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public JobMatchingModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -59,7 +59,11 @@ public final class SuspendMode extends JobMatchingMode {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("jobMatchingModeKind",
+                getJobMatchingModeKind() == null ? null : getJobMatchingModeKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("jobMatchingModeKind",
+                this.jobMatchingModeKind == null ? null : this.jobMatchingModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -67,7 +71,21 @@ public final class SuspendMode extends JobMatchingMode {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("jobMatchingModeKind")) {
+            if (getJobMatchingModeKind() == null) {
+                jsonWriter.writeNullField("jobMatchingModeKind");
+            } else {
+                jsonWriter.writeStringField("jobMatchingModeKind", getJobMatchingModeKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("jobMatchingModeKind")) {
+            if (this.jobMatchingModeKind == null) {
+                jsonWriter.writeNullField("jobMatchingModeKind");
+            } else {
+                jsonWriter.writeStringField("jobMatchingModeKind", this.jobMatchingModeKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -87,12 +105,44 @@ public final class SuspendMode extends JobMatchingMode {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedSuspendMode.kind = JobMatchingModeKind.fromString(reader.getString());
+                    deserializedSuspendMode.kind = reader.getString();
+                } else if ("jobMatchingModeKind".equals(fieldName)) {
+                    deserializedSuspendMode.jobMatchingModeKind = JobMatchingModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedSuspendMode;
         });
+    }
+
+    /*
+     * The type discriminator describing SuspendMode
+     */
+    @Generated
+    private JobMatchingModeKind jobMatchingModeKind = JobMatchingModeKind.SUSPEND;
+
+    /**
+     * Get the jobMatchingModeKind property: The type discriminator describing SuspendMode.
+     *
+     * @return the jobMatchingModeKind value.
+     */
+    @Generated
+    public JobMatchingModeKind getJobMatchingModeKind() {
+        return this.jobMatchingModeKind;
+    }
+
+    /**
+     * Set the jobMatchingModeKind property: The type discriminator describing SuspendMode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param jobMatchingModeKind the jobMatchingModeKind value to set.
+     * @return the SuspendMode object itself.
+     */
+    @Generated
+    public SuspendMode setJobMatchingModeKind(JobMatchingModeKind jobMatchingModeKind) {
+        this.jobMatchingModeKind = jobMatchingModeKind;
+        this.updatedProperties.add("jobMatchingModeKind");
+        return this;
     }
 }

@@ -23,7 +23,7 @@ public final class CancelExceptionAction extends ExceptionAction {
      * The type discriminator describing a sub-type of ExceptionAction.
      */
     @Generated
-    private ExceptionActionKind kind = ExceptionActionKind.CANCEL;
+    private String kind = "cancel";
 
     /*
      * A note that will be appended to a job's notes collection with the current timestamp.
@@ -57,7 +57,7 @@ public final class CancelExceptionAction extends ExceptionAction {
      */
     @Generated
     @Override
-    public ExceptionActionKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -131,9 +131,13 @@ public final class CancelExceptionAction extends ExceptionAction {
         } else {
             jsonWriter.writeStartObject();
             jsonWriter.writeStringField("id", getId());
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("exceptionActionKind",
+                getExceptionActionKind() == null ? null : getExceptionActionKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("note", this.note);
             jsonWriter.writeStringField("dispositionCode", this.dispositionCode);
+            jsonWriter.writeStringField("exceptionActionKind",
+                this.exceptionActionKind == null ? null : this.exceptionActionKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -148,7 +152,14 @@ public final class CancelExceptionAction extends ExceptionAction {
                 jsonWriter.writeStringField("id", getId());
             }
         }
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (getExceptionActionKind() == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", getExceptionActionKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("note")) {
             if (this.note == null) {
                 jsonWriter.writeNullField("note");
@@ -161,6 +172,13 @@ public final class CancelExceptionAction extends ExceptionAction {
                 jsonWriter.writeNullField("dispositionCode");
             } else {
                 jsonWriter.writeStringField("dispositionCode", this.dispositionCode);
+            }
+        }
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (this.exceptionActionKind == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", this.exceptionActionKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -185,16 +203,49 @@ public final class CancelExceptionAction extends ExceptionAction {
                     JsonMergePatchHelper.getExceptionActionAccessor()
                         .setId(deserializedCancelExceptionAction, reader.getString());
                 } else if ("kind".equals(fieldName)) {
-                    deserializedCancelExceptionAction.kind = ExceptionActionKind.fromString(reader.getString());
+                    deserializedCancelExceptionAction.kind = reader.getString();
                 } else if ("note".equals(fieldName)) {
                     deserializedCancelExceptionAction.note = reader.getString();
                 } else if ("dispositionCode".equals(fieldName)) {
                     deserializedCancelExceptionAction.dispositionCode = reader.getString();
+                } else if ("exceptionActionKind".equals(fieldName)) {
+                    deserializedCancelExceptionAction.exceptionActionKind
+                        = ExceptionActionKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedCancelExceptionAction;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionAction.
+     */
+    @Generated
+    private ExceptionActionKind exceptionActionKind = ExceptionActionKind.CANCEL;
+
+    /**
+     * Get the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     *
+     * @return the exceptionActionKind value.
+     */
+    @Generated
+    public ExceptionActionKind getExceptionActionKind() {
+        return this.exceptionActionKind;
+    }
+
+    /**
+     * Set the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionActionKind the exceptionActionKind value to set.
+     * @return the CancelExceptionAction object itself.
+     */
+    @Generated
+    public CancelExceptionAction setExceptionActionKind(ExceptionActionKind exceptionActionKind) {
+        this.exceptionActionKind = exceptionActionKind;
+        this.updatedProperties.add("exceptionActionKind");
+        return this;
     }
 }

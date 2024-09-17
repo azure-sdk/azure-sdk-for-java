@@ -22,10 +22,10 @@ import com.azure.communication.jobrouter.implementation.utils.CustomizationHelpe
 public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
 
     /*
-     * The type discriminator describing a sub-type of ExceptionTrigger.
+     * The type discriminator describing a kind of ExceptionTrigger.
      */
     @Generated
-    private ExceptionTriggerKind kind = ExceptionTriggerKind.WAIT_TIME;
+    private String kind = "waitTime";
 
     /*
      * Threshold for wait time for this trigger.
@@ -47,13 +47,13 @@ public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * Get the kind property: The type discriminator describing a kind of ExceptionTrigger.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public ExceptionTriggerKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -67,8 +67,12 @@ public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("exceptionTriggerKind",
+                getExceptionTriggerKind() == null ? null : getExceptionTriggerKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             CustomizationHelper.serializeDurationToSeconds(jsonWriter, "thresholdSeconds", this.thresholdSeconds);
+            jsonWriter.writeStringField("exceptionTriggerKind",
+                this.exceptionTriggerKind == null ? null : this.exceptionTriggerKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -76,9 +80,23 @@ public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("exceptionTriggerKind")) {
+            if (getExceptionTriggerKind() == null) {
+                jsonWriter.writeNullField("exceptionTriggerKind");
+            } else {
+                jsonWriter.writeStringField("exceptionTriggerKind", getExceptionTriggerKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("thresholdSeconds")) {
             CustomizationHelper.serializeDurationToSeconds(jsonWriter, "thresholdSeconds", this.thresholdSeconds);
+        }
+        if (updatedProperties.contains("exceptionTriggerKind")) {
+            if (this.exceptionTriggerKind == null) {
+                jsonWriter.writeNullField("exceptionTriggerKind");
+            } else {
+                jsonWriter.writeStringField("exceptionTriggerKind", this.exceptionTriggerKind.toString());
+            }
         }
         return jsonWriter.writeEndObject();
     }
@@ -99,10 +117,13 @@ public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedWaitTimeExceptionTrigger.kind = ExceptionTriggerKind.fromString(reader.getString());
+                    deserializedWaitTimeExceptionTrigger.kind = reader.getString();
                 } else if ("thresholdSeconds".equals(fieldName)) {
                     deserializedWaitTimeExceptionTrigger.thresholdSeconds
                         = CustomizationHelper.deserializeDurationFromSeconds(reader);
+                } else if ("exceptionTriggerKind".equals(fieldName)) {
+                    deserializedWaitTimeExceptionTrigger.exceptionTriggerKind
+                        = ExceptionTriggerKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -143,5 +164,35 @@ public final class WaitTimeExceptionTrigger extends ExceptionTrigger {
     public WaitTimeExceptionTrigger(Duration thresholdSeconds) {
         this.thresholdSeconds = thresholdSeconds;
         this.updatedProperties.add("thresholdSeconds");
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionTrigger.
+     */
+    @Generated
+    private ExceptionTriggerKind exceptionTriggerKind = ExceptionTriggerKind.WAIT_TIME;
+
+    /**
+     * Get the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     *
+     * @return the exceptionTriggerKind value.
+     */
+    @Generated
+    public ExceptionTriggerKind getExceptionTriggerKind() {
+        return this.exceptionTriggerKind;
+    }
+
+    /**
+     * Set the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionTriggerKind the exceptionTriggerKind value to set.
+     * @return the WaitTimeExceptionTrigger object itself.
+     */
+    @Generated
+    public WaitTimeExceptionTrigger setExceptionTriggerKind(ExceptionTriggerKind exceptionTriggerKind) {
+        this.exceptionTriggerKind = exceptionTriggerKind;
+        this.updatedProperties.add("exceptionTriggerKind");
+        return this;
     }
 }

@@ -20,10 +20,10 @@ import java.util.Set;
 public final class BestWorkerMode extends DistributionMode {
 
     /*
-     * The type discriminator describing a sub-type of DistributionMode.
+     * The type discriminator describing a kind of DistributionMode.
      */
     @Generated
-    private DistributionModeKind kind = DistributionModeKind.BEST_WORKER;
+    private String kind = "bestWorker";
 
     /*
      * Define a scoring rule to use, when calculating a score to determine the best worker. If not set, will use a
@@ -54,13 +54,13 @@ public final class BestWorkerMode extends DistributionMode {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of DistributionMode.
+     * Get the kind property: The type discriminator describing a kind of DistributionMode.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public DistributionModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -162,9 +162,13 @@ public final class BestWorkerMode extends DistributionMode {
             jsonWriter.writeNumberField("minConcurrentOffers", getMinConcurrentOffers());
             jsonWriter.writeNumberField("maxConcurrentOffers", getMaxConcurrentOffers());
             jsonWriter.writeBooleanField("bypassSelectors", isBypassSelectors());
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("distributionModeKind",
+                getDistributionModeKind() == null ? null : getDistributionModeKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("scoringRule", this.scoringRule);
             jsonWriter.writeJsonField("scoringRuleOptions", this.scoringRuleOptions);
+            jsonWriter.writeStringField("distributionModeKind",
+                this.distributionModeKind == null ? null : this.distributionModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -193,7 +197,14 @@ public final class BestWorkerMode extends DistributionMode {
                 jsonWriter.writeBooleanField("bypassSelectors", isBypassSelectors());
             }
         }
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("distributionModeKind")) {
+            if (getDistributionModeKind() == null) {
+                jsonWriter.writeNullField("distributionModeKind");
+            } else {
+                jsonWriter.writeStringField("distributionModeKind", getDistributionModeKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("scoringRule")) {
             if (this.scoringRule == null) {
                 jsonWriter.writeNullField("scoringRule");
@@ -212,6 +223,13 @@ public final class BestWorkerMode extends DistributionMode {
                 jsonWriter.writeJsonField("scoringRuleOptions", this.scoringRuleOptions);
                 JsonMergePatchHelper.getScoringRuleOptionsAccessor()
                     .prepareModelForJsonMergePatch(this.scoringRuleOptions, false);
+            }
+        }
+        if (updatedProperties.contains("distributionModeKind")) {
+            if (this.distributionModeKind == null) {
+                jsonWriter.writeNullField("distributionModeKind");
+            } else {
+                jsonWriter.writeStringField("distributionModeKind", this.distributionModeKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -242,16 +260,49 @@ public final class BestWorkerMode extends DistributionMode {
                     JsonMergePatchHelper.getDistributionModeAccessor()
                         .setBypassSelectors(deserializedBestWorkerMode, reader.getNullable(JsonReader::getBoolean));
                 } else if ("kind".equals(fieldName)) {
-                    deserializedBestWorkerMode.kind = DistributionModeKind.fromString(reader.getString());
+                    deserializedBestWorkerMode.kind = reader.getString();
                 } else if ("scoringRule".equals(fieldName)) {
                     deserializedBestWorkerMode.scoringRule = RouterRule.fromJson(reader);
                 } else if ("scoringRuleOptions".equals(fieldName)) {
                     deserializedBestWorkerMode.scoringRuleOptions = ScoringRuleOptions.fromJson(reader);
+                } else if ("distributionModeKind".equals(fieldName)) {
+                    deserializedBestWorkerMode.distributionModeKind
+                        = DistributionModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedBestWorkerMode;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Mode
+     */
+    @Generated
+    private DistributionModeKind distributionModeKind = DistributionModeKind.BEST_WORKER;
+
+    /**
+     * Get the distributionModeKind property: The type discriminator describing a sub-type of Mode.
+     *
+     * @return the distributionModeKind value.
+     */
+    @Generated
+    public DistributionModeKind getDistributionModeKind() {
+        return this.distributionModeKind;
+    }
+
+    /**
+     * Set the distributionModeKind property: The type discriminator describing a sub-type of Mode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param distributionModeKind the distributionModeKind value to set.
+     * @return the BestWorkerMode object itself.
+     */
+    @Generated
+    public BestWorkerMode setDistributionModeKind(DistributionModeKind distributionModeKind) {
+        this.distributionModeKind = distributionModeKind;
+        this.updatedProperties.add("distributionModeKind");
+        return this;
     }
 }

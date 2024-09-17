@@ -608,10 +608,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -625,10 +626,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -674,10 +676,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -691,10 +694,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -728,10 +732,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -764,10 +769,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -806,10 +812,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -850,10 +857,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -912,10 +920,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -954,10 +963,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -1058,15 +1068,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1082,15 +1095,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1138,15 +1154,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1162,15 +1181,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1206,15 +1228,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1249,15 +1274,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1298,15 +1326,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1349,15 +1380,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1418,15 +1452,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1467,15 +1504,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -1578,12 +1618,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1602,12 +1644,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1658,12 +1702,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1682,12 +1728,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1726,12 +1774,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1769,12 +1819,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1818,12 +1870,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1869,12 +1923,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1938,12 +1994,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -1987,12 +2045,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -2510,10 +2570,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -2551,10 +2612,11 @@ public final class JobRouterAdministrationClientImpl {
      *     name: String (Optional)
      *     offerExpiresAfterSeconds: Double (Optional)
      *     mode (Optional): {
-     *         kind: String(bestWorker/longestIdle/roundRobin) (Required)
+     *         kind: String (Required)
      *         minConcurrentOffers: Integer (Optional)
      *         maxConcurrentOffers: Integer (Optional)
      *         bypassSelectors: Boolean (Optional)
+     *         distributionModeKind: String(bestWorker/longestIdle/roundRobin) (Optional, Required on create)
      *     }
      * }
      * }</pre>
@@ -2591,15 +2653,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -2639,15 +2704,18 @@ public final class JobRouterAdministrationClientImpl {
      *     fallbackQueueId: String (Optional)
      *     queueSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             queueSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      *     prioritizationRule (Optional): {
-     *         kind: String(directMap/expression/function/static/webhook) (Required)
+     *         kind: String (Required)
+     *         routerRuleKind: String(directMap/expression/function/static/webhook) (Optional, Required on create)
      *     }
      *     workerSelectorAttachments (Optional): [
      *          (Optional){
-     *             kind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Required)
+     *             kind: String (Required)
+     *             workerSelectorAttachmentKind: String(conditional/passThrough/ruleEngine/static/weightedAllocation) (Optional, Required on create)
      *         }
      *     ]
      * }
@@ -2686,12 +2754,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
@@ -2733,12 +2803,14 @@ public final class JobRouterAdministrationClientImpl {
      *          (Optional){
      *             id: String (Optional, Required on create)
      *             trigger (Optional, Required on create): {
-     *                 kind: String(queueLength/waitTime) (Required)
+     *                 kind: String (Required)
+     *                 exceptionTriggerKind: String(queueLength/waitTime) (Optional, Required on create)
      *             }
      *             actions (Optional, Required on create): [
      *                  (Optional, Required on create){
-     *                     kind: String(cancel/manualReclassify/reclassify) (Required)
+     *                     kind: String (Required)
      *                     id: String (Optional)
+     *                     exceptionActionKind: String(cancel/manualReclassify/reclassify) (Optional, Required on create)
      *                 }
      *             ]
      *         }
