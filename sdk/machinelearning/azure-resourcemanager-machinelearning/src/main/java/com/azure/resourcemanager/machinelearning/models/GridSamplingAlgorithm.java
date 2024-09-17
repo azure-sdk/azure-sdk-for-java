@@ -44,7 +44,6 @@ public final class GridSamplingAlgorithm extends SamplingAlgorithm {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
