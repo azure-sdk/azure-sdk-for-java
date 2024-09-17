@@ -36,10 +36,14 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     private Integer errorThreshold;
 
     /*
-     * Retry Settings for the batch inference operation.
-     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * Logging level for batch inference operation.
      */
-    private BatchRetrySettings retrySettings;
+    private BatchLoggingLevel loggingLevel;
+
+    /*
+     * Indicates maximum number of parallelism per instance.
+     */
+    private Integer maxConcurrencyPerInstance;
 
     /*
      * Size of the mini-batch passed to each batch invocation.
@@ -49,19 +53,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     private Long miniBatchSize;
 
     /*
-     * Logging level for batch inference operation.
-     */
-    private BatchLoggingLevel loggingLevel;
-
-    /*
      * Reference to the model asset for the endpoint deployment.
      */
     private AssetReferenceBase model;
-
-    /*
-     * Indicates maximum number of parallelism per instance.
-     */
-    private Integer maxConcurrencyPerInstance;
 
     /*
      * Indicates how the output will be organized.
@@ -74,15 +68,21 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     private String outputFileName;
 
     /*
+     * Provisioning state for the endpoint deployment.
+     */
+    private DeploymentProvisioningState provisioningState;
+
+    /*
      * Indicates compute configuration for the job.
      * If not provided, will default to the defaults defined in ResourceConfiguration.
      */
     private DeploymentResourceConfiguration resources;
 
     /*
-     * Provisioning state for the endpoint deployment.
+     * Retry Settings for the batch inference operation.
+     * If not provided, will default to the defaults defined in BatchRetrySettings.
      */
-    private DeploymentProvisioningState provisioningState;
+    private BatchRetrySettings retrySettings;
 
     /**
      * Creates an instance of BatchDeploymentProperties class.
@@ -159,24 +159,42 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the retrySettings property: Retry Settings for the batch inference operation.
-     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * Get the loggingLevel property: Logging level for batch inference operation.
      * 
-     * @return the retrySettings value.
+     * @return the loggingLevel value.
      */
-    public BatchRetrySettings retrySettings() {
-        return this.retrySettings;
+    public BatchLoggingLevel loggingLevel() {
+        return this.loggingLevel;
     }
 
     /**
-     * Set the retrySettings property: Retry Settings for the batch inference operation.
-     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * Set the loggingLevel property: Logging level for batch inference operation.
      * 
-     * @param retrySettings the retrySettings value to set.
+     * @param loggingLevel the loggingLevel value to set.
      * @return the BatchDeploymentProperties object itself.
      */
-    public BatchDeploymentProperties withRetrySettings(BatchRetrySettings retrySettings) {
-        this.retrySettings = retrySettings;
+    public BatchDeploymentProperties withLoggingLevel(BatchLoggingLevel loggingLevel) {
+        this.loggingLevel = loggingLevel;
+        return this;
+    }
+
+    /**
+     * Get the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
+     * 
+     * @return the maxConcurrencyPerInstance value.
+     */
+    public Integer maxConcurrencyPerInstance() {
+        return this.maxConcurrencyPerInstance;
+    }
+
+    /**
+     * Set the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
+     * 
+     * @param maxConcurrencyPerInstance the maxConcurrencyPerInstance value to set.
+     * @return the BatchDeploymentProperties object itself.
+     */
+    public BatchDeploymentProperties withMaxConcurrencyPerInstance(Integer maxConcurrencyPerInstance) {
+        this.maxConcurrencyPerInstance = maxConcurrencyPerInstance;
         return this;
     }
 
@@ -205,26 +223,6 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the loggingLevel property: Logging level for batch inference operation.
-     * 
-     * @return the loggingLevel value.
-     */
-    public BatchLoggingLevel loggingLevel() {
-        return this.loggingLevel;
-    }
-
-    /**
-     * Set the loggingLevel property: Logging level for batch inference operation.
-     * 
-     * @param loggingLevel the loggingLevel value to set.
-     * @return the BatchDeploymentProperties object itself.
-     */
-    public BatchDeploymentProperties withLoggingLevel(BatchLoggingLevel loggingLevel) {
-        this.loggingLevel = loggingLevel;
-        return this;
-    }
-
-    /**
      * Get the model property: Reference to the model asset for the endpoint deployment.
      * 
      * @return the model value.
@@ -241,26 +239,6 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
      */
     public BatchDeploymentProperties withModel(AssetReferenceBase model) {
         this.model = model;
-        return this;
-    }
-
-    /**
-     * Get the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
-     * 
-     * @return the maxConcurrencyPerInstance value.
-     */
-    public Integer maxConcurrencyPerInstance() {
-        return this.maxConcurrencyPerInstance;
-    }
-
-    /**
-     * Set the maxConcurrencyPerInstance property: Indicates maximum number of parallelism per instance.
-     * 
-     * @param maxConcurrencyPerInstance the maxConcurrencyPerInstance value to set.
-     * @return the BatchDeploymentProperties object itself.
-     */
-    public BatchDeploymentProperties withMaxConcurrencyPerInstance(Integer maxConcurrencyPerInstance) {
-        this.maxConcurrencyPerInstance = maxConcurrencyPerInstance;
         return this;
     }
 
@@ -305,6 +283,15 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
+     * Get the provisioningState property: Provisioning state for the endpoint deployment.
+     * 
+     * @return the provisioningState value.
+     */
+    public DeploymentProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
      * Get the resources property: Indicates compute configuration for the job.
      * If not provided, will default to the defaults defined in ResourceConfiguration.
      * 
@@ -327,29 +314,24 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
-     * Get the provisioningState property: Provisioning state for the endpoint deployment.
+     * Get the retrySettings property: Retry Settings for the batch inference operation.
+     * If not provided, will default to the defaults defined in BatchRetrySettings.
      * 
-     * @return the provisioningState value.
+     * @return the retrySettings value.
      */
-    public DeploymentProvisioningState provisioningState() {
-        return this.provisioningState;
+    public BatchRetrySettings retrySettings() {
+        return this.retrySettings;
     }
 
     /**
-     * {@inheritDoc}
+     * Set the retrySettings property: Retry Settings for the batch inference operation.
+     * If not provided, will default to the defaults defined in BatchRetrySettings.
+     * 
+     * @param retrySettings the retrySettings value to set.
+     * @return the BatchDeploymentProperties object itself.
      */
-    @Override
-    public BatchDeploymentProperties withDescription(String description) {
-        super.withDescription(description);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BatchDeploymentProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public BatchDeploymentProperties withRetrySettings(BatchRetrySettings retrySettings) {
+        this.retrySettings = retrySettings;
         return this;
     }
 
@@ -359,6 +341,15 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     @Override
     public BatchDeploymentProperties withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BatchDeploymentProperties withDescription(String description) {
+        super.withDescription(description);
         return this;
     }
 
@@ -381,24 +372,35 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BatchDeploymentProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (deploymentConfiguration() != null) {
             deploymentConfiguration().validate();
-        }
-        if (retrySettings() != null) {
-            retrySettings().validate();
         }
         if (model() != null) {
             model().validate();
         }
         if (resources() != null) {
             resources().validate();
+        }
+        if (retrySettings() != null) {
+            retrySettings().validate();
+        }
+        if (codeConfiguration() != null) {
+            codeConfiguration().validate();
         }
     }
 
@@ -408,23 +410,23 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("codeConfiguration", codeConfiguration());
+        jsonWriter.writeStringField("description", description());
         jsonWriter.writeStringField("environmentId", environmentId());
         jsonWriter.writeMapField("environmentVariables", environmentVariables(),
             (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("compute", this.compute);
         jsonWriter.writeJsonField("deploymentConfiguration", this.deploymentConfiguration);
         jsonWriter.writeNumberField("errorThreshold", this.errorThreshold);
-        jsonWriter.writeJsonField("retrySettings", this.retrySettings);
-        jsonWriter.writeNumberField("miniBatchSize", this.miniBatchSize);
         jsonWriter.writeStringField("loggingLevel", this.loggingLevel == null ? null : this.loggingLevel.toString());
-        jsonWriter.writeJsonField("model", this.model);
         jsonWriter.writeNumberField("maxConcurrencyPerInstance", this.maxConcurrencyPerInstance);
+        jsonWriter.writeNumberField("miniBatchSize", this.miniBatchSize);
+        jsonWriter.writeJsonField("model", this.model);
         jsonWriter.writeStringField("outputAction", this.outputAction == null ? null : this.outputAction.toString());
         jsonWriter.writeStringField("outputFileName", this.outputFileName);
         jsonWriter.writeJsonField("resources", this.resources);
+        jsonWriter.writeJsonField("retrySettings", this.retrySettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -443,18 +445,18 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("description".equals(fieldName)) {
-                    deserializedBatchDeploymentProperties.withDescription(reader.getString());
-                } else if ("properties".equals(fieldName)) {
-                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
-                    deserializedBatchDeploymentProperties.withProperties(properties);
-                } else if ("codeConfiguration".equals(fieldName)) {
+                if ("codeConfiguration".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.withCodeConfiguration(CodeConfiguration.fromJson(reader));
+                } else if ("description".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.withDescription(reader.getString());
                 } else if ("environmentId".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.withEnvironmentId(reader.getString());
                 } else if ("environmentVariables".equals(fieldName)) {
                     Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
                     deserializedBatchDeploymentProperties.withEnvironmentVariables(environmentVariables);
+                } else if ("properties".equals(fieldName)) {
+                    Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
+                    deserializedBatchDeploymentProperties.withProperties(properties);
                 } else if ("compute".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.compute = reader.getString();
                 } else if ("deploymentConfiguration".equals(fieldName)) {
@@ -462,28 +464,28 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
                         = BatchDeploymentConfiguration.fromJson(reader);
                 } else if ("errorThreshold".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.errorThreshold = reader.getNullable(JsonReader::getInt);
-                } else if ("retrySettings".equals(fieldName)) {
-                    deserializedBatchDeploymentProperties.retrySettings = BatchRetrySettings.fromJson(reader);
-                } else if ("miniBatchSize".equals(fieldName)) {
-                    deserializedBatchDeploymentProperties.miniBatchSize = reader.getNullable(JsonReader::getLong);
                 } else if ("loggingLevel".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.loggingLevel
                         = BatchLoggingLevel.fromString(reader.getString());
-                } else if ("model".equals(fieldName)) {
-                    deserializedBatchDeploymentProperties.model = AssetReferenceBase.fromJson(reader);
                 } else if ("maxConcurrencyPerInstance".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.maxConcurrencyPerInstance
                         = reader.getNullable(JsonReader::getInt);
+                } else if ("miniBatchSize".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.miniBatchSize = reader.getNullable(JsonReader::getLong);
+                } else if ("model".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.model = AssetReferenceBase.fromJson(reader);
                 } else if ("outputAction".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.outputAction
                         = BatchOutputAction.fromString(reader.getString());
                 } else if ("outputFileName".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.outputFileName = reader.getString();
-                } else if ("resources".equals(fieldName)) {
-                    deserializedBatchDeploymentProperties.resources = DeploymentResourceConfiguration.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedBatchDeploymentProperties.provisioningState
                         = DeploymentProvisioningState.fromString(reader.getString());
+                } else if ("resources".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.resources = DeploymentResourceConfiguration.fromJson(reader);
+                } else if ("retrySettings".equals(fieldName)) {
+                    deserializedBatchDeploymentProperties.retrySettings = BatchRetrySettings.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

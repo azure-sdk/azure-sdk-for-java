@@ -44,7 +44,6 @@ public final class AmlTokenComputeIdentity extends MonitorComputeIdentityBase {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

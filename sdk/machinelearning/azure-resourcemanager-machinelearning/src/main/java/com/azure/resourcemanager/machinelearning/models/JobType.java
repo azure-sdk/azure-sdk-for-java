@@ -37,6 +37,11 @@ public final class JobType extends ExpandableStringEnum<JobType> {
     public static final JobType SPARK = fromString("Spark");
 
     /**
+     * Static value FineTuning for JobType.
+     */
+    public static final JobType FINE_TUNING = fromString("FineTuning");
+
+    /**
      * Creates a new instance of JobType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
