@@ -37,16 +37,6 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     public static final ProvisioningState UPDATING = fromString("Updating");
 
     /**
-     * Static value Deleting for ProvisioningState.
-     */
-    public static final ProvisioningState DELETING = fromString("Deleting");
-
-    /**
-     * Static value Migrating for ProvisioningState.
-     */
-    public static final ProvisioningState MIGRATING = fromString("Migrating");
-
-    /**
      * Creates a new instance of ProvisioningState value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
