@@ -77,6 +77,11 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
     public static final ConnectionCategory AZURE_OPEN_AI = fromString("AzureOpenAI");
 
     /**
+     * Static value AIServices for ConnectionCategory.
+     */
+    public static final ConnectionCategory AISERVICES = fromString("AIServices");
+
+    /**
      * Static value CognitiveSearch for ConnectionCategory.
      */
     public static final ConnectionCategory COGNITIVE_SEARCH = fromString("CognitiveSearch");
@@ -515,11 +520,6 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
      * Static value Serverless for ConnectionCategory.
      */
     public static final ConnectionCategory SERVERLESS = fromString("Serverless");
-
-    /**
-     * Static value AIServices for ConnectionCategory.
-     */
-    public static final ConnectionCategory AISERVICES = fromString("AIServices");
 
     /**
      * Creates a new instance of ConnectionCategory value.

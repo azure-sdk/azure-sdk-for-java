@@ -18,24 +18,126 @@ import java.io.IOException;
 @Fluent
 public final class EncryptionProperty implements JsonSerializable<EncryptionProperty> {
     /*
+     * The byok cosmosdb account that customer brings to store customer's data
+     * with encryption
+     */
+    private String cosmosDbResourceId;
+
+    /*
+     * Identity to be used with the keyVault
+     */
+    private IdentityForCmk identity;
+
+    /*
+     * KeyVault details to do the encryption
+     */
+    private KeyVaultProperties keyVaultProperties;
+
+    /*
+     * The byok search account that customer brings to store customer's data
+     * with encryption
+     */
+    private String searchAccountResourceId;
+
+    /*
      * Indicates whether or not the encryption is enabled for the workspace.
      */
     private EncryptionStatus status;
 
     /*
-     * The identity that will be used to access the key vault for encryption at rest.
+     * The byok storage account that customer brings to store customer's data
+     * with encryption
      */
-    private IdentityForCmk identity;
-
-    /*
-     * Customer Key vault properties.
-     */
-    private EncryptionKeyVaultProperties keyVaultProperties;
+    private String storageAccountResourceId;
 
     /**
      * Creates an instance of EncryptionProperty class.
      */
     public EncryptionProperty() {
+    }
+
+    /**
+     * Get the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the cosmosDbResourceId value.
+     */
+    public String cosmosDbResourceId() {
+        return this.cosmosDbResourceId;
+    }
+
+    /**
+     * Set the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param cosmosDbResourceId the cosmosDbResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withCosmosDbResourceId(String cosmosDbResourceId) {
+        this.cosmosDbResourceId = cosmosDbResourceId;
+        return this;
+    }
+
+    /**
+     * Get the identity property: Identity to be used with the keyVault.
+     * 
+     * @return the identity value.
+     */
+    public IdentityForCmk identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Identity to be used with the keyVault.
+     * 
+     * @param identity the identity value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withIdentity(IdentityForCmk identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
+     * @return the keyVaultProperties value.
+     */
+    public KeyVaultProperties keyVaultProperties() {
+        return this.keyVaultProperties;
+    }
+
+    /**
+     * Set the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
+     * @param keyVaultProperties the keyVaultProperties value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withKeyVaultProperties(KeyVaultProperties keyVaultProperties) {
+        this.keyVaultProperties = keyVaultProperties;
+        return this;
+    }
+
+    /**
+     * Get the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the searchAccountResourceId value.
+     */
+    public String searchAccountResourceId() {
+        return this.searchAccountResourceId;
+    }
+
+    /**
+     * Set the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param searchAccountResourceId the searchAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withSearchAccountResourceId(String searchAccountResourceId) {
+        this.searchAccountResourceId = searchAccountResourceId;
+        return this;
     }
 
     /**
@@ -59,42 +161,24 @@ public final class EncryptionProperty implements JsonSerializable<EncryptionProp
     }
 
     /**
-     * Get the identity property: The identity that will be used to access the key vault for encryption at rest.
+     * Get the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
      * 
-     * @return the identity value.
+     * @return the storageAccountResourceId value.
      */
-    public IdentityForCmk identity() {
-        return this.identity;
+    public String storageAccountResourceId() {
+        return this.storageAccountResourceId;
     }
 
     /**
-     * Set the identity property: The identity that will be used to access the key vault for encryption at rest.
+     * Set the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
      * 
-     * @param identity the identity value to set.
+     * @param storageAccountResourceId the storageAccountResourceId value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withIdentity(IdentityForCmk identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the keyVaultProperties property: Customer Key vault properties.
-     * 
-     * @return the keyVaultProperties value.
-     */
-    public EncryptionKeyVaultProperties keyVaultProperties() {
-        return this.keyVaultProperties;
-    }
-
-    /**
-     * Set the keyVaultProperties property: Customer Key vault properties.
-     * 
-     * @param keyVaultProperties the keyVaultProperties value to set.
-     * @return the EncryptionProperty object itself.
-     */
-    public EncryptionProperty withKeyVaultProperties(EncryptionKeyVaultProperties keyVaultProperties) {
-        this.keyVaultProperties = keyVaultProperties;
+    public EncryptionProperty withStorageAccountResourceId(String storageAccountResourceId) {
+        this.storageAccountResourceId = storageAccountResourceId;
         return this;
     }
 
@@ -104,10 +188,6 @@ public final class EncryptionProperty implements JsonSerializable<EncryptionProp
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (status() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
-        }
         if (identity() != null) {
             identity().validate();
         }
@@ -117,6 +197,10 @@ public final class EncryptionProperty implements JsonSerializable<EncryptionProp
                     "Missing required property keyVaultProperties in model EncryptionProperty"));
         } else {
             keyVaultProperties().validate();
+        }
+        if (status() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
         }
     }
 
@@ -128,9 +212,12 @@ public final class EncryptionProperty implements JsonSerializable<EncryptionProp
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeJsonField("keyVaultProperties", this.keyVaultProperties);
+        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        jsonWriter.writeStringField("cosmosDbResourceId", this.cosmosDbResourceId);
         jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("searchAccountResourceId", this.searchAccountResourceId);
+        jsonWriter.writeStringField("storageAccountResourceId", this.storageAccountResourceId);
         return jsonWriter.writeEndObject();
     }
 
@@ -150,12 +237,18 @@ public final class EncryptionProperty implements JsonSerializable<EncryptionProp
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("status".equals(fieldName)) {
+                if ("keyVaultProperties".equals(fieldName)) {
+                    deserializedEncryptionProperty.keyVaultProperties = KeyVaultProperties.fromJson(reader);
+                } else if ("status".equals(fieldName)) {
                     deserializedEncryptionProperty.status = EncryptionStatus.fromString(reader.getString());
-                } else if ("keyVaultProperties".equals(fieldName)) {
-                    deserializedEncryptionProperty.keyVaultProperties = EncryptionKeyVaultProperties.fromJson(reader);
+                } else if ("cosmosDbResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.cosmosDbResourceId = reader.getString();
                 } else if ("identity".equals(fieldName)) {
                     deserializedEncryptionProperty.identity = IdentityForCmk.fromJson(reader);
+                } else if ("searchAccountResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.searchAccountResourceId = reader.getString();
+                } else if ("storageAccountResourceId".equals(fieldName)) {
+                    deserializedEncryptionProperty.storageAccountResourceId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

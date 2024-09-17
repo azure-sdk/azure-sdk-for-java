@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.ModelContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ModelContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,8 @@ import java.util.Map;
 public final class RegistryModelContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/ModelContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/ModelContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Model Container.
@@ -26,11 +25,11 @@ public final class RegistryModelContainersCreateOrUpdateSamples {
     public static void
         createOrUpdateRegistryModelContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryModelContainers()
-            .createOrUpdate("testrg123", "registry123", "testContainer",
-                new ModelContainerInner()
-                    .withProperties(new ModelContainerProperties().withDescription("Model container description")
-                        .withTags(mapOf("tag1", "value1", "tag2", "value2"))),
-                com.azure.core.util.Context.NONE);
+            .define("testContainer")
+            .withExistingRegistry("testrg123", "registry123")
+            .withProperties(new ModelContainerProperties().withDescription("Model container description")
+                .withTags(mapOf("tag1", "value1", "tag2", "value2")))
+            .create();
     }
 
     // Use "Map.of" if available

@@ -21,14 +21,14 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.BANDIT;
 
     /*
-     * Ratio of the allowed distance from the best performing run.
-     */
-    private Float slackFactor;
-
-    /*
      * Absolute distance allowed from the best performing run.
      */
     private Float slackAmount;
+
+    /*
+     * Ratio of the allowed distance from the best performing run.
+     */
+    private Float slackFactor;
 
     /**
      * Creates an instance of BanditPolicy class.
@@ -44,26 +44,6 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     @Override
     public EarlyTerminationPolicyType policyType() {
         return this.policyType;
-    }
-
-    /**
-     * Get the slackFactor property: Ratio of the allowed distance from the best performing run.
-     * 
-     * @return the slackFactor value.
-     */
-    public Float slackFactor() {
-        return this.slackFactor;
-    }
-
-    /**
-     * Set the slackFactor property: Ratio of the allowed distance from the best performing run.
-     * 
-     * @param slackFactor the slackFactor value to set.
-     * @return the BanditPolicy object itself.
-     */
-    public BanditPolicy withSlackFactor(Float slackFactor) {
-        this.slackFactor = slackFactor;
-        return this;
     }
 
     /**
@@ -87,11 +67,22 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the slackFactor property: Ratio of the allowed distance from the best performing run.
+     * 
+     * @return the slackFactor value.
      */
-    @Override
-    public BanditPolicy withEvaluationInterval(Integer evaluationInterval) {
-        super.withEvaluationInterval(evaluationInterval);
+    public Float slackFactor() {
+        return this.slackFactor;
+    }
+
+    /**
+     * Set the slackFactor property: Ratio of the allowed distance from the best performing run.
+     * 
+     * @param slackFactor the slackFactor value to set.
+     * @return the BanditPolicy object itself.
+     */
+    public BanditPolicy withSlackFactor(Float slackFactor) {
+        this.slackFactor = slackFactor;
         return this;
     }
 
@@ -105,13 +96,21 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BanditPolicy withEvaluationInterval(Integer evaluationInterval) {
+        super.withEvaluationInterval(evaluationInterval);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -120,11 +119,11 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeNumberField("delayEvaluation", delayEvaluation());
+        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeStringField("policyType", this.policyType == null ? null : this.policyType.toString());
-        jsonWriter.writeNumberField("slackFactor", this.slackFactor);
         jsonWriter.writeNumberField("slackAmount", this.slackAmount);
+        jsonWriter.writeNumberField("slackFactor", this.slackFactor);
         return jsonWriter.writeEndObject();
     }
 
@@ -143,16 +142,16 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("evaluationInterval".equals(fieldName)) {
-                    deserializedBanditPolicy.withEvaluationInterval(reader.getNullable(JsonReader::getInt));
-                } else if ("delayEvaluation".equals(fieldName)) {
+                if ("delayEvaluation".equals(fieldName)) {
                     deserializedBanditPolicy.withDelayEvaluation(reader.getNullable(JsonReader::getInt));
+                } else if ("evaluationInterval".equals(fieldName)) {
+                    deserializedBanditPolicy.withEvaluationInterval(reader.getNullable(JsonReader::getInt));
                 } else if ("policyType".equals(fieldName)) {
                     deserializedBanditPolicy.policyType = EarlyTerminationPolicyType.fromString(reader.getString());
-                } else if ("slackFactor".equals(fieldName)) {
-                    deserializedBanditPolicy.slackFactor = reader.getNullable(JsonReader::getFloat);
                 } else if ("slackAmount".equals(fieldName)) {
                     deserializedBanditPolicy.slackAmount = reader.getNullable(JsonReader::getFloat);
+                } else if ("slackFactor".equals(fieldName)) {
+                    deserializedBanditPolicy.slackFactor = reader.getNullable(JsonReader::getFloat);
                 } else {
                     reader.skipChildren();
                 }

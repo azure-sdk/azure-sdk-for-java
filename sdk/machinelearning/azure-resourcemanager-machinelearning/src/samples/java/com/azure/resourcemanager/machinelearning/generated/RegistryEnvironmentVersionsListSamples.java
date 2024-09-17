@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class RegistryEnvironmentVersionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/EnvironmentVersion/list.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/EnvironmentVersion/list.json
      */
     /**
      * Sample code: List Registry Environment Version.

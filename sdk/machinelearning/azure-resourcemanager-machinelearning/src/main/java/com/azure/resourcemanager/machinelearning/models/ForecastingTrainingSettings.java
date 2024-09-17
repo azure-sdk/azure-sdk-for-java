@@ -80,8 +80,8 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
      * {@inheritDoc}
      */
     @Override
-    public ForecastingTrainingSettings withEnableOnnxCompatibleModels(Boolean enableOnnxCompatibleModels) {
-        super.withEnableOnnxCompatibleModels(enableOnnxCompatibleModels);
+    public ForecastingTrainingSettings withEnableDnnTraining(Boolean enableDnnTraining) {
+        super.withEnableDnnTraining(enableDnnTraining);
         return this;
     }
 
@@ -89,8 +89,17 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
      * {@inheritDoc}
      */
     @Override
-    public ForecastingTrainingSettings withStackEnsembleSettings(StackEnsembleSettings stackEnsembleSettings) {
-        super.withStackEnsembleSettings(stackEnsembleSettings);
+    public ForecastingTrainingSettings withEnableModelExplainability(Boolean enableModelExplainability) {
+        super.withEnableModelExplainability(enableModelExplainability);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ForecastingTrainingSettings withEnableOnnxCompatibleModels(Boolean enableOnnxCompatibleModels) {
+        super.withEnableOnnxCompatibleModels(enableOnnxCompatibleModels);
         return this;
     }
 
@@ -125,17 +134,8 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
      * {@inheritDoc}
      */
     @Override
-    public ForecastingTrainingSettings withEnableModelExplainability(Boolean enableModelExplainability) {
-        super.withEnableModelExplainability(enableModelExplainability);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ForecastingTrainingSettings withEnableDnnTraining(Boolean enableDnnTraining) {
-        super.withEnableDnnTraining(enableDnnTraining);
+    public ForecastingTrainingSettings withStackEnsembleSettings(StackEnsembleSettings stackEnsembleSettings) {
+        super.withStackEnsembleSettings(stackEnsembleSettings);
         return this;
     }
 
@@ -146,7 +146,9 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (stackEnsembleSettings() != null) {
+            stackEnsembleSettings().validate();
+        }
     }
 
     /**
@@ -155,14 +157,14 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeBooleanField("enableDnnTraining", enableDnnTraining());
+        jsonWriter.writeBooleanField("enableModelExplainability", enableModelExplainability());
         jsonWriter.writeBooleanField("enableOnnxCompatibleModels", enableOnnxCompatibleModels());
-        jsonWriter.writeJsonField("stackEnsembleSettings", stackEnsembleSettings());
         jsonWriter.writeBooleanField("enableStackEnsemble", enableStackEnsemble());
         jsonWriter.writeBooleanField("enableVoteEnsemble", enableVoteEnsemble());
         jsonWriter.writeStringField("ensembleModelDownloadTimeout",
             CoreUtils.durationToStringWithDays(ensembleModelDownloadTimeout()));
-        jsonWriter.writeBooleanField("enableModelExplainability", enableModelExplainability());
-        jsonWriter.writeBooleanField("enableDnnTraining", enableDnnTraining());
+        jsonWriter.writeJsonField("stackEnsembleSettings", stackEnsembleSettings());
         jsonWriter.writeArrayField("allowedTrainingAlgorithms", this.allowedTrainingAlgorithms,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("blockedTrainingAlgorithms", this.blockedTrainingAlgorithms,
@@ -185,12 +187,15 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("enableOnnxCompatibleModels".equals(fieldName)) {
+                if ("enableDnnTraining".equals(fieldName)) {
+                    deserializedForecastingTrainingSettings
+                        .withEnableDnnTraining(reader.getNullable(JsonReader::getBoolean));
+                } else if ("enableModelExplainability".equals(fieldName)) {
+                    deserializedForecastingTrainingSettings
+                        .withEnableModelExplainability(reader.getNullable(JsonReader::getBoolean));
+                } else if ("enableOnnxCompatibleModels".equals(fieldName)) {
                     deserializedForecastingTrainingSettings
                         .withEnableOnnxCompatibleModels(reader.getNullable(JsonReader::getBoolean));
-                } else if ("stackEnsembleSettings".equals(fieldName)) {
-                    deserializedForecastingTrainingSettings
-                        .withStackEnsembleSettings(StackEnsembleSettings.fromJson(reader));
                 } else if ("enableStackEnsemble".equals(fieldName)) {
                     deserializedForecastingTrainingSettings
                         .withEnableStackEnsemble(reader.getNullable(JsonReader::getBoolean));
@@ -200,12 +205,9 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
                 } else if ("ensembleModelDownloadTimeout".equals(fieldName)) {
                     deserializedForecastingTrainingSettings.withEnsembleModelDownloadTimeout(
                         reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString())));
-                } else if ("enableModelExplainability".equals(fieldName)) {
+                } else if ("stackEnsembleSettings".equals(fieldName)) {
                     deserializedForecastingTrainingSettings
-                        .withEnableModelExplainability(reader.getNullable(JsonReader::getBoolean));
-                } else if ("enableDnnTraining".equals(fieldName)) {
-                    deserializedForecastingTrainingSettings
-                        .withEnableDnnTraining(reader.getNullable(JsonReader::getBoolean));
+                        .withStackEnsembleSettings(StackEnsembleSettings.fromJson(reader));
                 } else if ("allowedTrainingAlgorithms".equals(fieldName)) {
                     List<ForecastingModels> allowedTrainingAlgorithms
                         = reader.readArray(reader1 -> ForecastingModels.fromString(reader1.getString()));

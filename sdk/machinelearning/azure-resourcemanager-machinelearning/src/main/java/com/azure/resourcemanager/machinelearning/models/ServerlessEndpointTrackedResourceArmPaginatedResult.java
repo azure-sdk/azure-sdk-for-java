@@ -20,39 +20,19 @@ import java.util.List;
 public final class ServerlessEndpointTrackedResourceArmPaginatedResult
     implements JsonSerializable<ServerlessEndpointTrackedResourceArmPaginatedResult> {
     /*
-     * An array of objects of type ServerlessEndpoint.
-     */
-    private List<ServerlessEndpointInner> value;
-
-    /*
      * The link to the next page of ServerlessEndpoint objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type ServerlessEndpoint.
+     */
+    private List<ServerlessEndpointInner> value;
 
     /**
      * Creates an instance of ServerlessEndpointTrackedResourceArmPaginatedResult class.
      */
     public ServerlessEndpointTrackedResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type ServerlessEndpoint.
-     * 
-     * @return the value value.
-     */
-    public List<ServerlessEndpointInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type ServerlessEndpoint.
-     * 
-     * @param value the value value to set.
-     * @return the ServerlessEndpointTrackedResourceArmPaginatedResult object itself.
-     */
-    public ServerlessEndpointTrackedResourceArmPaginatedResult withValue(List<ServerlessEndpointInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class ServerlessEndpointTrackedResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type ServerlessEndpoint.
+     * 
+     * @return the value value.
+     */
+    public List<ServerlessEndpointInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type ServerlessEndpoint.
+     * 
+     * @param value the value value to set.
+     * @return the ServerlessEndpointTrackedResourceArmPaginatedResult object itself.
+     */
+    public ServerlessEndpointTrackedResourceArmPaginatedResult withValue(List<ServerlessEndpointInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class ServerlessEndpointTrackedResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -116,12 +116,12 @@ public final class ServerlessEndpointTrackedResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedServerlessEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<ServerlessEndpointInner> value
                         = reader.readArray(reader1 -> ServerlessEndpointInner.fromJson(reader1));
                     deserializedServerlessEndpointTrackedResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedServerlessEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

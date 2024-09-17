@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.DataContainerInner;
 import com.azure.resourcemanager.machinelearning.models.DataContainerProperties;
 import com.azure.resourcemanager.machinelearning.models.DataType;
 import java.util.HashMap;
@@ -15,8 +16,8 @@ import java.util.Map;
 public final class DataContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/DataContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Workspace/DataContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Data Container.
@@ -26,13 +27,12 @@ public final class DataContainersCreateOrUpdateSamples {
     public static void
         createOrUpdateWorkspaceDataContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataContainers()
-            .define("datacontainer123")
-            .withExistingWorkspace("testrg123", "workspace123")
-            .withProperties(new DataContainerProperties().withDescription("string")
-                .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-                .withProperties(mapOf("properties1", "value1", "properties2", "value2"))
-                .withDataType(DataType.fromString("UriFile")))
-            .create();
+            .createOrUpdateWithResponse("testrg123", "workspace123", "datacontainer123",
+                new DataContainerInner().withProperties(new DataContainerProperties().withDescription("string")
+                    .withProperties(mapOf("properties1", "value1", "properties2", "value2"))
+                    .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+                    .withDataType(DataType.fromString("UriFile"))),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

@@ -102,6 +102,13 @@ public interface Registry {
     ArmResourceId managedResourceGroup();
 
     /**
+     * Gets the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @return the managedResourceGroupSettings value.
+     */
+    ManagedResourceGroupSettings managedResourceGroupSettings();
+
+    /**
      * Gets the mlFlowRegistryUri property: MLFlow Registry URI for the Registry.
      * 
      * @return the mlFlowRegistryUri value.
@@ -217,8 +224,9 @@ public interface Registry {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
             DefinitionStages.WithKind, DefinitionStages.WithSku, DefinitionStages.WithDiscoveryUrl,
             DefinitionStages.WithIntellectualPropertyPublisher, DefinitionStages.WithManagedResourceGroup,
-            DefinitionStages.WithMlFlowRegistryUri, DefinitionStages.WithRegistryPrivateEndpointConnections,
-            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithRegionDetails {
+            DefinitionStages.WithManagedResourceGroupSettings, DefinitionStages.WithMlFlowRegistryUri,
+            DefinitionStages.WithRegistryPrivateEndpointConnections, DefinitionStages.WithPublicNetworkAccess,
+            DefinitionStages.WithRegionDetails {
             /**
              * Executes the create request.
              * 
@@ -328,6 +336,19 @@ public interface Registry {
              * @return the next definition stage.
              */
             WithCreate withManagedResourceGroup(ArmResourceId managedResourceGroup);
+        }
+
+        /**
+         * The stage of the Registry definition allowing to specify managedResourceGroupSettings.
+         */
+        interface WithManagedResourceGroupSettings {
+            /**
+             * Specifies the managedResourceGroupSettings property: Managed resource group specific settings.
+             * 
+             * @param managedResourceGroupSettings Managed resource group specific settings.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedResourceGroupSettings(ManagedResourceGroupSettings managedResourceGroupSettings);
         }
 
         /**

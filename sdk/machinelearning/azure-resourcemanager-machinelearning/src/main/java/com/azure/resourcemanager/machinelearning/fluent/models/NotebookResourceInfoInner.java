@@ -23,14 +23,19 @@ public final class NotebookResourceInfoInner implements JsonSerializable<Noteboo
     private String fqdn;
 
     /*
-     * the data plane resourceId that used to initialize notebook component
+     * The isPrivateLinkEnabled property.
      */
-    private String resourceId;
+    private Boolean isPrivateLinkEnabled;
 
     /*
      * The error that occurs when preparing notebook.
      */
     private NotebookPreparationError notebookPreparationError;
+
+    /*
+     * the data plane resourceId that used to initialize notebook component
+     */
+    private String resourceId;
 
     /**
      * Creates an instance of NotebookResourceInfoInner class.
@@ -59,22 +64,22 @@ public final class NotebookResourceInfoInner implements JsonSerializable<Noteboo
     }
 
     /**
-     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * Get the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
      * 
-     * @return the resourceId value.
+     * @return the isPrivateLinkEnabled value.
      */
-    public String resourceId() {
-        return this.resourceId;
+    public Boolean isPrivateLinkEnabled() {
+        return this.isPrivateLinkEnabled;
     }
 
     /**
-     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * Set the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
      * 
-     * @param resourceId the resourceId value to set.
+     * @param isPrivateLinkEnabled the isPrivateLinkEnabled value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
-    public NotebookResourceInfoInner withResourceId(String resourceId) {
-        this.resourceId = resourceId;
+    public NotebookResourceInfoInner withIsPrivateLinkEnabled(Boolean isPrivateLinkEnabled) {
+        this.isPrivateLinkEnabled = isPrivateLinkEnabled;
         return this;
     }
 
@@ -99,6 +104,26 @@ public final class NotebookResourceInfoInner implements JsonSerializable<Noteboo
     }
 
     /**
+     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * 
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * 
+     * @param resourceId the resourceId value to set.
+     * @return the NotebookResourceInfoInner object itself.
+     */
+    public NotebookResourceInfoInner withResourceId(String resourceId) {
+        this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -116,8 +141,9 @@ public final class NotebookResourceInfoInner implements JsonSerializable<Noteboo
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("fqdn", this.fqdn);
-        jsonWriter.writeStringField("resourceId", this.resourceId);
+        jsonWriter.writeBooleanField("isPrivateLinkEnabled", this.isPrivateLinkEnabled);
         jsonWriter.writeJsonField("notebookPreparationError", this.notebookPreparationError);
+        jsonWriter.writeStringField("resourceId", this.resourceId);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,11 +164,14 @@ public final class NotebookResourceInfoInner implements JsonSerializable<Noteboo
 
                 if ("fqdn".equals(fieldName)) {
                     deserializedNotebookResourceInfoInner.fqdn = reader.getString();
-                } else if ("resourceId".equals(fieldName)) {
-                    deserializedNotebookResourceInfoInner.resourceId = reader.getString();
+                } else if ("isPrivateLinkEnabled".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.isPrivateLinkEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
                 } else if ("notebookPreparationError".equals(fieldName)) {
                     deserializedNotebookResourceInfoInner.notebookPreparationError
                         = NotebookPreparationError.fromJson(reader);
+                } else if ("resourceId".equals(fieldName)) {
+                    deserializedNotebookResourceInfoInner.resourceId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

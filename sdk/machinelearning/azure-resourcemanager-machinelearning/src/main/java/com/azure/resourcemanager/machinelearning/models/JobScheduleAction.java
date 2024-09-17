@@ -69,7 +69,6 @@ public final class JobScheduleAction extends ScheduleActionBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (jobDefinition() == null) {
             throw LOGGER.atError()
                 .log(

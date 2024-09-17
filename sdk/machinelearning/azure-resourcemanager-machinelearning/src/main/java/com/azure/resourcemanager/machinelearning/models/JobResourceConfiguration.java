@@ -17,45 +17,21 @@ import java.util.Map;
 @Fluent
 public final class JobResourceConfiguration extends ResourceConfiguration {
     /*
-     * Size of the docker container's shared memory block. This should be in the format of (number)(unit) where number
-     * as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes), m(megabytes), or g(gigabytes).
-     */
-    private String shmSize;
-
-    /*
      * Extra arguments to pass to the Docker run command. This would override any parameters that have already been set
      * by the system, or in this section. This parameter is only supported for Azure ML compute types.
      */
     private String dockerArgs;
 
+    /*
+     * Size of the docker container's shared memory block. This should be in the format of (number)(unit) where number
+     * as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes), m(megabytes), or g(gigabytes).
+     */
+    private String shmSize;
+
     /**
      * Creates an instance of JobResourceConfiguration class.
      */
     public JobResourceConfiguration() {
-    }
-
-    /**
-     * Get the shmSize property: Size of the docker container's shared memory block. This should be in the format of
-     * (number)(unit) where number as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes),
-     * m(megabytes), or g(gigabytes).
-     * 
-     * @return the shmSize value.
-     */
-    public String shmSize() {
-        return this.shmSize;
-    }
-
-    /**
-     * Set the shmSize property: Size of the docker container's shared memory block. This should be in the format of
-     * (number)(unit) where number as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes),
-     * m(megabytes), or g(gigabytes).
-     * 
-     * @param shmSize the shmSize value to set.
-     * @return the JobResourceConfiguration object itself.
-     */
-    public JobResourceConfiguration withShmSize(String shmSize) {
-        this.shmSize = shmSize;
-        return this;
     }
 
     /**
@@ -79,6 +55,30 @@ public final class JobResourceConfiguration extends ResourceConfiguration {
      */
     public JobResourceConfiguration withDockerArgs(String dockerArgs) {
         this.dockerArgs = dockerArgs;
+        return this;
+    }
+
+    /**
+     * Get the shmSize property: Size of the docker container's shared memory block. This should be in the format of
+     * (number)(unit) where number as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes),
+     * m(megabytes), or g(gigabytes).
+     * 
+     * @return the shmSize value.
+     */
+    public String shmSize() {
+        return this.shmSize;
+    }
+
+    /**
+     * Set the shmSize property: Size of the docker container's shared memory block. This should be in the format of
+     * (number)(unit) where number as to be greater than 0 and the unit can be one of b(bytes), k(kilobytes),
+     * m(megabytes), or g(gigabytes).
+     * 
+     * @param shmSize the shmSize value to set.
+     * @return the JobResourceConfiguration object itself.
+     */
+    public JobResourceConfiguration withShmSize(String shmSize) {
+        this.shmSize = shmSize;
         return this;
     }
 
@@ -116,7 +116,6 @@ public final class JobResourceConfiguration extends ResourceConfiguration {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -128,8 +127,8 @@ public final class JobResourceConfiguration extends ResourceConfiguration {
         jsonWriter.writeNumberField("instanceCount", instanceCount());
         jsonWriter.writeStringField("instanceType", instanceType());
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeUntyped(element));
-        jsonWriter.writeStringField("shmSize", this.shmSize);
         jsonWriter.writeStringField("dockerArgs", this.dockerArgs);
+        jsonWriter.writeStringField("shmSize", this.shmSize);
         return jsonWriter.writeEndObject();
     }
 
@@ -155,10 +154,10 @@ public final class JobResourceConfiguration extends ResourceConfiguration {
                 } else if ("properties".equals(fieldName)) {
                     Map<String, Object> properties = reader.readMap(reader1 -> reader1.readUntyped());
                     deserializedJobResourceConfiguration.withProperties(properties);
-                } else if ("shmSize".equals(fieldName)) {
-                    deserializedJobResourceConfiguration.shmSize = reader.getString();
                 } else if ("dockerArgs".equals(fieldName)) {
                     deserializedJobResourceConfiguration.dockerArgs = reader.getString();
+                } else if ("shmSize".equals(fieldName)) {
+                    deserializedJobResourceConfiguration.shmSize = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

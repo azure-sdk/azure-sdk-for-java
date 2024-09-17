@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class ServiceManagedResourcesSettings implements JsonSerializable<ServiceManagedResourcesSettings> {
     /*
-     * The settings for the service managed cosmosdb account.
+     * The cosmosDb property.
      */
     private CosmosDbSettings cosmosDb;
 
@@ -28,7 +28,7 @@ public final class ServiceManagedResourcesSettings implements JsonSerializable<S
     }
 
     /**
-     * Get the cosmosDb property: The settings for the service managed cosmosdb account.
+     * Get the cosmosDb property: The cosmosDb property.
      * 
      * @return the cosmosDb value.
      */
@@ -37,7 +37,7 @@ public final class ServiceManagedResourcesSettings implements JsonSerializable<S
     }
 
     /**
-     * Set the cosmosDb property: The settings for the service managed cosmosdb account.
+     * Set the cosmosDb property: The cosmosDb property.
      * 
      * @param cosmosDb the cosmosDb value to set.
      * @return the ServiceManagedResourcesSettings object itself.

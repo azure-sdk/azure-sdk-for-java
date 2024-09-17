@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Private Endpoint Outbound Rule for the managed network of a machine learning workspace.
@@ -25,6 +26,16 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
      * workspace.
      */
     private PrivateEndpointDestination destination;
+
+    /*
+     * The fqdns property.
+     */
+    private List<String> fqdns;
+
+    /*
+     * The parentRuleNames property.
+     */
+    private List<String> parentRuleNames;
 
     /**
      * Creates an instance of PrivateEndpointOutboundRule class.
@@ -65,6 +76,36 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
     }
 
     /**
+     * Get the fqdns property: The fqdns property.
+     * 
+     * @return the fqdns value.
+     */
+    public List<String> fqdns() {
+        return this.fqdns;
+    }
+
+    /**
+     * Set the fqdns property: The fqdns property.
+     * 
+     * @param fqdns the fqdns value to set.
+     * @return the PrivateEndpointOutboundRule object itself.
+     */
+    public PrivateEndpointOutboundRule withFqdns(List<String> fqdns) {
+        this.fqdns = fqdns;
+        return this;
+    }
+
+    /**
+     * Get the parentRuleNames property: The parentRuleNames property.
+     * 
+     * @return the parentRuleNames value.
+     */
+    @Override
+    public List<String> parentRuleNames() {
+        return this.parentRuleNames;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -89,7 +130,6 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
         if (destination() != null) {
             destination().validate();
         }
@@ -105,6 +145,7 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
         jsonWriter.writeStringField("status", status() == null ? null : status().toString());
         jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
         jsonWriter.writeJsonField("destination", this.destination);
+        jsonWriter.writeArrayField("fqdns", this.fqdns, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -125,12 +166,18 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
 
                 if ("category".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.withCategory(RuleCategory.fromString(reader.getString()));
+                } else if ("parentRuleNames".equals(fieldName)) {
+                    List<String> parentRuleNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedPrivateEndpointOutboundRule.parentRuleNames = parentRuleNames;
                 } else if ("status".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.withStatus(RuleStatus.fromString(reader.getString()));
                 } else if ("type".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.type = RuleType.fromString(reader.getString());
                 } else if ("destination".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.destination = PrivateEndpointDestination.fromJson(reader);
+                } else if ("fqdns".equals(fieldName)) {
+                    List<String> fqdns = reader.readArray(reader1 -> reader1.getString());
+                    deserializedPrivateEndpointOutboundRule.fqdns = fqdns;
                 } else {
                     reader.skipChildren();
                 }

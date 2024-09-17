@@ -30,19 +30,10 @@ public final class Databricks extends Compute {
     private DatabricksProperties properties;
 
     /*
-     * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
+     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning
+     * service provisioned it if false.
      */
-    private ProvisioningState provisioningState;
-
-    /*
-     * The time at which the compute was created.
-     */
-    private OffsetDateTime createdOn;
-
-    /*
-     * The time at which the compute was last modified.
-     */
-    private OffsetDateTime modifiedOn;
+    private Boolean isAttachedCompute;
 
     /*
      * Errors during provisioning
@@ -50,10 +41,19 @@ public final class Databricks extends Compute {
     private List<ManagementError> provisioningErrors;
 
     /*
-     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning
-     * service provisioned it if false.
+     * The time at which the compute was last modified.
      */
-    private Boolean isAttachedCompute;
+    private OffsetDateTime modifiedOn;
+
+    /*
+     * The time at which the compute was created.
+     */
+    private OffsetDateTime createdOn;
+
+    /*
+     * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
+     */
+    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of Databricks class.
@@ -92,34 +92,14 @@ public final class Databricks extends Compute {
     }
 
     /**
-     * Get the provisioningState property: The provision state of the cluster. Valid values are Unknown, Updating,
-     * Provisioning, Succeeded, and Failed.
+     * Get the isAttachedCompute property: Indicating whether the compute was provisioned by user and brought from
+     * outside if true, or machine learning service provisioned it if false.
      * 
-     * @return the provisioningState value.
+     * @return the isAttachedCompute value.
      */
     @Override
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the createdOn property: The time at which the compute was created.
-     * 
-     * @return the createdOn value.
-     */
-    @Override
-    public OffsetDateTime createdOn() {
-        return this.createdOn;
-    }
-
-    /**
-     * Get the modifiedOn property: The time at which the compute was last modified.
-     * 
-     * @return the modifiedOn value.
-     */
-    @Override
-    public OffsetDateTime modifiedOn() {
-        return this.modifiedOn;
+    public Boolean isAttachedCompute() {
+        return this.isAttachedCompute;
     }
 
     /**
@@ -133,14 +113,34 @@ public final class Databricks extends Compute {
     }
 
     /**
-     * Get the isAttachedCompute property: Indicating whether the compute was provisioned by user and brought from
-     * outside if true, or machine learning service provisioned it if false.
+     * Get the modifiedOn property: The time at which the compute was last modified.
      * 
-     * @return the isAttachedCompute value.
+     * @return the modifiedOn value.
      */
     @Override
-    public Boolean isAttachedCompute() {
-        return this.isAttachedCompute;
+    public OffsetDateTime modifiedOn() {
+        return this.modifiedOn;
+    }
+
+    /**
+     * Get the createdOn property: The time at which the compute was created.
+     * 
+     * @return the createdOn value.
+     */
+    @Override
+    public OffsetDateTime createdOn() {
+        return this.createdOn;
+    }
+
+    /**
+     * Get the provisioningState property: The provision state of the cluster. Valid values are Unknown, Updating,
+     * Provisioning, Succeeded, and Failed.
+     * 
+     * @return the provisioningState value.
+     */
+    @Override
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -186,7 +186,6 @@ public final class Databricks extends Compute {
      */
     @Override
     public void validate() {
-        super.validate();
         if (properties() != null) {
             properties().validate();
         }

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,8 +18,8 @@ import java.util.Map;
 public final class ComponentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ComponentVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Workspace/ComponentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Component Version.
@@ -28,16 +29,15 @@ public final class ComponentVersionsCreateOrUpdateSamples {
     public static void createOrUpdateWorkspaceComponentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager.componentVersions()
-            .define("string")
-            .withExistingComponent("test-rg", "my-aml-workspace", "string")
-            .withProperties(new ComponentVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
-                .withProperties(mapOf("string", "string"))
-                .withIsAnonymous(false)
-                .withComponentSpec(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"8ced901b-d826-477d-bfef-329da9672513\":null}", Object.class,
-                        SerializerEncoding.JSON)))
-            .create();
+            .createOrUpdateWithResponse("test-rg", "my-aml-workspace", "string", "string",
+                new ComponentVersionInner().withProperties(new ComponentVersionProperties().withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withComponentSpec(SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{\"8ced901b-d826-477d-bfef-329da9672513\":null}", Object.class,
+                            SerializerEncoding.JSON))),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

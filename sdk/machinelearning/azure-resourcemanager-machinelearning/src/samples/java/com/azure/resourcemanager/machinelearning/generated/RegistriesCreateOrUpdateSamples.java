@@ -31,8 +31,8 @@ import java.util.Map;
 public final class RegistriesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/createOrUpdate-SystemCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registries/createOrUpdate-SystemCreated.json
      */
     /**
      * Sample code: CreateOrUpdate Registry with system created accounts.
@@ -86,8 +86,8 @@ public final class RegistriesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/createOrUpdate-UserCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registries/createOrUpdate-UserCreated.json
      */
     /**
      * Sample code: CreateOrUpdate Registry with user created accounts.

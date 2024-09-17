@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The FqdnEndpoints model.
@@ -17,9 +18,14 @@ import java.io.IOException;
 @Fluent
 public final class FqdnEndpoints implements JsonSerializable<FqdnEndpoints> {
     /*
-     * The properties property.
+     * The category property.
      */
-    private FqdnEndpointsProperties properties;
+    private String category;
+
+    /*
+     * The endpoints property.
+     */
+    private List<FqdnEndpoint> endpoints;
 
     /**
      * Creates an instance of FqdnEndpoints class.
@@ -28,22 +34,42 @@ public final class FqdnEndpoints implements JsonSerializable<FqdnEndpoints> {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the category property: The category property.
      * 
-     * @return the properties value.
+     * @return the category value.
      */
-    public FqdnEndpointsProperties properties() {
-        return this.properties;
+    public String category() {
+        return this.category;
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the category property: The category property.
      * 
-     * @param properties the properties value to set.
+     * @param category the category value to set.
      * @return the FqdnEndpoints object itself.
      */
-    public FqdnEndpoints withProperties(FqdnEndpointsProperties properties) {
-        this.properties = properties;
+    public FqdnEndpoints withCategory(String category) {
+        this.category = category;
+        return this;
+    }
+
+    /**
+     * Get the endpoints property: The endpoints property.
+     * 
+     * @return the endpoints value.
+     */
+    public List<FqdnEndpoint> endpoints() {
+        return this.endpoints;
+    }
+
+    /**
+     * Set the endpoints property: The endpoints property.
+     * 
+     * @param endpoints the endpoints value to set.
+     * @return the FqdnEndpoints object itself.
+     */
+    public FqdnEndpoints withEndpoints(List<FqdnEndpoint> endpoints) {
+        this.endpoints = endpoints;
         return this;
     }
 
@@ -53,8 +79,8 @@ public final class FqdnEndpoints implements JsonSerializable<FqdnEndpoints> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (endpoints() != null) {
+            endpoints().forEach(e -> e.validate());
         }
     }
 
@@ -64,7 +90,8 @@ public final class FqdnEndpoints implements JsonSerializable<FqdnEndpoints> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeStringField("category", this.category);
+        jsonWriter.writeArrayField("endpoints", this.endpoints, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -83,8 +110,11 @@ public final class FqdnEndpoints implements JsonSerializable<FqdnEndpoints> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("properties".equals(fieldName)) {
-                    deserializedFqdnEndpoints.properties = FqdnEndpointsProperties.fromJson(reader);
+                if ("category".equals(fieldName)) {
+                    deserializedFqdnEndpoints.category = reader.getString();
+                } else if ("endpoints".equals(fieldName)) {
+                    List<FqdnEndpoint> endpoints = reader.readArray(reader1 -> FqdnEndpoint.fromJson(reader1));
+                    deserializedFqdnEndpoints.endpoints = endpoints;
                 } else {
                     reader.skipChildren();
                 }

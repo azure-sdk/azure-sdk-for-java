@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,8 @@ import java.util.Map;
 public final class RegistryEnvironmentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/EnvironmentContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/EnvironmentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Environment Container.
@@ -26,14 +25,13 @@ public final class RegistryEnvironmentContainersCreateOrUpdateSamples {
     public static void createOrUpdateRegistryEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryEnvironmentContainers()
-            .createOrUpdate("testrg123", "testregistry", "testEnvironment",
-                new EnvironmentContainerInner().withProperties(new EnvironmentContainerProperties()
-                    .withDescription("string")
-                    .withTags(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
-                    .withProperties(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))),
-                com.azure.core.util.Context.NONE);
+            .define("testEnvironment")
+            .withExistingRegistry("testrg123", "testregistry")
+            .withProperties(new EnvironmentContainerProperties().withDescription("string")
+                .withProperties(
+                    mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                .withTags(mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
+            .create();
     }
 
     // Use "Map.of" if available

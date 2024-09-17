@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Identity that will be used to access key vault for encryption at rest.
+ * Identity object used for encryption.
  */
 @Fluent
 public final class IdentityForCmk implements JsonSerializable<IdentityForCmk> {
     /*
-     * The ArmId of the user assigned identity that will be used to access the customer managed key vault
+     * UserAssignedIdentity to be used to fetch the encryption key from keyVault
      */
     private String userAssignedIdentity;
 
@@ -28,8 +28,7 @@ public final class IdentityForCmk implements JsonSerializable<IdentityForCmk> {
     }
 
     /**
-     * Get the userAssignedIdentity property: The ArmId of the user assigned identity that will be used to access the
-     * customer managed key vault.
+     * Get the userAssignedIdentity property: UserAssignedIdentity to be used to fetch the encryption key from keyVault.
      * 
      * @return the userAssignedIdentity value.
      */
@@ -38,8 +37,7 @@ public final class IdentityForCmk implements JsonSerializable<IdentityForCmk> {
     }
 
     /**
-     * Set the userAssignedIdentity property: The ArmId of the user assigned identity that will be used to access the
-     * customer managed key vault.
+     * Set the userAssignedIdentity property: UserAssignedIdentity to be used to fetch the encryption key from keyVault.
      * 
      * @param userAssignedIdentity the userAssignedIdentity value to set.
      * @return the IdentityForCmk object itself.

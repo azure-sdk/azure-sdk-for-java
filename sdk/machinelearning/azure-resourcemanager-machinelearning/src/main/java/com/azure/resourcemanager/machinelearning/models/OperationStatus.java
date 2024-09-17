@@ -42,6 +42,11 @@ public final class OperationStatus extends ExpandableStringEnum<OperationStatus>
     public static final OperationStatus RESTART_FAILED = fromString("RestartFailed");
 
     /**
+     * Static value ResizeFailed for OperationStatus.
+     */
+    public static final OperationStatus RESIZE_FAILED = fromString("ResizeFailed");
+
+    /**
      * Static value ReimageFailed for OperationStatus.
      */
     public static final OperationStatus REIMAGE_FAILED = fromString("ReimageFailed");

@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Environment Variables for the container.
+ * The EnvironmentVariable model.
  */
 @Fluent
 public final class EnvironmentVariable implements JsonSerializable<EnvironmentVariable> {
@@ -29,7 +29,7 @@ public final class EnvironmentVariable implements JsonSerializable<EnvironmentVa
     private String value;
 
     /*
-     * Environment Variables for the container
+     * Dictionary of <any>
      */
     private Map<String, Object> additionalProperties;
 
@@ -80,7 +80,7 @@ public final class EnvironmentVariable implements JsonSerializable<EnvironmentVa
     }
 
     /**
-     * Get the additionalProperties property: Environment Variables for the container.
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @return the additionalProperties value.
      */
@@ -89,7 +89,7 @@ public final class EnvironmentVariable implements JsonSerializable<EnvironmentVa
     }
 
     /**
-     * Set the additionalProperties property: Environment Variables for the container.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the EnvironmentVariable object itself.

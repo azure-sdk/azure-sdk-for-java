@@ -8,8 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The current deployment state of workspace resource. The provisioningState is to indicate states for resource
- * provisioning.
+ * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**

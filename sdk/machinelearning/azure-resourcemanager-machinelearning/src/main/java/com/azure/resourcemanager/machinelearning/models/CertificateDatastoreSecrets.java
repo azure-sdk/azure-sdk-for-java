@@ -69,7 +69,6 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

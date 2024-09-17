@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
 import com.azure.resourcemanager.machinelearning.models.FlavorData;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
 import java.util.HashMap;
@@ -16,8 +15,8 @@ import java.util.Map;
 public final class RegistryModelVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/ModelVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/ModelVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Model Version.
@@ -27,15 +26,16 @@ public final class RegistryModelVersionsCreateOrUpdateSamples {
     public static void
         createOrUpdateRegistryModelVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryModelVersions()
-            .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
-                new ModelVersionInner().withProperties(new ModelVersionProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
-                    .withProperties(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
-                    .withModelType("CustomModel")
-                    .withModelUri("string")),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingModel("test-rg", "my-aml-registry", "string")
+            .withProperties(new ModelVersionProperties().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withIsAnonymous(false)
+                .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
+                .withModelType("CustomModel")
+                .withModelUri("string"))
+            .create();
     }
 
     // Use "Map.of" if available

@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class DiagnoseWorkspaceParameters implements JsonSerializable<DiagnoseWorkspaceParameters> {
     /*
-     * Value of Parameters
+     * The value property.
      */
     private DiagnoseRequestProperties value;
 
@@ -28,7 +28,7 @@ public final class DiagnoseWorkspaceParameters implements JsonSerializable<Diagn
     }
 
     /**
-     * Get the value property: Value of Parameters.
+     * Get the value property: The value property.
      * 
      * @return the value value.
      */
@@ -37,7 +37,7 @@ public final class DiagnoseWorkspaceParameters implements JsonSerializable<Diagn
     }
 
     /**
-     * Set the value property: Value of Parameters.
+     * Set the value property: The value property.
      * 
      * @param value the value value to set.
      * @return the DiagnoseWorkspaceParameters object itself.

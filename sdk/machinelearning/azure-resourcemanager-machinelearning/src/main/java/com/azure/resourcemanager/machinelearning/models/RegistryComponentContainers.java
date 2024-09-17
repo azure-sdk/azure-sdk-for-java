@@ -7,7 +7,6 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 
 /**
  * Resource collection API of RegistryComponentContainers.
@@ -93,33 +92,54 @@ public interface RegistryComponentContainers {
     ComponentContainer get(String resourceGroupName, String registryName, String componentName);
 
     /**
-     * Create or update container.
+     * Get container.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param componentName Container name.
-     * @param body Container entity to create or update.
+     * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope.
+     * @return container along with {@link Response}.
      */
-    ComponentContainer createOrUpdate(String resourceGroupName, String registryName, String componentName,
-        ComponentContainerInner body);
+    ComponentContainer getById(String id);
 
     /**
-     * Create or update container.
+     * Get container.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param componentName Container name.
-     * @param body Container entity to create or update.
+     * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope.
+     * @return container along with {@link Response}.
      */
-    ComponentContainer createOrUpdate(String resourceGroupName, String registryName, String componentName,
-        ComponentContainerInner body, Context context);
+    Response<ComponentContainer> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Delete container.
+     * 
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete container.
+     * 
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new ComponentContainer resource.
+     * 
+     * @param name resource name.
+     * @return the first stage of the new ComponentContainer definition.
+     */
+    ComponentContainer.DefinitionStages.Blank define(String name);
 }

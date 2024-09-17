@@ -40,6 +40,16 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName,
+        String privateEndpointConnectionName, Context context) {
+        return this.serviceClient()
+            .deleteWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, privateEndpointConnectionName);
+    }
+
     public Response<PrivateEndpointConnection> getWithResponse(String resourceGroupName, String workspaceName,
         String privateEndpointConnectionName, Context context) {
         Response<PrivateEndpointConnectionInner> inner = this.serviceClient()
@@ -61,16 +71,6 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         } else {
             return null;
         }
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName, Context context) {
-        return this.serviceClient()
-            .deleteWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, privateEndpointConnectionName);
     }
 
     public PrivateEndpointConnection getById(String id) {

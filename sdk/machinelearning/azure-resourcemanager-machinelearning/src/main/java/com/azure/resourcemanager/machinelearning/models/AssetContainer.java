@@ -110,8 +110,8 @@ public class AssetContainer extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public AssetContainer withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public AssetContainer withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -119,8 +119,8 @@ public class AssetContainer extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public AssetContainer withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public AssetContainer withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -131,7 +131,6 @@ public class AssetContainer extends ResourceBase {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -141,8 +140,8 @@ public class AssetContainer extends ResourceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isArchived", this.isArchived);
         return jsonWriter.writeEndObject();
     }
@@ -164,12 +163,12 @@ public class AssetContainer extends ResourceBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedAssetContainer.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAssetContainer.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedAssetContainer.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAssetContainer.withTags(tags);
                 } else if ("isArchived".equals(fieldName)) {
                     deserializedAssetContainer.isArchived = reader.getNullable(JsonReader::getBoolean);
                 } else if ("latestVersion".equals(fieldName)) {

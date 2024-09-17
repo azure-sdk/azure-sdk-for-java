@@ -20,39 +20,19 @@ import java.util.List;
 public final class ComponentContainerResourceArmPaginatedResult
     implements JsonSerializable<ComponentContainerResourceArmPaginatedResult> {
     /*
-     * An array of objects of type ComponentContainer.
-     */
-    private List<ComponentContainerInner> value;
-
-    /*
      * The link to the next page of ComponentContainer objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type ComponentContainer.
+     */
+    private List<ComponentContainerInner> value;
 
     /**
      * Creates an instance of ComponentContainerResourceArmPaginatedResult class.
      */
     public ComponentContainerResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type ComponentContainer.
-     * 
-     * @return the value value.
-     */
-    public List<ComponentContainerInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type ComponentContainer.
-     * 
-     * @param value the value value to set.
-     * @return the ComponentContainerResourceArmPaginatedResult object itself.
-     */
-    public ComponentContainerResourceArmPaginatedResult withValue(List<ComponentContainerInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class ComponentContainerResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type ComponentContainer.
+     * 
+     * @return the value value.
+     */
+    public List<ComponentContainerInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type ComponentContainer.
+     * 
+     * @param value the value value to set.
+     * @return the ComponentContainerResourceArmPaginatedResult object itself.
+     */
+    public ComponentContainerResourceArmPaginatedResult withValue(List<ComponentContainerInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class ComponentContainerResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class ComponentContainerResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedComponentContainerResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<ComponentContainerInner> value
                         = reader.readArray(reader1 -> ComponentContainerInner.fromJson(reader1));
                     deserializedComponentContainerResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedComponentContainerResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

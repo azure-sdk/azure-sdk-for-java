@@ -11,6 +11,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.machinelearning.models.Datastore;
 import com.azure.resourcemanager.machinelearning.models.DatastoreProperties;
 import com.azure.resourcemanager.machinelearning.models.DatastoreSecrets;
+import com.azure.resourcemanager.machinelearning.models.SecretExpiry;
 
 public final class DatastoreImpl implements Datastore, Datastore.Definition, Datastore.Update {
     private DatastoreInner innerObject;
@@ -138,8 +139,9 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
         return this;
     }
 
-    public Response<DatastoreSecrets> listSecretsWithResponse(Context context) {
-        return serviceManager.datastores().listSecretsWithResponse(resourceGroupName, workspaceName, name, context);
+    public Response<DatastoreSecrets> listSecretsWithResponse(SecretExpiry body, Context context) {
+        return serviceManager.datastores()
+            .listSecretsWithResponse(resourceGroupName, workspaceName, name, body, context);
     }
 
     public DatastoreSecrets listSecrets() {

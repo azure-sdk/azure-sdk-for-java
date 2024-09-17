@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,6 +39,13 @@ public interface ManagedNetworkSettings {
      * @return the status value.
      */
     ManagedNetworkProvisionStatus status();
+
+    /**
+     * Gets the changeableIsolationModes property: The changeableIsolationModes property.
+     * 
+     * @return the changeableIsolationModes value.
+     */
+    List<IsolationMode> changeableIsolationModes();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner object.
