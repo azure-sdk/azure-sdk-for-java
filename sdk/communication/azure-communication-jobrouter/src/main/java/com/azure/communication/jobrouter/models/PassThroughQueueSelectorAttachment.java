@@ -23,7 +23,7 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
      * The type discriminator describing a sub-type of QueueSelectorAttachment.
      */
     @Generated
-    private QueueSelectorAttachmentKind kind = QueueSelectorAttachmentKind.PASS_THROUGH;
+    private String kind = "passThrough";
 
     /*
      * The label key to query against.
@@ -57,7 +57,7 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
      */
     @Generated
     @Override
-    public QueueSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -119,10 +119,14 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                getQueueSelectorAttachmentKind() == null ? null : getQueueSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("key", this.key);
             jsonWriter.writeStringField("labelOperator",
                 this.labelOperator == null ? null : this.labelOperator.toString());
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                this.queueSelectorAttachmentKind == null ? null : this.queueSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -130,7 +134,14 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (getQueueSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", getQueueSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("key")) {
             if (this.key == null) {
                 jsonWriter.writeNullField("key");
@@ -143,6 +154,13 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
                 jsonWriter.writeNullField("labelOperator");
             } else {
                 jsonWriter.writeStringField("labelOperator", this.labelOperator.toString());
+            }
+        }
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (this.queueSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", this.queueSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -165,13 +183,15 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedPassThroughQueueSelectorAttachment.kind
-                        = QueueSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedPassThroughQueueSelectorAttachment.kind = reader.getString();
                 } else if ("key".equals(fieldName)) {
                     deserializedPassThroughQueueSelectorAttachment.key = reader.getString();
                 } else if ("labelOperator".equals(fieldName)) {
                     deserializedPassThroughQueueSelectorAttachment.labelOperator
                         = LabelOperator.fromString(reader.getString());
+                } else if ("queueSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedPassThroughQueueSelectorAttachment.queueSelectorAttachmentKind
+                        = QueueSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -191,5 +211,38 @@ public final class PassThroughQueueSelectorAttachment extends QueueSelectorAttac
         this.updatedProperties.add("key");
         this.labelOperator = labelOperator;
         this.updatedProperties.add("labelOperator");
+    }
+
+    /*
+     * The type discriminator describing the type of queue selector attachment.
+     */
+    @Generated
+    private QueueSelectorAttachmentKind queueSelectorAttachmentKind = QueueSelectorAttachmentKind.PASS_THROUGH;
+
+    /**
+     * Get the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     *
+     * @return the queueSelectorAttachmentKind value.
+     */
+    @Generated
+    public QueueSelectorAttachmentKind getQueueSelectorAttachmentKind() {
+        return this.queueSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param queueSelectorAttachmentKind the queueSelectorAttachmentKind value to set.
+     * @return the PassThroughQueueSelectorAttachment object itself.
+     */
+    @Generated
+    public PassThroughQueueSelectorAttachment
+        setQueueSelectorAttachmentKind(QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+        this.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+        this.updatedProperties.add("queueSelectorAttachmentKind");
+        return this;
     }
 }

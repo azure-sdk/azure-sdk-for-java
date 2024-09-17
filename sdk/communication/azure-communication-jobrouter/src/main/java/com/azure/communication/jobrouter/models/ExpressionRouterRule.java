@@ -20,10 +20,10 @@ import java.util.Set;
 public final class ExpressionRouterRule extends RouterRule {
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.EXPRESSION;
+    private String kind = "expression";
 
     /*
      * The expression language to compile to and execute.
@@ -51,13 +51,13 @@ public final class ExpressionRouterRule extends RouterRule {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of RouterRule.
+     * Get the kind property: The type discriminator describing a kind of RouterRule.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public RouterRuleKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -118,9 +118,13 @@ public final class ExpressionRouterRule extends RouterRule {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("routerRuleKind",
+                getRouterRuleKind() == null ? null : getRouterRuleKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("language", this.language == null ? null : this.language.toString());
             jsonWriter.writeStringField("expression", this.expression);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -128,7 +132,14 @@ public final class ExpressionRouterRule extends RouterRule {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (getRouterRuleKind() == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", getRouterRuleKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("language")) {
             if (this.language == null) {
                 jsonWriter.writeNullField("language");
@@ -141,6 +152,13 @@ public final class ExpressionRouterRule extends RouterRule {
                 jsonWriter.writeNullField("expression");
             } else {
                 jsonWriter.writeStringField("expression", this.expression);
+            }
+        }
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -162,12 +180,14 @@ public final class ExpressionRouterRule extends RouterRule {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedExpressionRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedExpressionRouterRule.kind = reader.getString();
                 } else if ("language".equals(fieldName)) {
                     deserializedExpressionRouterRule.language
                         = ExpressionRouterRuleLanguage.fromString(reader.getString());
                 } else if ("expression".equals(fieldName)) {
                     deserializedExpressionRouterRule.expression = reader.getString();
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedExpressionRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -184,5 +204,35 @@ public final class ExpressionRouterRule extends RouterRule {
     public ExpressionRouterRule(String expression) {
         this.expression = expression;
         this.updatedProperties.add("expression");
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Rule.
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind = RouterRuleKind.EXPRESSION;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the ExpressionRouterRule object itself.
+     */
+    @Generated
+    public ExpressionRouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
+        return this;
     }
 }

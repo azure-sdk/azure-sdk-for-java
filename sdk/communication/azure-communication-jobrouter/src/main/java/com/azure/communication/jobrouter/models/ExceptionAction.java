@@ -24,7 +24,7 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
      * The type discriminator describing a sub-type of ExceptionAction.
      */
     @Generated
-    private ExceptionActionKind kind = ExceptionActionKind.fromString("ExceptionAction");
+    private String kind = "ExceptionAction";
 
     /*
      * Unique Id of the exception action.
@@ -64,6 +64,11 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
             public void setId(ExceptionAction model, String id) {
                 model.id = id;
             }
+
+            @Override
+            public void setExceptionActionKind(ExceptionAction model, ExceptionActionKind exceptionActionKind) {
+                model.exceptionActionKind = exceptionActionKind;
+            }
         });
     }
 
@@ -80,7 +85,7 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
      * @return the kind value.
      */
     @Generated
-    public ExceptionActionKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -117,8 +122,10 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("id", this.id);
+            jsonWriter.writeStringField("exceptionActionKind",
+                this.exceptionActionKind == null ? null : this.exceptionActionKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -126,12 +133,19 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("id")) {
             if (this.id == null) {
                 jsonWriter.writeNullField("id");
             } else {
                 jsonWriter.writeStringField("id", this.id);
+            }
+        }
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (this.exceptionActionKind == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", this.exceptionActionKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -184,14 +198,47 @@ public class ExceptionAction implements JsonSerializable<ExceptionAction> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedExceptionAction.kind = ExceptionActionKind.fromString(reader.getString());
+                    deserializedExceptionAction.kind = reader.getString();
                 } else if ("id".equals(fieldName)) {
                     deserializedExceptionAction.id = reader.getString();
+                } else if ("exceptionActionKind".equals(fieldName)) {
+                    deserializedExceptionAction.exceptionActionKind
+                        = ExceptionActionKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedExceptionAction;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionAction.
+     */
+    @Generated
+    private ExceptionActionKind exceptionActionKind;
+
+    /**
+     * Get the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     *
+     * @return the exceptionActionKind value.
+     */
+    @Generated
+    public ExceptionActionKind getExceptionActionKind() {
+        return this.exceptionActionKind;
+    }
+
+    /**
+     * Set the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionActionKind the exceptionActionKind value to set.
+     * @return the ExceptionAction object itself.
+     */
+    @Generated
+    public ExceptionAction setExceptionActionKind(ExceptionActionKind exceptionActionKind) {
+        this.exceptionActionKind = exceptionActionKind;
+        this.updatedProperties.add("exceptionActionKind");
+        return this;
     }
 }

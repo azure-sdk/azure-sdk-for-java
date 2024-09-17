@@ -20,10 +20,10 @@ import java.util.Set;
 public final class WebhookRouterRule extends RouterRule {
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.WEBHOOK;
+    private String kind = "webhook";
 
     /*
      * Uri for Authorization Server.
@@ -58,13 +58,13 @@ public final class WebhookRouterRule extends RouterRule {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of RouterRule.
+     * Get the kind property: The type discriminator describing a kind of RouterRule.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public RouterRuleKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -149,10 +149,14 @@ public final class WebhookRouterRule extends RouterRule {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("routerRuleKind",
+                getRouterRuleKind() == null ? null : getRouterRuleKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("authorizationServerUri", this.authorizationServerUri);
             jsonWriter.writeJsonField("clientCredential", this.clientCredential);
             jsonWriter.writeStringField("webhookUri", this.webhookUri);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -160,7 +164,14 @@ public final class WebhookRouterRule extends RouterRule {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (getRouterRuleKind() == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", getRouterRuleKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("authorizationServerUri")) {
             if (this.authorizationServerUri == null) {
                 jsonWriter.writeNullField("authorizationServerUri");
@@ -186,6 +197,13 @@ public final class WebhookRouterRule extends RouterRule {
                 jsonWriter.writeStringField("webhookUri", this.webhookUri);
             }
         }
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -205,18 +223,50 @@ public final class WebhookRouterRule extends RouterRule {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedWebhookRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedWebhookRouterRule.kind = reader.getString();
                 } else if ("authorizationServerUri".equals(fieldName)) {
                     deserializedWebhookRouterRule.authorizationServerUri = reader.getString();
                 } else if ("clientCredential".equals(fieldName)) {
                     deserializedWebhookRouterRule.clientCredential = OAuth2WebhookClientCredential.fromJson(reader);
                 } else if ("webhookUri".equals(fieldName)) {
                     deserializedWebhookRouterRule.webhookUri = reader.getString();
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedWebhookRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedWebhookRouterRule;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Rule.
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind = RouterRuleKind.WEBHOOK;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the WebhookRouterRule object itself.
+     */
+    @Generated
+    public WebhookRouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
+        return this;
     }
 }

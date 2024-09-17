@@ -24,7 +24,7 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
      * The type discriminator describing a sub-type of WorkerSelectorAttachment.
      */
     @Generated
-    private WorkerSelectorAttachmentKind kind = WorkerSelectorAttachmentKind.WEIGHTED_ALLOCATION;
+    private String kind = "weightedAllocation";
 
     /*
      * A collection of percentage based weighted allocations.
@@ -52,7 +52,7 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
      */
     @Generated
     @Override
-    public WorkerSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -90,8 +90,12 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                getWorkerSelectorAttachmentKind() == null ? null : getWorkerSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeArrayField("allocations", this.allocations, (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                this.workerSelectorAttachmentKind == null ? null : this.workerSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -99,13 +103,29 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (getWorkerSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    getWorkerSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("allocations")) {
             if (this.allocations == null) {
                 jsonWriter.writeNullField("allocations");
             } else {
                 jsonWriter.writeArrayField("allocations", this.allocations,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (this.workerSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    this.workerSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -128,12 +148,14 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedWeightedAllocationWorkerSelectorAttachment.kind
-                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedWeightedAllocationWorkerSelectorAttachment.kind = reader.getString();
                 } else if ("allocations".equals(fieldName)) {
                     List<WorkerWeightedAllocation> allocations
                         = reader.readArray(reader1 -> WorkerWeightedAllocation.fromJson(reader1));
                     deserializedWeightedAllocationWorkerSelectorAttachment.allocations = allocations;
+                } else if ("workerSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedWeightedAllocationWorkerSelectorAttachment.workerSelectorAttachmentKind
+                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -150,5 +172,39 @@ public final class WeightedAllocationWorkerSelectorAttachment extends WorkerSele
     public WeightedAllocationWorkerSelectorAttachment(List<WorkerWeightedAllocation> allocations) {
         this.allocations = allocations;
         this.updatedProperties.add("allocations");
+    }
+
+    /*
+     * The type discriminator describing the type of worker selector attachment.
+     */
+    @Generated
+    private WorkerSelectorAttachmentKind workerSelectorAttachmentKind
+        = WorkerSelectorAttachmentKind.WEIGHTED_ALLOCATION;
+
+    /**
+     * Get the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     *
+     * @return the workerSelectorAttachmentKind value.
+     */
+    @Generated
+    public WorkerSelectorAttachmentKind getWorkerSelectorAttachmentKind() {
+        return this.workerSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param workerSelectorAttachmentKind the workerSelectorAttachmentKind value to set.
+     * @return the WeightedAllocationWorkerSelectorAttachment object itself.
+     */
+    @Generated
+    public WeightedAllocationWorkerSelectorAttachment
+        setWorkerSelectorAttachmentKind(WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+        this.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+        this.updatedProperties.add("workerSelectorAttachmentKind");
+        return this;
     }
 }

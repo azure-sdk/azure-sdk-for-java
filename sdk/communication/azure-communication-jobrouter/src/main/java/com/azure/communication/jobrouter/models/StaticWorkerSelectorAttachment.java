@@ -23,7 +23,7 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
      * The type discriminator describing a sub-type of WorkerSelectorAttachment.
      */
     @Generated
-    private WorkerSelectorAttachmentKind kind = WorkerSelectorAttachmentKind.STATIC;
+    private String kind = "static";
 
     /*
      * The worker selector to attach.
@@ -51,7 +51,7 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
      */
     @Generated
     @Override
-    public WorkerSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -89,8 +89,12 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                getWorkerSelectorAttachmentKind() == null ? null : getWorkerSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("workerSelector", this.workerSelector);
+            jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                this.workerSelectorAttachmentKind == null ? null : this.workerSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -98,7 +102,15 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (getWorkerSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    getWorkerSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("workerSelector")) {
             if (this.workerSelector == null) {
                 jsonWriter.writeNullField("workerSelector");
@@ -108,6 +120,14 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
                 jsonWriter.writeJsonField("workerSelector", this.workerSelector);
                 JsonMergePatchHelper.getRouterWorkerSelectorAccessor()
                     .prepareModelForJsonMergePatch(this.workerSelector, false);
+            }
+        }
+        if (updatedProperties.contains("workerSelectorAttachmentKind")) {
+            if (this.workerSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("workerSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("workerSelectorAttachmentKind",
+                    this.workerSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -130,10 +150,12 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedStaticWorkerSelectorAttachment.kind
-                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedStaticWorkerSelectorAttachment.kind = reader.getString();
                 } else if ("workerSelector".equals(fieldName)) {
                     deserializedStaticWorkerSelectorAttachment.workerSelector = RouterWorkerSelector.fromJson(reader);
+                } else if ("workerSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedStaticWorkerSelectorAttachment.workerSelectorAttachmentKind
+                        = WorkerSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -150,5 +172,38 @@ public final class StaticWorkerSelectorAttachment extends WorkerSelectorAttachme
     public StaticWorkerSelectorAttachment(RouterWorkerSelector workerSelector) {
         this.workerSelector = workerSelector;
         this.updatedProperties.add("workerSelector");
+    }
+
+    /*
+     * The type discriminator describing the type of worker selector attachment.
+     */
+    @Generated
+    private WorkerSelectorAttachmentKind workerSelectorAttachmentKind = WorkerSelectorAttachmentKind.STATIC;
+
+    /**
+     * Get the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     *
+     * @return the workerSelectorAttachmentKind value.
+     */
+    @Generated
+    public WorkerSelectorAttachmentKind getWorkerSelectorAttachmentKind() {
+        return this.workerSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the workerSelectorAttachmentKind property: The type discriminator describing the type of worker selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param workerSelectorAttachmentKind the workerSelectorAttachmentKind value to set.
+     * @return the StaticWorkerSelectorAttachment object itself.
+     */
+    @Generated
+    public StaticWorkerSelectorAttachment
+        setWorkerSelectorAttachmentKind(WorkerSelectorAttachmentKind workerSelectorAttachmentKind) {
+        this.workerSelectorAttachmentKind = workerSelectorAttachmentKind;
+        this.updatedProperties.add("workerSelectorAttachmentKind");
+        return this;
     }
 }

@@ -24,7 +24,7 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
      * The type discriminator describing a sub-type of ExceptionAction.
      */
     @Generated
-    private ExceptionActionKind kind = ExceptionActionKind.RECLASSIFY;
+    private String kind = "reclassify";
 
     /*
      * The new classification policy that will determine queue, priority and worker selectors.
@@ -59,7 +59,7 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
      */
     @Generated
     @Override
-    public ExceptionActionKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -135,10 +135,14 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
         } else {
             jsonWriter.writeStartObject();
             jsonWriter.writeStringField("id", getId());
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("exceptionActionKind",
+                getExceptionActionKind() == null ? null : getExceptionActionKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("classificationPolicyId", this.classificationPolicyId);
             jsonWriter.writeMapField("labelsToUpsert", this.labelsToUpsert,
                 (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("exceptionActionKind",
+                this.exceptionActionKind == null ? null : this.exceptionActionKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -153,7 +157,14 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
                 jsonWriter.writeStringField("id", getId());
             }
         }
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (getExceptionActionKind() == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", getExceptionActionKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("classificationPolicyId")) {
             if (this.classificationPolicyId == null) {
                 jsonWriter.writeNullField("classificationPolicyId");
@@ -167,6 +178,13 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
             } else {
                 jsonWriter.writeMapField("labelsToUpsert", this.labelsToUpsert,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("exceptionActionKind")) {
+            if (this.exceptionActionKind == null) {
+                jsonWriter.writeNullField("exceptionActionKind");
+            } else {
+                jsonWriter.writeStringField("exceptionActionKind", this.exceptionActionKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -191,17 +209,50 @@ public final class ReclassifyExceptionAction extends ExceptionAction {
                     JsonMergePatchHelper.getExceptionActionAccessor()
                         .setId(deserializedReclassifyExceptionAction, reader.getString());
                 } else if ("kind".equals(fieldName)) {
-                    deserializedReclassifyExceptionAction.kind = ExceptionActionKind.fromString(reader.getString());
+                    deserializedReclassifyExceptionAction.kind = reader.getString();
                 } else if ("classificationPolicyId".equals(fieldName)) {
                     deserializedReclassifyExceptionAction.classificationPolicyId = reader.getString();
                 } else if ("labelsToUpsert".equals(fieldName)) {
                     Map<String, RouterValue> labelsToUpsert = reader.readMap(reader1 -> RouterValue.fromJson(reader1));
                     deserializedReclassifyExceptionAction.labelsToUpsert = labelsToUpsert;
+                } else if ("exceptionActionKind".equals(fieldName)) {
+                    deserializedReclassifyExceptionAction.exceptionActionKind
+                        = ExceptionActionKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedReclassifyExceptionAction;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionAction.
+     */
+    @Generated
+    private ExceptionActionKind exceptionActionKind = ExceptionActionKind.RECLASSIFY;
+
+    /**
+     * Get the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     *
+     * @return the exceptionActionKind value.
+     */
+    @Generated
+    public ExceptionActionKind getExceptionActionKind() {
+        return this.exceptionActionKind;
+    }
+
+    /**
+     * Set the exceptionActionKind property: The type discriminator describing a sub-type of ExceptionAction.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionActionKind the exceptionActionKind value to set.
+     * @return the ReclassifyExceptionAction object itself.
+     */
+    @Generated
+    public ReclassifyExceptionAction setExceptionActionKind(ExceptionActionKind exceptionActionKind) {
+        this.exceptionActionKind = exceptionActionKind;
+        this.updatedProperties.add("exceptionActionKind");
+        return this;
     }
 }

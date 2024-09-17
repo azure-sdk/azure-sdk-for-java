@@ -24,7 +24,7 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
      * The type discriminator describing a sub-type of QueueSelectorAttachment.
      */
     @Generated
-    private QueueSelectorAttachmentKind kind = QueueSelectorAttachmentKind.CONDITIONAL;
+    private String kind = "conditional";
 
     /*
      * The condition that must be true for the queue selectors to be attached.
@@ -58,7 +58,7 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
      */
     @Generated
     @Override
-    public QueueSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -120,10 +120,14 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                getQueueSelectorAttachmentKind() == null ? null : getQueueSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeJsonField("condition", this.condition);
             jsonWriter.writeArrayField("queueSelectors", this.queueSelectors,
                 (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                this.queueSelectorAttachmentKind == null ? null : this.queueSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -131,7 +135,14 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (getQueueSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", getQueueSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("condition")) {
             if (this.condition == null) {
                 jsonWriter.writeNullField("condition");
@@ -147,6 +158,13 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
             } else {
                 jsonWriter.writeArrayField("queueSelectors", this.queueSelectors,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (this.queueSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", this.queueSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -169,14 +187,16 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedConditionalQueueSelectorAttachment.kind
-                        = QueueSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedConditionalQueueSelectorAttachment.kind = reader.getString();
                 } else if ("condition".equals(fieldName)) {
                     deserializedConditionalQueueSelectorAttachment.condition = RouterRule.fromJson(reader);
                 } else if ("queueSelectors".equals(fieldName)) {
                     List<RouterQueueSelector> queueSelectors
                         = reader.readArray(reader1 -> RouterQueueSelector.fromJson(reader1));
                     deserializedConditionalQueueSelectorAttachment.queueSelectors = queueSelectors;
+                } else if ("queueSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedConditionalQueueSelectorAttachment.queueSelectorAttachmentKind
+                        = QueueSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -196,5 +216,38 @@ public final class ConditionalQueueSelectorAttachment extends QueueSelectorAttac
         this.updatedProperties.add("condition");
         this.queueSelectors = queueSelectors;
         this.updatedProperties.add("queueSelectors");
+    }
+
+    /*
+     * The type discriminator describing the type of queue selector attachment.
+     */
+    @Generated
+    private QueueSelectorAttachmentKind queueSelectorAttachmentKind = QueueSelectorAttachmentKind.CONDITIONAL;
+
+    /**
+     * Get the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     *
+     * @return the queueSelectorAttachmentKind value.
+     */
+    @Generated
+    public QueueSelectorAttachmentKind getQueueSelectorAttachmentKind() {
+        return this.queueSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param queueSelectorAttachmentKind the queueSelectorAttachmentKind value to set.
+     * @return the ConditionalQueueSelectorAttachment object itself.
+     */
+    @Generated
+    public ConditionalQueueSelectorAttachment
+        setQueueSelectorAttachmentKind(QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+        this.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+        this.updatedProperties.add("queueSelectorAttachmentKind");
+        return this;
     }
 }

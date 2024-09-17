@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * A rule that return the same labels as the input labels.
  */
-@Immutable
+@Fluent
 public final class DirectMapRouterRule extends RouterRule {
 
     /**
@@ -35,10 +35,10 @@ public final class DirectMapRouterRule extends RouterRule {
     }
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.DIRECT_MAP;
+    private String kind = "directMap";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -56,7 +56,11 @@ public final class DirectMapRouterRule extends RouterRule {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("routerRuleKind",
+                getRouterRuleKind() == null ? null : getRouterRuleKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -64,7 +68,21 @@ public final class DirectMapRouterRule extends RouterRule {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (getRouterRuleKind() == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", getRouterRuleKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -84,12 +102,44 @@ public final class DirectMapRouterRule extends RouterRule {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedDirectMapRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedDirectMapRouterRule.kind = reader.getString();
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedDirectMapRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedDirectMapRouterRule;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Rule.
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind = RouterRuleKind.DIRECT_MAP;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the DirectMapRouterRule object itself.
+     */
+    @Generated
+    public DirectMapRouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
+        return this;
     }
 }

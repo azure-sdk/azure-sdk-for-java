@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -21,14 +21,14 @@ import java.util.Set;
  * worker to the job will not start automatically.
  * SuspendMode: Used when matching workers to a job needs to be suspended.
  */
-@Immutable
+@Fluent
 public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
 
     /*
-     * The type discriminator describing a sub-type of JobMatchingMode.
+     * The type discriminator describing a kind of JobMatchingMode.
      */
     @Generated
-    private JobMatchingModeKind kind = JobMatchingModeKind.fromString("JobMatchingMode");
+    private String kind = "JobMatchingMode";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -57,6 +57,11 @@ public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
             public boolean isJsonMergePatch(JobMatchingMode model) {
                 return model.jsonMergePatch;
             }
+
+            @Override
+            public void setJobMatchingModeKind(JobMatchingMode model, JobMatchingModeKind jobMatchingModeKind) {
+                model.jobMatchingModeKind = jobMatchingModeKind;
+            }
         });
     }
 
@@ -68,12 +73,12 @@ public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of JobMatchingMode.
+     * Get the kind property: The type discriminator describing a kind of JobMatchingMode.
      *
      * @return the kind value.
      */
     @Generated
-    public JobMatchingModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -87,7 +92,9 @@ public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("jobMatchingModeKind",
+                this.jobMatchingModeKind == null ? null : this.jobMatchingModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -95,7 +102,14 @@ public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("jobMatchingModeKind")) {
+            if (this.jobMatchingModeKind == null) {
+                jsonWriter.writeNullField("jobMatchingModeKind");
+            } else {
+                jsonWriter.writeStringField("jobMatchingModeKind", this.jobMatchingModeKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -146,12 +160,45 @@ public class JobMatchingMode implements JsonSerializable<JobMatchingMode> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedJobMatchingMode.kind = JobMatchingModeKind.fromString(reader.getString());
+                    deserializedJobMatchingMode.kind = reader.getString();
+                } else if ("jobMatchingModeKind".equals(fieldName)) {
+                    deserializedJobMatchingMode.jobMatchingModeKind
+                        = JobMatchingModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedJobMatchingMode;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of JobMatchingMode.
+     */
+    @Generated
+    private JobMatchingModeKind jobMatchingModeKind;
+
+    /**
+     * Get the jobMatchingModeKind property: The type discriminator describing a sub-type of JobMatchingMode.
+     *
+     * @return the jobMatchingModeKind value.
+     */
+    @Generated
+    public JobMatchingModeKind getJobMatchingModeKind() {
+        return this.jobMatchingModeKind;
+    }
+
+    /**
+     * Set the jobMatchingModeKind property: The type discriminator describing a sub-type of JobMatchingMode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param jobMatchingModeKind the jobMatchingModeKind value to set.
+     * @return the JobMatchingMode object itself.
+     */
+    @Generated
+    public JobMatchingMode setJobMatchingModeKind(JobMatchingModeKind jobMatchingModeKind) {
+        this.jobMatchingModeKind = jobMatchingModeKind;
+        this.updatedProperties.add("jobMatchingModeKind");
+        return this;
     }
 }

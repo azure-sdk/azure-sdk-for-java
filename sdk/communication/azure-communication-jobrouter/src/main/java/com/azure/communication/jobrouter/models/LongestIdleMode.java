@@ -20,10 +20,10 @@ import java.util.Set;
 public final class LongestIdleMode extends DistributionMode {
 
     /*
-     * The type discriminator describing a sub-type of DistributionMode.
+     * The type discriminator describing a kind of DistributionMode.
      */
     @Generated
-    private DistributionModeKind kind = DistributionModeKind.LONGEST_IDLE;
+    private String kind = "longestIdle";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -39,13 +39,13 @@ public final class LongestIdleMode extends DistributionMode {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of DistributionMode.
+     * Get the kind property: The type discriminator describing a kind of DistributionMode.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public DistributionModeKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -95,7 +95,11 @@ public final class LongestIdleMode extends DistributionMode {
             jsonWriter.writeNumberField("minConcurrentOffers", getMinConcurrentOffers());
             jsonWriter.writeNumberField("maxConcurrentOffers", getMaxConcurrentOffers());
             jsonWriter.writeBooleanField("bypassSelectors", isBypassSelectors());
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("distributionModeKind",
+                getDistributionModeKind() == null ? null : getDistributionModeKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("distributionModeKind",
+                this.distributionModeKind == null ? null : this.distributionModeKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -124,7 +128,21 @@ public final class LongestIdleMode extends DistributionMode {
                 jsonWriter.writeBooleanField("bypassSelectors", isBypassSelectors());
             }
         }
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("distributionModeKind")) {
+            if (getDistributionModeKind() == null) {
+                jsonWriter.writeNullField("distributionModeKind");
+            } else {
+                jsonWriter.writeStringField("distributionModeKind", getDistributionModeKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("distributionModeKind")) {
+            if (this.distributionModeKind == null) {
+                jsonWriter.writeNullField("distributionModeKind");
+            } else {
+                jsonWriter.writeStringField("distributionModeKind", this.distributionModeKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -153,12 +171,45 @@ public final class LongestIdleMode extends DistributionMode {
                     JsonMergePatchHelper.getDistributionModeAccessor()
                         .setBypassSelectors(deserializedLongestIdleMode, reader.getNullable(JsonReader::getBoolean));
                 } else if ("kind".equals(fieldName)) {
-                    deserializedLongestIdleMode.kind = DistributionModeKind.fromString(reader.getString());
+                    deserializedLongestIdleMode.kind = reader.getString();
+                } else if ("distributionModeKind".equals(fieldName)) {
+                    deserializedLongestIdleMode.distributionModeKind
+                        = DistributionModeKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedLongestIdleMode;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Mode.
+     */
+    @Generated
+    private DistributionModeKind distributionModeKind = DistributionModeKind.LONGEST_IDLE;
+
+    /**
+     * Get the distributionModeKind property: The type discriminator describing a sub-type of Mode.
+     *
+     * @return the distributionModeKind value.
+     */
+    @Generated
+    public DistributionModeKind getDistributionModeKind() {
+        return this.distributionModeKind;
+    }
+
+    /**
+     * Set the distributionModeKind property: The type discriminator describing a sub-type of Mode.
+     * <p>Required when create the resource.</p>
+     *
+     * @param distributionModeKind the distributionModeKind value to set.
+     * @return the LongestIdleMode object itself.
+     */
+    @Generated
+    public LongestIdleMode setDistributionModeKind(DistributionModeKind distributionModeKind) {
+        this.distributionModeKind = distributionModeKind;
+        this.updatedProperties.add("distributionModeKind");
+        return this;
     }
 }

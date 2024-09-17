@@ -24,7 +24,7 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
      * The type discriminator describing a sub-type of QueueSelectorAttachment.
      */
     @Generated
-    private QueueSelectorAttachmentKind kind = QueueSelectorAttachmentKind.WEIGHTED_ALLOCATION;
+    private String kind = "weightedAllocation";
 
     /*
      * A collection of percentage based weighted allocations.
@@ -52,7 +52,7 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
      */
     @Generated
     @Override
-    public QueueSelectorAttachmentKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -90,8 +90,12 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                getQueueSelectorAttachmentKind() == null ? null : getQueueSelectorAttachmentKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeArrayField("allocations", this.allocations, (writer, element) -> writer.writeJson(element));
+            jsonWriter.writeStringField("queueSelectorAttachmentKind",
+                this.queueSelectorAttachmentKind == null ? null : this.queueSelectorAttachmentKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -99,13 +103,27 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (getQueueSelectorAttachmentKind() == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", getQueueSelectorAttachmentKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("allocations")) {
             if (this.allocations == null) {
                 jsonWriter.writeNullField("allocations");
             } else {
                 jsonWriter.writeArrayField("allocations", this.allocations,
                     (writer, element) -> writer.writeJson(element));
+            }
+        }
+        if (updatedProperties.contains("queueSelectorAttachmentKind")) {
+            if (this.queueSelectorAttachmentKind == null) {
+                jsonWriter.writeNullField("queueSelectorAttachmentKind");
+            } else {
+                jsonWriter.writeStringField("queueSelectorAttachmentKind", this.queueSelectorAttachmentKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -128,12 +146,14 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedWeightedAllocationQueueSelectorAttachment.kind
-                        = QueueSelectorAttachmentKind.fromString(reader.getString());
+                    deserializedWeightedAllocationQueueSelectorAttachment.kind = reader.getString();
                 } else if ("allocations".equals(fieldName)) {
                     List<QueueWeightedAllocation> allocations
                         = reader.readArray(reader1 -> QueueWeightedAllocation.fromJson(reader1));
                     deserializedWeightedAllocationQueueSelectorAttachment.allocations = allocations;
+                } else if ("queueSelectorAttachmentKind".equals(fieldName)) {
+                    deserializedWeightedAllocationQueueSelectorAttachment.queueSelectorAttachmentKind
+                        = QueueSelectorAttachmentKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -150,5 +170,38 @@ public final class WeightedAllocationQueueSelectorAttachment extends QueueSelect
     public WeightedAllocationQueueSelectorAttachment(List<QueueWeightedAllocation> allocations) {
         this.allocations = allocations;
         this.updatedProperties.add("allocations");
+    }
+
+    /*
+     * The type discriminator describing the type of queue selector attachment.
+     */
+    @Generated
+    private QueueSelectorAttachmentKind queueSelectorAttachmentKind = QueueSelectorAttachmentKind.WEIGHTED_ALLOCATION;
+
+    /**
+     * Get the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     *
+     * @return the queueSelectorAttachmentKind value.
+     */
+    @Generated
+    public QueueSelectorAttachmentKind getQueueSelectorAttachmentKind() {
+        return this.queueSelectorAttachmentKind;
+    }
+
+    /**
+     * Set the queueSelectorAttachmentKind property: The type discriminator describing the type of queue selector
+     * attachment.
+     * <p>Required when create the resource.</p>
+     *
+     * @param queueSelectorAttachmentKind the queueSelectorAttachmentKind value to set.
+     * @return the WeightedAllocationQueueSelectorAttachment object itself.
+     */
+    @Generated
+    public WeightedAllocationQueueSelectorAttachment
+        setQueueSelectorAttachmentKind(QueueSelectorAttachmentKind queueSelectorAttachmentKind) {
+        this.queueSelectorAttachmentKind = queueSelectorAttachmentKind;
+        this.updatedProperties.add("queueSelectorAttachmentKind");
+        return this;
     }
 }

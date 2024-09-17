@@ -4,8 +4,8 @@
 package com.azure.communication.jobrouter.models;
 
 import com.azure.communication.jobrouter.implementation.JsonMergePatchHelper;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -17,14 +17,14 @@ import java.util.Set;
 /**
  * Abstract base class for defining a trigger for exception rules.
  */
-@Immutable
+@Fluent
 public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
 
     /*
-     * The type discriminator describing a sub-type of ExceptionTrigger.
+     * The type discriminator describing a kind of ExceptionTrigger.
      */
     @Generated
-    private ExceptionTriggerKind kind = ExceptionTriggerKind.fromString("ExceptionTrigger");
+    private String kind = "ExceptionTrigger";
 
     /**
      * Stores updated model property, the value is property name, not serialized name.
@@ -54,6 +54,11 @@ public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
             public boolean isJsonMergePatch(ExceptionTrigger model) {
                 return model.jsonMergePatch;
             }
+
+            @Override
+            public void setExceptionTriggerKind(ExceptionTrigger model, ExceptionTriggerKind exceptionTriggerKind) {
+                model.exceptionTriggerKind = exceptionTriggerKind;
+            }
         });
     }
 
@@ -65,12 +70,12 @@ public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * Get the kind property: The type discriminator describing a kind of ExceptionTrigger.
      *
      * @return the kind value.
      */
     @Generated
-    public ExceptionTriggerKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -84,7 +89,9 @@ public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("kind", this.kind);
+            jsonWriter.writeStringField("exceptionTriggerKind",
+                this.exceptionTriggerKind == null ? null : this.exceptionTriggerKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -92,7 +99,14 @@ public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        jsonWriter.writeStringField("kind", this.kind);
+        if (updatedProperties.contains("exceptionTriggerKind")) {
+            if (this.exceptionTriggerKind == null) {
+                jsonWriter.writeNullField("exceptionTriggerKind");
+            } else {
+                jsonWriter.writeStringField("exceptionTriggerKind", this.exceptionTriggerKind.toString());
+            }
+        }
         return jsonWriter.writeEndObject();
     }
 
@@ -141,12 +155,45 @@ public class ExceptionTrigger implements JsonSerializable<ExceptionTrigger> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedExceptionTrigger.kind = ExceptionTriggerKind.fromString(reader.getString());
+                    deserializedExceptionTrigger.kind = reader.getString();
+                } else if ("exceptionTriggerKind".equals(fieldName)) {
+                    deserializedExceptionTrigger.exceptionTriggerKind
+                        = ExceptionTriggerKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
             return deserializedExceptionTrigger;
         });
+    }
+
+    /*
+     * The type discriminator describing a sub-type of ExceptionTrigger.
+     */
+    @Generated
+    private ExceptionTriggerKind exceptionTriggerKind;
+
+    /**
+     * Get the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     *
+     * @return the exceptionTriggerKind value.
+     */
+    @Generated
+    public ExceptionTriggerKind getExceptionTriggerKind() {
+        return this.exceptionTriggerKind;
+    }
+
+    /**
+     * Set the exceptionTriggerKind property: The type discriminator describing a sub-type of ExceptionTrigger.
+     * <p>Required when create the resource.</p>
+     *
+     * @param exceptionTriggerKind the exceptionTriggerKind value to set.
+     * @return the ExceptionTrigger object itself.
+     */
+    @Generated
+    public ExceptionTrigger setExceptionTriggerKind(ExceptionTriggerKind exceptionTriggerKind) {
+        this.exceptionTriggerKind = exceptionTriggerKind;
+        this.updatedProperties.add("exceptionTriggerKind");
+        return this;
     }
 }

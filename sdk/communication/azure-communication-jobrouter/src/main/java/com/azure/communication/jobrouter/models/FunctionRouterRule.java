@@ -20,10 +20,10 @@ import java.util.Set;
 public final class FunctionRouterRule extends RouterRule {
 
     /*
-     * The type discriminator describing a sub-type of RouterRule
+     * The type discriminator describing a kind of RouterRule
      */
     @Generated
-    private RouterRuleKind kind = RouterRuleKind.FUNCTION;
+    private String kind = "function";
 
     /*
      * URL for Azure Function.
@@ -51,13 +51,13 @@ public final class FunctionRouterRule extends RouterRule {
     }
 
     /**
-     * Get the kind property: The type discriminator describing a sub-type of RouterRule.
+     * Get the kind property: The type discriminator describing a kind of RouterRule.
      *
      * @return the kind value.
      */
     @Generated
     @Override
-    public RouterRuleKind getKind() {
+    public String getKind() {
         return this.kind;
     }
 
@@ -118,9 +118,13 @@ public final class FunctionRouterRule extends RouterRule {
             return toJsonMergePatch(jsonWriter);
         } else {
             jsonWriter.writeStartObject();
-            jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
+            jsonWriter.writeStringField("routerRuleKind",
+                getRouterRuleKind() == null ? null : getRouterRuleKind().toString());
+            jsonWriter.writeStringField("kind", this.kind);
             jsonWriter.writeStringField("functionUri", this.functionUri);
             jsonWriter.writeJsonField("credential", this.credential);
+            jsonWriter.writeStringField("routerRuleKind",
+                this.routerRuleKind == null ? null : this.routerRuleKind.toString());
             return jsonWriter.writeEndObject();
         }
     }
@@ -128,7 +132,14 @@ public final class FunctionRouterRule extends RouterRule {
     @Generated
     private JsonWriter toJsonMergePatch(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("kind", this.kind.toString());
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (getRouterRuleKind() == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", getRouterRuleKind().toString());
+            }
+        }
+        jsonWriter.writeStringField("kind", this.kind);
         if (updatedProperties.contains("functionUri")) {
             if (this.functionUri == null) {
                 jsonWriter.writeNullField("functionUri");
@@ -145,6 +156,13 @@ public final class FunctionRouterRule extends RouterRule {
                 jsonWriter.writeJsonField("credential", this.credential);
                 JsonMergePatchHelper.getFunctionRouterRuleCredentialAccessor()
                     .prepareModelForJsonMergePatch(this.credential, false);
+            }
+        }
+        if (updatedProperties.contains("routerRuleKind")) {
+            if (this.routerRuleKind == null) {
+                jsonWriter.writeNullField("routerRuleKind");
+            } else {
+                jsonWriter.writeStringField("routerRuleKind", this.routerRuleKind.toString());
             }
         }
         return jsonWriter.writeEndObject();
@@ -166,11 +184,13 @@ public final class FunctionRouterRule extends RouterRule {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
                 if ("kind".equals(fieldName)) {
-                    deserializedFunctionRouterRule.kind = RouterRuleKind.fromString(reader.getString());
+                    deserializedFunctionRouterRule.kind = reader.getString();
                 } else if ("functionUri".equals(fieldName)) {
                     deserializedFunctionRouterRule.functionUri = reader.getString();
                 } else if ("credential".equals(fieldName)) {
                     deserializedFunctionRouterRule.credential = FunctionRouterRuleCredential.fromJson(reader);
+                } else if ("routerRuleKind".equals(fieldName)) {
+                    deserializedFunctionRouterRule.routerRuleKind = RouterRuleKind.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
@@ -187,5 +207,35 @@ public final class FunctionRouterRule extends RouterRule {
     public FunctionRouterRule(String functionUri) {
         this.functionUri = functionUri;
         this.updatedProperties.add("functionUri");
+    }
+
+    /*
+     * The type discriminator describing a sub-type of Rule.
+     */
+    @Generated
+    private RouterRuleKind routerRuleKind = RouterRuleKind.FUNCTION;
+
+    /**
+     * Get the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     *
+     * @return the routerRuleKind value.
+     */
+    @Generated
+    public RouterRuleKind getRouterRuleKind() {
+        return this.routerRuleKind;
+    }
+
+    /**
+     * Set the routerRuleKind property: The type discriminator describing a sub-type of Rule.
+     * <p>Required when create the resource.</p>
+     *
+     * @param routerRuleKind the routerRuleKind value to set.
+     * @return the FunctionRouterRule object itself.
+     */
+    @Generated
+    public FunctionRouterRule setRouterRuleKind(RouterRuleKind routerRuleKind) {
+        this.routerRuleKind = routerRuleKind;
+        this.updatedProperties.add("routerRuleKind");
+        return this;
     }
 }
