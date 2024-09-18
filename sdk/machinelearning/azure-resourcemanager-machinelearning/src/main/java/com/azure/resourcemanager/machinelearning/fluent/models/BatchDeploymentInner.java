@@ -23,9 +23,9 @@ import java.util.Map;
 @Fluent
 public final class BatchDeploymentInner extends Resource {
     /*
-     * [Required] Additional attributes of the entity.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
-    private BatchDeploymentProperties properties;
+    private ManagedServiceIdentity identity;
 
     /*
      * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type.
@@ -33,9 +33,9 @@ public final class BatchDeploymentInner extends Resource {
     private String kind;
 
     /*
-     * Managed service identity (system assigned and/or user assigned identities)
+     * [Required] Additional attributes of the entity.
      */
-    private ManagedServiceIdentity identity;
+    private BatchDeploymentProperties properties;
 
     /*
      * Sku details required for ARM contract for Autoscaling.
@@ -48,9 +48,9 @@ public final class BatchDeploymentInner extends Resource {
     private SystemData systemData;
 
     /*
-     * Fully qualified resource Id for the resource.
+     * The type of the resource.
      */
-    private String id;
+    private String type;
 
     /*
      * The name of the resource.
@@ -58,9 +58,9 @@ public final class BatchDeploymentInner extends Resource {
     private String name;
 
     /*
-     * The type of the resource.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of BatchDeploymentInner class.
@@ -69,22 +69,22 @@ public final class BatchDeploymentInner extends Resource {
     }
 
     /**
-     * Get the properties property: [Required] Additional attributes of the entity.
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
-     * @return the properties value.
+     * @return the identity value.
      */
-    public BatchDeploymentProperties properties() {
-        return this.properties;
+    public ManagedServiceIdentity identity() {
+        return this.identity;
     }
 
     /**
-     * Set the properties property: [Required] Additional attributes of the entity.
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
-     * @param properties the properties value to set.
+     * @param identity the identity value to set.
      * @return the BatchDeploymentInner object itself.
      */
-    public BatchDeploymentInner withProperties(BatchDeploymentProperties properties) {
-        this.properties = properties;
+    public BatchDeploymentInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
         return this;
     }
 
@@ -111,22 +111,22 @@ public final class BatchDeploymentInner extends Resource {
     }
 
     /**
-     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * Get the properties property: [Required] Additional attributes of the entity.
      * 
-     * @return the identity value.
+     * @return the properties value.
      */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
+    public BatchDeploymentProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * Set the properties property: [Required] Additional attributes of the entity.
      * 
-     * @param identity the identity value to set.
+     * @param properties the properties value to set.
      * @return the BatchDeploymentInner object itself.
      */
-    public BatchDeploymentInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
+    public BatchDeploymentInner withProperties(BatchDeploymentProperties properties) {
+        this.properties = properties;
         return this;
     }
 
@@ -160,13 +160,13 @@ public final class BatchDeploymentInner extends Resource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
+     * Get the type property: The type of the resource.
      * 
-     * @return the id value.
+     * @return the type value.
      */
     @Override
-    public String id() {
-        return this.id;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -180,13 +180,13 @@ public final class BatchDeploymentInner extends Resource {
     }
 
     /**
-     * Get the type property: The type of the resource.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the type value.
+     * @return the id value.
      */
     @Override
-    public String type() {
-        return this.type;
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -213,15 +213,15 @@ public final class BatchDeploymentInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (identity() != null) {
+            identity().validate();
+        }
         if (properties() == null) {
             throw LOGGER.atError()
                 .log(
                     new IllegalArgumentException("Missing required property properties in model BatchDeploymentInner"));
         } else {
             properties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
         if (sku() != null) {
             sku().validate();
@@ -239,8 +239,8 @@ public final class BatchDeploymentInner extends Resource {
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.properties);
-        jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
@@ -274,10 +274,10 @@ public final class BatchDeploymentInner extends Resource {
                     deserializedBatchDeploymentInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     deserializedBatchDeploymentInner.properties = BatchDeploymentProperties.fromJson(reader);
-                } else if ("kind".equals(fieldName)) {
-                    deserializedBatchDeploymentInner.kind = reader.getString();
                 } else if ("identity".equals(fieldName)) {
                     deserializedBatchDeploymentInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("kind".equals(fieldName)) {
+                    deserializedBatchDeploymentInner.kind = reader.getString();
                 } else if ("sku".equals(fieldName)) {
                     deserializedBatchDeploymentInner.sku = Sku.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {

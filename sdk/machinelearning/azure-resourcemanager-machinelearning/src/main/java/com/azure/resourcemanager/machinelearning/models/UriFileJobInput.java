@@ -22,14 +22,14 @@ public final class UriFileJobInput extends JobInput {
     private JobInputType jobInputType = JobInputType.URI_FILE;
 
     /*
-     * [Required] Input Asset URI.
-     */
-    private String uri;
-
-    /*
      * Input Asset Delivery Mode.
      */
     private InputDeliveryMode mode;
+
+    /*
+     * [Required] Input Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of UriFileJobInput class.
@@ -45,26 +45,6 @@ public final class UriFileJobInput extends JobInput {
     @Override
     public JobInputType jobInputType() {
         return this.jobInputType;
-    }
-
-    /**
-     * Get the uri property: [Required] Input Asset URI.
-     * 
-     * @return the uri value.
-     */
-    public String uri() {
-        return this.uri;
-    }
-
-    /**
-     * Set the uri property: [Required] Input Asset URI.
-     * 
-     * @param uri the uri value to set.
-     * @return the UriFileJobInput object itself.
-     */
-    public UriFileJobInput withUri(String uri) {
-        this.uri = uri;
-        return this;
     }
 
     /**
@@ -88,6 +68,26 @@ public final class UriFileJobInput extends JobInput {
     }
 
     /**
+     * Get the uri property: [Required] Input Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: [Required] Input Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the UriFileJobInput object itself.
+     */
+    public UriFileJobInput withUri(String uri) {
+        this.uri = uri;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -103,7 +103,6 @@ public final class UriFileJobInput extends JobInput {
      */
     @Override
     public void validate() {
-        super.validate();
         if (uri() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property uri in model UriFileJobInput"));

@@ -12,6 +12,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,6 +39,11 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
      * Status of the Provisioning for the managed network of a machine learning workspace.
      */
     private ManagedNetworkProvisionStatusInner status;
+
+    /*
+     * The changeableIsolationModes property.
+     */
+    private List<IsolationMode> changeableIsolationModes;
 
     /**
      * Creates an instance of ManagedNetworkSettingsInner class.
@@ -115,6 +121,15 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
     }
 
     /**
+     * Get the changeableIsolationModes property: The changeableIsolationModes property.
+     * 
+     * @return the changeableIsolationModes value.
+     */
+    public List<IsolationMode> changeableIsolationModes() {
+        return this.changeableIsolationModes;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -170,6 +185,10 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
                 } else if ("status".equals(fieldName)) {
                     deserializedManagedNetworkSettingsInner.status
                         = ManagedNetworkProvisionStatusInner.fromJson(reader);
+                } else if ("changeableIsolationModes".equals(fieldName)) {
+                    List<IsolationMode> changeableIsolationModes
+                        = reader.readArray(reader1 -> IsolationMode.fromString(reader1.getString()));
+                    deserializedManagedNetworkSettingsInner.changeableIsolationModes = changeableIsolationModes;
                 } else {
                     reader.skipChildren();
                 }
