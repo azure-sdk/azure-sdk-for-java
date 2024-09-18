@@ -4,11 +4,47 @@
 
 ### Features Added
 
-### Breaking Changes
+* `models.InnerError` was added
 
-### Bugs Fixed
+* `models.Snapshot` was added
 
-### Other Changes
+* `models.OperationDetails` was added
+
+* `AzureAppConfigurationClient` was added
+
+* `models.KeyValueFields` was added
+
+* `implementation.OperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationServiceVersion` was added
+
+* `models.Label` was added
+
+* `models.Key` was added
+
+* `models.CompositionType` was added
+
+* `models.OperationState` was added
+
+* `implementation.AzureAppConfigurationClientImpl$AzureAppConfigurationClientService` was added
+
+* `models.KeyValue` was added
+
+* `AzureAppConfigurationAsyncClient` was added
+
+* `implementation.SyncOperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationClientBuilder` was added
+
+* `models.LabelFields` was added
+
+* `implementation.AzureAppConfigurationClientImpl` was added
+
+* `models.KeyValueFilter` was added
+
+* `models.ErrorDetail` was added
+
+* `models.SnapshotStatus` was added
 
 ## 1.7.0 (2024-08-07)
 
