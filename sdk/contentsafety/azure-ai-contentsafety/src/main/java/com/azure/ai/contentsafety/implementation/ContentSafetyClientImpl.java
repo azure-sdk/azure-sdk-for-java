@@ -44,13 +44,15 @@ public final class ContentSafetyClientImpl {
     private final ContentSafetyClientService service;
 
     /**
+     * test
      * Supported Cognitive Services endpoints (protocol and hostname, for example:
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      */
     private final String endpoint;
 
     /**
-     * Gets Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * Gets test
+     * Supported Cognitive Services endpoints (protocol and hostname, for example:
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * 
      * @return the endpoint value.
@@ -104,7 +106,8 @@ public final class ContentSafetyClientImpl {
     /**
      * Initializes an instance of ContentSafetyClient client.
      * 
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint test
+     * Supported Cognitive Services endpoints (protocol and hostname, for example:
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * @param serviceVersion Service version.
      */
@@ -117,7 +120,8 @@ public final class ContentSafetyClientImpl {
      * Initializes an instance of ContentSafetyClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint test
+     * Supported Cognitive Services endpoints (protocol and hostname, for example:
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * @param serviceVersion Service version.
      */
@@ -131,7 +135,8 @@ public final class ContentSafetyClientImpl {
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+     * @param endpoint test
+     * Supported Cognitive Services endpoints (protocol and hostname, for example:
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * @param serviceVersion Service version.
      */
