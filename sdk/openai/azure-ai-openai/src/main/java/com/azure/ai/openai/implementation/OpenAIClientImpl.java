@@ -1959,6 +1959,7 @@ public final class OpenAIClientImpl {
      *                 double (Required)
      *             ]
      *             index: int (Required)
+     *             object: String (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -2020,6 +2021,7 @@ public final class OpenAIClientImpl {
      *                 double (Required)
      *             ]
      *             index: int (Required)
+     *             object: String (Required)
      *         }
      *     ]
      *     usage (Required): {
