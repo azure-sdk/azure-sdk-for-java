@@ -941,8 +941,8 @@ public final class OpenAIClientImpl {
      *                 }
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
@@ -1092,8 +1092,8 @@ public final class OpenAIClientImpl {
      *                 }
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
@@ -1337,8 +1337,8 @@ public final class OpenAIClientImpl {
      *                 }
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
@@ -1589,8 +1589,8 @@ public final class OpenAIClientImpl {
      *                 }
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
@@ -1737,8 +1737,8 @@ public final class OpenAIClientImpl {
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
@@ -1819,8 +1819,8 @@ public final class OpenAIClientImpl {
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
      *                 custom_blocklists (Optional): {
      *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
+     *                     details (Optional): [
+     *                          (Optional){
      *                             filtered: boolean (Required)
      *                             id: String (Required)
      *                         }
