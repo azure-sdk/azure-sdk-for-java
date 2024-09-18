@@ -5,7 +5,11 @@
 package com.azure.resourcemanager.confidentialledger.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,66 +18,86 @@ import java.util.List;
  * Additional Confidential Ledger properties.
  */
 @Fluent
-public final class LedgerProperties {
+public final class LedgerProperties implements JsonSerializable<LedgerProperties> {
     /*
      * Unique name for the Confidential Ledger.
      */
-    @JsonProperty(value = "ledgerName", access = JsonProperty.Access.WRITE_ONLY)
     private String ledgerName;
 
     /*
      * Endpoint for calling Ledger Service.
      */
-    @JsonProperty(value = "ledgerUri", access = JsonProperty.Access.WRITE_ONLY)
     private String ledgerUri;
 
     /*
      * Endpoint for accessing network identity.
      */
-    @JsonProperty(value = "identityServiceUri", access = JsonProperty.Access.WRITE_ONLY)
     private String identityServiceUri;
 
     /*
      * Internal namespace for the Ledger
      */
-    @JsonProperty(value = "ledgerInternalNamespace", access = JsonProperty.Access.WRITE_ONLY)
     private String ledgerInternalNamespace;
 
     /*
      * Object representing RunningState for Ledger.
      */
-    @JsonProperty(value = "runningState")
     private RunningState runningState;
 
     /*
      * Type of Confidential Ledger
      */
-    @JsonProperty(value = "ledgerType")
     private LedgerType ledgerType;
 
     /*
      * Provisioning state of Ledger Resource
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * SKU associated with the ledger
      */
-    @JsonProperty(value = "ledgerSku")
     private LedgerSku ledgerSku;
 
     /*
      * Array of all AAD based Security Principals.
      */
-    @JsonProperty(value = "aadBasedSecurityPrincipals")
     private List<AadBasedSecurityPrincipal> aadBasedSecurityPrincipals;
 
     /*
      * Array of all cert based Security Principals.
      */
-    @JsonProperty(value = "certBasedSecurityPrincipals")
     private List<CertBasedSecurityPrincipal> certBasedSecurityPrincipals;
+
+    /*
+     * CCF Property for the logging level for the untrusted host: Trace, Debug, Info, Fail, Fatal.
+     */
+    private String hostLevel;
+
+    /*
+     * CCF Property for the maximum size of the http request body: 1MB, 5MB, 10MB.
+     */
+    private Integer maxBodySizeInMb;
+
+    /*
+     * CCF Property for the subject name to include in the node certificate. Default: CN=CCF Node.
+     */
+    private String subjectName;
+
+    /*
+     * Number of CCF nodes in the ACC Ledger.
+     */
+    private Integer nodeCount;
+
+    /*
+     * Prefix for the write load balancer. Example: write
+     */
+    private String writeLBAddressPrefix;
+
+    /*
+     * Number of additional threads processing incoming client requests in the enclave (modify with care!)
+     */
+    private Integer workerThreads;
 
     /**
      * Creates an instance of LedgerProperties class.
@@ -228,6 +252,132 @@ public final class LedgerProperties {
     }
 
     /**
+     * Get the hostLevel property: CCF Property for the logging level for the untrusted host: Trace, Debug, Info, Fail,
+     * Fatal.
+     * 
+     * @return the hostLevel value.
+     */
+    public String hostLevel() {
+        return this.hostLevel;
+    }
+
+    /**
+     * Set the hostLevel property: CCF Property for the logging level for the untrusted host: Trace, Debug, Info, Fail,
+     * Fatal.
+     * 
+     * @param hostLevel the hostLevel value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withHostLevel(String hostLevel) {
+        this.hostLevel = hostLevel;
+        return this;
+    }
+
+    /**
+     * Get the maxBodySizeInMb property: CCF Property for the maximum size of the http request body: 1MB, 5MB, 10MB.
+     * 
+     * @return the maxBodySizeInMb value.
+     */
+    public Integer maxBodySizeInMb() {
+        return this.maxBodySizeInMb;
+    }
+
+    /**
+     * Set the maxBodySizeInMb property: CCF Property for the maximum size of the http request body: 1MB, 5MB, 10MB.
+     * 
+     * @param maxBodySizeInMb the maxBodySizeInMb value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withMaxBodySizeInMb(Integer maxBodySizeInMb) {
+        this.maxBodySizeInMb = maxBodySizeInMb;
+        return this;
+    }
+
+    /**
+     * Get the subjectName property: CCF Property for the subject name to include in the node certificate. Default:
+     * CN=CCF Node.
+     * 
+     * @return the subjectName value.
+     */
+    public String subjectName() {
+        return this.subjectName;
+    }
+
+    /**
+     * Set the subjectName property: CCF Property for the subject name to include in the node certificate. Default:
+     * CN=CCF Node.
+     * 
+     * @param subjectName the subjectName value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+        return this;
+    }
+
+    /**
+     * Get the nodeCount property: Number of CCF nodes in the ACC Ledger.
+     * 
+     * @return the nodeCount value.
+     */
+    public Integer nodeCount() {
+        return this.nodeCount;
+    }
+
+    /**
+     * Set the nodeCount property: Number of CCF nodes in the ACC Ledger.
+     * 
+     * @param nodeCount the nodeCount value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withNodeCount(Integer nodeCount) {
+        this.nodeCount = nodeCount;
+        return this;
+    }
+
+    /**
+     * Get the writeLBAddressPrefix property: Prefix for the write load balancer. Example: write.
+     * 
+     * @return the writeLBAddressPrefix value.
+     */
+    public String writeLBAddressPrefix() {
+        return this.writeLBAddressPrefix;
+    }
+
+    /**
+     * Set the writeLBAddressPrefix property: Prefix for the write load balancer. Example: write.
+     * 
+     * @param writeLBAddressPrefix the writeLBAddressPrefix value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withWriteLBAddressPrefix(String writeLBAddressPrefix) {
+        this.writeLBAddressPrefix = writeLBAddressPrefix;
+        return this;
+    }
+
+    /**
+     * Get the workerThreads property: Number of additional threads processing incoming client requests in the enclave
+     * (modify with care!).
+     * 
+     * @return the workerThreads value.
+     */
+    public Integer workerThreads() {
+        return this.workerThreads;
+    }
+
+    /**
+     * Set the workerThreads property: Number of additional threads processing incoming client requests in the enclave
+     * (modify with care!).
+     * 
+     * @param workerThreads the workerThreads value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withWorkerThreads(Integer workerThreads) {
+        this.workerThreads = workerThreads;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -239,5 +389,87 @@ public final class LedgerProperties {
         if (certBasedSecurityPrincipals() != null) {
             certBasedSecurityPrincipals().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("runningState", this.runningState == null ? null : this.runningState.toString());
+        jsonWriter.writeStringField("ledgerType", this.ledgerType == null ? null : this.ledgerType.toString());
+        jsonWriter.writeStringField("ledgerSku", this.ledgerSku == null ? null : this.ledgerSku.toString());
+        jsonWriter.writeArrayField("aadBasedSecurityPrincipals", this.aadBasedSecurityPrincipals,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("certBasedSecurityPrincipals", this.certBasedSecurityPrincipals,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("hostLevel", this.hostLevel);
+        jsonWriter.writeNumberField("maxBodySizeInMb", this.maxBodySizeInMb);
+        jsonWriter.writeStringField("subjectName", this.subjectName);
+        jsonWriter.writeNumberField("nodeCount", this.nodeCount);
+        jsonWriter.writeStringField("writeLBAddressPrefix", this.writeLBAddressPrefix);
+        jsonWriter.writeNumberField("workerThreads", this.workerThreads);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of LedgerProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of LedgerProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the LedgerProperties.
+     */
+    public static LedgerProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            LedgerProperties deserializedLedgerProperties = new LedgerProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("ledgerName".equals(fieldName)) {
+                    deserializedLedgerProperties.ledgerName = reader.getString();
+                } else if ("ledgerUri".equals(fieldName)) {
+                    deserializedLedgerProperties.ledgerUri = reader.getString();
+                } else if ("identityServiceUri".equals(fieldName)) {
+                    deserializedLedgerProperties.identityServiceUri = reader.getString();
+                } else if ("ledgerInternalNamespace".equals(fieldName)) {
+                    deserializedLedgerProperties.ledgerInternalNamespace = reader.getString();
+                } else if ("runningState".equals(fieldName)) {
+                    deserializedLedgerProperties.runningState = RunningState.fromString(reader.getString());
+                } else if ("ledgerType".equals(fieldName)) {
+                    deserializedLedgerProperties.ledgerType = LedgerType.fromString(reader.getString());
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedLedgerProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("ledgerSku".equals(fieldName)) {
+                    deserializedLedgerProperties.ledgerSku = LedgerSku.fromString(reader.getString());
+                } else if ("aadBasedSecurityPrincipals".equals(fieldName)) {
+                    List<AadBasedSecurityPrincipal> aadBasedSecurityPrincipals
+                        = reader.readArray(reader1 -> AadBasedSecurityPrincipal.fromJson(reader1));
+                    deserializedLedgerProperties.aadBasedSecurityPrincipals = aadBasedSecurityPrincipals;
+                } else if ("certBasedSecurityPrincipals".equals(fieldName)) {
+                    List<CertBasedSecurityPrincipal> certBasedSecurityPrincipals
+                        = reader.readArray(reader1 -> CertBasedSecurityPrincipal.fromJson(reader1));
+                    deserializedLedgerProperties.certBasedSecurityPrincipals = certBasedSecurityPrincipals;
+                } else if ("hostLevel".equals(fieldName)) {
+                    deserializedLedgerProperties.hostLevel = reader.getString();
+                } else if ("maxBodySizeInMb".equals(fieldName)) {
+                    deserializedLedgerProperties.maxBodySizeInMb = reader.getNullable(JsonReader::getInt);
+                } else if ("subjectName".equals(fieldName)) {
+                    deserializedLedgerProperties.subjectName = reader.getString();
+                } else if ("nodeCount".equals(fieldName)) {
+                    deserializedLedgerProperties.nodeCount = reader.getNullable(JsonReader::getInt);
+                } else if ("writeLBAddressPrefix".equals(fieldName)) {
+                    deserializedLedgerProperties.writeLBAddressPrefix = reader.getString();
+                } else if ("workerThreads".equals(fieldName)) {
+                    deserializedLedgerProperties.workerThreads = reader.getNullable(JsonReader::getInt);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedLedgerProperties;
+        });
     }
 }
