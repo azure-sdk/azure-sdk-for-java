@@ -244,62 +244,6 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
     }
 
     /**
-     * The ServersClient object to access its operations.
-     */
-    private final ServersClient servers;
-
-    /**
-     * Gets the ServersClient object to access its operations.
-     * 
-     * @return the ServersClient object.
-     */
-    public ServersClient getServers() {
-        return this.servers;
-    }
-
-    /**
-     * The ReplicasClient object to access its operations.
-     */
-    private final ReplicasClient replicas;
-
-    /**
-     * Gets the ReplicasClient object to access its operations.
-     * 
-     * @return the ReplicasClient object.
-     */
-    public ReplicasClient getReplicas() {
-        return this.replicas;
-    }
-
-    /**
-     * The ServersMigrationsClient object to access its operations.
-     */
-    private final ServersMigrationsClient serversMigrations;
-
-    /**
-     * Gets the ServersMigrationsClient object to access its operations.
-     * 
-     * @return the ServersMigrationsClient object.
-     */
-    public ServersMigrationsClient getServersMigrations() {
-        return this.serversMigrations;
-    }
-
-    /**
-     * The AdvancedThreatProtectionSettingsClient object to access its operations.
-     */
-    private final AdvancedThreatProtectionSettingsClient advancedThreatProtectionSettings;
-
-    /**
-     * Gets the AdvancedThreatProtectionSettingsClient object to access its operations.
-     * 
-     * @return the AdvancedThreatProtectionSettingsClient object.
-     */
-    public AdvancedThreatProtectionSettingsClient getAdvancedThreatProtectionSettings() {
-        return this.advancedThreatProtectionSettings;
-    }
-
-    /**
      * The LogFilesClient object to access its operations.
      */
     private final LogFilesClient logFiles;
@@ -454,6 +398,62 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
     }
 
     /**
+     * The ServersClient object to access its operations.
+     */
+    private final ServersClient servers;
+
+    /**
+     * Gets the ServersClient object to access its operations.
+     * 
+     * @return the ServersClient object.
+     */
+    public ServersClient getServers() {
+        return this.servers;
+    }
+
+    /**
+     * The ReplicasClient object to access its operations.
+     */
+    private final ReplicasClient replicas;
+
+    /**
+     * Gets the ReplicasClient object to access its operations.
+     * 
+     * @return the ReplicasClient object.
+     */
+    public ReplicasClient getReplicas() {
+        return this.replicas;
+    }
+
+    /**
+     * The ServersMigrationsClient object to access its operations.
+     */
+    private final ServersMigrationsClient serversMigrations;
+
+    /**
+     * Gets the ServersMigrationsClient object to access its operations.
+     * 
+     * @return the ServersMigrationsClient object.
+     */
+    public ServersMigrationsClient getServersMigrations() {
+        return this.serversMigrations;
+    }
+
+    /**
+     * The AdvancedThreatProtectionSettingsClient object to access its operations.
+     */
+    private final AdvancedThreatProtectionSettingsClient advancedThreatProtectionSettings;
+
+    /**
+     * Gets the AdvancedThreatProtectionSettingsClient object to access its operations.
+     * 
+     * @return the AdvancedThreatProtectionSettingsClient object.
+     */
+    public AdvancedThreatProtectionSettingsClient getAdvancedThreatProtectionSettings() {
+        return this.advancedThreatProtectionSettings;
+    }
+
+    /**
      * Initializes an instance of MySqlManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -478,10 +478,6 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.configurations = new ConfigurationsClientImpl(this);
         this.databases = new DatabasesClientImpl(this);
         this.firewallRules = new FirewallRulesClientImpl(this);
-        this.servers = new ServersClientImpl(this);
-        this.replicas = new ReplicasClientImpl(this);
-        this.serversMigrations = new ServersMigrationsClientImpl(this);
-        this.advancedThreatProtectionSettings = new AdvancedThreatProtectionSettingsClientImpl(this);
         this.logFiles = new LogFilesClientImpl(this);
         this.locationBasedCapabilities = new LocationBasedCapabilitiesClientImpl(this);
         this.locationBasedCapabilitySets = new LocationBasedCapabilitySetsClientImpl(this);
@@ -493,6 +489,10 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.maintenances = new MaintenancesClientImpl(this);
+        this.servers = new ServersClientImpl(this);
+        this.replicas = new ReplicasClientImpl(this);
+        this.serversMigrations = new ServersMigrationsClientImpl(this);
+        this.advancedThreatProtectionSettings = new AdvancedThreatProtectionSettingsClientImpl(this);
     }
 
     /**
