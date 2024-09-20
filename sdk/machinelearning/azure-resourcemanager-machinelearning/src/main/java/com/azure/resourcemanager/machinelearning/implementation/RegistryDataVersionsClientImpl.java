@@ -54,21 +54,21 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of RegistryDataVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RegistryDataVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    RegistryDataVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(RegistryDataVersionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesRegistryDataVersions to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesRegistryDataVersions to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")

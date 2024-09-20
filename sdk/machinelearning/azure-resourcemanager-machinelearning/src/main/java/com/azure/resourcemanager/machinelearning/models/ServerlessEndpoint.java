@@ -51,11 +51,11 @@ public interface ServerlessEndpoint {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: [Required] Additional attributes of the entity.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
-     * @return the properties value.
+     * @return the identity value.
      */
-    ServerlessEndpointProperties properties();
+    ManagedServiceIdentity identity();
 
     /**
      * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
@@ -66,11 +66,11 @@ public interface ServerlessEndpoint {
     String kind();
 
     /**
-     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * Gets the properties property: [Required] Additional attributes of the entity.
      * 
-     * @return the identity value.
+     * @return the properties value.
      */
-    ManagedServiceIdentity identity();
+    ServerlessEndpointProperties properties();
 
     /**
      * Gets the sku property: Sku details required for ARM contract for Autoscaling.
@@ -183,8 +183,8 @@ public interface ServerlessEndpoint {
          * The stage of the ServerlessEndpoint definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithSku {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithKind, DefinitionStages.WithSku {
             /**
              * Executes the create request.
              * 
@@ -215,6 +215,20 @@ public interface ServerlessEndpoint {
         }
 
         /**
+         * The stage of the ServerlessEndpoint definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
+             * 
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
          * The stage of the ServerlessEndpoint definition allowing to specify kind.
          */
         interface WithKind {
@@ -227,20 +241,6 @@ public interface ServerlessEndpoint {
              * @return the next definition stage.
              */
             WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the ServerlessEndpoint definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
-             * identities).
-             * 
-             * @param identity Managed service identity (system assigned and/or user assigned identities).
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
 
         /**
@@ -267,7 +267,7 @@ public interface ServerlessEndpoint {
     /**
      * The template for ServerlessEndpoint update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku {
         /**
          * Executes the update request.
          * 
@@ -302,19 +302,6 @@ public interface ServerlessEndpoint {
         }
 
         /**
-         * The stage of the ServerlessEndpoint update allowing to specify sku.
-         */
-        interface WithSku {
-            /**
-             * Specifies the sku property: Sku details required for ARM contract for Autoscaling..
-             * 
-             * @param sku Sku details required for ARM contract for Autoscaling.
-             * @return the next definition stage.
-             */
-            Update withSku(PartialSku sku);
-        }
-
-        /**
          * The stage of the ServerlessEndpoint update allowing to specify identity.
          */
         interface WithIdentity {
@@ -326,6 +313,19 @@ public interface ServerlessEndpoint {
              * @return the next definition stage.
              */
             Update withIdentity(PartialManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the ServerlessEndpoint update allowing to specify sku.
+         */
+        interface WithSku {
+            /**
+             * Specifies the sku property: Sku details required for ARM contract for Autoscaling..
+             * 
+             * @param sku Sku details required for ARM contract for Autoscaling.
+             * @return the next definition stage.
+             */
+            Update withSku(PartialSku sku);
         }
     }
 

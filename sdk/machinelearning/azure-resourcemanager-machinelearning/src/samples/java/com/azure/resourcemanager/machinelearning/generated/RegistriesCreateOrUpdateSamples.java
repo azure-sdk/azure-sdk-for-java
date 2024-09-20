@@ -31,7 +31,7 @@ import java.util.Map;
 public final class RegistriesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registries/createOrUpdate-SystemCreated.json
      */
     /**
@@ -86,7 +86,7 @@ public final class RegistriesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registries/createOrUpdate-UserCreated.json
      */
     /**

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -41,6 +42,15 @@ public final class FixedInputData extends MonitoringInputDataBase {
      * {@inheritDoc}
      */
     @Override
+    public FixedInputData withColumns(Map<String, String> columns) {
+        super.withColumns(columns);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public FixedInputData withDataContext(String dataContext) {
         super.withDataContext(dataContext);
         return this;
@@ -65,23 +75,23 @@ public final class FixedInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public FixedInputData withColumns(Map<String, String> columns) {
-        super.withColumns(columns);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
+        if (jobInputType() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property jobInputType in model FixedInputData"));
+        }
+        if (uri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model FixedInputData"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(FixedInputData.class);
 
     /**
      * {@inheritDoc}
@@ -91,8 +101,8 @@ public final class FixedInputData extends MonitoringInputDataBase {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("jobInputType", jobInputType() == null ? null : jobInputType().toString());
         jsonWriter.writeStringField("uri", uri());
-        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeMapField("columns", columns(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeStringField("inputDataType", this.inputDataType == null ? null : this.inputDataType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -117,11 +127,11 @@ public final class FixedInputData extends MonitoringInputDataBase {
                     deserializedFixedInputData.withJobInputType(JobInputType.fromString(reader.getString()));
                 } else if ("uri".equals(fieldName)) {
                     deserializedFixedInputData.withUri(reader.getString());
-                } else if ("dataContext".equals(fieldName)) {
-                    deserializedFixedInputData.withDataContext(reader.getString());
                 } else if ("columns".equals(fieldName)) {
                     Map<String, String> columns = reader.readMap(reader1 -> reader1.getString());
                     deserializedFixedInputData.withColumns(columns);
+                } else if ("dataContext".equals(fieldName)) {
+                    deserializedFixedInputData.withDataContext(reader.getString());
                 } else if ("inputDataType".equals(fieldName)) {
                     deserializedFixedInputData.inputDataType = MonitoringInputDataType.fromString(reader.getString());
                 } else {

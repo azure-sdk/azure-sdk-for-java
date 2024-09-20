@@ -45,22 +45,22 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of PrivateEndpointConnectionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateEndpointConnectionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    PrivateEndpointConnectionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(PrivateEndpointConnectionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesPrivateEndpointConnections to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesPrivateEndpointConnections to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
