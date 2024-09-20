@@ -88,7 +88,6 @@ public final class ServiceTagOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
         if (destination() != null) {
             destination().validate();
         }

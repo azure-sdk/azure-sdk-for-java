@@ -237,8 +237,8 @@ public final class ImageObjectDetection extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageObjectDetection withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageObjectDetection withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -246,8 +246,8 @@ public final class ImageObjectDetection extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageObjectDetection withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageObjectDetection withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -258,7 +258,6 @@ public final class ImageObjectDetection extends AutoMLVertical {
      */
     @Override
     public void validate() {
-        super.validate();
         if (modelSettings() != null) {
             modelSettings().validate();
         }
@@ -277,6 +276,13 @@ public final class ImageObjectDetection extends AutoMLVertical {
         }
         if (validationData() != null) {
             validationData().validate();
+        }
+        if (trainingData() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property trainingData in model ImageObjectDetection"));
+        } else {
+            trainingData().validate();
         }
     }
 

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.CodeContainerInner;
 import com.azure.resourcemanager.machinelearning.models.CodeContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public final class CodeContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Workspace/CodeContainer/createOrUpdate.json
      */
     /**
@@ -25,11 +26,10 @@ public final class CodeContainersCreateOrUpdateSamples {
     public static void
         createOrUpdateWorkspaceCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeContainers()
-            .define("testContainer")
-            .withExistingWorkspace("testrg123", "testworkspace")
-            .withProperties(new CodeContainerProperties().withDescription("string")
-                .withTags(mapOf("tag1", "value1", "tag2", "value2")))
-            .create();
+            .createOrUpdateWithResponse("testrg123", "testworkspace", "testContainer",
+                new CodeContainerInner().withProperties(new CodeContainerProperties().withDescription("string")
+                    .withTags(mapOf("tag1", "value1", "tag2", "value2"))),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

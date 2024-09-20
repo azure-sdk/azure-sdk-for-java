@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -18,32 +19,21 @@ import java.util.UUID;
 @Fluent
 public final class RegistryPartialManagedServiceIdentity extends ManagedServiceIdentity {
     /*
-     * The service principal ID of the system assigned identity. This property will only be provided for a system
-     * assigned identity.
-     */
-    private UUID principalId;
-
-    /*
      * The tenant ID of the system assigned identity. This property will only be provided for a system assigned
      * identity.
      */
     private UUID tenantId;
 
+    /*
+     * The service principal ID of the system assigned identity. This property will only be provided for a system
+     * assigned identity.
+     */
+    private UUID principalId;
+
     /**
      * Creates an instance of RegistryPartialManagedServiceIdentity class.
      */
     public RegistryPartialManagedServiceIdentity() {
-    }
-
-    /**
-     * Get the principalId property: The service principal ID of the system assigned identity. This property will only
-     * be provided for a system assigned identity.
-     * 
-     * @return the principalId value.
-     */
-    @Override
-    public UUID principalId() {
-        return this.principalId;
     }
 
     /**
@@ -55,6 +45,17 @@ public final class RegistryPartialManagedServiceIdentity extends ManagedServiceI
     @Override
     public UUID tenantId() {
         return this.tenantId;
+    }
+
+    /**
+     * Get the principalId property: The service principal ID of the system assigned identity. This property will only
+     * be provided for a system assigned identity.
+     * 
+     * @return the principalId value.
+     */
+    @Override
+    public UUID principalId() {
+        return this.principalId;
     }
 
     /**
@@ -83,8 +84,21 @@ public final class RegistryPartialManagedServiceIdentity extends ManagedServiceI
      */
     @Override
     public void validate() {
-        super.validate();
+        if (type() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property type in model RegistryPartialManagedServiceIdentity"));
+        }
+        if (userAssignedIdentities() != null) {
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(RegistryPartialManagedServiceIdentity.class);
 
     /**
      * {@inheritDoc}

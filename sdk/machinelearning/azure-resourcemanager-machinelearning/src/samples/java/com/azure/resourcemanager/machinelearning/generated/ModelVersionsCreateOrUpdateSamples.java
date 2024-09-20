@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
 import com.azure.resourcemanager.machinelearning.models.FlavorData;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionProperties;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Map;
 public final class ModelVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Workspace/ModelVersion/createOrUpdate.json
      */
     /**
@@ -26,16 +27,15 @@ public final class ModelVersionsCreateOrUpdateSamples {
     public static void
         createOrUpdateWorkspaceModelVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.modelVersions()
-            .define("string")
-            .withExistingModel("test-rg", "my-aml-workspace", "string")
-            .withProperties(new ModelVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
-                .withProperties(mapOf("string", "string"))
-                .withIsAnonymous(false)
-                .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
-                .withModelType("CustomModel")
-                .withModelUri("string"))
-            .create();
+            .createOrUpdateWithResponse("test-rg", "my-aml-workspace", "string", "string",
+                new ModelVersionInner().withProperties(new ModelVersionProperties().withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
+                    .withModelType("CustomModel")
+                    .withModelUri("string")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.DataVersionBaseInner;
 import com.azure.resourcemanager.machinelearning.models.UriFileDataVersion;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public final class DataVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Workspace/DataVersionBase/createOrUpdate.json
      */
     /**
@@ -25,14 +26,13 @@ public final class DataVersionsCreateOrUpdateSamples {
     public static void createOrUpdateWorkspaceDataVersionBase(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataVersions()
-            .define("string")
-            .withExistingData("test-rg", "my-aml-workspace", "string")
-            .withProperties(new UriFileDataVersion().withDescription("string")
-                .withTags(mapOf("string", "string"))
-                .withProperties(mapOf("string", "string"))
-                .withIsAnonymous(false)
-                .withDataUri("string"))
-            .create();
+            .createOrUpdateWithResponse("test-rg", "my-aml-workspace", "string", "string",
+                new DataVersionBaseInner().withProperties(new UriFileDataVersion().withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withDataUri("string")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
