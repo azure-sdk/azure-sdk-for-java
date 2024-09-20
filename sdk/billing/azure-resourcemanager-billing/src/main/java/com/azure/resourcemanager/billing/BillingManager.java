@@ -32,7 +32,6 @@ import com.azure.resourcemanager.billing.implementation.BillingAccountsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingManagementClientBuilder;
 import com.azure.resourcemanager.billing.implementation.BillingPermissionsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingProfilesImpl;
-import com.azure.resourcemanager.billing.implementation.BillingPropertiesImpl;
 import com.azure.resourcemanager.billing.implementation.BillingRequestsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingRoleAssignmentsImpl;
 import com.azure.resourcemanager.billing.implementation.BillingRoleDefinitionsImpl;
@@ -62,7 +61,6 @@ import com.azure.resourcemanager.billing.models.AvailableBalances;
 import com.azure.resourcemanager.billing.models.BillingAccounts;
 import com.azure.resourcemanager.billing.models.BillingPermissions;
 import com.azure.resourcemanager.billing.models.BillingProfiles;
-import com.azure.resourcemanager.billing.models.BillingProperties;
 import com.azure.resourcemanager.billing.models.BillingRequests;
 import com.azure.resourcemanager.billing.models.BillingRoleAssignments;
 import com.azure.resourcemanager.billing.models.BillingRoleDefinitions;
@@ -110,8 +108,6 @@ public final class BillingManager {
     private BillingPermissions billingPermissions;
 
     private BillingProfiles billingProfiles;
-
-    private BillingProperties billingProperties;
 
     private BillingRequests billingRequests;
 
@@ -321,7 +317,7 @@ public final class BillingManager {
                 .append("-")
                 .append("com.azure.resourcemanager.billing")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -449,18 +445,6 @@ public final class BillingManager {
             this.billingProfiles = new BillingProfilesImpl(clientObject.getBillingProfiles(), this);
         }
         return billingProfiles;
-    }
-
-    /**
-     * Gets the resource collection API of BillingProperties.
-     * 
-     * @return Resource collection API of BillingProperties.
-     */
-    public BillingProperties billingProperties() {
-        if (this.billingProperties == null) {
-            this.billingProperties = new BillingPropertiesImpl(clientObject.getBillingProperties(), this);
-        }
-        return billingProperties;
     }
 
     /**

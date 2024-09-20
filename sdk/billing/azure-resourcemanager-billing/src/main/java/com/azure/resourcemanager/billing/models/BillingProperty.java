@@ -4,62 +4,177 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
 /**
- * An immutable client-side representation of BillingProperty.
+ * A billing property.
  */
-public interface BillingProperty {
-    /**
-     * Gets the id property: Fully qualified resource Id for the resource.
-     * 
-     * @return the id value.
+@Fluent
+public final class BillingProperty extends ProxyResourceWithTags {
+    /*
+     * A billing property.
      */
-    String id();
+    private BillingPropertyProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
-     * Gets the name property: The name of the resource.
-     * 
-     * @return the name value.
+     * Creates an instance of BillingProperty class.
      */
-    String name();
+    public BillingProperty() {
+    }
 
     /**
-     * Gets the type property: The type of the resource.
-     * 
-     * @return the type value.
-     */
-    String type();
-
-    /**
-     * Gets the tags property: Dictionary of metadata associated with the resource. It may not be populated for all
-     * resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null.
-     * Keys can not contain &lt; &gt; % &amp; \ ? /.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
-     * Gets the properties property: A billing property.
+     * Get the properties property: A billing property.
      * 
      * @return the properties value.
      */
-    BillingPropertyProperties properties();
+    public BillingPropertyProperties properties() {
+        return this.properties;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner object.
+     * Set the properties property: A billing property.
      * 
-     * @return the inner object.
+     * @param properties the properties value to set.
+     * @return the BillingProperty object itself.
      */
-    BillingPropertyInner innerModel();
+    public BillingProperty withProperties(BillingPropertyProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    @Override
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BillingProperty withTags(Map<String, String> tags) {
+        super.withTags(tags);
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    @Override
+    public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.properties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of BillingProperty from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of BillingProperty if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the BillingProperty.
+     */
+    public static BillingProperty fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            BillingProperty deserializedBillingProperty = new BillingProperty();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedBillingProperty.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedBillingProperty.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedBillingProperty.type = reader.getString();
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedBillingProperty.withTags(tags);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedBillingProperty.systemData = SystemData.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedBillingProperty.properties = BillingPropertyProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedBillingProperty;
+        });
+    }
 }

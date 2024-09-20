@@ -96,13 +96,6 @@ public interface BillingManagementClient {
     BillingProfilesClient getBillingProfiles();
 
     /**
-     * Gets the BillingPropertiesClient object to access its operations.
-     * 
-     * @return the BillingPropertiesClient object.
-     */
-    BillingPropertiesClient getBillingProperties();
-
-    /**
      * Gets the BillingRequestsClient object to access its operations.
      * 
      * @return the BillingRequestsClient object.

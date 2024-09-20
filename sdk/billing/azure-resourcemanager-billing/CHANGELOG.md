@@ -1,14 +1,36 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-09-20)
 
-### Features Added
+- Azure Resource Manager Billing client library for Java. This package contains Microsoft Azure SDK for Billing Management SDK. Billing Client. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.BillingProperties` was removed
 
-### Other Changes
+#### `models.BillingProperty` was modified
+
+* `com.azure.core.management.SystemData systemData()` -> `com.azure.core.management.SystemData systemData()`
+* `innerModel()` was removed
+* `models.BillingPropertyProperties properties()` -> `models.BillingPropertyProperties properties()`
+* `java.lang.String type()` -> `java.lang.String type()`
+* `java.lang.String id()` -> `java.lang.String id()`
+* `java.lang.String name()` -> `java.lang.String name()`
+* `tags()` was removed
+
+#### `BillingManager` was modified
+
+* `billingProperties()` was removed
+
+### Features Added
+
+#### `models.BillingProperty` was modified
+
+* `validate()` was added
+* `withTags(java.util.Map)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withProperties(models.BillingPropertyProperties)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.0.0 (2024-09-05)
 
