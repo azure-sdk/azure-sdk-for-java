@@ -17,9 +17,9 @@ import java.io.IOException;
 @Fluent
 public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
     /*
-     * Gets or sets the minimum.
+     * Gets or sets the default capacity.
      */
-    private Integer minimum;
+    private Integer defaultProperty;
 
     /*
      * Gets or sets the maximum.
@@ -27,9 +27,9 @@ public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
     private Integer maximum;
 
     /*
-     * Gets or sets the default capacity.
+     * Gets or sets the minimum.
      */
-    private Integer defaultProperty;
+    private Integer minimum;
 
     /*
      * Gets or sets the type of the scale.
@@ -43,22 +43,22 @@ public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
     }
 
     /**
-     * Get the minimum property: Gets or sets the minimum.
+     * Get the defaultProperty property: Gets or sets the default capacity.
      * 
-     * @return the minimum value.
+     * @return the defaultProperty value.
      */
-    public Integer minimum() {
-        return this.minimum;
+    public Integer defaultProperty() {
+        return this.defaultProperty;
     }
 
     /**
-     * Set the minimum property: Gets or sets the minimum.
+     * Set the defaultProperty property: Gets or sets the default capacity.
      * 
-     * @param minimum the minimum value to set.
+     * @param defaultProperty the defaultProperty value to set.
      * @return the SkuCapacity object itself.
      */
-    public SkuCapacity withMinimum(Integer minimum) {
-        this.minimum = minimum;
+    public SkuCapacity withDefaultProperty(Integer defaultProperty) {
+        this.defaultProperty = defaultProperty;
         return this;
     }
 
@@ -83,22 +83,22 @@ public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
     }
 
     /**
-     * Get the defaultProperty property: Gets or sets the default capacity.
+     * Get the minimum property: Gets or sets the minimum.
      * 
-     * @return the defaultProperty value.
+     * @return the minimum value.
      */
-    public Integer defaultProperty() {
-        return this.defaultProperty;
+    public Integer minimum() {
+        return this.minimum;
     }
 
     /**
-     * Set the defaultProperty property: Gets or sets the default capacity.
+     * Set the minimum property: Gets or sets the minimum.
      * 
-     * @param defaultProperty the defaultProperty value to set.
+     * @param minimum the minimum value to set.
      * @return the SkuCapacity object itself.
      */
-    public SkuCapacity withDefaultProperty(Integer defaultProperty) {
-        this.defaultProperty = defaultProperty;
+    public SkuCapacity withMinimum(Integer minimum) {
+        this.minimum = minimum;
         return this;
     }
 
@@ -136,9 +136,9 @@ public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeNumberField("minimum", this.minimum);
-        jsonWriter.writeNumberField("maximum", this.maximum);
         jsonWriter.writeNumberField("default", this.defaultProperty);
+        jsonWriter.writeNumberField("maximum", this.maximum);
+        jsonWriter.writeNumberField("minimum", this.minimum);
         jsonWriter.writeStringField("scaleType", this.scaleType == null ? null : this.scaleType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -158,12 +158,12 @@ public final class SkuCapacity implements JsonSerializable<SkuCapacity> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("minimum".equals(fieldName)) {
-                    deserializedSkuCapacity.minimum = reader.getNullable(JsonReader::getInt);
+                if ("default".equals(fieldName)) {
+                    deserializedSkuCapacity.defaultProperty = reader.getNullable(JsonReader::getInt);
                 } else if ("maximum".equals(fieldName)) {
                     deserializedSkuCapacity.maximum = reader.getNullable(JsonReader::getInt);
-                } else if ("default".equals(fieldName)) {
-                    deserializedSkuCapacity.defaultProperty = reader.getNullable(JsonReader::getInt);
+                } else if ("minimum".equals(fieldName)) {
+                    deserializedSkuCapacity.minimum = reader.getNullable(JsonReader::getInt);
                 } else if ("scaleType".equals(fieldName)) {
                     deserializedSkuCapacity.scaleType = SkuScaleType.fromString(reader.getString());
                 } else {

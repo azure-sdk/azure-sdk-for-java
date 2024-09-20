@@ -22,11 +22,6 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
     private String accessToken;
 
     /*
-     * Access token type.
-     */
-    private String tokenType;
-
-    /*
      * Access token expiry time (UTC).
      */
     private Long expiryTimeUtc;
@@ -35,6 +30,11 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
      * Refresh access token after time (UTC).
      */
     private Long refreshAfterTimeUtc;
+
+    /*
+     * Access token type.
+     */
+    private String tokenType;
 
     /**
      * Creates an instance of EndpointAuthTokenInner class.
@@ -59,26 +59,6 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
      */
     public EndpointAuthTokenInner withAccessToken(String accessToken) {
         this.accessToken = accessToken;
-        return this;
-    }
-
-    /**
-     * Get the tokenType property: Access token type.
-     * 
-     * @return the tokenType value.
-     */
-    public String tokenType() {
-        return this.tokenType;
-    }
-
-    /**
-     * Set the tokenType property: Access token type.
-     * 
-     * @param tokenType the tokenType value to set.
-     * @return the EndpointAuthTokenInner object itself.
-     */
-    public EndpointAuthTokenInner withTokenType(String tokenType) {
-        this.tokenType = tokenType;
         return this;
     }
 
@@ -123,6 +103,26 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
     }
 
     /**
+     * Get the tokenType property: Access token type.
+     * 
+     * @return the tokenType value.
+     */
+    public String tokenType() {
+        return this.tokenType;
+    }
+
+    /**
+     * Set the tokenType property: Access token type.
+     * 
+     * @param tokenType the tokenType value to set.
+     * @return the EndpointAuthTokenInner object itself.
+     */
+    public EndpointAuthTokenInner withTokenType(String tokenType) {
+        this.tokenType = tokenType;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -137,9 +137,9 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("accessToken", this.accessToken);
-        jsonWriter.writeStringField("tokenType", this.tokenType);
         jsonWriter.writeNumberField("expiryTimeUtc", this.expiryTimeUtc);
         jsonWriter.writeNumberField("refreshAfterTimeUtc", this.refreshAfterTimeUtc);
+        jsonWriter.writeStringField("tokenType", this.tokenType);
         return jsonWriter.writeEndObject();
     }
 
@@ -160,12 +160,12 @@ public final class EndpointAuthTokenInner implements JsonSerializable<EndpointAu
 
                 if ("accessToken".equals(fieldName)) {
                     deserializedEndpointAuthTokenInner.accessToken = reader.getString();
-                } else if ("tokenType".equals(fieldName)) {
-                    deserializedEndpointAuthTokenInner.tokenType = reader.getString();
                 } else if ("expiryTimeUtc".equals(fieldName)) {
                     deserializedEndpointAuthTokenInner.expiryTimeUtc = reader.getNullable(JsonReader::getLong);
                 } else if ("refreshAfterTimeUtc".equals(fieldName)) {
                     deserializedEndpointAuthTokenInner.refreshAfterTimeUtc = reader.getNullable(JsonReader::getLong);
+                } else if ("tokenType".equals(fieldName)) {
+                    deserializedEndpointAuthTokenInner.tokenType = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

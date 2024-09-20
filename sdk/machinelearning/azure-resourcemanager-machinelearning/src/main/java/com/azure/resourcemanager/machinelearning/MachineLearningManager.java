@@ -23,8 +23,8 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningWorkspaces;
-import com.azure.resourcemanager.machinelearning.implementation.AzureMachineLearningWorkspacesBuilder;
+import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningServices;
+import com.azure.resourcemanager.machinelearning.implementation.AzureMachineLearningServicesBuilder;
 import com.azure.resourcemanager.machinelearning.implementation.BatchDeploymentsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.BatchEndpointsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.CodeContainersImpl;
@@ -229,12 +229,12 @@ public final class MachineLearningManager {
 
     private WorkspaceFeatures workspaceFeatures;
 
-    private final AzureMachineLearningWorkspaces clientObject;
+    private final AzureMachineLearningServices clientObject;
 
     private MachineLearningManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new AzureMachineLearningWorkspacesBuilder().pipeline(httpPipeline)
+        this.clientObject = new AzureMachineLearningServicesBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -393,7 +393,7 @@ public final class MachineLearningManager {
                 .append("-")
                 .append("com.azure.resourcemanager.machinelearning")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -576,7 +576,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryCodeContainers.
+     * Gets the resource collection API of RegistryCodeContainers. It manages CodeContainer.
      * 
      * @return Resource collection API of RegistryCodeContainers.
      */
@@ -589,7 +589,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryCodeVersions.
+     * Gets the resource collection API of RegistryCodeVersions. It manages CodeVersion.
      * 
      * @return Resource collection API of RegistryCodeVersions.
      */
@@ -601,7 +601,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryComponentContainers.
+     * Gets the resource collection API of RegistryComponentContainers. It manages ComponentContainer.
      * 
      * @return Resource collection API of RegistryComponentContainers.
      */
@@ -614,7 +614,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryComponentVersions.
+     * Gets the resource collection API of RegistryComponentVersions. It manages ComponentVersion.
      * 
      * @return Resource collection API of RegistryComponentVersions.
      */
@@ -627,7 +627,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryDataContainers.
+     * Gets the resource collection API of RegistryDataContainers. It manages DataContainer.
      * 
      * @return Resource collection API of RegistryDataContainers.
      */
@@ -640,7 +640,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryDataVersions.
+     * Gets the resource collection API of RegistryDataVersions. It manages DataVersionBase.
      * 
      * @return Resource collection API of RegistryDataVersions.
      */
@@ -665,7 +665,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryEnvironmentContainers.
+     * Gets the resource collection API of RegistryEnvironmentContainers. It manages EnvironmentContainer.
      * 
      * @return Resource collection API of RegistryEnvironmentContainers.
      */
@@ -678,7 +678,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryEnvironmentVersions.
+     * Gets the resource collection API of RegistryEnvironmentVersions. It manages EnvironmentVersion.
      * 
      * @return Resource collection API of RegistryEnvironmentVersions.
      */
@@ -691,7 +691,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryModelContainers.
+     * Gets the resource collection API of RegistryModelContainers. It manages ModelContainer.
      * 
      * @return Resource collection API of RegistryModelContainers.
      */
@@ -704,7 +704,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of RegistryModelVersions.
+     * Gets the resource collection API of RegistryModelVersions. It manages ModelVersion.
      * 
      * @return Resource collection API of RegistryModelVersions.
      */
@@ -740,7 +740,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of CodeContainers. It manages CodeContainer.
+     * Gets the resource collection API of CodeContainers.
      * 
      * @return Resource collection API of CodeContainers.
      */
@@ -752,7 +752,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of CodeVersions. It manages CodeVersion.
+     * Gets the resource collection API of CodeVersions.
      * 
      * @return Resource collection API of CodeVersions.
      */
@@ -764,7 +764,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ComponentContainers. It manages ComponentContainer.
+     * Gets the resource collection API of ComponentContainers.
      * 
      * @return Resource collection API of ComponentContainers.
      */
@@ -776,7 +776,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ComponentVersions. It manages ComponentVersion.
+     * Gets the resource collection API of ComponentVersions.
      * 
      * @return Resource collection API of ComponentVersions.
      */
@@ -788,7 +788,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of DataContainers. It manages DataContainer.
+     * Gets the resource collection API of DataContainers.
      * 
      * @return Resource collection API of DataContainers.
      */
@@ -800,7 +800,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of DataVersions. It manages DataVersionBase.
+     * Gets the resource collection API of DataVersions.
      * 
      * @return Resource collection API of DataVersions.
      */
@@ -824,7 +824,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of EnvironmentContainers. It manages EnvironmentContainer.
+     * Gets the resource collection API of EnvironmentContainers.
      * 
      * @return Resource collection API of EnvironmentContainers.
      */
@@ -836,7 +836,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of EnvironmentVersions. It manages EnvironmentVersion.
+     * Gets the resource collection API of EnvironmentVersions.
      * 
      * @return Resource collection API of EnvironmentVersions.
      */
@@ -935,7 +935,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ModelContainers. It manages ModelContainer.
+     * Gets the resource collection API of ModelContainers.
      * 
      * @return Resource collection API of ModelContainers.
      */
@@ -947,7 +947,7 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ModelVersions. It manages ModelVersion.
+     * Gets the resource collection API of ModelVersions.
      * 
      * @return Resource collection API of ModelVersions.
      */
@@ -1031,12 +1031,12 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets wrapped service client AzureMachineLearningWorkspaces providing direct access to the underlying
-     * auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client AzureMachineLearningServices providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client AzureMachineLearningWorkspaces.
+     * @return Wrapped service client AzureMachineLearningServices.
      */
-    public AzureMachineLearningWorkspaces serviceClient() {
+    public AzureMachineLearningServices serviceClient() {
         return this.clientObject;
     }
 }

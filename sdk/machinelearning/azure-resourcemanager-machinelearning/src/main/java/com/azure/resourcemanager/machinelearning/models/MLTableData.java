@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -76,8 +77,8 @@ public final class MLTableData extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public MLTableData withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public MLTableData withIsAnonymous(Boolean isAnonymous) {
+        super.withIsAnonymous(isAnonymous);
         return this;
     }
 
@@ -85,8 +86,8 @@ public final class MLTableData extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public MLTableData withIsAnonymous(Boolean isAnonymous) {
-        super.withIsAnonymous(isAnonymous);
+    public MLTableData withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -103,8 +104,8 @@ public final class MLTableData extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public MLTableData withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public MLTableData withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -112,8 +113,8 @@ public final class MLTableData extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public MLTableData withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public MLTableData withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -124,8 +125,13 @@ public final class MLTableData extends DataVersionBaseProperties {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (dataUri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataUri in model MLTableData"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MLTableData.class);
 
     /**
      * {@inheritDoc}
@@ -135,10 +141,10 @@ public final class MLTableData extends DataVersionBaseProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("dataUri", dataUri());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         jsonWriter.writeArrayField("referencedUris", this.referencedUris,
             (writer, element) -> writer.writeString(element));
@@ -165,16 +171,16 @@ public final class MLTableData extends DataVersionBaseProperties {
                     deserializedMLTableData.withDataUri(reader.getString());
                 } else if ("description".equals(fieldName)) {
                     deserializedMLTableData.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedMLTableData.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedMLTableData.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedMLTableData.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMLTableData.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedMLTableData.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedMLTableData.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("dataType".equals(fieldName)) {
                     deserializedMLTableData.dataType = DataType.fromString(reader.getString());
                 } else if ("referencedUris".equals(fieldName)) {

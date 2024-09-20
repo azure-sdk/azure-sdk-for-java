@@ -20,39 +20,19 @@ import java.util.List;
 public final class OnlineDeploymentTrackedResourceArmPaginatedResult
     implements JsonSerializable<OnlineDeploymentTrackedResourceArmPaginatedResult> {
     /*
-     * An array of objects of type OnlineDeployment.
-     */
-    private List<OnlineDeploymentInner> value;
-
-    /*
      * The link to the next page of OnlineDeployment objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type OnlineDeployment.
+     */
+    private List<OnlineDeploymentInner> value;
 
     /**
      * Creates an instance of OnlineDeploymentTrackedResourceArmPaginatedResult class.
      */
     public OnlineDeploymentTrackedResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type OnlineDeployment.
-     * 
-     * @return the value value.
-     */
-    public List<OnlineDeploymentInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type OnlineDeployment.
-     * 
-     * @param value the value value to set.
-     * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
-     */
-    public OnlineDeploymentTrackedResourceArmPaginatedResult withValue(List<OnlineDeploymentInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type OnlineDeployment.
+     * 
+     * @return the value value.
+     */
+    public List<OnlineDeploymentInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type OnlineDeployment.
+     * 
+     * @param value the value value to set.
+     * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
+     */
+    public OnlineDeploymentTrackedResourceArmPaginatedResult withValue(List<OnlineDeploymentInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedOnlineDeploymentTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<OnlineDeploymentInner> value
                         = reader.readArray(reader1 -> OnlineDeploymentInner.fromJson(reader1));
                     deserializedOnlineDeploymentTrackedResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedOnlineDeploymentTrackedResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

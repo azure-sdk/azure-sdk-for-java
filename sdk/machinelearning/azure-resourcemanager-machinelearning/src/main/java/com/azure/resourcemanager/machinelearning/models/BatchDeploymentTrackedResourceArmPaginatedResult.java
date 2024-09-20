@@ -20,39 +20,19 @@ import java.util.List;
 public final class BatchDeploymentTrackedResourceArmPaginatedResult
     implements JsonSerializable<BatchDeploymentTrackedResourceArmPaginatedResult> {
     /*
-     * An array of objects of type BatchDeployment.
-     */
-    private List<BatchDeploymentInner> value;
-
-    /*
      * The link to the next page of BatchDeployment objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type BatchDeployment.
+     */
+    private List<BatchDeploymentInner> value;
 
     /**
      * Creates an instance of BatchDeploymentTrackedResourceArmPaginatedResult class.
      */
     public BatchDeploymentTrackedResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type BatchDeployment.
-     * 
-     * @return the value value.
-     */
-    public List<BatchDeploymentInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type BatchDeployment.
-     * 
-     * @param value the value value to set.
-     * @return the BatchDeploymentTrackedResourceArmPaginatedResult object itself.
-     */
-    public BatchDeploymentTrackedResourceArmPaginatedResult withValue(List<BatchDeploymentInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type BatchDeployment.
+     * 
+     * @return the value value.
+     */
+    public List<BatchDeploymentInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type BatchDeployment.
+     * 
+     * @param value the value value to set.
+     * @return the BatchDeploymentTrackedResourceArmPaginatedResult object itself.
+     */
+    public BatchDeploymentTrackedResourceArmPaginatedResult withValue(List<BatchDeploymentInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedBatchDeploymentTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<BatchDeploymentInner> value
                         = reader.readArray(reader1 -> BatchDeploymentInner.fromJson(reader1));
                     deserializedBatchDeploymentTrackedResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedBatchDeploymentTrackedResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -50,21 +50,21 @@ public final class MarketplaceSubscriptionsClientImpl implements MarketplaceSubs
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of MarketplaceSubscriptionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    MarketplaceSubscriptionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    MarketplaceSubscriptionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(MarketplaceSubscriptionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesMarketplaceSubscriptions to be used by
+     * The interface defining all the services for AzureMachineLearningServicesMarketplaceSubscriptions to be used by
      * the proxy service to perform REST calls.
      */
     @Host("{$host}")
