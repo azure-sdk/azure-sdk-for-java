@@ -43,7 +43,6 @@ public final class AutoTargetLags extends TargetLags {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

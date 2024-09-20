@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,8 @@ import java.util.Map;
 public final class RegistryComponentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/ComponentContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/ComponentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Component Container.
@@ -26,12 +25,12 @@ public final class RegistryComponentContainersCreateOrUpdateSamples {
     public static void createOrUpdateRegistryComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryComponentContainers()
-            .createOrUpdate("test-rg", "my-aml-registry", "string",
-                new ComponentContainerInner()
-                    .withProperties(new ComponentContainerProperties().withDescription("string")
-                        .withTags(mapOf("string", "string"))
-                        .withProperties(mapOf("string", "string"))),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingRegistry("test-rg", "my-aml-registry")
+            .withProperties(new ComponentContainerProperties().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string")))
+            .create();
     }
 
     // Use "Map.of" if available

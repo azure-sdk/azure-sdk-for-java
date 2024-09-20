@@ -19,39 +19,19 @@ import java.util.List;
 @Fluent
 public final class ScheduleResourceArmPaginatedResult implements JsonSerializable<ScheduleResourceArmPaginatedResult> {
     /*
-     * An array of objects of type Schedule.
-     */
-    private List<ScheduleInner> value;
-
-    /*
      * The link to the next page of Schedule objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type Schedule.
+     */
+    private List<ScheduleInner> value;
 
     /**
      * Creates an instance of ScheduleResourceArmPaginatedResult class.
      */
     public ScheduleResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type Schedule.
-     * 
-     * @return the value value.
-     */
-    public List<ScheduleInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type Schedule.
-     * 
-     * @param value the value value to set.
-     * @return the ScheduleResourceArmPaginatedResult object itself.
-     */
-    public ScheduleResourceArmPaginatedResult withValue(List<ScheduleInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -75,6 +55,26 @@ public final class ScheduleResourceArmPaginatedResult implements JsonSerializabl
     }
 
     /**
+     * Get the value property: An array of objects of type Schedule.
+     * 
+     * @return the value value.
+     */
+    public List<ScheduleInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type Schedule.
+     * 
+     * @param value the value value to set.
+     * @return the ScheduleResourceArmPaginatedResult object itself.
+     */
+    public ScheduleResourceArmPaginatedResult withValue(List<ScheduleInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -91,8 +91,8 @@ public final class ScheduleResourceArmPaginatedResult implements JsonSerializabl
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -112,11 +112,11 @@ public final class ScheduleResourceArmPaginatedResult implements JsonSerializabl
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedScheduleResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<ScheduleInner> value = reader.readArray(reader1 -> ScheduleInner.fromJson(reader1));
                     deserializedScheduleResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedScheduleResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

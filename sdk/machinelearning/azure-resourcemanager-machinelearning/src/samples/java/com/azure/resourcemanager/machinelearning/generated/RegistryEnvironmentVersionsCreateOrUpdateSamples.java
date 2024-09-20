@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.BuildContext;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionProperties;
 import com.azure.resourcemanager.machinelearning.models.InferenceContainerProperties;
@@ -18,8 +17,8 @@ import java.util.Map;
 public final class RegistryEnvironmentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/EnvironmentVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Registry/EnvironmentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Environment Version.
@@ -29,22 +28,22 @@ public final class RegistryEnvironmentVersionsCreateOrUpdateSamples {
     public static void createOrUpdateRegistryEnvironmentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryEnvironmentVersions()
-            .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
-                new EnvironmentVersionInner().withProperties(new EnvironmentVersionProperties()
-                    .withDescription("string")
-                    .withTags(mapOf("string", "string"))
-                    .withProperties(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withImage("docker.io/tensorflow/serving:latest")
-                    .withCondaFile("string")
-                    .withBuild(new BuildContext().withContextUri(
-                        "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
-                        .withDockerfilePath("prod/Dockerfile"))
-                    .withInferenceConfig(
-                        new InferenceContainerProperties().withLivenessRoute(new Route().withPath("string").withPort(1))
-                            .withReadinessRoute(new Route().withPath("string").withPort(1))
-                            .withScoringRoute(new Route().withPath("string").withPort(1)))),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingEnvironment("test-rg", "my-aml-registry", "string")
+            .withProperties(new EnvironmentVersionProperties().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withIsAnonymous(false)
+                .withBuild(new BuildContext().withContextUri(
+                    "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
+                    .withDockerfilePath("prod/Dockerfile"))
+                .withCondaFile("string")
+                .withImage("docker.io/tensorflow/serving:latest")
+                .withInferenceConfig(
+                    new InferenceContainerProperties().withLivenessRoute(new Route().withPath("string").withPort(1))
+                        .withReadinessRoute(new Route().withPath("string").withPort(1))
+                        .withScoringRoute(new Route().withPath("string").withPort(1))))
+            .create();
     }
 
     // Use "Map.of" if available
