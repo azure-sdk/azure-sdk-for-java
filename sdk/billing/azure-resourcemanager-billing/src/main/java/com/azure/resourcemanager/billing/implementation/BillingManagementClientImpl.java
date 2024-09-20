@@ -31,7 +31,6 @@ import com.azure.resourcemanager.billing.fluent.BillingAccountsClient;
 import com.azure.resourcemanager.billing.fluent.BillingManagementClient;
 import com.azure.resourcemanager.billing.fluent.BillingPermissionsClient;
 import com.azure.resourcemanager.billing.fluent.BillingProfilesClient;
-import com.azure.resourcemanager.billing.fluent.BillingPropertiesClient;
 import com.azure.resourcemanager.billing.fluent.BillingRequestsClient;
 import com.azure.resourcemanager.billing.fluent.BillingRoleAssignmentsClient;
 import com.azure.resourcemanager.billing.fluent.BillingRoleDefinitionsClient;
@@ -248,20 +247,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      */
     public BillingProfilesClient getBillingProfiles() {
         return this.billingProfiles;
-    }
-
-    /**
-     * The BillingPropertiesClient object to access its operations.
-     */
-    private final BillingPropertiesClient billingProperties;
-
-    /**
-     * Gets the BillingPropertiesClient object to access its operations.
-     * 
-     * @return the BillingPropertiesClient object.
-     */
-    public BillingPropertiesClient getBillingProperties() {
-        return this.billingProperties;
     }
 
     /**
@@ -597,7 +582,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
         this.address = new AddressClientImpl(this);
         this.billingPermissions = new BillingPermissionsClientImpl(this);
         this.billingProfiles = new BillingProfilesClientImpl(this);
-        this.billingProperties = new BillingPropertiesClientImpl(this);
         this.billingRequests = new BillingRequestsClientImpl(this);
         this.billingRoleAssignments = new BillingRoleAssignmentsClientImpl(this);
         this.billingRoleDefinitions = new BillingRoleDefinitionsClientImpl(this);
