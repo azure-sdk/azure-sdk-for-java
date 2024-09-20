@@ -40,7 +40,9 @@ import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerBac
  */
 public final class LedgerBackupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Backup.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Backup.json
      */
     /**
      * Sample code: ConfidentialLedgerBackup.
@@ -75,7 +77,9 @@ import java.util.Map;
  */
 public final class LedgerCreateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Create.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Create.json
      */
     /**
      * Sample code: ConfidentialLedgerCreate.
@@ -97,7 +101,13 @@ public final class LedgerCreateSamples {
                         .withLedgerRoleName(LedgerRoleName.ADMINISTRATOR)))
                 .withCertBasedSecurityPrincipals(Arrays.asList(new CertBasedSecurityPrincipal().withCert(
                     "-----BEGIN CERTIFICATE-----MIIBsjCCATigAwIBAgIUZWIbyG79TniQLd2UxJuU74tqrKcwCgYIKoZIzj0EAwMwEDEOMAwGA1UEAwwFdXNlcjAwHhcNMjEwMzE2MTgwNjExWhcNMjIwMzE2MTgwNjExWjAQMQ4wDAYDVQQDDAV1c2VyMDB2MBAGByqGSM49AgEGBSuBBAAiA2IABBiWSo/j8EFit7aUMm5lF+lUmCu+IgfnpFD+7QMgLKtxRJ3aGSqgS/GpqcYVGddnODtSarNE/HyGKUFUolLPQ5ybHcouUk0kyfA7XMeSoUA4lBz63Wha8wmXo+NdBRo39qNTMFEwHQYDVR0OBBYEFPtuhrwgGjDFHeUUT4nGsXaZn69KMB8GA1UdIwQYMBaAFPtuhrwgGjDFHeUUT4nGsXaZn69KMA8GA1UdEwEB/wQFMAMBAf8wCgYIKoZIzj0EAwMDaAAwZQIxAOnozm2CyqRwSSQLls5r+mUHRGRyXHXwYtM4Dcst/VEZdmS9fqvHRCHbjUlO/+HNfgIwMWZ4FmsjD3wnPxONOm9YdVn/PRD7SsPRPbOjwBiE4EBGaHDsLjYAGDSGi7NJnSkA-----END CERTIFICATE-----")
-                    .withLedgerRoleName(LedgerRoleName.READER))))
+                    .withLedgerRoleName(LedgerRoleName.READER)))
+                .withHostLevel("Info")
+                .withMaxBodySizeInMb(1)
+                .withSubjectName("CN=CCF Node")
+                .withNodeCount(3)
+                .withWriteLBAddressPrefix("write")
+                .withWorkerThreads(0))
             .create();
     }
 
@@ -123,7 +133,9 @@ public final class LedgerCreateSamples {
  */
 public final class LedgerDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Delete.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -145,7 +157,9 @@ public final class LedgerDeleteSamples {
  */
 public final class LedgerGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Get.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Get.json
      */
     /**
      * Sample code: ConfidentialLedgerGet.
@@ -169,7 +183,9 @@ public final class LedgerGetByResourceGroupSamples {
  */
 public final class LedgerListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_ListBySub.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_ListBySub.json
      */
     /**
      * Sample code: ConfidentialLedgerListBySub.
@@ -191,7 +207,9 @@ public final class LedgerListSamples {
  */
 public final class LedgerListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_List.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_List.json
      */
     /**
      * Sample code: ConfidentialLedgerList.
@@ -215,7 +233,9 @@ import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerRes
  */
 public final class LedgerRestoreSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Restore.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Restore.json
      */
     /**
      * Sample code: ConfidentialLedgerRestore.
@@ -252,7 +272,9 @@ import java.util.Map;
  */
 public final class LedgerUpdateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Update.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ConfidentialLedger_Update.json
      */
     /**
      * Sample code: ConfidentialLedgerUpdate.
@@ -302,7 +324,9 @@ import com.azure.resourcemanager.confidentialledger.models.ManagedCcfBackup;
  */
 public final class ManagedCcfBackupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Backup.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Backup.json
      */
     /**
      * Sample code: ManagedCCFBackup.
@@ -338,7 +362,9 @@ import java.util.Map;
  */
 public final class ManagedCcfCreateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Create.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Create.json
      */
     /**
      * Sample code: ManagedCCFCreate.
@@ -388,7 +414,9 @@ public final class ManagedCcfCreateSamples {
  */
 public final class ManagedCcfDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Delete.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -410,7 +438,9 @@ public final class ManagedCcfDeleteSamples {
  */
 public final class ManagedCcfGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Get.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Get.json
      */
     /**
      * Sample code: ManagedCCFGet.
@@ -433,7 +463,9 @@ public final class ManagedCcfGetByResourceGroupSamples {
  */
 public final class ManagedCcfListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_ListBySub.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_ListBySub.json
      */
     /**
      * Sample code: ManagedCCFListBySub.
@@ -455,7 +487,9 @@ public final class ManagedCcfListSamples {
  */
 public final class ManagedCcfListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_List.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_List.json
      */
     /**
      * Sample code: ManagedCCFList.
@@ -478,7 +512,9 @@ import com.azure.resourcemanager.confidentialledger.models.ManagedCcfRestore;
  */
 public final class ManagedCcfRestoreSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Restore.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Restore.json
      */
     /**
      * Sample code: ManagedCCFRestore.
@@ -512,7 +548,9 @@ import java.util.Map;
  */
 public final class ManagedCcfUpdateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Update.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/ManagedCCF_Update.json
      */
     /**
      * Sample code: ManagedCCFUpdate.
@@ -556,7 +594,9 @@ public final class ManagedCcfUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/Operations_Get.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/Operations_Get.json
      */
     /**
      * Sample code: OperationsGet.
@@ -579,7 +619,9 @@ import com.azure.resourcemanager.confidentialledger.models.CheckNameAvailability
  */
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/CheckNameAvailability.json
+     * x-ms-original-file:
+     * specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2024-09-19-preview/
+     * examples/CheckNameAvailability.json
      */
     /**
      * Sample code: CheckNameAvailability.
