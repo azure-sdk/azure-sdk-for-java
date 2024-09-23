@@ -6,7 +6,6 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import java.util.Map;
 public final class RegistryComponentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registry/ComponentVersion/createOrUpdate.json
      */
     /**
@@ -29,15 +28,16 @@ public final class RegistryComponentVersionsCreateOrUpdateSamples {
     public static void createOrUpdateRegistryComponentVersion(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager.registryComponentVersions()
-            .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
-                new ComponentVersionInner().withProperties(new ComponentVersionProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
-                    .withProperties(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withComponentSpec(SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize("{\"8ced901b-d826-477d-bfef-329da9672513\":null}", Object.class,
-                            SerializerEncoding.JSON))),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingComponent("test-rg", "my-aml-registry", "string")
+            .withProperties(new ComponentVersionProperties().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withIsAnonymous(false)
+                .withComponentSpec(SerializerFactory.createDefaultManagementSerializerAdapter()
+                    .deserialize("{\"8ced901b-d826-477d-bfef-329da9672513\":null}", Object.class,
+                        SerializerEncoding.JSON)))
+            .create();
     }
 
     // Use "Map.of" if available

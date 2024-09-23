@@ -24,14 +24,19 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
     private MonitoringSignalType signalType = MonitoringSignalType.DATA_DRIFT;
 
     /*
-     * The feature filter which identifies which feature to calculate drift over.
+     * A dictionary that maps feature names to their respective data types.
      */
-    private MonitoringFeatureFilterBase features;
+    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
 
     /*
      * The settings for computing feature importance.
      */
     private FeatureImportanceSettings featureImportanceSettings;
+
+    /*
+     * The feature filter which identifies which feature to calculate drift over.
+     */
+    private MonitoringFeatureFilterBase features;
 
     /*
      * [Required] A list of metrics to calculate and their associated thresholds.
@@ -47,11 +52,6 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
      * [Required] The data to calculate drift against.
      */
     private MonitoringInputDataBase referenceData;
-
-    /*
-     * A dictionary that maps feature names to their respective data types.
-     */
-    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
 
     /**
      * Creates an instance of DataDriftMonitoringSignal class.
@@ -70,22 +70,23 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
     }
 
     /**
-     * Get the features property: The feature filter which identifies which feature to calculate drift over.
+     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
      * 
-     * @return the features value.
+     * @return the featureDataTypeOverride value.
      */
-    public MonitoringFeatureFilterBase features() {
-        return this.features;
+    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
+        return this.featureDataTypeOverride;
     }
 
     /**
-     * Set the features property: The feature filter which identifies which feature to calculate drift over.
+     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
      * 
-     * @param features the features value to set.
+     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
      * @return the DataDriftMonitoringSignal object itself.
      */
-    public DataDriftMonitoringSignal withFeatures(MonitoringFeatureFilterBase features) {
-        this.features = features;
+    public DataDriftMonitoringSignal
+        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
+        this.featureDataTypeOverride = featureDataTypeOverride;
         return this;
     }
 
@@ -107,6 +108,26 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
     public DataDriftMonitoringSignal
         withFeatureImportanceSettings(FeatureImportanceSettings featureImportanceSettings) {
         this.featureImportanceSettings = featureImportanceSettings;
+        return this;
+    }
+
+    /**
+     * Get the features property: The feature filter which identifies which feature to calculate drift over.
+     * 
+     * @return the features value.
+     */
+    public MonitoringFeatureFilterBase features() {
+        return this.features;
+    }
+
+    /**
+     * Set the features property: The feature filter which identifies which feature to calculate drift over.
+     * 
+     * @param features the features value to set.
+     * @return the DataDriftMonitoringSignal object itself.
+     */
+    public DataDriftMonitoringSignal withFeatures(MonitoringFeatureFilterBase features) {
+        this.features = features;
         return this;
     }
 
@@ -171,27 +192,6 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
     }
 
     /**
-     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @return the featureDataTypeOverride value.
-     */
-    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
-        return this.featureDataTypeOverride;
-    }
-
-    /**
-     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
-     * @return the DataDriftMonitoringSignal object itself.
-     */
-    public DataDriftMonitoringSignal
-        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
-        this.featureDataTypeOverride = featureDataTypeOverride;
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -216,12 +216,11 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
      */
     @Override
     public void validate() {
-        super.validate();
-        if (features() != null) {
-            features().validate();
-        }
         if (featureImportanceSettings() != null) {
             featureImportanceSettings().validate();
+        }
+        if (features() != null) {
+            features().validate();
         }
         if (metricThresholds() == null) {
             throw LOGGER.atError()
@@ -262,10 +261,10 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
         jsonWriter.writeJsonField("productionData", this.productionData);
         jsonWriter.writeJsonField("referenceData", this.referenceData);
         jsonWriter.writeStringField("signalType", this.signalType == null ? null : this.signalType.toString());
-        jsonWriter.writeJsonField("features", this.features);
-        jsonWriter.writeJsonField("featureImportanceSettings", this.featureImportanceSettings);
         jsonWriter.writeMapField("featureDataTypeOverride", this.featureDataTypeOverride,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeJsonField("featureImportanceSettings", this.featureImportanceSettings);
+        jsonWriter.writeJsonField("features", this.features);
         return jsonWriter.writeEndObject();
     }
 
@@ -303,15 +302,15 @@ public final class DataDriftMonitoringSignal extends MonitoringSignalBase {
                 } else if ("signalType".equals(fieldName)) {
                     deserializedDataDriftMonitoringSignal.signalType
                         = MonitoringSignalType.fromString(reader.getString());
-                } else if ("features".equals(fieldName)) {
-                    deserializedDataDriftMonitoringSignal.features = MonitoringFeatureFilterBase.fromJson(reader);
-                } else if ("featureImportanceSettings".equals(fieldName)) {
-                    deserializedDataDriftMonitoringSignal.featureImportanceSettings
-                        = FeatureImportanceSettings.fromJson(reader);
                 } else if ("featureDataTypeOverride".equals(fieldName)) {
                     Map<String, MonitoringFeatureDataType> featureDataTypeOverride
                         = reader.readMap(reader1 -> MonitoringFeatureDataType.fromString(reader1.getString()));
                     deserializedDataDriftMonitoringSignal.featureDataTypeOverride = featureDataTypeOverride;
+                } else if ("featureImportanceSettings".equals(fieldName)) {
+                    deserializedDataDriftMonitoringSignal.featureImportanceSettings
+                        = FeatureImportanceSettings.fromJson(reader);
+                } else if ("features".equals(fieldName)) {
+                    deserializedDataDriftMonitoringSignal.features = MonitoringFeatureFilterBase.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

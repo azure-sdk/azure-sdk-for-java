@@ -20,39 +20,19 @@ import java.util.List;
 public final class EnvironmentContainerResourceArmPaginatedResult
     implements JsonSerializable<EnvironmentContainerResourceArmPaginatedResult> {
     /*
-     * An array of objects of type EnvironmentContainer.
-     */
-    private List<EnvironmentContainerInner> value;
-
-    /*
      * The link to the next page of EnvironmentContainer objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type EnvironmentContainer.
+     */
+    private List<EnvironmentContainerInner> value;
 
     /**
      * Creates an instance of EnvironmentContainerResourceArmPaginatedResult class.
      */
     public EnvironmentContainerResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type EnvironmentContainer.
-     * 
-     * @return the value value.
-     */
-    public List<EnvironmentContainerInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type EnvironmentContainer.
-     * 
-     * @param value the value value to set.
-     * @return the EnvironmentContainerResourceArmPaginatedResult object itself.
-     */
-    public EnvironmentContainerResourceArmPaginatedResult withValue(List<EnvironmentContainerInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class EnvironmentContainerResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type EnvironmentContainer.
+     * 
+     * @return the value value.
+     */
+    public List<EnvironmentContainerInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type EnvironmentContainer.
+     * 
+     * @param value the value value to set.
+     * @return the EnvironmentContainerResourceArmPaginatedResult object itself.
+     */
+    public EnvironmentContainerResourceArmPaginatedResult withValue(List<EnvironmentContainerInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class EnvironmentContainerResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class EnvironmentContainerResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedEnvironmentContainerResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<EnvironmentContainerInner> value
                         = reader.readArray(reader1 -> EnvironmentContainerInner.fromJson(reader1));
                     deserializedEnvironmentContainerResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedEnvironmentContainerResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
