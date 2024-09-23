@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Configuration properties that define the mutable settings of a Container App SourceControl.
@@ -60,6 +61,11 @@ public final class GithubActionConfiguration implements JsonSerializable<GithubA
      * Runtime version
      */
     private String runtimeVersion;
+
+    /*
+     * List of environment variables to be passed to the build.
+     */
+    private List<EnvironmentVariable> buildEnvironmentVariables;
 
     /**
      * Creates an instance of GithubActionConfiguration class.
@@ -248,6 +254,27 @@ public final class GithubActionConfiguration implements JsonSerializable<GithubA
     }
 
     /**
+     * Get the buildEnvironmentVariables property: List of environment variables to be passed to the build.
+     * 
+     * @return the buildEnvironmentVariables value.
+     */
+    public List<EnvironmentVariable> buildEnvironmentVariables() {
+        return this.buildEnvironmentVariables;
+    }
+
+    /**
+     * Set the buildEnvironmentVariables property: List of environment variables to be passed to the build.
+     * 
+     * @param buildEnvironmentVariables the buildEnvironmentVariables value to set.
+     * @return the GithubActionConfiguration object itself.
+     */
+    public GithubActionConfiguration
+        withBuildEnvironmentVariables(List<EnvironmentVariable> buildEnvironmentVariables) {
+        this.buildEnvironmentVariables = buildEnvironmentVariables;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -258,6 +285,9 @@ public final class GithubActionConfiguration implements JsonSerializable<GithubA
         }
         if (azureCredentials() != null) {
             azureCredentials().validate();
+        }
+        if (buildEnvironmentVariables() != null) {
+            buildEnvironmentVariables().forEach(e -> e.validate());
         }
     }
 
@@ -276,6 +306,8 @@ public final class GithubActionConfiguration implements JsonSerializable<GithubA
         jsonWriter.writeStringField("os", this.os);
         jsonWriter.writeStringField("runtimeStack", this.runtimeStack);
         jsonWriter.writeStringField("runtimeVersion", this.runtimeVersion);
+        jsonWriter.writeArrayField("buildEnvironmentVariables", this.buildEnvironmentVariables,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -312,6 +344,10 @@ public final class GithubActionConfiguration implements JsonSerializable<GithubA
                     deserializedGithubActionConfiguration.runtimeStack = reader.getString();
                 } else if ("runtimeVersion".equals(fieldName)) {
                     deserializedGithubActionConfiguration.runtimeVersion = reader.getString();
+                } else if ("buildEnvironmentVariables".equals(fieldName)) {
+                    List<EnvironmentVariable> buildEnvironmentVariables
+                        = reader.readArray(reader1 -> EnvironmentVariable.fromJson(reader1));
+                    deserializedGithubActionConfiguration.buildEnvironmentVariables = buildEnvironmentVariables;
                 } else {
                     reader.skipChildren();
                 }
