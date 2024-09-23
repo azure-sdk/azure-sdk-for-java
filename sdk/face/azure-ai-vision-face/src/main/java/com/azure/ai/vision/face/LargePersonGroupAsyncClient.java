@@ -14,10 +14,10 @@ import com.azure.ai.vision.face.models.AddFaceResult;
 import com.azure.ai.vision.face.models.CreatePersonResult;
 import com.azure.ai.vision.face.models.FaceDetectionModel;
 import com.azure.ai.vision.face.models.FaceRecognitionModel;
-import com.azure.ai.vision.face.models.FaceTrainingResult;
 import com.azure.ai.vision.face.models.LargePersonGroup;
 import com.azure.ai.vision.face.models.LargePersonGroupPerson;
 import com.azure.ai.vision.face.models.LargePersonGroupPersonFace;
+import com.azure.ai.vision.face.models.TrainingResult;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
@@ -38,9 +38,9 @@ import java.util.List;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the asynchronous FaceAdministrationClient type.
+ * Initializes a new instance of the asynchronous FaceServiceClient type.
  */
-@ServiceClient(builder = FaceAdministrationClientBuilder.class, isAsync = true)
+@ServiceClient(builder = FaceServiceClientBuilder.class, isAsync = true)
 public final class LargePersonGroupAsyncClient {
 
     @Generated
@@ -892,11 +892,11 @@ public final class LargePersonGroupAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FaceTrainingResult> getTrainingStatus(String largePersonGroupId) {
+    public Mono<TrainingResult> getTrainingStatus(String largePersonGroupId) {
         // Generated convenience method for getTrainingStatusWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getTrainingStatusWithResponse(largePersonGroupId, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(FaceTrainingResult.class));
+            .map(protocolMethodData -> protocolMethodData.toObject(TrainingResult.class));
     }
 
     /**
@@ -917,7 +917,7 @@ public final class LargePersonGroupAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<FaceTrainingResult, Void> beginTrain(String largePersonGroupId) {
+    public PollerFlux<TrainingResult, Void> beginTrain(String largePersonGroupId) {
         // Generated convenience method for beginTrainWithModel
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.beginTrainWithModelAsync(largePersonGroupId, requestOptions);

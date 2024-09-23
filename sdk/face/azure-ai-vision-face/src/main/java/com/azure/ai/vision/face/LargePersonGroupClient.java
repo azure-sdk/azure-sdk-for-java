@@ -14,10 +14,10 @@ import com.azure.ai.vision.face.models.AddFaceResult;
 import com.azure.ai.vision.face.models.CreatePersonResult;
 import com.azure.ai.vision.face.models.FaceDetectionModel;
 import com.azure.ai.vision.face.models.FaceRecognitionModel;
-import com.azure.ai.vision.face.models.FaceTrainingResult;
 import com.azure.ai.vision.face.models.LargePersonGroup;
 import com.azure.ai.vision.face.models.LargePersonGroupPerson;
 import com.azure.ai.vision.face.models.LargePersonGroupPersonFace;
+import com.azure.ai.vision.face.models.TrainingResult;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
@@ -36,9 +36,9 @@ import com.azure.core.util.serializer.TypeReference;
 import java.util.List;
 
 /**
- * Initializes a new instance of the synchronous FaceAdministrationClient type.
+ * Initializes a new instance of the synchronous FaceServiceClient type.
  */
-@ServiceClient(builder = FaceAdministrationClientBuilder.class)
+@ServiceClient(builder = FaceServiceClientBuilder.class)
 public final class LargePersonGroupClient {
 
     @Generated
@@ -875,11 +875,11 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FaceTrainingResult getTrainingStatus(String largePersonGroupId) {
+    public TrainingResult getTrainingStatus(String largePersonGroupId) {
         // Generated convenience method for getTrainingStatusWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getTrainingStatusWithResponse(largePersonGroupId, requestOptions).getValue()
-            .toObject(FaceTrainingResult.class);
+            .toObject(TrainingResult.class);
     }
 
     /**
@@ -900,7 +900,7 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<FaceTrainingResult, Void> beginTrain(String largePersonGroupId) {
+    public SyncPoller<TrainingResult, Void> beginTrain(String largePersonGroupId) {
         // Generated convenience method for beginTrainWithModel
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.beginTrainWithModel(largePersonGroupId, requestOptions);

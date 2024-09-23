@@ -10,7 +10,6 @@ import com.azure.ai.vision.face.implementation.models.DetectFromSessionImageRequ
 import com.azure.ai.vision.face.implementation.models.VerifyImageFileDetails;
 import com.azure.ai.vision.face.models.CreateLivenessSessionContent;
 import com.azure.ai.vision.face.models.CreateLivenessSessionResult;
-import com.azure.ai.vision.face.models.CreateLivenessWithVerifySessionContent;
 import com.azure.ai.vision.face.models.CreateLivenessWithVerifySessionResult;
 import com.azure.ai.vision.face.models.DetectFromSessionImageOptions;
 import com.azure.ai.vision.face.models.FaceAttributeType;
@@ -36,6 +35,7 @@ import com.azure.core.util.serializer.TypeReference;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import com.azure.ai.vision.face.models.CreateLivenessWithVerifySessionContent;
 
 /**
  * Initializes a new instance of the synchronous FaceSessionClient type.
@@ -1282,32 +1282,6 @@ public final class FaceSessionClient {
     private static final TypeReference<List<FaceDetectionResult>> TYPE_REFERENCE_LIST_FACE_DETECTION_RESULT
         = new TypeReference<List<FaceDetectionResult>>() {
         };
-
-    /**
-     * Create a new liveness session with verify. Client device submits VerifyImage during the
-     * /detectLivenessWithVerify/singleModal call.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/liveness-session-operations/create-liveness-with-verify-session for
-     * more details.
-     *
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of liveness session with verify creation with verify image provided.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CreateLivenessWithVerifySessionResult createLivenessWithVerifySession(CreateLivenessWithVerifySessionContent body) {
-        // Generated convenience method for createLivenessWithVerifySessionWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return createLivenessWithVerifySessionWithResponse(BinaryData.fromObject(body), requestOptions).getValue()
-            .toObject(CreateLivenessWithVerifySessionResult.class);
-    }
 
     /**
      * Create a new liveness session with verify. Client device submits VerifyImage during the

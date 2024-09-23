@@ -5,7 +5,7 @@
 package com.azure.ai.vision.face.implementation;
 
 import com.azure.ai.vision.face.FaceServiceVersion;
-import com.azure.ai.vision.face.models.FaceTrainingResult;
+import com.azure.ai.vision.face.models.TrainingResult;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -52,14 +52,14 @@ public final class LargePersonGroupsImpl {
     /**
      * The service client containing this operation class.
      */
-    private final FaceAdministrationClientImpl client;
+    private final FaceServiceClientImpl client;
 
     /**
      * Initializes an instance of LargePersonGroupsImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    LargePersonGroupsImpl(FaceAdministrationClientImpl client) {
+    LargePersonGroupsImpl(FaceServiceClientImpl client) {
         this.service
             = RestProxy.create(LargePersonGroupsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
@@ -75,11 +75,11 @@ public final class LargePersonGroupsImpl {
     }
 
     /**
-     * The interface defining all the services for FaceAdministrationClientLargePersonGroups to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for FaceServiceClientLargePersonGroups to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{endpoint}/face/{apiVersion}")
-    @ServiceInterface(name = "FaceAdministrationCl")
+    @ServiceInterface(name = "FaceServiceClientLar")
     public interface LargePersonGroupsService {
         @Put("/largepersongroups/{largePersonGroupId}")
         @ExpectedResponses({ 200 })
@@ -977,7 +977,7 @@ public final class LargePersonGroupsImpl {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<FaceTrainingResult, Void> beginTrainWithModelAsync(String largePersonGroupId,
+    public PollerFlux<TrainingResult, Void> beginTrainWithModelAsync(String largePersonGroupId,
         RequestOptions requestOptions) {
         return PollerFlux.create(Duration.ofSeconds(1),
             () -> this.trainWithResponseAsync(largePersonGroupId, requestOptions),
@@ -988,7 +988,7 @@ public final class LargePersonGroupsImpl {
                     ? requestOptions.getContext()
                     : Context.NONE)
                 .setServiceVersion(this.client.getServiceVersion().getVersion())),
-            TypeReference.createInstance(FaceTrainingResult.class), TypeReference.createInstance(Void.class));
+            TypeReference.createInstance(TrainingResult.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -1007,7 +1007,7 @@ public final class LargePersonGroupsImpl {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<FaceTrainingResult, Void> beginTrainWithModel(String largePersonGroupId,
+    public SyncPoller<TrainingResult, Void> beginTrainWithModel(String largePersonGroupId,
         RequestOptions requestOptions) {
         return SyncPoller.createPoller(Duration.ofSeconds(1),
             () -> this.trainWithResponse(largePersonGroupId, requestOptions),
@@ -1018,7 +1018,7 @@ public final class LargePersonGroupsImpl {
                     ? requestOptions.getContext()
                     : Context.NONE)
                 .setServiceVersion(this.client.getServiceVersion().getVersion())),
-            TypeReference.createInstance(FaceTrainingResult.class), TypeReference.createInstance(Void.class));
+            TypeReference.createInstance(TrainingResult.class), TypeReference.createInstance(Void.class));
     }
 
     /**

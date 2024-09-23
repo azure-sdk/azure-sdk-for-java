@@ -6,21 +6,24 @@ package com.azure.ai.vision.face;
 import com.azure.ai.vision.face.implementation.FaceClientImpl;
 import com.azure.ai.vision.face.implementation.models.DetectFromUrlImplOptions;
 import com.azure.ai.vision.face.implementation.models.DetectFromUrlRequest;
+import com.azure.ai.vision.face.implementation.models.FindSimilarFromFaceListRequest;
 import com.azure.ai.vision.face.implementation.models.FindSimilarFromLargeFaceListRequest;
 import com.azure.ai.vision.face.implementation.models.FindSimilarRequest;
 import com.azure.ai.vision.face.implementation.models.GroupRequest;
 import com.azure.ai.vision.face.implementation.models.IdentifyFromLargePersonGroupRequest;
+import com.azure.ai.vision.face.implementation.models.IdentifyFromPersonGroupRequest;
 import com.azure.ai.vision.face.implementation.models.VerifyFaceToFaceRequest;
 import com.azure.ai.vision.face.implementation.models.VerifyFromLargePersonGroupRequest;
+import com.azure.ai.vision.face.implementation.models.VerifyFromPersonGroupRequest;
 import com.azure.ai.vision.face.models.FaceAttributeType;
 import com.azure.ai.vision.face.models.FaceDetectionModel;
 import com.azure.ai.vision.face.models.FaceDetectionResult;
 import com.azure.ai.vision.face.models.FaceFindSimilarResult;
 import com.azure.ai.vision.face.models.FaceGroupingResult;
-import com.azure.ai.vision.face.models.FaceIdentificationResult;
 import com.azure.ai.vision.face.models.FaceRecognitionModel;
 import com.azure.ai.vision.face.models.FaceVerificationResult;
 import com.azure.ai.vision.face.models.FindSimilarMatchMode;
+import com.azure.ai.vision.face.models.IdentificationResult;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
@@ -1291,8 +1294,9 @@ public final class FaceClient {
     /**
      * 1-to-many identification to find the closest matches of the specific query person face from a Large Person Group.
      *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
-     * for more details.
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-large-person-group for more
+     * details.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -1452,8 +1456,9 @@ public final class FaceClient {
     /**
      * 1-to-many identification to find the closest matches of the specific query person face from a Large Person Group.
      *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
-     * for more details.
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-large-person-group for more
+     * details.
      *
      * @param faceIds Array of query faces faceIds, created by the "Detect". Each of the faces are identified
      * independently. The valid number of faceIds is between [1, 10].
@@ -1474,7 +1479,7 @@ public final class FaceClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<FaceIdentificationResult> identifyFromLargePersonGroup(List<String> faceIds, String largePersonGroupId,
+    public List<IdentificationResult> identifyFromLargePersonGroup(List<String> faceIds, String largePersonGroupId,
         Integer maxNumOfCandidatesReturned, Double confidenceThreshold) {
         // Generated convenience method for identifyFromLargePersonGroupWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -1484,14 +1489,15 @@ public final class FaceClient {
                 .setConfidenceThreshold(confidenceThreshold);
         BinaryData identifyFromLargePersonGroupRequest = BinaryData.fromObject(identifyFromLargePersonGroupRequestObj);
         return identifyFromLargePersonGroupWithResponse(identifyFromLargePersonGroupRequest, requestOptions).getValue()
-            .toObject(TYPE_REFERENCE_LIST_FACE_IDENTIFICATION_RESULT);
+            .toObject(TYPE_REFERENCE_LIST_IDENTIFICATION_RESULT);
     }
 
     /**
      * 1-to-many identification to find the closest matches of the specific query person face from a Large Person Group.
      *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
-     * for more details.
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-large-person-group for more
+     * details.
      *
      * @param faceIds Array of query faces faceIds, created by the "Detect". Each of the faces are identified
      * independently. The valid number of faceIds is between [1, 10].
@@ -1507,15 +1513,14 @@ public final class FaceClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<FaceIdentificationResult> identifyFromLargePersonGroup(List<String> faceIds,
-        String largePersonGroupId) {
+    public List<IdentificationResult> identifyFromLargePersonGroup(List<String> faceIds, String largePersonGroupId) {
         // Generated convenience method for identifyFromLargePersonGroupWithResponse
         RequestOptions requestOptions = new RequestOptions();
         IdentifyFromLargePersonGroupRequest identifyFromLargePersonGroupRequestObj
             = new IdentifyFromLargePersonGroupRequest(faceIds, largePersonGroupId);
         BinaryData identifyFromLargePersonGroupRequest = BinaryData.fromObject(identifyFromLargePersonGroupRequestObj);
         return identifyFromLargePersonGroupWithResponse(identifyFromLargePersonGroupRequest, requestOptions).getValue()
-            .toObject(TYPE_REFERENCE_LIST_FACE_IDENTIFICATION_RESULT);
+            .toObject(TYPE_REFERENCE_LIST_IDENTIFICATION_RESULT);
     }
 
     /**
@@ -1550,8 +1555,306 @@ public final class FaceClient {
             .toObject(FaceVerificationResult.class);
     }
 
+    /**
+     * Given query face's faceId, to search the similar-looking faces from a Face List. A 'faceListId' is created by
+     * Create Face List.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/find-similar-from-face-list
+     * for more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     faceId: String (Required)
+     *     maxNumOfCandidatesReturned: Integer (Optional)
+     *     mode: String(matchPerson/matchFace) (Optional)
+     *     faceListId: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * [
+     *      (Required){
+     *         confidence: double (Required)
+     *         faceId: String (Optional)
+     *         persistedFaceId: String (Optional)
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param findSimilarFromFaceListRequest The findSimilarFromFaceListRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
     @Generated
-    private static final TypeReference<List<FaceIdentificationResult>> TYPE_REFERENCE_LIST_FACE_IDENTIFICATION_RESULT
-        = new TypeReference<List<FaceIdentificationResult>>() {
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> findSimilarFromFaceListWithResponse(BinaryData findSimilarFromFaceListRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.findSimilarFromFaceListWithResponse(findSimilarFromFaceListRequest, requestOptions);
+    }
+
+    /**
+     * 1-to-many identification to find the closest matches of the specific query person face from a Person Group.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
+     * for more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     faceIds (Required): [
+     *         String (Required)
+     *     ]
+     *     personGroupId: String (Required)
+     *     maxNumOfCandidatesReturned: Integer (Optional)
+     *     confidenceThreshold: Double (Optional)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * [
+     *      (Required){
+     *         faceId: String (Required)
+     *         candidates (Required): [
+     *              (Required){
+     *                 personId: String (Required)
+     *                 confidence: double (Required)
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param identifyFromPersonGroupRequest The identifyFromPersonGroupRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> identifyFromPersonGroupWithResponse(BinaryData identifyFromPersonGroupRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.identifyFromPersonGroupWithResponse(identifyFromPersonGroupRequest, requestOptions);
+    }
+
+    /**
+     * Verify whether a face belongs to a person in a Person Group.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/verify-from-person-group
+     * for more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     faceId: String (Required)
+     *     personGroupId: String (Required)
+     *     personId: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     isIdentical: boolean (Required)
+     *     confidence: double (Required)
+     * }
+     * }</pre>
+     *
+     * @param verifyFromPersonGroupRequest The verifyFromPersonGroupRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return verify result along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> verifyFromPersonGroupWithResponse(BinaryData verifyFromPersonGroupRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.verifyFromPersonGroupWithResponse(verifyFromPersonGroupRequest, requestOptions);
+    }
+
+    /**
+     * Given query face's faceId, to search the similar-looking faces from a Face List. A 'faceListId' is created by
+     * Create Face List.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/find-similar-from-face-list
+     * for more details.
+     *
+     * @param faceId faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this
+     * faceId is not persisted and will expire 24 hours after the detection call.
+     * @param faceListId An existing user-specified unique candidate Face List, created in "Create Face List". Face List
+     * contains a set of persistedFaceIds which are persisted and will never expire.
+     * @param maxNumOfCandidatesReturned The number of top similar faces returned. The valid range is [1, 1000]. Default
+     * value is 20.
+     * @param mode Similar face searching mode. It can be 'matchPerson' or 'matchFace'. Default value is 'matchPerson'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<FaceFindSimilarResult> findSimilarFromFaceList(String faceId, String faceListId,
+        Integer maxNumOfCandidatesReturned, FindSimilarMatchMode mode) {
+        // Generated convenience method for findSimilarFromFaceListWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        FindSimilarFromFaceListRequest findSimilarFromFaceListRequestObj
+            = new FindSimilarFromFaceListRequest(faceId, faceListId)
+                .setMaxNumOfCandidatesReturned(maxNumOfCandidatesReturned)
+                .setMode(mode);
+        BinaryData findSimilarFromFaceListRequest = BinaryData.fromObject(findSimilarFromFaceListRequestObj);
+        return findSimilarFromFaceListWithResponse(findSimilarFromFaceListRequest, requestOptions).getValue()
+            .toObject(TYPE_REFERENCE_LIST_FACE_FIND_SIMILAR_RESULT);
+    }
+
+    /**
+     * Given query face's faceId, to search the similar-looking faces from a Face List. A 'faceListId' is created by
+     * Create Face List.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/find-similar-from-face-list
+     * for more details.
+     *
+     * @param faceId faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this
+     * faceId is not persisted and will expire 24 hours after the detection call.
+     * @param faceListId An existing user-specified unique candidate Face List, created in "Create Face List". Face List
+     * contains a set of persistedFaceIds which are persisted and will never expire.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<FaceFindSimilarResult> findSimilarFromFaceList(String faceId, String faceListId) {
+        // Generated convenience method for findSimilarFromFaceListWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        FindSimilarFromFaceListRequest findSimilarFromFaceListRequestObj
+            = new FindSimilarFromFaceListRequest(faceId, faceListId);
+        BinaryData findSimilarFromFaceListRequest = BinaryData.fromObject(findSimilarFromFaceListRequestObj);
+        return findSimilarFromFaceListWithResponse(findSimilarFromFaceListRequest, requestOptions).getValue()
+            .toObject(TYPE_REFERENCE_LIST_FACE_FIND_SIMILAR_RESULT);
+    }
+
+    /**
+     * 1-to-many identification to find the closest matches of the specific query person face from a Person Group.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
+     * for more details.
+     *
+     * @param faceIds Array of query faces faceIds, created by the "Detect". Each of the faces are identified
+     * independently. The valid number of faceIds is between [1, 10].
+     * @param personGroupId personGroupId of the target Person Group, created by "Create Person Group". Parameter
+     * personGroupId and largePersonGroupId should not be provided at the same time.
+     * @param maxNumOfCandidatesReturned The range of maxNumOfCandidatesReturned is between 1 and 100. Default value is
+     * 10.
+     * @param confidenceThreshold Customized identification confidence threshold, in the range of [0, 1]. Advanced user
+     * can tweak this value to override default internal threshold for better precision on their scenario data. Note
+     * there is no guarantee of this threshold value working on other data and after algorithm updates.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<IdentificationResult> identifyFromPersonGroup(List<String> faceIds, String personGroupId,
+        Integer maxNumOfCandidatesReturned, Double confidenceThreshold) {
+        // Generated convenience method for identifyFromPersonGroupWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        IdentifyFromPersonGroupRequest identifyFromPersonGroupRequestObj
+            = new IdentifyFromPersonGroupRequest(faceIds, personGroupId)
+                .setMaxNumOfCandidatesReturned(maxNumOfCandidatesReturned)
+                .setConfidenceThreshold(confidenceThreshold);
+        BinaryData identifyFromPersonGroupRequest = BinaryData.fromObject(identifyFromPersonGroupRequestObj);
+        return identifyFromPersonGroupWithResponse(identifyFromPersonGroupRequest, requestOptions).getValue()
+            .toObject(TYPE_REFERENCE_LIST_IDENTIFICATION_RESULT);
+    }
+
+    /**
+     * 1-to-many identification to find the closest matches of the specific query person face from a Person Group.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/identify-from-person-group
+     * for more details.
+     *
+     * @param faceIds Array of query faces faceIds, created by the "Detect". Each of the faces are identified
+     * independently. The valid number of faceIds is between [1, 10].
+     * @param personGroupId personGroupId of the target Person Group, created by "Create Person Group". Parameter
+     * personGroupId and largePersonGroupId should not be provided at the same time.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<IdentificationResult> identifyFromPersonGroup(List<String> faceIds, String personGroupId) {
+        // Generated convenience method for identifyFromPersonGroupWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        IdentifyFromPersonGroupRequest identifyFromPersonGroupRequestObj
+            = new IdentifyFromPersonGroupRequest(faceIds, personGroupId);
+        BinaryData identifyFromPersonGroupRequest = BinaryData.fromObject(identifyFromPersonGroupRequestObj);
+        return identifyFromPersonGroupWithResponse(identifyFromPersonGroupRequest, requestOptions).getValue()
+            .toObject(TYPE_REFERENCE_LIST_IDENTIFICATION_RESULT);
+    }
+
+    /**
+     * Verify whether a face belongs to a person in a Person Group.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-recognition-operations/verify-from-person-group
+     * for more details.
+     *
+     * @param faceId The faceId of the face, come from "Detect".
+     * @param personGroupId Using existing personGroupId and personId for fast loading a specified person. personGroupId
+     * is created in "Create Person Group".
+     * @param personId Specify a certain person in Person Group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return verify result.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FaceVerificationResult verifyFromPersonGroup(String faceId, String personGroupId, String personId) {
+        // Generated convenience method for verifyFromPersonGroupWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        VerifyFromPersonGroupRequest verifyFromPersonGroupRequestObj
+            = new VerifyFromPersonGroupRequest(faceId, personGroupId, personId);
+        BinaryData verifyFromPersonGroupRequest = BinaryData.fromObject(verifyFromPersonGroupRequestObj);
+        return verifyFromPersonGroupWithResponse(verifyFromPersonGroupRequest, requestOptions).getValue()
+            .toObject(FaceVerificationResult.class);
+    }
+
+    @Generated
+    private static final TypeReference<List<IdentificationResult>> TYPE_REFERENCE_LIST_IDENTIFICATION_RESULT
+        = new TypeReference<List<IdentificationResult>>() {
         };
 }

@@ -4,16 +4,16 @@
 package com.azure.ai.vision.face;
 
 import com.azure.ai.vision.face.implementation.LargeFaceListsImpl;
-import com.azure.ai.vision.face.implementation.models.AddFaceFromUrlRequest1;
-import com.azure.ai.vision.face.implementation.models.CreateRequest1;
-import com.azure.ai.vision.face.implementation.models.UpdateFaceRequest1;
-import com.azure.ai.vision.face.implementation.models.UpdateRequest1;
+import com.azure.ai.vision.face.implementation.models.AddFaceFromUrlRequest2;
+import com.azure.ai.vision.face.implementation.models.CreateRequest2;
+import com.azure.ai.vision.face.implementation.models.UpdateFaceRequest2;
+import com.azure.ai.vision.face.implementation.models.UpdateRequest2;
 import com.azure.ai.vision.face.models.AddFaceResult;
 import com.azure.ai.vision.face.models.FaceDetectionModel;
 import com.azure.ai.vision.face.models.FaceRecognitionModel;
-import com.azure.ai.vision.face.models.FaceTrainingResult;
 import com.azure.ai.vision.face.models.LargeFaceList;
 import com.azure.ai.vision.face.models.LargeFaceListFace;
+import com.azure.ai.vision.face.models.TrainingResult;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
@@ -34,9 +34,9 @@ import java.util.List;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the asynchronous FaceAdministrationClient type.
+ * Initializes a new instance of the asynchronous FaceServiceClient type.
  */
-@ServiceClient(builder = FaceAdministrationClientBuilder.class, isAsync = true)
+@ServiceClient(builder = FaceServiceClientBuilder.class, isAsync = true)
 public final class LargeFaceListAsyncClient {
 
     @Generated
@@ -69,7 +69,7 @@ public final class LargeFaceListAsyncClient {
      * }</pre>
      *
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param createRequest1 The createRequest1 parameter.
+     * @param createRequest2 The createRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -79,9 +79,9 @@ public final class LargeFaceListAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createWithResponse(String largeFaceListId, BinaryData createRequest1,
+    public Mono<Response<Void>> createWithResponse(String largeFaceListId, BinaryData createRequest2,
         RequestOptions requestOptions) {
-        return this.serviceClient.createWithResponseAsync(largeFaceListId, createRequest1, requestOptions);
+        return this.serviceClient.createWithResponseAsync(largeFaceListId, createRequest2, requestOptions);
     }
 
     /**
@@ -154,7 +154,7 @@ public final class LargeFaceListAsyncClient {
      * }</pre>
      *
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param updateRequest1 The updateRequest1 parameter.
+     * @param updateRequest2 The updateRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -164,9 +164,9 @@ public final class LargeFaceListAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updateWithResponse(String largeFaceListId, BinaryData updateRequest1,
+    public Mono<Response<Void>> updateWithResponse(String largeFaceListId, BinaryData updateRequest2,
         RequestOptions requestOptions) {
-        return this.serviceClient.updateWithResponseAsync(largeFaceListId, updateRequest1, requestOptions);
+        return this.serviceClient.updateWithResponseAsync(largeFaceListId, updateRequest2, requestOptions);
     }
 
     /**
@@ -299,7 +299,7 @@ public final class LargeFaceListAsyncClient {
      * }</pre>
      *
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
+     * @param addFaceFromUrlRequest2 The addFaceFromUrlRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -309,9 +309,9 @@ public final class LargeFaceListAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> addFaceFromUrlImplWithResponse(String largeFaceListId, BinaryData addFaceFromUrlRequest1,
+    Mono<Response<BinaryData>> addFaceFromUrlImplWithResponse(String largeFaceListId, BinaryData addFaceFromUrlRequest2,
         RequestOptions requestOptions) {
-        return this.serviceClient.addFaceFromUrlImplWithResponseAsync(largeFaceListId, addFaceFromUrlRequest1,
+        return this.serviceClient.addFaceFromUrlImplWithResponseAsync(largeFaceListId, addFaceFromUrlRequest2,
             requestOptions);
     }
 
@@ -425,7 +425,7 @@ public final class LargeFaceListAsyncClient {
      *
      * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
      * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
+     * @param updateFaceRequest2 The updateFaceRequest2 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -436,8 +436,8 @@ public final class LargeFaceListAsyncClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> updateFaceWithResponse(String largeFaceListId, String persistedFaceId,
-        BinaryData updateFaceRequest1, RequestOptions requestOptions) {
-        return this.serviceClient.updateFaceWithResponseAsync(largeFaceListId, persistedFaceId, updateFaceRequest1,
+        BinaryData updateFaceRequest2, RequestOptions requestOptions) {
+        return this.serviceClient.updateFaceWithResponseAsync(largeFaceListId, persistedFaceId, updateFaceRequest2,
             requestOptions);
     }
 
@@ -509,10 +509,10 @@ public final class LargeFaceListAsyncClient {
         FaceRecognitionModel recognitionModel) {
         // Generated convenience method for createWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        CreateRequest1 createRequest1Obj
-            = new CreateRequest1(name).setUserData(userData).setRecognitionModel(recognitionModel);
-        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
-        return createWithResponse(largeFaceListId, createRequest1, requestOptions).flatMap(FluxUtil::toMono);
+        CreateRequest2 createRequest2Obj
+            = new CreateRequest2(name).setUserData(userData).setRecognitionModel(recognitionModel);
+        BinaryData createRequest2 = BinaryData.fromObject(createRequest2Obj);
+        return createWithResponse(largeFaceListId, createRequest2, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -537,9 +537,9 @@ public final class LargeFaceListAsyncClient {
     public Mono<Void> create(String largeFaceListId, String name) {
         // Generated convenience method for createWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        CreateRequest1 createRequest1Obj = new CreateRequest1(name);
-        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
-        return createWithResponse(largeFaceListId, createRequest1, requestOptions).flatMap(FluxUtil::toMono);
+        CreateRequest2 createRequest2Obj = new CreateRequest2(name);
+        BinaryData createRequest2 = BinaryData.fromObject(createRequest2Obj);
+        return createWithResponse(largeFaceListId, createRequest2, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -633,9 +633,9 @@ public final class LargeFaceListAsyncClient {
     public Mono<Void> update(String largeFaceListId, String name, String userData) {
         // Generated convenience method for updateWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest1 updateRequest1Obj = new UpdateRequest1().setName(name).setUserData(userData);
-        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
-        return updateWithResponse(largeFaceListId, updateRequest1, requestOptions).flatMap(FluxUtil::toMono);
+        UpdateRequest2 updateRequest2Obj = new UpdateRequest2().setName(name).setUserData(userData);
+        BinaryData updateRequest2 = BinaryData.fromObject(updateRequest2Obj);
+        return updateWithResponse(largeFaceListId, updateRequest2, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -656,9 +656,9 @@ public final class LargeFaceListAsyncClient {
     public Mono<Void> update(String largeFaceListId) {
         // Generated convenience method for updateWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest1 updateRequest1Obj = new UpdateRequest1();
-        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
-        return updateWithResponse(largeFaceListId, updateRequest1, requestOptions).flatMap(FluxUtil::toMono);
+        UpdateRequest2 updateRequest2Obj = new UpdateRequest2();
+        BinaryData updateRequest2 = BinaryData.fromObject(updateRequest2Obj);
+        return updateWithResponse(largeFaceListId, updateRequest2, requestOptions).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -734,11 +734,11 @@ public final class LargeFaceListAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<FaceTrainingResult> getTrainingStatus(String largeFaceListId) {
+    public Mono<TrainingResult> getTrainingStatus(String largeFaceListId) {
         // Generated convenience method for getTrainingStatusWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getTrainingStatusWithResponse(largeFaceListId, requestOptions).flatMap(FluxUtil::toMono)
-            .map(protocolMethodData -> protocolMethodData.toObject(FaceTrainingResult.class));
+            .map(protocolMethodData -> protocolMethodData.toObject(TrainingResult.class));
     }
 
     /**
@@ -758,7 +758,7 @@ public final class LargeFaceListAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<FaceTrainingResult, Void> beginTrain(String largeFaceListId) {
+    public PollerFlux<TrainingResult, Void> beginTrain(String largeFaceListId) {
         // Generated convenience method for beginTrainWithModel
         RequestOptions requestOptions = new RequestOptions();
         return serviceClient.beginTrainWithModelAsync(largeFaceListId, requestOptions);
@@ -791,8 +791,8 @@ public final class LargeFaceListAsyncClient {
         FaceDetectionModel detectionModel, String userData) {
         // Generated convenience method for addFaceFromUrlImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
-        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
+        AddFaceFromUrlRequest2 addFaceFromUrlRequest2Obj = new AddFaceFromUrlRequest2(url);
+        BinaryData addFaceFromUrlRequest2 = BinaryData.fromObject(addFaceFromUrlRequest2Obj);
         if (targetFace != null) {
             requestOptions.addQueryParam("targetFace",
                 JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(targetFace, CollectionFormat.CSV),
@@ -804,7 +804,7 @@ public final class LargeFaceListAsyncClient {
         if (userData != null) {
             requestOptions.addQueryParam("userData", userData, false);
         }
-        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest1, requestOptions)
+        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest2, requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(AddFaceResult.class));
     }
@@ -830,9 +830,9 @@ public final class LargeFaceListAsyncClient {
     Mono<AddFaceResult> addFaceFromUrlImpl(String largeFaceListId, String url) {
         // Generated convenience method for addFaceFromUrlImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
-        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
-        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest1, requestOptions)
+        AddFaceFromUrlRequest2 addFaceFromUrlRequest2Obj = new AddFaceFromUrlRequest2(url);
+        BinaryData addFaceFromUrlRequest2 = BinaryData.fromObject(addFaceFromUrlRequest2Obj);
+        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest2, requestOptions)
             .flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(AddFaceResult.class));
     }
@@ -969,9 +969,9 @@ public final class LargeFaceListAsyncClient {
     public Mono<Void> updateFace(String largeFaceListId, String persistedFaceId, String userData) {
         // Generated convenience method for updateFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        UpdateFaceRequest1 updateFaceRequest1Obj = new UpdateFaceRequest1().setUserData(userData);
-        BinaryData updateFaceRequest1 = BinaryData.fromObject(updateFaceRequest1Obj);
-        return updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest1, requestOptions)
+        UpdateFaceRequest2 updateFaceRequest2Obj = new UpdateFaceRequest2().setUserData(userData);
+        BinaryData updateFaceRequest2 = BinaryData.fromObject(updateFaceRequest2Obj);
+        return updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest2, requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
@@ -994,9 +994,9 @@ public final class LargeFaceListAsyncClient {
     public Mono<Void> updateFace(String largeFaceListId, String persistedFaceId) {
         // Generated convenience method for updateFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        UpdateFaceRequest1 updateFaceRequest1Obj = new UpdateFaceRequest1();
-        BinaryData updateFaceRequest1 = BinaryData.fromObject(updateFaceRequest1Obj);
-        return updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest1, requestOptions)
+        UpdateFaceRequest2 updateFaceRequest2Obj = new UpdateFaceRequest2();
+        BinaryData updateFaceRequest2 = BinaryData.fromObject(updateFaceRequest2Obj);
+        return updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest2, requestOptions)
             .flatMap(FluxUtil::toMono);
     }
 
