@@ -10,8 +10,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.DeploymentInfoesClient;
 import com.azure.resourcemanager.elastic.fluent.models.DeploymentInfoResponseInner;
-import com.azure.resourcemanager.elastic.models.DeploymentInfoResponse;
 import com.azure.resourcemanager.elastic.models.DeploymentInfoes;
+import com.azure.resourcemanager.elastic.models.DeploymentInfoResponse;
 
 public final class DeploymentInfoesImpl implements DeploymentInfoes {
     private static final ClientLogger LOGGER = new ClientLogger(DeploymentInfoesImpl.class);
@@ -20,21 +20,18 @@ public final class DeploymentInfoesImpl implements DeploymentInfoes {
 
     private final com.azure.resourcemanager.elastic.ElasticManager serviceManager;
 
-    public DeploymentInfoesImpl(
-        DeploymentInfoesClient innerClient, com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
+    public DeploymentInfoesImpl(DeploymentInfoesClient innerClient,
+        com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<DeploymentInfoResponse> listWithResponse(
-        String resourceGroupName, String monitorName, Context context) {
-        Response<DeploymentInfoResponseInner> inner =
-            this.serviceClient().listWithResponse(resourceGroupName, monitorName, context);
+    public Response<DeploymentInfoResponse> listWithResponse(String resourceGroupName, String monitorName,
+        Context context) {
+        Response<DeploymentInfoResponseInner> inner
+            = this.serviceClient().listWithResponse(resourceGroupName, monitorName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DeploymentInfoResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;

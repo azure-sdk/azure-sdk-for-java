@@ -8,8 +8,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.VMCollectionsClient;
-import com.azure.resourcemanager.elastic.models.VMCollectionUpdate;
 import com.azure.resourcemanager.elastic.models.VMCollections;
+import com.azure.resourcemanager.elastic.models.VMCollectionUpdate;
 
 public final class VMCollectionsImpl implements VMCollections {
     private static final ClientLogger LOGGER = new ClientLogger(VMCollectionsImpl.class);
@@ -18,14 +18,14 @@ public final class VMCollectionsImpl implements VMCollections {
 
     private final com.azure.resourcemanager.elastic.ElasticManager serviceManager;
 
-    public VMCollectionsImpl(
-        VMCollectionsClient innerClient, com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
+    public VMCollectionsImpl(VMCollectionsClient innerClient,
+        com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<Void> updateWithResponse(
-        String resourceGroupName, String monitorName, VMCollectionUpdate body, Context context) {
+    public Response<Void> updateWithResponse(String resourceGroupName, String monitorName, VMCollectionUpdate body,
+        Context context) {
         return this.serviceClient().updateWithResponse(resourceGroupName, monitorName, body, context);
     }
 
