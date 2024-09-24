@@ -15,7 +15,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -24,8 +25,7 @@ public interface CustomEntityStoreAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response}.
+     * @return custom entity store assignment along with {@link Response}.
      */
     Response<CustomEntityStoreAssignment> getByResourceGroupWithResponse(String resourceGroupName,
         String customEntityStoreAssignmentName, Context context);
@@ -33,7 +33,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -41,14 +42,15 @@ public interface CustomEntityStoreAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group.
+     * @return custom entity store assignment.
      */
     CustomEntityStoreAssignment getByResourceGroup(String resourceGroupName, String customEntityStoreAssignmentName);
 
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -65,7 +67,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -79,7 +82,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -93,7 +97,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -108,7 +113,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -119,7 +125,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,36 +139,37 @@ public interface CustomEntityStoreAssignments {
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response}.
+     * @return custom entity store assignment along with {@link Response}.
      */
     CustomEntityStoreAssignment getById(String id);
 
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response}.
+     * @return custom entity store assignment along with {@link Response}.
      */
     Response<CustomEntityStoreAssignment> getByIdWithResponse(String id, Context context);
 
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -173,7 +181,8 @@ public interface CustomEntityStoreAssignments {
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.

@@ -134,7 +134,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -142,8 +143,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response} on successful completion of {@link Mono}.
+     * @return custom entity store assignment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CustomEntityStoreAssignmentInner>>
@@ -175,7 +175,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -184,8 +185,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response} on successful completion of {@link Mono}.
+     * @return custom entity store assignment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CustomEntityStoreAssignmentInner>> getByResourceGroupWithResponseAsync(
@@ -216,7 +216,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -224,8 +225,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group on
-     * successful completion of {@link Mono}.
+     * @return custom entity store assignment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CustomEntityStoreAssignmentInner> getByResourceGroupAsync(String resourceGroupName,
@@ -237,7 +237,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -246,8 +247,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group along
-     * with {@link Response}.
+     * @return custom entity store assignment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomEntityStoreAssignmentInner> getByResourceGroupWithResponse(String resourceGroupName,
@@ -258,7 +258,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Gets a custom entity store assignment
      * 
-     * Gets a single custom entity store assignment by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom entity store assignment by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -266,7 +267,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom entity store assignment by name for the provided subscription and resource group.
+     * @return custom entity store assignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomEntityStoreAssignmentInner getByResourceGroup(String resourceGroupName,
@@ -278,7 +279,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Creates a custom entity store assignment
      * 
-     * Creates a custom entity store assignment for the provided subscription, if not already exists.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates a custom entity store assignment for the
+     * provided subscription, if not already exists.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -327,7 +329,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Creates a custom entity store assignment
      * 
-     * Creates a custom entity store assignment for the provided subscription, if not already exists.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates a custom entity store assignment for the
+     * provided subscription, if not already exists.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -375,7 +378,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Creates a custom entity store assignment
      * 
-     * Creates a custom entity store assignment for the provided subscription, if not already exists.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates a custom entity store assignment for the
+     * provided subscription, if not already exists.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -397,7 +401,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Creates a custom entity store assignment
      * 
-     * Creates a custom entity store assignment for the provided subscription, if not already exists.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates a custom entity store assignment for the
+     * provided subscription, if not already exists.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -420,7 +425,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Creates a custom entity store assignment
      * 
-     * Creates a custom entity store assignment for the provided subscription, if not already exists.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates a custom entity store assignment for the
+     * provided subscription, if not already exists.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -441,7 +447,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -481,7 +488,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -521,7 +529,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -540,7 +549,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -560,7 +570,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Deleted a custom entity store assignment
      * 
-     * Delete a custom entity store assignment by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Delete a custom entity store assignment by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -577,7 +588,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -615,7 +627,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -654,7 +667,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -672,7 +686,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -692,7 +707,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -709,7 +725,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription and a resource group
      * 
-     * List custom entity store assignments by a provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by a provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -728,7 +745,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -758,7 +776,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -788,7 +807,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -803,7 +823,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -820,7 +841,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -834,7 +856,8 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * List custom entity store assignments in a subscription
      * 
-     * List custom entity store assignments by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom entity store assignments by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -850,9 +873,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -881,9 +902,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -911,9 +930,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -942,9 +959,7 @@ public final class CustomEntityStoreAssignmentsClientImpl implements CustomEntit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

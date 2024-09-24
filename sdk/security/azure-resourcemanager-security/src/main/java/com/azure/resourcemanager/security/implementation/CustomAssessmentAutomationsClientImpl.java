@@ -134,7 +134,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -142,8 +143,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return custom Assessment Automation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CustomAssessmentAutomationInner>>
@@ -175,7 +175,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -184,8 +185,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return custom Assessment Automation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CustomAssessmentAutomationInner>> getByResourceGroupWithResponseAsync(
@@ -216,7 +216,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -224,8 +225,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group on
-     * successful completion of {@link Mono}.
+     * @return custom Assessment Automation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CustomAssessmentAutomationInner> getByResourceGroupAsync(String resourceGroupName,
@@ -237,7 +237,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -246,8 +247,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group along with
-     * {@link Response}.
+     * @return custom Assessment Automation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomAssessmentAutomationInner> getByResourceGroupWithResponse(String resourceGroupName,
@@ -258,7 +258,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -266,7 +267,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group.
+     * @return custom Assessment Automation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomAssessmentAutomationInner getByResourceGroup(String resourceGroupName,
@@ -278,8 +279,9 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -327,8 +329,9 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -376,8 +379,9 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -398,8 +402,9 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -422,8 +427,9 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -444,7 +450,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -484,7 +491,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -524,7 +532,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -543,7 +552,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -563,7 +573,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -580,7 +591,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -618,7 +630,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -657,7 +670,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -675,7 +689,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -695,7 +710,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -712,7 +728,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -731,7 +748,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -761,7 +779,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -791,7 +810,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -806,7 +826,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -823,7 +844,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -837,7 +859,8 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -853,9 +876,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -884,9 +905,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -914,9 +933,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -945,9 +962,7 @@ public final class CustomAssessmentAutomationsClientImpl implements CustomAssess
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

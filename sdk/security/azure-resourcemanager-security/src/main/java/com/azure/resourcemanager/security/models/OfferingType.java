@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -92,7 +91,6 @@ public final class OfferingType extends ExpandableStringEnum<OfferingType> {
      * @param name a name to look for.
      * @return the corresponding OfferingType.
      */
-    @JsonCreator
     public static OfferingType fromString(String name) {
         return fromString(name, OfferingType.class);
     }
