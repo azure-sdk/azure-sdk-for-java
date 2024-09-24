@@ -19,7 +19,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -28,8 +29,7 @@ public interface CustomAssessmentAutomationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group along with
-     * {@link Response}.
+     * @return custom Assessment Automation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomAssessmentAutomationInner> getByResourceGroupWithResponse(String resourceGroupName,
@@ -38,7 +38,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Gets a custom assessment automation
      * 
-     * Gets a single custom assessment automation by name for the provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Gets a single custom assessment automation by name for
+     * the provided subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -46,7 +47,7 @@ public interface CustomAssessmentAutomationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single custom assessment automation by name for the provided subscription and resource group.
+     * @return custom Assessment Automation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     CustomAssessmentAutomationInner getByResourceGroup(String resourceGroupName, String customAssessmentAutomationName);
@@ -54,8 +55,9 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -75,8 +77,9 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Creates a custom assessment automation
      * 
-     * Creates or updates a custom assessment automation for the provided subscription. Please note that providing an
-     * existing custom assessment automation will replace the existing record.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Creates or updates a custom assessment automation for
+     * the provided subscription. Please note that providing an existing custom assessment automation will replace the
+     * existing record.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -94,7 +97,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -111,7 +115,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * Deletes a custom assessment automation
      * 
-     * Deletes a custom assessment automation by name for a provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] Deletes a custom assessment automation by name for a
+     * provided subscription.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -126,7 +131,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -141,7 +147,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * List custom assessment automations in a subscription and a resource group
      * 
-     * List custom assessment automations by provided subscription and resource group.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription and resource group.
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
@@ -157,7 +164,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -169,7 +177,8 @@ public interface CustomAssessmentAutomationsClient {
     /**
      * List custom assessment automations in a subscription
      * 
-     * List custom assessment automations by provided subscription.
+     * [DEPRECATED NOTICE: This operation will soon be removed] List custom assessment automations by provided
+     * subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
