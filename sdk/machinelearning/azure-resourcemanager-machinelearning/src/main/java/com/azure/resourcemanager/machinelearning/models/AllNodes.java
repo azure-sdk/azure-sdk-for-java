@@ -43,7 +43,6 @@ public final class AllNodes extends Nodes {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

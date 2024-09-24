@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Settings for feature store type workspace.
+ * The FeatureStoreSettings model.
  */
 @Fluent
 public final class FeatureStoreSettings implements JsonSerializable<FeatureStoreSettings> {
     /*
-     * Compute runtime config for feature store type workspace.
+     * The computeRuntime property.
      */
     private ComputeRuntimeDto computeRuntime;
 
@@ -38,7 +38,7 @@ public final class FeatureStoreSettings implements JsonSerializable<FeatureStore
     }
 
     /**
-     * Get the computeRuntime property: Compute runtime config for feature store type workspace.
+     * Get the computeRuntime property: The computeRuntime property.
      * 
      * @return the computeRuntime value.
      */
@@ -47,7 +47,7 @@ public final class FeatureStoreSettings implements JsonSerializable<FeatureStore
     }
 
     /**
-     * Set the computeRuntime property: Compute runtime config for feature store type workspace.
+     * Set the computeRuntime property: The computeRuntime property.
      * 
      * @param computeRuntime the computeRuntime value to set.
      * @return the FeatureStoreSettings object itself.

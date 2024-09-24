@@ -18,14 +18,14 @@ import java.io.IOException;
 @Fluent
 public class NlpVertical implements JsonSerializable<NlpVertical> {
     /*
-     * Execution constraints for AutoMLJob.
-     */
-    private NlpVerticalLimitSettings limitSettings;
-
-    /*
      * Featurization inputs needed for AutoML job.
      */
     private NlpVerticalFeaturizationSettings featurizationSettings;
+
+    /*
+     * Execution constraints for AutoMLJob.
+     */
+    private NlpVerticalLimitSettings limitSettings;
 
     /*
      * Validation data inputs.
@@ -36,26 +36,6 @@ public class NlpVertical implements JsonSerializable<NlpVertical> {
      * Creates an instance of NlpVertical class.
      */
     public NlpVertical() {
-    }
-
-    /**
-     * Get the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @return the limitSettings value.
-     */
-    public NlpVerticalLimitSettings limitSettings() {
-        return this.limitSettings;
-    }
-
-    /**
-     * Set the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @param limitSettings the limitSettings value to set.
-     * @return the NlpVertical object itself.
-     */
-    public NlpVertical withLimitSettings(NlpVerticalLimitSettings limitSettings) {
-        this.limitSettings = limitSettings;
-        return this;
     }
 
     /**
@@ -75,6 +55,26 @@ public class NlpVertical implements JsonSerializable<NlpVertical> {
      */
     public NlpVertical withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
+        return this;
+    }
+
+    /**
+     * Get the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @return the limitSettings value.
+     */
+    public NlpVerticalLimitSettings limitSettings() {
+        return this.limitSettings;
+    }
+
+    /**
+     * Set the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @param limitSettings the limitSettings value to set.
+     * @return the NlpVertical object itself.
+     */
+    public NlpVertical withLimitSettings(NlpVerticalLimitSettings limitSettings) {
+        this.limitSettings = limitSettings;
         return this;
     }
 
@@ -104,11 +104,11 @@ public class NlpVertical implements JsonSerializable<NlpVertical> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (limitSettings() != null) {
-            limitSettings().validate();
-        }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
+        }
+        if (limitSettings() != null) {
+            limitSettings().validate();
         }
         if (validationData() != null) {
             validationData().validate();
@@ -121,8 +121,8 @@ public class NlpVertical implements JsonSerializable<NlpVertical> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("validationData", this.validationData);
         return jsonWriter.writeEndObject();
     }
@@ -142,10 +142,10 @@ public class NlpVertical implements JsonSerializable<NlpVertical> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("limitSettings".equals(fieldName)) {
-                    deserializedNlpVertical.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
-                } else if ("featurizationSettings".equals(fieldName)) {
+                if ("featurizationSettings".equals(fieldName)) {
                     deserializedNlpVertical.featurizationSettings = NlpVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedNlpVertical.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
                 } else if ("validationData".equals(fieldName)) {
                     deserializedNlpVertical.validationData = MLTableJobInput.fromJson(reader);
                 } else {
