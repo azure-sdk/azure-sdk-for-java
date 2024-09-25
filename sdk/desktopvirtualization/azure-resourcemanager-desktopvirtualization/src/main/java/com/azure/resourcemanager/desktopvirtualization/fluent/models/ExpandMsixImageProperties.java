@@ -73,7 +73,7 @@ public final class ExpandMsixImageProperties implements JsonSerializable<ExpandM
     private List<MsixPackageDependencies> packageDependencies;
 
     /*
-     * Package version found in the appxmanifest.xml.
+     * Package Version found in the appxmanifest.xml.
      */
     private String version;
 
@@ -306,7 +306,7 @@ public final class ExpandMsixImageProperties implements JsonSerializable<ExpandM
     }
 
     /**
-     * Get the version property: Package version found in the appxmanifest.xml.
+     * Get the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */
@@ -315,7 +315,7 @@ public final class ExpandMsixImageProperties implements JsonSerializable<ExpandM
     }
 
     /**
-     * Set the version property: Package version found in the appxmanifest.xml.
+     * Set the version property: Package Version found in the appxmanifest.xml.
      * 
      * @param version the version value to set.
      * @return the ExpandMsixImageProperties object itself.

@@ -17,7 +17,8 @@ import java.io.IOException;
 @Fluent
 public final class MsixPackageDependencies implements JsonSerializable<MsixPackageDependencies> {
     /*
-     * Name of package dependency.
+     * Name of the package dependency. For Msix packages, this is the other packages this package depends upon, for
+     * APP-V packages this is the locations of the user and deployment config files
      */
     private String dependencyName;
 
@@ -38,7 +39,8 @@ public final class MsixPackageDependencies implements JsonSerializable<MsixPacka
     }
 
     /**
-     * Get the dependencyName property: Name of package dependency.
+     * Get the dependencyName property: Name of the package dependency. For Msix packages, this is the other packages
+     * this package depends upon, for APP-V packages this is the locations of the user and deployment config files.
      * 
      * @return the dependencyName value.
      */
@@ -47,7 +49,8 @@ public final class MsixPackageDependencies implements JsonSerializable<MsixPacka
     }
 
     /**
-     * Set the dependencyName property: Name of package dependency.
+     * Set the dependencyName property: Name of the package dependency. For Msix packages, this is the other packages
+     * this package depends upon, for APP-V packages this is the locations of the user and deployment config files.
      * 
      * @param dependencyName the dependencyName value to set.
      * @return the MsixPackageDependencies object itself.

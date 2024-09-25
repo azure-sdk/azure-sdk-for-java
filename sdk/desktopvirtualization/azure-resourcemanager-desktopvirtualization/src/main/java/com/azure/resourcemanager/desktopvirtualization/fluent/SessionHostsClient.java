@@ -208,6 +208,7 @@ public interface SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -215,7 +216,7 @@ public interface SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip);
+        Boolean isDescending, Integer initialSkip, String vmPath);
 
     /**
      * List sessionHosts.
@@ -251,6 +252,7 @@ public interface SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -259,5 +261,5 @@ public interface SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context);
 }

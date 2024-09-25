@@ -169,12 +169,21 @@ public final class AppAttachPackageImpl
     }
 
     public AppAttachPackageImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateAppAttachPackagePatch.withTags(tags);
+            return this;
+        }
     }
 
     public AppAttachPackageImpl withProperties(AppAttachPackagePatchProperties properties) {
         this.updateAppAttachPackagePatch.withProperties(properties);
         return this;
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

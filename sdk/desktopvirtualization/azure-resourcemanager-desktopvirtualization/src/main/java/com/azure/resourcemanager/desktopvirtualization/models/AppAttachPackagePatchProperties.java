@@ -28,7 +28,7 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
     private List<String> hostPoolReferences;
 
     /*
-     * URL path to certificate name located in keyVault
+     * URL of keyvault location to store certificate
      */
     private String keyVaultUrl;
 
@@ -36,6 +36,16 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
      * Parameter indicating how the health check should behave if this package fails staging
      */
     private FailHealthCheckOnStagingFailure failHealthCheckOnStagingFailure;
+
+    /*
+     * Lookback url to third party control plane, should be null for first party packages
+     */
+    private String packageLookbackUrl;
+
+    /*
+     * Field that can be populated with custom data and filtered on in list GET calls
+     */
+    private String customData;
 
     /**
      * Creates an instance of AppAttachPackagePatchProperties class.
@@ -84,7 +94,7 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
     }
 
     /**
-     * Get the keyVaultUrl property: URL path to certificate name located in keyVault.
+     * Get the keyVaultUrl property: URL of keyvault location to store certificate.
      * 
      * @return the keyVaultUrl value.
      */
@@ -93,7 +103,7 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
     }
 
     /**
-     * Set the keyVaultUrl property: URL path to certificate name located in keyVault.
+     * Set the keyVaultUrl property: URL of keyvault location to store certificate.
      * 
      * @param keyVaultUrl the keyVaultUrl value to set.
      * @return the AppAttachPackagePatchProperties object itself.
@@ -127,6 +137,48 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
     }
 
     /**
+     * Get the packageLookbackUrl property: Lookback url to third party control plane, should be null for first party
+     * packages.
+     * 
+     * @return the packageLookbackUrl value.
+     */
+    public String packageLookbackUrl() {
+        return this.packageLookbackUrl;
+    }
+
+    /**
+     * Set the packageLookbackUrl property: Lookback url to third party control plane, should be null for first party
+     * packages.
+     * 
+     * @param packageLookbackUrl the packageLookbackUrl value to set.
+     * @return the AppAttachPackagePatchProperties object itself.
+     */
+    public AppAttachPackagePatchProperties withPackageLookbackUrl(String packageLookbackUrl) {
+        this.packageLookbackUrl = packageLookbackUrl;
+        return this;
+    }
+
+    /**
+     * Get the customData property: Field that can be populated with custom data and filtered on in list GET calls.
+     * 
+     * @return the customData value.
+     */
+    public String customData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: Field that can be populated with custom data and filtered on in list GET calls.
+     * 
+     * @param customData the customData value to set.
+     * @return the AppAttachPackagePatchProperties object itself.
+     */
+    public AppAttachPackagePatchProperties withCustomData(String customData) {
+        this.customData = customData;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -149,6 +201,8 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
         jsonWriter.writeStringField("keyVaultURL", this.keyVaultUrl);
         jsonWriter.writeStringField("failHealthCheckOnStagingFailure",
             this.failHealthCheckOnStagingFailure == null ? null : this.failHealthCheckOnStagingFailure.toString());
+        jsonWriter.writeStringField("packageLookbackUrl", this.packageLookbackUrl);
+        jsonWriter.writeStringField("customData", this.customData);
         return jsonWriter.writeEndObject();
     }
 
@@ -178,6 +232,10 @@ public final class AppAttachPackagePatchProperties implements JsonSerializable<A
                 } else if ("failHealthCheckOnStagingFailure".equals(fieldName)) {
                     deserializedAppAttachPackagePatchProperties.failHealthCheckOnStagingFailure
                         = FailHealthCheckOnStagingFailure.fromString(reader.getString());
+                } else if ("packageLookbackUrl".equals(fieldName)) {
+                    deserializedAppAttachPackagePatchProperties.packageLookbackUrl = reader.getString();
+                } else if ("customData".equals(fieldName)) {
+                    deserializedAppAttachPackagePatchProperties.customData = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

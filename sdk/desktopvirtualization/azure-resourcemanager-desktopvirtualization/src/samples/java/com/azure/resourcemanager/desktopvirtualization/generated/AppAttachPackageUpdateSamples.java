@@ -12,8 +12,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackage;
 public final class AppAttachPackageUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackage_Update.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/AppAttachPackage_Update.json
      */
     /**
      * Sample code: AppAttachPackage_Update.

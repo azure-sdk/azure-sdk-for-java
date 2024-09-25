@@ -86,9 +86,9 @@ public final class SessionHostsImpl implements SessionHosts {
     }
 
     public PagedIterable<SessionHost> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<SessionHostInner> inner
-            = this.serviceClient().list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context);
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context) {
+        PagedIterable<SessionHostInner> inner = this.serviceClient()
+            .list(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SessionHostImpl(inner1, this.manager()));
     }
 
