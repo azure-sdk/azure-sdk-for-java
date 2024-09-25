@@ -14,8 +14,8 @@ import java.util.Map;
 public final class ApplicationGroupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ApplicationGroup_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ApplicationGroup_Create.json
      */
     /**
      * Sample code: ApplicationGroup_Create.

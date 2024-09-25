@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class SessionHostsListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * SessionHost_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/SessionHost_List.json
      */
     /**
      * Sample code: SessionHost_List.
@@ -20,6 +20,6 @@ public final class SessionHostsListSamples {
      */
     public static void
         sessionHostList(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.sessionHosts().list("resourceGroup1", "hostPool1", 10, true, 0, com.azure.core.util.Context.NONE);
+        manager.sessionHosts().list("resourceGroup1", "hostPool1", 10, true, 0, null, com.azure.core.util.Context.NONE);
     }
 }

@@ -95,8 +95,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
         Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("appAttachPackageName") String appAttachPackageName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("appAttachPackageName") String appAttachPackageName, @QueryParam("force") Boolean force,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/appAttachPackages/{appAttachPackageName}")
@@ -147,7 +147,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -183,7 +183,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -219,7 +219,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -235,7 +235,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -252,7 +252,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -267,7 +267,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -312,7 +312,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -357,7 +357,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -375,7 +375,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -394,7 +394,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Create or update an App Attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackage Object containing App Attach Package definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -412,14 +412,16 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName) {
+    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName,
+        Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -439,7 +441,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, appAttachPackageName, force, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -447,7 +449,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -456,7 +459,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName,
-        Context context) {
+        Boolean force, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -476,14 +479,14 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, appAttachPackageName, accept, context);
+            resourceGroupName, appAttachPackageName, force, accept, context);
     }
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -491,14 +494,16 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String appAttachPackageName) {
-        return deleteWithResponseAsync(resourceGroupName, appAttachPackageName).flatMap(ignored -> Mono.empty());
+        final Boolean force = null;
+        return deleteWithResponseAsync(resourceGroupName, appAttachPackageName, force).flatMap(ignored -> Mono.empty());
     }
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -506,29 +511,31 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, appAttachPackageName, context).block();
+    public Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Boolean force,
+        Context context) {
+        return deleteWithResponseAsync(resourceGroupName, appAttachPackageName, force, context).block();
     }
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String appAttachPackageName) {
-        deleteWithResponse(resourceGroupName, appAttachPackageName, Context.NONE);
+        final Boolean force = null;
+        deleteWithResponse(resourceGroupName, appAttachPackageName, force, Context.NONE);
     }
 
     /**
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackagePatch Object containing App Attach Package definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -570,7 +577,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackagePatch Object containing App Attach Package definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -611,7 +618,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -628,7 +635,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param appAttachPackagePatch Object containing App Attach Package definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -646,7 +653,7 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -663,7 +670,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -697,7 +705,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -732,7 +741,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -764,7 +774,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -797,7 +808,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -813,8 +825,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -842,8 +854,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -872,8 +884,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -902,8 +914,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -932,8 +944,8 @@ public final class AppAttachPackagesClientImpl implements AppAttachPackagesClien
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

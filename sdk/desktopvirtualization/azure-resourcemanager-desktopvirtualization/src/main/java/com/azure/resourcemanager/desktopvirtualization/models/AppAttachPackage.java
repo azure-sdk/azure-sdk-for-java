@@ -200,7 +200,7 @@ public interface AppAttachPackage {
     /**
      * The template for AppAttachPackage update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -221,6 +221,19 @@ public interface AppAttachPackage {
      * The AppAttachPackage update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the AppAttachPackage update allowing to specify tags.
+         */
+        interface WithTags {
+            /**
+             * Specifies the tags property: tags to be updated.
+             * 
+             * @param tags tags to be updated.
+             * @return the next definition stage.
+             */
+            Update withTags(Map<String, String> tags);
+        }
+
         /**
          * The stage of the AppAttachPackage update allowing to specify properties.
          */

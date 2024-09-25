@@ -27,6 +27,11 @@ public final class LoadBalancerType extends ExpandableStringEnum<LoadBalancerTyp
     public static final LoadBalancerType PERSISTENT = fromString("Persistent");
 
     /**
+     * Static value MultiplePersistent for LoadBalancerType.
+     */
+    public static final LoadBalancerType MULTIPLE_PERSISTENT = fromString("MultiplePersistent");
+
+    /**
      * Creates a new instance of LoadBalancerType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -15,8 +15,8 @@ import java.util.Arrays;
 public final class ScalingPlanPooledSchedulesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlanPooledSchedule_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-08-08-preview/
+     * examples/ScalingPlanPooledSchedule_Create.json
      */
     /**
      * Sample code: ScalingPlanPooledSchedules_Create.
@@ -31,19 +31,19 @@ public final class ScalingPlanPooledSchedulesCreateSamples {
             .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
                 DayOfWeek.FRIDAY))
             .withRampUpStartTime(new Time().withHour(6).withMinute(0))
-            .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
-            .withRampUpMinimumHostsPct(20)
             .withRampUpCapacityThresholdPct(80)
             .withPeakStartTime(new Time().withHour(8).withMinute(0))
-            .withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.BREADTH_FIRST)
             .withRampDownStartTime(new Time().withHour(18).withMinute(0))
+            .withRampDownCapacityThresholdPct(50)
+            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
+            .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
+            .withRampUpMinimumHostsPct(20)
+            .withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.BREADTH_FIRST)
             .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
             .withRampDownMinimumHostsPct(20)
-            .withRampDownCapacityThresholdPct(50)
             .withRampDownForceLogoffUsers(true)
             .withRampDownWaitTimeMinutes(30)
             .withRampDownNotificationMessage("message")
-            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
             .withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
             .create();
     }
