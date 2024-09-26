@@ -36,22 +36,28 @@ import com.azure.resourcemanager.policyinsights.models.RemediationDeploymentsLis
 import com.azure.resourcemanager.policyinsights.models.RemediationListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in RemediationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in RemediationsClient.
+ */
 public final class RemediationsClientImpl implements RemediationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final RemediationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final PolicyInsightsClientImpl client;
 
     /**
      * Initializes an instance of RemediationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     RemediationsClientImpl(PolicyInsightsClientImpl client) {
-        this.service =
-            RestProxy.create(RemediationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(RemediationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -61,430 +67,304 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "PolicyInsightsClient")
-    private interface RemediationsService {
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
-        @ExpectedResponses({200})
+    public interface RemediationsService {
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtManagementGroup(
             @HostParam("$host") String endpoint,
             @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
             @PathParam("managementGroupId") String managementGroupId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("$top") Integer top,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("$top") Integer top,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> cancelAtManagementGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> cancelAtManagementGroup(@HostParam("$host") String endpoint,
             @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
             @PathParam("managementGroupId") String managementGroupId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationListResult>> listForManagementGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationListResult>> listForManagementGroup(@HostParam("$host") String endpoint,
+            @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
+            @PathParam("managementGroupId") String managementGroupId, @QueryParam("$top") Integer top,
+            @QueryParam("$filter") String filter, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<RemediationInner>> createOrUpdateAtManagementGroup(@HostParam("$host") String endpoint,
             @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
             @PathParam("managementGroupId") String managementGroupId,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$filter") String filter,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") RemediationInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> createOrUpdateAtManagementGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> getAtManagementGroup(@HostParam("$host") String endpoint,
             @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
             @PathParam("managementGroupId") String managementGroupId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemediationInner parameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> getAtManagementGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> deleteAtManagementGroup(@HostParam("$host") String endpoint,
             @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
             @PathParam("managementGroupId") String managementGroupId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/providers/{managementGroupsNamespace}/managementGroups/{managementGroupId}/providers"
-                + "/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> deleteAtManagementGroup(
-            @HostParam("$host") String endpoint,
-            @PathParam("managementGroupsNamespace") String managementGroupsNamespace,
-            @PathParam("managementGroupId") String managementGroupId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}"
-                + "/listDeployments")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtSubscription(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("$top") Integer top,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("remediationName") String remediationName, @QueryParam("$top") Integer top,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> cancelAtSubscription(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationInner>> cancelAtSubscription(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("remediationName") String remediationName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$filter") String filter,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("$top") Integer top,
+            @QueryParam("$filter") String filter, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> createOrUpdateAtSubscription(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemediationInner parameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationInner>> createOrUpdateAtSubscription(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("remediationName") String remediationName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") RemediationInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> getAtSubscription(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationInner>> getAtSubscription(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("remediationName") String remediationName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 204})
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> deleteAtSubscription(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationInner>> deleteAtSubscription(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("remediationName") String remediationName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}/listDeployments")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResourceGroup(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("$top") Integer top,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("$top") Integer top,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}/cancel")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> cancelAtResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> cancelAtResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$filter") String filter,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$top") Integer top,
+            @QueryParam("$filter") String filter, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> createOrUpdateAtResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> createOrUpdateAtResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemediationInner parameters,
-            @HeaderParam("Accept") String accept,
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") RemediationInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights"
-                + "/remediations/{remediationName}")
-        @ExpectedResponses({200, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/listDeployments")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResource(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResource(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("$top") Integer top,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("$top") Integer top,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}/cancel")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> cancelAtResource(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> cancelAtResource(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceId}/providers/Microsoft.PolicyInsights/remediations")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationListResult>> listForResource(
-            @HostParam("$host") String endpoint,
-            @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$filter") String filter,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RemediationListResult>> listForResource(@HostParam("$host") String endpoint,
+            @PathParam(value = "resourceId", encoded = true) String resourceId, @QueryParam("$top") Integer top,
+            @QueryParam("$filter") String filter, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/{resourceId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> createOrUpdateAtResource(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> createOrUpdateAtResource(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemediationInner parameters,
-            @HeaderParam("Accept") String accept,
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") RemediationInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> getAtResource(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> getAtResource(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{resourceId}/providers/Microsoft.PolicyInsights/remediations/{remediationName}")
-        @ExpectedResponses({200, 204})
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemediationInner>> deleteAtResource(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RemediationInner>> deleteAtResource(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
-            @PathParam("remediationName") String remediationName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("remediationName") String remediationName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtManagementGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listForManagementGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtSubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listForSubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listForResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationDeploymentsListResult>> listDeploymentsAtResourceNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RemediationListResult>> listForResourceNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -492,16 +372,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at management group scope along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtManagementGroupSinglePageAsync(
-        String managementGroupId, String remediationName, Integer top) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtManagementGroupSinglePageAsync(String managementGroupId, String remediationName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -512,36 +390,19 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeploymentsAtManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            remediationName,
-                            top,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeploymentsAtManagementGroup(this.client.getEndpoint(),
+                managementGroupsNamespace, managementGroupId, remediationName, top, this.client.getApiVersion(), accept,
+                context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -550,16 +411,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at management group scope along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtManagementGroupSinglePageAsync(
         String managementGroupId, String remediationName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -570,33 +429,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeploymentsAtManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                remediationName,
-                top,
-                apiVersion,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeploymentsAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
+                remediationName, top, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -606,8 +450,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at management group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(
-        String managementGroupId, String remediationName, Integer top) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(String managementGroupId,
+        String remediationName, Integer top) {
         return new PagedFlux<>(
             () -> listDeploymentsAtManagementGroupSinglePageAsync(managementGroupId, remediationName, top),
             nextLink -> listDeploymentsAtManagementGroupNextSinglePageAsync(nextLink));
@@ -615,7 +459,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -624,8 +468,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at management group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(
-        String managementGroupId, String remediationName) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(String managementGroupId,
+        String remediationName) {
         final Integer top = null;
         return new PagedFlux<>(
             () -> listDeploymentsAtManagementGroupSinglePageAsync(managementGroupId, remediationName, top),
@@ -634,7 +478,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -645,8 +489,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at management group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(
-        String managementGroupId, String remediationName, Integer top, Context context) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtManagementGroupAsync(String managementGroupId,
+        String remediationName, Integer top, Context context) {
         return new PagedFlux<>(
             () -> listDeploymentsAtManagementGroupSinglePageAsync(managementGroupId, remediationName, top, context),
             nextLink -> listDeploymentsAtManagementGroupNextSinglePageAsync(nextLink, context));
@@ -654,25 +498,25 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at management group scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return all deployments for a remediation at management group scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtManagementGroup(
-        String managementGroupId, String remediationName) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtManagementGroup(String managementGroupId,
+        String remediationName) {
         final Integer top = null;
         return new PagedIterable<>(listDeploymentsAtManagementGroupAsync(managementGroupId, remediationName, top));
     }
 
     /**
      * Gets all deployments for a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -680,19 +524,19 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at management group scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return all deployments for a remediation at management group scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtManagementGroup(
-        String managementGroupId, String remediationName, Integer top, Context context) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtManagementGroup(String managementGroupId,
+        String remediationName, Integer top, Context context) {
         return new PagedIterable<>(
             listDeploymentsAtManagementGroupAsync(managementGroupId, remediationName, top, context));
     }
 
     /**
      * Cancels a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -701,13 +545,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName) {
+    private Mono<Response<RemediationInner>> cancelAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -718,26 +560,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .cancelAtManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+                context -> service.cancelAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+                    managementGroupId, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancels a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -747,13 +580,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> cancelAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -764,23 +595,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .cancelAtManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.cancelAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
+            remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Cancels a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -796,7 +619,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Cancels a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -806,14 +629,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> cancelAtManagementGroupWithResponse(
-        String managementGroupId, String remediationName, Context context) {
+    public Response<RemediationInner> cancelAtManagementGroupWithResponse(String managementGroupId,
+        String remediationName, Context context) {
         return cancelAtManagementGroupWithResponseAsync(managementGroupId, remediationName, context).block();
     }
 
     /**
      * Cancels a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -828,7 +651,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -836,52 +659,32 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all remediations for the management group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForManagementGroupSinglePageAsync(
-        String managementGroupId, Integer top, String filter) {
+    private Mono<PagedResponse<RemediationInner>> listForManagementGroupSinglePageAsync(String managementGroupId,
+        Integer top, String filter) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listForManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            top,
-                            filter,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listForManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+                managementGroupId, top, filter, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -890,49 +693,32 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all remediations for the management group along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForManagementGroupSinglePageAsync(
-        String managementGroupId, Integer top, String filter, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listForManagementGroupSinglePageAsync(String managementGroupId,
+        Integer top, String filter, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listForManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                top,
-                filter,
-                apiVersion,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listForManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId, top,
+                filter, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -942,16 +728,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for the management group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationInner> listForManagementGroupAsync(
-        String managementGroupId, Integer top, String filter) {
-        return new PagedFlux<>(
-            () -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter),
+    private PagedFlux<RemediationInner> listForManagementGroupAsync(String managementGroupId, Integer top,
+        String filter) {
+        return new PagedFlux<>(() -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter),
             nextLink -> listForManagementGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -962,14 +747,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
     private PagedFlux<RemediationInner> listForManagementGroupAsync(String managementGroupId) {
         final Integer top = null;
         final String filter = null;
-        return new PagedFlux<>(
-            () -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter),
+        return new PagedFlux<>(() -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter),
             nextLink -> listForManagementGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -980,16 +764,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for the management group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationInner> listForManagementGroupAsync(
-        String managementGroupId, Integer top, String filter, Context context) {
-        return new PagedFlux<>(
-            () -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter, context),
+    private PagedFlux<RemediationInner> listForManagementGroupAsync(String managementGroupId, Integer top,
+        String filter, Context context) {
+        return new PagedFlux<>(() -> listForManagementGroupSinglePageAsync(managementGroupId, top, filter, context),
             nextLink -> listForManagementGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1005,7 +788,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the management group.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -1016,14 +799,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for the management group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationInner> listForManagementGroup(
-        String managementGroupId, Integer top, String filter, Context context) {
+    public PagedIterable<RemediationInner> listForManagementGroup(String managementGroupId, Integer top, String filter,
+        Context context) {
         return new PagedIterable<>(listForManagementGroupAsync(managementGroupId, top, filter, context));
     }
 
     /**
      * Creates or updates a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -1033,13 +816,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName, RemediationInner parameters) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName, RemediationInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1055,27 +836,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .createOrUpdateAtManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            remediationName,
-                            apiVersion,
-                            parameters,
-                            accept,
-                            context))
+                context -> service.createOrUpdateAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+                    managementGroupId, remediationName, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -1086,13 +857,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName, RemediationInner parameters, Context context) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName, RemediationInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1108,24 +877,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdateAtManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                remediationName,
-                apiVersion,
-                parameters,
-                accept,
-                context);
+        return service.createOrUpdateAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+            managementGroupId, remediationName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Creates or updates a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -1135,15 +895,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemediationInner> createOrUpdateAtManagementGroupAsync(
-        String managementGroupId, String remediationName, RemediationInner parameters) {
+    private Mono<RemediationInner> createOrUpdateAtManagementGroupAsync(String managementGroupId,
+        String remediationName, RemediationInner parameters) {
         return createOrUpdateAtManagementGroupWithResponseAsync(managementGroupId, remediationName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -1154,15 +914,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> createOrUpdateAtManagementGroupWithResponse(
-        String managementGroupId, String remediationName, RemediationInner parameters, Context context) {
+    public Response<RemediationInner> createOrUpdateAtManagementGroupWithResponse(String managementGroupId,
+        String remediationName, RemediationInner parameters, Context context) {
         return createOrUpdateAtManagementGroupWithResponseAsync(managementGroupId, remediationName, parameters, context)
             .block();
     }
 
     /**
      * Creates or updates a remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -1172,31 +932,29 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemediationInner createOrUpdateAtManagementGroup(
-        String managementGroupId, String remediationName, RemediationInner parameters) {
+    public RemediationInner createOrUpdateAtManagementGroup(String managementGroupId, String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtManagementGroupWithResponse(managementGroupId, remediationName, parameters, Context.NONE)
             .getValue();
     }
 
     /**
      * Gets an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at management group scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName) {
+    private Mono<Response<RemediationInner>> getAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1207,26 +965,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getAtManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.getAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+                managementGroupId, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -1234,16 +982,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at management group scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> getAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1254,23 +1000,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getAtManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.getAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
+            remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1286,7 +1024,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -1296,14 +1034,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return an existing remediation at management group scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> getAtManagementGroupWithResponse(
-        String managementGroupId, String remediationName, Context context) {
+    public Response<RemediationInner> getAtManagementGroupWithResponse(String managementGroupId, String remediationName,
+        Context context) {
         return getAtManagementGroupWithResponseAsync(managementGroupId, remediationName, context).block();
     }
 
     /**
      * Gets an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1318,7 +1056,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1327,13 +1065,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName) {
+    private Mono<Response<RemediationInner>> deleteAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1344,26 +1080,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .deleteAtManagementGroup(
-                            this.client.getEndpoint(),
-                            managementGroupsNamespace,
-                            managementGroupId,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+                context -> service.deleteAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
+                    managementGroupId, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -1373,13 +1100,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteAtManagementGroupWithResponseAsync(
-        String managementGroupId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> deleteAtManagementGroupWithResponseAsync(String managementGroupId,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (managementGroupId == null) {
             return Mono
@@ -1390,23 +1115,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteAtManagementGroup(
-                this.client.getEndpoint(),
-                managementGroupsNamespace,
-                managementGroupId,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.deleteAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
+            remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Deletes an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1422,7 +1139,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -1432,14 +1149,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> deleteAtManagementGroupWithResponse(
-        String managementGroupId, String remediationName, Context context) {
+    public Response<RemediationInner> deleteAtManagementGroupWithResponse(String managementGroupId,
+        String remediationName, Context context) {
         return deleteAtManagementGroupWithResponseAsync(managementGroupId, remediationName, context).block();
     }
 
     /**
      * Deletes an existing remediation at management group scope.
-     *
+     * 
      * @param managementGroupId Management group ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1454,63 +1171,42 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at subscription scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtSubscriptionSinglePageAsync(
-        String remediationName, Integer top) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtSubscriptionSinglePageAsync(String remediationName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeploymentsAtSubscription(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            remediationName,
-                            top,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeploymentsAtSubscription(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), remediationName, top, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
      * @param context The context to associate with this operation.
@@ -1518,53 +1214,35 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at subscription scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtSubscriptionSinglePageAsync(
-        String remediationName, Integer top, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtSubscriptionSinglePageAsync(String remediationName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeploymentsAtSubscription(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                remediationName,
-                top,
-                apiVersion,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeploymentsAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
+                top, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1573,16 +1251,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at subscription scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtSubscriptionAsync(
-        String remediationName, Integer top) {
-        return new PagedFlux<>(
-            () -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top),
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtSubscriptionAsync(String remediationName,
+        Integer top) {
+        return new PagedFlux<>(() -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top),
             nextLink -> listDeploymentsAtSubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1592,14 +1269,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RemediationDeploymentInner> listDeploymentsAtSubscriptionAsync(String remediationName) {
         final Integer top = null;
-        return new PagedFlux<>(
-            () -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top),
+        return new PagedFlux<>(() -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top),
             nextLink -> listDeploymentsAtSubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
      * @param context The context to associate with this operation.
@@ -1609,16 +1285,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at subscription scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtSubscriptionAsync(
-        String remediationName, Integer top, Context context) {
-        return new PagedFlux<>(
-            () -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top, context),
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtSubscriptionAsync(String remediationName,
+        Integer top, Context context) {
+        return new PagedFlux<>(() -> listDeploymentsAtSubscriptionSinglePageAsync(remediationName, top, context),
             nextLink -> listDeploymentsAtSubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1633,7 +1308,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
      * @param context The context to associate with this operation.
@@ -1643,14 +1318,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at subscription scope as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtSubscription(
-        String remediationName, Integer top, Context context) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtSubscription(String remediationName, Integer top,
+        Context context) {
         return new PagedIterable<>(listDeploymentsAtSubscriptionAsync(remediationName, top, context));
     }
 
     /**
      * Cancels a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1660,40 +1335,27 @@ public final class RemediationsClientImpl implements RemediationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RemediationInner>> cancelAtSubscriptionWithResponseAsync(String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .cancelAtSubscription(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.cancelAtSubscription(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancels a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1702,40 +1364,29 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtSubscriptionWithResponseAsync(
-        String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> cancelAtSubscriptionWithResponseAsync(String remediationName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .cancelAtSubscription(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.cancelAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Cancels a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1749,7 +1400,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Cancels a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1764,7 +1415,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Cancels a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1778,100 +1429,68 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RemediationInner>> listSinglePageAsync(Integer top, String filter) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            top,
-                            filter,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), top,
+                filter, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RemediationInner>> listSinglePageAsync(Integer top, String filter, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), top, filter, apiVersion, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), top, filter, this.client.getApiVersion(),
+                accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1881,13 +1500,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RemediationInner> listAsync(Integer top, String filter) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(top, filter), nextLink -> listForSubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(top, filter),
+            nextLink -> listForSubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all remediations for the subscription as paginated response with {@link PagedFlux}.
@@ -1896,13 +1515,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
     private PagedFlux<RemediationInner> listAsync() {
         final Integer top = null;
         final String filter = null;
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(top, filter), nextLink -> listForSubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(top, filter),
+            nextLink -> listForSubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @param context The context to associate with this operation.
@@ -1913,14 +1532,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RemediationInner> listAsync(Integer top, String filter, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(top, filter, context),
+        return new PagedFlux<>(() -> listSinglePageAsync(top, filter, context),
             nextLink -> listForSubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
@@ -1934,7 +1552,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @param context The context to associate with this operation.
@@ -1950,7 +1568,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Creates or updates a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1959,19 +1577,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtSubscriptionWithResponseAsync(
-        String remediationName, RemediationInner parameters) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtSubscriptionWithResponseAsync(String remediationName,
+        RemediationInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
@@ -1982,26 +1596,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdateAtSubscription(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            remediationName,
-                            apiVersion,
-                            parameters,
-                            accept,
-                            context))
+        return FluxUtil.withContext(context -> service.createOrUpdateAtSubscription(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), remediationName, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
      * @param context The context to associate with this operation.
@@ -2011,19 +1614,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtSubscriptionWithResponseAsync(
-        String remediationName, RemediationInner parameters, Context context) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtSubscriptionWithResponseAsync(String remediationName,
+        RemediationInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
@@ -2034,23 +1633,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdateAtSubscription(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                remediationName,
-                apiVersion,
-                parameters,
-                accept,
-                context);
+        return service.createOrUpdateAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            remediationName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Creates or updates a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2059,15 +1650,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemediationInner> createOrUpdateAtSubscriptionAsync(
-        String remediationName, RemediationInner parameters) {
+    private Mono<RemediationInner> createOrUpdateAtSubscriptionAsync(String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtSubscriptionWithResponseAsync(remediationName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
      * @param context The context to associate with this operation.
@@ -2077,14 +1668,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> createOrUpdateAtSubscriptionWithResponse(
-        String remediationName, RemediationInner parameters, Context context) {
+    public Response<RemediationInner> createOrUpdateAtSubscriptionWithResponse(String remediationName,
+        RemediationInner parameters, Context context) {
         return createOrUpdateAtSubscriptionWithResponseAsync(remediationName, parameters, context).block();
     }
 
     /**
      * Creates or updates a remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2099,94 +1690,70 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at subscription scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RemediationInner>> getAtSubscriptionWithResponseAsync(String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getAtSubscription(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.getAtSubscription(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at subscription scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getAtSubscriptionWithResponseAsync(
-        String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> getAtSubscriptionWithResponseAsync(String remediationName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getAtSubscription(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.getAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2200,7 +1767,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2215,7 +1782,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2229,7 +1796,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2239,40 +1806,27 @@ public final class RemediationsClientImpl implements RemediationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RemediationInner>> deleteAtSubscriptionWithResponseAsync(String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteAtSubscription(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteAtSubscription(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2281,40 +1835,29 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteAtSubscriptionWithResponseAsync(
-        String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> deleteAtSubscriptionWithResponseAsync(String remediationName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (remediationName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteAtSubscription(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.deleteAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Deletes an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2328,7 +1871,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2343,7 +1886,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at subscription scope.
-     *
+     * 
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2357,7 +1900,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -2365,22 +1908,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at resource group scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceGroupSinglePageAsync(
-        String resourceGroupName, String remediationName, Integer top) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtResourceGroupSinglePageAsync(String resourceGroupName, String remediationName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2390,36 +1929,19 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeploymentsAtResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            remediationName,
-                            top,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeploymentsAtResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, remediationName, top, this.client.getApiVersion(),
+                accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -2428,22 +1950,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at resource group scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceGroupSinglePageAsync(
         String resourceGroupName, String remediationName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2453,33 +1971,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeploymentsAtResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                remediationName,
-                top,
-                apiVersion,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeploymentsAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, remediationName, top, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -2489,8 +1992,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(
-        String resourceGroupName, String remediationName, Integer top) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(String resourceGroupName,
+        String remediationName, Integer top) {
         return new PagedFlux<>(
             () -> listDeploymentsAtResourceGroupSinglePageAsync(resourceGroupName, remediationName, top),
             nextLink -> listDeploymentsAtResourceGroupNextSinglePageAsync(nextLink));
@@ -2498,7 +2001,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2507,8 +2010,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(
-        String resourceGroupName, String remediationName) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(String resourceGroupName,
+        String remediationName) {
         final Integer top = null;
         return new PagedFlux<>(
             () -> listDeploymentsAtResourceGroupSinglePageAsync(resourceGroupName, remediationName, top),
@@ -2517,7 +2020,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -2528,8 +2031,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource group scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(
-        String resourceGroupName, String remediationName, Integer top, Context context) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceGroupAsync(String resourceGroupName,
+        String remediationName, Integer top, Context context) {
         return new PagedFlux<>(
             () -> listDeploymentsAtResourceGroupSinglePageAsync(resourceGroupName, remediationName, top, context),
             nextLink -> listDeploymentsAtResourceGroupNextSinglePageAsync(nextLink, context));
@@ -2537,25 +2040,25 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource group scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return all deployments for a remediation at resource group scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResourceGroup(
-        String resourceGroupName, String remediationName) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResourceGroup(String resourceGroupName,
+        String remediationName) {
         final Integer top = null;
         return new PagedIterable<>(listDeploymentsAtResourceGroupAsync(resourceGroupName, remediationName, top));
     }
 
     /**
      * Gets all deployments for a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -2563,19 +2066,19 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource group scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return all deployments for a remediation at resource group scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResourceGroup(
-        String resourceGroupName, String remediationName, Integer top, Context context) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResourceGroup(String resourceGroupName,
+        String remediationName, Integer top, Context context) {
         return new PagedIterable<>(
             listDeploymentsAtResourceGroupAsync(resourceGroupName, remediationName, top, context));
     }
 
     /**
      * Cancels a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2584,19 +2087,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName) {
+    private Mono<Response<RemediationInner>> cancelAtResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2606,26 +2105,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .cancelAtResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+                context -> service.cancelAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancels a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -2635,19 +2125,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> cancelAtResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2657,23 +2143,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .cancelAtResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.cancelAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Cancels a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2689,7 +2167,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Cancels a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -2699,14 +2177,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> cancelAtResourceGroupWithResponse(
-        String resourceGroupName, String remediationName, Context context) {
+    public Response<RemediationInner> cancelAtResourceGroupWithResponse(String resourceGroupName,
+        String remediationName, Context context) {
         return cancelAtResourceGroupWithResponseAsync(resourceGroupName, remediationName, context).block();
     }
 
     /**
      * Cancels a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2721,65 +2199,44 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Integer top, String filter) {
+    private Mono<PagedResponse<RemediationInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Integer top, String filter) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            top,
-                            filter,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, top, filter, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -2787,55 +2244,36 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for the subscription along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Integer top, String filter, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Integer top, String filter, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                top,
-                filter,
-                apiVersion,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, top,
+                filter, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -2846,14 +2284,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RemediationInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
             nextLink -> listForResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2864,14 +2301,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
     private PagedFlux<RemediationInner> listByResourceGroupAsync(String resourceGroupName) {
         final Integer top = null;
         final String filter = null;
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
             nextLink -> listForResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -2882,16 +2318,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for the subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationInner> listByResourceGroupAsync(
-        String resourceGroupName, Integer top, String filter, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter, context),
+    private PagedFlux<RemediationInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter, context),
             nextLink -> listForResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2907,7 +2342,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for the subscription.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -2918,14 +2353,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationInner> listByResourceGroup(
-        String resourceGroupName, Integer top, String filter, Context context) {
+    public PagedIterable<RemediationInner> listByResourceGroup(String resourceGroupName, Integer top, String filter,
+        Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, top, filter, context));
     }
 
     /**
      * Creates or updates a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -2935,19 +2370,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName, RemediationInner parameters) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName, RemediationInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2962,27 +2393,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdateAtResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            remediationName,
-                            apiVersion,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdateAtResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, remediationName, this.client.getApiVersion(),
+                parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -2993,19 +2414,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName, RemediationInner parameters, Context context) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName, RemediationInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3020,24 +2437,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdateAtResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                remediationName,
-                apiVersion,
-                parameters,
-                accept,
-                context);
+        return service.createOrUpdateAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, remediationName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Creates or updates a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3047,15 +2455,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemediationInner> createOrUpdateAtResourceGroupAsync(
-        String resourceGroupName, String remediationName, RemediationInner parameters) {
+    private Mono<RemediationInner> createOrUpdateAtResourceGroupAsync(String resourceGroupName, String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtResourceGroupWithResponseAsync(resourceGroupName, remediationName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3066,15 +2474,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> createOrUpdateAtResourceGroupWithResponse(
-        String resourceGroupName, String remediationName, RemediationInner parameters, Context context) {
+    public Response<RemediationInner> createOrUpdateAtResourceGroupWithResponse(String resourceGroupName,
+        String remediationName, RemediationInner parameters, Context context) {
         return createOrUpdateAtResourceGroupWithResponseAsync(resourceGroupName, remediationName, parameters, context)
             .block();
     }
 
     /**
      * Creates or updates a remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3084,37 +2492,33 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemediationInner createOrUpdateAtResourceGroup(
-        String resourceGroupName, String remediationName, RemediationInner parameters) {
+    public RemediationInner createOrUpdateAtResourceGroup(String resourceGroupName, String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtResourceGroupWithResponse(resourceGroupName, remediationName, parameters, Context.NONE)
             .getValue();
     }
 
     /**
      * Gets an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at resource group scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName) {
+    private Mono<Response<RemediationInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3124,26 +2528,17 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3151,22 +2546,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing remediation at resource group scope along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3176,23 +2567,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3208,7 +2591,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3218,14 +2601,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return an existing remediation at resource group scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String remediationName, Context context) {
+    public Response<RemediationInner> getByResourceGroupWithResponse(String resourceGroupName, String remediationName,
+        Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, remediationName, context).block();
     }
 
     /**
      * Gets an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3240,7 +2623,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3251,16 +2634,12 @@ public final class RemediationsClientImpl implements RemediationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RemediationInner>> deleteWithResponseAsync(String resourceGroupName, String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3270,26 +2649,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            remediationName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, remediationName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3299,19 +2668,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteWithResponseAsync(
-        String resourceGroupName, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> deleteWithResponseAsync(String resourceGroupName, String remediationName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3321,23 +2686,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                remediationName,
-                apiVersion,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            remediationName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Deletes an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3353,7 +2710,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3363,14 +2720,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> deleteWithResponse(
-        String resourceGroupName, String remediationName, Context context) {
+    public Response<RemediationInner> deleteWithResponse(String resourceGroupName, String remediationName,
+        Context context) {
         return deleteWithResponseAsync(resourceGroupName, remediationName, context).block();
     }
 
     /**
      * Deletes an existing remediation at resource group scope.
-     *
+     * 
      * @param resourceGroupName Resource group name.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3385,7 +2742,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -3393,16 +2750,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at resource scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceSinglePageAsync(
-        String resourceId, String remediationName, Integer top) {
+    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceSinglePageAsync(String resourceId,
+        String remediationName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3411,29 +2766,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeploymentsAtResource(
-                            this.client.getEndpoint(), resourceId, remediationName, top, apiVersion, accept, context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeploymentsAtResource(this.client.getEndpoint(), resourceId,
+                remediationName, top, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -3442,16 +2786,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all deployments for a remediation at resource scope along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceSinglePageAsync(
-        String resourceId, String remediationName, Integer top, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceSinglePageAsync(String resourceId,
+        String remediationName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3460,26 +2802,18 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeploymentsAtResource(
-                this.client.getEndpoint(), resourceId, remediationName, top, apiVersion, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeploymentsAtResource(this.client.getEndpoint(), resourceId, remediationName, top,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -3489,16 +2823,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(
-        String resourceId, String remediationName, Integer top) {
-        return new PagedFlux<>(
-            () -> listDeploymentsAtResourceSinglePageAsync(resourceId, remediationName, top),
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(String resourceId,
+        String remediationName, Integer top) {
+        return new PagedFlux<>(() -> listDeploymentsAtResourceSinglePageAsync(resourceId, remediationName, top),
             nextLink -> listDeploymentsAtResourceNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3507,17 +2840,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(
-        String resourceId, String remediationName) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(String resourceId,
+        String remediationName) {
         final Integer top = null;
-        return new PagedFlux<>(
-            () -> listDeploymentsAtResourceSinglePageAsync(resourceId, remediationName, top),
+        return new PagedFlux<>(() -> listDeploymentsAtResourceSinglePageAsync(resourceId, remediationName, top),
             nextLink -> listDeploymentsAtResourceNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -3528,8 +2860,8 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource scope as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(
-        String resourceId, String remediationName, Integer top, Context context) {
+    private PagedFlux<RemediationDeploymentInner> listDeploymentsAtResourceAsync(String resourceId,
+        String remediationName, Integer top, Context context) {
         return new PagedFlux<>(
             () -> listDeploymentsAtResourceSinglePageAsync(resourceId, remediationName, top, context),
             nextLink -> listDeploymentsAtResourceNextSinglePageAsync(nextLink, context));
@@ -3537,7 +2869,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3546,15 +2878,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource scope as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResource(
-        String resourceId, String remediationName) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResource(String resourceId,
+        String remediationName) {
         final Integer top = null;
         return new PagedIterable<>(listDeploymentsAtResourceAsync(resourceId, remediationName, top));
     }
 
     /**
      * Gets all deployments for a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param top Maximum number of records to return.
@@ -3565,14 +2897,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all deployments for a remediation at resource scope as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResource(
-        String resourceId, String remediationName, Integer top, Context context) {
+    public PagedIterable<RemediationDeploymentInner> listDeploymentsAtResource(String resourceId,
+        String remediationName, Integer top, Context context) {
         return new PagedIterable<>(listDeploymentsAtResourceAsync(resourceId, remediationName, top, context));
     }
 
     /**
      * Cancel a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3581,13 +2913,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtResourceWithResponseAsync(
-        String resourceId, String remediationName) {
+    private Mono<Response<RemediationInner>> cancelAtResourceWithResponseAsync(String resourceId,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3596,20 +2926,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .cancelAtResource(
-                            this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context))
+            .withContext(context -> service.cancelAtResource(this.client.getEndpoint(), resourceId, remediationName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancel a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3619,13 +2945,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> cancelAtResourceWithResponseAsync(
-        String resourceId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> cancelAtResourceWithResponseAsync(String resourceId,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3634,16 +2958,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .cancelAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context);
+        return service.cancelAtResource(this.client.getEndpoint(), resourceId, remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Cancel a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3659,7 +2982,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Cancel a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -3669,14 +2992,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> cancelAtResourceWithResponse(
-        String resourceId, String remediationName, Context context) {
+    public Response<RemediationInner> cancelAtResourceWithResponse(String resourceId, String remediationName,
+        Context context) {
         return cancelAtResourceWithResponseAsync(resourceId, remediationName, context).block();
     }
 
     /**
      * Cancel a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3691,51 +3014,38 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for a resource along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for a resource along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForResourceSinglePageAsync(
-        String resourceId, Integer top, String filter) {
+    private Mono<PagedResponse<RemediationInner>> listForResourceSinglePageAsync(String resourceId, Integer top,
+        String filter) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listForResource(
-                            this.client.getEndpoint(), resourceId, top, filter, apiVersion, accept, context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listForResource(this.client.getEndpoint(), resourceId, top, filter,
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -3743,40 +3053,31 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for a resource along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all remediations for a resource along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForResourceSinglePageAsync(
-        String resourceId, Integer top, String filter, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listForResourceSinglePageAsync(String resourceId, Integer top,
+        String filter, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listForResource(this.client.getEndpoint(), resourceId, top, filter, apiVersion, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listForResource(this.client.getEndpoint(), resourceId, top, filter, this.client.getApiVersion(), accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -3787,14 +3088,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RemediationInner> listForResourceAsync(String resourceId, Integer top, String filter) {
-        return new PagedFlux<>(
-            () -> listForResourceSinglePageAsync(resourceId, top, filter),
+        return new PagedFlux<>(() -> listForResourceSinglePageAsync(resourceId, top, filter),
             nextLink -> listForResourceNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3805,14 +3105,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
     private PagedFlux<RemediationInner> listForResourceAsync(String resourceId) {
         final Integer top = null;
         final String filter = null;
-        return new PagedFlux<>(
-            () -> listForResourceSinglePageAsync(resourceId, top, filter),
+        return new PagedFlux<>(() -> listForResourceSinglePageAsync(resourceId, top, filter),
             nextLink -> listForResourceNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -3823,16 +3122,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for a resource as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemediationInner> listForResourceAsync(
-        String resourceId, Integer top, String filter, Context context) {
-        return new PagedFlux<>(
-            () -> listForResourceSinglePageAsync(resourceId, top, filter, context),
+    private PagedFlux<RemediationInner> listForResourceAsync(String resourceId, Integer top, String filter,
+        Context context) {
+        return new PagedFlux<>(() -> listForResourceSinglePageAsync(resourceId, top, filter, context),
             nextLink -> listForResourceNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3848,7 +3146,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets all remediations for a resource.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param top Maximum number of records to return.
      * @param filter OData filter expression.
@@ -3859,14 +3157,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return all remediations for a resource as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemediationInner> listForResource(
-        String resourceId, Integer top, String filter, Context context) {
+    public PagedIterable<RemediationInner> listForResource(String resourceId, Integer top, String filter,
+        Context context) {
         return new PagedIterable<>(listForResourceAsync(resourceId, top, filter, context));
     }
 
     /**
      * Creates or updates a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3876,13 +3174,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtResourceWithResponseAsync(
-        String resourceId, String remediationName, RemediationInner parameters) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtResourceWithResponseAsync(String resourceId,
+        String remediationName, RemediationInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3896,26 +3192,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdateAtResource(
-                            this.client.getEndpoint(),
-                            resourceId,
-                            remediationName,
-                            apiVersion,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdateAtResource(this.client.getEndpoint(), resourceId,
+                remediationName, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3926,13 +3212,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> createOrUpdateAtResourceWithResponseAsync(
-        String resourceId, String remediationName, RemediationInner parameters, Context context) {
+    private Mono<Response<RemediationInner>> createOrUpdateAtResourceWithResponseAsync(String resourceId,
+        String remediationName, RemediationInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -3946,17 +3230,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdateAtResource(
-                this.client.getEndpoint(), resourceId, remediationName, apiVersion, parameters, accept, context);
+        return service.createOrUpdateAtResource(this.client.getEndpoint(), resourceId, remediationName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Creates or updates a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3966,15 +3248,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemediationInner> createOrUpdateAtResourceAsync(
-        String resourceId, String remediationName, RemediationInner parameters) {
+    private Mono<RemediationInner> createOrUpdateAtResourceAsync(String resourceId, String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtResourceWithResponseAsync(resourceId, remediationName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -3985,14 +3267,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> createOrUpdateAtResourceWithResponse(
-        String resourceId, String remediationName, RemediationInner parameters, Context context) {
+    public Response<RemediationInner> createOrUpdateAtResourceWithResponse(String resourceId, String remediationName,
+        RemediationInner parameters, Context context) {
         return createOrUpdateAtResourceWithResponseAsync(resourceId, remediationName, parameters, context).block();
     }
 
     /**
      * Creates or updates a remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param parameters The remediation parameters.
@@ -4002,29 +3284,27 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemediationInner createOrUpdateAtResource(
-        String resourceId, String remediationName, RemediationInner parameters) {
+    public RemediationInner createOrUpdateAtResource(String resourceId, String remediationName,
+        RemediationInner parameters) {
         return createOrUpdateAtResourceWithResponse(resourceId, remediationName, parameters, Context.NONE).getValue();
     }
 
     /**
      * Gets an existing remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an existing remediation at resource scope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RemediationInner>> getAtResourceWithResponseAsync(String resourceId, String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -4033,37 +3313,31 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getAtResource(
-                            this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context))
+            .withContext(context -> service.getAtResource(this.client.getEndpoint(), resourceId, remediationName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an existing remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an existing remediation at resource scope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> getAtResourceWithResponseAsync(
-        String resourceId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> getAtResourceWithResponseAsync(String resourceId, String remediationName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -4072,16 +3346,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context);
+        return service.getAtResource(this.client.getEndpoint(), resourceId, remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets an existing remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4097,7 +3370,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Gets an existing remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -4107,14 +3380,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return an existing remediation at resource scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> getAtResourceWithResponse(
-        String resourceId, String remediationName, Context context) {
+    public Response<RemediationInner> getAtResourceWithResponse(String resourceId, String remediationName,
+        Context context) {
         return getAtResourceWithResponseAsync(resourceId, remediationName, context).block();
     }
 
     /**
      * Gets an existing remediation at resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4129,7 +3402,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at individual resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4138,13 +3411,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteAtResourceWithResponseAsync(
-        String resourceId, String remediationName) {
+    private Mono<Response<RemediationInner>> deleteAtResourceWithResponseAsync(String resourceId,
+        String remediationName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -4153,20 +3424,16 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteAtResource(
-                            this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context))
+            .withContext(context -> service.deleteAtResource(this.client.getEndpoint(), resourceId, remediationName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes an existing remediation at individual resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -4176,13 +3443,11 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemediationInner>> deleteAtResourceWithResponseAsync(
-        String resourceId, String remediationName, Context context) {
+    private Mono<Response<RemediationInner>> deleteAtResourceWithResponseAsync(String resourceId,
+        String remediationName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
@@ -4191,16 +3456,15 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept, context);
+        return service.deleteAtResource(this.client.getEndpoint(), resourceId, remediationName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Deletes an existing remediation at individual resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4216,7 +3480,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Deletes an existing remediation at individual resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @param context The context to associate with this operation.
@@ -4226,14 +3490,14 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return the remediation definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemediationInner> deleteAtResourceWithResponse(
-        String resourceId, String remediationName, Context context) {
+    public Response<RemediationInner> deleteAtResourceWithResponse(String resourceId, String remediationName,
+        Context context) {
         return deleteAtResourceWithResponseAsync(resourceId, remediationName, context).block();
     }
 
     /**
      * Deletes an existing remediation at individual resource scope.
-     *
+     * 
      * @param resourceId Resource ID.
      * @param remediationName The name of the remediation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4248,88 +3512,65 @@ public final class RemediationsClientImpl implements RemediationsClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtManagementGroupNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtManagementGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.listDeploymentsAtManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeploymentsAtManagementGroupNext(nextLink, this.client.getEndpoint(),
+                accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtManagementGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtManagementGroupNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeploymentsAtManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeploymentsAtManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4341,32 +3582,22 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listForManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4374,116 +3605,82 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return list of remediations along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForManagementGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listForManagementGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listForManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listForManagementGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtSubscriptionNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtSubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service.listDeploymentsAtSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(
+            context -> service.listDeploymentsAtSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtSubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtSubscriptionNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeploymentsAtSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeploymentsAtSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4495,32 +3692,22 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listForSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4528,116 +3715,82 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return list of remediations along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForSubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listForSubscriptionNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listForSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listForSubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceGroupNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service.listDeploymentsAtResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(
+            context -> service.listDeploymentsAtResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtResourceGroupNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeploymentsAtResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeploymentsAtResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4649,32 +3802,22 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listForResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4682,115 +3825,83 @@ public final class RemediationsClientImpl implements RemediationsClient {
      * @return list of remediations along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationInner>> listForResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationInner>> listForResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listForResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listForResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtResourceNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listDeploymentsAtResourceNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationDeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RemediationDeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of deployments for a remediation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemediationDeploymentInner>> listDeploymentsAtResourceNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<RemediationDeploymentInner>>
+        listDeploymentsAtResourceNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeploymentsAtResourceNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeploymentsAtResourceNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4802,31 +3913,21 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listForResourceNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemediationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RemediationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4839,23 +3940,13 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listForResourceNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listForResourceNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
