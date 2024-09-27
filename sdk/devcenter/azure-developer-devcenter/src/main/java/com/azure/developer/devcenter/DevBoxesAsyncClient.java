@@ -579,7 +579,7 @@ public final class DevBoxesAsyncClient {
      * }
      * }</pre>
      *
-     * @param projectName The DevCenter Project upon which to execute the operation.
+     * @param projectName The DevCenter Project upon which to execute operations.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
@@ -937,7 +937,7 @@ public final class DevBoxesAsyncClient {
      * context.
      * @param devBoxName Display name for the Dev Box.
      * @param actionName The name of the action.
-     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @param delayUntil The time to delay the Dev Box action or actions until, in RFC3339 format.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -990,7 +990,7 @@ public final class DevBoxesAsyncClient {
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName Display name for the Dev Box.
-     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @param delayUntil The time to delay the Dev Box action or actions until, in RFC3339 format.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1504,7 +1504,7 @@ public final class DevBoxesAsyncClient {
      * context.
      * @param devBoxName Display name for the Dev Box.
      * @param actionName The name of the action.
-     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @param delayUntil The time to delay the Dev Box action or actions until, in RFC3339 format.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1531,7 +1531,7 @@ public final class DevBoxesAsyncClient {
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName Display name for the Dev Box.
-     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @param delayUntil The time to delay the Dev Box action or actions until, in RFC3339 format.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
