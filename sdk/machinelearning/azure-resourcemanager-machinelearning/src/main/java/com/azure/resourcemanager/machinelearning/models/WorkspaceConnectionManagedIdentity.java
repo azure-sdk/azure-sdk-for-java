@@ -17,39 +17,19 @@ import java.io.IOException;
 @Fluent
 public final class WorkspaceConnectionManagedIdentity implements JsonSerializable<WorkspaceConnectionManagedIdentity> {
     /*
-     * The resourceId property.
-     */
-    private String resourceId;
-
-    /*
      * The clientId property.
      */
     private String clientId;
+
+    /*
+     * The resourceId property.
+     */
+    private String resourceId;
 
     /**
      * Creates an instance of WorkspaceConnectionManagedIdentity class.
      */
     public WorkspaceConnectionManagedIdentity() {
-    }
-
-    /**
-     * Get the resourceId property: The resourceId property.
-     * 
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.resourceId;
-    }
-
-    /**
-     * Set the resourceId property: The resourceId property.
-     * 
-     * @param resourceId the resourceId value to set.
-     * @return the WorkspaceConnectionManagedIdentity object itself.
-     */
-    public WorkspaceConnectionManagedIdentity withResourceId(String resourceId) {
-        this.resourceId = resourceId;
-        return this;
     }
 
     /**
@@ -73,6 +53,26 @@ public final class WorkspaceConnectionManagedIdentity implements JsonSerializabl
     }
 
     /**
+     * Get the resourceId property: The resourceId property.
+     * 
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: The resourceId property.
+     * 
+     * @param resourceId the resourceId value to set.
+     * @return the WorkspaceConnectionManagedIdentity object itself.
+     */
+    public WorkspaceConnectionManagedIdentity withResourceId(String resourceId) {
+        this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,8 +86,8 @@ public final class WorkspaceConnectionManagedIdentity implements JsonSerializabl
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("resourceId", this.resourceId);
         jsonWriter.writeStringField("clientId", this.clientId);
+        jsonWriter.writeStringField("resourceId", this.resourceId);
         return jsonWriter.writeEndObject();
     }
 
@@ -107,10 +107,10 @@ public final class WorkspaceConnectionManagedIdentity implements JsonSerializabl
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("resourceId".equals(fieldName)) {
-                    deserializedWorkspaceConnectionManagedIdentity.resourceId = reader.getString();
-                } else if ("clientId".equals(fieldName)) {
+                if ("clientId".equals(fieldName)) {
                     deserializedWorkspaceConnectionManagedIdentity.clientId = reader.getString();
+                } else if ("resourceId".equals(fieldName)) {
+                    deserializedWorkspaceConnectionManagedIdentity.resourceId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
