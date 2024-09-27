@@ -72,7 +72,7 @@ public final class EventGridReceiverAsyncClient {
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     value (Required): [
@@ -120,7 +120,7 @@ public final class EventGridReceiverAsyncClient {
      * along with other failed lock tokens with their corresponding error information. Successfully acknowledged events
      * will no longer be available to be received by any consumer.
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     lockTokens (Required): [
@@ -128,9 +128,9 @@ public final class EventGridReceiverAsyncClient {
      *     ]
      * }
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     failedLockTokens (Required): [
@@ -188,7 +188,7 @@ public final class EventGridReceiverAsyncClient {
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     lockTokens (Required): [
@@ -196,9 +196,9 @@ public final class EventGridReceiverAsyncClient {
      *     ]
      * }
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     failedLockTokens (Required): [
@@ -247,7 +247,7 @@ public final class EventGridReceiverAsyncClient {
      * with other failed lock tokens with their corresponding error information. Successfully rejected events will be
      * dead-lettered and can no longer be received by a consumer.
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     lockTokens (Required): [
@@ -255,9 +255,9 @@ public final class EventGridReceiverAsyncClient {
      *     ]
      * }
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     failedLockTokens (Required): [
@@ -306,7 +306,7 @@ public final class EventGridReceiverAsyncClient {
      * along with other failed lock tokens with their corresponding error information. Successfully renewed locks will
      * ensure that the associated event is only available to the consumer that holds the renewed lock.
      * <p><strong>Request Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     lockTokens (Required): [
@@ -314,9 +314,9 @@ public final class EventGridReceiverAsyncClient {
      *     ]
      * }
      * }</pre>
-     *
+     * 
      * <p><strong>Response Body Schema</strong></p>
-     *
+     * 
      * <pre>{@code
      * {
      *     failedLockTokens (Required): [
