@@ -4,14 +4,22 @@
 
 package com.azure.resourcemanager.azurearcdata.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstance;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceJobsStatusRequest;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceJobsStatusResponse;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceProperties;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceRunMigrationAssessmentResponse;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdate;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdateProperties;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class SqlServerInstanceImpl
@@ -85,20 +93,16 @@ public final class SqlServerInstanceImpl
     }
 
     public SqlServerInstance create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .create(resourceGroupName, sqlServerInstanceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .create(resourceGroupName, sqlServerInstanceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SqlServerInstance create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .create(resourceGroupName, sqlServerInstanceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .create(resourceGroupName, sqlServerInstanceName, this.innerModel(), context);
         return this;
     }
 
@@ -114,51 +118,92 @@ public final class SqlServerInstanceImpl
     }
 
     public SqlServerInstance apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .updateWithResponse(resourceGroupName, sqlServerInstanceName, updateParameters, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .update(resourceGroupName, sqlServerInstanceName, updateParameters, Context.NONE);
         return this;
     }
 
     public SqlServerInstance apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .updateWithResponse(resourceGroupName, sqlServerInstanceName, updateParameters, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .update(resourceGroupName, sqlServerInstanceName, updateParameters, context);
         return this;
     }
 
-    SqlServerInstanceImpl(
-        SqlServerInstanceInner innerObject, com.azure.resourcemanager.azurearcdata.AzureArcDataManager serviceManager) {
+    SqlServerInstanceImpl(SqlServerInstanceInner innerObject,
+        com.azure.resourcemanager.azurearcdata.AzureArcDataManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.sqlServerInstanceName = Utils.getValueFromIdByName(innerObject.id(), "sqlServerInstances");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.sqlServerInstanceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "sqlServerInstances");
     }
 
     public SqlServerInstance refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .getByResourceGroupWithResponse(resourceGroupName, sqlServerInstanceName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, sqlServerInstanceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public SqlServerInstance refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlServerInstances()
-                .getByResourceGroupWithResponse(resourceGroupName, sqlServerInstanceName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSqlServerInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, sqlServerInstanceName, context)
+            .getValue();
         return this;
+    }
+
+    public PagedIterable<List<String>>
+        getTelemetry(SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        return serviceManager.sqlServerInstances()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest);
+    }
+
+    public PagedIterable<List<String>> getTelemetry(SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context) {
+        return serviceManager.sqlServerInstances()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest, context);
+    }
+
+    public Response<SqlServerInstanceRunMigrationAssessmentResponse>
+        runMigrationAssessmentWithResponse(Context context) {
+        return serviceManager.sqlServerInstances()
+            .runMigrationAssessmentWithResponse(resourceGroupName, sqlServerInstanceName, context);
+    }
+
+    public SqlServerInstanceRunMigrationAssessmentResponse runMigrationAssessment() {
+        return serviceManager.sqlServerInstances().runMigrationAssessment(resourceGroupName, sqlServerInstanceName);
+    }
+
+    public Response<SqlServerInstanceJobsStatusResponse> getJobsStatusWithResponse(
+        SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest, Context context) {
+        return serviceManager.sqlServerInstances()
+            .getJobsStatusWithResponse(resourceGroupName, sqlServerInstanceName, sqlServerInstanceJobsStatusRequest,
+                context);
+    }
+
+    public SqlServerInstanceJobsStatusResponse getJobsStatus() {
+        return serviceManager.sqlServerInstances().getJobsStatus(resourceGroupName, sqlServerInstanceName);
+    }
+
+    public Response<SqlServerInstance> preUpgradeWithResponse(Context context) {
+        return serviceManager.sqlServerInstances()
+            .preUpgradeWithResponse(resourceGroupName, sqlServerInstanceName, context);
+    }
+
+    public SqlServerInstance preUpgrade() {
+        return serviceManager.sqlServerInstances().preUpgrade(resourceGroupName, sqlServerInstanceName);
+    }
+
+    public Response<SqlServerInstance> postUpgradeWithResponse(Context context) {
+        return serviceManager.sqlServerInstances()
+            .postUpgradeWithResponse(resourceGroupName, sqlServerInstanceName, context);
+    }
+
+    public SqlServerInstance postUpgrade() {
+        return serviceManager.sqlServerInstances().postUpgrade(resourceGroupName, sqlServerInstanceName);
     }
 
     public SqlServerInstanceImpl withRegion(Region location) {
@@ -183,6 +228,11 @@ public final class SqlServerInstanceImpl
 
     public SqlServerInstanceImpl withProperties(SqlServerInstanceProperties properties) {
         this.innerModel().withProperties(properties);
+        return this;
+    }
+
+    public SqlServerInstanceImpl withProperties(SqlServerInstanceUpdateProperties properties) {
+        this.updateParameters.withProperties(properties);
         return this;
     }
 
