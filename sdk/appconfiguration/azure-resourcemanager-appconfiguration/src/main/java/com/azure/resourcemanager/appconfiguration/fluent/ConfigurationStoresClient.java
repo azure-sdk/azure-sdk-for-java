@@ -14,14 +14,19 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.SasTokenGenerationResultInner;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
+import com.azure.resourcemanager.appconfiguration.models.ResetSasKindParameters;
+import com.azure.resourcemanager.appconfiguration.models.SasTokenGenerationParameters;
 
-/** An instance of this class provides access to all the operations defined in ConfigurationStoresClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ConfigurationStoresClient.
+ */
 public interface ConfigurationStoresClient {
     /**
      * Lists the configuration stores for a given subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
@@ -31,10 +36,10 @@ public interface ConfigurationStoresClient {
 
     /**
      * Lists the configuration stores for a given subscription.
-     *
+     * 
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
-     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
-     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -46,7 +51,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Lists the configuration stores for a given resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -58,11 +63,11 @@ public interface ConfigurationStoresClient {
 
     /**
      * Lists the configuration stores for a given resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
-     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
-     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -70,12 +75,12 @@ public interface ConfigurationStoresClient {
      * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ConfigurationStoreInner> listByResourceGroup(
-        String resourceGroupName, String skipToken, Context context);
+    PagedIterable<ConfigurationStoreInner> listByResourceGroup(String resourceGroupName, String skipToken,
+        Context context);
 
     /**
      * Gets the properties of the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
@@ -85,12 +90,12 @@ public interface ConfigurationStoresClient {
      * @return the properties of the specified configuration store along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ConfigurationStoreInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String configStoreName, Context context);
+    Response<ConfigurationStoreInner> getByResourceGroupWithResponse(String resourceGroupName, String configStoreName,
+        Context context);
 
     /**
      * Gets the properties of the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -103,7 +108,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Creates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreCreationParameters The parameters for creating a configuration store.
@@ -113,12 +118,12 @@ public interface ConfigurationStoresClient {
      * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(
-        String resourceGroupName, String configStoreName, ConfigurationStoreInner configStoreCreationParameters);
+    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(String resourceGroupName,
+        String configStoreName, ConfigurationStoreInner configStoreCreationParameters);
 
     /**
      * Creates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreCreationParameters The parameters for creating a configuration store.
@@ -129,15 +134,12 @@ public interface ConfigurationStoresClient {
      * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(
-        String resourceGroupName,
-        String configStoreName,
-        ConfigurationStoreInner configStoreCreationParameters,
-        Context context);
+    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(String resourceGroupName,
+        String configStoreName, ConfigurationStoreInner configStoreCreationParameters, Context context);
 
     /**
      * Creates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreCreationParameters The parameters for creating a configuration store.
@@ -147,12 +149,12 @@ public interface ConfigurationStoresClient {
      * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ConfigurationStoreInner create(
-        String resourceGroupName, String configStoreName, ConfigurationStoreInner configStoreCreationParameters);
+    ConfigurationStoreInner create(String resourceGroupName, String configStoreName,
+        ConfigurationStoreInner configStoreCreationParameters);
 
     /**
      * Creates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreCreationParameters The parameters for creating a configuration store.
@@ -163,15 +165,12 @@ public interface ConfigurationStoresClient {
      * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ConfigurationStoreInner create(
-        String resourceGroupName,
-        String configStoreName,
-        ConfigurationStoreInner configStoreCreationParameters,
-        Context context);
+    ConfigurationStoreInner create(String resourceGroupName, String configStoreName,
+        ConfigurationStoreInner configStoreCreationParameters, Context context);
 
     /**
      * Deletes a configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -184,7 +183,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Deletes a configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
@@ -198,7 +197,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Deletes a configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -210,7 +209,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Deletes a configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
@@ -223,7 +222,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Updates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreUpdateParameters The parameters for updating a configuration store.
@@ -233,14 +232,12 @@ public interface ConfigurationStoresClient {
      * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        ConfigurationStoreUpdateParameters configStoreUpdateParameters);
+    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(String resourceGroupName,
+        String configStoreName, ConfigurationStoreUpdateParameters configStoreUpdateParameters);
 
     /**
      * Updates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreUpdateParameters The parameters for updating a configuration store.
@@ -251,15 +248,12 @@ public interface ConfigurationStoresClient {
      * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(
-        String resourceGroupName,
-        String configStoreName,
-        ConfigurationStoreUpdateParameters configStoreUpdateParameters,
-        Context context);
+    SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(String resourceGroupName,
+        String configStoreName, ConfigurationStoreUpdateParameters configStoreUpdateParameters, Context context);
 
     /**
      * Updates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreUpdateParameters The parameters for updating a configuration store.
@@ -269,14 +263,12 @@ public interface ConfigurationStoresClient {
      * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ConfigurationStoreInner update(
-        String resourceGroupName,
-        String configStoreName,
+    ConfigurationStoreInner update(String resourceGroupName, String configStoreName,
         ConfigurationStoreUpdateParameters configStoreUpdateParameters);
 
     /**
      * Updates a configuration store with the specified parameters.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param configStoreUpdateParameters The parameters for updating a configuration store.
@@ -287,15 +279,12 @@ public interface ConfigurationStoresClient {
      * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ConfigurationStoreInner update(
-        String resourceGroupName,
-        String configStoreName,
-        ConfigurationStoreUpdateParameters configStoreUpdateParameters,
-        Context context);
+    ConfigurationStoreInner update(String resourceGroupName, String configStoreName,
+        ConfigurationStoreUpdateParameters configStoreUpdateParameters, Context context);
 
     /**
      * Lists the access key for the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -308,12 +297,12 @@ public interface ConfigurationStoresClient {
 
     /**
      * Lists the access key for the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
-     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
-     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken
+     * parameter that specifies a starting point to use for subsequent calls.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -321,12 +310,12 @@ public interface ConfigurationStoresClient {
      * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ApiKeyInner> listKeys(
-        String resourceGroupName, String configStoreName, String skipToken, Context context);
+    PagedIterable<ApiKeyInner> listKeys(String resourceGroupName, String configStoreName, String skipToken,
+        Context context);
 
     /**
      * Regenerates an access key for the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param regenerateKeyParameters The parameters for regenerating an access key.
@@ -337,15 +326,12 @@ public interface ConfigurationStoresClient {
      * @return an API key used for authenticating with a configuration store endpoint along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ApiKeyInner> regenerateKeyWithResponse(
-        String resourceGroupName,
-        String configStoreName,
-        RegenerateKeyParameters regenerateKeyParameters,
-        Context context);
+    Response<ApiKeyInner> regenerateKeyWithResponse(String resourceGroupName, String configStoreName,
+        RegenerateKeyParameters regenerateKeyParameters, Context context);
 
     /**
      * Regenerates an access key for the specified configuration store.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param regenerateKeyParameters The parameters for regenerating an access key.
@@ -355,36 +341,98 @@ public interface ConfigurationStoresClient {
      * @return an API key used for authenticating with a configuration store endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ApiKeyInner regenerateKey(
-        String resourceGroupName, String configStoreName, RegenerateKeyParameters regenerateKeyParameters);
+    ApiKeyInner regenerateKey(String resourceGroupName, String configStoreName,
+        RegenerateKeyParameters regenerateKeyParameters);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SasTokenGenerationResultInner> generateSasTokenWithResponse(String resourceGroupName,
+        String configStoreName, SasTokenGenerationParameters sasTokenGenerationParameters, Context context);
+
+    /**
+     * Generates a SAS token for scoped, read-only access of the specified configuration store.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param sasTokenGenerationParameters The object containing information for the SAS token generation request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to generate a SAS token.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SasTokenGenerationResultInner generateSasToken(String resourceGroupName, String configStoreName,
+        SasTokenGenerationParameters sasTokenGenerationParameters);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ConfigurationStoreInner> resetSasKindWithResponse(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters, Context context);
+
+    /**
+     * Reset SAS kind to invalidate all previously generated SAS tokens of the specified kind.
+     * 
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param resetSasKindParameters The object containing information for the SAS kind reset request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the configuration store along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConfigurationStoreInner resetSasKind(String resourceGroupName, String configStoreName,
+        ResetSasKindParameters resetSasKindParameters);
 
     /**
      * Gets information about the deleted configuration stores in a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return information about the deleted configuration stores in a subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeletedConfigurationStoreInner> listDeleted();
 
     /**
      * Gets information about the deleted configuration stores in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return information about the deleted configuration stores in a subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeletedConfigurationStoreInner> listDeleted(Context context);
 
     /**
      * Gets a deleted Azure app configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
@@ -394,12 +442,12 @@ public interface ConfigurationStoresClient {
      * @return a deleted Azure app configuration store along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DeletedConfigurationStoreInner> getDeletedWithResponse(
-        String location, String configStoreName, Context context);
+    Response<DeletedConfigurationStoreInner> getDeletedWithResponse(String location, String configStoreName,
+        Context context);
 
     /**
      * Gets a deleted Azure app configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -412,7 +460,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Permanently deletes the specified configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -425,7 +473,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Permanently deletes the specified configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
@@ -439,7 +487,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Permanently deletes the specified configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -451,7 +499,7 @@ public interface ConfigurationStoresClient {
 
     /**
      * Permanently deletes the specified configuration store.
-     *
+     * 
      * @param location The location in which uniqueness will be verified.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.

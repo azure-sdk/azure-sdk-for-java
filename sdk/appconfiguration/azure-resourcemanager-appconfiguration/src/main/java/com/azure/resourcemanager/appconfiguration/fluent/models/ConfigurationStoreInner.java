@@ -8,14 +8,21 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
+import com.azure.resourcemanager.appconfiguration.models.SasProperties;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -29,34 +36,47 @@ public final class ConfigurationStoreInner extends Resource {
     /*
      * The managed identity information, if configured.
      */
-    @JsonProperty(value = "identity")
     private ResourceIdentity identity;
 
     /*
      * The properties of a configuration store.
      */
-    @JsonProperty(value = "properties")
     private ConfigurationStoreProperties innerProperties;
 
     /*
      * The sku of the configuration store.
      */
-    @JsonProperty(value = "sku", required = true)
     private Sku sku;
 
     /*
      * Resource system metadata.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ConfigurationStoreInner class. */
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /**
+     * Creates an instance of ConfigurationStoreInner class.
+     */
     public ConfigurationStoreInner() {
     }
 
     /**
      * Get the identity property: The managed identity information, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -65,7 +85,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the identity property: The managed identity information, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -76,7 +96,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the innerProperties property: The properties of a configuration store.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ConfigurationStoreProperties innerProperties() {
@@ -85,7 +105,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the sku property: The sku of the configuration store.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -94,7 +114,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the sku property: The sku of the configuration store.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -105,21 +125,55 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the systemData property: Resource system metadata.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConfigurationStoreInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConfigurationStoreInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -128,7 +182,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the configuration store.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -137,7 +191,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the creationDate property: The creation date of configuration store.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -146,7 +200,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the endpoint property: The DNS endpoint where the configuration store API will be available.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -155,7 +209,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -164,7 +218,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -179,7 +233,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the privateEndpointConnections property: The list of private endpoint connections that are set up for this
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionReference> privateEndpointConnections() {
@@ -189,7 +243,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
      * private endpoint is enabled.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -199,7 +253,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
      * private endpoint is enabled.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -212,8 +266,8 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
-     * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * Get the disableLocalAuth property: Disables access key authentication.
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -221,8 +275,8 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
-     * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * Set the disableLocalAuth property: Disables access key authentication.
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -235,9 +289,32 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
+     * Get the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @return the sas value.
+     */
+    public SasProperties sas() {
+        return this.innerProperties() == null ? null : this.innerProperties().sas();
+    }
+
+    /**
+     * Set the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @param sas the sas value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withSas(SasProperties sas) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withSas(sas);
+        return this;
+    }
+
+    /**
      * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @return the softDeleteRetentionInDays value.
      */
     public Integer softDeleteRetentionInDays() {
@@ -247,7 +324,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -262,7 +339,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -272,7 +349,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -285,8 +362,33 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataPlaneProxy();
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withDataPlaneProxy(dataPlaneProxy);
+        return this;
+    }
+
+    /**
      * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @return the createMode value.
      */
     public CreateMode createMode() {
@@ -295,7 +397,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @param createMode the createMode value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -308,8 +410,56 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.innerProperties() == null ? null : this.innerProperties().telemetry();
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withTelemetry(TelemetryProperties telemetry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withTelemetry(telemetry);
+        return this;
+    }
+
+    /**
+     * Get the experimentation property: Property specifying the configuration of experimentation for this configuration
+     * store.
+     * 
+     * @return the experimentation value.
+     */
+    public ExperimentationProperties experimentation() {
+        return this.innerProperties() == null ? null : this.innerProperties().experimentation();
+    }
+
+    /**
+     * Set the experimentation property: Property specifying the configuration of experimentation for this configuration
+     * store.
+     * 
+     * @param experimentation the experimentation value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withExperimentation(ExperimentationProperties experimentation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withExperimentation(experimentation);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -320,13 +470,70 @@ public final class ConfigurationStoreInner extends Resource {
             innerProperties().validate();
         }
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sku in model ConfigurationStoreInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sku in model ConfigurationStoreInner"));
         } else {
             sku().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ConfigurationStoreInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ConfigurationStoreInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ConfigurationStoreInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ConfigurationStoreInner.
+     */
+    public static ConfigurationStoreInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ConfigurationStoreInner deserializedConfigurationStoreInner = new ConfigurationStoreInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedConfigurationStoreInner.withTags(tags);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.sku = Sku.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.identity = ResourceIdentity.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.innerProperties = ConfigurationStoreProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedConfigurationStoreInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedConfigurationStoreInner;
+        });
+    }
 }
