@@ -15,8 +15,8 @@ import com.azure.resourcemanager.billing.fluent.models.MoveBillingSubscriptionEl
 import com.azure.resourcemanager.billing.models.BillingSubscription;
 import com.azure.resourcemanager.billing.models.BillingSubscriptionMergeRequest;
 import com.azure.resourcemanager.billing.models.BillingSubscriptionPatch;
-import com.azure.resourcemanager.billing.models.BillingSubscriptions;
 import com.azure.resourcemanager.billing.models.BillingSubscriptionSplitRequest;
+import com.azure.resourcemanager.billing.models.BillingSubscriptions;
 import com.azure.resourcemanager.billing.models.CancelSubscriptionRequest;
 import com.azure.resourcemanager.billing.models.MoveBillingSubscriptionEligibilityResult;
 import com.azure.resourcemanager.billing.models.MoveBillingSubscriptionRequest;
