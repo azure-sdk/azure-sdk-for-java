@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -100,14 +100,6 @@ public final class MySqlManager {
 
     private FirewallRules firewallRules;
 
-    private Servers servers;
-
-    private Replicas replicas;
-
-    private ServersMigrations serversMigrations;
-
-    private AdvancedThreatProtectionSettings advancedThreatProtectionSettings;
-
     private LogFiles logFiles;
 
     private LocationBasedCapabilities locationBasedCapabilities;
@@ -129,6 +121,14 @@ public final class MySqlManager {
     private Operations operations;
 
     private Maintenances maintenances;
+
+    private Servers servers;
+
+    private Replicas replicas;
+
+    private ServersMigrations serversMigrations;
+
+    private AdvancedThreatProtectionSettings advancedThreatProtectionSettings;
 
     private final MySqlManagementClient clientObject;
 
@@ -294,7 +294,7 @@ public final class MySqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mysqlflexibleserver")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -438,55 +438,6 @@ public final class MySqlManager {
     }
 
     /**
-     * Gets the resource collection API of Servers. It manages Server.
-     * 
-     * @return Resource collection API of Servers.
-     */
-    public Servers servers() {
-        if (this.servers == null) {
-            this.servers = new ServersImpl(clientObject.getServers(), this);
-        }
-        return servers;
-    }
-
-    /**
-     * Gets the resource collection API of Replicas.
-     * 
-     * @return Resource collection API of Replicas.
-     */
-    public Replicas replicas() {
-        if (this.replicas == null) {
-            this.replicas = new ReplicasImpl(clientObject.getReplicas(), this);
-        }
-        return replicas;
-    }
-
-    /**
-     * Gets the resource collection API of ServersMigrations.
-     * 
-     * @return Resource collection API of ServersMigrations.
-     */
-    public ServersMigrations serversMigrations() {
-        if (this.serversMigrations == null) {
-            this.serversMigrations = new ServersMigrationsImpl(clientObject.getServersMigrations(), this);
-        }
-        return serversMigrations;
-    }
-
-    /**
-     * Gets the resource collection API of AdvancedThreatProtectionSettings.
-     * 
-     * @return Resource collection API of AdvancedThreatProtectionSettings.
-     */
-    public AdvancedThreatProtectionSettings advancedThreatProtectionSettings() {
-        if (this.advancedThreatProtectionSettings == null) {
-            this.advancedThreatProtectionSettings
-                = new AdvancedThreatProtectionSettingsImpl(clientObject.getAdvancedThreatProtectionSettings(), this);
-        }
-        return advancedThreatProtectionSettings;
-    }
-
-    /**
      * Gets the resource collection API of LogFiles.
      * 
      * @return Resource collection API of LogFiles.
@@ -622,6 +573,55 @@ public final class MySqlManager {
             this.maintenances = new MaintenancesImpl(clientObject.getMaintenances(), this);
         }
         return maintenances;
+    }
+
+    /**
+     * Gets the resource collection API of Servers. It manages Server.
+     * 
+     * @return Resource collection API of Servers.
+     */
+    public Servers servers() {
+        if (this.servers == null) {
+            this.servers = new ServersImpl(clientObject.getServers(), this);
+        }
+        return servers;
+    }
+
+    /**
+     * Gets the resource collection API of Replicas.
+     * 
+     * @return Resource collection API of Replicas.
+     */
+    public Replicas replicas() {
+        if (this.replicas == null) {
+            this.replicas = new ReplicasImpl(clientObject.getReplicas(), this);
+        }
+        return replicas;
+    }
+
+    /**
+     * Gets the resource collection API of ServersMigrations.
+     * 
+     * @return Resource collection API of ServersMigrations.
+     */
+    public ServersMigrations serversMigrations() {
+        if (this.serversMigrations == null) {
+            this.serversMigrations = new ServersMigrationsImpl(clientObject.getServersMigrations(), this);
+        }
+        return serversMigrations;
+    }
+
+    /**
+     * Gets the resource collection API of AdvancedThreatProtectionSettings.
+     * 
+     * @return Resource collection API of AdvancedThreatProtectionSettings.
+     */
+    public AdvancedThreatProtectionSettings advancedThreatProtectionSettings() {
+        if (this.advancedThreatProtectionSettings == null) {
+            this.advancedThreatProtectionSettings
+                = new AdvancedThreatProtectionSettingsImpl(clientObject.getAdvancedThreatProtectionSettings(), this);
+        }
+        return advancedThreatProtectionSettings;
     }
 
     /**

@@ -96,34 +96,6 @@ public interface MySqlManagementClient {
     FirewallRulesClient getFirewallRules();
 
     /**
-     * Gets the ServersClient object to access its operations.
-     * 
-     * @return the ServersClient object.
-     */
-    ServersClient getServers();
-
-    /**
-     * Gets the ReplicasClient object to access its operations.
-     * 
-     * @return the ReplicasClient object.
-     */
-    ReplicasClient getReplicas();
-
-    /**
-     * Gets the ServersMigrationsClient object to access its operations.
-     * 
-     * @return the ServersMigrationsClient object.
-     */
-    ServersMigrationsClient getServersMigrations();
-
-    /**
-     * Gets the AdvancedThreatProtectionSettingsClient object to access its operations.
-     * 
-     * @return the AdvancedThreatProtectionSettingsClient object.
-     */
-    AdvancedThreatProtectionSettingsClient getAdvancedThreatProtectionSettings();
-
-    /**
      * Gets the LogFilesClient object to access its operations.
      * 
      * @return the LogFilesClient object.
@@ -199,4 +171,32 @@ public interface MySqlManagementClient {
      * @return the MaintenancesClient object.
      */
     MaintenancesClient getMaintenances();
+
+    /**
+     * Gets the ServersClient object to access its operations.
+     * 
+     * @return the ServersClient object.
+     */
+    ServersClient getServers();
+
+    /**
+     * Gets the ReplicasClient object to access its operations.
+     * 
+     * @return the ReplicasClient object.
+     */
+    ReplicasClient getReplicas();
+
+    /**
+     * Gets the ServersMigrationsClient object to access its operations.
+     * 
+     * @return the ServersMigrationsClient object.
+     */
+    ServersMigrationsClient getServersMigrations();
+
+    /**
+     * Gets the AdvancedThreatProtectionSettingsClient object to access its operations.
+     * 
+     * @return the AdvancedThreatProtectionSettingsClient object.
+     */
+    AdvancedThreatProtectionSettingsClient getAdvancedThreatProtectionSettings();
 }

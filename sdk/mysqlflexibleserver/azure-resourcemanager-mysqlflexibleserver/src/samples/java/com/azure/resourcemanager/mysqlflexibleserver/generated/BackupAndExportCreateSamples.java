@@ -14,7 +14,8 @@ import java.util.Arrays;
  */
 public final class BackupAndExportCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-10-01-preview/examples/BackupAndExport.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupAndExport.json
      */
     /**
      * Sample code: Create and Export Backup.
