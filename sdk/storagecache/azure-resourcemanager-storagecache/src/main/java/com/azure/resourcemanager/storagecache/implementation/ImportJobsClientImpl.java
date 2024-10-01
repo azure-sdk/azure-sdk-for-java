@@ -34,8 +34,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.storagecache.fluent.ImportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.models.ImportJobInner;
-import com.azure.resourcemanager.storagecache.models.ImportJobsListResult;
 import com.azure.resourcemanager.storagecache.models.ImportJobUpdate;
+import com.azure.resourcemanager.storagecache.models.ImportJobsListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -519,7 +519,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -569,7 +569,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -618,7 +618,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -642,7 +642,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -668,7 +668,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -690,7 +690,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -713,7 +713,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -735,7 +735,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -758,7 +758,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -779,7 +779,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     }
 
     /**
-     * Create or update an import job. Import jobs are automatically deleted 72 hours after completion.
+     * Create or update an import job.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
@@ -1235,9 +1235,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1265,9 +1263,7 @@ public final class ImportJobsClientImpl implements ImportJobsClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
