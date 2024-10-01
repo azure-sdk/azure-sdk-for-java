@@ -8,11 +8,11 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatch;
 import java.util.Collections;
@@ -61,15 +61,15 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
+    public Sku sku() {
         return this.innerModel().sku();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
     }
 
@@ -244,17 +244,17 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public WorkspaceImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public WorkspaceImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public WorkspaceImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public WorkspaceImpl withSku(Sku sku) {
         this.innerModel().withSku(sku);
         return this;
     }
 
-    public WorkspaceImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public WorkspaceImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }

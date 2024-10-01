@@ -11,10 +11,10 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.io.IOException;
 import java.util.Map;
 
@@ -146,7 +146,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
      * {@inheritDoc}
      */
     @Override
-    public ApplicationGroupInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public ApplicationGroupInner withIdentity(ManagedServiceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
@@ -155,7 +155,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
      * {@inheritDoc}
      */
     @Override
-    public ApplicationGroupInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public ApplicationGroupInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
@@ -164,7 +164,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
      * {@inheritDoc}
      */
     @Override
-    public ApplicationGroupInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ApplicationGroupInner withPlan(Plan plan) {
         super.withPlan(plan);
         return this;
     }
@@ -407,13 +407,11 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
                 } else if ("etag".equals(fieldName)) {
                     deserializedApplicationGroupInner.etag = reader.getString();
                 } else if ("identity".equals(fieldName)) {
-                    deserializedApplicationGroupInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
+                    deserializedApplicationGroupInner.withIdentity(ManagedServiceIdentity.fromJson(reader));
                 } else if ("sku".equals(fieldName)) {
-                    deserializedApplicationGroupInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
+                    deserializedApplicationGroupInner.withSku(Sku.fromJson(reader));
                 } else if ("plan".equals(fieldName)) {
-                    deserializedApplicationGroupInner
-                        .withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
+                    deserializedApplicationGroupInner.withPlan(Plan.fromJson(reader));
                 } else if ("systemData".equals(fieldName)) {
                     deserializedApplicationGroupInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
