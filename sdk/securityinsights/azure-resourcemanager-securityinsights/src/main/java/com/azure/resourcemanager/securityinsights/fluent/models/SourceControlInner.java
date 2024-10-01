@@ -5,35 +5,111 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
-/** Represents a SourceControl in Azure Security Insights. */
+/**
+ * Represents a SourceControl in Azure Security Insights.
+ */
 @Fluent
 public final class SourceControlInner extends ResourceWithEtag {
     /*
      * source control properties
      */
-    @JsonProperty(value = "properties")
-    private SourceControlProperties innerProperties;
+    private SourceControlProperties innerProperties = new SourceControlProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /**
+     * Creates an instance of SourceControlInner class.
+     */
+    public SourceControlInner() {
+    }
 
     /**
      * Get the innerProperties property: source control properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SourceControlProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    @Override
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SourceControlInner withEtag(String etag) {
         super.withEtag(etag);
@@ -42,7 +118,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the id property: The id (a Guid) of the source control.
-     *
+     * 
      * @return the id value.
      */
     public String idPropertiesId() {
@@ -50,22 +126,8 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the id property: The id (a Guid) of the source control.
-     *
-     * @param id the id value to set.
-     * @return the SourceControlInner object itself.
-     */
-    public SourceControlInner withIdPropertiesId(String id) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withId(id);
-        return this;
-    }
-
-    /**
      * Get the version property: The version number associated with the source control.
-     *
+     * 
      * @return the version value.
      */
     public Version version() {
@@ -73,22 +135,8 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the version property: The version number associated with the source control.
-     *
-     * @param version the version value to set.
-     * @return the SourceControlInner object itself.
-     */
-    public SourceControlInner withVersion(Version version) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withVersion(version);
-        return this;
-    }
-
-    /**
      * Get the displayName property: The display name of the source control.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -97,7 +145,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the displayName property: The display name of the source control.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SourceControlInner object itself.
      */
@@ -111,7 +159,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the description property: A description of the source control.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -120,7 +168,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the description property: A description of the source control.
-     *
+     * 
      * @param description the description value to set.
      * @return the SourceControlInner object itself.
      */
@@ -134,7 +182,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the repoType property: The repository type of the source control.
-     *
+     * 
      * @return the repoType value.
      */
     public RepoType repoType() {
@@ -143,7 +191,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the repoType property: The repository type of the source control.
-     *
+     * 
      * @param repoType the repoType value to set.
      * @return the SourceControlInner object itself.
      */
@@ -157,7 +205,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the contentTypes property: Array of source control content types.
-     *
+     * 
      * @return the contentTypes value.
      */
     public List<ContentType> contentTypes() {
@@ -166,7 +214,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the contentTypes property: Array of source control content types.
-     *
+     * 
      * @param contentTypes the contentTypes value to set.
      * @return the SourceControlInner object itself.
      */
@@ -180,7 +228,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the repository property: Repository metadata.
-     *
+     * 
      * @return the repository value.
      */
     public Repository repository() {
@@ -189,7 +237,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the repository property: Repository metadata.
-     *
+     * 
      * @param repository the repository value to set.
      * @return the SourceControlInner object itself.
      */
@@ -202,8 +250,56 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     * 
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.innerProperties() == null ? null : this.innerProperties().servicePrincipal();
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     * 
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withServicePrincipal(ServicePrincipal servicePrincipal) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withServicePrincipal(servicePrincipal);
+        return this;
+    }
+
+    /**
+     * Get the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @return the repositoryAccess value.
+     */
+    public RepositoryAccess repositoryAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().repositoryAccess();
+    }
+
+    /**
+     * Set the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     * 
+     * @param repositoryAccess the repositoryAccess value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withRepositoryAccess(repositoryAccess);
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
-     *
+     * 
      * @return the repositoryResourceInfo value.
      */
     public RepositoryResourceInfo repositoryResourceInfo() {
@@ -212,7 +308,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Set the repositoryResourceInfo property: Information regarding the resources created in user's repository.
-     *
+     * 
      * @param repositoryResourceInfo the repositoryResourceInfo value to set.
      * @return the SourceControlInner object itself.
      */
@@ -226,7 +322,7 @@ public final class SourceControlInner extends ResourceWithEtag {
 
     /**
      * Get the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
-     *
+     * 
      * @return the lastDeploymentInfo value.
      */
     public DeploymentInfo lastDeploymentInfo() {
@@ -234,29 +330,77 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
-     *
-     * @param lastDeploymentInfo the lastDeploymentInfo value to set.
-     * @return the SourceControlInner object itself.
+     * Get the pullRequest property: Information regarding the pull request of the source control.
+     * 
+     * @return the pullRequest value.
      */
-    public SourceControlInner withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withLastDeploymentInfo(lastDeploymentInfo);
-        return this;
+    public PullRequest pullRequest() {
+        return this.innerProperties() == null ? null : this.innerProperties().pullRequest();
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model SourceControlInner"));
+        } else {
             innerProperties().validate();
         }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SourceControlInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("etag", etag());
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of SourceControlInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of SourceControlInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the SourceControlInner.
+     */
+    public static SourceControlInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            SourceControlInner deserializedSourceControlInner = new SourceControlInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedSourceControlInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedSourceControlInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedSourceControlInner.type = reader.getString();
+                } else if ("etag".equals(fieldName)) {
+                    deserializedSourceControlInner.withEtag(reader.getString());
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedSourceControlInner.systemData = SystemData.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedSourceControlInner.innerProperties = SourceControlProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedSourceControlInner;
+        });
     }
 }
