@@ -14,6 +14,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.HighAvailabil
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailabilityValidationEstimation;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerDetachVNetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Servers;
@@ -144,6 +145,25 @@ public final class ServersImpl implements Servers {
     public void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters,
         Context context) {
         this.serviceClient().resetGtid(resourceGroupName, serverName, parameters, context);
+    }
+
+    public Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters) {
+        ServerInner inner = this.serviceClient().detachVNet(resourceGroupName, serverName, parameters);
+        if (inner != null) {
+            return new ServerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters,
+        Context context) {
+        ServerInner inner = this.serviceClient().detachVNet(resourceGroupName, serverName, parameters, context);
+        if (inner != null) {
+            return new ServerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Server getById(String id) {
