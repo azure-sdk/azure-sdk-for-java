@@ -16,7 +16,7 @@ public interface AppAttachPackages {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -30,7 +30,7 @@ public interface AppAttachPackages {
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -42,26 +42,27 @@ public interface AppAttachPackages {
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
+     * @param force Force flag to delete App Attach package.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String appAttachPackageName,
+    Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Boolean force,
         Context context);
 
     /**
      * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
+     * @param appAttachPackageName The name of the App Attach package arm object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String appAttachPackageName);
+    void delete(String resourceGroupName, String appAttachPackageName);
 
     /**
      * List App Attach packages in resource group.
@@ -78,7 +79,8 @@ public interface AppAttachPackages {
      * List App Attach packages in resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, package owner
+     * name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -99,8 +101,8 @@ public interface AppAttachPackages {
     /**
      * List App Attach packages in subscription.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param filter OData filter expression. Valid properties for filtering are package name, resource group, host
+     * pool, package owner name, and custom data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -146,13 +148,14 @@ public interface AppAttachPackages {
      * Remove an App Attach Package.
      * 
      * @param id the resource ID.
+     * @param force Force flag to delete App Attach package.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    Response<Void> deleteByIdWithResponse(String id, Boolean force, Context context);
 
     /**
      * Begins definition for a new AppAttachPackage resource.

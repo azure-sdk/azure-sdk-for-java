@@ -288,7 +288,7 @@ public final class MsixPackageInner extends ProxyResource {
     }
 
     /**
-     * Get the version property: Package version found in the appxmanifest.xml.
+     * Get the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */
@@ -297,7 +297,7 @@ public final class MsixPackageInner extends ProxyResource {
     }
 
     /**
-     * Set the version property: Package version found in the appxmanifest.xml.
+     * Set the version property: Package Version found in the appxmanifest.xml.
      * 
      * @param version the version value to set.
      * @return the MsixPackageInner object itself.
