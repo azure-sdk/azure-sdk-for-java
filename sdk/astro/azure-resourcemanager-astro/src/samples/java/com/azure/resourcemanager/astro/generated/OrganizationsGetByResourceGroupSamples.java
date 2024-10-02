@@ -9,7 +9,7 @@ package com.azure.resourcemanager.astro.generated;
  */
 public final class OrganizationsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/liftrastronomer/resource-manager/Astronomer.Astro/stable/2024-08-27/examples/
      * Organizations_Get_MaximumSet_Gen.json
      */
     /**
@@ -18,7 +18,7 @@ public final class OrganizationsGetByResourceGroupSamples {
      * @param manager Entry point to AstroManager.
      */
     public static void organizationsGetGeneratedByMaximumSetRule(com.azure.resourcemanager.astro.AstroManager manager) {
-        manager.organizations().getByResourceGroupWithResponse("rgastronomer", "S PS",
-            com.azure.core.util.Context.NONE);
+        manager.organizations()
+            .getByResourceGroupWithResponse("rgastronomer", "U.1-:7", com.azure.core.util.Context.NONE);
     }
 }
