@@ -9,9 +9,11 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +21,11 @@ import java.util.Map;
  */
 @Fluent
 public final class ManagedNetworkSettingsInner implements JsonSerializable<ManagedNetworkSettingsInner> {
+    /*
+     * Firewall Sku used for FQDN Rules
+     */
+    private FirewallSku firewallSku;
+
     /*
      * Isolation mode for the managed network of a machine learning workspace.
      */
@@ -39,10 +46,35 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
      */
     private ManagedNetworkProvisionStatusInner status;
 
+    /*
+     * The changeableIsolationModes property.
+     */
+    private List<IsolationMode> changeableIsolationModes;
+
     /**
      * Creates an instance of ManagedNetworkSettingsInner class.
      */
     public ManagedNetworkSettingsInner() {
+    }
+
+    /**
+     * Get the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @return the firewallSku value.
+     */
+    public FirewallSku firewallSku() {
+        return this.firewallSku;
+    }
+
+    /**
+     * Set the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @param firewallSku the firewallSku value to set.
+     * @return the ManagedNetworkSettingsInner object itself.
+     */
+    public ManagedNetworkSettingsInner withFirewallSku(FirewallSku firewallSku) {
+        this.firewallSku = firewallSku;
+        return this;
     }
 
     /**
@@ -115,6 +147,15 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
     }
 
     /**
+     * Get the changeableIsolationModes property: The changeableIsolationModes property.
+     * 
+     * @return the changeableIsolationModes value.
+     */
+    public List<IsolationMode> changeableIsolationModes() {
+        return this.changeableIsolationModes;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -138,6 +179,7 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("firewallSku", this.firewallSku == null ? null : this.firewallSku.toString());
         jsonWriter.writeStringField("isolationMode", this.isolationMode == null ? null : this.isolationMode.toString());
         jsonWriter.writeMapField("outboundRules", this.outboundRules, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("status", this.status);
@@ -159,7 +201,9 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("isolationMode".equals(fieldName)) {
+                if ("firewallSku".equals(fieldName)) {
+                    deserializedManagedNetworkSettingsInner.firewallSku = FirewallSku.fromString(reader.getString());
+                } else if ("isolationMode".equals(fieldName)) {
                     deserializedManagedNetworkSettingsInner.isolationMode
                         = IsolationMode.fromString(reader.getString());
                 } else if ("networkId".equals(fieldName)) {
@@ -170,6 +214,10 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
                 } else if ("status".equals(fieldName)) {
                     deserializedManagedNetworkSettingsInner.status
                         = ManagedNetworkProvisionStatusInner.fromJson(reader);
+                } else if ("changeableIsolationModes".equals(fieldName)) {
+                    List<IsolationMode> changeableIsolationModes
+                        = reader.readArray(reader1 -> IsolationMode.fromString(reader1.getString()));
+                    deserializedManagedNetworkSettingsInner.changeableIsolationModes = changeableIsolationModes;
                 } else {
                     reader.skipChildren();
                 }

@@ -39,22 +39,22 @@ public final class RegistryDataReferencesClientImpl implements RegistryDataRefer
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of RegistryDataReferencesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RegistryDataReferencesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    RegistryDataReferencesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(RegistryDataReferencesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesRegistryDataReferences to be used by
-     * the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesRegistryDataReferences to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

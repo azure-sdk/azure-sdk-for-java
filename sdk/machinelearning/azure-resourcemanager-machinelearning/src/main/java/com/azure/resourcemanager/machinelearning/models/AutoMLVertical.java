@@ -29,15 +29,15 @@ public class AutoMLVertical implements JsonSerializable<AutoMLVertical> {
     private LogVerbosity logVerbosity;
 
     /*
-     * [Required] Training data input.
-     */
-    private MLTableJobInput trainingData;
-
-    /*
      * Target column name: This is prediction values column.
      * Also known as label column name in context of classification tasks.
      */
     private String targetColumnName;
+
+    /*
+     * [Required] Training data input.
+     */
+    private MLTableJobInput trainingData;
 
     /**
      * Creates an instance of AutoMLVertical class.
@@ -75,26 +75,6 @@ public class AutoMLVertical implements JsonSerializable<AutoMLVertical> {
     }
 
     /**
-     * Get the trainingData property: [Required] Training data input.
-     * 
-     * @return the trainingData value.
-     */
-    public MLTableJobInput trainingData() {
-        return this.trainingData;
-    }
-
-    /**
-     * Set the trainingData property: [Required] Training data input.
-     * 
-     * @param trainingData the trainingData value to set.
-     * @return the AutoMLVertical object itself.
-     */
-    public AutoMLVertical withTrainingData(MLTableJobInput trainingData) {
-        this.trainingData = trainingData;
-        return this;
-    }
-
-    /**
      * Get the targetColumnName property: Target column name: This is prediction values column.
      * Also known as label column name in context of classification tasks.
      * 
@@ -113,6 +93,26 @@ public class AutoMLVertical implements JsonSerializable<AutoMLVertical> {
      */
     public AutoMLVertical withTargetColumnName(String targetColumnName) {
         this.targetColumnName = targetColumnName;
+        return this;
+    }
+
+    /**
+     * Get the trainingData property: [Required] Training data input.
+     * 
+     * @return the trainingData value.
+     */
+    public MLTableJobInput trainingData() {
+        return this.trainingData;
+    }
+
+    /**
+     * Set the trainingData property: [Required] Training data input.
+     * 
+     * @param trainingData the trainingData value to set.
+     * @return the AutoMLVertical object itself.
+     */
+    public AutoMLVertical withTrainingData(MLTableJobInput trainingData) {
+        this.trainingData = trainingData;
         return this;
     }
 

@@ -68,7 +68,6 @@ public final class CustomSeasonality extends Seasonality {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

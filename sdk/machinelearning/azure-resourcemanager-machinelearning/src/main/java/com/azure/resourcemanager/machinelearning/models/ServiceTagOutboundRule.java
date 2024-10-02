@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Service Tag Outbound Rule for the managed network of a machine learning workspace.
@@ -24,6 +25,11 @@ public final class ServiceTagOutboundRule extends OutboundRule {
      * Service Tag destination for a Service Tag Outbound Rule for the managed network of a machine learning workspace.
      */
     private ServiceTagDestination destination;
+
+    /*
+     * The parentRuleNames property.
+     */
+    private List<String> parentRuleNames;
 
     /**
      * Creates an instance of ServiceTagOutboundRule class.
@@ -64,6 +70,16 @@ public final class ServiceTagOutboundRule extends OutboundRule {
     }
 
     /**
+     * Get the parentRuleNames property: The parentRuleNames property.
+     * 
+     * @return the parentRuleNames value.
+     */
+    @Override
+    public List<String> parentRuleNames() {
+        return this.parentRuleNames;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -88,7 +104,6 @@ public final class ServiceTagOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
         if (destination() != null) {
             destination().validate();
         }
@@ -124,6 +139,9 @@ public final class ServiceTagOutboundRule extends OutboundRule {
 
                 if ("category".equals(fieldName)) {
                     deserializedServiceTagOutboundRule.withCategory(RuleCategory.fromString(reader.getString()));
+                } else if ("parentRuleNames".equals(fieldName)) {
+                    List<String> parentRuleNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedServiceTagOutboundRule.parentRuleNames = parentRuleNames;
                 } else if ("status".equals(fieldName)) {
                     deserializedServiceTagOutboundRule.withStatus(RuleStatus.fromString(reader.getString()));
                 } else if ("type".equals(fieldName)) {
