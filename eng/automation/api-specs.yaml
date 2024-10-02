@@ -53,6 +53,8 @@ eventhub:
   suffix: generated
 fist:
   service: iotfirmwaredefense
+github-network:
+  service: githubnetwork
 graphservicesprod:
   service: graphservices
 hdinsight/Microsoft.HDInsight/HDInsightOnAks:
