@@ -5,24 +5,42 @@
 package com.azure.resourcemanager.graphservices.generated;
 
 import com.azure.resourcemanager.graphservices.models.AccountResourceProperties;
+import java.util.HashMap;
+import java.util.Map;
 
-/** Samples for Accounts CreateAndUpdate. */
+/**
+ * Samples for Accounts CreateAndUpdate.
+ */
 public final class AccountsCreateAndUpdateSamples {
     /*
-     * x-ms-original-file: specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2023-04-13/examples/Accounts_Create.json
+     * x-ms-original-file:
+     * specification/graphservicesprod/resource-manager/Microsoft.GraphServices/stable/2023-04-13/examples/
+     * Accounts_Create.json
      */
     /**
      * Sample code: Create Account resource.
-     *
+     * 
      * @param manager Entry point to GraphServicesManager.
      */
     public static void createAccountResource(com.azure.resourcemanager.graphservices.GraphServicesManager manager) {
-        manager
-            .accounts()
+        manager.accounts()
             .define("11111111-aaaa-1111-bbbb-1111111111111")
             .withRegion((String) null)
             .withExistingResourceGroup("testResourceGroupGRAM")
             .withProperties(new AccountResourceProperties().withAppId("11111111-aaaa-1111-bbbb-111111111111"))
+            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
