@@ -13,7 +13,9 @@ import java.util.Map;
  */
 public final class DevCentersUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Patch.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/DevCenters_Patch
+     * .json
      */
     /**
      * Sample code: DevCenters_Update.

@@ -9,7 +9,9 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class EnvironmentTypesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Delete.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * EnvironmentTypes_Delete.json
      */
     /**
      * Sample code: EnvironmentTypes_Delete.

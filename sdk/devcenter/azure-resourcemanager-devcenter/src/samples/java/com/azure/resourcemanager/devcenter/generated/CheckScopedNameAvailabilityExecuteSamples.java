@@ -11,7 +11,9 @@ import com.azure.resourcemanager.devcenter.models.CheckScopedNameAvailabilityReq
  */
 public final class CheckScopedNameAvailabilityExecuteSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/CheckScopedNameAvailability_ProjectCatalog.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * CheckScopedNameAvailability_ProjectCatalog.json
      */
     /**
      * Sample code: ProjectCatalogNameAvailability.
@@ -28,7 +30,9 @@ public final class CheckScopedNameAvailabilityExecuteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/CheckScopedNameAvailability_DevCenterCatalog.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * CheckScopedNameAvailability_DevCenterCatalog.json
      */
     /**
      * Sample code: DevcenterCatalogNameAvailability.

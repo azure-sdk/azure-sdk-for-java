@@ -13,7 +13,9 @@ import com.azure.resourcemanager.devcenter.models.Sku;
  */
 public final class DevBoxDefinitionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Create.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * DevBoxDefinitions_Create.json
      */
     /**
      * Sample code: DevBoxDefinitions_Create.
@@ -26,7 +28,7 @@ public final class DevBoxDefinitionsCreateOrUpdateSamples {
             .withRegion("centralus")
             .withExistingDevcenter("rg1", "Contoso")
             .withImageReference(new ImageReference().withId(
-                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/version/1.0.0"))
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/versions/1.0.0"))
             .withSku(new Sku().withName("Preview"))
             .withHibernateSupport(HibernateSupport.ENABLED)
             .create();

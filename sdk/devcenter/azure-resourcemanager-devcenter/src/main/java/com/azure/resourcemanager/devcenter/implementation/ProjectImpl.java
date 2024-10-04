@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.devcenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.ProjectInner;
+import com.azure.resourcemanager.devcenter.models.InheritedSettingsForProject;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.Project;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
@@ -172,6 +174,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
             .getByResourceGroupWithResponse(resourceGroupName, projectName, context)
             .getValue();
         return this;
+    }
+
+    public Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context) {
+        return serviceManager.projects().getInheritedSettingsWithResponse(resourceGroupName, projectName, context);
+    }
+
+    public InheritedSettingsForProject getInheritedSettings() {
+        return serviceManager.projects().getInheritedSettings(resourceGroupName, projectName);
     }
 
     public ProjectImpl withRegion(Region location) {

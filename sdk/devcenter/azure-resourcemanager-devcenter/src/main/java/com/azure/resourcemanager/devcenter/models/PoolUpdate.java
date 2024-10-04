@@ -5,8 +5,11 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.fluent.models.PoolUpdateProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +21,6 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     /*
      * Properties of a pool to be updated.
      */
-    @JsonProperty(value = "properties")
     private PoolUpdateProperties innerProperties;
 
     /**
@@ -55,7 +57,33 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
-     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Get the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinitionType();
+    }
+
+    /**
+     * Set the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @param devBoxDefinitionType the devBoxDefinitionType value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withDevBoxDefinitionType(devBoxDefinitionType);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
@@ -64,7 +92,8 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
-     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @param devBoxDefinitionName the devBoxDefinitionName value to set.
      * @return the PoolUpdate object itself.
@@ -74,6 +103,31 @@ public final class PoolUpdate extends TrackedResourceUpdate {
             this.innerProperties = new PoolUpdateProperties();
         }
         this.innerProperties().withDevBoxDefinitionName(devBoxDefinitionName);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinition();
+    }
+
+    /**
+     * Set the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @param devBoxDefinition the devBoxDefinition value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withDevBoxDefinition(devBoxDefinition);
         return this;
     }
 
@@ -170,6 +224,29 @@ public final class PoolUpdate extends TrackedResourceUpdate {
             this.innerProperties = new PoolUpdateProperties();
         }
         this.innerProperties().withStopOnDisconnect(stopOnDisconnect);
+        return this;
+    }
+
+    /**
+     * Get the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @return the stopOnNoConnect value.
+     */
+    public StopOnNoConnectConfiguration stopOnNoConnect() {
+        return this.innerProperties() == null ? null : this.innerProperties().stopOnNoConnect();
+    }
+
+    /**
+     * Set the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @param stopOnNoConnect the stopOnNoConnect value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withStopOnNoConnect(stopOnNoConnect);
         return this;
     }
 
@@ -278,9 +355,51 @@ public final class PoolUpdate extends TrackedResourceUpdate {
      */
     @Override
     public void validate() {
-        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PoolUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PoolUpdate if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the PoolUpdate.
+     */
+    public static PoolUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PoolUpdate deserializedPoolUpdate = new PoolUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPoolUpdate.withTags(tags);
+                } else if ("location".equals(fieldName)) {
+                    deserializedPoolUpdate.withLocation(reader.getString());
+                } else if ("properties".equals(fieldName)) {
+                    deserializedPoolUpdate.innerProperties = PoolUpdateProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPoolUpdate;
+        });
     }
 }

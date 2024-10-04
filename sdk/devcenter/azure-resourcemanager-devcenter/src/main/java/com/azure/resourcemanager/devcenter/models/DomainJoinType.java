@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -23,6 +22,11 @@ public final class DomainJoinType extends ExpandableStringEnum<DomainJoinType> {
     public static final DomainJoinType AZURE_ADJOIN = fromString("AzureADJoin");
 
     /**
+     * Static value None for DomainJoinType.
+     */
+    public static final DomainJoinType NONE = fromString("None");
+
+    /**
      * Creates a new instance of DomainJoinType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -37,7 +41,6 @@ public final class DomainJoinType extends ExpandableStringEnum<DomainJoinType> {
      * @param name a name to look for.
      * @return the corresponding DomainJoinType.
      */
-    @JsonCreator
     public static DomainJoinType fromString(String name) {
         return fromString(name, DomainJoinType.class);
     }

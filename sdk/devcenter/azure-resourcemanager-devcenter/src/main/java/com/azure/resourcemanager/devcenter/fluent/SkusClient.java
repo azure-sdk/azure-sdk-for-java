@@ -15,6 +15,33 @@ import com.azure.resourcemanager.devcenter.fluent.models.DevCenterSkuInner;
  */
 public interface SkusClient {
     /**
+     * Lists SKUs available to the project.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return results of the Microsoft.DevCenter SKU list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DevCenterSkuInner> listByProject(String resourceGroupName, String projectName);
+
+    /**
+     * Lists SKUs available to the project.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param projectName The name of the project.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return results of the Microsoft.DevCenter SKU list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DevCenterSkuInner> listByProject(String resourceGroupName, String projectName, Context context);
+
+    /**
      * Lists the Microsoft.DevCenter SKUs available in a subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

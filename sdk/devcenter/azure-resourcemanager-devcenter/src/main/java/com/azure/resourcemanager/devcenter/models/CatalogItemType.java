@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -16,6 +15,11 @@ public final class CatalogItemType extends ExpandableStringEnum<CatalogItemType>
      * Static value EnvironmentDefinition for CatalogItemType.
      */
     public static final CatalogItemType ENVIRONMENT_DEFINITION = fromString("EnvironmentDefinition");
+
+    /**
+     * Static value ImageDefinition for CatalogItemType.
+     */
+    public static final CatalogItemType IMAGE_DEFINITION = fromString("ImageDefinition");
 
     /**
      * Creates a new instance of CatalogItemType value.
@@ -32,7 +36,6 @@ public final class CatalogItemType extends ExpandableStringEnum<CatalogItemType>
      * @param name a name to look for.
      * @return the corresponding CatalogItemType.
      */
-    @JsonCreator
     public static CatalogItemType fromString(String name) {
         return fromString(name, CatalogItemType.class);
     }

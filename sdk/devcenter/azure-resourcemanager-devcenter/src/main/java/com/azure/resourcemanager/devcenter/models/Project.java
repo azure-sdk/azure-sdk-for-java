@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devcenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -452,4 +453,24 @@ public interface Project {
      * @return the refreshed resource.
      */
     Project refresh(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project along with {@link Response}.
+     */
+    Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context);
+
+    /**
+     * Gets applicable inherited settings for this project.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return applicable inherited settings for this project.
+     */
+    InheritedSettingsForProject getInheritedSettings();
 }
