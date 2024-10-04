@@ -88,11 +88,28 @@ public interface Pool {
     ProvisioningState provisioningState();
 
     /**
-     * Gets the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Gets the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or
+     * if one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    PoolDevBoxDefinitionType devBoxDefinitionType();
+
+    /**
+     * Gets the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
     String devBoxDefinitionName();
+
+    /**
+     * Gets the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    PoolDevBoxDefinition devBoxDefinition();
 
     /**
      * Gets the networkConnectionName property: Name of a Network Connection in parent Project of this Pool.
@@ -123,6 +140,13 @@ public interface Pool {
      * @return the stopOnDisconnect value.
      */
     StopOnDisconnectConfiguration stopOnDisconnect();
+
+    /**
+     * Gets the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @return the stopOnNoConnect value.
+     */
+    StopOnNoConnectConfiguration stopOnNoConnect();
 
     /**
      * Gets the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
@@ -239,11 +263,13 @@ public interface Pool {
          * The stage of the Pool definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithDevBoxDefinitionName,
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithDevBoxDefinitionType,
+            DefinitionStages.WithDevBoxDefinitionName, DefinitionStages.WithDevBoxDefinition,
             DefinitionStages.WithNetworkConnectionName, DefinitionStages.WithLicenseType,
             DefinitionStages.WithLocalAdministrator, DefinitionStages.WithStopOnDisconnect,
-            DefinitionStages.WithSingleSignOnStatus, DefinitionStages.WithDisplayName,
-            DefinitionStages.WithVirtualNetworkType, DefinitionStages.WithManagedVirtualNetworkRegions {
+            DefinitionStages.WithStopOnNoConnect, DefinitionStages.WithSingleSignOnStatus,
+            DefinitionStages.WithDisplayName, DefinitionStages.WithVirtualNetworkType,
+            DefinitionStages.WithManagedVirtualNetworkRegions {
             /**
              * Executes the create request.
              * 
@@ -274,16 +300,48 @@ public interface Pool {
         }
 
         /**
+         * The stage of the Pool definition allowing to specify devBoxDefinitionType.
+         */
+        interface WithDevBoxDefinitionType {
+            /**
+             * Specifies the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box
+             * Definition or if one is provided directly..
+             * 
+             * @param devBoxDefinitionType Indicates if the pool is created from an existing Dev Box Definition or if
+             * one is provided directly.
+             * @return the next definition stage.
+             */
+            WithCreate withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType);
+        }
+
+        /**
          * The stage of the Pool definition allowing to specify devBoxDefinitionName.
          */
         interface WithDevBoxDefinitionName {
             /**
              * Specifies the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+             * Will be ignored if devBoxDefinitionType is Value..
              * 
-             * @param devBoxDefinitionName Name of a Dev Box definition in parent Project of this Pool.
+             * @param devBoxDefinitionName Name of a Dev Box definition in parent Project of this Pool. Will be ignored
+             * if devBoxDefinitionType is Value.
              * @return the next definition stage.
              */
             WithCreate withDevBoxDefinitionName(String devBoxDefinitionName);
+        }
+
+        /**
+         * The stage of the Pool definition allowing to specify devBoxDefinition.
+         */
+        interface WithDevBoxDefinition {
+            /**
+             * Specifies the devBoxDefinition property: A definition of the machines that are created from this Pool.
+             * Will be ignored if devBoxDefinitionType is Reference or not provided..
+             * 
+             * @param devBoxDefinition A definition of the machines that are created from this Pool. Will be ignored if
+             * devBoxDefinitionType is Reference or not provided.
+             * @return the next definition stage.
+             */
+            WithCreate withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition);
         }
 
         /**
@@ -342,6 +400,20 @@ public interface Pool {
              * @return the next definition stage.
              */
             WithCreate withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect);
+        }
+
+        /**
+         * The stage of the Pool definition allowing to specify stopOnNoConnect.
+         */
+        interface WithStopOnNoConnect {
+            /**
+             * Specifies the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created
+             * in this pool..
+             * 
+             * @param stopOnNoConnect Stop on no connect configuration settings for Dev Boxes created in this pool.
+             * @return the next definition stage.
+             */
+            WithCreate withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect);
         }
 
         /**
@@ -413,10 +485,12 @@ public interface Pool {
     /**
      * The template for Pool update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithDevBoxDefinitionName,
-        UpdateStages.WithNetworkConnectionName, UpdateStages.WithLicenseType, UpdateStages.WithLocalAdministrator,
-        UpdateStages.WithStopOnDisconnect, UpdateStages.WithSingleSignOnStatus, UpdateStages.WithDisplayName,
-        UpdateStages.WithVirtualNetworkType, UpdateStages.WithManagedVirtualNetworkRegions {
+    interface Update
+        extends UpdateStages.WithTags, UpdateStages.WithDevBoxDefinitionType, UpdateStages.WithDevBoxDefinitionName,
+        UpdateStages.WithDevBoxDefinition, UpdateStages.WithNetworkConnectionName, UpdateStages.WithLicenseType,
+        UpdateStages.WithLocalAdministrator, UpdateStages.WithStopOnDisconnect, UpdateStages.WithStopOnNoConnect,
+        UpdateStages.WithSingleSignOnStatus, UpdateStages.WithDisplayName, UpdateStages.WithVirtualNetworkType,
+        UpdateStages.WithManagedVirtualNetworkRegions {
         /**
          * Executes the update request.
          * 
@@ -451,16 +525,48 @@ public interface Pool {
         }
 
         /**
+         * The stage of the Pool update allowing to specify devBoxDefinitionType.
+         */
+        interface WithDevBoxDefinitionType {
+            /**
+             * Specifies the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box
+             * Definition or if one is provided directly..
+             * 
+             * @param devBoxDefinitionType Indicates if the pool is created from an existing Dev Box Definition or if
+             * one is provided directly.
+             * @return the next definition stage.
+             */
+            Update withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType);
+        }
+
+        /**
          * The stage of the Pool update allowing to specify devBoxDefinitionName.
          */
         interface WithDevBoxDefinitionName {
             /**
              * Specifies the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+             * Will be ignored if devBoxDefinitionType is Value..
              * 
-             * @param devBoxDefinitionName Name of a Dev Box definition in parent Project of this Pool.
+             * @param devBoxDefinitionName Name of a Dev Box definition in parent Project of this Pool. Will be ignored
+             * if devBoxDefinitionType is Value.
              * @return the next definition stage.
              */
             Update withDevBoxDefinitionName(String devBoxDefinitionName);
+        }
+
+        /**
+         * The stage of the Pool update allowing to specify devBoxDefinition.
+         */
+        interface WithDevBoxDefinition {
+            /**
+             * Specifies the devBoxDefinition property: A definition of the machines that are created from this Pool.
+             * Will be ignored if devBoxDefinitionType is Reference or not provided..
+             * 
+             * @param devBoxDefinition A definition of the machines that are created from this Pool. Will be ignored if
+             * devBoxDefinitionType is Reference or not provided.
+             * @return the next definition stage.
+             */
+            Update withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition);
         }
 
         /**
@@ -519,6 +625,20 @@ public interface Pool {
              * @return the next definition stage.
              */
             Update withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect);
+        }
+
+        /**
+         * The stage of the Pool update allowing to specify stopOnNoConnect.
+         */
+        interface WithStopOnNoConnect {
+            /**
+             * Specifies the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created
+             * in this pool..
+             * 
+             * @param stopOnNoConnect Stop on no connect configuration settings for Dev Boxes created in this pool.
+             * @return the next definition stage.
+             */
+            Update withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect);
         }
 
         /**

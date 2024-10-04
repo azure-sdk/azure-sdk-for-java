@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.DevCenterInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,6 +79,13 @@ public interface DevCenter {
     String devCenterUri();
 
     /**
+     * Gets the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    String planId();
+
+    /**
      * Gets the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
      * 
@@ -99,6 +107,30 @@ public interface DevCenter {
      * @return the projectCatalogSettings value.
      */
     DevCenterProjectCatalogSettings projectCatalogSettings();
+
+    /**
+     * Gets the networkSettings property: Network settings that will be enforced on network resources associated with
+     * the Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    DevCenterNetworkSettings networkSettings();
+
+    /**
+     * Gets the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that
+     * belong to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    DevBoxProvisioningSettings devBoxProvisioningSettings();
+
+    /**
+     * Gets the restrictedResourceTypes property: Indicates the resource types that are restricted from being accessed
+     * by a project unless allowed by a project policy.
+     * 
+     * @return the restrictedResourceTypes value.
+     */
+    List<DevCenterResourceType> restrictedResourceTypes();
 
     /**
      * Gets the region of the resource.
@@ -183,9 +215,10 @@ public interface DevCenter {
          * The stage of the DevCenter definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption,
-            DefinitionStages.WithDisplayName, DefinitionStages.WithProjectCatalogSettings {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithPlanId, DefinitionStages.WithEncryption, DefinitionStages.WithDisplayName,
+            DefinitionStages.WithProjectCatalogSettings, DefinitionStages.WithNetworkSettings,
+            DefinitionStages.WithDevBoxProvisioningSettings, DefinitionStages.WithRestrictedResourceTypes {
             /**
              * Executes the create request.
              * 
@@ -229,6 +262,19 @@ public interface DevCenter {
         }
 
         /**
+         * The stage of the DevCenter definition allowing to specify planId.
+         */
+        interface WithPlanId {
+            /**
+             * Specifies the planId property: Resource Id of an associated Plan.
+             * 
+             * @param planId Resource Id of an associated Plan.
+             * @return the next definition stage.
+             */
+            WithCreate withPlanId(String planId);
+        }
+
+        /**
          * The stage of the DevCenter definition allowing to specify encryption.
          */
         interface WithEncryption {
@@ -269,6 +315,51 @@ public interface DevCenter {
              */
             WithCreate withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings);
         }
+
+        /**
+         * The stage of the DevCenter definition allowing to specify networkSettings.
+         */
+        interface WithNetworkSettings {
+            /**
+             * Specifies the networkSettings property: Network settings that will be enforced on network resources
+             * associated with the Dev Center..
+             * 
+             * @param networkSettings Network settings that will be enforced on network resources associated with the
+             * Dev Center.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkSettings(DevCenterNetworkSettings networkSettings);
+        }
+
+        /**
+         * The stage of the DevCenter definition allowing to specify devBoxProvisioningSettings.
+         */
+        interface WithDevBoxProvisioningSettings {
+            /**
+             * Specifies the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev
+             * Boxes that belong to this dev center..
+             * 
+             * @param devBoxProvisioningSettings Settings to be used in the provisioning of all Dev Boxes that belong to
+             * this dev center.
+             * @return the next definition stage.
+             */
+            WithCreate withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings);
+        }
+
+        /**
+         * The stage of the DevCenter definition allowing to specify restrictedResourceTypes.
+         */
+        interface WithRestrictedResourceTypes {
+            /**
+             * Specifies the restrictedResourceTypes property: Indicates the resource types that are restricted from
+             * being accessed by a project unless allowed by a project policy..
+             * 
+             * @param restrictedResourceTypes Indicates the resource types that are restricted from being accessed by a
+             * project unless allowed by a project policy.
+             * @return the next definition stage.
+             */
+            WithCreate withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes);
+        }
     }
 
     /**
@@ -281,8 +372,10 @@ public interface DevCenter {
     /**
      * The template for DevCenter update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithEncryption,
-        UpdateStages.WithDisplayName, UpdateStages.WithProjectCatalogSettings {
+    interface Update
+        extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithPlanId, UpdateStages.WithEncryption,
+        UpdateStages.WithDisplayName, UpdateStages.WithProjectCatalogSettings, UpdateStages.WithNetworkSettings,
+        UpdateStages.WithDevBoxProvisioningSettings, UpdateStages.WithRestrictedResourceTypes {
         /**
          * Executes the update request.
          * 
@@ -330,6 +423,19 @@ public interface DevCenter {
         }
 
         /**
+         * The stage of the DevCenter update allowing to specify planId.
+         */
+        interface WithPlanId {
+            /**
+             * Specifies the planId property: Resource Id of an associated Plan.
+             * 
+             * @param planId Resource Id of an associated Plan.
+             * @return the next definition stage.
+             */
+            Update withPlanId(String planId);
+        }
+
+        /**
          * The stage of the DevCenter update allowing to specify encryption.
          */
         interface WithEncryption {
@@ -369,6 +475,51 @@ public interface DevCenter {
              * @return the next definition stage.
              */
             Update withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings);
+        }
+
+        /**
+         * The stage of the DevCenter update allowing to specify networkSettings.
+         */
+        interface WithNetworkSettings {
+            /**
+             * Specifies the networkSettings property: Network settings that will be enforced on network resources
+             * associated with the Dev Center..
+             * 
+             * @param networkSettings Network settings that will be enforced on network resources associated with the
+             * Dev Center.
+             * @return the next definition stage.
+             */
+            Update withNetworkSettings(DevCenterNetworkSettings networkSettings);
+        }
+
+        /**
+         * The stage of the DevCenter update allowing to specify devBoxProvisioningSettings.
+         */
+        interface WithDevBoxProvisioningSettings {
+            /**
+             * Specifies the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev
+             * Boxes that belong to this dev center..
+             * 
+             * @param devBoxProvisioningSettings Settings to be used in the provisioning of all Dev Boxes that belong to
+             * this dev center.
+             * @return the next definition stage.
+             */
+            Update withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings);
+        }
+
+        /**
+         * The stage of the DevCenter update allowing to specify restrictedResourceTypes.
+         */
+        interface WithRestrictedResourceTypes {
+            /**
+             * Specifies the restrictedResourceTypes property: Indicates the resource types that are restricted from
+             * being accessed by a project unless allowed by a project policy..
+             * 
+             * @param restrictedResourceTypes Indicates the resource types that are restricted from being accessed by a
+             * project unless allowed by a project policy.
+             * @return the next definition stage.
+             */
+            Update withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes);
         }
     }
 
