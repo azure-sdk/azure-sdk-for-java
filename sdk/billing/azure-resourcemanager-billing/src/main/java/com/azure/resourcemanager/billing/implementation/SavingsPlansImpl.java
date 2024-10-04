@@ -13,10 +13,10 @@ import com.azure.resourcemanager.billing.fluent.SavingsPlansClient;
 import com.azure.resourcemanager.billing.fluent.models.SavingsPlanModelInner;
 import com.azure.resourcemanager.billing.fluent.models.SavingsPlanValidateResponseInner;
 import com.azure.resourcemanager.billing.models.SavingsPlanModel;
-import com.azure.resourcemanager.billing.models.SavingsPlans;
 import com.azure.resourcemanager.billing.models.SavingsPlanUpdateRequest;
 import com.azure.resourcemanager.billing.models.SavingsPlanUpdateValidateRequest;
 import com.azure.resourcemanager.billing.models.SavingsPlanValidateResponse;
+import com.azure.resourcemanager.billing.models.SavingsPlans;
 
 public final class SavingsPlansImpl implements SavingsPlans {
     private static final ClientLogger LOGGER = new ClientLogger(SavingsPlansImpl.class);

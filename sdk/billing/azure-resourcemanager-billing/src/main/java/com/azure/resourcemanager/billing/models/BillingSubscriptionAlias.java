@@ -230,7 +230,7 @@ public interface BillingSubscriptionAlias {
 
     /**
      * Gets the offerId property: The offer ID for the subscription. This field is only available for the Microsoft
-     * Online Services Program billing accounts.
+     * Online Services Program billing accounts or billing accounts with agreement type Enterprise Agreement.
      * 
      * @return the offerId value.
      */

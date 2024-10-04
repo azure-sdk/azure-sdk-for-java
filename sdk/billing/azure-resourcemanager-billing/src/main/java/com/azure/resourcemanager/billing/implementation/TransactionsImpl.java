@@ -15,9 +15,9 @@ import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
 import com.azure.resourcemanager.billing.fluent.models.TransactionSummaryInner;
 import com.azure.resourcemanager.billing.models.DocumentDownloadResult;
 import com.azure.resourcemanager.billing.models.Transaction;
-import com.azure.resourcemanager.billing.models.Transactions;
 import com.azure.resourcemanager.billing.models.TransactionSummary;
 import com.azure.resourcemanager.billing.models.TransactionType;
+import com.azure.resourcemanager.billing.models.Transactions;
 import java.time.LocalDate;
 
 public final class TransactionsImpl implements Transactions {
