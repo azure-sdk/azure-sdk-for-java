@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-import com.azure.resourcemanager.billing.models.CancellationReason;
 import com.azure.resourcemanager.billing.models.CancelSubscriptionRequest;
+import com.azure.resourcemanager.billing.models.CancellationReason;
 
 /**
  * Samples for BillingSubscriptions Cancel.
