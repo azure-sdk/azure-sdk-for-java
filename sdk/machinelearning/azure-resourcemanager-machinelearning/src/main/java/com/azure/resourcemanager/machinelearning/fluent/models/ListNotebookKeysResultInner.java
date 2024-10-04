@@ -17,12 +17,12 @@ import java.io.IOException;
 @Immutable
 public final class ListNotebookKeysResultInner implements JsonSerializable<ListNotebookKeysResultInner> {
     /*
-     * The primaryAccessKey property.
+     * The primary access key of the Notebook
      */
     private String primaryAccessKey;
 
     /*
-     * The secondaryAccessKey property.
+     * The secondary access key of the Notebook
      */
     private String secondaryAccessKey;
 
@@ -33,7 +33,7 @@ public final class ListNotebookKeysResultInner implements JsonSerializable<ListN
     }
 
     /**
-     * Get the primaryAccessKey property: The primaryAccessKey property.
+     * Get the primaryAccessKey property: The primary access key of the Notebook.
      * 
      * @return the primaryAccessKey value.
      */
@@ -42,7 +42,7 @@ public final class ListNotebookKeysResultInner implements JsonSerializable<ListN
     }
 
     /**
-     * Get the secondaryAccessKey property: The secondaryAccessKey property.
+     * Get the secondaryAccessKey property: The secondary access key of the Notebook.
      * 
      * @return the secondaryAccessKey value.
      */
