@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -28,10 +28,11 @@ import com.azure.resourcemanager.elasticsan.fluent.ElasticSansClient;
 import com.azure.resourcemanager.elasticsan.fluent.OperationsClient;
 import com.azure.resourcemanager.elasticsan.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.elasticsan.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.elasticsan.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.elasticsan.fluent.SkusClient;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeGroupsClient;
-import com.azure.resourcemanager.elasticsan.fluent.VolumesClient;
 import com.azure.resourcemanager.elasticsan.fluent.VolumeSnapshotsClient;
+import com.azure.resourcemanager.elasticsan.fluent.VolumesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -201,6 +202,20 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
     }
 
     /**
+     * The ResourceProvidersClient object to access its operations.
+     */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /**
      * The PrivateEndpointConnectionsClient object to access its operations.
      */
     private final PrivateEndpointConnectionsClient privateEndpointConnections;
@@ -259,12 +274,13 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-01";
+        this.apiVersion = "2024-07-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.elasticSans = new ElasticSansClientImpl(this);
         this.volumeGroups = new VolumeGroupsClientImpl(this);
         this.volumes = new VolumesClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.volumeSnapshots = new VolumeSnapshotsClientImpl(this);
