@@ -13,18 +13,6 @@ import java.util.Collection;
 public final class BatchNodePlacementPolicyType extends ExpandableStringEnum<BatchNodePlacementPolicyType> {
 
     /**
-     * All nodes in the pool will be allocated in the same region.
-     */
-    @Generated
-    public static final BatchNodePlacementPolicyType REGIONAL = fromString("regional");
-
-    /**
-     * Nodes in the pool will be spread across different availability zones with best effort balancing.
-     */
-    @Generated
-    public static final BatchNodePlacementPolicyType ZONAL = fromString("zonal");
-
-    /**
      * Creates a new instance of BatchNodePlacementPolicyType value.
      *
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -54,4 +42,40 @@ public final class BatchNodePlacementPolicyType extends ExpandableStringEnum<Bat
     public static Collection<BatchNodePlacementPolicyType> values() {
         return values(BatchNodePlacementPolicyType.class);
     }
+
+    /**
+     * The path for multi-instances task to shared their files.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType SHARED = fromString("Shared");
+
+    /**
+     * The path for start task.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType STARTUP = fromString("Startup");
+
+    /**
+     * The path contains all virtual file systems are mounted on this node.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType VFS_MOUNTS = fromString("VfsMounts");
+
+    /**
+     * The task path.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType TASK = fromString("Task");
+
+    /**
+     * The job-prep task path.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType JOB_PREP = fromString("JobPrep");
+
+    /**
+     * The applications path.
+     */
+    @Generated
+    public static final BatchNodePlacementPolicyType APPLICATIONS = fromString("Applications");
 }
