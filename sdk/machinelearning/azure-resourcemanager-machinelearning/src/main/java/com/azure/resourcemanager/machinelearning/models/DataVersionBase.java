@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.DataVersionBaseInner;
@@ -83,14 +84,14 @@ public interface DataVersionBase {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, name.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
              * @param name Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingData(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingData(String resourceGroupName, String registryName, String name);
         }
 
         /**
@@ -189,23 +190,26 @@ public interface DataVersionBase {
     DataVersionBase refresh(Context context);
 
     /**
-     * Publish version asset into registry.
+     * Generate a storage location and credential for the client to upload a data asset to.
      * 
-     * @param body Destination registry info.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
+     * @param body Pending upload request object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
      */
-    void publish(DestinationAsset body, Context context);
+    Response<PendingUploadResponseDto> createOrGetStartPendingUploadWithResponse(PendingUploadRequestDto body,
+        Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a data asset to.
+     * 
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    PendingUploadResponseDto createOrGetStartPendingUpload(PendingUploadRequestDto body);
 }

@@ -20,39 +20,19 @@ import java.util.List;
 public final class FeaturesetVersionResourceArmPaginatedResult
     implements JsonSerializable<FeaturesetVersionResourceArmPaginatedResult> {
     /*
-     * An array of objects of type FeaturesetVersion.
-     */
-    private List<FeaturesetVersionInner> value;
-
-    /*
      * The link to the next page of FeaturesetVersion objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type FeaturesetVersion.
+     */
+    private List<FeaturesetVersionInner> value;
 
     /**
      * Creates an instance of FeaturesetVersionResourceArmPaginatedResult class.
      */
     public FeaturesetVersionResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type FeaturesetVersion.
-     * 
-     * @return the value value.
-     */
-    public List<FeaturesetVersionInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type FeaturesetVersion.
-     * 
-     * @param value the value value to set.
-     * @return the FeaturesetVersionResourceArmPaginatedResult object itself.
-     */
-    public FeaturesetVersionResourceArmPaginatedResult withValue(List<FeaturesetVersionInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class FeaturesetVersionResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type FeaturesetVersion.
+     * 
+     * @return the value value.
+     */
+    public List<FeaturesetVersionInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type FeaturesetVersion.
+     * 
+     * @param value the value value to set.
+     * @return the FeaturesetVersionResourceArmPaginatedResult object itself.
+     */
+    public FeaturesetVersionResourceArmPaginatedResult withValue(List<FeaturesetVersionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class FeaturesetVersionResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class FeaturesetVersionResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedFeaturesetVersionResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<FeaturesetVersionInner> value
                         = reader.readArray(reader1 -> FeaturesetVersionInner.fromJson(reader1));
                     deserializedFeaturesetVersionResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedFeaturesetVersionResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

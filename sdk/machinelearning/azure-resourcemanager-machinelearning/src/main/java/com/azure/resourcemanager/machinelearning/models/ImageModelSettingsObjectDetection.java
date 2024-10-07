@@ -415,8 +415,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withAmsGradient(Boolean amsGradient) {
-        super.withAmsGradient(amsGradient);
+    public ImageModelSettingsObjectDetection withAdvancedSettings(String advancedSettings) {
+        super.withAdvancedSettings(advancedSettings);
         return this;
     }
 
@@ -424,8 +424,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withAdvancedSettings(String advancedSettings) {
-        super.withAdvancedSettings(advancedSettings);
+    public ImageModelSettingsObjectDetection withAmsGradient(Boolean amsGradient) {
+        super.withAmsGradient(amsGradient);
         return this;
     }
 
@@ -469,8 +469,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withCheckpointRunId(String checkpointRunId) {
-        super.withCheckpointRunId(checkpointRunId);
+    public ImageModelSettingsObjectDetection withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        super.withCheckpointModel(checkpointModel);
         return this;
     }
 
@@ -478,8 +478,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withCheckpointModel(MLFlowModelJobInput checkpointModel) {
-        super.withCheckpointModel(checkpointModel);
+    public ImageModelSettingsObjectDetection withCheckpointRunId(String checkpointRunId) {
+        super.withCheckpointRunId(checkpointRunId);
         return this;
     }
 
@@ -523,8 +523,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withEvaluationFrequency(Integer evaluationFrequency) {
-        super.withEvaluationFrequency(evaluationFrequency);
+    public ImageModelSettingsObjectDetection withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
+        super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
@@ -532,8 +532,8 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsObjectDetection withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
-        super.withEnableOnnxNormalization(enableOnnxNormalization);
+    public ImageModelSettingsObjectDetection withEvaluationFrequency(Integer evaluationFrequency) {
+        super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
@@ -706,7 +706,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
      */
     @Override
     public void validate() {
-        super.validate();
+        if (checkpointModel() != null) {
+            checkpointModel().validate();
+        }
     }
 
     /**
@@ -715,20 +717,20 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeBooleanField("amsGradient", amsGradient());
         jsonWriter.writeStringField("advancedSettings", advancedSettings());
+        jsonWriter.writeBooleanField("amsGradient", amsGradient());
         jsonWriter.writeStringField("augmentations", augmentations());
         jsonWriter.writeNumberField("beta1", beta1());
         jsonWriter.writeNumberField("beta2", beta2());
         jsonWriter.writeNumberField("checkpointFrequency", checkpointFrequency());
-        jsonWriter.writeStringField("checkpointRunId", checkpointRunId());
         jsonWriter.writeJsonField("checkpointModel", checkpointModel());
+        jsonWriter.writeStringField("checkpointRunId", checkpointRunId());
         jsonWriter.writeBooleanField("distributed", distributed());
         jsonWriter.writeBooleanField("earlyStopping", earlyStopping());
         jsonWriter.writeNumberField("earlyStoppingDelay", earlyStoppingDelay());
         jsonWriter.writeNumberField("earlyStoppingPatience", earlyStoppingPatience());
-        jsonWriter.writeNumberField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeBooleanField("enableOnnxNormalization", enableOnnxNormalization());
+        jsonWriter.writeNumberField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeNumberField("gradientAccumulationStep", gradientAccumulationStep());
         jsonWriter.writeNumberField("layersToFreeze", layersToFreeze());
         jsonWriter.writeNumberField("learningRate", learningRate());
@@ -781,11 +783,11 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("amsGradient".equals(fieldName)) {
+                if ("advancedSettings".equals(fieldName)) {
+                    deserializedImageModelSettingsObjectDetection.withAdvancedSettings(reader.getString());
+                } else if ("amsGradient".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withAmsGradient(reader.getNullable(JsonReader::getBoolean));
-                } else if ("advancedSettings".equals(fieldName)) {
-                    deserializedImageModelSettingsObjectDetection.withAdvancedSettings(reader.getString());
                 } else if ("augmentations".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection.withAugmentations(reader.getString());
                 } else if ("beta1".equals(fieldName)) {
@@ -795,11 +797,11 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
                 } else if ("checkpointFrequency".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withCheckpointFrequency(reader.getNullable(JsonReader::getInt));
-                } else if ("checkpointRunId".equals(fieldName)) {
-                    deserializedImageModelSettingsObjectDetection.withCheckpointRunId(reader.getString());
                 } else if ("checkpointModel".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withCheckpointModel(MLFlowModelJobInput.fromJson(reader));
+                } else if ("checkpointRunId".equals(fieldName)) {
+                    deserializedImageModelSettingsObjectDetection.withCheckpointRunId(reader.getString());
                 } else if ("distributed".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withDistributed(reader.getNullable(JsonReader::getBoolean));
@@ -812,12 +814,12 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withEarlyStoppingPatience(reader.getNullable(JsonReader::getInt));
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelSettingsObjectDetection
-                        .withEvaluationFrequency(reader.getNullable(JsonReader::getInt));
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withEnableOnnxNormalization(reader.getNullable(JsonReader::getBoolean));
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelSettingsObjectDetection
+                        .withEvaluationFrequency(reader.getNullable(JsonReader::getInt));
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelSettingsObjectDetection
                         .withGradientAccumulationStep(reader.getNullable(JsonReader::getInt));

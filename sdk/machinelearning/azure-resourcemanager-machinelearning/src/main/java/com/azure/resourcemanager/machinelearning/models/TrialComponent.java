@@ -29,6 +29,11 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
     private String command;
 
     /*
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
+     */
+    private DistributionConfiguration distribution;
+
+    /*
      * [Required] The ARM resource ID of the Environment specification for the job.
      */
     private String environmentId;
@@ -37,11 +42,6 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
      * Environment variables included in the job.
      */
     private Map<String, String> environmentVariables;
-
-    /*
-     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
-     */
-    private DistributionConfiguration distribution;
 
     /*
      * Compute Resource configuration for the job.
@@ -95,6 +95,28 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
     }
 
     /**
+     * Get the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     * 
+     * @return the distribution value.
+     */
+    public DistributionConfiguration distribution() {
+        return this.distribution;
+    }
+
+    /**
+     * Set the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     * 
+     * @param distribution the distribution value to set.
+     * @return the TrialComponent object itself.
+     */
+    public TrialComponent withDistribution(DistributionConfiguration distribution) {
+        this.distribution = distribution;
+        return this;
+    }
+
+    /**
      * Get the environmentId property: [Required] The ARM resource ID of the Environment specification for the job.
      * 
      * @return the environmentId value.
@@ -135,28 +157,6 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
     }
 
     /**
-     * Get the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
-     * Tensorflow, PyTorch, or null.
-     * 
-     * @return the distribution value.
-     */
-    public DistributionConfiguration distribution() {
-        return this.distribution;
-    }
-
-    /**
-     * Set the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
-     * Tensorflow, PyTorch, or null.
-     * 
-     * @param distribution the distribution value to set.
-     * @return the TrialComponent object itself.
-     */
-    public TrialComponent withDistribution(DistributionConfiguration distribution) {
-        this.distribution = distribution;
-        return this;
-    }
-
-    /**
      * Get the resources property: Compute Resource configuration for the job.
      * 
      * @return the resources value.
@@ -186,12 +186,12 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property command in model TrialComponent"));
         }
+        if (distribution() != null) {
+            distribution().validate();
+        }
         if (environmentId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property environmentId in model TrialComponent"));
-        }
-        if (distribution() != null) {
-            distribution().validate();
         }
         if (resources() != null) {
             resources().validate();
@@ -209,9 +209,9 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
         jsonWriter.writeStringField("command", this.command);
         jsonWriter.writeStringField("environmentId", this.environmentId);
         jsonWriter.writeStringField("codeId", this.codeId);
+        jsonWriter.writeJsonField("distribution", this.distribution);
         jsonWriter.writeMapField("environmentVariables", this.environmentVariables,
             (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("distribution", this.distribution);
         jsonWriter.writeJsonField("resources", this.resources);
         return jsonWriter.writeEndObject();
     }
@@ -238,11 +238,11 @@ public final class TrialComponent implements JsonSerializable<TrialComponent> {
                     deserializedTrialComponent.environmentId = reader.getString();
                 } else if ("codeId".equals(fieldName)) {
                     deserializedTrialComponent.codeId = reader.getString();
+                } else if ("distribution".equals(fieldName)) {
+                    deserializedTrialComponent.distribution = DistributionConfiguration.fromJson(reader);
                 } else if ("environmentVariables".equals(fieldName)) {
                     Map<String, String> environmentVariables = reader.readMap(reader1 -> reader1.getString());
                     deserializedTrialComponent.environmentVariables = environmentVariables;
-                } else if ("distribution".equals(fieldName)) {
-                    deserializedTrialComponent.distribution = DistributionConfiguration.fromJson(reader);
                 } else if ("resources".equals(fieldName)) {
                     deserializedTrialComponent.resources = JobResourceConfiguration.fromJson(reader);
                 } else {

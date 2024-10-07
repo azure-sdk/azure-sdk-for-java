@@ -32,7 +32,7 @@ import java.util.Map;
 public final class RegistriesRemoveRegionsSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registries/removeRegions.json
      */
     /**

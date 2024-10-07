@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -50,8 +51,8 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFolderDataVersion withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public UriFolderDataVersion withIsAnonymous(Boolean isAnonymous) {
+        super.withIsAnonymous(isAnonymous);
         return this;
     }
 
@@ -59,8 +60,8 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFolderDataVersion withIsAnonymous(Boolean isAnonymous) {
-        super.withIsAnonymous(isAnonymous);
+    public UriFolderDataVersion withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -77,8 +78,8 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFolderDataVersion withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public UriFolderDataVersion withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -86,8 +87,8 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFolderDataVersion withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public UriFolderDataVersion withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -98,8 +99,13 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (dataUri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataUri in model UriFolderDataVersion"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(UriFolderDataVersion.class);
 
     /**
      * {@inheritDoc}
@@ -109,10 +115,10 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("dataUri", dataUri());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -137,16 +143,16 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
                     deserializedUriFolderDataVersion.withDataUri(reader.getString());
                 } else if ("description".equals(fieldName)) {
                     deserializedUriFolderDataVersion.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedUriFolderDataVersion.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedUriFolderDataVersion.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedUriFolderDataVersion.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedUriFolderDataVersion.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedUriFolderDataVersion.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedUriFolderDataVersion.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("dataType".equals(fieldName)) {
                     deserializedUriFolderDataVersion.dataType = DataType.fromString(reader.getString());
                 } else {

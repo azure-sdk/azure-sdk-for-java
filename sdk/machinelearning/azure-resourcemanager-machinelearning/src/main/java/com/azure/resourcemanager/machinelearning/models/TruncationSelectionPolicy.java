@@ -65,8 +65,8 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
      * {@inheritDoc}
      */
     @Override
-    public TruncationSelectionPolicy withEvaluationInterval(Integer evaluationInterval) {
-        super.withEvaluationInterval(evaluationInterval);
+    public TruncationSelectionPolicy withDelayEvaluation(Integer delayEvaluation) {
+        super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
@@ -74,8 +74,8 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
      * {@inheritDoc}
      */
     @Override
-    public TruncationSelectionPolicy withDelayEvaluation(Integer delayEvaluation) {
-        super.withDelayEvaluation(delayEvaluation);
+    public TruncationSelectionPolicy withEvaluationInterval(Integer evaluationInterval) {
+        super.withEvaluationInterval(evaluationInterval);
         return this;
     }
 
@@ -86,7 +86,6 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -95,8 +94,8 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeNumberField("delayEvaluation", delayEvaluation());
+        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeStringField("policyType", this.policyType == null ? null : this.policyType.toString());
         jsonWriter.writeNumberField("truncationPercentage", this.truncationPercentage);
         return jsonWriter.writeEndObject();
@@ -117,11 +116,11 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("evaluationInterval".equals(fieldName)) {
+                if ("delayEvaluation".equals(fieldName)) {
+                    deserializedTruncationSelectionPolicy.withDelayEvaluation(reader.getNullable(JsonReader::getInt));
+                } else if ("evaluationInterval".equals(fieldName)) {
                     deserializedTruncationSelectionPolicy
                         .withEvaluationInterval(reader.getNullable(JsonReader::getInt));
-                } else if ("delayEvaluation".equals(fieldName)) {
-                    deserializedTruncationSelectionPolicy.withDelayEvaluation(reader.getNullable(JsonReader::getInt));
                 } else if ("policyType".equals(fieldName)) {
                     deserializedTruncationSelectionPolicy.policyType
                         = EarlyTerminationPolicyType.fromString(reader.getString());

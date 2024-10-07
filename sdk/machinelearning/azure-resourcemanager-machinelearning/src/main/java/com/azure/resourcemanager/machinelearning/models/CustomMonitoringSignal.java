@@ -24,6 +24,11 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
     private MonitoringSignalType signalType = MonitoringSignalType.CUSTOM;
 
     /*
+     * [Required] Reference to the component asset used to calculate the custom metrics.
+     */
+    private String componentId;
+
+    /*
      * Monitoring assets to take as input. Key is the component input port name, value is the data asset.
      */
     private Map<String, MonitoringInputDataBase> inputAssets;
@@ -33,11 +38,6 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
      * value.
      */
     private Map<String, JobInput> inputs;
-
-    /*
-     * [Required] Reference to the component asset used to calculate the custom metrics.
-     */
-    private String componentId;
 
     /*
      * [Required] A list of metrics to calculate and their associated thresholds.
@@ -58,6 +58,26 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
     @Override
     public MonitoringSignalType signalType() {
         return this.signalType;
+    }
+
+    /**
+     * Get the componentId property: [Required] Reference to the component asset used to calculate the custom metrics.
+     * 
+     * @return the componentId value.
+     */
+    public String componentId() {
+        return this.componentId;
+    }
+
+    /**
+     * Set the componentId property: [Required] Reference to the component asset used to calculate the custom metrics.
+     * 
+     * @param componentId the componentId value to set.
+     * @return the CustomMonitoringSignal object itself.
+     */
+    public CustomMonitoringSignal withComponentId(String componentId) {
+        this.componentId = componentId;
+        return this;
     }
 
     /**
@@ -101,26 +121,6 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
      */
     public CustomMonitoringSignal withInputs(Map<String, JobInput> inputs) {
         this.inputs = inputs;
-        return this;
-    }
-
-    /**
-     * Get the componentId property: [Required] Reference to the component asset used to calculate the custom metrics.
-     * 
-     * @return the componentId value.
-     */
-    public String componentId() {
-        return this.componentId;
-    }
-
-    /**
-     * Set the componentId property: [Required] Reference to the component asset used to calculate the custom metrics.
-     * 
-     * @param componentId the componentId value to set.
-     * @return the CustomMonitoringSignal object itself.
-     */
-    public CustomMonitoringSignal withComponentId(String componentId) {
-        this.componentId = componentId;
         return this;
     }
 
@@ -169,7 +169,11 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (componentId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property componentId in model CustomMonitoringSignal"));
+        }
         if (inputAssets() != null) {
             inputAssets().values().forEach(e -> {
                 if (e != null) {
@@ -183,11 +187,6 @@ public final class CustomMonitoringSignal extends MonitoringSignalBase {
                     e.validate();
                 }
             });
-        }
-        if (componentId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property componentId in model CustomMonitoringSignal"));
         }
         if (metricThresholds() == null) {
             throw LOGGER.atError()

@@ -83,14 +83,14 @@ public interface ComponentVersion {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, componentName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param componentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingComponent(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingComponent(String resourceGroupName, String registryName, String componentName);
         }
 
         /**
@@ -187,25 +187,4 @@ public interface ComponentVersion {
      * @return the refreshed resource.
      */
     ComponentVersion refresh(Context context);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body, Context context);
 }

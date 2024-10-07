@@ -26,14 +26,14 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
     private ConnectionAuthType authType = ConnectionAuthType.NONE;
 
     /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
      * Group based on connection category
      */
     private ConnectionGroup group;
+
+    /*
+     * The createdByWorkspaceArmId property.
+     */
+    private String createdByWorkspaceArmId;
 
     /**
      * Creates an instance of NoneAuthTypeWorkspaceConnectionProperties class.
@@ -52,16 +52,6 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
     }
 
     /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
      * Get the group property: Group based on connection category.
      * 
      * @return the group value.
@@ -69,6 +59,16 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
     @Override
     public ConnectionGroup group() {
         return this.group;
+    }
+
+    /**
+     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
+     * 
+     * @return the createdByWorkspaceArmId value.
+     */
+    @Override
+    public String createdByWorkspaceArmId() {
+        return this.createdByWorkspaceArmId;
     }
 
     /**
@@ -150,7 +150,6 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
