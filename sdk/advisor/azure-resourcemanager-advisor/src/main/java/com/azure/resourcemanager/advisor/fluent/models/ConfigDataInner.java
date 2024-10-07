@@ -6,27 +6,55 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.advisor.models.DurationModel;
+import java.io.IOException;
 import java.util.List;
 
-/** The Advisor configuration data structure. */
+/**
+ * The Advisor configuration data structure.
+ */
 @Fluent
 public final class ConfigDataInner extends ProxyResource {
     /*
      * The Advisor configuration data structure.
      */
-    @JsonProperty(value = "properties")
     private ConfigDataProperties innerProperties;
 
-    /** Creates an instance of ConfigDataInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
+    /**
+     * Creates an instance of ConfigDataInner class.
+     */
     public ConfigDataInner() {
     }
 
     /**
      * Get the innerProperties property: The Advisor configuration data structure.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ConfigDataProperties innerProperties() {
@@ -34,8 +62,47 @@ public final class ConfigDataInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * Get the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @return the exclude value.
      */
     public Boolean exclude() {
@@ -44,7 +111,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Set the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @param exclude the exclude value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -59,7 +126,7 @@ public final class ConfigDataInner extends ProxyResource {
     /**
      * Get the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @return the lowCpuThreshold value.
      */
     public CpuThreshold lowCpuThreshold() {
@@ -69,7 +136,7 @@ public final class ConfigDataInner extends ProxyResource {
     /**
      * Set the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @param lowCpuThreshold the lowCpuThreshold value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -82,8 +149,33 @@ public final class ConfigDataInner extends ProxyResource {
     }
 
     /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.innerProperties() == null ? null : this.innerProperties().duration();
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConfigDataInner object itself.
+     */
+    public ConfigDataInner withDuration(DurationModel duration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigDataProperties();
+        }
+        this.innerProperties().withDuration(duration);
+        return this;
+    }
+
+    /**
      * Get the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @return the digests value.
      */
     public List<DigestConfig> digests() {
@@ -92,7 +184,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Set the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @param digests the digests value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -106,12 +198,57 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ConfigDataInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ConfigDataInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ConfigDataInner.
+     */
+    public static ConfigDataInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ConfigDataInner deserializedConfigDataInner = new ConfigDataInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedConfigDataInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedConfigDataInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedConfigDataInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedConfigDataInner.innerProperties = ConfigDataProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedConfigDataInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedConfigDataInner;
+        });
     }
 }
