@@ -44,21 +44,21 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ManagedNetworkProvisionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ManagedNetworkProvisionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ManagedNetworkProvisionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(ManagedNetworkProvisionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesManagedNetworkProvisions to be used by
+     * The interface defining all the services for AzureMachineLearningServicesManagedNetworkProvisions to be used by
      * the proxy service to perform REST calls.
      */
     @Host("{$host}")

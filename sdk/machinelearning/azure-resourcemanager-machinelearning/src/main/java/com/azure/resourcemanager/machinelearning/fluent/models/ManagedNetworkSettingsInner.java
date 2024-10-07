@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.io.IOException;
@@ -38,6 +39,11 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
      * Status of the Provisioning for the managed network of a machine learning workspace.
      */
     private ManagedNetworkProvisionStatusInner status;
+
+    /*
+     * Firewall Sku used for FQDN Rules
+     */
+    private FirewallSku firewallSku;
 
     /**
      * Creates an instance of ManagedNetworkSettingsInner class.
@@ -115,6 +121,26 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
     }
 
     /**
+     * Get the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @return the firewallSku value.
+     */
+    public FirewallSku firewallSku() {
+        return this.firewallSku;
+    }
+
+    /**
+     * Set the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @param firewallSku the firewallSku value to set.
+     * @return the ManagedNetworkSettingsInner object itself.
+     */
+    public ManagedNetworkSettingsInner withFirewallSku(FirewallSku firewallSku) {
+        this.firewallSku = firewallSku;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -141,6 +167,7 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
         jsonWriter.writeStringField("isolationMode", this.isolationMode == null ? null : this.isolationMode.toString());
         jsonWriter.writeMapField("outboundRules", this.outboundRules, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("status", this.status);
+        jsonWriter.writeStringField("firewallSku", this.firewallSku == null ? null : this.firewallSku.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -170,6 +197,8 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
                 } else if ("status".equals(fieldName)) {
                     deserializedManagedNetworkSettingsInner.status
                         = ManagedNetworkProvisionStatusInner.fromJson(reader);
+                } else if ("firewallSku".equals(fieldName)) {
+                    deserializedManagedNetworkSettingsInner.firewallSku = FirewallSku.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

@@ -10,7 +10,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 import com.azure.resourcemanager.machinelearning.models.CodeVersion;
 import com.azure.resourcemanager.machinelearning.models.CodeVersionProperties;
-import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 import com.azure.resourcemanager.machinelearning.models.PendingUploadRequestDto;
 import com.azure.resourcemanager.machinelearning.models.PendingUploadResponseDto;
 
@@ -53,33 +52,30 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String codeName;
 
     private String version;
 
-    public CodeVersionImpl withExistingCode(String resourceGroupName, String workspaceName, String name) {
+    public CodeVersionImpl withExistingCode(String resourceGroupName, String registryName, String codeName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.codeName = codeName;
         return this;
     }
 
     public CodeVersion create() {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryCodeVersions()
+            .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public CodeVersion create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryCodeVersions()
+            .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), context);
         return this;
     }
 
@@ -95,18 +91,15 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
 
     public CodeVersion apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryCodeVersions()
+            .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public CodeVersion apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryCodeVersions()
+            .createOrUpdate(resourceGroupName, registryName, codeName, version, this.innerModel(), context);
         return this;
     }
 
@@ -115,44 +108,37 @@ public final class CodeVersionImpl implements CodeVersion, CodeVersion.Definitio
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "codes");
+        this.registryName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "registries");
+        this.codeName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "codes");
         this.version = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
     public CodeVersion refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+            .getRegistryCodeVersions()
+            .getWithResponse(resourceGroupName, registryName, codeName, version, Context.NONE)
             .getValue();
         return this;
     }
 
     public CodeVersion refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getCodeVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+            .getRegistryCodeVersions()
+            .getWithResponse(resourceGroupName, registryName, codeName, version, context)
             .getValue();
         return this;
     }
 
-    public void publish(DestinationAsset body) {
-        serviceManager.codeVersions().publish(resourceGroupName, workspaceName, name, version, body);
-    }
-
-    public void publish(DestinationAsset body, Context context) {
-        serviceManager.codeVersions().publish(resourceGroupName, workspaceName, name, version, body, context);
-    }
-
     public Response<PendingUploadResponseDto> createOrGetStartPendingUploadWithResponse(PendingUploadRequestDto body,
         Context context) {
-        return serviceManager.codeVersions()
-            .createOrGetStartPendingUploadWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        return serviceManager.registryCodeVersions()
+            .createOrGetStartPendingUploadWithResponse(resourceGroupName, registryName, codeName, version, body,
+                context);
     }
 
     public PendingUploadResponseDto createOrGetStartPendingUpload(PendingUploadRequestDto body) {
-        return serviceManager.codeVersions()
-            .createOrGetStartPendingUpload(resourceGroupName, workspaceName, name, version, body);
+        return serviceManager.registryCodeVersions()
+            .createOrGetStartPendingUpload(resourceGroupName, registryName, codeName, version, body);
     }
 
     public CodeVersionImpl withProperties(CodeVersionProperties properties) {

@@ -12,6 +12,7 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
@@ -32,6 +33,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.machinelearning.fluent.WorkspaceConnectionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionUpdateParameter;
 import reactor.core.publisher.Mono;
 
 /**
@@ -46,21 +48,21 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspaceConnectionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspaceConnectionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspaceConnectionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(WorkspaceConnectionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaceConnections to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaceConnections to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -95,6 +97,17 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("connectionName") String connectionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> update(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("connectionName") String connectionName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") WorkspaceConnectionUpdateParameter body,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -534,6 +547,150 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String connectionName) {
         deleteWithResponse(resourceGroupName, workspaceName, connectionName, Context.NONE);
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> updateWithResponseAsync(
+        String resourceGroupName, String workspaceName, String connectionName,
+        WorkspaceConnectionUpdateParameter body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (connectionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter connectionName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, connectionName, this.client.getApiVersion(), body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> updateWithResponseAsync(
+        String resourceGroupName, String workspaceName, String connectionName, WorkspaceConnectionUpdateParameter body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (connectionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter connectionName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, connectionName, this.client.getApiVersion(), body, accept, context);
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkspaceConnectionPropertiesV2BasicResourceInner> updateAsync(String resourceGroupName,
+        String workspaceName, String connectionName) {
+        final WorkspaceConnectionUpdateParameter body = null;
+        return updateWithResponseAsync(resourceGroupName, workspaceName, connectionName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkspaceConnectionPropertiesV2BasicResourceInner> updateWithResponse(String resourceGroupName,
+        String workspaceName, String connectionName, WorkspaceConnectionUpdateParameter body, Context context) {
+        return updateWithResponseAsync(resourceGroupName, workspaceName, connectionName, body, context).block();
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkspaceConnectionPropertiesV2BasicResourceInner update(String resourceGroupName, String workspaceName,
+        String connectionName) {
+        final WorkspaceConnectionUpdateParameter body = null;
+        return updateWithResponse(resourceGroupName, workspaceName, connectionName, body, Context.NONE).getValue();
     }
 
     /**

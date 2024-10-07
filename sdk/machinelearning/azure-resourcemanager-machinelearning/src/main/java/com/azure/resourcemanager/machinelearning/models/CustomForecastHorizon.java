@@ -68,7 +68,6 @@ public final class CustomForecastHorizon extends ForecastHorizon {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
