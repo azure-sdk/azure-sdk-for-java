@@ -7,7 +7,6 @@ package com.azure.resourcemanager.quota.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionAllocationRequestsClient;
@@ -66,24 +65,21 @@ public final class GroupQuotaSubscriptionAllocationRequestsImpl implements Group
             inner1 -> new QuotaAllocationRequestStatusImpl(inner1, this.manager()));
     }
 
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, QuotaAllocationRequestStatusInner allocateQuotaRequest) {
-        return this.serviceClient()
-            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-                allocateQuotaRequest);
-    }
-
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, QuotaAllocationRequestStatusInner allocateQuotaRequest, Context context) {
-        return this.serviceClient()
-            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, resourceName, allocateQuotaRequest,
-                context);
-    }
-
-    public QuotaAllocationRequestStatus update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, QuotaAllocationRequestStatusInner allocateQuotaRequest) {
+    public QuotaAllocationRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, QuotaAllocationRequestStatusInner allocateQuotaRequest) {
         QuotaAllocationRequestStatusInner inner = this.serviceClient()
-            .update(managementGroupId, groupQuotaName, resourceProviderName, resourceName, allocateQuotaRequest);
+            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, allocateQuotaRequest);
+        if (inner != null) {
+            return new QuotaAllocationRequestStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public QuotaAllocationRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, QuotaAllocationRequestStatusInner allocateQuotaRequest, Context context) {
+        QuotaAllocationRequestStatusInner inner = this.serviceClient()
+            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, allocateQuotaRequest, context);
         if (inner != null) {
             return new QuotaAllocationRequestStatusImpl(inner, this.manager());
         } else {
@@ -92,11 +88,20 @@ public final class GroupQuotaSubscriptionAllocationRequestsImpl implements Group
     }
 
     public QuotaAllocationRequestStatus update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, QuotaAllocationRequestStatusInner allocateQuotaRequest,
-        Context context) {
+        String resourceProviderName, QuotaAllocationRequestStatusInner allocateQuotaRequest) {
         QuotaAllocationRequestStatusInner inner = this.serviceClient()
-            .update(managementGroupId, groupQuotaName, resourceProviderName, resourceName, allocateQuotaRequest,
-                context);
+            .update(managementGroupId, groupQuotaName, resourceProviderName, allocateQuotaRequest);
+        if (inner != null) {
+            return new QuotaAllocationRequestStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public QuotaAllocationRequestStatus update(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, QuotaAllocationRequestStatusInner allocateQuotaRequest, Context context) {
+        QuotaAllocationRequestStatusInner inner = this.serviceClient()
+            .update(managementGroupId, groupQuotaName, resourceProviderName, allocateQuotaRequest, context);
         if (inner != null) {
             return new QuotaAllocationRequestStatusImpl(inner, this.manager());
         } else {

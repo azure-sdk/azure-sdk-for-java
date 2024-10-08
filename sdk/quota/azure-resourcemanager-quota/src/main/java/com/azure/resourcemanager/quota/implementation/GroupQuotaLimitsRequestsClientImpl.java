@@ -13,7 +13,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
-import com.azure.core.annotation.Put;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
@@ -25,7 +25,6 @@ import com.azure.core.http.rest.PagedResponse;
 import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
@@ -72,26 +71,26 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
     @ServiceInterface(name = "AzureQuotaExtensionA")
     public interface GroupQuotaLimitsRequestsService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaRequests/{resourceName}")
-        @ExpectedResponses({ 200, 201 })
+        @Post("/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/createLimitRequest")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("managementGroupId") String managementGroupId,
             @PathParam("groupQuotaName") String groupQuotaName,
             @PathParam("resourceProviderName") String resourceProviderName,
-            @PathParam("resourceName") String resourceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SubmittedResourceRequestStatusInner groupQuotaRequest,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Patch("/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaRequests/{resourceName}")
+        @Patch("/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/createLimitRequest")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("managementGroupId") String managementGroupId,
             @PathParam("groupQuotaName") String groupQuotaName,
             @PathParam("resourceProviderName") String resourceProviderName,
-            @PathParam("resourceName") String resourceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SubmittedResourceRequestStatusInner groupQuotaRequest,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -138,7 +137,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -148,8 +146,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName,
-        SubmittedResourceRequestStatusInner groupQuotaRequest) {
+        String groupQuotaName, String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -164,9 +161,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
         if (resourceProviderName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceProviderName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
         if (groupQuotaRequest != null) {
             groupQuotaRequest.validate();
@@ -174,7 +168,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), managementGroupId, groupQuotaName,
-                resourceProviderName, resourceName, this.client.getApiVersion(), groupQuotaRequest, accept, context))
+                resourceProviderName, this.client.getApiVersion(), groupQuotaRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -192,7 +186,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -203,8 +196,8 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName,
-        SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+        String groupQuotaName, String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -220,16 +213,13 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceProviderName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (groupQuotaRequest != null) {
             groupQuotaRequest.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, this.client.getApiVersion(), groupQuotaRequest, accept, context);
+            resourceProviderName, this.client.getApiVersion(), groupQuotaRequest, accept, context);
     }
 
     /**
@@ -246,7 +236,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -254,13 +243,14 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return the {@link PollerFlux} for polling of status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProxyResource>, ProxyResource> beginCreateOrUpdateAsync(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName,
-        SubmittedResourceRequestStatusInner groupQuotaRequest) {
+    private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
+        beginCreateOrUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName,
+            SubmittedResourceRequestStatusInner groupQuotaRequest) {
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest);
-        return this.client.<ProxyResource, ProxyResource>getLroResult(mono, this.client.getHttpPipeline(),
-            ProxyResource.class, ProxyResource.class, this.client.getContext());
+            resourceProviderName, groupQuotaRequest);
+        return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
+            SubmittedResourceRequestStatusInner.class, this.client.getContext());
     }
 
     /**
@@ -277,20 +267,20 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProxyResource>, ProxyResource> beginCreateOrUpdateAsync(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName) {
+    private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
+        beginCreateOrUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest);
-        return this.client.<ProxyResource, ProxyResource>getLroResult(mono, this.client.getHttpPipeline(),
-            ProxyResource.class, ProxyResource.class, this.client.getContext());
+            resourceProviderName, groupQuotaRequest);
+        return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
+            SubmittedResourceRequestStatusInner.class, this.client.getContext());
     }
 
     /**
@@ -307,7 +297,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -316,14 +305,15 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return the {@link PollerFlux} for polling of status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProxyResource>, ProxyResource> beginCreateOrUpdateAsync(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName,
-        SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+    private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
+        beginCreateOrUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName,
+            SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest, context);
-        return this.client.<ProxyResource, ProxyResource>getLroResult(mono, this.client.getHttpPipeline(),
-            ProxyResource.class, ProxyResource.class, context);
+            resourceProviderName, groupQuotaRequest, context);
+        return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
+            SubmittedResourceRequestStatusInner.class, context);
     }
 
     /**
@@ -340,19 +330,16 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProxyResource>, ProxyResource> beginCreateOrUpdate(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName) {
+    public SyncPoller<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
+        beginCreateOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return this
-            .beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-                groupQuotaRequest)
+        return this.beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest)
             .getSyncPoller();
     }
 
@@ -370,7 +357,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -379,12 +365,12 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return the {@link SyncPoller} for polling of status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProxyResource>, ProxyResource> beginCreateOrUpdate(String managementGroupId,
-        String groupQuotaName, String resourceProviderName, String resourceName,
-        SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+    public SyncPoller<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
+        beginCreateOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
+            SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         return this
-            .beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-                groupQuotaRequest, context)
+            .beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest,
+                context)
             .getSyncPoller();
     }
 
@@ -402,7 +388,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -410,10 +395,11 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return status of a single GroupQuota request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProxyResource> createOrUpdateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
-        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<SubmittedResourceRequestStatusInner> createOrUpdateAsync(String managementGroupId,
+        String groupQuotaName, String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
+        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -430,18 +416,18 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of a single GroupQuota request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProxyResource> createOrUpdateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName) {
+    private Mono<SubmittedResourceRequestStatusInner> createOrUpdateAsync(String managementGroupId,
+        String groupQuotaName, String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest).last().flatMap(this.client::getLroFinalResultOrError);
+        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -458,7 +444,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -467,11 +452,11 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return status of a single GroupQuota request on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProxyResource> createOrUpdateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest,
+    private Mono<SubmittedResourceRequestStatusInner> createOrUpdateAsync(String managementGroupId,
+        String groupQuotaName, String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest,
         Context context) {
-        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest, context).last().flatMap(this.client::getLroFinalResultOrError);
+        return beginCreateOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -488,18 +473,16 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName) {
+    public SubmittedResourceRequestStatusInner createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return createOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest).block();
+        return createOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest).block();
     }
 
     /**
@@ -516,7 +499,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -525,10 +507,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @return status of a single GroupQuota request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
-        return createOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest, context).block();
+    public SubmittedResourceRequestStatusInner createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+        return createOrUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context)
+            .block();
     }
 
     /**
@@ -545,7 +527,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -555,7 +536,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -571,16 +552,13 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceProviderName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (groupQuotaRequest != null) {
             groupQuotaRequest.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), managementGroupId, groupQuotaName,
-                resourceProviderName, resourceName, this.client.getApiVersion(), groupQuotaRequest, accept, context))
+                resourceProviderName, this.client.getApiVersion(), groupQuotaRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -598,7 +576,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -609,8 +586,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest,
-        Context context) {
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -626,16 +602,13 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceProviderName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (groupQuotaRequest != null) {
             groupQuotaRequest.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), managementGroupId, groupQuotaName, resourceProviderName,
-            resourceName, this.client.getApiVersion(), groupQuotaRequest, accept, context);
+            this.client.getApiVersion(), groupQuotaRequest, accept, context);
     }
 
     /**
@@ -652,7 +625,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,9 +634,9 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
         beginUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName,
-            String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest);
+            SubmittedResourceRequestStatusInner groupQuotaRequest) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest);
         return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
             this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
             SubmittedResourceRequestStatusInner.class, this.client.getContext());
@@ -684,7 +656,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -692,11 +663,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
-        beginUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName,
-            String resourceName) {
+        beginUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest);
         return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
             this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
             SubmittedResourceRequestStatusInner.class, this.client.getContext());
@@ -716,7 +686,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -727,10 +696,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
         beginUpdateAsync(String managementGroupId, String groupQuotaName, String resourceProviderName,
-            String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+            SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(managementGroupId, groupQuotaName,
-            resourceProviderName, resourceName, groupQuotaRequest, context);
+            resourceProviderName, groupQuotaRequest, context);
         return this.client.<SubmittedResourceRequestStatusInner, SubmittedResourceRequestStatusInner>getLroResult(mono,
             this.client.getHttpPipeline(), SubmittedResourceRequestStatusInner.class,
             SubmittedResourceRequestStatusInner.class, context);
@@ -750,7 +719,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -758,10 +726,9 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner>
-        beginUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName, String resourceName) {
+        beginUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return this
-            .beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest)
+        return this.beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest)
             .getSyncPoller();
     }
 
@@ -779,7 +746,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -789,11 +755,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SubmittedResourceRequestStatusInner>, SubmittedResourceRequestStatusInner> beginUpdate(
-        String managementGroupId, String groupQuotaName, String resourceProviderName, String resourceName,
+        String managementGroupId, String groupQuotaName, String resourceProviderName,
         SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         return this
-            .beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest,
-                context)
+            .beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context)
             .getSyncPoller();
     }
 
@@ -811,7 +776,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -820,9 +784,9 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SubmittedResourceRequestStatusInner> updateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
-        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest).last().flatMap(this.client::getLroFinalResultOrError);
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest) {
+        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -839,7 +803,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -847,10 +810,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SubmittedResourceRequestStatusInner> updateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName) {
+        String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest).last().flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -867,7 +830,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -877,10 +839,10 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SubmittedResourceRequestStatusInner> updateAsync(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest,
-        Context context) {
-        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName,
-            groupQuotaRequest, context).last().flatMap(this.client::getLroFinalResultOrError);
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+        return beginUpdateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -897,7 +859,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -905,10 +866,9 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SubmittedResourceRequestStatusInner update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName) {
+        String resourceProviderName) {
         final SubmittedResourceRequestStatusInner groupQuotaRequest = null;
-        return updateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest)
-            .block();
+        return updateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest).block();
     }
 
     /**
@@ -925,7 +885,6 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -935,10 +894,8 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SubmittedResourceRequestStatusInner update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest,
-        Context context) {
-        return updateAsync(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest,
-            context).block();
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+        return updateAsync(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context).block();
     }
 
     /**
@@ -1289,9 +1246,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1316,9 +1271,7 @@ public final class GroupQuotaLimitsRequestsClientImpl implements GroupQuotaLimit
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
