@@ -19,12 +19,38 @@ public final class BackupsImpl implements Backups {
 
     private final BackupsClient innerClient;
 
-    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager;
+    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager;
 
     public BackupsImpl(BackupsClient innerClient,
-        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager) {
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public ServerBackup create(String resourceGroupName, String serverName, String backupName) {
+        ServerBackupInner inner = this.serviceClient().create(resourceGroupName, serverName, backupName);
+        if (inner != null) {
+            return new ServerBackupImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ServerBackup create(String resourceGroupName, String serverName, String backupName, Context context) {
+        ServerBackupInner inner = this.serviceClient().create(resourceGroupName, serverName, backupName, context);
+        if (inner != null) {
+            return new ServerBackupImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public void delete(String resourceGroupName, String serverName, String backupName) {
+        this.serviceClient().delete(resourceGroupName, serverName, backupName);
+    }
+
+    public void delete(String resourceGroupName, String serverName, String backupName, Context context) {
+        this.serviceClient().delete(resourceGroupName, serverName, backupName, context);
     }
 
     public Response<ServerBackup> getWithResponse(String resourceGroupName, String serverName, String backupName,
@@ -63,7 +89,7 @@ public final class BackupsImpl implements Backups {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager() {
+    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager manager() {
         return this.serviceManager;
     }
 }
