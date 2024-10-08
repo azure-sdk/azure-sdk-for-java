@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.CodeContainerInner;
 import com.azure.resourcemanager.machinelearning.models.CodeContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Map;
 public final class RegistryCodeContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registry/CodeContainer/createOrUpdate.json
      */
     /**
@@ -26,10 +25,11 @@ public final class RegistryCodeContainersCreateOrUpdateSamples {
     public static void
         createOrUpdateRegistryCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryCodeContainers()
-            .createOrUpdate("testrg123", "testregistry", "testContainer",
-                new CodeContainerInner().withProperties(new CodeContainerProperties().withDescription("string")
-                    .withTags(mapOf("tag1", "value1", "tag2", "value2"))),
-                com.azure.core.util.Context.NONE);
+            .define("testContainer")
+            .withExistingRegistry("testrg123", "testregistry")
+            .withProperties(new CodeContainerProperties().withDescription("string")
+                .withTags(mapOf("tag1", "value1", "tag2", "value2")))
+            .create();
     }
 
     // Use "Map.of" if available

@@ -26,11 +26,6 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
     private String managedIdentityType;
 
     /*
-     * Full arm scope for the Id. For ManagedIdentityType = SystemManaged, this field is null.
-     */
-    private String userManagedIdentityResourceId;
-
-    /*
      * ClientId for the UAMI. For ManagedIdentityType = SystemManaged, this field is null.
      */
     private String userManagedIdentityClientId;
@@ -39,6 +34,11 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
      * PrincipalId for the UAMI. For ManagedIdentityType = SystemManaged, this field is null.
      */
     private String userManagedIdentityPrincipalId;
+
+    /*
+     * Full arm scope for the Id. For ManagedIdentityType = SystemManaged, this field is null.
+     */
+    private String userManagedIdentityResourceId;
 
     /*
      * TenantId for the UAMI. For ManagedIdentityType = SystemManaged, this field is null.
@@ -78,28 +78,6 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
      */
     public ManagedIdentityCredential withManagedIdentityType(String managedIdentityType) {
         this.managedIdentityType = managedIdentityType;
-        return this;
-    }
-
-    /**
-     * Get the userManagedIdentityResourceId property: Full arm scope for the Id. For ManagedIdentityType =
-     * SystemManaged, this field is null.
-     * 
-     * @return the userManagedIdentityResourceId value.
-     */
-    public String userManagedIdentityResourceId() {
-        return this.userManagedIdentityResourceId;
-    }
-
-    /**
-     * Set the userManagedIdentityResourceId property: Full arm scope for the Id. For ManagedIdentityType =
-     * SystemManaged, this field is null.
-     * 
-     * @param userManagedIdentityResourceId the userManagedIdentityResourceId value to set.
-     * @return the ManagedIdentityCredential object itself.
-     */
-    public ManagedIdentityCredential withUserManagedIdentityResourceId(String userManagedIdentityResourceId) {
-        this.userManagedIdentityResourceId = userManagedIdentityResourceId;
         return this;
     }
 
@@ -148,6 +126,28 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
     }
 
     /**
+     * Get the userManagedIdentityResourceId property: Full arm scope for the Id. For ManagedIdentityType =
+     * SystemManaged, this field is null.
+     * 
+     * @return the userManagedIdentityResourceId value.
+     */
+    public String userManagedIdentityResourceId() {
+        return this.userManagedIdentityResourceId;
+    }
+
+    /**
+     * Set the userManagedIdentityResourceId property: Full arm scope for the Id. For ManagedIdentityType =
+     * SystemManaged, this field is null.
+     * 
+     * @param userManagedIdentityResourceId the userManagedIdentityResourceId value to set.
+     * @return the ManagedIdentityCredential object itself.
+     */
+    public ManagedIdentityCredential withUserManagedIdentityResourceId(String userManagedIdentityResourceId) {
+        this.userManagedIdentityResourceId = userManagedIdentityResourceId;
+        return this;
+    }
+
+    /**
      * Get the userManagedIdentityTenantId property: TenantId for the UAMI. For ManagedIdentityType = SystemManaged,
      * this field is null.
      * 
@@ -176,7 +176,6 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -188,9 +187,9 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
         jsonWriter.writeStringField("credentialType",
             this.credentialType == null ? null : this.credentialType.toString());
         jsonWriter.writeStringField("managedIdentityType", this.managedIdentityType);
-        jsonWriter.writeStringField("userManagedIdentityResourceId", this.userManagedIdentityResourceId);
         jsonWriter.writeStringField("userManagedIdentityClientId", this.userManagedIdentityClientId);
         jsonWriter.writeStringField("userManagedIdentityPrincipalId", this.userManagedIdentityPrincipalId);
+        jsonWriter.writeStringField("userManagedIdentityResourceId", this.userManagedIdentityResourceId);
         jsonWriter.writeStringField("userManagedIdentityTenantId", this.userManagedIdentityTenantId);
         return jsonWriter.writeEndObject();
     }
@@ -215,12 +214,12 @@ public final class ManagedIdentityCredential extends DataReferenceCredential {
                         = DataReferenceCredentialType.fromString(reader.getString());
                 } else if ("managedIdentityType".equals(fieldName)) {
                     deserializedManagedIdentityCredential.managedIdentityType = reader.getString();
-                } else if ("userManagedIdentityResourceId".equals(fieldName)) {
-                    deserializedManagedIdentityCredential.userManagedIdentityResourceId = reader.getString();
                 } else if ("userManagedIdentityClientId".equals(fieldName)) {
                     deserializedManagedIdentityCredential.userManagedIdentityClientId = reader.getString();
                 } else if ("userManagedIdentityPrincipalId".equals(fieldName)) {
                     deserializedManagedIdentityCredential.userManagedIdentityPrincipalId = reader.getString();
+                } else if ("userManagedIdentityResourceId".equals(fieldName)) {
+                    deserializedManagedIdentityCredential.userManagedIdentityResourceId = reader.getString();
                 } else if ("userManagedIdentityTenantId".equals(fieldName)) {
                     deserializedManagedIdentityCredential.userManagedIdentityTenantId = reader.getString();
                 } else {
