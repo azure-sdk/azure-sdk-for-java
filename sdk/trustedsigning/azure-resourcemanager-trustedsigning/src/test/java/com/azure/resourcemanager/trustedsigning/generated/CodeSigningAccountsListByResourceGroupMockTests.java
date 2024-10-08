@@ -23,7 +23,7 @@ public final class CodeSigningAccountsListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"accountUri\":\"mnteiwao\",\"sku\":{\"name\":\"Basic\"},\"provisioningState\":\"Deleting\"},\"location\":\"c\",\"tags\":{\"fsrpymzidnse\":\"dcuf\"},\"id\":\"cxtbzsg\",\"name\":\"yc\",\"type\":\"sne\"}]}";
+            = "{\"value\":[{\"properties\":{\"accountUri\":\"awrlyx\",\"sku\":{\"name\":\"Basic\"},\"provisioningState\":\"Canceled\"},\"location\":\"bnwbxgjvtbvpyssz\",\"tags\":{\"guhmuouqfpr\":\"uj\",\"nguitnwuizgazxu\":\"zw\"},\"id\":\"izuckyfihrfidfvz\",\"name\":\"dzuhtymwi\",\"type\":\"dkfthwxmnt\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,10 +33,10 @@ public final class CodeSigningAccountsListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<CodeSigningAccount> response
-            = manager.codeSigningAccounts().listByResourceGroup("ymwisdkft", com.azure.core.util.Context.NONE);
+            = manager.codeSigningAccounts().listByResourceGroup("lnerkujysvleju", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("c", response.iterator().next().location());
-        Assertions.assertEquals("dcuf", response.iterator().next().tags().get("fsrpymzidnse"));
+        Assertions.assertEquals("bnwbxgjvtbvpyssz", response.iterator().next().location());
+        Assertions.assertEquals("uj", response.iterator().next().tags().get("guhmuouqfpr"));
         Assertions.assertEquals(SkuName.BASIC, response.iterator().next().properties().sku().name());
     }
 }

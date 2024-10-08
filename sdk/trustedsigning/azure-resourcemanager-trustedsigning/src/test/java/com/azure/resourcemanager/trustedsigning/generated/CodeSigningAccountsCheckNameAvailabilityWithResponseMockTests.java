@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 public final class CodeSigningAccountsCheckNameAvailabilityWithResponseMockTests {
     @Test
     public void testCheckNameAvailabilityWithResponse() throws Exception {
-        String responseStr = "{\"nameAvailable\":true,\"reason\":\"AccountNameInvalid\",\"message\":\"c\"}";
+        String responseStr = "{\"nameAvailable\":true,\"reason\":\"AlreadyExists\",\"message\":\"oifiyipjxsqwpgr\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -30,7 +30,7 @@ public final class CodeSigningAccountsCheckNameAvailabilityWithResponseMockTests
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         CheckNameAvailabilityResult response = manager.codeSigningAccounts()
-            .checkNameAvailabilityWithResponse(new CheckNameAvailability().withName("khbzhfepgzg"),
+            .checkNameAvailabilityWithResponse(new CheckNameAvailability().withName("t"),
                 com.azure.core.util.Context.NONE)
             .getValue();
 
