@@ -6,7 +6,6 @@ package com.azure.resourcemanager.quota.models;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.quota.fluent.models.SubmittedResourceRequestStatusInner;
 
@@ -28,14 +27,13 @@ public interface GroupQuotaLimitsRequests {
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of a single GroupQuota request.
      */
-    ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName);
+    SubmittedResourceRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName);
 
     /**
      * Put the GroupQuota requests for a specific ResourceProvider/Location/Resource.
@@ -51,7 +49,6 @@ public interface GroupQuotaLimitsRequests {
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -59,8 +56,8 @@ public interface GroupQuotaLimitsRequests {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of a single GroupQuota request.
      */
-    ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context);
+    SubmittedResourceRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context);
 
     /**
      * Create the GroupQuota requests for a specific ResourceProvider/Location/Resource.
@@ -76,14 +73,12 @@ public interface GroupQuotaLimitsRequests {
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of a single GroupQuota request.
      */
-    SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName);
+    SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName, String resourceProviderName);
 
     /**
      * Create the GroupQuota requests for a specific ResourceProvider/Location/Resource.
@@ -99,7 +94,6 @@ public interface GroupQuotaLimitsRequests {
      * @param groupQuotaName The GroupQuota name. The name should be unique for the provided context tenantId/MgId.
      * @param resourceProviderName The resource provider name, such as - Microsoft.Compute. Currently only
      * Microsoft.Compute resource provider supports this API.
-     * @param resourceName Resource name.
      * @param groupQuotaRequest The GroupQuotaRequest body details for specific resourceProvider/location/resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -108,7 +102,7 @@ public interface GroupQuotaLimitsRequests {
      * @return status of a single GroupQuota request.
      */
     SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context);
+        SubmittedResourceRequestStatusInner groupQuotaRequest, Context context);
 
     /**
      * Get the status of a single GroupQuota request by requestId.

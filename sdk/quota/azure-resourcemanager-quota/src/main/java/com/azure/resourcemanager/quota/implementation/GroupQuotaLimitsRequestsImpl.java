@@ -7,7 +7,6 @@ package com.azure.resourcemanager.quota.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.quota.fluent.GroupQuotaLimitsRequestsClient;
@@ -28,23 +27,21 @@ public final class GroupQuotaLimitsRequestsImpl implements GroupQuotaLimitsReque
         this.serviceManager = serviceManager;
     }
 
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName) {
-        return this.serviceClient()
-            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, resourceName);
-    }
-
-    public ProxyResource createOrUpdate(String managementGroupId, String groupQuotaName, String resourceProviderName,
-        String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
-        return this.serviceClient()
-            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest,
-                context);
-    }
-
-    public SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName) {
+    public SubmittedResourceRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName) {
         SubmittedResourceRequestStatusInner inner
-            = this.serviceClient().update(managementGroupId, groupQuotaName, resourceProviderName, resourceName);
+            = this.serviceClient().createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName);
+        if (inner != null) {
+            return new SubmittedResourceRequestStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public SubmittedResourceRequestStatus createOrUpdate(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
+        SubmittedResourceRequestStatusInner inner = this.serviceClient()
+            .createOrUpdate(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context);
         if (inner != null) {
             return new SubmittedResourceRequestStatusImpl(inner, this.manager());
         } else {
@@ -53,10 +50,20 @@ public final class GroupQuotaLimitsRequestsImpl implements GroupQuotaLimitsReque
     }
 
     public SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName,
-        String resourceProviderName, String resourceName, SubmittedResourceRequestStatusInner groupQuotaRequest,
-        Context context) {
+        String resourceProviderName) {
+        SubmittedResourceRequestStatusInner inner
+            = this.serviceClient().update(managementGroupId, groupQuotaName, resourceProviderName);
+        if (inner != null) {
+            return new SubmittedResourceRequestStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public SubmittedResourceRequestStatus update(String managementGroupId, String groupQuotaName,
+        String resourceProviderName, SubmittedResourceRequestStatusInner groupQuotaRequest, Context context) {
         SubmittedResourceRequestStatusInner inner = this.serviceClient()
-            .update(managementGroupId, groupQuotaName, resourceProviderName, resourceName, groupQuotaRequest, context);
+            .update(managementGroupId, groupQuotaName, resourceProviderName, groupQuotaRequest, context);
         if (inner != null) {
             return new SubmittedResourceRequestStatusImpl(inner, this.manager());
         } else {

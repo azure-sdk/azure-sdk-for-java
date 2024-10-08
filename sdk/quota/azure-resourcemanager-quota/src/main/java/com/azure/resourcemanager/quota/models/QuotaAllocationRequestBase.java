@@ -5,18 +5,21 @@
 package com.azure.resourcemanager.quota.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.quota.fluent.models.QuotaAllocationRequestBaseProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
 /**
  * The new quota request allocated to subscription.
  */
 @Fluent
-public final class QuotaAllocationRequestBase {
+public final class QuotaAllocationRequestBase implements JsonSerializable<QuotaAllocationRequestBase> {
     /*
      * The properties property.
      */
-    @JsonProperty(value = "properties")
     private QuotaAllocationRequestBaseProperties innerProperties;
 
     /**
@@ -83,6 +86,29 @@ public final class QuotaAllocationRequestBase {
     }
 
     /**
+     * Get the resourceName property: The resource name, such as SKU name.
+     * 
+     * @return the resourceName value.
+     */
+    public String resourceName() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceName();
+    }
+
+    /**
+     * Set the resourceName property: The resource name, such as SKU name.
+     * 
+     * @param resourceName the resourceName value to set.
+     * @return the QuotaAllocationRequestBase object itself.
+     */
+    public QuotaAllocationRequestBase withResourceName(String resourceName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new QuotaAllocationRequestBaseProperties();
+        }
+        this.innerProperties().withResourceName(resourceName);
+        return this;
+    }
+
+    /**
      * Get the value property: Resource name.
      * 
      * @return the value value.
@@ -109,5 +135,42 @@ public final class QuotaAllocationRequestBase {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of QuotaAllocationRequestBase from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of QuotaAllocationRequestBase if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the QuotaAllocationRequestBase.
+     */
+    public static QuotaAllocationRequestBase fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            QuotaAllocationRequestBase deserializedQuotaAllocationRequestBase = new QuotaAllocationRequestBase();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("properties".equals(fieldName)) {
+                    deserializedQuotaAllocationRequestBase.innerProperties
+                        = QuotaAllocationRequestBaseProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedQuotaAllocationRequestBase;
+        });
     }
 }
