@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -50,8 +51,8 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFileDataVersion withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public UriFileDataVersion withIsAnonymous(Boolean isAnonymous) {
+        super.withIsAnonymous(isAnonymous);
         return this;
     }
 
@@ -59,8 +60,8 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFileDataVersion withIsAnonymous(Boolean isAnonymous) {
-        super.withIsAnonymous(isAnonymous);
+    public UriFileDataVersion withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -77,8 +78,8 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFileDataVersion withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public UriFileDataVersion withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -86,8 +87,8 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public UriFileDataVersion withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public UriFileDataVersion withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -98,8 +99,13 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (dataUri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataUri in model UriFileDataVersion"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(UriFileDataVersion.class);
 
     /**
      * {@inheritDoc}
@@ -109,10 +115,10 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("dataUri", dataUri());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -137,16 +143,16 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
                     deserializedUriFileDataVersion.withDataUri(reader.getString());
                 } else if ("description".equals(fieldName)) {
                     deserializedUriFileDataVersion.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedUriFileDataVersion.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedUriFileDataVersion.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedUriFileDataVersion.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedUriFileDataVersion.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedUriFileDataVersion.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedUriFileDataVersion.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("dataType".equals(fieldName)) {
                     deserializedUriFileDataVersion.dataType = DataType.fromString(reader.getString());
                 } else {

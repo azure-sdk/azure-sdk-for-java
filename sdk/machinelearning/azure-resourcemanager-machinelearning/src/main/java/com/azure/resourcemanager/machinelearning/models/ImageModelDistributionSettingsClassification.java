@@ -217,8 +217,8 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
      * {@inheritDoc}
      */
     @Override
-    public ImageModelDistributionSettingsClassification withEvaluationFrequency(String evaluationFrequency) {
-        super.withEvaluationFrequency(evaluationFrequency);
+    public ImageModelDistributionSettingsClassification withEnableOnnxNormalization(String enableOnnxNormalization) {
+        super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
@@ -226,8 +226,8 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
      * {@inheritDoc}
      */
     @Override
-    public ImageModelDistributionSettingsClassification withEnableOnnxNormalization(String enableOnnxNormalization) {
-        super.withEnableOnnxNormalization(enableOnnxNormalization);
+    public ImageModelDistributionSettingsClassification withEvaluationFrequency(String evaluationFrequency) {
+        super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
@@ -401,7 +401,6 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -418,8 +417,8 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
         jsonWriter.writeStringField("earlyStopping", earlyStopping());
         jsonWriter.writeStringField("earlyStoppingDelay", earlyStoppingDelay());
         jsonWriter.writeStringField("earlyStoppingPatience", earlyStoppingPatience());
-        jsonWriter.writeStringField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeStringField("enableOnnxNormalization", enableOnnxNormalization());
+        jsonWriter.writeStringField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeStringField("gradientAccumulationStep", gradientAccumulationStep());
         jsonWriter.writeStringField("layersToFreeze", layersToFreeze());
         jsonWriter.writeStringField("learningRate", learningRate());
@@ -478,12 +477,12 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsClassification
                         .withEarlyStoppingPatience(reader.getString());
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelDistributionSettingsClassification
-                        .withEvaluationFrequency(reader.getString());
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsClassification
                         .withEnableOnnxNormalization(reader.getString());
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelDistributionSettingsClassification
+                        .withEvaluationFrequency(reader.getString());
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsClassification
                         .withGradientAccumulationStep(reader.getString());

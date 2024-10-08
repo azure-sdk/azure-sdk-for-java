@@ -68,25 +68,80 @@ public final class RegistryCodeContainersImpl implements RegistryCodeContainers 
         }
     }
 
-    public CodeContainer createOrUpdate(String resourceGroupName, String registryName, String codeName,
-        CodeContainerInner body) {
-        CodeContainerInner inner = this.serviceClient().createOrUpdate(resourceGroupName, registryName, codeName, body);
-        if (inner != null) {
-            return new CodeContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public CodeContainer getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String codeName = ResourceManagerUtils.getValueFromIdByName(id, "codes");
+        if (codeName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, codeName, Context.NONE).getValue();
     }
 
-    public CodeContainer createOrUpdate(String resourceGroupName, String registryName, String codeName,
-        CodeContainerInner body, Context context) {
-        CodeContainerInner inner
-            = this.serviceClient().createOrUpdate(resourceGroupName, registryName, codeName, body, context);
-        if (inner != null) {
-            return new CodeContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public Response<CodeContainer> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String codeName = ResourceManagerUtils.getValueFromIdByName(id, "codes");
+        if (codeName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, codeName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String codeName = ResourceManagerUtils.getValueFromIdByName(id, "codes");
+        if (codeName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, codeName, Context.NONE);
+    }
+
+    public void deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String codeName = ResourceManagerUtils.getValueFromIdByName(id, "codes");
+        if (codeName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'codes'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, codeName, context);
     }
 
     private RegistryCodeContainersClient serviceClient() {
@@ -95,5 +150,9 @@ public final class RegistryCodeContainersImpl implements RegistryCodeContainers 
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
+    }
+
+    public CodeContainerImpl define(String name) {
+        return new CodeContainerImpl(name, this.manager());
     }
 }

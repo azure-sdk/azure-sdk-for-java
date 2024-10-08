@@ -69,7 +69,6 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

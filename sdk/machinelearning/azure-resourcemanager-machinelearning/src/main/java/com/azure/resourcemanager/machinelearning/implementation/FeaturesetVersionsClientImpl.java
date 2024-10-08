@@ -54,21 +54,21 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of FeaturesetVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    FeaturesetVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    FeaturesetVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(FeaturesetVersionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesFeaturesetVersions to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesFeaturesetVersions to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")

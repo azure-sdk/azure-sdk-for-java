@@ -19,39 +19,19 @@ import java.util.List;
 @Fluent
 public final class FeatureResourceArmPaginatedResult implements JsonSerializable<FeatureResourceArmPaginatedResult> {
     /*
-     * An array of objects of type Feature.
-     */
-    private List<FeatureInner> value;
-
-    /*
      * The link to the next page of Feature objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type Feature.
+     */
+    private List<FeatureInner> value;
 
     /**
      * Creates an instance of FeatureResourceArmPaginatedResult class.
      */
     public FeatureResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type Feature.
-     * 
-     * @return the value value.
-     */
-    public List<FeatureInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type Feature.
-     * 
-     * @param value the value value to set.
-     * @return the FeatureResourceArmPaginatedResult object itself.
-     */
-    public FeatureResourceArmPaginatedResult withValue(List<FeatureInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -75,6 +55,26 @@ public final class FeatureResourceArmPaginatedResult implements JsonSerializable
     }
 
     /**
+     * Get the value property: An array of objects of type Feature.
+     * 
+     * @return the value value.
+     */
+    public List<FeatureInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type Feature.
+     * 
+     * @param value the value value to set.
+     * @return the FeatureResourceArmPaginatedResult object itself.
+     */
+    public FeatureResourceArmPaginatedResult withValue(List<FeatureInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -91,8 +91,8 @@ public final class FeatureResourceArmPaginatedResult implements JsonSerializable
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -112,11 +112,11 @@ public final class FeatureResourceArmPaginatedResult implements JsonSerializable
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedFeatureResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<FeatureInner> value = reader.readArray(reader1 -> FeatureInner.fromJson(reader1));
                     deserializedFeatureResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedFeatureResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

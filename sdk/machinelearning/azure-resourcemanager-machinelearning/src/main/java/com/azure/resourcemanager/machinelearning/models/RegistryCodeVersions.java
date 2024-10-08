@@ -7,7 +7,6 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 
 /**
  * Resource collection API of RegistryCodeVersions.
@@ -102,39 +101,6 @@ public interface RegistryCodeVersions {
     CodeVersion get(String resourceGroupName, String registryName, String codeName, String version);
 
     /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param codeName Container name.
-     * @param version Version identifier.
-     * @param body Version entity to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope.
-     */
-    CodeVersion createOrUpdate(String resourceGroupName, String registryName, String codeName, String version,
-        CodeVersionInner body);
-
-    /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param codeName Container name.
-     * @param version Version identifier.
-     * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope.
-     */
-    CodeVersion createOrUpdate(String resourceGroupName, String registryName, String codeName, String version,
-        CodeVersionInner body, Context context);
-
-    /**
      * Generate a storage location and credential for the client to upload a code asset to.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -166,4 +132,56 @@ public interface RegistryCodeVersions {
      */
     PendingUploadResponseDto createOrGetStartPendingUpload(String resourceGroupName, String registryName,
         String codeName, String version, PendingUploadRequestDto body);
+
+    /**
+     * Get version.
+     * 
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return version along with {@link Response}.
+     */
+    CodeVersion getById(String id);
+
+    /**
+     * Get version.
+     * 
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return version along with {@link Response}.
+     */
+    Response<CodeVersion> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Delete version.
+     * 
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete version.
+     * 
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new CodeVersion resource.
+     * 
+     * @param name resource name.
+     * @return the first stage of the new CodeVersion definition.
+     */
+    CodeVersion.DefinitionStages.Blank define(String name);
 }

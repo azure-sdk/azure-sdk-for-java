@@ -86,7 +86,6 @@ public final class FqdnOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

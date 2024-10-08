@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.DataVersionBaseInner;
 import com.azure.resourcemanager.machinelearning.models.MLTableData;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import java.util.Map;
 public final class RegistryDataVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registry/DataVersionBase/createOrUpdate.json
      */
     /**
@@ -27,15 +26,16 @@ public final class RegistryDataVersionsCreateOrUpdateSamples {
     public static void createOrUpdateRegistryDataVersionBase(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryDataVersions()
-            .createOrUpdate("test-rg", "registryName", "string", "string",
-                new DataVersionBaseInner().withProperties(new MLTableData().withDescription("string")
-                    .withTags(mapOf("string", "string"))
-                    .withProperties(mapOf("string", "string"))
-                    .withIsArchived(false)
-                    .withIsAnonymous(false)
-                    .withDataUri("string")
-                    .withReferencedUris(Arrays.asList("string"))),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingData("test-rg", "registryName", "string")
+            .withProperties(new MLTableData().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withIsAnonymous(false)
+                .withIsArchived(false)
+                .withDataUri("string")
+                .withReferencedUris(Arrays.asList("string")))
+            .create();
     }
 
     // Use "Map.of" if available

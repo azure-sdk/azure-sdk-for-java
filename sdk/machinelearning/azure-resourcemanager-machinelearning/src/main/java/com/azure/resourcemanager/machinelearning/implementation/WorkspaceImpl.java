@@ -12,6 +12,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSet
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResult;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
@@ -33,7 +34,6 @@ import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResourc
 import com.azure.resourcemanager.machinelearning.models.Sku;
 import com.azure.resourcemanager.machinelearning.models.Workspace;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceHubConfig;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -264,7 +264,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     private String workspaceName;
 
-    private WorkspaceUpdateParameters updateParameters;
+    private WorkspaceUpdateParametersInner updateParameters;
 
     public WorkspaceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -292,7 +292,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public WorkspaceImpl update() {
-        this.updateParameters = new WorkspaceUpdateParameters();
+        this.updateParameters = new WorkspaceUpdateParametersInner();
         return this;
     }
 

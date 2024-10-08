@@ -17,39 +17,19 @@ import java.io.IOException;
 @Fluent
 public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     /*
-     * Output Asset URI.
-     */
-    private String uri;
-
-    /*
      * Output Asset Delivery Mode.
      */
     private OutputDeliveryMode mode;
+
+    /*
+     * Output Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of AssetJobOutput class.
      */
     public AssetJobOutput() {
-    }
-
-    /**
-     * Get the uri property: Output Asset URI.
-     * 
-     * @return the uri value.
-     */
-    public String uri() {
-        return this.uri;
-    }
-
-    /**
-     * Set the uri property: Output Asset URI.
-     * 
-     * @param uri the uri value to set.
-     * @return the AssetJobOutput object itself.
-     */
-    public AssetJobOutput withUri(String uri) {
-        this.uri = uri;
-        return this;
     }
 
     /**
@@ -73,6 +53,26 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     }
 
     /**
+     * Get the uri property: Output Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: Output Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withUri(String uri) {
+        this.uri = uri;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,8 +86,8 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("mode", this.mode == null ? null : this.mode.toString());
+        jsonWriter.writeStringField("uri", this.uri);
         return jsonWriter.writeEndObject();
     }
 
@@ -106,10 +106,10 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("uri".equals(fieldName)) {
-                    deserializedAssetJobOutput.uri = reader.getString();
-                } else if ("mode".equals(fieldName)) {
+                if ("mode".equals(fieldName)) {
                     deserializedAssetJobOutput.mode = OutputDeliveryMode.fromString(reader.getString());
+                } else if ("uri".equals(fieldName)) {
+                    deserializedAssetJobOutput.uri = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

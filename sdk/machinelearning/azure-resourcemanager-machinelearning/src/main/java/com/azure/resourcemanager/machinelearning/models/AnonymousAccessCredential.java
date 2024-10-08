@@ -43,7 +43,6 @@ public final class AnonymousAccessCredential extends DataReferenceCredential {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

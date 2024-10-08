@@ -18,19 +18,39 @@ import java.io.IOException;
 @Fluent
 public final class CustomMetricThreshold implements JsonSerializable<CustomMetricThreshold> {
     /*
-     * The threshold value. If null, a default value will be set depending on the selected metric.
-     */
-    private MonitoringThreshold threshold;
-
-    /*
      * [Required] The user-defined metric to calculate.
      */
     private String metric;
+
+    /*
+     * The threshold value. If null, a default value will be set depending on the selected metric.
+     */
+    private MonitoringThreshold threshold;
 
     /**
      * Creates an instance of CustomMetricThreshold class.
      */
     public CustomMetricThreshold() {
+    }
+
+    /**
+     * Get the metric property: [Required] The user-defined metric to calculate.
+     * 
+     * @return the metric value.
+     */
+    public String metric() {
+        return this.metric;
+    }
+
+    /**
+     * Set the metric property: [Required] The user-defined metric to calculate.
+     * 
+     * @param metric the metric value to set.
+     * @return the CustomMetricThreshold object itself.
+     */
+    public CustomMetricThreshold withMetric(String metric) {
+        this.metric = metric;
+        return this;
     }
 
     /**
@@ -56,37 +76,17 @@ public final class CustomMetricThreshold implements JsonSerializable<CustomMetri
     }
 
     /**
-     * Get the metric property: [Required] The user-defined metric to calculate.
-     * 
-     * @return the metric value.
-     */
-    public String metric() {
-        return this.metric;
-    }
-
-    /**
-     * Set the metric property: [Required] The user-defined metric to calculate.
-     * 
-     * @param metric the metric value to set.
-     * @return the CustomMetricThreshold object itself.
-     */
-    public CustomMetricThreshold withMetric(String metric) {
-        this.metric = metric;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (threshold() != null) {
-            threshold().validate();
-        }
         if (metric() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property metric in model CustomMetricThreshold"));
+        }
+        if (threshold() != null) {
+            threshold().validate();
         }
     }
 

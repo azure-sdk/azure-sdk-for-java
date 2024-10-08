@@ -24,6 +24,11 @@ public final class PredictionDriftMonitoringSignal extends MonitoringSignalBase 
     private MonitoringSignalType signalType = MonitoringSignalType.PREDICTION_DRIFT;
 
     /*
+     * A dictionary that maps feature names to their respective data types.
+     */
+    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
+
+    /*
      * [Required] A list of metrics to calculate and their associated thresholds.
      */
     private List<PredictionDriftMetricThresholdBase> metricThresholds;
@@ -37,11 +42,6 @@ public final class PredictionDriftMonitoringSignal extends MonitoringSignalBase 
      * [Required] The data to calculate drift against.
      */
     private MonitoringInputDataBase referenceData;
-
-    /*
-     * A dictionary that maps feature names to their respective data types.
-     */
-    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
 
     /**
      * Creates an instance of PredictionDriftMonitoringSignal class.
@@ -57,6 +57,27 @@ public final class PredictionDriftMonitoringSignal extends MonitoringSignalBase 
     @Override
     public MonitoringSignalType signalType() {
         return this.signalType;
+    }
+
+    /**
+     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
+     * 
+     * @return the featureDataTypeOverride value.
+     */
+    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
+        return this.featureDataTypeOverride;
+    }
+
+    /**
+     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
+     * 
+     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
+     * @return the PredictionDriftMonitoringSignal object itself.
+     */
+    public PredictionDriftMonitoringSignal
+        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
+        this.featureDataTypeOverride = featureDataTypeOverride;
+        return this;
     }
 
     /**
@@ -121,27 +142,6 @@ public final class PredictionDriftMonitoringSignal extends MonitoringSignalBase 
     }
 
     /**
-     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @return the featureDataTypeOverride value.
-     */
-    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
-        return this.featureDataTypeOverride;
-    }
-
-    /**
-     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
-     * @return the PredictionDriftMonitoringSignal object itself.
-     */
-    public PredictionDriftMonitoringSignal
-        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
-        this.featureDataTypeOverride = featureDataTypeOverride;
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -166,7 +166,6 @@ public final class PredictionDriftMonitoringSignal extends MonitoringSignalBase 
      */
     @Override
     public void validate() {
-        super.validate();
         if (metricThresholds() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(

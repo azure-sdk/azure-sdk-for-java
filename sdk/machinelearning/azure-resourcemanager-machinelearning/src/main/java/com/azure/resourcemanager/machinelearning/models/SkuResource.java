@@ -11,6 +11,13 @@ import com.azure.resourcemanager.machinelearning.fluent.models.SkuResourceInner;
  */
 public interface SkuResource {
     /**
+     * Gets the capacity property: Gets or sets the Sku Capacity.
+     * 
+     * @return the capacity value.
+     */
+    SkuCapacity capacity();
+
+    /**
      * Gets the resourceType property: The resource type name.
      * 
      * @return the resourceType value.
@@ -23,13 +30,6 @@ public interface SkuResource {
      * @return the sku value.
      */
     SkuSetting sku();
-
-    /**
-     * Gets the capacity property: Gets or sets the Sku Capacity.
-     * 
-     * @return the capacity value.
-     */
-    SkuCapacity capacity();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.SkuResourceInner object.
