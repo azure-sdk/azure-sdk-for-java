@@ -15,13 +15,13 @@ public final class AdditionalUnattendContentTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         AdditionalUnattendContent model = BinaryData.fromString(
-            "{\"passName\":\"OobeSystem\",\"componentName\":\"Microsoft-Windows-Shell-Setup\",\"settingName\":\"FirstLogonCommands\",\"content\":\"jaeq\"}")
+            "{\"passName\":\"OobeSystem\",\"componentName\":\"Microsoft-Windows-Shell-Setup\",\"settingName\":\"FirstLogonCommands\",\"content\":\"km\"}")
             .toObject(AdditionalUnattendContent.class);
         Assertions.assertEquals(AdditionalUnattendContentPassName.OOBE_SYSTEM, model.passName());
         Assertions.assertEquals(AdditionalUnattendContentComponentName.MICROSOFT_WINDOWS_SHELL_SETUP,
             model.componentName());
         Assertions.assertEquals(SettingNames.FIRST_LOGON_COMMANDS, model.settingName());
-        Assertions.assertEquals("jaeq", model.content());
+        Assertions.assertEquals("km", model.content());
     }
 
     @org.junit.jupiter.api.Test
@@ -30,12 +30,12 @@ public final class AdditionalUnattendContentTests {
             = new AdditionalUnattendContent().withPassName(AdditionalUnattendContentPassName.OOBE_SYSTEM)
                 .withComponentName(AdditionalUnattendContentComponentName.MICROSOFT_WINDOWS_SHELL_SETUP)
                 .withSettingName(SettingNames.FIRST_LOGON_COMMANDS)
-                .withContent("jaeq");
+                .withContent("km");
         model = BinaryData.fromObject(model).toObject(AdditionalUnattendContent.class);
         Assertions.assertEquals(AdditionalUnattendContentPassName.OOBE_SYSTEM, model.passName());
         Assertions.assertEquals(AdditionalUnattendContentComponentName.MICROSOFT_WINDOWS_SHELL_SETUP,
             model.componentName());
         Assertions.assertEquals(SettingNames.FIRST_LOGON_COMMANDS, model.settingName());
-        Assertions.assertEquals("jaeq", model.content());
+        Assertions.assertEquals("km", model.content());
     }
 }

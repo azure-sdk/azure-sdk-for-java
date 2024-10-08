@@ -14,30 +14,30 @@ public final class SpotPriorityProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SpotPriorityProfile model = BinaryData.fromString(
-            "{\"capacity\":1543997460,\"minCapacity\":1345546955,\"maxPricePerVM\":18.15198514165487,\"evictionPolicy\":\"Deallocate\",\"allocationStrategy\":\"LowestPrice\",\"maintain\":true}")
+            "{\"capacity\":1191449994,\"minCapacity\":1077635314,\"maxPricePerVM\":49.956874773116176,\"evictionPolicy\":\"Deallocate\",\"allocationStrategy\":\"CapacityOptimized\",\"maintain\":true}")
             .toObject(SpotPriorityProfile.class);
-        Assertions.assertEquals(1543997460, model.capacity());
-        Assertions.assertEquals(1345546955, model.minCapacity());
-        Assertions.assertEquals(18.15198514165487D, model.maxPricePerVM());
+        Assertions.assertEquals(1191449994, model.capacity());
+        Assertions.assertEquals(1077635314, model.minCapacity());
+        Assertions.assertEquals(49.956874773116176D, model.maxPricePerVM());
         Assertions.assertEquals(EvictionPolicy.DEALLOCATE, model.evictionPolicy());
-        Assertions.assertEquals(SpotAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
+        Assertions.assertEquals(SpotAllocationStrategy.CAPACITY_OPTIMIZED, model.allocationStrategy());
         Assertions.assertEquals(true, model.maintain());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SpotPriorityProfile model = new SpotPriorityProfile().withCapacity(1543997460)
-            .withMinCapacity(1345546955)
-            .withMaxPricePerVM(18.15198514165487D)
+        SpotPriorityProfile model = new SpotPriorityProfile().withCapacity(1191449994)
+            .withMinCapacity(1077635314)
+            .withMaxPricePerVM(49.956874773116176D)
             .withEvictionPolicy(EvictionPolicy.DEALLOCATE)
-            .withAllocationStrategy(SpotAllocationStrategy.LOWEST_PRICE)
+            .withAllocationStrategy(SpotAllocationStrategy.CAPACITY_OPTIMIZED)
             .withMaintain(true);
         model = BinaryData.fromObject(model).toObject(SpotPriorityProfile.class);
-        Assertions.assertEquals(1543997460, model.capacity());
-        Assertions.assertEquals(1345546955, model.minCapacity());
-        Assertions.assertEquals(18.15198514165487D, model.maxPricePerVM());
+        Assertions.assertEquals(1191449994, model.capacity());
+        Assertions.assertEquals(1077635314, model.minCapacity());
+        Assertions.assertEquals(49.956874773116176D, model.maxPricePerVM());
         Assertions.assertEquals(EvictionPolicy.DEALLOCATE, model.evictionPolicy());
-        Assertions.assertEquals(SpotAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
+        Assertions.assertEquals(SpotAllocationStrategy.CAPACITY_OPTIMIZED, model.allocationStrategy());
         Assertions.assertEquals(true, model.maintain());
     }
 }

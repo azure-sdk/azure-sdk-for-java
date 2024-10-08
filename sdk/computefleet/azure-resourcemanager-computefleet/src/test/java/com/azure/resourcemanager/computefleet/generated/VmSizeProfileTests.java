@@ -12,16 +12,16 @@ public final class VmSizeProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VmSizeProfile model
-            = BinaryData.fromString("{\"name\":\"qnjaqwix\",\"rank\":2020254457}").toObject(VmSizeProfile.class);
-        Assertions.assertEquals("qnjaqwix", model.name());
-        Assertions.assertEquals(2020254457, model.rank());
+            = BinaryData.fromString("{\"name\":\"abkyqduujitcjcz\",\"rank\":1089417783}").toObject(VmSizeProfile.class);
+        Assertions.assertEquals("abkyqduujitcjcz", model.name());
+        Assertions.assertEquals(1089417783, model.rank());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        VmSizeProfile model = new VmSizeProfile().withName("qnjaqwix").withRank(2020254457);
+        VmSizeProfile model = new VmSizeProfile().withName("abkyqduujitcjcz").withRank(1089417783);
         model = BinaryData.fromObject(model).toObject(VmSizeProfile.class);
-        Assertions.assertEquals("qnjaqwix", model.name());
-        Assertions.assertEquals(2020254457, model.rank());
+        Assertions.assertEquals("abkyqduujitcjcz", model.name());
+        Assertions.assertEquals(1089417783, model.rank());
     }
 }

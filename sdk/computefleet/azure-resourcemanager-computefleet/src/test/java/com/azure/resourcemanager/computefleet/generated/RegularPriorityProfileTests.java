@@ -13,21 +13,21 @@ public final class RegularPriorityProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         RegularPriorityProfile model = BinaryData
-            .fromString("{\"capacity\":533859005,\"minCapacity\":2053508957,\"allocationStrategy\":\"LowestPrice\"}")
+            .fromString("{\"capacity\":1862600222,\"minCapacity\":2027059656,\"allocationStrategy\":\"Prioritized\"}")
             .toObject(RegularPriorityProfile.class);
-        Assertions.assertEquals(533859005, model.capacity());
-        Assertions.assertEquals(2053508957, model.minCapacity());
-        Assertions.assertEquals(RegularPriorityAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
+        Assertions.assertEquals(1862600222, model.capacity());
+        Assertions.assertEquals(2027059656, model.minCapacity());
+        Assertions.assertEquals(RegularPriorityAllocationStrategy.PRIORITIZED, model.allocationStrategy());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        RegularPriorityProfile model = new RegularPriorityProfile().withCapacity(533859005)
-            .withMinCapacity(2053508957)
-            .withAllocationStrategy(RegularPriorityAllocationStrategy.LOWEST_PRICE);
+        RegularPriorityProfile model = new RegularPriorityProfile().withCapacity(1862600222)
+            .withMinCapacity(2027059656)
+            .withAllocationStrategy(RegularPriorityAllocationStrategy.PRIORITIZED);
         model = BinaryData.fromObject(model).toObject(RegularPriorityProfile.class);
-        Assertions.assertEquals(533859005, model.capacity());
-        Assertions.assertEquals(2053508957, model.minCapacity());
-        Assertions.assertEquals(RegularPriorityAllocationStrategy.LOWEST_PRICE, model.allocationStrategy());
+        Assertions.assertEquals(1862600222, model.capacity());
+        Assertions.assertEquals(2027059656, model.minCapacity());
+        Assertions.assertEquals(RegularPriorityAllocationStrategy.PRIORITIZED, model.allocationStrategy());
     }
 }

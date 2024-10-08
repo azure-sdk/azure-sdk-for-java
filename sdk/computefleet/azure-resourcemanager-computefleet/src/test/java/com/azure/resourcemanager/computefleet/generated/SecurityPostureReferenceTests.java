@@ -12,22 +12,22 @@ import org.junit.jupiter.api.Assertions;
 public final class SecurityPostureReferenceTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        SecurityPostureReference model = BinaryData
-            .fromString("{\"id\":\"qzvszjf\",\"excludeExtensions\":[\"j\",\"dxxiv\"],\"isOverridable\":true}")
+        SecurityPostureReference model = BinaryData.fromString(
+            "{\"id\":\"wzizxbmpgcjefuzm\",\"excludeExtensions\":[\"bttdumorppxe\",\"mnzb\"],\"isOverridable\":false}")
             .toObject(SecurityPostureReference.class);
-        Assertions.assertEquals("qzvszjf", model.id());
-        Assertions.assertEquals("j", model.excludeExtensions().get(0));
-        Assertions.assertEquals(true, model.isOverridable());
+        Assertions.assertEquals("wzizxbmpgcjefuzm", model.id());
+        Assertions.assertEquals("bttdumorppxe", model.excludeExtensions().get(0));
+        Assertions.assertEquals(false, model.isOverridable());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SecurityPostureReference model = new SecurityPostureReference().withId("qzvszjf")
-            .withExcludeExtensions(Arrays.asList("j", "dxxiv"))
-            .withIsOverridable(true);
+        SecurityPostureReference model = new SecurityPostureReference().withId("wzizxbmpgcjefuzm")
+            .withExcludeExtensions(Arrays.asList("bttdumorppxe", "mnzb"))
+            .withIsOverridable(false);
         model = BinaryData.fromObject(model).toObject(SecurityPostureReference.class);
-        Assertions.assertEquals("qzvszjf", model.id());
-        Assertions.assertEquals("j", model.excludeExtensions().get(0));
-        Assertions.assertEquals(true, model.isOverridable());
+        Assertions.assertEquals("wzizxbmpgcjefuzm", model.id());
+        Assertions.assertEquals("bttdumorppxe", model.excludeExtensions().get(0));
+        Assertions.assertEquals(false, model.isOverridable());
     }
 }
