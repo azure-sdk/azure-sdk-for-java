@@ -1,14 +1,27 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-08)
+
+- Azure Resource Manager Machine Learning client library for Java. This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2024-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.WorkspaceConnectionPropertiesV2BasicResource$Update` was added
 
-### Bugs Fixed
+* `models.WorkspaceConnectionUpdateParameter` was added
 
-### Other Changes
+* `models.FirewallSku` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$UpdateStages` was added
+
+#### `models.ManagedNetworkSettings` was modified
+
+* `firewallSku()` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResource` was modified
+
+* `update()` was added
+* `resourceGroupName()` was added
 
 ## 1.1.0 (2024-08-22)
 

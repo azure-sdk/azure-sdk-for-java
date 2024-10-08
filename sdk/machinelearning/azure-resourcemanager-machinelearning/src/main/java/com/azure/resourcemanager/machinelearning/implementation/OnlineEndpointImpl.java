@@ -51,16 +51,16 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
         }
     }
 
-    public OnlineEndpointProperties properties() {
-        return this.innerModel().properties();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String kind() {
         return this.innerModel().kind();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public OnlineEndpointProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Sku sku() {
@@ -220,13 +220,13 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
         }
     }
 
-    public OnlineEndpointImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
+    public OnlineEndpointImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public OnlineEndpointImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public OnlineEndpointImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
