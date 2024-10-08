@@ -15,20 +15,21 @@ public final class WinRMConfigurationTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         WinRMConfiguration model = BinaryData.fromString(
-            "{\"listeners\":[{\"protocol\":\"Http\",\"certificateUrl\":\"bybkzgcwrwclxx\"},{\"protocol\":\"Http\",\"certificateUrl\":\"douskcqvkocrcjdk\"},{\"protocol\":\"Http\",\"certificateUrl\":\"xbnjbiksq\"}]}")
+            "{\"listeners\":[{\"protocol\":\"Https\",\"certificateUrl\":\"sezcxtb\"},{\"protocol\":\"Http\",\"certificateUrl\":\"yc\"},{\"protocol\":\"Https\",\"certificateUrl\":\"wmdwzjeiachboo\"},{\"protocol\":\"Http\",\"certificateUrl\":\"ro\"}]}")
             .toObject(WinRMConfiguration.class);
-        Assertions.assertEquals(ProtocolTypes.HTTP, model.listeners().get(0).protocol());
-        Assertions.assertEquals("bybkzgcwrwclxx", model.listeners().get(0).certificateUrl());
+        Assertions.assertEquals(ProtocolTypes.HTTPS, model.listeners().get(0).protocol());
+        Assertions.assertEquals("sezcxtb", model.listeners().get(0).certificateUrl());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         WinRMConfiguration model = new WinRMConfiguration().withListeners(
-            Arrays.asList(new WinRMListener().withProtocol(ProtocolTypes.HTTP).withCertificateUrl("bybkzgcwrwclxx"),
-                new WinRMListener().withProtocol(ProtocolTypes.HTTP).withCertificateUrl("douskcqvkocrcjdk"),
-                new WinRMListener().withProtocol(ProtocolTypes.HTTP).withCertificateUrl("xbnjbiksq")));
+            Arrays.asList(new WinRMListener().withProtocol(ProtocolTypes.HTTPS).withCertificateUrl("sezcxtb"),
+                new WinRMListener().withProtocol(ProtocolTypes.HTTP).withCertificateUrl("yc"),
+                new WinRMListener().withProtocol(ProtocolTypes.HTTPS).withCertificateUrl("wmdwzjeiachboo"),
+                new WinRMListener().withProtocol(ProtocolTypes.HTTP).withCertificateUrl("ro")));
         model = BinaryData.fromObject(model).toObject(WinRMConfiguration.class);
-        Assertions.assertEquals(ProtocolTypes.HTTP, model.listeners().get(0).protocol());
-        Assertions.assertEquals("bybkzgcwrwclxx", model.listeners().get(0).certificateUrl());
+        Assertions.assertEquals(ProtocolTypes.HTTPS, model.listeners().get(0).protocol());
+        Assertions.assertEquals("sezcxtb", model.listeners().get(0).certificateUrl());
     }
 }
