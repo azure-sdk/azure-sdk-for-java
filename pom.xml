@@ -223,6 +223,7 @@
     <module>sdk/tools</module>
     <module>sdk/translation</module>
     <module>sdk/trustedsigning</module>
+    <module>sdk/vi</module>
     <module>sdk/videoanalyzer</module>
     <module>sdk/vision</module>
     <module>sdk/vmwarecloudsimple</module>
