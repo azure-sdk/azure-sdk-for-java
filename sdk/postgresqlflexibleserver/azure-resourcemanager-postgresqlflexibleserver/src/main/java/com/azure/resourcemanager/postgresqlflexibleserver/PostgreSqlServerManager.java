@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -23,7 +23,7 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PostgreSqlManagementClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PostgreSqlServerManagementClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.AdministratorsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.BackupsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.CheckNameAvailabilitiesImpl;
@@ -38,16 +38,15 @@ import com.azure.resourcemanager.postgresqlflexibleserver.implementation.LogFile
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.LtrBackupOperationsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.MigrationsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.OperationsImpl;
-import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PostgreSqlManagementClientBuilder;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PostgreSqlServerManagementClientBuilder;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateEndpointConnectionOperationsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.PrivateLinkResourcesImpl;
-import com.azure.resourcemanager.postgresqlflexibleserver.implementation.QuotaUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerCapabilitiesImpl;
-import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerThreatProtectionSettingsImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualEndpointsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualNetworkSubnetUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Administrators;
@@ -67,12 +66,11 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.Operations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateLinkResources;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.QuotaUsages;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ResourceProviders;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerCapabilities;
-import com.azure.resourcemanager.postgresqlflexibleserver.models.Servers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerThreatProtectionSettings;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.Servers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualEndpoints;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualNetworkSubnetUsages;
 import java.time.Duration;
@@ -83,12 +81,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to PostgreSqlManager.
+ * Entry point to PostgreSqlServerManager.
  * The Microsoft Azure management API provides create, read, update, and delete functionality for Azure PostgreSQL
  * resources including servers, databases, firewall rules, VNET rules, security alert policies, log files and
  * configurations with new business model.
  */
-public final class PostgreSqlManager {
+public final class PostgreSqlServerManager {
     private Administrators administrators;
 
     private Backups backups;
@@ -127,8 +125,6 @@ public final class PostgreSqlManager {
 
     private PrivateLinkResources privateLinkResources;
 
-    private QuotaUsages quotaUsages;
-
     private Replicas replicas;
 
     private LogFiles logFiles;
@@ -139,12 +135,12 @@ public final class PostgreSqlManager {
 
     private VirtualNetworkSubnetUsages virtualNetworkSubnetUsages;
 
-    private final PostgreSqlManagementClient clientObject;
+    private final PostgreSqlServerManagementClient clientObject;
 
-    private PostgreSqlManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private PostgreSqlServerManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new PostgreSqlManagementClientBuilder().pipeline(httpPipeline)
+        this.clientObject = new PostgreSqlServerManagementClientBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -152,38 +148,38 @@ public final class PostgreSqlManager {
     }
 
     /**
-     * Creates an instance of PostgreSql service API entry point.
+     * Creates an instance of PostgreSqlServer service API entry point.
      * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the PostgreSql service API instance.
+     * @return the PostgreSqlServer service API instance.
      */
-    public static PostgreSqlManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static PostgreSqlServerManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of PostgreSql service API entry point.
+     * Creates an instance of PostgreSqlServer service API entry point.
      * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the PostgreSql service API instance.
+     * @return the PostgreSqlServer service API instance.
      */
-    public static PostgreSqlManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static PostgreSqlServerManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new PostgreSqlManager(httpPipeline, profile, null);
+        return new PostgreSqlServerManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create PostgreSqlManager with optional configuration.
+     * Gets a Configurable instance that can be used to create PostgreSqlServerManager with optional configuration.
      * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new PostgreSqlManager.Configurable();
+        return new PostgreSqlServerManager.Configurable();
     }
 
     /**
@@ -288,13 +284,13 @@ public final class PostgreSqlManager {
         }
 
         /**
-         * Creates an instance of PostgreSql service API entry point.
+         * Creates an instance of PostgreSqlServer service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the PostgreSql service API instance.
+         * @return the PostgreSqlServer service API instance.
          */
-        public PostgreSqlManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public PostgreSqlServerManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -303,7 +299,7 @@ public final class PostgreSqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.postgresqlflexibleserver")
                 .append("/")
-                .append("1.1.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -345,7 +341,7 @@ public final class PostgreSqlManager {
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
                 .policies(policies.toArray(new HttpPipelinePolicy[0]))
                 .build();
-            return new PostgreSqlManager(httpPipeline, profile, defaultPollInterval);
+            return new PostgreSqlServerManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
@@ -584,18 +580,6 @@ public final class PostgreSqlManager {
     }
 
     /**
-     * Gets the resource collection API of QuotaUsages.
-     * 
-     * @return Resource collection API of QuotaUsages.
-     */
-    public QuotaUsages quotaUsages() {
-        if (this.quotaUsages == null) {
-            this.quotaUsages = new QuotaUsagesImpl(clientObject.getQuotaUsages(), this);
-        }
-        return quotaUsages;
-    }
-
-    /**
      * Gets the resource collection API of Replicas.
      * 
      * @return Resource collection API of Replicas.
@@ -659,12 +643,12 @@ public final class PostgreSqlManager {
     }
 
     /**
-     * Gets wrapped service client PostgreSqlManagementClient providing direct access to the underlying auto-generated
-     * API implementation, based on Azure REST API.
+     * Gets wrapped service client PostgreSqlServerManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client PostgreSqlManagementClient.
+     * @return Wrapped service client PostgreSqlServerManagementClient.
      */
-    public PostgreSqlManagementClient serviceClient() {
+    public PostgreSqlServerManagementClient serviceClient() {
         return this.clientObject;
     }
 }
