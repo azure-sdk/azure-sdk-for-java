@@ -5,86 +5,96 @@
 package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
-/** The data controller properties. */
+/**
+ * The data controller properties.
+ */
 @Fluent
-public final class DataControllerProperties {
+public final class DataControllerProperties implements JsonSerializable<DataControllerProperties> {
     /*
      * The infrastructure the data controller is running on.
      */
-    @JsonProperty(value = "infrastructure")
     private Infrastructure infrastructure;
 
     /*
      * Properties from the Kubernetes data controller
      */
-    @JsonProperty(value = "onPremiseProperty")
     private OnPremiseProperty onPremiseProperty;
 
     /*
      * The raw kubernetes information
      */
-    @JsonProperty(value = "k8sRaw")
     private Object k8SRaw;
 
     /*
-     * Properties on upload watermark.  Mostly timestamp for each upload data type
+     * Properties on upload watermark. Mostly timestamp for each upload data type
      */
-    @JsonProperty(value = "uploadWatermark")
     private UploadWatermark uploadWatermark;
 
     /*
      * Last uploaded date from Kubernetes cluster. Defaults to current date time
      */
-    @JsonProperty(value = "lastUploadedDate")
     private OffsetDateTime lastUploadedDate;
 
     /*
-     * Username and password for basic login authentication.
+     * Deprecated. Azure Arc Data Services data controller no longer expose any endpoint. All traffic are exposed
+     * through Kubernetes native API.
      */
-    @JsonProperty(value = "basicLoginInformation")
     private BasicLoginInformation basicLoginInformation;
+
+    /*
+     * Login credential for metrics dashboard on the Kubernetes cluster.
+     */
+    private BasicLoginInformation metricsDashboardCredential;
+
+    /*
+     * Login credential for logs dashboard on the Kubernetes cluster.
+     */
+    private BasicLoginInformation logsDashboardCredential;
 
     /*
      * Log analytics workspace id and primary key
      */
-    @JsonProperty(value = "logAnalyticsWorkspaceConfig")
     private LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig;
 
     /*
-     * Service principal for uploading billing, metrics and logs.
+     * Deprecated. Service principal is deprecated in favor of Arc Kubernetes service extension managed identity.
      */
-    @JsonProperty(value = "uploadServicePrincipal")
     private UploadServicePrincipal uploadServicePrincipal;
 
     /*
-     * The provisioningState property.
+     * The provisioning state of the Arc Data Controller resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
     /*
      * If a CustomLocation is provided, this contains the ARM id of the connected cluster the custom location belongs
      * to.
      */
-    @JsonProperty(value = "clusterId")
     private String clusterId;
 
     /*
      * If a CustomLocation is provided, this contains the ARM id of the extension the custom location belongs to.
      */
-    @JsonProperty(value = "extensionId")
     private String extensionId;
 
-    /** Creates an instance of DataControllerProperties class. */
+    /**
+     * Creates an instance of DataControllerProperties class.
+     */
     public DataControllerProperties() {
     }
 
     /**
      * Get the infrastructure property: The infrastructure the data controller is running on.
-     *
+     * 
      * @return the infrastructure value.
      */
     public Infrastructure infrastructure() {
@@ -93,7 +103,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the infrastructure property: The infrastructure the data controller is running on.
-     *
+     * 
      * @param infrastructure the infrastructure value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -104,7 +114,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the onPremiseProperty property: Properties from the Kubernetes data controller.
-     *
+     * 
      * @return the onPremiseProperty value.
      */
     public OnPremiseProperty onPremiseProperty() {
@@ -113,7 +123,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the onPremiseProperty property: Properties from the Kubernetes data controller.
-     *
+     * 
      * @param onPremiseProperty the onPremiseProperty value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -124,7 +134,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the k8SRaw property: The raw kubernetes information.
-     *
+     * 
      * @return the k8SRaw value.
      */
     public Object k8SRaw() {
@@ -133,7 +143,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the k8SRaw property: The raw kubernetes information.
-     *
+     * 
      * @param k8SRaw the k8SRaw value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -144,7 +154,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the uploadWatermark property: Properties on upload watermark. Mostly timestamp for each upload data type.
-     *
+     * 
      * @return the uploadWatermark value.
      */
     public UploadWatermark uploadWatermark() {
@@ -153,7 +163,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the uploadWatermark property: Properties on upload watermark. Mostly timestamp for each upload data type.
-     *
+     * 
      * @param uploadWatermark the uploadWatermark value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -164,7 +174,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the lastUploadedDate property: Last uploaded date from Kubernetes cluster. Defaults to current date time.
-     *
+     * 
      * @return the lastUploadedDate value.
      */
     public OffsetDateTime lastUploadedDate() {
@@ -173,7 +183,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the lastUploadedDate property: Last uploaded date from Kubernetes cluster. Defaults to current date time.
-     *
+     * 
      * @param lastUploadedDate the lastUploadedDate value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -183,8 +193,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Get the basicLoginInformation property: Username and password for basic login authentication.
-     *
+     * Get the basicLoginInformation property: Deprecated. Azure Arc Data Services data controller no longer expose any
+     * endpoint. All traffic are exposed through Kubernetes native API.
+     * 
      * @return the basicLoginInformation value.
      */
     public BasicLoginInformation basicLoginInformation() {
@@ -192,8 +203,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Set the basicLoginInformation property: Username and password for basic login authentication.
-     *
+     * Set the basicLoginInformation property: Deprecated. Azure Arc Data Services data controller no longer expose any
+     * endpoint. All traffic are exposed through Kubernetes native API.
+     * 
      * @param basicLoginInformation the basicLoginInformation value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -203,8 +215,48 @@ public final class DataControllerProperties {
     }
 
     /**
+     * Get the metricsDashboardCredential property: Login credential for metrics dashboard on the Kubernetes cluster.
+     * 
+     * @return the metricsDashboardCredential value.
+     */
+    public BasicLoginInformation metricsDashboardCredential() {
+        return this.metricsDashboardCredential;
+    }
+
+    /**
+     * Set the metricsDashboardCredential property: Login credential for metrics dashboard on the Kubernetes cluster.
+     * 
+     * @param metricsDashboardCredential the metricsDashboardCredential value to set.
+     * @return the DataControllerProperties object itself.
+     */
+    public DataControllerProperties withMetricsDashboardCredential(BasicLoginInformation metricsDashboardCredential) {
+        this.metricsDashboardCredential = metricsDashboardCredential;
+        return this;
+    }
+
+    /**
+     * Get the logsDashboardCredential property: Login credential for logs dashboard on the Kubernetes cluster.
+     * 
+     * @return the logsDashboardCredential value.
+     */
+    public BasicLoginInformation logsDashboardCredential() {
+        return this.logsDashboardCredential;
+    }
+
+    /**
+     * Set the logsDashboardCredential property: Login credential for logs dashboard on the Kubernetes cluster.
+     * 
+     * @param logsDashboardCredential the logsDashboardCredential value to set.
+     * @return the DataControllerProperties object itself.
+     */
+    public DataControllerProperties withLogsDashboardCredential(BasicLoginInformation logsDashboardCredential) {
+        this.logsDashboardCredential = logsDashboardCredential;
+        return this;
+    }
+
+    /**
      * Get the logAnalyticsWorkspaceConfig property: Log analytics workspace id and primary key.
-     *
+     * 
      * @return the logAnalyticsWorkspaceConfig value.
      */
     public LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig() {
@@ -213,19 +265,20 @@ public final class DataControllerProperties {
 
     /**
      * Set the logAnalyticsWorkspaceConfig property: Log analytics workspace id and primary key.
-     *
+     * 
      * @param logAnalyticsWorkspaceConfig the logAnalyticsWorkspaceConfig value to set.
      * @return the DataControllerProperties object itself.
      */
-    public DataControllerProperties withLogAnalyticsWorkspaceConfig(
-        LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig) {
+    public DataControllerProperties
+        withLogAnalyticsWorkspaceConfig(LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig) {
         this.logAnalyticsWorkspaceConfig = logAnalyticsWorkspaceConfig;
         return this;
     }
 
     /**
-     * Get the uploadServicePrincipal property: Service principal for uploading billing, metrics and logs.
-     *
+     * Get the uploadServicePrincipal property: Deprecated. Service principal is deprecated in favor of Arc Kubernetes
+     * service extension managed identity.
+     * 
      * @return the uploadServicePrincipal value.
      */
     public UploadServicePrincipal uploadServicePrincipal() {
@@ -233,8 +286,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Set the uploadServicePrincipal property: Service principal for uploading billing, metrics and logs.
-     *
+     * Set the uploadServicePrincipal property: Deprecated. Service principal is deprecated in favor of Arc Kubernetes
+     * service extension managed identity.
+     * 
      * @param uploadServicePrincipal the uploadServicePrincipal value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -244,8 +298,8 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
-     *
+     * Get the provisioningState property: The provisioning state of the Arc Data Controller resource.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -255,7 +309,7 @@ public final class DataControllerProperties {
     /**
      * Get the clusterId property: If a CustomLocation is provided, this contains the ARM id of the connected cluster
      * the custom location belongs to.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -265,7 +319,7 @@ public final class DataControllerProperties {
     /**
      * Set the clusterId property: If a CustomLocation is provided, this contains the ARM id of the connected cluster
      * the custom location belongs to.
-     *
+     * 
      * @param clusterId the clusterId value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -277,7 +331,7 @@ public final class DataControllerProperties {
     /**
      * Get the extensionId property: If a CustomLocation is provided, this contains the ARM id of the extension the
      * custom location belongs to.
-     *
+     * 
      * @return the extensionId value.
      */
     public String extensionId() {
@@ -287,7 +341,7 @@ public final class DataControllerProperties {
     /**
      * Set the extensionId property: If a CustomLocation is provided, this contains the ARM id of the extension the
      * custom location belongs to.
-     *
+     * 
      * @param extensionId the extensionId value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -298,7 +352,7 @@ public final class DataControllerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -311,11 +365,97 @@ public final class DataControllerProperties {
         if (basicLoginInformation() != null) {
             basicLoginInformation().validate();
         }
+        if (metricsDashboardCredential() != null) {
+            metricsDashboardCredential().validate();
+        }
+        if (logsDashboardCredential() != null) {
+            logsDashboardCredential().validate();
+        }
         if (logAnalyticsWorkspaceConfig() != null) {
             logAnalyticsWorkspaceConfig().validate();
         }
         if (uploadServicePrincipal() != null) {
             uploadServicePrincipal().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("infrastructure",
+            this.infrastructure == null ? null : this.infrastructure.toString());
+        jsonWriter.writeJsonField("onPremiseProperty", this.onPremiseProperty);
+        jsonWriter.writeUntypedField("k8sRaw", this.k8SRaw);
+        jsonWriter.writeJsonField("uploadWatermark", this.uploadWatermark);
+        jsonWriter.writeStringField("lastUploadedDate",
+            this.lastUploadedDate == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastUploadedDate));
+        jsonWriter.writeJsonField("basicLoginInformation", this.basicLoginInformation);
+        jsonWriter.writeJsonField("metricsDashboardCredential", this.metricsDashboardCredential);
+        jsonWriter.writeJsonField("logsDashboardCredential", this.logsDashboardCredential);
+        jsonWriter.writeJsonField("logAnalyticsWorkspaceConfig", this.logAnalyticsWorkspaceConfig);
+        jsonWriter.writeJsonField("uploadServicePrincipal", this.uploadServicePrincipal);
+        jsonWriter.writeStringField("clusterId", this.clusterId);
+        jsonWriter.writeStringField("extensionId", this.extensionId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DataControllerProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DataControllerProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DataControllerProperties.
+     */
+    public static DataControllerProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DataControllerProperties deserializedDataControllerProperties = new DataControllerProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("infrastructure".equals(fieldName)) {
+                    deserializedDataControllerProperties.infrastructure = Infrastructure.fromString(reader.getString());
+                } else if ("onPremiseProperty".equals(fieldName)) {
+                    deserializedDataControllerProperties.onPremiseProperty = OnPremiseProperty.fromJson(reader);
+                } else if ("k8sRaw".equals(fieldName)) {
+                    deserializedDataControllerProperties.k8SRaw = reader.readUntyped();
+                } else if ("uploadWatermark".equals(fieldName)) {
+                    deserializedDataControllerProperties.uploadWatermark = UploadWatermark.fromJson(reader);
+                } else if ("lastUploadedDate".equals(fieldName)) {
+                    deserializedDataControllerProperties.lastUploadedDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("basicLoginInformation".equals(fieldName)) {
+                    deserializedDataControllerProperties.basicLoginInformation = BasicLoginInformation.fromJson(reader);
+                } else if ("metricsDashboardCredential".equals(fieldName)) {
+                    deserializedDataControllerProperties.metricsDashboardCredential
+                        = BasicLoginInformation.fromJson(reader);
+                } else if ("logsDashboardCredential".equals(fieldName)) {
+                    deserializedDataControllerProperties.logsDashboardCredential
+                        = BasicLoginInformation.fromJson(reader);
+                } else if ("logAnalyticsWorkspaceConfig".equals(fieldName)) {
+                    deserializedDataControllerProperties.logAnalyticsWorkspaceConfig
+                        = LogAnalyticsWorkspaceConfig.fromJson(reader);
+                } else if ("uploadServicePrincipal".equals(fieldName)) {
+                    deserializedDataControllerProperties.uploadServicePrincipal
+                        = UploadServicePrincipal.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedDataControllerProperties.provisioningState = reader.getString();
+                } else if ("clusterId".equals(fieldName)) {
+                    deserializedDataControllerProperties.clusterId = reader.getString();
+                } else if ("extensionId".equals(fieldName)) {
+                    deserializedDataControllerProperties.extensionId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDataControllerProperties;
+        });
     }
 }
