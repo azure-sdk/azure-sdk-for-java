@@ -29,12 +29,12 @@ public final class CertificateProfilesRevokeCertificateWithResponseMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         manager.certificateProfiles()
-            .revokeCertificateWithResponse("sxlzevgbmqj", "abcypmivk", "lzu",
-                new RevokeCertificate().withSerialNumber("ccfwnfnbacfion")
-                    .withThumbprint("ebxetqgtzxdp")
-                    .withEffectiveAt(OffsetDateTime.parse("2021-07-26T08:40:09Z"))
-                    .withReason("bqqwxrj")
-                    .withRemarks("al"),
+            .revokeCertificateWithResponse("topbobjogh", "e", "u",
+                new RevokeCertificate().withSerialNumber("m")
+                    .withThumbprint("uhrzayvvt")
+                    .withEffectiveAt(OffsetDateTime.parse("2021-02-28T09:00:19Z"))
+                    .withReason("vdfgiotk")
+                    .withRemarks("utqxlngx"),
                 com.azure.core.util.Context.NONE);
 
     }
