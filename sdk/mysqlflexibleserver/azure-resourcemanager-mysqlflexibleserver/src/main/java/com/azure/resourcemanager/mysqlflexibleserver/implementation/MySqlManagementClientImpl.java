@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -44,6 +44,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.MySqlManagementClien
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationProgressClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationResultsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationsClient;
+import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationsOngoingsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ReplicasClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ServersClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ServersMigrationsClient;
@@ -440,6 +441,20 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
     }
 
     /**
+     * The OperationsOngoingsClient object to access its operations.
+     */
+    private final OperationsOngoingsClient operationsOngoings;
+
+    /**
+     * Gets the OperationsOngoingsClient object to access its operations.
+     * 
+     * @return the OperationsOngoingsClient object.
+     */
+    public OperationsOngoingsClient getOperationsOngoings() {
+        return this.operationsOngoings;
+    }
+
+    /**
      * The MaintenancesClient object to access its operations.
      */
     private final MaintenancesClient maintenances;
@@ -492,6 +507,7 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.operationProgress = new OperationProgressClientImpl(this);
         this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.operationsOngoings = new OperationsOngoingsClientImpl(this);
         this.maintenances = new MaintenancesClientImpl(this);
     }
 

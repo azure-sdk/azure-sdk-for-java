@@ -7,11 +7,15 @@ package com.azure.resourcemanager.mysqlflexibleserver.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
@@ -21,7 +25,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -34,26 +38,37 @@ public final class ServerInner extends Resource {
     /*
      * The cmk identity for the server.
      */
-    @JsonProperty(value = "identity")
     private MySqlServerIdentity identity;
 
     /*
      * The SKU (pricing tier) of the server.
      */
-    @JsonProperty(value = "sku")
     private MySqlServerSku sku;
 
     /*
      * Properties of the server.
      */
-    @JsonProperty(value = "properties")
     private ServerProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of ServerInner class.
@@ -117,6 +132,36 @@ public final class ServerInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -188,7 +233,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the version property: Server version.
+     * Get the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @return the version value.
      */
@@ -197,7 +242,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the version property: Server version.
+     * Set the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @param version the version value to set.
      * @return the ServerInner object itself.
@@ -207,6 +252,29 @@ public final class ServerInner extends Resource {
             this.innerProperties = new ServerProperties();
         }
         this.innerProperties().withVersion(version);
+        return this;
+    }
+
+    /**
+     * Get the fullVersion property: Major version and actual engine version.
+     * 
+     * @return the fullVersion value.
+     */
+    public String fullVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().fullVersion();
+    }
+
+    /**
+     * Set the fullVersion property: Major version and actual engine version.
+     * 
+     * @param fullVersion the fullVersion value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withFullVersion(String fullVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withFullVersion(fullVersion);
         return this;
     }
 
@@ -378,6 +446,29 @@ public final class ServerInner extends Resource {
     }
 
     /**
+     * Get the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @return the databasePort value.
+     */
+    public Integer databasePort() {
+        return this.innerProperties() == null ? null : this.innerProperties().databasePort();
+    }
+
+    /**
+     * Set the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @param databasePort the databasePort value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withDatabasePort(Integer databasePort) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withDatabasePort(databasePort);
+        return this;
+    }
+
+    /**
      * Get the storage property: Storage related properties of a server.
      * 
      * @return the storage value.
@@ -479,7 +570,31 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the maintenanceWindow property: Maintenance window of a server.
+     * Get the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @return the maintenancePolicy value.
+     */
+    public MaintenancePolicy maintenancePolicy() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenancePolicy();
+    }
+
+    /**
+     * Set the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @param maintenancePolicy the maintenancePolicy value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withMaintenancePolicy(MaintenancePolicy maintenancePolicy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withMaintenancePolicy(maintenancePolicy);
+        return this;
+    }
+
+    /**
+     * Get the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @return the maintenanceWindow value.
      */
@@ -488,7 +603,8 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the maintenanceWindow property: Maintenance window of a server.
+     * Set the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @param maintenanceWindow the maintenanceWindow value to set.
      * @return the ServerInner object itself.
@@ -539,5 +655,63 @@ public final class ServerInner extends Resource {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ServerInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ServerInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ServerInner.
+     */
+    public static ServerInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ServerInner deserializedServerInner = new ServerInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedServerInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedServerInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedServerInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedServerInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedServerInner.withTags(tags);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedServerInner.identity = MySqlServerIdentity.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedServerInner.sku = MySqlServerSku.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedServerInner.innerProperties = ServerProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedServerInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedServerInner;
+        });
     }
 }

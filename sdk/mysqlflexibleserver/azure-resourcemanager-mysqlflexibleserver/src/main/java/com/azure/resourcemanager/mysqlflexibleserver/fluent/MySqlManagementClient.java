@@ -194,6 +194,13 @@ public interface MySqlManagementClient {
     OperationsClient getOperations();
 
     /**
+     * Gets the OperationsOngoingsClient object to access its operations.
+     * 
+     * @return the OperationsOngoingsClient object.
+     */
+    OperationsOngoingsClient getOperationsOngoings();
+
+    /**
      * Gets the MaintenancesClient object to access its operations.
      * 
      * @return the MaintenancesClient object.
