@@ -283,8 +283,9 @@ public final class FaceAdministrationClientBuilder implements HttpTrait<FaceAdmi
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
         FaceServiceVersion localServiceVersion
             = (serviceVersion != null) ? serviceVersion : FaceServiceVersion.getLatest();
-        FaceAdministrationClientImpl client = new FaceAdministrationClientImpl(localPipeline,
-            JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
+        FaceAdministrationClientImpl client
+            = new FaceAdministrationClientImpl(localPipeline, JacksonAdapter.createDefaultSerializerAdapter(),
+                this.endpoint, this.largeFaceListId, this.largePersonGroupId, localServiceVersion);
         return client;
     }
 
@@ -293,6 +294,8 @@ public final class FaceAdministrationClientBuilder implements HttpTrait<FaceAdmi
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+        Objects.requireNonNull(largeFaceListId, "'largeFaceListId' cannot be null.");
+        Objects.requireNonNull(largePersonGroupId, "'largePersonGroupId' cannot be null.");
     }
 
     @Generated
@@ -377,4 +380,40 @@ public final class FaceAdministrationClientBuilder implements HttpTrait<FaceAdmi
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(FaceAdministrationClientBuilder.class);
+
+    /*
+     * Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
+     */
+    @Generated
+    private String largeFaceListId;
+
+    /**
+     * Sets Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
+     *
+     * @param largeFaceListId the largeFaceListId value.
+     * @return the FaceAdministrationClientBuilder.
+     */
+    @Generated
+    public FaceAdministrationClientBuilder largeFaceListId(String largeFaceListId) {
+        this.largeFaceListId = largeFaceListId;
+        return this;
+    }
+
+    /*
+     * ID of the container.
+     */
+    @Generated
+    private String largePersonGroupId;
+
+    /**
+     * Sets ID of the container.
+     *
+     * @param largePersonGroupId the largePersonGroupId value.
+     * @return the FaceAdministrationClientBuilder.
+     */
+    @Generated
+    public FaceAdministrationClientBuilder largePersonGroupId(String largePersonGroupId) {
+        this.largePersonGroupId = largePersonGroupId;
+        return this;
+    }
 }

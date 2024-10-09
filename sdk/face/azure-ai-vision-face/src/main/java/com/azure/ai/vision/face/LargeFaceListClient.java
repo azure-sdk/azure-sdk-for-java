@@ -51,128 +51,6 @@ public final class LargeFaceListClient {
     }
 
     /**
-     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
-     * details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Required)
-     *     userData: String (Optional)
-     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param createRequest1 The createRequest1 parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createWithResponse(String largeFaceListId, BinaryData createRequest1,
-        RequestOptions requestOptions) {
-        return this.serviceClient.createWithResponse(largeFaceListId, createRequest1, requestOptions);
-    }
-
-    /**
-     * Delete a face from a Large Face List by specified largeFaceListId and persistedFaceId.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String largeFaceListId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteWithResponse(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
-     * details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
-     * value is false.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Required)
-     *     userData: String (Optional)
-     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
-     *     largeFaceListId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return large face list is a list of faces, up to 1,000,000 faces along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getWithResponse(String largeFaceListId, RequestOptions requestOptions) {
-        return this.serviceClient.getWithResponse(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
-     * details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Optional)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param updateRequest1 The updateRequest1 parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateWithResponse(String largeFaceListId, BinaryData updateRequest1,
-        RequestOptions requestOptions) {
-        return this.serviceClient.updateWithResponse(largeFaceListId, updateRequest1, requestOptions);
-    }
-
-    /**
      * List Large Face Lists' information of largeFaceListId, name, userData and recognitionModel.
      *
      * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-lists for more
@@ -215,462 +93,6 @@ public final class LargeFaceListClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getLargeFaceListsWithResponse(RequestOptions requestOptions) {
         return this.serviceClient.getLargeFaceListsWithResponse(requestOptions);
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-training-status for more
-     * details.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     status: String(notStarted/running/succeeded/failed) (Required)
-     *     createdDateTime: OffsetDateTime (Required)
-     *     lastActionDateTime: OffsetDateTime (Required)
-     *     lastSuccessfulTrainingDateTime: OffsetDateTime (Required)
-     *     message: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return training result of a container along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getTrainingStatusWithResponse(String largeFaceListId, RequestOptions requestOptions) {
-        return this.serviceClient.getTrainingStatusWithResponse(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Submit a Large Face List training task.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/train-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<BinaryData, BinaryData> beginTrain(String largeFaceListId, RequestOptions requestOptions) {
-        return this.serviceClient.beginTrain(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
-     * for more details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
-     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
-     * string.</td></tr>
-     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
-     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
-     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
-     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
-     * 1K.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     url: String (Required)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return response body for adding face along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> addFaceFromUrlImplWithResponse(String largeFaceListId, BinaryData addFaceFromUrlRequest1,
-        RequestOptions requestOptions) {
-        return this.serviceClient.addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest1,
-            requestOptions);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
-     * details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
-     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
-     * string.</td></tr>
-     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
-     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
-     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
-     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
-     * 1K.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * BinaryData
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param imageContent The image to be analyzed.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return response body for adding face along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> addFaceImplWithResponse(String largeFaceListId, BinaryData imageContent,
-        RequestOptions requestOptions) {
-        return this.serviceClient.addFaceImplWithResponse(largeFaceListId, imageContent, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list-face for
-     * more details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param persistedFaceId Face ID of the face.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteFaceWithResponse(String largeFaceListId, String persistedFaceId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.deleteFaceWithResponse(largeFaceListId, persistedFaceId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-face for more
-     * details.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param persistedFaceId Face ID of the face.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return face resource for large face list along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getFaceWithResponse(String largeFaceListId, String persistedFaceId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getFaceWithResponse(largeFaceListId, persistedFaceId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list-face for
-     * more details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateFaceWithResponse(String largeFaceListId, String persistedFaceId,
-        BinaryData updateFaceRequest1, RequestOptions requestOptions) {
-        return this.serviceClient.updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest1,
-            requestOptions);
-    }
-
-    /**
-     * List faces' persistedFaceId and userData in a specified Large Face List.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-faces for more
-     * details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>start</td><td>String</td><td>No</td><td>List resources greater than the "start". It contains no more than
-     * 64 characters. Default is empty.</td></tr>
-     * <tr><td>top</td><td>Integer</td><td>No</td><td>The number of items to list, ranging in [1, 1000]. Default is
-     * 1000.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         persistedFaceId: String (Required)
-     *         userData: String (Optional)
-     *     }
-     * ]
-     * }
-     * </pre>
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getFacesWithResponse(String largeFaceListId, RequestOptions requestOptions) {
-        return this.serviceClient.getFacesWithResponse(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param name User defined name, maximum length is 128.
-     * @param userData Optional user defined data. Length should not exceed 16K.
-     * @param recognitionModel The 'recognitionModel' associated with this face list. Supported 'recognitionModel'
-     * values include 'recognition_01', 'recognition_02, 'recognition_03', and 'recognition_04'. The default value is
-     * 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared
-     * with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void create(String largeFaceListId, String name, String userData, FaceRecognitionModel recognitionModel) {
-        // Generated convenience method for createWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        CreateRequest1 createRequest1Obj
-            = new CreateRequest1(name).setUserData(userData).setRecognitionModel(recognitionModel);
-        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
-        createWithResponse(largeFaceListId, createRequest1, requestOptions).getValue();
-    }
-
-    /**
-     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param name User defined name, maximum length is 128.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void create(String largeFaceListId, String name) {
-        // Generated convenience method for createWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        CreateRequest1 createRequest1Obj = new CreateRequest1(name);
-        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
-        createWithResponse(largeFaceListId, createRequest1, requestOptions).getValue();
-    }
-
-    /**
-     * Delete a face from a Large Face List by specified largeFaceListId and persistedFaceId.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String largeFaceListId) {
-        // Generated convenience method for deleteWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        deleteWithResponse(largeFaceListId, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param returnRecognitionModel Return 'recognitionModel' or not. The default value is false.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return large face list is a list of faces, up to 1,000,000 faces.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargeFaceList get(String largeFaceListId, Boolean returnRecognitionModel) {
-        // Generated convenience method for getWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        if (returnRecognitionModel != null) {
-            requestOptions.addQueryParam("returnRecognitionModel", String.valueOf(returnRecognitionModel), false);
-        }
-        return getWithResponse(largeFaceListId, requestOptions).getValue().toObject(LargeFaceList.class);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return large face list is a list of faces, up to 1,000,000 faces.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargeFaceList get(String largeFaceListId) {
-        // Generated convenience method for getWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getWithResponse(largeFaceListId, requestOptions).getValue().toObject(LargeFaceList.class);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param name User defined name, maximum length is 128.
-     * @param userData Optional user defined data. Length should not exceed 16K.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String largeFaceListId, String name, String userData) {
-        // Generated convenience method for updateWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest1 updateRequest1Obj = new UpdateRequest1().setName(name).setUserData(userData);
-        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
-        updateWithResponse(largeFaceListId, updateRequest1, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String largeFaceListId) {
-        // Generated convenience method for updateWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest1 updateRequest1Obj = new UpdateRequest1();
-        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
-        updateWithResponse(largeFaceListId, updateRequest1, requestOptions).getValue();
     }
 
     /**
@@ -729,238 +151,9 @@ public final class LargeFaceListClient {
     }
 
     /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-training-status for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return training result of a container.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FaceTrainingResult getTrainingStatus(String largeFaceListId) {
-        // Generated convenience method for getTrainingStatusWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getTrainingStatusWithResponse(largeFaceListId, requestOptions).getValue()
-            .toObject(FaceTrainingResult.class);
-    }
-
-    /**
-     * Submit a Large Face List training task.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/train-large-face-list for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<FaceTrainingResult, Void> beginTrain(String largeFaceListId) {
-        // Generated convenience method for beginTrainWithModel
-        RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.beginTrainWithModel(largeFaceListId, requestOptions);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
-     * for more details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param url URL of input image.
-     * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
-     * 'targetFace=left,top,width,height'.
-     * @param detectionModel The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel'
-     * values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
-     * @param userData User-provided data attached to the face. The size limit is 1K.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for adding face.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceFromUrlImpl(String largeFaceListId, String url, List<Integer> targetFace,
-        FaceDetectionModel detectionModel, String userData) {
-        // Generated convenience method for addFaceFromUrlImplWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
-        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
-        if (targetFace != null) {
-            requestOptions.addQueryParam("targetFace",
-                JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(targetFace, CollectionFormat.CSV),
-                false);
-        }
-        if (detectionModel != null) {
-            requestOptions.addQueryParam("detectionModel", detectionModel.toString(), false);
-        }
-        if (userData != null) {
-            requestOptions.addQueryParam("userData", userData, false);
-        }
-        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest1, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
-     * for more details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param url URL of input image.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for adding face.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceFromUrlImpl(String largeFaceListId, String url) {
-        // Generated convenience method for addFaceFromUrlImplWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
-        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
-        return addFaceFromUrlImplWithResponse(largeFaceListId, addFaceFromUrlRequest1, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param imageContent The image to be analyzed.
-     * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
-     * 'targetFace=left,top,width,height'.
-     * @param detectionModel The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel'
-     * values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
-     * @param userData User-provided data attached to the face. The size limit is 1K.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for adding face.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceImpl(String largeFaceListId, BinaryData imageContent, List<Integer> targetFace,
-        FaceDetectionModel detectionModel, String userData) {
-        // Generated convenience method for addFaceImplWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        if (targetFace != null) {
-            requestOptions.addQueryParam("targetFace",
-                JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(targetFace, CollectionFormat.CSV),
-                false);
-        }
-        if (detectionModel != null) {
-            requestOptions.addQueryParam("detectionModel", detectionModel.toString(), false);
-        }
-        if (userData != null) {
-            requestOptions.addQueryParam("userData", userData, false);
-        }
-        return addFaceImplWithResponse(largeFaceListId, imageContent, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
-    }
-
-    /**
-     * Add a face to a specified Large Face List, up to 1,000,000 faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param imageContent The image to be analyzed.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for adding face.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceImpl(String largeFaceListId, BinaryData imageContent) {
-        // Generated convenience method for addFaceImplWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return addFaceImplWithResponse(largeFaceListId, imageContent, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list-face for
-     * more details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param persistedFaceId Face ID of the face.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteFace(String largeFaceListId, String persistedFaceId) {
-        // Generated convenience method for deleteFaceWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        deleteFaceWithResponse(largeFaceListId, persistedFaceId, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-face for more
-     * details.
-     *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @param persistedFaceId Face ID of the face.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return face resource for large face list.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargeFaceListFace getFace(String largeFaceListId, String persistedFaceId) {
-        // Generated convenience method for getFaceWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getFaceWithResponse(largeFaceListId, persistedFaceId, requestOptions).getValue()
-            .toObject(LargeFaceListFace.class);
-    }
-
-    /**
      * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list-face for
      * more details.
      *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
      * @param persistedFaceId Face ID of the face.
      * @param userData User-provided data attached to the face. The length limit is 1K.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -972,19 +165,750 @@ public final class LargeFaceListClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateFace(String largeFaceListId, String persistedFaceId, String userData) {
+    public void updateFace(String persistedFaceId, String userData) {
         // Generated convenience method for updateFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
         UpdateFaceRequest1 updateFaceRequest1Obj = new UpdateFaceRequest1().setUserData(userData);
         BinaryData updateFaceRequest1 = BinaryData.fromObject(updateFaceRequest1Obj);
-        updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest1, requestOptions).getValue();
+        updateFaceWithResponse(persistedFaceId, updateFaceRequest1, requestOptions).getValue();
+    }
+
+    @Generated
+    private static final TypeReference<List<LargeFaceListFace>> TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE
+        = new TypeReference<List<LargeFaceListFace>>() {
+        };
+
+    @Generated
+    private static final TypeReference<List<LargeFaceList>> TYPE_REFERENCE_LIST_LARGE_FACE_LIST
+        = new TypeReference<List<LargeFaceList>>() {
+        };
+
+    /**
+     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
+     * details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Required)
+     *     userData: String (Optional)
+     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param createRequest1 The createRequest1 parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> createWithResponse(BinaryData createRequest1, RequestOptions requestOptions) {
+        return this.serviceClient.createWithResponse(createRequest1, requestOptions);
+    }
+
+    /**
+     * Delete a face from a Large Face List by specified largeFaceListId and persistedFaceId.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list for more
+     * details.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.deleteWithResponse(requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
+     * details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
+     * value is false.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Required)
+     *     userData: String (Optional)
+     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
+     *     largeFaceListId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return large face list is a list of faces, up to 1,000,000 faces along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getWithResponse(requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
+     * details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Optional)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param updateRequest1 The updateRequest1 parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateWithResponse(BinaryData updateRequest1, RequestOptions requestOptions) {
+        return this.serviceClient.updateWithResponse(updateRequest1, requestOptions);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-training-status for more
+     * details.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     status: String(notStarted/running/succeeded/failed) (Required)
+     *     createdDateTime: OffsetDateTime (Required)
+     *     lastActionDateTime: OffsetDateTime (Required)
+     *     lastSuccessfulTrainingDateTime: OffsetDateTime (Required)
+     *     message: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return training result of a container along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getTrainingStatusWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getTrainingStatusWithResponse(requestOptions);
+    }
+
+    /**
+     * Submit a Large Face List training task.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/train-large-face-list for more
+     * details.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<BinaryData, BinaryData> beginTrain(RequestOptions requestOptions) {
+        return this.serviceClient.beginTrain(requestOptions);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
+     * for more details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
+     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
+     * string.</td></tr>
+     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
+     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
+     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
+     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
+     * 1K.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     url: String (Required)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response body for adding face along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> addFaceFromUrlImplWithResponse(BinaryData addFaceFromUrlRequest1,
+        RequestOptions requestOptions) {
+        return this.serviceClient.addFaceFromUrlImplWithResponse(addFaceFromUrlRequest1, requestOptions);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
+     * details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
+     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
+     * string.</td></tr>
+     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
+     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
+     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
+     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
+     * 1K.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * BinaryData
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param imageContent The image to be analyzed.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response body for adding face along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> addFaceImplWithResponse(BinaryData imageContent, RequestOptions requestOptions) {
+        return this.serviceClient.addFaceImplWithResponse(imageContent, requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list-face for
+     * more details.
+     *
+     * @param persistedFaceId Face ID of the face.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteFaceWithResponse(String persistedFaceId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteFaceWithResponse(persistedFaceId, requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-face for more
+     * details.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param persistedFaceId Face ID of the face.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return face resource for large face list along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getFaceWithResponse(String persistedFaceId, RequestOptions requestOptions) {
+        return this.serviceClient.getFaceWithResponse(persistedFaceId, requestOptions);
     }
 
     /**
      * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list-face for
      * more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
      *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
+     * @param persistedFaceId Face ID of the face.
+     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateFaceWithResponse(String persistedFaceId, BinaryData updateFaceRequest1,
+        RequestOptions requestOptions) {
+        return this.serviceClient.updateFaceWithResponse(persistedFaceId, updateFaceRequest1, requestOptions);
+    }
+
+    /**
+     * List faces' persistedFaceId and userData in a specified Large Face List.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-faces for more
+     * details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>start</td><td>String</td><td>No</td><td>List resources greater than the "start". It contains no more than
+     * 64 characters. Default is empty.</td></tr>
+     * <tr><td>top</td><td>Integer</td><td>No</td><td>The number of items to list, ranging in [1, 1000]. Default is
+     * 1000.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * [
+     *      (Required){
+     *         persistedFaceId: String (Required)
+     *         userData: String (Optional)
+     *     }
+     * ]
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getFacesWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getFacesWithResponse(requestOptions);
+    }
+
+    /**
+     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
+     * details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @param userData Optional user defined data. Length should not exceed 16K.
+     * @param recognitionModel The 'recognitionModel' associated with this face list. Supported 'recognitionModel'
+     * values include 'recognition_01', 'recognition_02, 'recognition_03', and 'recognition_04'. The default value is
+     * 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared
+     * with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void create(String name, String userData, FaceRecognitionModel recognitionModel) {
+        // Generated convenience method for createWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        CreateRequest1 createRequest1Obj
+            = new CreateRequest1(name).setUserData(userData).setRecognitionModel(recognitionModel);
+        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
+        createWithResponse(createRequest1, requestOptions).getValue();
+    }
+
+    /**
+     * Create an empty Large Face List with user-specified largeFaceListId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/create-large-face-list for more
+     * details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void create(String name) {
+        // Generated convenience method for createWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        CreateRequest1 createRequest1Obj = new CreateRequest1(name);
+        BinaryData createRequest1 = BinaryData.fromObject(createRequest1Obj);
+        createWithResponse(createRequest1, requestOptions).getValue();
+    }
+
+    /**
+     * Delete a face from a Large Face List by specified largeFaceListId and persistedFaceId.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete() {
+        // Generated convenience method for deleteWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        deleteWithResponse(requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
+     * details.
+     *
+     * @param returnRecognitionModel Return 'recognitionModel' or not. The default value is false.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return large face list is a list of faces, up to 1,000,000 faces.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LargeFaceList get(Boolean returnRecognitionModel) {
+        // Generated convenience method for getWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        if (returnRecognitionModel != null) {
+            requestOptions.addQueryParam("returnRecognitionModel", String.valueOf(returnRecognitionModel), false);
+        }
+        return getWithResponse(requestOptions).getValue().toObject(LargeFaceList.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return large face list is a list of faces, up to 1,000,000 faces.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LargeFaceList get() {
+        // Generated convenience method for getWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getWithResponse(requestOptions).getValue().toObject(LargeFaceList.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
+     * details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @param userData Optional user defined data. Length should not exceed 16K.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void update(String name, String userData) {
+        // Generated convenience method for updateWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        UpdateRequest1 updateRequest1Obj = new UpdateRequest1().setName(name).setUserData(userData);
+        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
+        updateWithResponse(updateRequest1, requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void update() {
+        // Generated convenience method for updateWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        UpdateRequest1 updateRequest1Obj = new UpdateRequest1();
+        BinaryData updateRequest1 = BinaryData.fromObject(updateRequest1Obj);
+        updateWithResponse(updateRequest1, requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-training-status for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return training result of a container.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FaceTrainingResult getTrainingStatus() {
+        // Generated convenience method for getTrainingStatusWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getTrainingStatusWithResponse(requestOptions).getValue().toObject(FaceTrainingResult.class);
+    }
+
+    /**
+     * Submit a Large Face List training task.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/train-large-face-list for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<FaceTrainingResult, Void> beginTrain() {
+        // Generated convenience method for beginTrainWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginTrainWithModel(requestOptions);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
+     * for more details.
+     *
+     * @param url URL of input image.
+     * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
+     * 'targetFace=left,top,width,height'.
+     * @param detectionModel The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel'
+     * values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+     * @param userData User-provided data attached to the face. The size limit is 1K.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response body for adding face.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AddFaceResult addFaceFromUrlImpl(String url, List<Integer> targetFace, FaceDetectionModel detectionModel,
+        String userData) {
+        // Generated convenience method for addFaceFromUrlImplWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
+        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
+        if (targetFace != null) {
+            requestOptions.addQueryParam("targetFace",
+                JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(targetFace, CollectionFormat.CSV),
+                false);
+        }
+        if (detectionModel != null) {
+            requestOptions.addQueryParam("detectionModel", detectionModel.toString(), false);
+        }
+        if (userData != null) {
+            requestOptions.addQueryParam("userData", userData, false);
+        }
+        return addFaceFromUrlImplWithResponse(addFaceFromUrlRequest1, requestOptions).getValue()
+            .toObject(AddFaceResult.class);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face-from-url
+     * for more details.
+     *
+     * @param url URL of input image.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response body for adding face.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AddFaceResult addFaceFromUrlImpl(String url) {
+        // Generated convenience method for addFaceFromUrlImplWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        AddFaceFromUrlRequest1 addFaceFromUrlRequest1Obj = new AddFaceFromUrlRequest1(url);
+        BinaryData addFaceFromUrlRequest1 = BinaryData.fromObject(addFaceFromUrlRequest1Obj);
+        return addFaceFromUrlImplWithResponse(addFaceFromUrlRequest1, requestOptions).getValue()
+            .toObject(AddFaceResult.class);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
+     * details.
+     *
+     * @param imageContent The image to be analyzed.
+     * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
+     * 'targetFace=left,top,width,height'.
+     * @param detectionModel The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel'
+     * values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+     * @param userData User-provided data attached to the face. The size limit is 1K.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response body for adding face.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AddFaceResult addFaceImpl(BinaryData imageContent, List<Integer> targetFace, FaceDetectionModel detectionModel,
+        String userData) {
+        // Generated convenience method for addFaceImplWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        if (targetFace != null) {
+            requestOptions.addQueryParam("targetFace",
+                JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(targetFace, CollectionFormat.CSV),
+                false);
+        }
+        if (detectionModel != null) {
+            requestOptions.addQueryParam("detectionModel", detectionModel.toString(), false);
+        }
+        if (userData != null) {
+            requestOptions.addQueryParam("userData", userData, false);
+        }
+        return addFaceImplWithResponse(imageContent, requestOptions).getValue().toObject(AddFaceResult.class);
+    }
+
+    /**
+     * Add a face to a specified Large Face List, up to 1,000,000 faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/add-large-face-list-face for more
+     * details.
+     *
+     * @param imageContent The image to be analyzed.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response body for adding face.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AddFaceResult addFaceImpl(BinaryData imageContent) {
+        // Generated convenience method for addFaceImplWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return addFaceImplWithResponse(imageContent, requestOptions).getValue().toObject(AddFaceResult.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/delete-large-face-list-face for
+     * more details.
+     *
      * @param persistedFaceId Face ID of the face.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -995,12 +919,53 @@ public final class LargeFaceListClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateFace(String largeFaceListId, String persistedFaceId) {
+    public void deleteFace(String persistedFaceId) {
+        // Generated convenience method for deleteFaceWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        deleteFaceWithResponse(persistedFaceId, requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-face for more
+     * details.
+     *
+     * @param persistedFaceId Face ID of the face.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return face resource for large face list.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LargeFaceListFace getFace(String persistedFaceId) {
+        // Generated convenience method for getFaceWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getFaceWithResponse(persistedFaceId, requestOptions).getValue().toObject(LargeFaceListFace.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/update-large-face-list-face for
+     * more details.
+     *
+     * @param persistedFaceId Face ID of the face.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void updateFace(String persistedFaceId) {
         // Generated convenience method for updateFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
         UpdateFaceRequest1 updateFaceRequest1Obj = new UpdateFaceRequest1();
         BinaryData updateFaceRequest1 = BinaryData.fromObject(updateFaceRequest1Obj);
-        updateFaceWithResponse(largeFaceListId, persistedFaceId, updateFaceRequest1, requestOptions).getValue();
+        updateFaceWithResponse(persistedFaceId, updateFaceRequest1, requestOptions).getValue();
     }
 
     /**
@@ -1009,7 +974,6 @@ public final class LargeFaceListClient {
      * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-faces for more
      * details.
      *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
      * @param start List resources greater than the "start". It contains no more than 64 characters. Default is empty.
      * @param top The number of items to list, ranging in [1, 1000]. Default is 1000.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1022,7 +986,7 @@ public final class LargeFaceListClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<LargeFaceListFace> getFaces(String largeFaceListId, String start, Integer top) {
+    public List<LargeFaceListFace> getFaces(String start, Integer top) {
         // Generated convenience method for getFacesWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (start != null) {
@@ -1031,8 +995,7 @@ public final class LargeFaceListClient {
         if (top != null) {
             requestOptions.addQueryParam("top", String.valueOf(top), false);
         }
-        return getFacesWithResponse(largeFaceListId, requestOptions).getValue()
-            .toObject(TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE);
+        return getFacesWithResponse(requestOptions).getValue().toObject(TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE);
     }
 
     /**
@@ -1041,8 +1004,6 @@ public final class LargeFaceListClient {
      * Please refer to https://learn.microsoft.com/rest/api/face/face-list-operations/get-large-face-list-faces for more
      * details.
      *
-     * @param largeFaceListId Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
@@ -1052,20 +1013,9 @@ public final class LargeFaceListClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<LargeFaceListFace> getFaces(String largeFaceListId) {
+    public List<LargeFaceListFace> getFaces() {
         // Generated convenience method for getFacesWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getFacesWithResponse(largeFaceListId, requestOptions).getValue()
-            .toObject(TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE);
+        return getFacesWithResponse(requestOptions).getValue().toObject(TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE);
     }
-
-    @Generated
-    private static final TypeReference<List<LargeFaceListFace>> TYPE_REFERENCE_LIST_LARGE_FACE_LIST_FACE
-        = new TypeReference<List<LargeFaceListFace>>() {
-        };
-
-    @Generated
-    private static final TypeReference<List<LargeFaceList>> TYPE_REFERENCE_LIST_LARGE_FACE_LIST
-        = new TypeReference<List<LargeFaceList>>() {
-        };
 }
