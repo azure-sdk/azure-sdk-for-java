@@ -55,127 +55,6 @@ public final class LargePersonGroupClient {
     }
 
     /**
-     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
-     * more details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Required)
-     *     userData: String (Optional)
-     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param createRequest The createRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createWithResponse(String largePersonGroupId, BinaryData createRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.createWithResponse(largePersonGroupId, createRequest, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String largePersonGroupId, RequestOptions requestOptions) {
-        return this.serviceClient.deleteWithResponse(largePersonGroupId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
-     * details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
-     * value is false.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Required)
-     *     userData: String (Optional)
-     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
-     *     largePersonGroupId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000 people
-     * along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getWithResponse(String largePersonGroupId, RequestOptions requestOptions) {
-        return this.serviceClient.getWithResponse(largePersonGroupId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
-     * more details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Optional)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param updateRequest The updateRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateWithResponse(String largePersonGroupId, BinaryData updateRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.updateWithResponse(largePersonGroupId, updateRequest, requestOptions);
-    }
-
-    /**
      * List all existing Large Person Groups' largePersonGroupId, name, userData and recognitionModel.
      *
      * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-groups for
@@ -218,617 +97,6 @@ public final class LargePersonGroupClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getLargePersonGroupsWithResponse(RequestOptions requestOptions) {
         return this.serviceClient.getLargePersonGroupsWithResponse(requestOptions);
-    }
-
-    /**
-     * To check Large Person Group training status completed or still ongoing. Large Person Group training is an
-     * asynchronous operation triggered by "Train Large Person Group" API.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-training-status for more
-     * details.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     status: String(notStarted/running/succeeded/failed) (Required)
-     *     createdDateTime: OffsetDateTime (Required)
-     *     lastActionDateTime: OffsetDateTime (Required)
-     *     lastSuccessfulTrainingDateTime: OffsetDateTime (Required)
-     *     message: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return training result of a container along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getTrainingStatusWithResponse(String largePersonGroupId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getTrainingStatusWithResponse(largePersonGroupId, requestOptions);
-    }
-
-    /**
-     * Submit a Large Person Group training task. Training is a crucial step that only a trained Large Person Group can
-     * be used by "Identify From Large Person Group".
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/train-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<BinaryData, BinaryData> beginTrain(String largePersonGroupId, RequestOptions requestOptions) {
-        return this.serviceClient.beginTrain(largePersonGroupId, requestOptions);
-    }
-
-    /**
-     * Create a new person in a specified Large Person Group. To add face to this person, please call "Add Large Person
-     * Group Person Face".
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group-person for more
-     * details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Required)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     personId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param createPersonRequest The createPersonRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return response of create person along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createPersonWithResponse(String largePersonGroupId, BinaryData createPersonRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.createPersonWithResponse(largePersonGroupId, createPersonRequest, requestOptions);
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deletePersonWithResponse(String largePersonGroupId, String personId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.deletePersonWithResponse(largePersonGroupId, personId, requestOptions);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person
-     * for more details.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     personId: String (Required)
-     *     name: String (Required)
-     *     userData: String (Optional)
-     *     persistedFaceIds (Optional): [
-     *         String (Optional)
-     *     ]
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the person in a specified large person group along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getPersonWithResponse(String largePersonGroupId, String personId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getPersonWithResponse(largePersonGroupId, personId, requestOptions);
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person for more
-     * details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Optional)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param updatePersonRequest The updatePersonRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updatePersonWithResponse(String largePersonGroupId, String personId,
-        BinaryData updatePersonRequest, RequestOptions requestOptions) {
-        return this.serviceClient.updatePersonWithResponse(largePersonGroupId, personId, updatePersonRequest,
-            requestOptions);
-    }
-
-    /**
-     * List all persons' information in the specified Large Person Group, including personId, name, userData and
-     * persistedFaceIds of registered person faces.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-persons
-     * for more details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>start</td><td>String</td><td>No</td><td>List resources greater than the "start". It contains no more than
-     * 64 characters. Default is empty.</td></tr>
-     * <tr><td>top</td><td>Integer</td><td>No</td><td>The number of items to list, ranging in [1, 1000]. Default is
-     * 1000.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * [
-     *      (Required){
-     *         personId: String (Required)
-     *         name: String (Required)
-     *         userData: String (Optional)
-     *         persistedFaceIds (Optional): [
-     *             String (Optional)
-     *         ]
-     *     }
-     * ]
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getPersonsWithResponse(String largePersonGroupId, RequestOptions requestOptions) {
-        return this.serviceClient.getPersonsWithResponse(largePersonGroupId, requestOptions);
-    }
-
-    /**
-     * Add a face to a person into a Large Person Group for face identification or verification.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face-from-url for
-     * more details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
-     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
-     * string.</td></tr>
-     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
-     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
-     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
-     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
-     * 1K.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     url: String (Required)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param addFaceFromUrlRequest The addFaceFromUrlRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return response body for adding face along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> addFaceFromUrlImplWithResponse(String largePersonGroupId, String personId,
-        BinaryData addFaceFromUrlRequest, RequestOptions requestOptions) {
-        return this.serviceClient.addFaceFromUrlImplWithResponse(largePersonGroupId, personId, addFaceFromUrlRequest,
-            requestOptions);
-    }
-
-    /**
-     * Add a face to a person into a Large Person Group for face identification or verification.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face for more
-     * details.
-     * <p><strong>Query Parameters</strong></p>
-     * <table border="1">
-     * <caption>Query Parameters</caption>
-     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
-     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
-     * string.</td></tr>
-     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
-     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
-     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
-     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
-     * 1K.</td></tr>
-     * </table>
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * BinaryData
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param imageContent The image to be analyzed.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return response body for adding face along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> addFaceImplWithResponse(String largePersonGroupId, String personId, BinaryData imageContent,
-        RequestOptions requestOptions) {
-        return this.serviceClient.addFaceImplWithResponse(largePersonGroupId, personId, imageContent, requestOptions);
-    }
-
-    /**
-     * Delete a face from a person in a Large Person Group by specified largePersonGroupId, personId and
-     * persistedFaceId.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person-face for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param persistedFaceId Face ID of the face.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteFaceWithResponse(String largePersonGroupId, String personId, String persistedFaceId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.deleteFaceWithResponse(largePersonGroupId, personId, persistedFaceId, requestOptions);
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person-face for more
-     * details.
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     persistedFaceId: String (Required)
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param persistedFaceId Face ID of the face.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return face resource for large person group person along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getFaceWithResponse(String largePersonGroupId, String personId, String persistedFaceId,
-        RequestOptions requestOptions) {
-        return this.serviceClient.getFaceWithResponse(largePersonGroupId, personId, persistedFaceId, requestOptions);
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person-face for more
-     * details.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     userData: String (Optional)
-     * }
-     * }
-     * </pre>
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest The updateFaceRequest parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateFaceWithResponse(String largePersonGroupId, String personId, String persistedFaceId,
-        BinaryData updateFaceRequest, RequestOptions requestOptions) {
-        return this.serviceClient.updateFaceWithResponse(largePersonGroupId, personId, persistedFaceId,
-            updateFaceRequest, requestOptions);
-    }
-
-    /**
-     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param name User defined name, maximum length is 128.
-     * @param userData Optional user defined data. Length should not exceed 16K.
-     * @param recognitionModel The 'recognitionModel' associated with this face list. Supported 'recognitionModel'
-     * values include 'recognition_01', 'recognition_02, 'recognition_03', and 'recognition_04'. The default value is
-     * 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared
-     * with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void create(String largePersonGroupId, String name, String userData, FaceRecognitionModel recognitionModel) {
-        // Generated convenience method for createWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        CreateRequest createRequestObj
-            = new CreateRequest(name).setUserData(userData).setRecognitionModel(recognitionModel);
-        BinaryData createRequest = BinaryData.fromObject(createRequestObj);
-        createWithResponse(largePersonGroupId, createRequest, requestOptions).getValue();
-    }
-
-    /**
-     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
-     * recognitionModel.
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param name User defined name, maximum length is 128.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void create(String largePersonGroupId, String name) {
-        // Generated convenience method for createWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        CreateRequest createRequestObj = new CreateRequest(name);
-        BinaryData createRequest = BinaryData.fromObject(createRequestObj);
-        createWithResponse(largePersonGroupId, createRequest, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String largePersonGroupId) {
-        // Generated convenience method for deleteWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        deleteWithResponse(largePersonGroupId, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param returnRecognitionModel Return 'recognitionModel' or not. The default value is false.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000
-     * people.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargePersonGroup get(String largePersonGroupId, Boolean returnRecognitionModel) {
-        // Generated convenience method for getWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        if (returnRecognitionModel != null) {
-            requestOptions.addQueryParam("returnRecognitionModel", String.valueOf(returnRecognitionModel), false);
-        }
-        return getWithResponse(largePersonGroupId, requestOptions).getValue().toObject(LargePersonGroup.class);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000
-     * people.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargePersonGroup get(String largePersonGroupId) {
-        // Generated convenience method for getWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getWithResponse(largePersonGroupId, requestOptions).getValue().toObject(LargePersonGroup.class);
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @param name User defined name, maximum length is 128.
-     * @param userData Optional user defined data. Length should not exceed 16K.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String largePersonGroupId, String name, String userData) {
-        // Generated convenience method for updateWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest updateRequestObj = new UpdateRequest().setName(name).setUserData(userData);
-        BinaryData updateRequest = BinaryData.fromObject(updateRequestObj);
-        updateWithResponse(largePersonGroupId, updateRequest, requestOptions).getValue();
-    }
-
-    /**
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String largePersonGroupId) {
-        // Generated convenience method for updateWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        UpdateRequest updateRequestObj = new UpdateRequest();
-        BinaryData updateRequest = BinaryData.fromObject(updateRequestObj);
-        updateWithResponse(largePersonGroupId, updateRequest, requestOptions).getValue();
     }
 
     /**
@@ -889,56 +157,6 @@ public final class LargePersonGroupClient {
     }
 
     /**
-     * To check Large Person Group training status completed or still ongoing. Large Person Group training is an
-     * asynchronous operation triggered by "Train Large Person Group" API.
-     *
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-training-status for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return training result of a container.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FaceTrainingResult getTrainingStatus(String largePersonGroupId) {
-        // Generated convenience method for getTrainingStatusWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return getTrainingStatusWithResponse(largePersonGroupId, requestOptions).getValue()
-            .toObject(FaceTrainingResult.class);
-    }
-
-    /**
-     * Submit a Large Person Group training task. Training is a crucial step that only a trained Large Person Group can
-     * be used by "Identify From Large Person Group".
-     *
-     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/train-large-person-group for
-     * more details.
-     *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<FaceTrainingResult, Void> beginTrain(String largePersonGroupId) {
-        // Generated convenience method for beginTrainWithModel
-        RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.beginTrainWithModel(largePersonGroupId, requestOptions);
-    }
-
-    /**
      * Create a new person in a specified Large Person Group. To add face to this person, please call "Add Large Person
      * Group Person Face".
      *
@@ -946,7 +164,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group-person for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param name User defined name, maximum length is 128.
      * @param userData Optional user defined data. Length should not exceed 16K.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -959,13 +176,791 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CreatePersonResult createPerson(String largePersonGroupId, String name, String userData) {
+    public CreatePersonResult createPerson(String name, String userData) {
         // Generated convenience method for createPersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
         CreatePersonRequest createPersonRequestObj = new CreatePersonRequest(name).setUserData(userData);
         BinaryData createPersonRequest = BinaryData.fromObject(createPersonRequestObj);
-        return createPersonWithResponse(largePersonGroupId, createPersonRequest, requestOptions).getValue()
+        return createPersonWithResponse(createPersonRequest, requestOptions).getValue()
             .toObject(CreatePersonResult.class);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person-face for more
+     * details.
+     *
+     * @param personId ID of the person.
+     * @param persistedFaceId Face ID of the face.
+     * @param userData User-provided data attached to the face. The length limit is 1K.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void updateFace(String personId, String persistedFaceId, String userData) {
+        // Generated convenience method for updateFaceWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        UpdateFaceRequest updateFaceRequestObj = new UpdateFaceRequest().setUserData(userData);
+        BinaryData updateFaceRequest = BinaryData.fromObject(updateFaceRequestObj);
+        updateFaceWithResponse(personId, persistedFaceId, updateFaceRequest, requestOptions).getValue();
+    }
+
+    @Generated
+    private static final TypeReference<List<LargePersonGroup>> TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP
+        = new TypeReference<List<LargePersonGroup>>() {
+        };
+
+    @Generated
+    private static final TypeReference<List<LargePersonGroupPerson>> TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP_PERSON
+        = new TypeReference<List<LargePersonGroupPerson>>() {
+        };
+
+    /**
+     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
+     * more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Required)
+     *     userData: String (Optional)
+     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param createRequest The createRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> createWithResponse(BinaryData createRequest, RequestOptions requestOptions) {
+        return this.serviceClient.createWithResponse(createRequest, requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group for
+     * more details.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.deleteWithResponse(requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
+     * details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>returnRecognitionModel</td><td>Boolean</td><td>No</td><td>Return 'recognitionModel' or not. The default
+     * value is false.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Required)
+     *     userData: String (Optional)
+     *     recognitionModel: String(recognition_01/recognition_02/recognition_03/recognition_04) (Optional)
+     *     largePersonGroupId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000 people
+     * along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getWithResponse(requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
+     * more details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Optional)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param updateRequest The updateRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateWithResponse(BinaryData updateRequest, RequestOptions requestOptions) {
+        return this.serviceClient.updateWithResponse(updateRequest, requestOptions);
+    }
+
+    /**
+     * To check Large Person Group training status completed or still ongoing. Large Person Group training is an
+     * asynchronous operation triggered by "Train Large Person Group" API.
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-training-status for more
+     * details.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     status: String(notStarted/running/succeeded/failed) (Required)
+     *     createdDateTime: OffsetDateTime (Required)
+     *     lastActionDateTime: OffsetDateTime (Required)
+     *     lastSuccessfulTrainingDateTime: OffsetDateTime (Required)
+     *     message: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return training result of a container along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getTrainingStatusWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getTrainingStatusWithResponse(requestOptions);
+    }
+
+    /**
+     * Submit a Large Person Group training task. Training is a crucial step that only a trained Large Person Group can
+     * be used by "Identify From Large Person Group".
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/train-large-person-group for
+     * more details.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<BinaryData, BinaryData> beginTrain(RequestOptions requestOptions) {
+        return this.serviceClient.beginTrain(requestOptions);
+    }
+
+    /**
+     * Create a new person in a specified Large Person Group. To add face to this person, please call "Add Large Person
+     * Group Person Face".
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group-person for more
+     * details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Required)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     personId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param createPersonRequest The createPersonRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response of create person along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createPersonWithResponse(BinaryData createPersonRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.createPersonWithResponse(createPersonRequest, requestOptions);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person for more
+     * details.
+     *
+     * @param personId ID of the person.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deletePersonWithResponse(String personId, RequestOptions requestOptions) {
+        return this.serviceClient.deletePersonWithResponse(personId, requestOptions);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person
+     * for more details.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     personId: String (Required)
+     *     name: String (Required)
+     *     userData: String (Optional)
+     *     persistedFaceIds (Optional): [
+     *         String (Optional)
+     *     ]
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the person in a specified large person group along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getPersonWithResponse(String personId, RequestOptions requestOptions) {
+        return this.serviceClient.getPersonWithResponse(personId, requestOptions);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person for more
+     * details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     name: String (Optional)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param updatePersonRequest The updatePersonRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updatePersonWithResponse(String personId, BinaryData updatePersonRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.updatePersonWithResponse(personId, updatePersonRequest, requestOptions);
+    }
+
+    /**
+     * List all persons' information in the specified Large Person Group, including personId, name, userData and
+     * persistedFaceIds of registered person faces.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-persons
+     * for more details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>start</td><td>String</td><td>No</td><td>List resources greater than the "start". It contains no more than
+     * 64 characters. Default is empty.</td></tr>
+     * <tr><td>top</td><td>Integer</td><td>No</td><td>The number of items to list, ranging in [1, 1000]. Default is
+     * 1000.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * [
+     *      (Required){
+     *         personId: String (Required)
+     *         name: String (Required)
+     *         userData: String (Optional)
+     *         persistedFaceIds (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     * ]
+     * }
+     * </pre>
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response body along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getPersonsWithResponse(RequestOptions requestOptions) {
+        return this.serviceClient.getPersonsWithResponse(requestOptions);
+    }
+
+    /**
+     * Add a face to a person into a Large Person Group for face identification or verification.
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face-from-url for
+     * more details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
+     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
+     * string.</td></tr>
+     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
+     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
+     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
+     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
+     * 1K.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     url: String (Required)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param addFaceFromUrlRequest The addFaceFromUrlRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response body for adding face along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> addFaceFromUrlImplWithResponse(String personId, BinaryData addFaceFromUrlRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.addFaceFromUrlImplWithResponse(personId, addFaceFromUrlRequest, requestOptions);
+    }
+
+    /**
+     * Add a face to a person into a Large Person Group for face identification or verification.
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face for more
+     * details.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>targetFace</td><td>List&lt;Integer&gt;</td><td>No</td><td>A face rectangle to specify the target face to
+     * be added to a person, in the format of 'targetFace=left,top,width,height'. In the form of "," separated
+     * string.</td></tr>
+     * <tr><td>detectionModel</td><td>String</td><td>No</td><td>The 'detectionModel' associated with the detected
+     * faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default
+     * value is 'detection_01'. Allowed values: "detection_01", "detection_02", "detection_03".</td></tr>
+     * <tr><td>userData</td><td>String</td><td>No</td><td>User-provided data attached to the face. The size limit is
+     * 1K.</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * BinaryData
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param imageContent The image to be analyzed.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return response body for adding face along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> addFaceImplWithResponse(String personId, BinaryData imageContent,
+        RequestOptions requestOptions) {
+        return this.serviceClient.addFaceImplWithResponse(personId, imageContent, requestOptions);
+    }
+
+    /**
+     * Delete a face from a person in a Large Person Group by specified largePersonGroupId, personId and
+     * persistedFaceId.
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person-face for more
+     * details.
+     *
+     * @param personId ID of the person.
+     * @param persistedFaceId Face ID of the face.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteFaceWithResponse(String personId, String persistedFaceId,
+        RequestOptions requestOptions) {
+        return this.serviceClient.deleteFaceWithResponse(personId, persistedFaceId, requestOptions);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person-face for more
+     * details.
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     persistedFaceId: String (Required)
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param persistedFaceId Face ID of the face.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return face resource for large person group person along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getFaceWithResponse(String personId, String persistedFaceId,
+        RequestOptions requestOptions) {
+        return this.serviceClient.getFaceWithResponse(personId, persistedFaceId, requestOptions);
+    }
+
+    /**
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person-face for more
+     * details.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     userData: String (Optional)
+     * }
+     * }
+     * </pre>
+     *
+     * @param personId ID of the person.
+     * @param persistedFaceId Face ID of the face.
+     * @param updateFaceRequest The updateFaceRequest parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateFaceWithResponse(String personId, String persistedFaceId, BinaryData updateFaceRequest,
+        RequestOptions requestOptions) {
+        return this.serviceClient.updateFaceWithResponse(personId, persistedFaceId, updateFaceRequest, requestOptions);
+    }
+
+    /**
+     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
+     * more details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @param userData Optional user defined data. Length should not exceed 16K.
+     * @param recognitionModel The 'recognitionModel' associated with this face list. Supported 'recognitionModel'
+     * values include 'recognition_01', 'recognition_02, 'recognition_03', and 'recognition_04'. The default value is
+     * 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared
+     * with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void create(String name, String userData, FaceRecognitionModel recognitionModel) {
+        // Generated convenience method for createWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        CreateRequest createRequestObj
+            = new CreateRequest(name).setUserData(userData).setRecognitionModel(recognitionModel);
+        BinaryData createRequest = BinaryData.fromObject(createRequestObj);
+        createWithResponse(createRequest, requestOptions).getValue();
+    }
+
+    /**
+     * Create a new Large Person Group with user-specified largePersonGroupId, name, an optional userData and
+     * recognitionModel.
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group for
+     * more details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void create(String name) {
+        // Generated convenience method for createWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        CreateRequest createRequestObj = new CreateRequest(name);
+        BinaryData createRequest = BinaryData.fromObject(createRequestObj);
+        createWithResponse(createRequest, requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group for
+     * more details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete() {
+        // Generated convenience method for deleteWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        deleteWithResponse(requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
+     * details.
+     *
+     * @param returnRecognitionModel Return 'recognitionModel' or not. The default value is false.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000
+     * people.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LargePersonGroup get(Boolean returnRecognitionModel) {
+        // Generated convenience method for getWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        if (returnRecognitionModel != null) {
+            requestOptions.addQueryParam("returnRecognitionModel", String.valueOf(returnRecognitionModel), false);
+        }
+        return getWithResponse(requestOptions).getValue().toObject(LargePersonGroup.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the container of the uploaded person data, including face recognition feature, and up to 1,000,000
+     * people.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LargePersonGroup get() {
+        // Generated convenience method for getWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getWithResponse(requestOptions).getValue().toObject(LargePersonGroup.class);
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
+     * more details.
+     *
+     * @param name User defined name, maximum length is 128.
+     * @param userData Optional user defined data. Length should not exceed 16K.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void update(String name, String userData) {
+        // Generated convenience method for updateWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        UpdateRequest updateRequestObj = new UpdateRequest().setName(name).setUserData(userData);
+        BinaryData updateRequest = BinaryData.fromObject(updateRequestObj);
+        updateWithResponse(updateRequest, requestOptions).getValue();
+    }
+
+    /**
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group for
+     * more details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void update() {
+        // Generated convenience method for updateWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        UpdateRequest updateRequestObj = new UpdateRequest();
+        BinaryData updateRequest = BinaryData.fromObject(updateRequestObj);
+        updateWithResponse(updateRequest, requestOptions).getValue();
+    }
+
+    /**
+     * To check Large Person Group training status completed or still ongoing. Large Person Group training is an
+     * asynchronous operation triggered by "Train Large Person Group" API.
+     *
+     * Please refer to
+     * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-training-status for more
+     * details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return training result of a container.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FaceTrainingResult getTrainingStatus() {
+        // Generated convenience method for getTrainingStatusWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getTrainingStatusWithResponse(requestOptions).getValue().toObject(FaceTrainingResult.class);
+    }
+
+    /**
+     * Submit a Large Person Group training task. Training is a crucial step that only a trained Large Person Group can
+     * be used by "Identify From Large Person Group".
+     *
+     * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/train-large-person-group for
+     * more details.
+     *
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<FaceTrainingResult, Void> beginTrain() {
+        // Generated convenience method for beginTrainWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginTrainWithModel(requestOptions);
     }
 
     /**
@@ -976,7 +971,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/create-large-person-group-person for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param name User defined name, maximum length is 128.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -988,12 +982,12 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CreatePersonResult createPerson(String largePersonGroupId, String name) {
+    public CreatePersonResult createPerson(String name) {
         // Generated convenience method for createPersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
         CreatePersonRequest createPersonRequestObj = new CreatePersonRequest(name);
         BinaryData createPersonRequest = BinaryData.fromObject(createPersonRequestObj);
-        return createPersonWithResponse(largePersonGroupId, createPersonRequest, requestOptions).getValue()
+        return createPersonWithResponse(createPersonRequest, requestOptions).getValue()
             .toObject(CreatePersonResult.class);
     }
 
@@ -1002,7 +996,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1013,17 +1006,16 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deletePerson(String largePersonGroupId, String personId) {
+    public void deletePerson(String personId) {
         // Generated convenience method for deletePersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deletePersonWithResponse(largePersonGroupId, personId, requestOptions).getValue();
+        deletePersonWithResponse(personId, requestOptions).getValue();
     }
 
     /**
      * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person
      * for more details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1035,11 +1027,10 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargePersonGroupPerson getPerson(String largePersonGroupId, String personId) {
+    public LargePersonGroupPerson getPerson(String personId) {
         // Generated convenience method for getPersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getPersonWithResponse(largePersonGroupId, personId, requestOptions).getValue()
-            .toObject(LargePersonGroupPerson.class);
+        return getPersonWithResponse(personId, requestOptions).getValue().toObject(LargePersonGroupPerson.class);
     }
 
     /**
@@ -1047,7 +1038,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param name User defined name, maximum length is 128.
      * @param userData Optional user defined data. Length should not exceed 16K.
@@ -1060,12 +1050,12 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updatePerson(String largePersonGroupId, String personId, String name, String userData) {
+    public void updatePerson(String personId, String name, String userData) {
         // Generated convenience method for updatePersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
         UpdatePersonRequest updatePersonRequestObj = new UpdatePersonRequest().setName(name).setUserData(userData);
         BinaryData updatePersonRequest = BinaryData.fromObject(updatePersonRequestObj);
-        updatePersonWithResponse(largePersonGroupId, personId, updatePersonRequest, requestOptions).getValue();
+        updatePersonWithResponse(personId, updatePersonRequest, requestOptions).getValue();
     }
 
     /**
@@ -1073,7 +1063,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1084,12 +1073,12 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updatePerson(String largePersonGroupId, String personId) {
+    public void updatePerson(String personId) {
         // Generated convenience method for updatePersonWithResponse
         RequestOptions requestOptions = new RequestOptions();
         UpdatePersonRequest updatePersonRequestObj = new UpdatePersonRequest();
         BinaryData updatePersonRequest = BinaryData.fromObject(updatePersonRequestObj);
-        updatePersonWithResponse(largePersonGroupId, personId, updatePersonRequest, requestOptions).getValue();
+        updatePersonWithResponse(personId, updatePersonRequest, requestOptions).getValue();
     }
 
     /**
@@ -1099,7 +1088,6 @@ public final class LargePersonGroupClient {
      * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-persons
      * for more details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param start List resources greater than the "start". It contains no more than 64 characters. Default is empty.
      * @param top The number of items to list, ranging in [1, 1000]. Default is 1000.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1112,7 +1100,7 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<LargePersonGroupPerson> getPersons(String largePersonGroupId, String start, Integer top) {
+    public List<LargePersonGroupPerson> getPersons(String start, Integer top) {
         // Generated convenience method for getPersonsWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (start != null) {
@@ -1121,7 +1109,7 @@ public final class LargePersonGroupClient {
         if (top != null) {
             requestOptions.addQueryParam("top", String.valueOf(top), false);
         }
-        return getPersonsWithResponse(largePersonGroupId, requestOptions).getValue()
+        return getPersonsWithResponse(requestOptions).getValue()
             .toObject(TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP_PERSON);
     }
 
@@ -1132,8 +1120,6 @@ public final class LargePersonGroupClient {
      * Please refer to https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-persons
      * for more details.
      *
-     * @param largePersonGroupId ID of the container.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
@@ -1143,10 +1129,10 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<LargePersonGroupPerson> getPersons(String largePersonGroupId) {
+    public List<LargePersonGroupPerson> getPersons() {
         // Generated convenience method for getPersonsWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getPersonsWithResponse(largePersonGroupId, requestOptions).getValue()
+        return getPersonsWithResponse(requestOptions).getValue()
             .toObject(TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP_PERSON);
     }
 
@@ -1157,7 +1143,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face-from-url for
      * more details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param url URL of input image.
      * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
@@ -1175,7 +1160,7 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceFromUrlImpl(String largePersonGroupId, String personId, String url, List<Integer> targetFace,
+    AddFaceResult addFaceFromUrlImpl(String personId, String url, List<Integer> targetFace,
         FaceDetectionModel detectionModel, String userData) {
         // Generated convenience method for addFaceFromUrlImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -1192,8 +1177,7 @@ public final class LargePersonGroupClient {
         if (userData != null) {
             requestOptions.addQueryParam("userData", userData, false);
         }
-        return addFaceFromUrlImplWithResponse(largePersonGroupId, personId, addFaceFromUrlRequest, requestOptions)
-            .getValue()
+        return addFaceFromUrlImplWithResponse(personId, addFaceFromUrlRequest, requestOptions).getValue()
             .toObject(AddFaceResult.class);
     }
 
@@ -1204,7 +1188,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face-from-url for
      * more details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param url URL of input image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1217,13 +1200,12 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceFromUrlImpl(String largePersonGroupId, String personId, String url) {
+    AddFaceResult addFaceFromUrlImpl(String personId, String url) {
         // Generated convenience method for addFaceFromUrlImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
         AddFaceFromUrlRequest addFaceFromUrlRequestObj = new AddFaceFromUrlRequest(url);
         BinaryData addFaceFromUrlRequest = BinaryData.fromObject(addFaceFromUrlRequestObj);
-        return addFaceFromUrlImplWithResponse(largePersonGroupId, personId, addFaceFromUrlRequest, requestOptions)
-            .getValue()
+        return addFaceFromUrlImplWithResponse(personId, addFaceFromUrlRequest, requestOptions).getValue()
             .toObject(AddFaceResult.class);
     }
 
@@ -1234,7 +1216,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param imageContent The image to be analyzed.
      * @param targetFace A face rectangle to specify the target face to be added to a person, in the format of
@@ -1252,8 +1233,8 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceImpl(String largePersonGroupId, String personId, BinaryData imageContent,
-        List<Integer> targetFace, FaceDetectionModel detectionModel, String userData) {
+    AddFaceResult addFaceImpl(String personId, BinaryData imageContent, List<Integer> targetFace,
+        FaceDetectionModel detectionModel, String userData) {
         // Generated convenience method for addFaceImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (targetFace != null) {
@@ -1267,8 +1248,7 @@ public final class LargePersonGroupClient {
         if (userData != null) {
             requestOptions.addQueryParam("userData", userData, false);
         }
-        return addFaceImplWithResponse(largePersonGroupId, personId, imageContent, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
+        return addFaceImplWithResponse(personId, imageContent, requestOptions).getValue().toObject(AddFaceResult.class);
     }
 
     /**
@@ -1278,7 +1258,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/add-large-person-group-person-face for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param imageContent The image to be analyzed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1291,11 +1270,10 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AddFaceResult addFaceImpl(String largePersonGroupId, String personId, BinaryData imageContent) {
+    AddFaceResult addFaceImpl(String personId, BinaryData imageContent) {
         // Generated convenience method for addFaceImplWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return addFaceImplWithResponse(largePersonGroupId, personId, imageContent, requestOptions).getValue()
-            .toObject(AddFaceResult.class);
+        return addFaceImplWithResponse(personId, imageContent, requestOptions).getValue().toObject(AddFaceResult.class);
     }
 
     /**
@@ -1306,7 +1284,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/delete-large-person-group-person-face for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param persistedFaceId Face ID of the face.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1318,10 +1295,10 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteFace(String largePersonGroupId, String personId, String persistedFaceId) {
+    public void deleteFace(String personId, String persistedFaceId) {
         // Generated convenience method for deleteFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        deleteFaceWithResponse(largePersonGroupId, personId, persistedFaceId, requestOptions).getValue();
+        deleteFaceWithResponse(personId, persistedFaceId, requestOptions).getValue();
     }
 
     /**
@@ -1329,7 +1306,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/get-large-person-group-person-face for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param persistedFaceId Face ID of the face.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1342,10 +1318,10 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LargePersonGroupPersonFace getFace(String largePersonGroupId, String personId, String persistedFaceId) {
+    public LargePersonGroupPersonFace getFace(String personId, String persistedFaceId) {
         // Generated convenience method for getFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return getFaceWithResponse(largePersonGroupId, personId, persistedFaceId, requestOptions).getValue()
+        return getFaceWithResponse(personId, persistedFaceId, requestOptions).getValue()
             .toObject(LargePersonGroupPersonFace.class);
     }
 
@@ -1354,34 +1330,6 @@ public final class LargePersonGroupClient {
      * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person-face for more
      * details.
      *
-     * @param largePersonGroupId ID of the container.
-     * @param personId ID of the person.
-     * @param persistedFaceId Face ID of the face.
-     * @param userData User-provided data attached to the face. The length limit is 1K.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateFace(String largePersonGroupId, String personId, String persistedFaceId, String userData) {
-        // Generated convenience method for updateFaceWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        UpdateFaceRequest updateFaceRequestObj = new UpdateFaceRequest().setUserData(userData);
-        BinaryData updateFaceRequest = BinaryData.fromObject(updateFaceRequestObj);
-        updateFaceWithResponse(largePersonGroupId, personId, persistedFaceId, updateFaceRequest, requestOptions)
-            .getValue();
-    }
-
-    /**
-     * Please refer to
-     * https://learn.microsoft.com/rest/api/face/person-group-operations/update-large-person-group-person-face for more
-     * details.
-     *
-     * @param largePersonGroupId ID of the container.
      * @param personId ID of the person.
      * @param persistedFaceId Face ID of the face.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1393,22 +1341,11 @@ public final class LargePersonGroupClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void updateFace(String largePersonGroupId, String personId, String persistedFaceId) {
+    public void updateFace(String personId, String persistedFaceId) {
         // Generated convenience method for updateFaceWithResponse
         RequestOptions requestOptions = new RequestOptions();
         UpdateFaceRequest updateFaceRequestObj = new UpdateFaceRequest();
         BinaryData updateFaceRequest = BinaryData.fromObject(updateFaceRequestObj);
-        updateFaceWithResponse(largePersonGroupId, personId, persistedFaceId, updateFaceRequest, requestOptions)
-            .getValue();
+        updateFaceWithResponse(personId, persistedFaceId, updateFaceRequest, requestOptions).getValue();
     }
-
-    @Generated
-    private static final TypeReference<List<LargePersonGroup>> TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP
-        = new TypeReference<List<LargePersonGroup>>() {
-        };
-
-    @Generated
-    private static final TypeReference<List<LargePersonGroupPerson>> TYPE_REFERENCE_LIST_LARGE_PERSON_GROUP_PERSON
-        = new TypeReference<List<LargePersonGroupPerson>>() {
-        };
 }
