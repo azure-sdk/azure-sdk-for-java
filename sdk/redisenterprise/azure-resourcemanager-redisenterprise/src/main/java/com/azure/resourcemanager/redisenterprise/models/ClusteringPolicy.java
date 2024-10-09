@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -37,7 +36,6 @@ public final class ClusteringPolicy extends ExpandableStringEnum<ClusteringPolic
      * @param name a name to look for.
      * @return the corresponding ClusteringPolicy.
      */
-    @JsonCreator
     public static ClusteringPolicy fromString(String name) {
         return fromString(name, ClusteringPolicy.class);
     }
