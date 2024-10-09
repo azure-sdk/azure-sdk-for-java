@@ -84,14 +84,14 @@ public interface CodeVersion {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, codeName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param codeName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingCode(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingCode(String resourceGroupName, String registryName, String codeName);
         }
 
         /**
@@ -188,27 +188,6 @@ public interface CodeVersion {
      * @return the refreshed resource.
      */
     CodeVersion refresh(Context context);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body, Context context);
 
     /**
      * Generate a storage location and credential for the client to upload a code asset to.
