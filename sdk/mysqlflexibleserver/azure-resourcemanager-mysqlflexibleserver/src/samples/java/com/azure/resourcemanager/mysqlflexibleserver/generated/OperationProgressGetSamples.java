@@ -9,7 +9,9 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
  */
 public final class OperationProgressGetSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationProgress_Get_BackupAndExport.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/preview/2024-10-01-preview/examples/
+     * OperationProgress_Get_BackupAndExport.json
      */
     /**
      * Sample code: OperationProgress_Get BackupAndExport.
@@ -23,7 +25,25 @@ public final class OperationProgressGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/stable/2023-12-30/examples/OperationProgress_Get_ImportFromStorage.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/preview/2024-10-01-preview/examples/
+     * OperationProgress_Get_RestoreSnapshot.json
+     */
+    /**
+     * Sample code: OperationProgress_Get RestoreSnapshot.
+     * 
+     * @param manager Entry point to MySqlManager.
+     */
+    public static void
+        operationProgressGetRestoreSnapshot(com.azure.resourcemanager.mysqlflexibleserver.MySqlManager manager) {
+        manager.operationProgress()
+            .getWithResponse("westus", "00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/preview/2024-10-01-preview/examples/
+     * OperationProgress_Get_ImportFromStorage.json
      */
     /**
      * Sample code: OperationProgress_Get ImportFromStorage.

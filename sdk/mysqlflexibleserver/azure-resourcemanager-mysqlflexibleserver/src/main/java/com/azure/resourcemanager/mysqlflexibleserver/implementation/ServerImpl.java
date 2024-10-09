@@ -16,6 +16,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailabilityValidationEstimation;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
@@ -23,6 +24,9 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
 import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerDetachVNetParameter;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForEstimateRestoreSnapshotParameter;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForEstimateRestoreSnapshotResponse;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForUpdate;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
@@ -88,6 +92,10 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         return this.innerModel().version();
     }
 
+    public String fullVersion() {
+        return this.innerModel().fullVersion();
+    }
+
     public String availabilityZone() {
         return this.innerModel().availabilityZone();
     }
@@ -124,6 +132,10 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         return this.innerModel().fullyQualifiedDomainName();
     }
 
+    public Integer databasePort() {
+        return this.innerModel().databasePort();
+    }
+
     public Storage storage() {
         return this.innerModel().storage();
     }
@@ -147,6 +159,10 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public MaintenancePolicy maintenancePolicy() {
+        return this.innerModel().maintenancePolicy();
     }
 
     public MaintenanceWindow maintenanceWindow() {
@@ -301,6 +317,25 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         serviceManager.servers().resetGtid(resourceGroupName, serverName, parameters, context);
     }
 
+    public Server detachVNet(ServerDetachVNetParameter parameters) {
+        return serviceManager.servers().detachVNet(resourceGroupName, serverName, parameters);
+    }
+
+    public Server detachVNet(ServerDetachVNetParameter parameters, Context context) {
+        return serviceManager.servers().detachVNet(resourceGroupName, serverName, parameters, context);
+    }
+
+    public Response<ServerForEstimateRestoreSnapshotResponse>
+        estimateRestoreSnapshotWithResponse(ServerForEstimateRestoreSnapshotParameter parameters, Context context) {
+        return serviceManager.servers()
+            .estimateRestoreSnapshotWithResponse(resourceGroupName, serverName, parameters, context);
+    }
+
+    public ServerForEstimateRestoreSnapshotResponse
+        estimateRestoreSnapshot(ServerForEstimateRestoreSnapshotParameter parameters) {
+        return serviceManager.servers().estimateRestoreSnapshot(resourceGroupName, serverName, parameters);
+    }
+
     public ServerImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -406,6 +441,11 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         }
     }
 
+    public ServerImpl withDatabasePort(Integer databasePort) {
+        this.innerModel().withDatabasePort(databasePort);
+        return this;
+    }
+
     public ServerImpl withStorage(Storage storage) {
         if (isInCreateMode()) {
             this.innerModel().withStorage(storage);
@@ -442,6 +482,16 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
             return this;
         } else {
             this.updateParameters.withNetwork(network);
+            return this;
+        }
+    }
+
+    public ServerImpl withMaintenancePolicy(MaintenancePolicy maintenancePolicy) {
+        if (isInCreateMode()) {
+            this.innerModel().withMaintenancePolicy(maintenancePolicy);
+            return this;
+        } else {
+            this.updateParameters.withMaintenancePolicy(maintenancePolicy);
             return this;
         }
     }

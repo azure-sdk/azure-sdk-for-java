@@ -5,11 +5,17 @@
 package com.azure.resourcemanager.mysqlflexibleserver.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
 import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
@@ -17,127 +23,126 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
  * The properties of a server.
  */
 @Fluent
-public final class ServerProperties {
+public final class ServerProperties implements JsonSerializable<ServerProperties> {
     /*
-     * The administrator's login name of a server. Can only be specified when the server is being created (and is required for creation).
+     * The administrator's login name of a server. Can only be specified when the server is being created (and is
+     * required for creation).
      */
-    @JsonProperty(value = "administratorLogin")
     private String administratorLogin;
 
     /*
      * The password of the administrator login (required for server creation).
      */
-    @JsonProperty(value = "administratorLoginPassword")
     private String administratorLoginPassword;
 
     /*
-     * Server version.
+     * Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7
      */
-    @JsonProperty(value = "version")
     private ServerVersion version;
+
+    /*
+     * Major version and actual engine version
+     */
+    private String fullVersion;
 
     /*
      * availability Zone information of the server.
      */
-    @JsonProperty(value = "availabilityZone")
     private String availabilityZone;
 
     /*
      * The mode to create a new MySQL server.
      */
-    @JsonProperty(value = "createMode")
     private CreateMode createMode;
 
     /*
      * The source MySQL server id.
      */
-    @JsonProperty(value = "sourceServerResourceId")
     private String sourceServerResourceId;
 
     /*
      * Restore point creation time (ISO8601 format), specifying the time to restore from.
      */
-    @JsonProperty(value = "restorePointInTime")
     private OffsetDateTime restorePointInTime;
 
     /*
      * The replication role.
      */
-    @JsonProperty(value = "replicationRole")
     private ReplicationRole replicationRole;
 
     /*
      * The maximum number of replicas that a primary server can have.
      */
-    @JsonProperty(value = "replicaCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private Integer replicaCapacity;
 
     /*
      * The Data Encryption for CMK.
      */
-    @JsonProperty(value = "dataEncryption")
     private DataEncryption dataEncryption;
 
     /*
      * The state of a server.
      */
-    @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private ServerState state;
 
     /*
      * The fully qualified domain name of a server.
      */
-    @JsonProperty(value = "fullyQualifiedDomainName", access = JsonProperty.Access.WRITE_ONLY)
     private String fullyQualifiedDomainName;
+
+    /*
+     * The server database port. Can only be specified when the server is being created.
+     */
+    private Integer databasePort;
 
     /*
      * Storage related properties of a server.
      */
-    @JsonProperty(value = "storage")
     private Storage storage;
 
     /*
      * Backup related properties of a server.
      */
-    @JsonProperty(value = "backup")
     private Backup backup;
 
     /*
      * High availability related properties of a server.
      */
-    @JsonProperty(value = "highAvailability")
     private HighAvailability highAvailability;
 
     /*
      * Network related properties of a server.
      */
-    @JsonProperty(value = "network")
     private Network network;
 
     /*
      * PrivateEndpointConnections related properties of a server.
      */
-    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
     /*
-     * Maintenance window of a server.
+     * Maintenance policy of a server.
      */
-    @JsonProperty(value = "maintenanceWindow")
+    private MaintenancePolicy maintenancePolicy;
+
+    /*
+     * Maintenance window of a server. Known issue: cannot be set during server creation or updated with other
+     * properties during server update; must be updated separately.
+     */
     private MaintenanceWindow maintenanceWindow;
 
     /*
      * Source properties for import from storage.
      */
-    @JsonProperty(value = "importSourceProperties")
     private ImportSourceProperties importSourceProperties;
 
     /**
@@ -191,7 +196,7 @@ public final class ServerProperties {
     }
 
     /**
-     * Get the version property: Server version.
+     * Get the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @return the version value.
      */
@@ -200,13 +205,33 @@ public final class ServerProperties {
     }
 
     /**
-     * Set the version property: Server version.
+     * Set the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @param version the version value to set.
      * @return the ServerProperties object itself.
      */
     public ServerProperties withVersion(ServerVersion version) {
         this.version = version;
+        return this;
+    }
+
+    /**
+     * Get the fullVersion property: Major version and actual engine version.
+     * 
+     * @return the fullVersion value.
+     */
+    public String fullVersion() {
+        return this.fullVersion;
+    }
+
+    /**
+     * Set the fullVersion property: Major version and actual engine version.
+     * 
+     * @param fullVersion the fullVersion value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withFullVersion(String fullVersion) {
+        this.fullVersion = fullVersion;
         return this;
     }
 
@@ -360,6 +385,26 @@ public final class ServerProperties {
     }
 
     /**
+     * Get the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @return the databasePort value.
+     */
+    public Integer databasePort() {
+        return this.databasePort;
+    }
+
+    /**
+     * Set the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @param databasePort the databasePort value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withDatabasePort(Integer databasePort) {
+        this.databasePort = databasePort;
+        return this;
+    }
+
+    /**
      * Get the storage property: Storage related properties of a server.
      * 
      * @return the storage value.
@@ -449,7 +494,28 @@ public final class ServerProperties {
     }
 
     /**
-     * Get the maintenanceWindow property: Maintenance window of a server.
+     * Get the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @return the maintenancePolicy value.
+     */
+    public MaintenancePolicy maintenancePolicy() {
+        return this.maintenancePolicy;
+    }
+
+    /**
+     * Set the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @param maintenancePolicy the maintenancePolicy value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withMaintenancePolicy(MaintenancePolicy maintenancePolicy) {
+        this.maintenancePolicy = maintenancePolicy;
+        return this;
+    }
+
+    /**
+     * Get the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @return the maintenanceWindow value.
      */
@@ -458,7 +524,8 @@ public final class ServerProperties {
     }
 
     /**
-     * Set the maintenanceWindow property: Maintenance window of a server.
+     * Set the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @param maintenanceWindow the maintenanceWindow value to set.
      * @return the ServerProperties object itself.
@@ -512,11 +579,116 @@ public final class ServerProperties {
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
         }
+        if (maintenancePolicy() != null) {
+            maintenancePolicy().validate();
+        }
         if (maintenanceWindow() != null) {
             maintenanceWindow().validate();
         }
         if (importSourceProperties() != null) {
             importSourceProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("administratorLogin", this.administratorLogin);
+        jsonWriter.writeStringField("administratorLoginPassword", this.administratorLoginPassword);
+        jsonWriter.writeStringField("version", this.version == null ? null : this.version.toString());
+        jsonWriter.writeStringField("fullVersion", this.fullVersion);
+        jsonWriter.writeStringField("availabilityZone", this.availabilityZone);
+        jsonWriter.writeStringField("createMode", this.createMode == null ? null : this.createMode.toString());
+        jsonWriter.writeStringField("sourceServerResourceId", this.sourceServerResourceId);
+        jsonWriter.writeStringField("restorePointInTime",
+            this.restorePointInTime == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.restorePointInTime));
+        jsonWriter.writeStringField("replicationRole",
+            this.replicationRole == null ? null : this.replicationRole.toString());
+        jsonWriter.writeJsonField("dataEncryption", this.dataEncryption);
+        jsonWriter.writeNumberField("databasePort", this.databasePort);
+        jsonWriter.writeJsonField("storage", this.storage);
+        jsonWriter.writeJsonField("backup", this.backup);
+        jsonWriter.writeJsonField("highAvailability", this.highAvailability);
+        jsonWriter.writeJsonField("network", this.network);
+        jsonWriter.writeJsonField("maintenancePolicy", this.maintenancePolicy);
+        jsonWriter.writeJsonField("maintenanceWindow", this.maintenanceWindow);
+        jsonWriter.writeJsonField("importSourceProperties", this.importSourceProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ServerProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ServerProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ServerProperties.
+     */
+    public static ServerProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ServerProperties deserializedServerProperties = new ServerProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("administratorLogin".equals(fieldName)) {
+                    deserializedServerProperties.administratorLogin = reader.getString();
+                } else if ("administratorLoginPassword".equals(fieldName)) {
+                    deserializedServerProperties.administratorLoginPassword = reader.getString();
+                } else if ("version".equals(fieldName)) {
+                    deserializedServerProperties.version = ServerVersion.fromString(reader.getString());
+                } else if ("fullVersion".equals(fieldName)) {
+                    deserializedServerProperties.fullVersion = reader.getString();
+                } else if ("availabilityZone".equals(fieldName)) {
+                    deserializedServerProperties.availabilityZone = reader.getString();
+                } else if ("createMode".equals(fieldName)) {
+                    deserializedServerProperties.createMode = CreateMode.fromString(reader.getString());
+                } else if ("sourceServerResourceId".equals(fieldName)) {
+                    deserializedServerProperties.sourceServerResourceId = reader.getString();
+                } else if ("restorePointInTime".equals(fieldName)) {
+                    deserializedServerProperties.restorePointInTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("replicationRole".equals(fieldName)) {
+                    deserializedServerProperties.replicationRole = ReplicationRole.fromString(reader.getString());
+                } else if ("replicaCapacity".equals(fieldName)) {
+                    deserializedServerProperties.replicaCapacity = reader.getNullable(JsonReader::getInt);
+                } else if ("dataEncryption".equals(fieldName)) {
+                    deserializedServerProperties.dataEncryption = DataEncryption.fromJson(reader);
+                } else if ("state".equals(fieldName)) {
+                    deserializedServerProperties.state = ServerState.fromString(reader.getString());
+                } else if ("fullyQualifiedDomainName".equals(fieldName)) {
+                    deserializedServerProperties.fullyQualifiedDomainName = reader.getString();
+                } else if ("databasePort".equals(fieldName)) {
+                    deserializedServerProperties.databasePort = reader.getNullable(JsonReader::getInt);
+                } else if ("storage".equals(fieldName)) {
+                    deserializedServerProperties.storage = Storage.fromJson(reader);
+                } else if ("backup".equals(fieldName)) {
+                    deserializedServerProperties.backup = Backup.fromJson(reader);
+                } else if ("highAvailability".equals(fieldName)) {
+                    deserializedServerProperties.highAvailability = HighAvailability.fromJson(reader);
+                } else if ("network".equals(fieldName)) {
+                    deserializedServerProperties.network = Network.fromJson(reader);
+                } else if ("privateEndpointConnections".equals(fieldName)) {
+                    List<PrivateEndpointConnection> privateEndpointConnections
+                        = reader.readArray(reader1 -> PrivateEndpointConnection.fromJson(reader1));
+                    deserializedServerProperties.privateEndpointConnections = privateEndpointConnections;
+                } else if ("maintenancePolicy".equals(fieldName)) {
+                    deserializedServerProperties.maintenancePolicy = MaintenancePolicy.fromJson(reader);
+                } else if ("maintenanceWindow".equals(fieldName)) {
+                    deserializedServerProperties.maintenanceWindow = MaintenanceWindow.fromJson(reader);
+                } else if ("importSourceProperties".equals(fieldName)) {
+                    deserializedServerProperties.importSourceProperties = ImportSourceProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedServerProperties;
+        });
     }
 }

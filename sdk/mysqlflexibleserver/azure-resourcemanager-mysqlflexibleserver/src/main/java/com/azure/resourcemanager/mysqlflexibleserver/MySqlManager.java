@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -45,6 +45,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.implementation.MySqlManagem
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationProgressImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationsOngoingsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersMigrationsImpl;
@@ -68,6 +69,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Maintenances;
 import com.azure.resourcemanager.mysqlflexibleserver.models.OperationProgress;
 import com.azure.resourcemanager.mysqlflexibleserver.models.OperationResults;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Operations;
+import com.azure.resourcemanager.mysqlflexibleserver.models.OperationsOngoings;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Servers;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServersMigrations;
@@ -127,6 +129,8 @@ public final class MySqlManager {
     private GetPrivateDnsZoneSuffixes getPrivateDnsZoneSuffixes;
 
     private Operations operations;
+
+    private OperationsOngoings operationsOngoings;
 
     private Maintenances maintenances;
 
@@ -294,7 +298,7 @@ public final class MySqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mysqlflexibleserver")
                 .append("/")
-                .append("1.0.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -610,6 +614,18 @@ public final class MySqlManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of OperationsOngoings.
+     * 
+     * @return Resource collection API of OperationsOngoings.
+     */
+    public OperationsOngoings operationsOngoings() {
+        if (this.operationsOngoings == null) {
+            this.operationsOngoings = new OperationsOngoingsImpl(clientObject.getOperationsOngoings(), this);
+        }
+        return operationsOngoings;
     }
 
     /**

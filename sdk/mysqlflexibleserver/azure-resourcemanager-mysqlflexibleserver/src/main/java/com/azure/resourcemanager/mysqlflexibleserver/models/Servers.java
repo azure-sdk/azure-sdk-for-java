@@ -254,6 +254,63 @@ public interface Servers {
     void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters, Context context);
 
     /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters,
+        Context context);
+
+    /**
+     * Estimate a restore snapshot operation of a source server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for estimating a restore snapshot operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the parameters to estimate RestoreSnapshot along with {@link Response}.
+     */
+    Response<ServerForEstimateRestoreSnapshotResponse> estimateRestoreSnapshotWithResponse(String resourceGroupName,
+        String serverName, ServerForEstimateRestoreSnapshotParameter parameters, Context context);
+
+    /**
+     * Estimate a restore snapshot operation of a source server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for estimating a restore snapshot operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the parameters to estimate RestoreSnapshot.
+     */
+    ServerForEstimateRestoreSnapshotResponse estimateRestoreSnapshot(String resourceGroupName, String serverName,
+        ServerForEstimateRestoreSnapshotParameter parameters);
+
+    /**
      * Gets information about a server.
      * 
      * @param id the resource ID.

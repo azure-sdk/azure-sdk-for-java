@@ -11,9 +11,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ServersClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.HighAvailabilityValidationEstimationInner;
+import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerForEstimateRestoreSnapshotResponseInner;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailabilityValidationEstimation;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerDetachVNetParameter;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForEstimateRestoreSnapshotParameter;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForEstimateRestoreSnapshotResponse;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Servers;
@@ -144,6 +148,49 @@ public final class ServersImpl implements Servers {
     public void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters,
         Context context) {
         this.serviceClient().resetGtid(resourceGroupName, serverName, parameters, context);
+    }
+
+    public Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters) {
+        ServerInner inner = this.serviceClient().detachVNet(resourceGroupName, serverName, parameters);
+        if (inner != null) {
+            return new ServerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters,
+        Context context) {
+        ServerInner inner = this.serviceClient().detachVNet(resourceGroupName, serverName, parameters, context);
+        if (inner != null) {
+            return new ServerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ServerForEstimateRestoreSnapshotResponse> estimateRestoreSnapshotWithResponse(
+        String resourceGroupName, String serverName, ServerForEstimateRestoreSnapshotParameter parameters,
+        Context context) {
+        Response<ServerForEstimateRestoreSnapshotResponseInner> inner = this.serviceClient()
+            .estimateRestoreSnapshotWithResponse(resourceGroupName, serverName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ServerForEstimateRestoreSnapshotResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ServerForEstimateRestoreSnapshotResponse estimateRestoreSnapshot(String resourceGroupName, String serverName,
+        ServerForEstimateRestoreSnapshotParameter parameters) {
+        ServerForEstimateRestoreSnapshotResponseInner inner
+            = this.serviceClient().estimateRestoreSnapshot(resourceGroupName, serverName, parameters);
+        if (inner != null) {
+            return new ServerForEstimateRestoreSnapshotResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Server getById(String id) {
