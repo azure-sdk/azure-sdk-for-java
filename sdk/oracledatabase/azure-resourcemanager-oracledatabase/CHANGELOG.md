@@ -1,14 +1,135 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-09)
 
-### Features Added
+- Azure Resource Manager OracleDatabase client library for Java. This package contains Microsoft Azure SDK for OracleDatabase Management SDK.  Package tag package-2024-06-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DbSystemShapeProperties` was modified
 
-### Other Changes
+* `java.lang.Integer availableCoreCount()` -> `int availableCoreCount()`
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `java.lang.Integer serial()` -> `int serial()`
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+
+### Features Added
+
+* `models.AzureSubscriptions` was added
+
+* `models.AddSubscriptionOperationState` was added
+
+#### `models.DbNodeProperties` was modified
+
+* `withVnic2Id(java.lang.String)` was added
+* `withDbNodeStorageSizeInGbs(java.lang.Integer)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withDbSystemId(java.lang.String)` was added
+* `withCpuCoreCount(java.lang.Integer)` was added
+* `withHostname(java.lang.String)` was added
+* `withOcid(java.lang.String)` was added
+* `withDbServerId(java.lang.String)` was added
+* `withBackupVnicId(java.lang.String)` was added
+* `withVnicId(java.lang.String)` was added
+* `withSoftwareStorageSizeInGb(java.lang.Integer)` was added
+* `withAdditionalDetails(java.lang.String)` was added
+* `withMemorySizeInGbs(java.lang.Integer)` was added
+* `withLifecycleDetails(java.lang.String)` was added
+* `withHostIpId(java.lang.String)` was added
+* `withTimeMaintenanceWindowStart(java.time.OffsetDateTime)` was added
+* `withTimeMaintenanceWindowEnd(java.time.OffsetDateTime)` was added
+* `withFaultDomain(java.lang.String)` was added
+* `withBackupVnic2Id(java.lang.String)` was added
+* `withBackupIpId(java.lang.String)` was added
+* `withLifecycleState(models.DbNodeProvisioningState)` was added
+* `withMaintenanceType(models.DbNodeMaintenanceType)` was added
+
+#### `models.OracleSubscriptions` was modified
+
+* `addAzureSubscriptions(models.AzureSubscriptions)` was added
+* `addAzureSubscriptions(models.AzureSubscriptions,com.azure.core.util.Context)` was added
+
+#### `models.SystemVersionProperties` was modified
+
+* `withSystemVersion(java.lang.String)` was added
+
+#### `models.DbSystemShapeProperties` was modified
+
+* `withRuntimeMinimumCoreCount(java.lang.Integer)` was added
+* `withAvailableDataStorageInTbs(java.lang.Integer)` was added
+* `withMaxStorageCount(java.lang.Integer)` was added
+* `withAvailableCoreCount(int)` was added
+* `withAvailableDataStoragePerServerInTbs(java.lang.Double)` was added
+* `withAvailableMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withAvailableMemoryInGbs(java.lang.Integer)` was added
+* `withShapeFamily(java.lang.String)` was added
+* `withMinimumNodeCount(java.lang.Integer)` was added
+* `withMinMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withMaximumNodeCount(java.lang.Integer)` was added
+* `withAvailableDbNodeStorageInGbs(java.lang.Integer)` was added
+* `withMinDbNodeStoragePerNodeInGbs(java.lang.Integer)` was added
+* `withMinimumCoreCount(java.lang.Integer)` was added
+* `withMinStorageCount(java.lang.Integer)` was added
+* `withAvailableDbNodePerNodeInGbs(java.lang.Integer)` was added
+* `withCoreCountIncrement(java.lang.Integer)` was added
+* `withAvailableCoreCountPerNode(java.lang.Integer)` was added
+* `withMinCoreCountPerNode(java.lang.Integer)` was added
+* `withMinDataStorageInTbs(java.lang.Integer)` was added
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `withSerial(int)` was added
+* `withOcid(java.lang.String)` was added
+* `withLifecycleState(models.DnsPrivateZonesLifecycleState)` was added
+* `withSelf(java.lang.String)` was added
+* `withVersion(java.lang.String)` was added
+* `withZoneType(models.ZoneType)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withViewId(java.lang.String)` was added
+* `withIsProtected(boolean)` was added
+
+#### `models.OracleSubscriptionProperties` was modified
+
+* `lastOperationStatusDetail()` was added
+* `addSubscriptionOperationState()` was added
+* `azureSubscriptionIds()` was added
+
+#### `models.AutonomousDbVersionProperties` was modified
+
+* `withIsDefaultForFree(java.lang.Boolean)` was added
+* `withIsDefaultForPaid(java.lang.Boolean)` was added
+* `withIsFreeTierEnabled(java.lang.Boolean)` was added
+* `withDbWorkload(models.WorkloadType)` was added
+* `withVersion(java.lang.String)` was added
+* `withIsPaidEnabled(java.lang.Boolean)` was added
+
+#### `models.AutonomousDatabaseCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.AutonomousDatabaseNationalCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `withIsProtected(boolean)` was added
+* `withOcid(java.lang.String)` was added
+* `withDisplayName(java.lang.String)` was added
+* `withSelf(java.lang.String)` was added
+* `withTimeUpdated(java.time.OffsetDateTime)` was added
+* `withLifecycleState(models.DnsPrivateViewsLifecycleState)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+
+#### `models.GiVersionProperties` was modified
+
+* `withVersion(java.lang.String)` was added
 
 ## 1.0.0 (2024-07-04)
 
