@@ -43,7 +43,6 @@ public final class AutoForecastHorizon extends ForecastHorizon {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

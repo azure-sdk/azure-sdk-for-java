@@ -9,7 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.machinelearning.models.FqdnEndpoints;
+import com.azure.resourcemanager.machinelearning.models.FqdnEndpointsPropertyBag;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public final class ExternalFqdnResponseInner implements JsonSerializable<Externa
     /*
      * The value property.
      */
-    private List<FqdnEndpoints> value;
+    private List<FqdnEndpointsPropertyBag> value;
 
     /**
      * Creates an instance of ExternalFqdnResponseInner class.
@@ -34,7 +34,7 @@ public final class ExternalFqdnResponseInner implements JsonSerializable<Externa
      * 
      * @return the value value.
      */
-    public List<FqdnEndpoints> value() {
+    public List<FqdnEndpointsPropertyBag> value() {
         return this.value;
     }
 
@@ -44,7 +44,7 @@ public final class ExternalFqdnResponseInner implements JsonSerializable<Externa
      * @param value the value value to set.
      * @return the ExternalFqdnResponseInner object itself.
      */
-    public ExternalFqdnResponseInner withValue(List<FqdnEndpoints> value) {
+    public ExternalFqdnResponseInner withValue(List<FqdnEndpointsPropertyBag> value) {
         this.value = value;
         return this;
     }
@@ -86,7 +86,8 @@ public final class ExternalFqdnResponseInner implements JsonSerializable<Externa
                 reader.nextToken();
 
                 if ("value".equals(fieldName)) {
-                    List<FqdnEndpoints> value = reader.readArray(reader1 -> FqdnEndpoints.fromJson(reader1));
+                    List<FqdnEndpointsPropertyBag> value
+                        = reader.readArray(reader1 -> FqdnEndpointsPropertyBag.fromJson(reader1));
                     deserializedExternalFqdnResponseInner.value = value;
                 } else {
                     reader.skipChildren();
