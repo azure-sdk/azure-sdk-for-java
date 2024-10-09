@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,47 +22,40 @@ import java.util.List;
  * Properties of RedisEnterprise clusters, as opposed to general resource properties like location, tags.
  */
 @Fluent
-public final class ClusterProperties {
+public final class ClusterProperties implements JsonSerializable<ClusterProperties> {
     /*
      * The minimum TLS version for the cluster to support, e.g. '1.2'
      */
-    @JsonProperty(value = "minimumTlsVersion")
     private TlsVersion minimumTlsVersion;
 
     /*
      * Encryption-at-rest configuration for the cluster.
      */
-    @JsonProperty(value = "encryption")
     private ClusterPropertiesEncryption encryption;
 
     /*
      * DNS name of the cluster endpoint
      */
-    @JsonProperty(value = "hostName", access = JsonProperty.Access.WRITE_ONLY)
     private String hostname;
 
     /*
      * Current provisioning status of the cluster
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * Current resource status of the cluster
      */
-    @JsonProperty(value = "resourceState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceState resourceState;
 
     /*
      * Version of redis the cluster supports, e.g. '6'
      */
-    @JsonProperty(value = "redisVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String redisVersion;
 
     /*
      * List of private endpoint connections associated with the specified RedisEnterprise cluster
      */
-    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /**
@@ -165,5 +162,57 @@ public final class ClusterProperties {
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("minimumTlsVersion",
+            this.minimumTlsVersion == null ? null : this.minimumTlsVersion.toString());
+        jsonWriter.writeJsonField("encryption", this.encryption);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ClusterProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ClusterProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ClusterProperties.
+     */
+    public static ClusterProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ClusterProperties deserializedClusterProperties = new ClusterProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("minimumTlsVersion".equals(fieldName)) {
+                    deserializedClusterProperties.minimumTlsVersion = TlsVersion.fromString(reader.getString());
+                } else if ("encryption".equals(fieldName)) {
+                    deserializedClusterProperties.encryption = ClusterPropertiesEncryption.fromJson(reader);
+                } else if ("hostName".equals(fieldName)) {
+                    deserializedClusterProperties.hostname = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedClusterProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("resourceState".equals(fieldName)) {
+                    deserializedClusterProperties.resourceState = ResourceState.fromString(reader.getString());
+                } else if ("redisVersion".equals(fieldName)) {
+                    deserializedClusterProperties.redisVersion = reader.getString();
+                } else if ("privateEndpointConnections".equals(fieldName)) {
+                    List<PrivateEndpointConnectionInner> privateEndpointConnections
+                        = reader.readArray(reader1 -> PrivateEndpointConnectionInner.fromJson(reader1));
+                    deserializedClusterProperties.privateEndpointConnections = privateEndpointConnections;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedClusterProperties;
+        });
     }
 }

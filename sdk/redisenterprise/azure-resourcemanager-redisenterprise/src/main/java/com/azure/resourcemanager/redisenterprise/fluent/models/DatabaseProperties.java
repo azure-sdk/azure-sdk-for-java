@@ -5,16 +5,19 @@
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.DeferUpgradeSetting;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.Module;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
 import com.azure.resourcemanager.redisenterprise.models.Protocol;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,72 +26,52 @@ import java.util.List;
  * Properties of RedisEnterprise databases, as opposed to general resource properties like location, tags.
  */
 @Fluent
-public final class DatabaseProperties {
+public final class DatabaseProperties implements JsonSerializable<DatabaseProperties> {
     /*
-     * Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted.
+     * Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is
+     * TLS-encrypted.
      */
-    @JsonProperty(value = "clientProtocol")
     private Protocol clientProtocol;
 
     /*
      * TCP port of the database endpoint. Specified at create time. Defaults to an available port.
      */
-    @JsonProperty(value = "port")
     private Integer port;
 
     /*
      * Current provisioning status of the database
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * Current resource status of the database
      */
-    @JsonProperty(value = "resourceState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceState resourceState;
 
     /*
      * Clustering policy - default is OSSCluster. Specified at create time.
      */
-    @JsonProperty(value = "clusteringPolicy")
     private ClusteringPolicy clusteringPolicy;
 
     /*
      * Redis eviction policy - default is VolatileLRU
      */
-    @JsonProperty(value = "evictionPolicy")
     private EvictionPolicy evictionPolicy;
 
     /*
      * Persistence settings
      */
-    @JsonProperty(value = "persistence")
     private Persistence persistence;
 
     /*
      * Optional set of redis modules to enable in this database - modules can only be added at creation time.
      */
-    @JsonProperty(value = "modules")
     private List<Module> modules;
 
     /*
      * Optional set of properties to configure geo replication for this database.
      */
-    @JsonProperty(value = "geoReplication")
     private DatabasePropertiesGeoReplication geoReplication;
-
-    /*
-     * Version of Redis the database is running on, e.g. '6.0'
-     */
-    @JsonProperty(value = "redisVersion", access = JsonProperty.Access.WRITE_ONLY)
-    private String redisVersion;
-
-    /*
-     * Option to defer upgrade when newest version is released - default is NotDeferred. Learn more:  https://aka.ms/redisversionupgrade
-     */
-    @JsonProperty(value = "deferUpgrade")
-    private DeferUpgradeSetting deferUpgrade;
 
     /**
      * Creates an instance of DatabaseProperties class.
@@ -261,37 +244,6 @@ public final class DatabaseProperties {
     }
 
     /**
-     * Get the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.redisVersion;
-    }
-
-    /**
-     * Get the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.deferUpgrade;
-    }
-
-    /**
-     * Set the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @param deferUpgrade the deferUpgrade value to set.
-     * @return the DatabaseProperties object itself.
-     */
-    public DatabaseProperties withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        this.deferUpgrade = deferUpgrade;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -306,5 +258,67 @@ public final class DatabaseProperties {
         if (geoReplication() != null) {
             geoReplication().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("clientProtocol",
+            this.clientProtocol == null ? null : this.clientProtocol.toString());
+        jsonWriter.writeNumberField("port", this.port);
+        jsonWriter.writeStringField("clusteringPolicy",
+            this.clusteringPolicy == null ? null : this.clusteringPolicy.toString());
+        jsonWriter.writeStringField("evictionPolicy",
+            this.evictionPolicy == null ? null : this.evictionPolicy.toString());
+        jsonWriter.writeJsonField("persistence", this.persistence);
+        jsonWriter.writeArrayField("modules", this.modules, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("geoReplication", this.geoReplication);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DatabaseProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DatabaseProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DatabaseProperties.
+     */
+    public static DatabaseProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DatabaseProperties deserializedDatabaseProperties = new DatabaseProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("clientProtocol".equals(fieldName)) {
+                    deserializedDatabaseProperties.clientProtocol = Protocol.fromString(reader.getString());
+                } else if ("port".equals(fieldName)) {
+                    deserializedDatabaseProperties.port = reader.getNullable(JsonReader::getInt);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedDatabaseProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("resourceState".equals(fieldName)) {
+                    deserializedDatabaseProperties.resourceState = ResourceState.fromString(reader.getString());
+                } else if ("clusteringPolicy".equals(fieldName)) {
+                    deserializedDatabaseProperties.clusteringPolicy = ClusteringPolicy.fromString(reader.getString());
+                } else if ("evictionPolicy".equals(fieldName)) {
+                    deserializedDatabaseProperties.evictionPolicy = EvictionPolicy.fromString(reader.getString());
+                } else if ("persistence".equals(fieldName)) {
+                    deserializedDatabaseProperties.persistence = Persistence.fromJson(reader);
+                } else if ("modules".equals(fieldName)) {
+                    List<Module> modules = reader.readArray(reader1 -> Module.fromJson(reader1));
+                    deserializedDatabaseProperties.modules = modules;
+                } else if ("geoReplication".equals(fieldName)) {
+                    deserializedDatabaseProperties.geoReplication = DatabasePropertiesGeoReplication.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDatabaseProperties;
+        });
     }
 }
