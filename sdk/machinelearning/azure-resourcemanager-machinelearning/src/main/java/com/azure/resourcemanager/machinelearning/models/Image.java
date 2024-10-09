@@ -14,22 +14,28 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Describes the Image Specifications.
+ * The Image model.
  */
 @Fluent
 public final class Image implements JsonSerializable<Image> {
     /*
-     * Type of the image. Possible values are: docker - For docker images. azureml - For AzureML images
+     * Type of the image. Possible values are: docker - For docker images. azureml - For AzureML Environment images
+     * (custom and curated)
      */
     private ImageType type;
 
     /*
-     * Image reference
+     * Image reference URL if type is docker. Environment name if type is azureml
      */
     private String reference;
 
     /*
-     * Describes the Image Specifications
+     * Version of image being used. If latest then skip this field
+     */
+    private String version;
+
+    /*
+     * Dictionary of <any>
      */
     private Map<String, Object> additionalProperties;
 
@@ -41,7 +47,7 @@ public final class Image implements JsonSerializable<Image> {
 
     /**
      * Get the type property: Type of the image. Possible values are: docker - For docker images. azureml - For AzureML
-     * images.
+     * Environment images (custom and curated).
      * 
      * @return the type value.
      */
@@ -51,7 +57,7 @@ public final class Image implements JsonSerializable<Image> {
 
     /**
      * Set the type property: Type of the image. Possible values are: docker - For docker images. azureml - For AzureML
-     * images.
+     * Environment images (custom and curated).
      * 
      * @param type the type value to set.
      * @return the Image object itself.
@@ -62,7 +68,7 @@ public final class Image implements JsonSerializable<Image> {
     }
 
     /**
-     * Get the reference property: Image reference.
+     * Get the reference property: Image reference URL if type is docker. Environment name if type is azureml.
      * 
      * @return the reference value.
      */
@@ -71,7 +77,7 @@ public final class Image implements JsonSerializable<Image> {
     }
 
     /**
-     * Set the reference property: Image reference.
+     * Set the reference property: Image reference URL if type is docker. Environment name if type is azureml.
      * 
      * @param reference the reference value to set.
      * @return the Image object itself.
@@ -82,7 +88,27 @@ public final class Image implements JsonSerializable<Image> {
     }
 
     /**
-     * Get the additionalProperties property: Describes the Image Specifications.
+     * Get the version property: Version of image being used. If latest then skip this field.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.version;
+    }
+
+    /**
+     * Set the version property: Version of image being used. If latest then skip this field.
+     * 
+     * @param version the version value to set.
+     * @return the Image object itself.
+     */
+    public Image withVersion(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @return the additionalProperties value.
      */
@@ -91,7 +117,7 @@ public final class Image implements JsonSerializable<Image> {
     }
 
     /**
-     * Set the additionalProperties property: Describes the Image Specifications.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the Image object itself.
@@ -117,6 +143,7 @@ public final class Image implements JsonSerializable<Image> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
         jsonWriter.writeStringField("reference", this.reference);
+        jsonWriter.writeStringField("version", this.version);
         if (additionalProperties != null) {
             for (Map.Entry<String, Object> additionalProperty : additionalProperties.entrySet()) {
                 jsonWriter.writeUntypedField(additionalProperty.getKey(), additionalProperty.getValue());
@@ -145,6 +172,8 @@ public final class Image implements JsonSerializable<Image> {
                     deserializedImage.type = ImageType.fromString(reader.getString());
                 } else if ("reference".equals(fieldName)) {
                     deserializedImage.reference = reader.getString();
+                } else if ("version".equals(fieldName)) {
+                    deserializedImage.version = reader.getString();
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();

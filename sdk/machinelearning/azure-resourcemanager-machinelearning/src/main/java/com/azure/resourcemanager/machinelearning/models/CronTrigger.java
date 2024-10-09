@@ -99,7 +99,6 @@ public final class CronTrigger extends TriggerBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (expression() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property expression in model CronTrigger"));

@@ -17,19 +17,19 @@ import java.io.IOException;
 @Fluent
 public final class PrivateLinkServiceConnectionState implements JsonSerializable<PrivateLinkServiceConnectionState> {
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     * Some RP chose "None". Other RPs use this for region expansion.
      */
-    private PrivateEndpointServiceConnectionStatus status;
+    private String actionsRequired;
 
     /*
-     * The reason for approval/rejection of the connection.
+     * User-defined message that, per NRP doc, may be used for approval-related message.
      */
     private String description;
 
     /*
-     * A message indicating if changes on the service provider require any updates on the consumer.
+     * Connection status of the service consumer with the service provider
      */
-    private String actionsRequired;
+    private EndpointServiceConnectionStatus status;
 
     /**
      * Creates an instance of PrivateLinkServiceConnectionState class.
@@ -38,29 +38,27 @@ public final class PrivateLinkServiceConnectionState implements JsonSerializable
     }
 
     /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Get the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
      * 
-     * @return the status value.
+     * @return the actionsRequired value.
      */
-    public PrivateEndpointServiceConnectionStatus status() {
-        return this.status;
+    public String actionsRequired() {
+        return this.actionsRequired;
     }
 
     /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Set the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
      * 
-     * @param status the status value to set.
+     * @param actionsRequired the actionsRequired value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
-    public PrivateLinkServiceConnectionState withStatus(PrivateEndpointServiceConnectionStatus status) {
-        this.status = status;
+    public PrivateLinkServiceConnectionState withActionsRequired(String actionsRequired) {
+        this.actionsRequired = actionsRequired;
         return this;
     }
 
     /**
-     * Get the description property: The reason for approval/rejection of the connection.
+     * Get the description property: User-defined message that, per NRP doc, may be used for approval-related message.
      * 
      * @return the description value.
      */
@@ -69,7 +67,7 @@ public final class PrivateLinkServiceConnectionState implements JsonSerializable
     }
 
     /**
-     * Set the description property: The reason for approval/rejection of the connection.
+     * Set the description property: User-defined message that, per NRP doc, may be used for approval-related message.
      * 
      * @param description the description value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
@@ -80,24 +78,22 @@ public final class PrivateLinkServiceConnectionState implements JsonSerializable
     }
 
     /**
-     * Get the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
+     * Get the status property: Connection status of the service consumer with the service provider.
      * 
-     * @return the actionsRequired value.
+     * @return the status value.
      */
-    public String actionsRequired() {
-        return this.actionsRequired;
+    public EndpointServiceConnectionStatus status() {
+        return this.status;
     }
 
     /**
-     * Set the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
+     * Set the status property: Connection status of the service consumer with the service provider.
      * 
-     * @param actionsRequired the actionsRequired value to set.
+     * @param status the status value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
-    public PrivateLinkServiceConnectionState withActionsRequired(String actionsRequired) {
-        this.actionsRequired = actionsRequired;
+    public PrivateLinkServiceConnectionState withStatus(EndpointServiceConnectionStatus status) {
+        this.status = status;
         return this;
     }
 
@@ -115,9 +111,9 @@ public final class PrivateLinkServiceConnectionState implements JsonSerializable
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
-        jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("actionsRequired", this.actionsRequired);
+        jsonWriter.writeStringField("description", this.description);
+        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -137,13 +133,13 @@ public final class PrivateLinkServiceConnectionState implements JsonSerializable
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("status".equals(fieldName)) {
-                    deserializedPrivateLinkServiceConnectionState.status
-                        = PrivateEndpointServiceConnectionStatus.fromString(reader.getString());
+                if ("actionsRequired".equals(fieldName)) {
+                    deserializedPrivateLinkServiceConnectionState.actionsRequired = reader.getString();
                 } else if ("description".equals(fieldName)) {
                     deserializedPrivateLinkServiceConnectionState.description = reader.getString();
-                } else if ("actionsRequired".equals(fieldName)) {
-                    deserializedPrivateLinkServiceConnectionState.actionsRequired = reader.getString();
+                } else if ("status".equals(fieldName)) {
+                    deserializedPrivateLinkServiceConnectionState.status
+                        = EndpointServiceConnectionStatus.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
