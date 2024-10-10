@@ -53,21 +53,21 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ModelVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ModelVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ModelVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service
             = RestProxy.create(ModelVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesModelVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesModelVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")

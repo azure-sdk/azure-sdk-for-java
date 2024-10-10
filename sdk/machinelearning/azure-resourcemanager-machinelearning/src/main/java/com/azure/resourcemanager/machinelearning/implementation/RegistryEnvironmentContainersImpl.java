@@ -69,26 +69,80 @@ public final class RegistryEnvironmentContainersImpl implements RegistryEnvironm
         }
     }
 
-    public EnvironmentContainer createOrUpdate(String resourceGroupName, String registryName, String environmentName,
-        EnvironmentContainerInner body) {
-        EnvironmentContainerInner inner
-            = this.serviceClient().createOrUpdate(resourceGroupName, registryName, environmentName, body);
-        if (inner != null) {
-            return new EnvironmentContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public EnvironmentContainer getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String environmentName = ResourceManagerUtils.getValueFromIdByName(id, "environments");
+        if (environmentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, environmentName, Context.NONE).getValue();
     }
 
-    public EnvironmentContainer createOrUpdate(String resourceGroupName, String registryName, String environmentName,
-        EnvironmentContainerInner body, Context context) {
-        EnvironmentContainerInner inner
-            = this.serviceClient().createOrUpdate(resourceGroupName, registryName, environmentName, body, context);
-        if (inner != null) {
-            return new EnvironmentContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public Response<EnvironmentContainer> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String environmentName = ResourceManagerUtils.getValueFromIdByName(id, "environments");
+        if (environmentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, environmentName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String environmentName = ResourceManagerUtils.getValueFromIdByName(id, "environments");
+        if (environmentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, environmentName, Context.NONE);
+    }
+
+    public void deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String environmentName = ResourceManagerUtils.getValueFromIdByName(id, "environments");
+        if (environmentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, environmentName, context);
     }
 
     private RegistryEnvironmentContainersClient serviceClient() {
@@ -97,5 +151,9 @@ public final class RegistryEnvironmentContainersImpl implements RegistryEnvironm
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
+    }
+
+    public EnvironmentContainerImpl define(String name) {
+        return new EnvironmentContainerImpl(name, this.manager());
     }
 }

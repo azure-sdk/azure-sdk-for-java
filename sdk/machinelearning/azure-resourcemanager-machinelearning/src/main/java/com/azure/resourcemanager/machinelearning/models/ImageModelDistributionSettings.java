@@ -72,14 +72,14 @@ public class ImageModelDistributionSettings implements JsonSerializable<ImageMod
     private String earlyStoppingPatience;
 
     /*
-     * Frequency to evaluate validation dataset to get metric scores. Must be a positive integer.
-     */
-    private String evaluationFrequency;
-
-    /*
      * Enable normalization when exporting ONNX model.
      */
     private String enableOnnxNormalization;
+
+    /*
+     * Frequency to evaluate validation dataset to get metric scores. Must be a positive integer.
+     */
+    private String evaluationFrequency;
 
     /*
      * Gradient accumulation means running a configured number of "GradAccumulationStep" steps without
@@ -357,6 +357,26 @@ public class ImageModelDistributionSettings implements JsonSerializable<ImageMod
     }
 
     /**
+     * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
+     * 
+     * @return the enableOnnxNormalization value.
+     */
+    public String enableOnnxNormalization() {
+        return this.enableOnnxNormalization;
+    }
+
+    /**
+     * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
+     * 
+     * @param enableOnnxNormalization the enableOnnxNormalization value to set.
+     * @return the ImageModelDistributionSettings object itself.
+     */
+    public ImageModelDistributionSettings withEnableOnnxNormalization(String enableOnnxNormalization) {
+        this.enableOnnxNormalization = enableOnnxNormalization;
+        return this;
+    }
+
+    /**
      * Get the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
      * 
@@ -375,26 +395,6 @@ public class ImageModelDistributionSettings implements JsonSerializable<ImageMod
      */
     public ImageModelDistributionSettings withEvaluationFrequency(String evaluationFrequency) {
         this.evaluationFrequency = evaluationFrequency;
-        return this;
-    }
-
-    /**
-     * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     * 
-     * @return the enableOnnxNormalization value.
-     */
-    public String enableOnnxNormalization() {
-        return this.enableOnnxNormalization;
-    }
-
-    /**
-     * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     * 
-     * @param enableOnnxNormalization the enableOnnxNormalization value to set.
-     * @return the ImageModelDistributionSettings object itself.
-     */
-    public ImageModelDistributionSettings withEnableOnnxNormalization(String enableOnnxNormalization) {
-        this.enableOnnxNormalization = enableOnnxNormalization;
         return this;
     }
 
@@ -806,8 +806,8 @@ public class ImageModelDistributionSettings implements JsonSerializable<ImageMod
         jsonWriter.writeStringField("earlyStopping", this.earlyStopping);
         jsonWriter.writeStringField("earlyStoppingDelay", this.earlyStoppingDelay);
         jsonWriter.writeStringField("earlyStoppingPatience", this.earlyStoppingPatience);
-        jsonWriter.writeStringField("evaluationFrequency", this.evaluationFrequency);
         jsonWriter.writeStringField("enableOnnxNormalization", this.enableOnnxNormalization);
+        jsonWriter.writeStringField("evaluationFrequency", this.evaluationFrequency);
         jsonWriter.writeStringField("gradientAccumulationStep", this.gradientAccumulationStep);
         jsonWriter.writeStringField("layersToFreeze", this.layersToFreeze);
         jsonWriter.writeStringField("learningRate", this.learningRate);
@@ -861,10 +861,10 @@ public class ImageModelDistributionSettings implements JsonSerializable<ImageMod
                     deserializedImageModelDistributionSettings.earlyStoppingDelay = reader.getString();
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelDistributionSettings.earlyStoppingPatience = reader.getString();
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelDistributionSettings.evaluationFrequency = reader.getString();
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelDistributionSettings.enableOnnxNormalization = reader.getString();
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelDistributionSettings.evaluationFrequency = reader.getString();
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelDistributionSettings.gradientAccumulationStep = reader.getString();
                 } else if ("layersToFreeze".equals(fieldName)) {

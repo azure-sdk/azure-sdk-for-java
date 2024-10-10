@@ -136,8 +136,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withAmsGradient(Boolean amsGradient) {
-        super.withAmsGradient(amsGradient);
+    public ImageModelSettingsClassification withAdvancedSettings(String advancedSettings) {
+        super.withAdvancedSettings(advancedSettings);
         return this;
     }
 
@@ -145,8 +145,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withAdvancedSettings(String advancedSettings) {
-        super.withAdvancedSettings(advancedSettings);
+    public ImageModelSettingsClassification withAmsGradient(Boolean amsGradient) {
+        super.withAmsGradient(amsGradient);
         return this;
     }
 
@@ -190,8 +190,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withCheckpointRunId(String checkpointRunId) {
-        super.withCheckpointRunId(checkpointRunId);
+    public ImageModelSettingsClassification withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        super.withCheckpointModel(checkpointModel);
         return this;
     }
 
@@ -199,8 +199,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withCheckpointModel(MLFlowModelJobInput checkpointModel) {
-        super.withCheckpointModel(checkpointModel);
+    public ImageModelSettingsClassification withCheckpointRunId(String checkpointRunId) {
+        super.withCheckpointRunId(checkpointRunId);
         return this;
     }
 
@@ -244,8 +244,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withEvaluationFrequency(Integer evaluationFrequency) {
-        super.withEvaluationFrequency(evaluationFrequency);
+    public ImageModelSettingsClassification withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
+        super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
@@ -253,8 +253,8 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      * {@inheritDoc}
      */
     @Override
-    public ImageModelSettingsClassification withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
-        super.withEnableOnnxNormalization(enableOnnxNormalization);
+    public ImageModelSettingsClassification withEvaluationFrequency(Integer evaluationFrequency) {
+        super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
@@ -427,7 +427,9 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (checkpointModel() != null) {
+            checkpointModel().validate();
+        }
     }
 
     /**
@@ -436,20 +438,20 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeBooleanField("amsGradient", amsGradient());
         jsonWriter.writeStringField("advancedSettings", advancedSettings());
+        jsonWriter.writeBooleanField("amsGradient", amsGradient());
         jsonWriter.writeStringField("augmentations", augmentations());
         jsonWriter.writeNumberField("beta1", beta1());
         jsonWriter.writeNumberField("beta2", beta2());
         jsonWriter.writeNumberField("checkpointFrequency", checkpointFrequency());
-        jsonWriter.writeStringField("checkpointRunId", checkpointRunId());
         jsonWriter.writeJsonField("checkpointModel", checkpointModel());
+        jsonWriter.writeStringField("checkpointRunId", checkpointRunId());
         jsonWriter.writeBooleanField("distributed", distributed());
         jsonWriter.writeBooleanField("earlyStopping", earlyStopping());
         jsonWriter.writeNumberField("earlyStoppingDelay", earlyStoppingDelay());
         jsonWriter.writeNumberField("earlyStoppingPatience", earlyStoppingPatience());
-        jsonWriter.writeNumberField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeBooleanField("enableOnnxNormalization", enableOnnxNormalization());
+        jsonWriter.writeNumberField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeNumberField("gradientAccumulationStep", gradientAccumulationStep());
         jsonWriter.writeNumberField("layersToFreeze", layersToFreeze());
         jsonWriter.writeNumberField("learningRate", learningRate());
@@ -492,11 +494,11 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("amsGradient".equals(fieldName)) {
+                if ("advancedSettings".equals(fieldName)) {
+                    deserializedImageModelSettingsClassification.withAdvancedSettings(reader.getString());
+                } else if ("amsGradient".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withAmsGradient(reader.getNullable(JsonReader::getBoolean));
-                } else if ("advancedSettings".equals(fieldName)) {
-                    deserializedImageModelSettingsClassification.withAdvancedSettings(reader.getString());
                 } else if ("augmentations".equals(fieldName)) {
                     deserializedImageModelSettingsClassification.withAugmentations(reader.getString());
                 } else if ("beta1".equals(fieldName)) {
@@ -506,11 +508,11 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
                 } else if ("checkpointFrequency".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withCheckpointFrequency(reader.getNullable(JsonReader::getInt));
-                } else if ("checkpointRunId".equals(fieldName)) {
-                    deserializedImageModelSettingsClassification.withCheckpointRunId(reader.getString());
                 } else if ("checkpointModel".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withCheckpointModel(MLFlowModelJobInput.fromJson(reader));
+                } else if ("checkpointRunId".equals(fieldName)) {
+                    deserializedImageModelSettingsClassification.withCheckpointRunId(reader.getString());
                 } else if ("distributed".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withDistributed(reader.getNullable(JsonReader::getBoolean));
@@ -523,12 +525,12 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withEarlyStoppingPatience(reader.getNullable(JsonReader::getInt));
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelSettingsClassification
-                        .withEvaluationFrequency(reader.getNullable(JsonReader::getInt));
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withEnableOnnxNormalization(reader.getNullable(JsonReader::getBoolean));
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelSettingsClassification
+                        .withEvaluationFrequency(reader.getNullable(JsonReader::getInt));
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelSettingsClassification
                         .withGradientAccumulationStep(reader.getNullable(JsonReader::getInt));
