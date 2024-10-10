@@ -1,14 +1,110 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-10)
 
-### Features Added
+- Azure Resource Manager OracleDatabase client library for Java. This package contains Microsoft Azure SDK for OracleDatabase Management SDK.  Package tag package-2024-06-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DbSystemShapeProperties` was modified
 
-### Other Changes
+* `java.lang.Integer availableCoreCount()` -> `int availableCoreCount()`
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `java.lang.Integer serial()` -> `int serial()`
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `java.lang.Boolean isProtected()` -> `boolean isProtected()`
+
+### Features Added
+
+* `models.AzureSubscriptions` was added
+
+* `models.AddSubscriptionOperationState` was added
+
+#### `models.OracleSubscriptions` was modified
+
+* `addAzureSubscriptions(models.AzureSubscriptions)` was added
+* `addAzureSubscriptions(models.AzureSubscriptions,com.azure.core.util.Context)` was added
+
+#### `models.SystemVersionProperties` was modified
+
+* `withSystemVersion(java.lang.String)` was added
+
+#### `models.DbSystemShapeProperties` was modified
+
+* `withAvailableDbNodeStorageInGbs(java.lang.Integer)` was added
+* `withAvailableMemoryInGbs(java.lang.Integer)` was added
+* `withAvailableMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withShapeFamily(java.lang.String)` was added
+* `withAvailableDataStoragePerServerInTbs(java.lang.Double)` was added
+* `withMinStorageCount(java.lang.Integer)` was added
+* `withMinimumNodeCount(java.lang.Integer)` was added
+* `withMinDbNodeStoragePerNodeInGbs(java.lang.Integer)` was added
+* `withMaxStorageCount(java.lang.Integer)` was added
+* `withMinMemoryPerNodeInGbs(java.lang.Integer)` was added
+* `withMaximumNodeCount(java.lang.Integer)` was added
+* `withMinimumCoreCount(java.lang.Integer)` was added
+* `withAvailableCoreCount(int)` was added
+* `withAvailableDbNodePerNodeInGbs(java.lang.Integer)` was added
+* `withCoreCountIncrement(java.lang.Integer)` was added
+* `withAvailableCoreCountPerNode(java.lang.Integer)` was added
+* `withAvailableDataStorageInTbs(java.lang.Integer)` was added
+* `withRuntimeMinimumCoreCount(java.lang.Integer)` was added
+* `withMinDataStorageInTbs(java.lang.Integer)` was added
+* `withMinCoreCountPerNode(java.lang.Integer)` was added
+
+#### `models.DnsPrivateZoneProperties` was modified
+
+* `withZoneType(models.ZoneType)` was added
+* `withSelf(java.lang.String)` was added
+* `withVersion(java.lang.String)` was added
+* `withOcid(java.lang.String)` was added
+* `withSerial(int)` was added
+* `withLifecycleState(models.DnsPrivateZonesLifecycleState)` was added
+* `withIsProtected(boolean)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withViewId(java.lang.String)` was added
+
+#### `models.OracleSubscriptionProperties` was modified
+
+* `addSubscriptionOperationState()` was added
+* `azureSubscriptionIds()` was added
+* `lastOperationStatusDetail()` was added
+
+#### `models.AutonomousDbVersionProperties` was modified
+
+* `withIsDefaultForFree(java.lang.Boolean)` was added
+* `withIsFreeTierEnabled(java.lang.Boolean)` was added
+* `withVersion(java.lang.String)` was added
+* `withIsPaidEnabled(java.lang.Boolean)` was added
+* `withDbWorkload(models.WorkloadType)` was added
+* `withIsDefaultForPaid(java.lang.Boolean)` was added
+
+#### `models.AutonomousDatabaseCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.AutonomousDatabaseNationalCharacterSetProperties` was modified
+
+* `withCharacterSet(java.lang.String)` was added
+
+#### `models.DnsPrivateViewProperties` was modified
+
+* `withSelf(java.lang.String)` was added
+* `withOcid(java.lang.String)` was added
+* `withTimeCreated(java.time.OffsetDateTime)` was added
+* `withIsProtected(boolean)` was added
+* `withDisplayName(java.lang.String)` was added
+* `withLifecycleState(models.DnsPrivateViewsLifecycleState)` was added
+* `withTimeUpdated(java.time.OffsetDateTime)` was added
+
+#### `models.GiVersionProperties` was modified
+
+* `withVersion(java.lang.String)` was added
 
 ## 1.0.0 (2024-07-04)
 
