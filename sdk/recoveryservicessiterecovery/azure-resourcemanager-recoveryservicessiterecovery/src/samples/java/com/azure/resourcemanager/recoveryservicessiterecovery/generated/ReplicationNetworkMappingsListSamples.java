@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class ReplicationNetworkMappingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_List.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ReplicationNetworkMappingsListSamples {
      */
     public static void getsAllTheNetworkMappingsUnderAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().list("srce2avaultbvtaC27", "srcBvte2a14C27",
-            com.azure.core.util.Context.NONE);
+        manager.replicationNetworkMappings()
+            .list("srcBvte2a14C27", "srce2avaultbvtaC27", com.azure.core.util.Context.NONE);
     }
 }
