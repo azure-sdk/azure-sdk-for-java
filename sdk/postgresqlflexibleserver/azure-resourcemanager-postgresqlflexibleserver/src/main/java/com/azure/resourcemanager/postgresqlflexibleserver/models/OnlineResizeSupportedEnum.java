@@ -5,12 +5,12 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * A value indicating whether online resize is supported in this region for the given subscription. "Enabled" means
- * storage online resize is supported. "Disabled" means storage online resize is not supported.
+ * storage online resize is supported. "Disabled" means storage online resize is not supported. Will be deprecated in
+ * future, please look to Supported Features for "OnlineResize".
  */
 public final class OnlineResizeSupportedEnum extends ExpandableStringEnum<OnlineResizeSupportedEnum> {
     /**
@@ -38,7 +38,6 @@ public final class OnlineResizeSupportedEnum extends ExpandableStringEnum<Online
      * @param name a name to look for.
      * @return the corresponding OnlineResizeSupportedEnum.
      */
-    @JsonCreator
     public static OnlineResizeSupportedEnum fromString(String name) {
         return fromString(name, OnlineResizeSupportedEnum.class);
     }

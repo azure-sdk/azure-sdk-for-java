@@ -5,12 +5,13 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * Migration source server type : OnPremises, AWS, GCP, AzureVM, PostgreSQLSingleServer, AWS_RDS, AWS_AURORA, AWS_EC2,
- * GCP_CloudSQL, GCP_AlloyDB, GCP_Compute, or EDB.
+ * GCP_CloudSQL, GCP_AlloyDB, GCP_Compute, EDB, EDB_Oracle_Server, EDB_PostgreSQL, PostgreSQLFlexibleServer,
+ * PostgreSQLCosmosDB, Huawei_RDS, Huawei_Compute, Heroku_PostgreSQL, Crunchy_PostgreSQL, ApsaraDB_RDS,
+ * Digital_Ocean_Droplets, Digital_Ocean_PostgreSQL, or Supabase_PostgreSQL.
  */
 public final class SourceType extends ExpandableStringEnum<SourceType> {
     /**
@@ -74,6 +75,66 @@ public final class SourceType extends ExpandableStringEnum<SourceType> {
     public static final SourceType EDB = fromString("EDB");
 
     /**
+     * Static value EDB_Oracle_Server for SourceType.
+     */
+    public static final SourceType EDB_ORACLE_SERVER = fromString("EDB_Oracle_Server");
+
+    /**
+     * Static value EDB_PostgreSQL for SourceType.
+     */
+    public static final SourceType EDB_POSTGRE_SQL = fromString("EDB_PostgreSQL");
+
+    /**
+     * Static value PostgreSQLFlexibleServer for SourceType.
+     */
+    public static final SourceType POSTGRE_SQLFLEXIBLE_SERVER = fromString("PostgreSQLFlexibleServer");
+
+    /**
+     * Static value PostgreSQLCosmosDB for SourceType.
+     */
+    public static final SourceType POSTGRE_SQLCOSMOS_DB = fromString("PostgreSQLCosmosDB");
+
+    /**
+     * Static value Huawei_RDS for SourceType.
+     */
+    public static final SourceType HUAWEI_RDS = fromString("Huawei_RDS");
+
+    /**
+     * Static value Huawei_Compute for SourceType.
+     */
+    public static final SourceType HUAWEI_COMPUTE = fromString("Huawei_Compute");
+
+    /**
+     * Static value Heroku_PostgreSQL for SourceType.
+     */
+    public static final SourceType HEROKU_POSTGRE_SQL = fromString("Heroku_PostgreSQL");
+
+    /**
+     * Static value Crunchy_PostgreSQL for SourceType.
+     */
+    public static final SourceType CRUNCHY_POSTGRE_SQL = fromString("Crunchy_PostgreSQL");
+
+    /**
+     * Static value ApsaraDB_RDS for SourceType.
+     */
+    public static final SourceType APSARA_DB_RDS = fromString("ApsaraDB_RDS");
+
+    /**
+     * Static value Digital_Ocean_Droplets for SourceType.
+     */
+    public static final SourceType DIGITAL_OCEAN_DROPLETS = fromString("Digital_Ocean_Droplets");
+
+    /**
+     * Static value Digital_Ocean_PostgreSQL for SourceType.
+     */
+    public static final SourceType DIGITAL_OCEAN_POSTGRE_SQL = fromString("Digital_Ocean_PostgreSQL");
+
+    /**
+     * Static value Supabase_PostgreSQL for SourceType.
+     */
+    public static final SourceType SUPABASE_POSTGRE_SQL = fromString("Supabase_PostgreSQL");
+
+    /**
      * Creates a new instance of SourceType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -88,7 +149,6 @@ public final class SourceType extends ExpandableStringEnum<SourceType> {
      * @param name a name to look for.
      * @return the corresponding SourceType.
      */
-    @JsonCreator
     public static SourceType fromString(String name) {
         return fromString(name, SourceType.class);
     }
