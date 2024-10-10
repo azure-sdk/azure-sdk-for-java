@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +15,8 @@ import java.util.Map;
 public final class ComponentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/ComponentContainer/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-10-01-
+     * preview/examples/Workspace/ComponentContainer/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Component Container.
@@ -25,12 +26,12 @@ public final class ComponentContainersCreateOrUpdateSamples {
     public static void createOrUpdateWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(new ComponentContainerProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
-                .withProperties(mapOf("string", "string")))
-            .create();
+            .createOrUpdateWithResponse("test-rg", "my-aml-workspace", "string",
+                new ComponentContainerInner()
+                    .withProperties(new ComponentContainerProperties().withDescription("string")
+                        .withProperties(mapOf("string", "string"))
+                        .withTags(mapOf("string", "string"))),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
