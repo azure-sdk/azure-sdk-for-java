@@ -1,14 +1,230 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-10)
 
-### Features Added
+- Azure Resource Manager SourceControlConfiguration client library for Java. This package contains Microsoft Azure SDK for SourceControlConfiguration Management SDK. KubernetesConfiguration Client. Package tag package-2024-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.ProvisioningStateType` was removed
 
-### Other Changes
+* `models.MessageLevelType` was removed
+
+* `models.Plan` was removed
+
+* `models.ExtensionPropertiesAksAssignedIdentity` was removed
+
+* `models.AksIdentityType` was removed
+
+* `models.ResourceIdentityType` was removed
+
+* `models.ResourceProviderOperation` was removed
+
+* `models.ComplianceStatus` was removed
+
+* `models.SourceControlConfigurationList` was removed
+
+* `models.OperatorScopeType` was removed
+
+* `models.ExtensionsList` was removed
+
+* `models.ExtensionStatus` was removed
+
+* `models.SourceControlConfiguration` was removed
+
+* `models.HelmOperatorProperties` was removed
+
+* `models.ScopeCluster` was removed
+
+* `models.OperatorType` was removed
+
+* `models.Identity` was removed
+
+* `models.ResourceProviderOperationDisplay` was removed
+
+* `models.SourceControlConfigurations` was removed
+
+* `models.PatchExtension` was removed
+
+* `models.ScopeNamespace` was removed
+
+* `models.Scope` was removed
+
+* `models.ComplianceStateType` was removed
+
+* `models.Extension` was removed
+
+* `models.Extensions` was removed
+
+* `models.OperationStatusList` was removed
+
+* `models.OperationStatus` was removed
+
+* `models.LevelType` was removed
+
+* `models.ResourceProviderOperationList` was removed
+
+* `models.Operations` was removed
+
+#### `SourceControlConfigurationManager` was modified
+
+* `operationStatus()` was removed
+* `extensions()` was removed
+* `operations()` was removed
+* `sourceControlConfigurations()` was removed
+
+#### `models.KustomizationPatchDefinition` was modified
+
+* `withPostBuild(models.PostBuildDefinition)` was removed
+* `models.PostBuildDefinition postBuild()` -> `models.PostBuildPatchDefinition postBuild()`
+
+### Features Added
+
+* `models.SubstituteFromPatchDefinition` was added
+
+* `models.OciRepositoryRefPatchDefinition` was added
+
+* `models.MatchOidcIdentityDefinition` was added
+
+* `models.OperationType` was added
+
+* `models.OciRepositoryDefinition` was added
+
+* `models.VerifyPatchDefinition` was added
+
+* `models.VerifyDefinition` was added
+
+* `models.LayerSelectorPatchDefinition` was added
+
+* `models.LayerSelectorDefinition` was added
+
+* `models.TlsConfigPatchDefinition` was added
+
+* `models.OciRepositoryRefDefinition` was added
+
+* `models.MatchOidcIdentityPatchDefinition` was added
+
+* `models.TlsConfigDefinition` was added
+
+* `models.OciRepositoryPatchDefinition` was added
+
+* `models.PostBuildPatchDefinition` was added
+
+#### `models.HelmReleasePropertiesDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ObjectStatusConditionDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedIdentityDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServicePrincipalDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SubstituteFromDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ObjectReferenceDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureBlobPatchDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FluxConfiguration` was modified
+
+* `ociRepository()` was added
+
+#### `models.PostBuildDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureBlobDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BucketDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ServicePrincipalPatchDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KustomizationPatchDefinition` was modified
+
+* `withPostBuild(models.PostBuildPatchDefinition)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ManagedIdentityPatchDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KustomizationDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FluxConfigurationsList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GitRepositoryPatchDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provider()` was added
+* `withProvider(java.lang.String)` was added
+
+#### `models.BucketPatchDefinition` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FluxConfigurationPatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `ociRepository()` was added
+* `withOciRepository(models.OciRepositoryPatchDefinition)` was added
+
+#### `models.RepositoryRefDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ObjectStatusDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GitRepositoryDefinition` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provider()` was added
+* `withProvider(java.lang.String)` was added
 
 ## 1.0.0 (2023-09-25)
 
