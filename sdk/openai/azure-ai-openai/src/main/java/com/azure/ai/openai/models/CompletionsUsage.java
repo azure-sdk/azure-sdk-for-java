@@ -91,6 +91,7 @@ public final class CompletionsUsage implements JsonSerializable<CompletionsUsage
         jsonWriter.writeIntField("completion_tokens", this.completionTokens);
         jsonWriter.writeIntField("prompt_tokens", this.promptTokens);
         jsonWriter.writeIntField("total_tokens", this.totalTokens);
+        jsonWriter.writeJsonField("completion_tokens_details", this.completionTokensDetails);
         return jsonWriter.writeEndObject();
     }
 
@@ -109,6 +110,7 @@ public final class CompletionsUsage implements JsonSerializable<CompletionsUsage
             int completionTokens = 0;
             int promptTokens = 0;
             int totalTokens = 0;
+            CompletionsUsageCompletionTokensDetails completionTokensDetails = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -118,11 +120,32 @@ public final class CompletionsUsage implements JsonSerializable<CompletionsUsage
                     promptTokens = reader.getInt();
                 } else if ("total_tokens".equals(fieldName)) {
                     totalTokens = reader.getInt();
+                } else if ("completion_tokens_details".equals(fieldName)) {
+                    completionTokensDetails = CompletionsUsageCompletionTokensDetails.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new CompletionsUsage(completionTokens, promptTokens, totalTokens);
+            CompletionsUsage deserializedCompletionsUsage
+                = new CompletionsUsage(completionTokens, promptTokens, totalTokens);
+            deserializedCompletionsUsage.completionTokensDetails = completionTokensDetails;
+            return deserializedCompletionsUsage;
         });
+    }
+
+    /*
+     * Breakdown of tokens used in a completion.
+     */
+    @Generated
+    private CompletionsUsageCompletionTokensDetails completionTokensDetails;
+
+    /**
+     * Get the completionTokensDetails property: Breakdown of tokens used in a completion.
+     *
+     * @return the completionTokensDetails value.
+     */
+    @Generated
+    public CompletionsUsageCompletionTokensDetails getCompletionTokensDetails() {
+        return this.completionTokensDetails;
     }
 }
