@@ -13,7 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.FabricSpeci
 public final class ReplicationFabricsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_Create.json
      */
     /**
@@ -23,7 +23,9 @@ public final class ReplicationFabricsCreateSamples {
      */
     public static void createsAnAzureSiteRecoveryFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().define("cloud1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationFabrics()
+            .define("cloud1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new FabricCreationInputProperties().withCustomDetails(new FabricSpecificCreationInput()))
             .create();
     }
