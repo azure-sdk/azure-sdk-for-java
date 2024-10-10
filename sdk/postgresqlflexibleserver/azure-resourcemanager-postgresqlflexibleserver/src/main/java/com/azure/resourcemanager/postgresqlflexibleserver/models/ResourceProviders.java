@@ -6,6 +6,7 @@ package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.AutoMigrationScheduleResourceInner;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.MigrationNameAvailabilityResourceInner;
 
 /**
@@ -47,4 +48,75 @@ public interface ResourceProviders {
      */
     MigrationNameAvailabilityResource checkMigrationNameAvailability(String subscriptionId, String resourceGroupName,
         String targetDbServerName, MigrationNameAvailabilityResourceInner parameters);
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for along with
+     * {@link Response}.
+     */
+    Response<AutoMigrationScheduleResource> getLatestAutoMigrationScheduleWithResponse(String subscriptionId,
+        String locationName, AutoMigrationScheduleResourceInner migrationScheduleResource, Context context);
+
+    /**
+     * Get latest auto migration schedule
+     * 
+     * This method gets the latest auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    AutoMigrationScheduleResource getLatestAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource);
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    AutoMigrationScheduleResource updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource);
+
+    /**
+     * Update auto migration schedule
+     * 
+     * This method updates the auto migration schedule for a given single server resource id.
+     * 
+     * @param subscriptionId The subscription ID of the target database server.
+     * @param locationName The name of the location.
+     * @param migrationScheduleResource The schedule details containing source server details to fetch the latest
+     * schedule.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schedule details containing source server details to fetch the latest schedule for.
+     */
+    AutoMigrationScheduleResource updateAutoMigrationSchedule(String subscriptionId, String locationName,
+        AutoMigrationScheduleResourceInner migrationScheduleResource, Context context);
 }
