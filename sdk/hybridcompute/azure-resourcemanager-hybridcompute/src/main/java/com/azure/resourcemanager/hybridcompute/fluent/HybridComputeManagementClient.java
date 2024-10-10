@@ -61,6 +61,13 @@ public interface HybridComputeManagementClient {
     MachinesClient getMachines();
 
     /**
+     * Gets the LicenseProfilesClient object to access its operations.
+     * 
+     * @return the LicenseProfilesClient object.
+     */
+    LicenseProfilesClient getLicenseProfiles();
+
+    /**
      * Gets the MachineExtensionsClient object to access its operations.
      * 
      * @return the MachineExtensionsClient object.
@@ -80,6 +87,27 @@ public interface HybridComputeManagementClient {
      * @return the ExtensionMetadatasClient object.
      */
     ExtensionMetadatasClient getExtensionMetadatas();
+
+    /**
+     * Gets the ExtensionMetadataV2sClient object to access its operations.
+     * 
+     * @return the ExtensionMetadataV2sClient object.
+     */
+    ExtensionMetadataV2sClient getExtensionMetadataV2s();
+
+    /**
+     * Gets the ExtensionTypesClient object to access its operations.
+     * 
+     * @return the ExtensionTypesClient object.
+     */
+    ExtensionTypesClient getExtensionTypes();
+
+    /**
+     * Gets the ExtensionPublishersClient object to access its operations.
+     * 
+     * @return the ExtensionPublishersClient object.
+     */
+    ExtensionPublishersClient getExtensionPublishers();
 
     /**
      * Gets the OperationsClient object to access its operations.
