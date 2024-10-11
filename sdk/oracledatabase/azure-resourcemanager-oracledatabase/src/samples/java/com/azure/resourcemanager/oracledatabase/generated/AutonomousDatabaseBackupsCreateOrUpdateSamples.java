@@ -12,7 +12,7 @@ import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupP
 public final class AutonomousDatabaseBackupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabaseBackup_create.
      * json
      */
     /**
@@ -32,7 +32,7 @@ public final class AutonomousDatabaseBackupsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabaseBackup_create.
      * json
      */
     /**
