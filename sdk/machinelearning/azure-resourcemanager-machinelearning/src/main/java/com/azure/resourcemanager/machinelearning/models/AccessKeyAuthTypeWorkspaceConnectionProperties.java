@@ -31,14 +31,14 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
     private WorkspaceConnectionAccessKey credentials;
 
     /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
      * Group based on connection category
      */
     private ConnectionGroup group;
+
+    /*
+     * The createdByWorkspaceArmId property.
+     */
+    private String createdByWorkspaceArmId;
 
     /**
      * Creates an instance of AccessKeyAuthTypeWorkspaceConnectionProperties class.
@@ -77,16 +77,6 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
     }
 
     /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
      * Get the group property: Group based on connection category.
      * 
      * @return the group value.
@@ -94,6 +84,16 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
     @Override
     public ConnectionGroup group() {
         return this.group;
+    }
+
+    /**
+     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
+     * 
+     * @return the createdByWorkspaceArmId value.
+     */
+    @Override
+    public String createdByWorkspaceArmId() {
+        return this.createdByWorkspaceArmId;
     }
 
     /**
@@ -175,7 +175,6 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
