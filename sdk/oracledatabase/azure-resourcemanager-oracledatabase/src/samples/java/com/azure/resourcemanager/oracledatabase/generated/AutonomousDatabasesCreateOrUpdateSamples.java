@@ -17,7 +17,7 @@ import java.util.Map;
 public final class AutonomousDatabasesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabase_create.json
      */
     /**
      * Sample code: AutonomousDatabases_CreateOrUpdate.
@@ -48,7 +48,7 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabase_create.json
      */
     /**
      * Sample code: Create Autonomous Database.
@@ -79,7 +79,7 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabaseClone_create.
      * json
      */
     /**
@@ -113,7 +113,7 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2024-06-01/examples/autonomousDatabaseClone_create.
      * json
      */
     /**
