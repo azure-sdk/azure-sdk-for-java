@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.loganalytics.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.fluent.models.LogAnalyticsQueryPackInner;
 import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPack;
@@ -42,6 +43,10 @@ public final class LogAnalyticsQueryPackImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String queryPackId() {
@@ -92,22 +97,18 @@ public final class LogAnalyticsQueryPackImpl
     }
 
     public LogAnalyticsQueryPack create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .createOrUpdateWithResponse(resourceGroupName, queryPackName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .createOrUpdateWithResponse(resourceGroupName, queryPackName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public LogAnalyticsQueryPack create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .createOrUpdateWithResponse(resourceGroupName, queryPackName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .createOrUpdateWithResponse(resourceGroupName, queryPackName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -123,51 +124,42 @@ public final class LogAnalyticsQueryPackImpl
     }
 
     public LogAnalyticsQueryPack apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .updateTagsWithResponse(resourceGroupName, queryPackName, updateQueryPackTags, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .updateTagsWithResponse(resourceGroupName, queryPackName, updateQueryPackTags, Context.NONE)
+            .getValue();
         return this;
     }
 
     public LogAnalyticsQueryPack apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .updateTagsWithResponse(resourceGroupName, queryPackName, updateQueryPackTags, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .updateTagsWithResponse(resourceGroupName, queryPackName, updateQueryPackTags, context)
+            .getValue();
         return this;
     }
 
-    LogAnalyticsQueryPackImpl(
-        LogAnalyticsQueryPackInner innerObject,
+    LogAnalyticsQueryPackImpl(LogAnalyticsQueryPackInner innerObject,
         com.azure.resourcemanager.loganalytics.LogAnalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.queryPackName = Utils.getValueFromIdByName(innerObject.id(), "queryPacks");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.queryPackName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "queryPacks");
     }
 
     public LogAnalyticsQueryPack refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .getByResourceGroupWithResponse(resourceGroupName, queryPackName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .getByResourceGroupWithResponse(resourceGroupName, queryPackName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public LogAnalyticsQueryPack refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getQueryPacks()
-                .getByResourceGroupWithResponse(resourceGroupName, queryPackName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getQueryPacks()
+            .getByResourceGroupWithResponse(resourceGroupName, queryPackName, context)
+            .getValue();
         return this;
     }
 
