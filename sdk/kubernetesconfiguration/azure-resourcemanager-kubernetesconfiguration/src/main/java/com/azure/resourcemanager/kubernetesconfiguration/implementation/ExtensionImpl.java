@@ -7,6 +7,7 @@ package com.azure.resourcemanager.kubernetesconfiguration.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.ExtensionInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.AutoUpgradeMode;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Extension;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionPropertiesAksAssignedIdentity;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionStatus;
@@ -23,8 +24,7 @@ public final class ExtensionImpl implements Extension {
 
     private final com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager serviceManager;
 
-    ExtensionImpl(
-        ExtensionInner innerObject,
+    ExtensionImpl(ExtensionInner innerObject,
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -58,8 +58,8 @@ public final class ExtensionImpl implements Extension {
         return this.innerModel().extensionType();
     }
 
-    public Boolean autoUpgradeMinorVersion() {
-        return this.innerModel().autoUpgradeMinorVersion();
+    public AutoUpgradeMode autoUpgradeMode() {
+        return this.innerModel().autoUpgradeMode();
     }
 
     public String releaseTrain() {
