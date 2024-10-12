@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.storagecache.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The state of the import job. InProgress indicates the import is still running. Canceled indicates it has been
- * canceled by the user. Completed indicates import finished, successfully importing all discovered blobs into the
+ * The operational state of the import job. InProgress indicates the import is still running. Canceled indicates it has
+ * been canceled by the user. Completed indicates import finished, successfully importing all discovered blobs into the
  * Lustre namespace. CompletedPartial indicates the import finished but some blobs either were found to be conflicting
  * and could not be imported or other errors were encountered. Failed means the import was unable to complete due to a
  * fatal error.
@@ -61,7 +60,6 @@ public final class ImportStatusType extends ExpandableStringEnum<ImportStatusTyp
      * @param name a name to look for.
      * @return the corresponding ImportStatusType.
      */
-    @JsonCreator
     public static ImportStatusType fromString(String name) {
         return fromString(name, ImportStatusType.class);
     }
