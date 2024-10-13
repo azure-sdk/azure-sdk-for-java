@@ -5,45 +5,47 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** metadata of a repository. */
+/**
+ * metadata of a repository.
+ */
 @Fluent
-public final class Repository {
+public final class Repository implements JsonSerializable<Repository> {
     /*
      * Url of repository.
      */
-    @JsonProperty(value = "url")
     private String url;
 
     /*
      * Branch name of repository.
      */
-    @JsonProperty(value = "branch")
     private String branch;
 
     /*
      * Display url of repository.
      */
-    @JsonProperty(value = "displayUrl")
     private String displayUrl;
 
     /*
      * Url to access repository action logs.
      */
-    @JsonProperty(value = "deploymentLogsUrl")
     private String deploymentLogsUrl;
 
-    /*
-     * Dictionary of source control content type and path mapping.
+    /**
+     * Creates an instance of Repository class.
      */
-    @JsonProperty(value = "pathMapping")
-    private List<ContentPathMap> pathMapping;
+    public Repository() {
+    }
 
     /**
      * Get the url property: Url of repository.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -52,7 +54,7 @@ public final class Repository {
 
     /**
      * Set the url property: Url of repository.
-     *
+     * 
      * @param url the url value to set.
      * @return the Repository object itself.
      */
@@ -63,7 +65,7 @@ public final class Repository {
 
     /**
      * Get the branch property: Branch name of repository.
-     *
+     * 
      * @return the branch value.
      */
     public String branch() {
@@ -72,7 +74,7 @@ public final class Repository {
 
     /**
      * Set the branch property: Branch name of repository.
-     *
+     * 
      * @param branch the branch value to set.
      * @return the Repository object itself.
      */
@@ -83,7 +85,7 @@ public final class Repository {
 
     /**
      * Get the displayUrl property: Display url of repository.
-     *
+     * 
      * @return the displayUrl value.
      */
     public String displayUrl() {
@@ -92,7 +94,7 @@ public final class Repository {
 
     /**
      * Set the displayUrl property: Display url of repository.
-     *
+     * 
      * @param displayUrl the displayUrl value to set.
      * @return the Repository object itself.
      */
@@ -103,7 +105,7 @@ public final class Repository {
 
     /**
      * Get the deploymentLogsUrl property: Url to access repository action logs.
-     *
+     * 
      * @return the deploymentLogsUrl value.
      */
     public String deploymentLogsUrl() {
@@ -111,44 +113,65 @@ public final class Repository {
     }
 
     /**
-     * Set the deploymentLogsUrl property: Url to access repository action logs.
-     *
-     * @param deploymentLogsUrl the deploymentLogsUrl value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withDeploymentLogsUrl(String deploymentLogsUrl) {
-        this.deploymentLogsUrl = deploymentLogsUrl;
-        return this;
-    }
-
-    /**
-     * Get the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @return the pathMapping value.
-     */
-    public List<ContentPathMap> pathMapping() {
-        return this.pathMapping;
-    }
-
-    /**
-     * Set the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @param pathMapping the pathMapping value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withPathMapping(List<ContentPathMap> pathMapping) {
-        this.pathMapping = pathMapping;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (pathMapping() != null) {
-            pathMapping().forEach(e -> e.validate());
+        if (url() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property url in model Repository"));
         }
+        if (branch() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property branch in model Repository"));
+        }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Repository.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("url", this.url);
+        jsonWriter.writeStringField("branch", this.branch);
+        jsonWriter.writeStringField("displayUrl", this.displayUrl);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of Repository from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of Repository if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the Repository.
+     */
+    public static Repository fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            Repository deserializedRepository = new Repository();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("url".equals(fieldName)) {
+                    deserializedRepository.url = reader.getString();
+                } else if ("branch".equals(fieldName)) {
+                    deserializedRepository.branch = reader.getString();
+                } else if ("displayUrl".equals(fieldName)) {
+                    deserializedRepository.displayUrl = reader.getString();
+                } else if ("deploymentLogsUrl".equals(fieldName)) {
+                    deserializedRepository.deploymentLogsUrl = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedRepository;
+        });
     }
 }

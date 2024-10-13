@@ -5,33 +5,47 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 
-/** Represents a repository. */
+/**
+ * Represents a repository.
+ */
 @Fluent
-public final class RepoInner {
+public final class RepoInner implements JsonSerializable<RepoInner> {
     /*
      * The url to access the repository.
      */
-    @JsonProperty(value = "url")
     private String url;
 
     /*
      * The name of the repository.
      */
-    @JsonProperty(value = "fullName")
     private String fullName;
+
+    /*
+     * The installation id of the repository.
+     */
+    private Long installationId;
 
     /*
      * Array of branches.
      */
-    @JsonProperty(value = "branches")
     private List<String> branches;
 
     /**
+     * Creates an instance of RepoInner class.
+     */
+    public RepoInner() {
+    }
+
+    /**
      * Get the url property: The url to access the repository.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -40,7 +54,7 @@ public final class RepoInner {
 
     /**
      * Set the url property: The url to access the repository.
-     *
+     * 
      * @param url the url value to set.
      * @return the RepoInner object itself.
      */
@@ -51,7 +65,7 @@ public final class RepoInner {
 
     /**
      * Get the fullName property: The name of the repository.
-     *
+     * 
      * @return the fullName value.
      */
     public String fullName() {
@@ -60,7 +74,7 @@ public final class RepoInner {
 
     /**
      * Set the fullName property: The name of the repository.
-     *
+     * 
      * @param fullName the fullName value to set.
      * @return the RepoInner object itself.
      */
@@ -70,8 +84,28 @@ public final class RepoInner {
     }
 
     /**
+     * Get the installationId property: The installation id of the repository.
+     * 
+     * @return the installationId value.
+     */
+    public Long installationId() {
+        return this.installationId;
+    }
+
+    /**
+     * Set the installationId property: The installation id of the repository.
+     * 
+     * @param installationId the installationId value to set.
+     * @return the RepoInner object itself.
+     */
+    public RepoInner withInstallationId(Long installationId) {
+        this.installationId = installationId;
+        return this;
+    }
+
+    /**
      * Get the branches property: Array of branches.
-     *
+     * 
      * @return the branches value.
      */
     public List<String> branches() {
@@ -80,7 +114,7 @@ public final class RepoInner {
 
     /**
      * Set the branches property: Array of branches.
-     *
+     * 
      * @param branches the branches value to set.
      * @return the RepoInner object itself.
      */
@@ -91,9 +125,55 @@ public final class RepoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("url", this.url);
+        jsonWriter.writeStringField("fullName", this.fullName);
+        jsonWriter.writeNumberField("installationId", this.installationId);
+        jsonWriter.writeArrayField("branches", this.branches, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of RepoInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of RepoInner if the JsonReader was pointing to an instance of it, or null if it was pointing
+     * to JSON null.
+     * @throws IOException If an error occurs while reading the RepoInner.
+     */
+    public static RepoInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            RepoInner deserializedRepoInner = new RepoInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("url".equals(fieldName)) {
+                    deserializedRepoInner.url = reader.getString();
+                } else if ("fullName".equals(fieldName)) {
+                    deserializedRepoInner.fullName = reader.getString();
+                } else if ("installationId".equals(fieldName)) {
+                    deserializedRepoInner.installationId = reader.getNullable(JsonReader::getLong);
+                } else if ("branches".equals(fieldName)) {
+                    List<String> branches = reader.readArray(reader1 -> reader1.getString());
+                    deserializedRepoInner.branches = branches;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedRepoInner;
+        });
     }
 }
