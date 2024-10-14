@@ -227,6 +227,13 @@ public interface Server {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the cluster property: Cluster properties of a server.
+     * 
+     * @return the cluster value.
+     */
+    Cluster cluster();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -315,7 +322,7 @@ public interface Server {
             DefinitionStages.WithDataEncryption, DefinitionStages.WithBackup, DefinitionStages.WithNetwork,
             DefinitionStages.WithHighAvailability, DefinitionStages.WithSourceServerResourceId,
             DefinitionStages.WithPointInTimeUtc, DefinitionStages.WithAvailabilityZone,
-            DefinitionStages.WithReplicationRole, DefinitionStages.WithCreateMode {
+            DefinitionStages.WithReplicationRole, DefinitionStages.WithCreateMode, DefinitionStages.WithCluster {
             /**
              * Executes the create request.
              * 
@@ -564,6 +571,19 @@ public interface Server {
              */
             WithCreate withCreateMode(CreateMode createMode);
         }
+
+        /**
+         * The stage of the Server definition allowing to specify cluster.
+         */
+        interface WithCluster {
+            /**
+             * Specifies the cluster property: Cluster properties of a server..
+             * 
+             * @param cluster Cluster properties of a server.
+             * @return the next definition stage.
+             */
+            WithCreate withCluster(Cluster cluster);
+        }
     }
 
     /**
@@ -577,10 +597,11 @@ public interface Server {
      * The template for Server update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithIdentity,
-        UpdateStages.WithAdministratorLoginPassword, UpdateStages.WithVersion, UpdateStages.WithStorage,
-        UpdateStages.WithBackup, UpdateStages.WithHighAvailability, UpdateStages.WithMaintenanceWindow,
-        UpdateStages.WithAuthConfig, UpdateStages.WithDataEncryption, UpdateStages.WithCreateMode,
-        UpdateStages.WithReplicationRole, UpdateStages.WithReplica, UpdateStages.WithNetwork {
+        UpdateStages.WithAdministratorLogin, UpdateStages.WithAdministratorLoginPassword, UpdateStages.WithVersion,
+        UpdateStages.WithStorage, UpdateStages.WithBackup, UpdateStages.WithHighAvailability,
+        UpdateStages.WithMaintenanceWindow, UpdateStages.WithAuthConfig, UpdateStages.WithDataEncryption,
+        UpdateStages.WithCreateMode, UpdateStages.WithReplicationRole, UpdateStages.WithReplica,
+        UpdateStages.WithNetwork {
         /**
          * Executes the update request.
          * 
@@ -638,6 +659,22 @@ public interface Server {
              * @return the next definition stage.
              */
             Update withIdentity(UserAssignedIdentity identity);
+        }
+
+        /**
+         * The stage of the Server update allowing to specify administratorLogin.
+         */
+        interface WithAdministratorLogin {
+            /**
+             * Specifies the administratorLogin property: The administrator's login name of a server. Can only be
+             * specified when the server is trying to switch to password authentication and does not have default
+             * administrator login..
+             * 
+             * @param administratorLogin The administrator's login name of a server. Can only be specified when the
+             * server is trying to switch to password authentication and does not have default administrator login.
+             * @return the next definition stage.
+             */
+            Update withAdministratorLogin(String administratorLogin);
         }
 
         /**
