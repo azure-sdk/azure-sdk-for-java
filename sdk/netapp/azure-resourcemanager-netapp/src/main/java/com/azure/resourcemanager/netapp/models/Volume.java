@@ -1814,6 +1814,105 @@ public interface Volume {
     void reInitializeReplication(Context context);
 
     /**
+     * Start Cluster peering
+     * 
+     * Starts peering the external cluster for this migration volume.
+     * 
+     * @param body Cluster peer request object supplied in the body of the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about cluster peering process.
+     */
+    ClusterPeerCommandResponse peerExternalCluster(PeerClusterForVolumeMigrationRequest body);
+
+    /**
+     * Start Cluster peering
+     * 
+     * Starts peering the external cluster for this migration volume.
+     * 
+     * @param body Cluster peer request object supplied in the body of the operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about cluster peering process.
+     */
+    ClusterPeerCommandResponse peerExternalCluster(PeerClusterForVolumeMigrationRequest body, Context context);
+
+    /**
+     * Start migration process
+     * 
+     * Starts SVM peering and returns a command to be run on the external ONTAP to accept it. Once the SVM have been
+     * peered a SnapMirror will be created.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about svm peering process.
+     */
+    SvmPeerCommandResponse authorizeExternalReplication();
+
+    /**
+     * Start migration process
+     * 
+     * Starts SVM peering and returns a command to be run on the external ONTAP to accept it. Once the SVM have been
+     * peered a SnapMirror will be created.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about svm peering process.
+     */
+    SvmPeerCommandResponse authorizeExternalReplication(Context context);
+
+    /**
+     * Finalize migration process
+     * 
+     * Finalizes the migration of an external volume by releasing the replication and breaking the external cluster
+     * peering if no other migration is active.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void finalizeExternalReplication();
+
+    /**
+     * Finalize migration process
+     * 
+     * Finalizes the migration of an external volume by releasing the replication and breaking the external cluster
+     * peering if no other migration is active.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void finalizeExternalReplication(Context context);
+
+    /**
+     * Perform a replication transfer
+     * 
+     * Performs an adhoc replication transfer on a volume with volumeType Migration.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void performReplicationTransfer();
+
+    /**
+     * Perform a replication transfer
+     * 
+     * Performs an adhoc replication transfer on a volume with volumeType Migration.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void performReplicationTransfer(Context context);
+
+    /**
      * Change pool for volume
      * 
      * Moves volume to another pool.
