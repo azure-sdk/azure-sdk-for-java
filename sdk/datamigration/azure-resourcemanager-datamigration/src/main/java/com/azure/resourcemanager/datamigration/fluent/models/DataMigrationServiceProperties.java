@@ -5,38 +5,57 @@
 package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.datamigration.models.ServiceProvisioningState;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-/** Properties of the Data Migration service instance. */
+/**
+ * Properties of the Azure Database Migration Service (classic) instance.
+ */
 @Fluent
-public final class DataMigrationServiceProperties {
+public final class DataMigrationServiceProperties implements JsonSerializable<DataMigrationServiceProperties> {
     /*
      * The resource's provisioning state
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ServiceProvisioningState provisioningState;
 
     /*
      * The public key of the service, used to encrypt secrets sent to the service
      */
-    @JsonProperty(value = "publicKey")
     private String publicKey;
 
     /*
      * The ID of the Microsoft.Network/virtualNetworks/subnets resource to which the service should be joined
      */
-    @JsonProperty(value = "virtualSubnetId", required = true)
     private String virtualSubnetId;
 
-    /** Creates an instance of DataMigrationServiceProperties class. */
+    /*
+     * The ID of the Microsoft.Network/networkInterfaces resource which the service have
+     */
+    private String virtualNicId;
+
+    /*
+     * The time delay before the service is auto-stopped when idle.
+     */
+    private String autoStopDelay;
+
+    /*
+     * Whether service resources should be deleted when stopped. (Turned on by default)
+     */
+    private Boolean deleteResourcesOnStop;
+
+    /**
+     * Creates an instance of DataMigrationServiceProperties class.
+     */
     public DataMigrationServiceProperties() {
     }
 
     /**
      * Get the provisioningState property: The resource's provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ServiceProvisioningState provisioningState() {
@@ -45,7 +64,7 @@ public final class DataMigrationServiceProperties {
 
     /**
      * Get the publicKey property: The public key of the service, used to encrypt secrets sent to the service.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -54,7 +73,7 @@ public final class DataMigrationServiceProperties {
 
     /**
      * Set the publicKey property: The public key of the service, used to encrypt secrets sent to the service.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the DataMigrationServiceProperties object itself.
      */
@@ -66,7 +85,7 @@ public final class DataMigrationServiceProperties {
     /**
      * Get the virtualSubnetId property: The ID of the Microsoft.Network/virtualNetworks/subnets resource to which the
      * service should be joined.
-     *
+     * 
      * @return the virtualSubnetId value.
      */
     public String virtualSubnetId() {
@@ -76,7 +95,7 @@ public final class DataMigrationServiceProperties {
     /**
      * Set the virtualSubnetId property: The ID of the Microsoft.Network/virtualNetworks/subnets resource to which the
      * service should be joined.
-     *
+     * 
      * @param virtualSubnetId the virtualSubnetId value to set.
      * @return the DataMigrationServiceProperties object itself.
      */
@@ -86,18 +105,125 @@ public final class DataMigrationServiceProperties {
     }
 
     /**
+     * Get the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     * 
+     * @return the virtualNicId value.
+     */
+    public String virtualNicId() {
+        return this.virtualNicId;
+    }
+
+    /**
+     * Set the virtualNicId property: The ID of the Microsoft.Network/networkInterfaces resource which the service have.
+     * 
+     * @param virtualNicId the virtualNicId value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withVirtualNicId(String virtualNicId) {
+        this.virtualNicId = virtualNicId;
+        return this;
+    }
+
+    /**
+     * Get the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     * 
+     * @return the autoStopDelay value.
+     */
+    public String autoStopDelay() {
+        return this.autoStopDelay;
+    }
+
+    /**
+     * Set the autoStopDelay property: The time delay before the service is auto-stopped when idle.
+     * 
+     * @param autoStopDelay the autoStopDelay value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withAutoStopDelay(String autoStopDelay) {
+        this.autoStopDelay = autoStopDelay;
+        return this;
+    }
+
+    /**
+     * Get the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     * 
+     * @return the deleteResourcesOnStop value.
+     */
+    public Boolean deleteResourcesOnStop() {
+        return this.deleteResourcesOnStop;
+    }
+
+    /**
+     * Set the deleteResourcesOnStop property: Whether service resources should be deleted when stopped. (Turned on by
+     * default).
+     * 
+     * @param deleteResourcesOnStop the deleteResourcesOnStop value to set.
+     * @return the DataMigrationServiceProperties object itself.
+     */
+    public DataMigrationServiceProperties withDeleteResourcesOnStop(Boolean deleteResourcesOnStop) {
+        this.deleteResourcesOnStop = deleteResourcesOnStop;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (virtualSubnetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property virtualSubnetId in model DataMigrationServiceProperties"));
-        }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(DataMigrationServiceProperties.class);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("publicKey", this.publicKey);
+        jsonWriter.writeStringField("virtualSubnetId", this.virtualSubnetId);
+        jsonWriter.writeStringField("virtualNicId", this.virtualNicId);
+        jsonWriter.writeStringField("autoStopDelay", this.autoStopDelay);
+        jsonWriter.writeBooleanField("deleteResourcesOnStop", this.deleteResourcesOnStop);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DataMigrationServiceProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DataMigrationServiceProperties if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DataMigrationServiceProperties.
+     */
+    public static DataMigrationServiceProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DataMigrationServiceProperties deserializedDataMigrationServiceProperties
+                = new DataMigrationServiceProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.provisioningState
+                        = ServiceProvisioningState.fromString(reader.getString());
+                } else if ("publicKey".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.publicKey = reader.getString();
+                } else if ("virtualSubnetId".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.virtualSubnetId = reader.getString();
+                } else if ("virtualNicId".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.virtualNicId = reader.getString();
+                } else if ("autoStopDelay".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.autoStopDelay = reader.getString();
+                } else if ("deleteResourcesOnStop".equals(fieldName)) {
+                    deserializedDataMigrationServiceProperties.deleteResourcesOnStop
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDataMigrationServiceProperties;
+        });
+    }
 }

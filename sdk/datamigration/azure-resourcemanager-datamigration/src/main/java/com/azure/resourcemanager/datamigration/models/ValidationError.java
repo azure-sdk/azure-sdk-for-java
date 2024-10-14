@@ -4,31 +4,37 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Description about the errors happen while performing migration validation. */
-@Immutable
-public final class ValidationError {
+/**
+ * Description about the errors happen while performing migration validation.
+ */
+@Fluent
+public final class ValidationError implements JsonSerializable<ValidationError> {
     /*
      * Error Text
      */
-    @JsonProperty(value = "text", access = JsonProperty.Access.WRITE_ONLY)
     private String text;
 
     /*
      * Severity of the error
      */
-    @JsonProperty(value = "severity", access = JsonProperty.Access.WRITE_ONLY)
     private Severity severity;
 
-    /** Creates an instance of ValidationError class. */
+    /**
+     * Creates an instance of ValidationError class.
+     */
     public ValidationError() {
     }
 
     /**
      * Get the text property: Error Text.
-     *
+     * 
      * @return the text value.
      */
     public String text() {
@@ -36,8 +42,19 @@ public final class ValidationError {
     }
 
     /**
+     * Set the text property: Error Text.
+     * 
+     * @param text the text value to set.
+     * @return the ValidationError object itself.
+     */
+    public ValidationError withText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    /**
      * Get the severity property: Severity of the error.
-     *
+     * 
      * @return the severity value.
      */
     public Severity severity() {
@@ -45,10 +62,60 @@ public final class ValidationError {
     }
 
     /**
+     * Set the severity property: Severity of the error.
+     * 
+     * @param severity the severity value to set.
+     * @return the ValidationError object itself.
+     */
+    public ValidationError withSeverity(Severity severity) {
+        this.severity = severity;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("text", this.text);
+        jsonWriter.writeStringField("severity", this.severity == null ? null : this.severity.toString());
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ValidationError from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ValidationError if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ValidationError.
+     */
+    public static ValidationError fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ValidationError deserializedValidationError = new ValidationError();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("text".equals(fieldName)) {
+                    deserializedValidationError.text = reader.getString();
+                } else if ("severity".equals(fieldName)) {
+                    deserializedValidationError.severity = Severity.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedValidationError;
+        });
     }
 }

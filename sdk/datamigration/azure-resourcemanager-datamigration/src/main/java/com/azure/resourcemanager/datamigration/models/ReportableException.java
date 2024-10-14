@@ -5,54 +5,56 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Exception object for all custom exceptions. */
+/**
+ * Exception object for all custom exceptions.
+ */
 @Fluent
-public final class ReportableException {
+public final class ReportableException implements JsonSerializable<ReportableException> {
     /*
      * Error message
      */
-    @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
     /*
      * Actionable steps for this exception
      */
-    @JsonProperty(value = "actionableMessage")
     private String actionableMessage;
 
     /*
      * The path to the file where exception occurred
      */
-    @JsonProperty(value = "filePath", access = JsonProperty.Access.WRITE_ONLY)
     private String filePath;
 
     /*
      * The line number where exception occurred
      */
-    @JsonProperty(value = "lineNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String lineNumber;
 
     /*
      * Coded numerical value that is assigned to a specific exception
      */
-    @JsonProperty(value = "hResult", access = JsonProperty.Access.WRITE_ONLY)
     private Integer hResult;
 
     /*
      * Stack trace
      */
-    @JsonProperty(value = "stackTrace", access = JsonProperty.Access.WRITE_ONLY)
     private String stackTrace;
 
-    /** Creates an instance of ReportableException class. */
+    /**
+     * Creates an instance of ReportableException class.
+     */
     public ReportableException() {
     }
 
     /**
      * Get the message property: Error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -60,8 +62,19 @@ public final class ReportableException {
     }
 
     /**
+     * Set the message property: Error message.
+     * 
+     * @param message the message value to set.
+     * @return the ReportableException object itself.
+     */
+    public ReportableException withMessage(String message) {
+        this.message = message;
+        return this;
+    }
+
+    /**
      * Get the actionableMessage property: Actionable steps for this exception.
-     *
+     * 
      * @return the actionableMessage value.
      */
     public String actionableMessage() {
@@ -70,7 +83,7 @@ public final class ReportableException {
 
     /**
      * Set the actionableMessage property: Actionable steps for this exception.
-     *
+     * 
      * @param actionableMessage the actionableMessage value to set.
      * @return the ReportableException object itself.
      */
@@ -81,7 +94,7 @@ public final class ReportableException {
 
     /**
      * Get the filePath property: The path to the file where exception occurred.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -89,8 +102,19 @@ public final class ReportableException {
     }
 
     /**
+     * Set the filePath property: The path to the file where exception occurred.
+     * 
+     * @param filePath the filePath value to set.
+     * @return the ReportableException object itself.
+     */
+    public ReportableException withFilePath(String filePath) {
+        this.filePath = filePath;
+        return this;
+    }
+
+    /**
      * Get the lineNumber property: The line number where exception occurred.
-     *
+     * 
      * @return the lineNumber value.
      */
     public String lineNumber() {
@@ -98,8 +122,19 @@ public final class ReportableException {
     }
 
     /**
+     * Set the lineNumber property: The line number where exception occurred.
+     * 
+     * @param lineNumber the lineNumber value to set.
+     * @return the ReportableException object itself.
+     */
+    public ReportableException withLineNumber(String lineNumber) {
+        this.lineNumber = lineNumber;
+        return this;
+    }
+
+    /**
      * Get the hResult property: Coded numerical value that is assigned to a specific exception.
-     *
+     * 
      * @return the hResult value.
      */
     public Integer hResult() {
@@ -107,8 +142,19 @@ public final class ReportableException {
     }
 
     /**
+     * Set the hResult property: Coded numerical value that is assigned to a specific exception.
+     * 
+     * @param hResult the hResult value to set.
+     * @return the ReportableException object itself.
+     */
+    public ReportableException withHResult(Integer hResult) {
+        this.hResult = hResult;
+        return this;
+    }
+
+    /**
      * Get the stackTrace property: Stack trace.
-     *
+     * 
      * @return the stackTrace value.
      */
     public String stackTrace() {
@@ -116,10 +162,72 @@ public final class ReportableException {
     }
 
     /**
+     * Set the stackTrace property: Stack trace.
+     * 
+     * @param stackTrace the stackTrace value to set.
+     * @return the ReportableException object itself.
+     */
+    public ReportableException withStackTrace(String stackTrace) {
+        this.stackTrace = stackTrace;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("message", this.message);
+        jsonWriter.writeStringField("actionableMessage", this.actionableMessage);
+        jsonWriter.writeStringField("filePath", this.filePath);
+        jsonWriter.writeStringField("lineNumber", this.lineNumber);
+        jsonWriter.writeNumberField("hResult", this.hResult);
+        jsonWriter.writeStringField("stackTrace", this.stackTrace);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ReportableException from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ReportableException if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ReportableException.
+     */
+    public static ReportableException fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ReportableException deserializedReportableException = new ReportableException();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("message".equals(fieldName)) {
+                    deserializedReportableException.message = reader.getString();
+                } else if ("actionableMessage".equals(fieldName)) {
+                    deserializedReportableException.actionableMessage = reader.getString();
+                } else if ("filePath".equals(fieldName)) {
+                    deserializedReportableException.filePath = reader.getString();
+                } else if ("lineNumber".equals(fieldName)) {
+                    deserializedReportableException.lineNumber = reader.getString();
+                } else if ("hResult".equals(fieldName)) {
+                    deserializedReportableException.hResult = reader.getNullable(JsonReader::getInt);
+                } else if ("stackTrace".equals(fieldName)) {
+                    deserializedReportableException.stackTrace = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedReportableException;
+        });
     }
 }

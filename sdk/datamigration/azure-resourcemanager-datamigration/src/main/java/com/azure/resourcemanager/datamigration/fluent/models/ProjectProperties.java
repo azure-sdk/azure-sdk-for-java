@@ -5,68 +5,76 @@
 package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.models.AzureActiveDirectoryApp;
 import com.azure.resourcemanager.datamigration.models.ConnectionInfo;
 import com.azure.resourcemanager.datamigration.models.DatabaseInfo;
 import com.azure.resourcemanager.datamigration.models.ProjectProvisioningState;
 import com.azure.resourcemanager.datamigration.models.ProjectSourcePlatform;
 import com.azure.resourcemanager.datamigration.models.ProjectTargetPlatform;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Project-specific properties. */
+/**
+ * Project-specific properties.
+ */
 @Fluent
-public final class ProjectProperties {
+public final class ProjectProperties implements JsonSerializable<ProjectProperties> {
     /*
      * Source platform for the project
      */
-    @JsonProperty(value = "sourcePlatform", required = true)
     private ProjectSourcePlatform sourcePlatform;
+
+    /*
+     * Field that defines the Azure active directory application info, used to connect to the target Azure resource
+     */
+    private AzureActiveDirectoryApp azureAuthenticationInfo;
 
     /*
      * Target platform for the project
      */
-    @JsonProperty(value = "targetPlatform", required = true)
     private ProjectTargetPlatform targetPlatform;
 
     /*
      * UTC Date and time when project was created
      */
-    @JsonProperty(value = "creationTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime creationTime;
 
     /*
      * Information for connecting to source
      */
-    @JsonProperty(value = "sourceConnectionInfo")
     private ConnectionInfo sourceConnectionInfo;
 
     /*
      * Information for connecting to target
      */
-    @JsonProperty(value = "targetConnectionInfo")
     private ConnectionInfo targetConnectionInfo;
 
     /*
      * List of DatabaseInfo
      */
-    @JsonProperty(value = "databasesInfo")
     private List<DatabaseInfo> databasesInfo;
 
     /*
      * The project's provisioning state
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProjectProvisioningState provisioningState;
 
-    /** Creates an instance of ProjectProperties class. */
+    /**
+     * Creates an instance of ProjectProperties class.
+     */
     public ProjectProperties() {
     }
 
     /**
      * Get the sourcePlatform property: Source platform for the project.
-     *
+     * 
      * @return the sourcePlatform value.
      */
     public ProjectSourcePlatform sourcePlatform() {
@@ -75,7 +83,7 @@ public final class ProjectProperties {
 
     /**
      * Set the sourcePlatform property: Source platform for the project.
-     *
+     * 
      * @param sourcePlatform the sourcePlatform value to set.
      * @return the ProjectProperties object itself.
      */
@@ -85,8 +93,30 @@ public final class ProjectProperties {
     }
 
     /**
+     * Get the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     * 
+     * @return the azureAuthenticationInfo value.
+     */
+    public AzureActiveDirectoryApp azureAuthenticationInfo() {
+        return this.azureAuthenticationInfo;
+    }
+
+    /**
+     * Set the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     * 
+     * @param azureAuthenticationInfo the azureAuthenticationInfo value to set.
+     * @return the ProjectProperties object itself.
+     */
+    public ProjectProperties withAzureAuthenticationInfo(AzureActiveDirectoryApp azureAuthenticationInfo) {
+        this.azureAuthenticationInfo = azureAuthenticationInfo;
+        return this;
+    }
+
+    /**
      * Get the targetPlatform property: Target platform for the project.
-     *
+     * 
      * @return the targetPlatform value.
      */
     public ProjectTargetPlatform targetPlatform() {
@@ -95,7 +125,7 @@ public final class ProjectProperties {
 
     /**
      * Set the targetPlatform property: Target platform for the project.
-     *
+     * 
      * @param targetPlatform the targetPlatform value to set.
      * @return the ProjectProperties object itself.
      */
@@ -106,7 +136,7 @@ public final class ProjectProperties {
 
     /**
      * Get the creationTime property: UTC Date and time when project was created.
-     *
+     * 
      * @return the creationTime value.
      */
     public OffsetDateTime creationTime() {
@@ -115,7 +145,7 @@ public final class ProjectProperties {
 
     /**
      * Get the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public ConnectionInfo sourceConnectionInfo() {
@@ -124,7 +154,7 @@ public final class ProjectProperties {
 
     /**
      * Set the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ProjectProperties object itself.
      */
@@ -135,7 +165,7 @@ public final class ProjectProperties {
 
     /**
      * Get the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public ConnectionInfo targetConnectionInfo() {
@@ -144,7 +174,7 @@ public final class ProjectProperties {
 
     /**
      * Set the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ProjectProperties object itself.
      */
@@ -155,7 +185,7 @@ public final class ProjectProperties {
 
     /**
      * Get the databasesInfo property: List of DatabaseInfo.
-     *
+     * 
      * @return the databasesInfo value.
      */
     public List<DatabaseInfo> databasesInfo() {
@@ -164,7 +194,7 @@ public final class ProjectProperties {
 
     /**
      * Set the databasesInfo property: List of DatabaseInfo.
-     *
+     * 
      * @param databasesInfo the databasesInfo value to set.
      * @return the ProjectProperties object itself.
      */
@@ -175,7 +205,7 @@ public final class ProjectProperties {
 
     /**
      * Get the provisioningState property: The project's provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProjectProvisioningState provisioningState() {
@@ -184,21 +214,22 @@ public final class ProjectProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourcePlatform() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourcePlatform in model ProjectProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourcePlatform in model ProjectProperties"));
+        }
+        if (azureAuthenticationInfo() != null) {
+            azureAuthenticationInfo().validate();
         }
         if (targetPlatform() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetPlatform in model ProjectProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetPlatform in model ProjectProperties"));
         }
         if (sourceConnectionInfo() != null) {
             sourceConnectionInfo().validate();
@@ -212,4 +243,65 @@ public final class ProjectProperties {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ProjectProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("sourcePlatform",
+            this.sourcePlatform == null ? null : this.sourcePlatform.toString());
+        jsonWriter.writeStringField("targetPlatform",
+            this.targetPlatform == null ? null : this.targetPlatform.toString());
+        jsonWriter.writeJsonField("azureAuthenticationInfo", this.azureAuthenticationInfo);
+        jsonWriter.writeJsonField("sourceConnectionInfo", this.sourceConnectionInfo);
+        jsonWriter.writeJsonField("targetConnectionInfo", this.targetConnectionInfo);
+        jsonWriter.writeArrayField("databasesInfo", this.databasesInfo, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ProjectProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ProjectProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ProjectProperties.
+     */
+    public static ProjectProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ProjectProperties deserializedProjectProperties = new ProjectProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("sourcePlatform".equals(fieldName)) {
+                    deserializedProjectProperties.sourcePlatform = ProjectSourcePlatform.fromString(reader.getString());
+                } else if ("targetPlatform".equals(fieldName)) {
+                    deserializedProjectProperties.targetPlatform = ProjectTargetPlatform.fromString(reader.getString());
+                } else if ("azureAuthenticationInfo".equals(fieldName)) {
+                    deserializedProjectProperties.azureAuthenticationInfo = AzureActiveDirectoryApp.fromJson(reader);
+                } else if ("creationTime".equals(fieldName)) {
+                    deserializedProjectProperties.creationTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("sourceConnectionInfo".equals(fieldName)) {
+                    deserializedProjectProperties.sourceConnectionInfo = ConnectionInfo.fromJson(reader);
+                } else if ("targetConnectionInfo".equals(fieldName)) {
+                    deserializedProjectProperties.targetConnectionInfo = ConnectionInfo.fromJson(reader);
+                } else if ("databasesInfo".equals(fieldName)) {
+                    List<DatabaseInfo> databasesInfo = reader.readArray(reader1 -> DatabaseInfo.fromJson(reader1));
+                    deserializedProjectProperties.databasesInfo = databasesInfo;
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedProjectProperties.provisioningState
+                        = ProjectProvisioningState.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedProjectProperties;
+        });
+    }
 }

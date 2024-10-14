@@ -5,45 +5,57 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** Database specific information for SQL to Azure SQL DB migration task inputs. */
+/**
+ * Database specific information for SQL to Azure SQL DB migration task inputs.
+ */
 @Fluent
-public final class MigrateSqlServerSqlDbDatabaseInput {
+public final class MigrateSqlServerSqlDbDatabaseInput implements JsonSerializable<MigrateSqlServerSqlDbDatabaseInput> {
     /*
      * Name of the database
      */
-    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Name of target database. Note: Target database will be truncated before starting migration.
      */
-    @JsonProperty(value = "targetDatabaseName")
     private String targetDatabaseName;
 
     /*
      * Whether to set database read only before migration
      */
-    @JsonProperty(value = "makeSourceDbReadOnly")
     private Boolean makeSourceDbReadOnly;
 
     /*
      * Mapping of source to target tables
      */
-    @JsonProperty(value = "tableMap")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tableMap;
 
-    /** Creates an instance of MigrateSqlServerSqlDbDatabaseInput class. */
+    /*
+     * Settings selected for DB schema migration.
+     */
+    private Object schemaSetting;
+
+    /*
+     * id of the database
+     */
+    private String id;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbDatabaseInput class.
+     */
     public MigrateSqlServerSqlDbDatabaseInput() {
     }
 
     /**
      * Get the name property: Name of the database.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -52,7 +64,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
 
     /**
      * Set the name property: Name of the database.
-     *
+     * 
      * @param name the name value to set.
      * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
      */
@@ -64,7 +76,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
     /**
      * Get the targetDatabaseName property: Name of target database. Note: Target database will be truncated before
      * starting migration.
-     *
+     * 
      * @return the targetDatabaseName value.
      */
     public String targetDatabaseName() {
@@ -74,7 +86,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
     /**
      * Set the targetDatabaseName property: Name of target database. Note: Target database will be truncated before
      * starting migration.
-     *
+     * 
      * @param targetDatabaseName the targetDatabaseName value to set.
      * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
      */
@@ -85,7 +97,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
 
     /**
      * Get the makeSourceDbReadOnly property: Whether to set database read only before migration.
-     *
+     * 
      * @return the makeSourceDbReadOnly value.
      */
     public Boolean makeSourceDbReadOnly() {
@@ -94,7 +106,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
 
     /**
      * Set the makeSourceDbReadOnly property: Whether to set database read only before migration.
-     *
+     * 
      * @param makeSourceDbReadOnly the makeSourceDbReadOnly value to set.
      * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
      */
@@ -105,7 +117,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
 
     /**
      * Get the tableMap property: Mapping of source to target tables.
-     *
+     * 
      * @return the tableMap value.
      */
     public Map<String, String> tableMap() {
@@ -114,7 +126,7 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
 
     /**
      * Set the tableMap property: Mapping of source to target tables.
-     *
+     * 
      * @param tableMap the tableMap value to set.
      * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
      */
@@ -124,10 +136,104 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
     }
 
     /**
+     * Get the schemaSetting property: Settings selected for DB schema migration.
+     * 
+     * @return the schemaSetting value.
+     */
+    public Object schemaSetting() {
+        return this.schemaSetting;
+    }
+
+    /**
+     * Set the schemaSetting property: Settings selected for DB schema migration.
+     * 
+     * @param schemaSetting the schemaSetting value to set.
+     * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlDbDatabaseInput withSchemaSetting(Object schemaSetting) {
+        this.schemaSetting = schemaSetting;
+        return this;
+    }
+
+    /**
+     * Get the id property: id of the database.
+     * 
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: id of the database.
+     * 
+     * @param id the id value to set.
+     * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlDbDatabaseInput withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("name", this.name);
+        jsonWriter.writeStringField("targetDatabaseName", this.targetDatabaseName);
+        jsonWriter.writeBooleanField("makeSourceDbReadOnly", this.makeSourceDbReadOnly);
+        jsonWriter.writeMapField("tableMap", this.tableMap, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeUntypedField("schemaSetting", this.schemaSetting);
+        jsonWriter.writeStringField("id", this.id);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MigrateSqlServerSqlDbDatabaseInput from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MigrateSqlServerSqlDbDatabaseInput if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MigrateSqlServerSqlDbDatabaseInput.
+     */
+    public static MigrateSqlServerSqlDbDatabaseInput fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MigrateSqlServerSqlDbDatabaseInput deserializedMigrateSqlServerSqlDbDatabaseInput
+                = new MigrateSqlServerSqlDbDatabaseInput();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("name".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.name = reader.getString();
+                } else if ("targetDatabaseName".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.targetDatabaseName = reader.getString();
+                } else if ("makeSourceDbReadOnly".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.makeSourceDbReadOnly
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("tableMap".equals(fieldName)) {
+                    Map<String, String> tableMap = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.tableMap = tableMap;
+                } else if ("schemaSetting".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.schemaSetting = reader.readUntyped();
+                } else if ("id".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbDatabaseInput.id = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMigrateSqlServerSqlDbDatabaseInput;
+        });
     }
 }

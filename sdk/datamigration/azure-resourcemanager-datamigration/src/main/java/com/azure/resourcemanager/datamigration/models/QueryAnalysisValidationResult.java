@@ -4,31 +4,37 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Results for query analysis comparison between the source and target. */
-@Immutable
-public final class QueryAnalysisValidationResult {
+/**
+ * Results for query analysis comparison between the source and target.
+ */
+@Fluent
+public final class QueryAnalysisValidationResult implements JsonSerializable<QueryAnalysisValidationResult> {
     /*
      * List of queries executed and it's execution results in source and target
      */
-    @JsonProperty(value = "queryResults", access = JsonProperty.Access.WRITE_ONLY)
     private QueryExecutionResult queryResults;
 
     /*
      * Errors that are part of the execution
      */
-    @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationError validationErrors;
 
-    /** Creates an instance of QueryAnalysisValidationResult class. */
+    /**
+     * Creates an instance of QueryAnalysisValidationResult class.
+     */
     public QueryAnalysisValidationResult() {
     }
 
     /**
      * Get the queryResults property: List of queries executed and it's execution results in source and target.
-     *
+     * 
      * @return the queryResults value.
      */
     public QueryExecutionResult queryResults() {
@@ -36,8 +42,19 @@ public final class QueryAnalysisValidationResult {
     }
 
     /**
+     * Set the queryResults property: List of queries executed and it's execution results in source and target.
+     * 
+     * @param queryResults the queryResults value to set.
+     * @return the QueryAnalysisValidationResult object itself.
+     */
+    public QueryAnalysisValidationResult withQueryResults(QueryExecutionResult queryResults) {
+        this.queryResults = queryResults;
+        return this;
+    }
+
+    /**
      * Get the validationErrors property: Errors that are part of the execution.
-     *
+     * 
      * @return the validationErrors value.
      */
     public ValidationError validationErrors() {
@@ -45,8 +62,19 @@ public final class QueryAnalysisValidationResult {
     }
 
     /**
+     * Set the validationErrors property: Errors that are part of the execution.
+     * 
+     * @param validationErrors the validationErrors value to set.
+     * @return the QueryAnalysisValidationResult object itself.
+     */
+    public QueryAnalysisValidationResult withValidationErrors(ValidationError validationErrors) {
+        this.validationErrors = validationErrors;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -56,5 +84,45 @@ public final class QueryAnalysisValidationResult {
         if (validationErrors() != null) {
             validationErrors().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("queryResults", this.queryResults);
+        jsonWriter.writeJsonField("validationErrors", this.validationErrors);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of QueryAnalysisValidationResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of QueryAnalysisValidationResult if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the QueryAnalysisValidationResult.
+     */
+    public static QueryAnalysisValidationResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            QueryAnalysisValidationResult deserializedQueryAnalysisValidationResult
+                = new QueryAnalysisValidationResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("queryResults".equals(fieldName)) {
+                    deserializedQueryAnalysisValidationResult.queryResults = QueryExecutionResult.fromJson(reader);
+                } else if ("validationErrors".equals(fieldName)) {
+                    deserializedQueryAnalysisValidationResult.validationErrors = ValidationError.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedQueryAnalysisValidationResult;
+        });
     }
 }

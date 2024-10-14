@@ -4,31 +4,37 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Migration validation report result, contains the url for downloading the generated report. */
-@Immutable
-public final class MigrationReportResult {
+/**
+ * Migration validation report result, contains the url for downloading the generated report.
+ */
+@Fluent
+public final class MigrationReportResult implements JsonSerializable<MigrationReportResult> {
     /*
      * Migration validation result identifier
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
      * The url of the report.
      */
-    @JsonProperty(value = "reportUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String reportUrl;
 
-    /** Creates an instance of MigrationReportResult class. */
+    /**
+     * Creates an instance of MigrationReportResult class.
+     */
     public MigrationReportResult() {
     }
 
     /**
      * Get the id property: Migration validation result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -36,8 +42,19 @@ public final class MigrationReportResult {
     }
 
     /**
+     * Set the id property: Migration validation result identifier.
+     * 
+     * @param id the id value to set.
+     * @return the MigrationReportResult object itself.
+     */
+    public MigrationReportResult withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Get the reportUrl property: The url of the report.
-     *
+     * 
      * @return the reportUrl value.
      */
     public String reportUrl() {
@@ -45,10 +62,60 @@ public final class MigrationReportResult {
     }
 
     /**
+     * Set the reportUrl property: The url of the report.
+     * 
+     * @param reportUrl the reportUrl value to set.
+     * @return the MigrationReportResult object itself.
+     */
+    public MigrationReportResult withReportUrl(String reportUrl) {
+        this.reportUrl = reportUrl;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("reportUrl", this.reportUrl);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MigrationReportResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MigrationReportResult if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MigrationReportResult.
+     */
+    public static MigrationReportResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MigrationReportResult deserializedMigrationReportResult = new MigrationReportResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedMigrationReportResult.id = reader.getString();
+                } else if ("reportUrl".equals(fieldName)) {
+                    deserializedMigrationReportResult.reportUrl = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMigrationReportResult;
+        });
     }
 }

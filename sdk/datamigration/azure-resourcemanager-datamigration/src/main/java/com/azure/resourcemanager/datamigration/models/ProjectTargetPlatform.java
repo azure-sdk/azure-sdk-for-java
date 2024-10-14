@@ -5,20 +5,45 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Target platform of the project. */
+/**
+ * Target platform of the project.
+ */
 public final class ProjectTargetPlatform extends ExpandableStringEnum<ProjectTargetPlatform> {
-    /** Static value SQLDB for ProjectTargetPlatform. */
+    /**
+     * Static value SQLDB for ProjectTargetPlatform.
+     */
     public static final ProjectTargetPlatform SQLDB = fromString("SQLDB");
 
-    /** Static value Unknown for ProjectTargetPlatform. */
+    /**
+     * Static value SQLMI for ProjectTargetPlatform.
+     */
+    public static final ProjectTargetPlatform SQLMI = fromString("SQLMI");
+
+    /**
+     * Static value AzureDbForMySql for ProjectTargetPlatform.
+     */
+    public static final ProjectTargetPlatform AZURE_DB_FOR_MY_SQL = fromString("AzureDbForMySql");
+
+    /**
+     * Static value AzureDbForPostgreSql for ProjectTargetPlatform.
+     */
+    public static final ProjectTargetPlatform AZURE_DB_FOR_POSTGRE_SQL = fromString("AzureDbForPostgreSql");
+
+    /**
+     * Static value MongoDb for ProjectTargetPlatform.
+     */
+    public static final ProjectTargetPlatform MONGO_DB = fromString("MongoDb");
+
+    /**
+     * Static value Unknown for ProjectTargetPlatform.
+     */
     public static final ProjectTargetPlatform UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of ProjectTargetPlatform value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,18 +52,17 @@ public final class ProjectTargetPlatform extends ExpandableStringEnum<ProjectTar
 
     /**
      * Creates or finds a ProjectTargetPlatform from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ProjectTargetPlatform.
      */
-    @JsonCreator
     public static ProjectTargetPlatform fromString(String name) {
         return fromString(name, ProjectTargetPlatform.class);
     }
 
     /**
      * Gets known ProjectTargetPlatform values.
-     *
+     * 
      * @return known ProjectTargetPlatform values.
      */
     public static Collection<ProjectTargetPlatform> values() {
