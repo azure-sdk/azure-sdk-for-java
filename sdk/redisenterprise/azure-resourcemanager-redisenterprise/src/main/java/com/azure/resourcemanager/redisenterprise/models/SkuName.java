@@ -5,13 +5,17 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.).
  */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
+    /**
+     * Static value Enterprise_E1 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E1 = fromString("Enterprise_E1");
+
     /**
      * Static value Enterprise_E5 for SkuName.
      */
@@ -36,6 +40,16 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
      * Static value Enterprise_E100 for SkuName.
      */
     public static final SkuName ENTERPRISE_E100 = fromString("Enterprise_E100");
+
+    /**
+     * Static value Enterprise_E200 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E200 = fromString("Enterprise_E200");
+
+    /**
+     * Static value Enterprise_E400 for SkuName.
+     */
+    public static final SkuName ENTERPRISE_E400 = fromString("Enterprise_E400");
 
     /**
      * Static value EnterpriseFlash_F300 for SkuName.
@@ -67,7 +81,6 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
      * @param name a name to look for.
      * @return the corresponding SkuName.
      */
-    @JsonCreator
     public static SkuName fromString(String name) {
         return fromString(name, SkuName.class);
     }
