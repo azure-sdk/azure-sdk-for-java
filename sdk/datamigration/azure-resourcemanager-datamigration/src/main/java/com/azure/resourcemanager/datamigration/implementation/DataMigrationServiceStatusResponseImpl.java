@@ -14,8 +14,7 @@ public final class DataMigrationServiceStatusResponseImpl implements DataMigrati
 
     private final com.azure.resourcemanager.datamigration.DataMigrationManager serviceManager;
 
-    DataMigrationServiceStatusResponseImpl(
-        DataMigrationServiceStatusResponseInner innerObject,
+    DataMigrationServiceStatusResponseImpl(DataMigrationServiceStatusResponseInner innerObject,
         com.azure.resourcemanager.datamigration.DataMigrationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -23,6 +22,10 @@ public final class DataMigrationServiceStatusResponseImpl implements DataMigrati
 
     public String agentVersion() {
         return this.innerModel().agentVersion();
+    }
+
+    public Object agentConfiguration() {
+        return this.innerModel().agentConfiguration();
     }
 
     public String status() {

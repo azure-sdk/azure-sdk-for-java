@@ -4,30 +4,58 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
+import java.util.List;
 
-/** The MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
-@JsonTypeName("ErrorOutput")
-@Immutable
+/**
+ * The MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError model.
+ */
+@Fluent
 public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError
     extends MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput {
     /*
+     * Result type
+     */
+    private String resultType = "ErrorOutput";
+
+    /*
      * Migration error
      */
-    @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private ReportableException error;
 
-    /** Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError class. */
+    /*
+     * List of error events
+     */
+    private List<SyncMigrationDatabaseErrorEvent> events;
+
+    /*
+     * Result identifier
+     */
+    private String id;
+
+    /**
+     * Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError class.
+     */
     public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError() {
     }
 
     /**
+     * Get the resultType property: Result type.
+     * 
+     * @return the resultType value.
+     */
+    @Override
+    public String resultType() {
+        return this.resultType;
+    }
+
+    /**
      * Get the error property: Migration error.
-     *
+     * 
      * @return the error value.
      */
     public ReportableException error() {
@@ -35,15 +63,98 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError
     }
 
     /**
+     * Get the events property: List of error events.
+     * 
+     * @return the events value.
+     */
+    public List<SyncMigrationDatabaseErrorEvent> events() {
+        return this.events;
+    }
+
+    /**
+     * Set the events property: List of error events.
+     * 
+     * @param events the events value to set.
+     * @return the MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError object itself.
+     */
+    public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError
+        withEvents(List<SyncMigrationDatabaseErrorEvent> events) {
+        this.events = events;
+        return this;
+    }
+
+    /**
+     * Get the id property: Result identifier.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (error() != null) {
             error().validate();
         }
+        if (events() != null) {
+            events().forEach(e -> e.validate());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("resultType", this.resultType);
+        jsonWriter.writeArrayField("events", this.events, (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError if the JsonReader was pointing to
+     * an instance of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the
+     * MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.
+     */
+    public static MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError fromJson(JsonReader jsonReader)
+        throws IOException {
+        return jsonReader.readObject(reader -> {
+            MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError
+                = new MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.id = reader.getString();
+                } else if ("resultType".equals(fieldName)) {
+                    deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.resultType
+                        = reader.getString();
+                } else if ("error".equals(fieldName)) {
+                    deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.error
+                        = ReportableException.fromJson(reader);
+                } else if ("events".equals(fieldName)) {
+                    List<SyncMigrationDatabaseErrorEvent> events
+                        = reader.readArray(reader1 -> SyncMigrationDatabaseErrorEvent.fromJson(reader1));
+                    deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.events = events;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError;
+        });
     }
 }

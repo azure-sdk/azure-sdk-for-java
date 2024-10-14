@@ -9,17 +9,20 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
 
-/** An instance of this class provides access to all the operations defined in TasksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in TasksClient.
+ */
 public interface TasksClient {
     /**
      * Get tasks in a service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
-     * that an error occurred while querying the status of that task.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which
+     * indicates that an error occurred while querying the status of that task.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -33,11 +36,11 @@ public interface TasksClient {
 
     /**
      * Get tasks in a service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
-     * that an error occurred while querying the status of that task.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which
+     * indicates that an error occurred while querying the status of that task.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -49,16 +52,16 @@ public interface TasksClient {
      * @return oData page of tasks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProjectTaskInner> list(
-        String groupName, String serviceName, String projectName, String taskType, Context context);
+    PagedIterable<ProjectTaskInner> list(String groupName, String serviceName, String projectName, String taskType,
+        Context context);
 
     /**
      * Create or update task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
-     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * PUT method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
      * there is little reason to update an existing one.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -71,21 +74,16 @@ public interface TasksClient {
      * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProjectTaskInner> createOrUpdateWithResponse(
-        String groupName,
-        String serviceName,
-        String projectName,
-        String taskName,
-        ProjectTaskInner parameters,
-        Context context);
+    Response<ProjectTaskInner> createOrUpdateWithResponse(String groupName, String serviceName, String projectName,
+        String taskName, ProjectTaskInner parameters, Context context);
 
     /**
      * Create or update task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
-     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * PUT method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
      * there is little reason to update an existing one.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -97,15 +95,15 @@ public interface TasksClient {
      * @return a task resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ProjectTaskInner createOrUpdate(
-        String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters);
+    ProjectTaskInner createOrUpdate(String groupName, String serviceName, String projectName, String taskName,
+        ProjectTaskInner parameters);
 
     /**
      * Get task information
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * GET method retrieves information about a task.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -118,15 +116,15 @@ public interface TasksClient {
      * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProjectTaskInner> getWithResponse(
-        String groupName, String serviceName, String projectName, String taskName, String expand, Context context);
+    Response<ProjectTaskInner> getWithResponse(String groupName, String serviceName, String projectName,
+        String taskName, String expand, Context context);
 
     /**
      * Get task information
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * GET method retrieves information about a task.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -141,10 +139,10 @@ public interface TasksClient {
 
     /**
      * Delete task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * DELETE method deletes a task, canceling it first if it's running.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -157,20 +155,15 @@ public interface TasksClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String groupName,
-        String serviceName,
-        String projectName,
-        String taskName,
-        Boolean deleteRunningTasks,
-        Context context);
+    Response<Void> deleteWithResponse(String groupName, String serviceName, String projectName, String taskName,
+        Boolean deleteRunningTasks, Context context);
 
     /**
      * Delete task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * DELETE method deletes a task, canceling it first if it's running.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -184,11 +177,11 @@ public interface TasksClient {
 
     /**
      * Create or update task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
-     * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
-     * so.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * PATCH method updates an existing task, but since tasks have no mutable custom properties, there is little reason
+     * to do so.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -201,21 +194,16 @@ public interface TasksClient {
      * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProjectTaskInner> updateWithResponse(
-        String groupName,
-        String serviceName,
-        String projectName,
-        String taskName,
-        ProjectTaskInner parameters,
-        Context context);
+    Response<ProjectTaskInner> updateWithResponse(String groupName, String serviceName, String projectName,
+        String taskName, ProjectTaskInner parameters, Context context);
 
     /**
      * Create or update task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
-     * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
-     * so.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. The
+     * PATCH method updates an existing task, but since tasks have no mutable custom properties, there is little reason
+     * to do so.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -227,15 +215,15 @@ public interface TasksClient {
      * @return a task resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ProjectTaskInner update(
-        String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters);
+    ProjectTaskInner update(String groupName, String serviceName, String projectName, String taskName,
+        ProjectTaskInner parameters);
 
     /**
      * Cancel a task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. This
+     * method cancels a task if it's currently queued or running.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -247,15 +235,15 @@ public interface TasksClient {
      * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProjectTaskInner> cancelWithResponse(
-        String groupName, String serviceName, String projectName, String taskName, Context context);
+    Response<ProjectTaskInner> cancelWithResponse(String groupName, String serviceName, String projectName,
+        String taskName, Context context);
 
     /**
      * Cancel a task
-     *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
-     *
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. This
+     * method cancels a task if it's currently queued or running.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
@@ -267,4 +255,45 @@ public interface TasksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ProjectTaskInner cancel(String groupName, String serviceName, String projectName, String taskName);
+
+    /**
+     * Execute a command on a task
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. This
+     * method executes a command on a running task.
+     * 
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<CommandPropertiesInner> commandWithResponse(String groupName, String serviceName, String projectName,
+        String taskName, CommandPropertiesInner parameters, Context context);
+
+    /**
+     * Execute a command on a task
+     * 
+     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance. This
+     * method executes a command on a running task.
+     * 
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CommandPropertiesInner command(String groupName, String serviceName, String projectName, String taskName,
+        CommandPropertiesInner parameters);
 }

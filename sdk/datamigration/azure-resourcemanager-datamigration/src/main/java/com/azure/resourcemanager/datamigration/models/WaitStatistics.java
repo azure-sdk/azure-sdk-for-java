@@ -4,37 +4,42 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Wait statistics gathered during query batch execution. */
-@Immutable
-public final class WaitStatistics {
+/**
+ * Wait statistics gathered during query batch execution.
+ */
+@Fluent
+public final class WaitStatistics implements JsonSerializable<WaitStatistics> {
     /*
      * Type of the Wait
      */
-    @JsonProperty(value = "waitType", access = JsonProperty.Access.WRITE_ONLY)
     private String waitType;
 
     /*
      * Total wait time in millisecond(s)
      */
-    @JsonProperty(value = "waitTimeMs", access = JsonProperty.Access.WRITE_ONLY)
     private Float waitTimeMs;
 
     /*
      * Total no. of waits
      */
-    @JsonProperty(value = "waitCount", access = JsonProperty.Access.WRITE_ONLY)
     private Long waitCount;
 
-    /** Creates an instance of WaitStatistics class. */
+    /**
+     * Creates an instance of WaitStatistics class.
+     */
     public WaitStatistics() {
     }
 
     /**
      * Get the waitType property: Type of the Wait.
-     *
+     * 
      * @return the waitType value.
      */
     public String waitType() {
@@ -42,8 +47,19 @@ public final class WaitStatistics {
     }
 
     /**
+     * Set the waitType property: Type of the Wait.
+     * 
+     * @param waitType the waitType value to set.
+     * @return the WaitStatistics object itself.
+     */
+    public WaitStatistics withWaitType(String waitType) {
+        this.waitType = waitType;
+        return this;
+    }
+
+    /**
      * Get the waitTimeMs property: Total wait time in millisecond(s).
-     *
+     * 
      * @return the waitTimeMs value.
      */
     public Float waitTimeMs() {
@@ -51,8 +67,19 @@ public final class WaitStatistics {
     }
 
     /**
+     * Set the waitTimeMs property: Total wait time in millisecond(s).
+     * 
+     * @param waitTimeMs the waitTimeMs value to set.
+     * @return the WaitStatistics object itself.
+     */
+    public WaitStatistics withWaitTimeMs(Float waitTimeMs) {
+        this.waitTimeMs = waitTimeMs;
+        return this;
+    }
+
+    /**
      * Get the waitCount property: Total no. of waits.
-     *
+     * 
      * @return the waitCount value.
      */
     public Long waitCount() {
@@ -60,10 +87,63 @@ public final class WaitStatistics {
     }
 
     /**
+     * Set the waitCount property: Total no. of waits.
+     * 
+     * @param waitCount the waitCount value to set.
+     * @return the WaitStatistics object itself.
+     */
+    public WaitStatistics withWaitCount(Long waitCount) {
+        this.waitCount = waitCount;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("waitType", this.waitType);
+        jsonWriter.writeNumberField("waitTimeMs", this.waitTimeMs);
+        jsonWriter.writeNumberField("waitCount", this.waitCount);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of WaitStatistics from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of WaitStatistics if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the WaitStatistics.
+     */
+    public static WaitStatistics fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            WaitStatistics deserializedWaitStatistics = new WaitStatistics();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("waitType".equals(fieldName)) {
+                    deserializedWaitStatistics.waitType = reader.getString();
+                } else if ("waitTimeMs".equals(fieldName)) {
+                    deserializedWaitStatistics.waitTimeMs = reader.getNullable(JsonReader::getFloat);
+                } else if ("waitCount".equals(fieldName)) {
+                    deserializedWaitStatistics.waitCount = reader.getNullable(JsonReader::getLong);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedWaitStatistics;
+        });
     }
 }

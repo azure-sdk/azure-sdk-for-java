@@ -4,34 +4,38 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.Map;
 
-/** Results for checksum based Data Integrity validation results. */
-@Immutable
-public final class DataIntegrityValidationResult {
+/**
+ * Results for checksum based Data Integrity validation results.
+ */
+@Fluent
+public final class DataIntegrityValidationResult implements JsonSerializable<DataIntegrityValidationResult> {
     /*
      * List of failed table names of source and target pair
      */
-    @JsonProperty(value = "failedObjects", access = JsonProperty.Access.WRITE_ONLY)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> failedObjects;
 
     /*
      * List of errors that happened while performing data integrity validation
      */
-    @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationError validationErrors;
 
-    /** Creates an instance of DataIntegrityValidationResult class. */
+    /**
+     * Creates an instance of DataIntegrityValidationResult class.
+     */
     public DataIntegrityValidationResult() {
     }
 
     /**
      * Get the failedObjects property: List of failed table names of source and target pair.
-     *
+     * 
      * @return the failedObjects value.
      */
     public Map<String, String> failedObjects() {
@@ -39,8 +43,19 @@ public final class DataIntegrityValidationResult {
     }
 
     /**
+     * Set the failedObjects property: List of failed table names of source and target pair.
+     * 
+     * @param failedObjects the failedObjects value to set.
+     * @return the DataIntegrityValidationResult object itself.
+     */
+    public DataIntegrityValidationResult withFailedObjects(Map<String, String> failedObjects) {
+        this.failedObjects = failedObjects;
+        return this;
+    }
+
+    /**
      * Get the validationErrors property: List of errors that happened while performing data integrity validation.
-     *
+     * 
      * @return the validationErrors value.
      */
     public ValidationError validationErrors() {
@@ -48,13 +63,65 @@ public final class DataIntegrityValidationResult {
     }
 
     /**
+     * Set the validationErrors property: List of errors that happened while performing data integrity validation.
+     * 
+     * @param validationErrors the validationErrors value to set.
+     * @return the DataIntegrityValidationResult object itself.
+     */
+    public DataIntegrityValidationResult withValidationErrors(ValidationError validationErrors) {
+        this.validationErrors = validationErrors;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (validationErrors() != null) {
             validationErrors().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("failedObjects", this.failedObjects, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("validationErrors", this.validationErrors);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DataIntegrityValidationResult from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DataIntegrityValidationResult if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DataIntegrityValidationResult.
+     */
+    public static DataIntegrityValidationResult fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DataIntegrityValidationResult deserializedDataIntegrityValidationResult
+                = new DataIntegrityValidationResult();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("failedObjects".equals(fieldName)) {
+                    Map<String, String> failedObjects = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDataIntegrityValidationResult.failedObjects = failedObjects;
+                } else if ("validationErrors".equals(fieldName)) {
+                    deserializedDataIntegrityValidationResult.validationErrors = ValidationError.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDataIntegrityValidationResult;
+        });
     }
 }
