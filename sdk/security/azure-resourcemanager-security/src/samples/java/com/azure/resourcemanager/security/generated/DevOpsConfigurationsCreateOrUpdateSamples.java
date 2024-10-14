@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.security.generated;
 
 import com.azure.resourcemanager.security.fluent.models.DevOpsConfigurationInner;
+import com.azure.resourcemanager.security.models.AgentlessScanning;
 import com.azure.resourcemanager.security.models.Authorization;
 import com.azure.resourcemanager.security.models.AutoDiscovery;
 import com.azure.resourcemanager.security.models.DevOpsConfigurationProperties;
@@ -15,7 +16,9 @@ import java.util.Arrays;
  */
 public final class DevOpsConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-05-15-preview/examples/
+     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentAndFuture.
@@ -28,12 +31,15 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
             .createOrUpdate("myRg", "mySecurityConnectorName",
                 new DevOpsConfigurationInner().withProperties(new DevOpsConfigurationProperties()
                     .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
-                    .withAutoDiscovery(AutoDiscovery.ENABLED)),
+                    .withAutoDiscovery(AutoDiscovery.ENABLED)
+                    .withAgentlessScanning(AgentlessScanning.ENABLED)),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentOnly_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-05-15-preview/examples/
+     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentOnly_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentOnly.
@@ -46,12 +52,15 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
             .createOrUpdate("myRg", "mySecurityConnectorName",
                 new DevOpsConfigurationInner().withProperties(new DevOpsConfigurationProperties()
                     .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
-                    .withAutoDiscovery(AutoDiscovery.DISABLED)),
+                    .withAutoDiscovery(AutoDiscovery.DISABLED)
+                    .withAgentlessScanning(AgentlessScanning.ENABLED)),
                 com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardSelected_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-05-15-preview/examples/
+     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardSelected_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardSelected.
@@ -65,7 +74,8 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
                 new DevOpsConfigurationInner().withProperties(new DevOpsConfigurationProperties()
                     .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
                     .withAutoDiscovery(AutoDiscovery.DISABLED)
-                    .withTopLevelInventoryList(Arrays.asList("org1", "org2"))),
+                    .withTopLevelInventoryList(Arrays.asList("org1", "org2"))
+                    .withAgentlessScanning(AgentlessScanning.ENABLED)),
                 com.azure.core.util.Context.NONE);
     }
 }
