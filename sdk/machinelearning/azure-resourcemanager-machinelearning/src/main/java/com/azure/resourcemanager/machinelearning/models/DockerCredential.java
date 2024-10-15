@@ -21,14 +21,14 @@ public final class DockerCredential extends DataReferenceCredential {
     private DataReferenceCredentialType credentialType = DataReferenceCredentialType.DOCKER_CREDENTIALS;
 
     /*
-     * DockerCredential user name
-     */
-    private String username;
-
-    /*
      * DockerCredential user password
      */
     private String password;
+
+    /*
+     * DockerCredential user name
+     */
+    private String username;
 
     /**
      * Creates an instance of DockerCredential class.
@@ -44,26 +44,6 @@ public final class DockerCredential extends DataReferenceCredential {
     @Override
     public DataReferenceCredentialType credentialType() {
         return this.credentialType;
-    }
-
-    /**
-     * Get the username property: DockerCredential user name.
-     * 
-     * @return the username value.
-     */
-    public String username() {
-        return this.username;
-    }
-
-    /**
-     * Set the username property: DockerCredential user name.
-     * 
-     * @param username the username value to set.
-     * @return the DockerCredential object itself.
-     */
-    public DockerCredential withUsername(String username) {
-        this.username = username;
-        return this;
     }
 
     /**
@@ -87,13 +67,32 @@ public final class DockerCredential extends DataReferenceCredential {
     }
 
     /**
+     * Get the username property: DockerCredential user name.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: DockerCredential user name.
+     * 
+     * @param username the username value to set.
+     * @return the DockerCredential object itself.
+     */
+    public DockerCredential withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -104,8 +103,8 @@ public final class DockerCredential extends DataReferenceCredential {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("credentialType",
             this.credentialType == null ? null : this.credentialType.toString());
-        jsonWriter.writeStringField("userName", this.username);
         jsonWriter.writeStringField("password", this.password);
+        jsonWriter.writeStringField("userName", this.username);
         return jsonWriter.writeEndObject();
     }
 
@@ -127,10 +126,10 @@ public final class DockerCredential extends DataReferenceCredential {
                 if ("credentialType".equals(fieldName)) {
                     deserializedDockerCredential.credentialType
                         = DataReferenceCredentialType.fromString(reader.getString());
-                } else if ("userName".equals(fieldName)) {
-                    deserializedDockerCredential.username = reader.getString();
                 } else if ("password".equals(fieldName)) {
                     deserializedDockerCredential.password = reader.getString();
+                } else if ("userName".equals(fieldName)) {
+                    deserializedDockerCredential.username = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

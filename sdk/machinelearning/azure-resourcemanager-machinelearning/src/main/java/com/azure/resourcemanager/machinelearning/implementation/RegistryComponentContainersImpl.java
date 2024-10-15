@@ -68,26 +68,80 @@ public final class RegistryComponentContainersImpl implements RegistryComponentC
         }
     }
 
-    public ComponentContainer createOrUpdate(String resourceGroupName, String registryName, String componentName,
-        ComponentContainerInner body) {
-        ComponentContainerInner inner
-            = this.serviceClient().createOrUpdate(resourceGroupName, registryName, componentName, body);
-        if (inner != null) {
-            return new ComponentContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public ComponentContainer getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String componentName = ResourceManagerUtils.getValueFromIdByName(id, "components");
+        if (componentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, componentName, Context.NONE).getValue();
     }
 
-    public ComponentContainer createOrUpdate(String resourceGroupName, String registryName, String componentName,
-        ComponentContainerInner body, Context context) {
-        ComponentContainerInner inner
-            = this.serviceClient().createOrUpdate(resourceGroupName, registryName, componentName, body, context);
-        if (inner != null) {
-            return new ComponentContainerImpl(inner, this.manager());
-        } else {
-            return null;
+    public Response<ComponentContainer> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String componentName = ResourceManagerUtils.getValueFromIdByName(id, "components");
+        if (componentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, registryName, componentName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String componentName = ResourceManagerUtils.getValueFromIdByName(id, "components");
+        if (componentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, componentName, Context.NONE);
+    }
+
+    public void deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String registryName = ResourceManagerUtils.getValueFromIdByName(id, "registries");
+        if (registryName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'registries'.", id)));
+        }
+        String componentName = ResourceManagerUtils.getValueFromIdByName(id, "components");
+        if (componentName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
+        }
+        this.delete(resourceGroupName, registryName, componentName, context);
     }
 
     private RegistryComponentContainersClient serviceClient() {
@@ -96,5 +150,9 @@ public final class RegistryComponentContainersImpl implements RegistryComponentC
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
+    }
+
+    public ComponentContainerImpl define(String name) {
+        return new ComponentContainerImpl(name, this.manager());
     }
 }
