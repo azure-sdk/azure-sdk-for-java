@@ -24,10 +24,17 @@ public final class Configuration implements JsonSerializable<Configuration> {
 
     /*
      * ActiveRevisionsMode controls how active revisions are handled for the Container app:
-     * <list><item>Multiple: multiple revisions can be active.</item><item>Single: Only one revision can be active at a
-     * time. Revision weights can not be used in this mode. If no value if provided, this is the default.</item></list>
+     * <list><item>Single: Only one revision can be active at a time. Traffic weights cannot be used. This is the
+     * default.</item><item>Multiple: Multiple revisions can be active, including optional traffic weights and
+     * labels.</item><item>Labels: Only revisions with labels are active. Traffic weights can be applied to
+     * labels.</item></list>
      */
     private ActiveRevisionsMode activeRevisionsMode;
+
+    /*
+     * Required in labels revisions mode. Label to apply to newly created revision.
+     */
+    private String targetLabel;
 
     /*
      * Ingress configurations.
@@ -45,6 +52,11 @@ public final class Configuration implements JsonSerializable<Configuration> {
     private Dapr dapr;
 
     /*
+     * App runtime configuration for the Container App.
+     */
+    private Runtime runtime;
+
+    /*
      * Optional. Max inactive revisions a Container App can have.
      */
     private Integer maxInactiveRevisions;
@@ -53,6 +65,12 @@ public final class Configuration implements JsonSerializable<Configuration> {
      * Container App to be a dev Container App Service
      */
     private Service service;
+
+    /*
+     * Optional settings for Managed Identities that are assigned to the Container App. If a Managed Identity is not
+     * specified here, default settings will be used.
+     */
+    private List<IdentitySettings> identitySettings;
 
     /**
      * Creates an instance of Configuration class.
@@ -83,9 +101,10 @@ public final class Configuration implements JsonSerializable<Configuration> {
     /**
      * Get the activeRevisionsMode property: ActiveRevisionsMode controls how active revisions are handled for the
      * Container app:
-     * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one
-     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is
-     * the default.&lt;/item&gt;&lt;/list&gt;.
+     * &lt;list&gt;&lt;item&gt;Single: Only one revision can be active at a time. Traffic weights cannot be used. This
+     * is the default.&lt;/item&gt;&lt;item&gt;Multiple: Multiple revisions can be active, including optional traffic
+     * weights and labels.&lt;/item&gt;&lt;item&gt;Labels: Only revisions with labels are active. Traffic weights can be
+     * applied to labels.&lt;/item&gt;&lt;/list&gt;.
      * 
      * @return the activeRevisionsMode value.
      */
@@ -96,15 +115,36 @@ public final class Configuration implements JsonSerializable<Configuration> {
     /**
      * Set the activeRevisionsMode property: ActiveRevisionsMode controls how active revisions are handled for the
      * Container app:
-     * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one
-     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is
-     * the default.&lt;/item&gt;&lt;/list&gt;.
+     * &lt;list&gt;&lt;item&gt;Single: Only one revision can be active at a time. Traffic weights cannot be used. This
+     * is the default.&lt;/item&gt;&lt;item&gt;Multiple: Multiple revisions can be active, including optional traffic
+     * weights and labels.&lt;/item&gt;&lt;item&gt;Labels: Only revisions with labels are active. Traffic weights can be
+     * applied to labels.&lt;/item&gt;&lt;/list&gt;.
      * 
      * @param activeRevisionsMode the activeRevisionsMode value to set.
      * @return the Configuration object itself.
      */
     public Configuration withActiveRevisionsMode(ActiveRevisionsMode activeRevisionsMode) {
         this.activeRevisionsMode = activeRevisionsMode;
+        return this;
+    }
+
+    /**
+     * Get the targetLabel property: Required in labels revisions mode. Label to apply to newly created revision.
+     * 
+     * @return the targetLabel value.
+     */
+    public String targetLabel() {
+        return this.targetLabel;
+    }
+
+    /**
+     * Set the targetLabel property: Required in labels revisions mode. Label to apply to newly created revision.
+     * 
+     * @param targetLabel the targetLabel value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withTargetLabel(String targetLabel) {
+        this.targetLabel = targetLabel;
         return this;
     }
 
@@ -171,6 +211,26 @@ public final class Configuration implements JsonSerializable<Configuration> {
     }
 
     /**
+     * Get the runtime property: App runtime configuration for the Container App.
+     * 
+     * @return the runtime value.
+     */
+    public Runtime runtime() {
+        return this.runtime;
+    }
+
+    /**
+     * Set the runtime property: App runtime configuration for the Container App.
+     * 
+     * @param runtime the runtime value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRuntime(Runtime runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
      * Get the maxInactiveRevisions property: Optional. Max inactive revisions a Container App can have.
      * 
      * @return the maxInactiveRevisions value.
@@ -211,6 +271,28 @@ public final class Configuration implements JsonSerializable<Configuration> {
     }
 
     /**
+     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @return the identitySettings value.
+     */
+    public List<IdentitySettings> identitySettings() {
+        return this.identitySettings;
+    }
+
+    /**
+     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @param identitySettings the identitySettings value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withIdentitySettings(List<IdentitySettings> identitySettings) {
+        this.identitySettings = identitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -228,8 +310,14 @@ public final class Configuration implements JsonSerializable<Configuration> {
         if (dapr() != null) {
             dapr().validate();
         }
+        if (runtime() != null) {
+            runtime().validate();
+        }
         if (service() != null) {
             service().validate();
+        }
+        if (identitySettings() != null) {
+            identitySettings().forEach(e -> e.validate());
         }
     }
 
@@ -242,11 +330,15 @@ public final class Configuration implements JsonSerializable<Configuration> {
         jsonWriter.writeArrayField("secrets", this.secrets, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("activeRevisionsMode",
             this.activeRevisionsMode == null ? null : this.activeRevisionsMode.toString());
+        jsonWriter.writeStringField("targetLabel", this.targetLabel);
         jsonWriter.writeJsonField("ingress", this.ingress);
         jsonWriter.writeArrayField("registries", this.registries, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("dapr", this.dapr);
+        jsonWriter.writeJsonField("runtime", this.runtime);
         jsonWriter.writeNumberField("maxInactiveRevisions", this.maxInactiveRevisions);
         jsonWriter.writeJsonField("service", this.service);
+        jsonWriter.writeArrayField("identitySettings", this.identitySettings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -270,6 +362,8 @@ public final class Configuration implements JsonSerializable<Configuration> {
                     deserializedConfiguration.secrets = secrets;
                 } else if ("activeRevisionsMode".equals(fieldName)) {
                     deserializedConfiguration.activeRevisionsMode = ActiveRevisionsMode.fromString(reader.getString());
+                } else if ("targetLabel".equals(fieldName)) {
+                    deserializedConfiguration.targetLabel = reader.getString();
                 } else if ("ingress".equals(fieldName)) {
                     deserializedConfiguration.ingress = Ingress.fromJson(reader);
                 } else if ("registries".equals(fieldName)) {
@@ -278,10 +372,16 @@ public final class Configuration implements JsonSerializable<Configuration> {
                     deserializedConfiguration.registries = registries;
                 } else if ("dapr".equals(fieldName)) {
                     deserializedConfiguration.dapr = Dapr.fromJson(reader);
+                } else if ("runtime".equals(fieldName)) {
+                    deserializedConfiguration.runtime = Runtime.fromJson(reader);
                 } else if ("maxInactiveRevisions".equals(fieldName)) {
                     deserializedConfiguration.maxInactiveRevisions = reader.getNullable(JsonReader::getInt);
                 } else if ("service".equals(fieldName)) {
                     deserializedConfiguration.service = Service.fromJson(reader);
+                } else if ("identitySettings".equals(fieldName)) {
+                    List<IdentitySettings> identitySettings
+                        = reader.readArray(reader1 -> IdentitySettings.fromJson(reader1));
+                    deserializedConfiguration.identitySettings = identitySettings;
                 } else {
                     reader.skipChildren();
                 }
