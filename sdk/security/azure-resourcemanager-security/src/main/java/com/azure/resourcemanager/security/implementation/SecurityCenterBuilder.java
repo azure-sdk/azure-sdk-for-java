@@ -20,22 +20,6 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { SecurityCenterImpl.class })
 public final class SecurityCenterBuilder {
     /*
-     * Azure subscription ID
-     */
-    private String subscriptionId;
-
-    /**
-     * Sets Azure subscription ID.
-     * 
-     * @param subscriptionId the subscriptionId value.
-     * @return the SecurityCenterBuilder.
-     */
-    public SecurityCenterBuilder subscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    /*
      * server parameter
      */
     private String endpoint;
@@ -132,7 +116,7 @@ public final class SecurityCenterBuilder {
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         SecurityCenterImpl client = new SecurityCenterImpl(localPipeline, localSerializerAdapter,
-            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
+            localDefaultPollInterval, localEnvironment, localEndpoint);
         return client;
     }
 }
