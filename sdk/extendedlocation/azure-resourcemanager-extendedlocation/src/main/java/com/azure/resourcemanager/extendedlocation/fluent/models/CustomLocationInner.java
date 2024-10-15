@@ -171,7 +171,7 @@ public final class CustomLocationInner extends Resource {
 
     /**
      * Get the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * and operators. Optional for EdgeCluster hostType.
      * 
      * @return the clusterExtensionIds value.
      */
@@ -181,7 +181,7 @@ public final class CustomLocationInner extends Resource {
 
     /**
      * Set the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * and operators. Optional for EdgeCluster hostType.
      * 
      * @param clusterExtensionIds the clusterExtensionIds value to set.
      * @return the CustomLocationInner object itself.
@@ -218,8 +218,8 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Get the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Get the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      * 
      * @return the hostResourceId value.
      */
@@ -228,8 +228,8 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Set the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Set the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      * 
      * @param hostResourceId the hostResourceId value to set.
      * @return the CustomLocationInner object itself.
@@ -243,7 +243,7 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      * 
      * @return the hostType value.
      */
@@ -252,7 +252,7 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      * 
      * @param hostType the hostType value to set.
      * @return the CustomLocationInner object itself.
@@ -266,7 +266,8 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster.
+     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
      * 
      * @return the namespace value.
      */
@@ -275,7 +276,8 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster.
+     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
      * 
      * @param namespace the namespace value to set.
      * @return the CustomLocationInner object itself.

@@ -25,7 +25,8 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     private CustomLocationPropertiesAuthentication authentication;
 
     /*
-     * Contains the reference to the add-on that contains charts to deploy CRDs and operators.
+     * Contains the reference to the add-on that contains charts to deploy CRDs and operators. Optional for EdgeCluster
+     * hostType.
      */
     private List<String> clusterExtensionIds;
 
@@ -35,18 +36,18 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     private String displayName;
 
     /*
-     * Connected Cluster or AKS Cluster. The Custom Locations RP will perform a checkAccess API for listAdminCredentials
-     * permissions.
+     * Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will perform a checkAccess API for
+     * listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      */
     private String hostResourceId;
 
     /*
-     * Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      */
     private HostType hostType;
 
     /*
-     * Kubernetes namespace that will be created on the specified cluster.
+     * Kubernetes namespace that will be created on the specified cluster. Optional for EdgeCluster hostType.
      */
     private String namespace;
 
@@ -85,7 +86,7 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
 
     /**
      * Get the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * and operators. Optional for EdgeCluster hostType.
      * 
      * @return the clusterExtensionIds value.
      */
@@ -95,7 +96,7 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
 
     /**
      * Set the clusterExtensionIds property: Contains the reference to the add-on that contains charts to deploy CRDs
-     * and operators.
+     * and operators. Optional for EdgeCluster hostType.
      * 
      * @param clusterExtensionIds the clusterExtensionIds value to set.
      * @return the CustomLocationProperties object itself.
@@ -126,8 +127,8 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Get the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Get the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      * 
      * @return the hostResourceId value.
      */
@@ -136,8 +137,8 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Set the hostResourceId property: Connected Cluster or AKS Cluster. The Custom Locations RP will perform a
-     * checkAccess API for listAdminCredentials permissions.
+     * Set the hostResourceId property: Connected Cluster, AKS Cluster or Edge Cluster. The Custom Locations RP will
+     * perform a checkAccess API for listAdminCredentials permissions for Connected Cluster and AKS Cluster.
      * 
      * @param hostResourceId the hostResourceId value to set.
      * @return the CustomLocationProperties object itself.
@@ -148,7 +149,7 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Get the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      * 
      * @return the hostType value.
      */
@@ -157,7 +158,7 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, etc...).
+     * Set the hostType property: Type of host the Custom Locations is referencing (Kubernetes, EdgeCluster, etc...).
      * 
      * @param hostType the hostType value to set.
      * @return the CustomLocationProperties object itself.
@@ -168,7 +169,8 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster.
+     * Get the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
      * 
      * @return the namespace value.
      */
@@ -177,7 +179,8 @@ public final class CustomLocationProperties implements JsonSerializable<CustomLo
     }
 
     /**
-     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster.
+     * Set the namespace property: Kubernetes namespace that will be created on the specified cluster. Optional for
+     * EdgeCluster hostType.
      * 
      * @param namespace the namespace value to set.
      * @return the CustomLocationProperties object itself.
