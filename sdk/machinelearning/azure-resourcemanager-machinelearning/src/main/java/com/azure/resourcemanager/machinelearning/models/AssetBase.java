@@ -17,39 +17,19 @@ import java.util.Map;
 @Fluent
 public class AssetBase extends ResourceBase {
     /*
-     * Is the asset archived?
-     */
-    private Boolean isArchived;
-
-    /*
      * If the name version are system generated (anonymous registration).
      */
     private Boolean isAnonymous;
+
+    /*
+     * Is the asset archived?
+     */
+    private Boolean isArchived;
 
     /**
      * Creates an instance of AssetBase class.
      */
     public AssetBase() {
-    }
-
-    /**
-     * Get the isArchived property: Is the asset archived?.
-     * 
-     * @return the isArchived value.
-     */
-    public Boolean isArchived() {
-        return this.isArchived;
-    }
-
-    /**
-     * Set the isArchived property: Is the asset archived?.
-     * 
-     * @param isArchived the isArchived value to set.
-     * @return the AssetBase object itself.
-     */
-    public AssetBase withIsArchived(Boolean isArchived) {
-        this.isArchived = isArchived;
-        return this;
     }
 
     /**
@@ -73,11 +53,22 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the isArchived property: Is the asset archived?.
+     * 
+     * @return the isArchived value.
      */
-    @Override
-    public AssetBase withDescription(String description) {
-        super.withDescription(description);
+    public Boolean isArchived() {
+        return this.isArchived;
+    }
+
+    /**
+     * Set the isArchived property: Is the asset archived?.
+     * 
+     * @param isArchived the isArchived value to set.
+     * @return the AssetBase object itself.
+     */
+    public AssetBase withIsArchived(Boolean isArchived) {
+        this.isArchived = isArchived;
         return this;
     }
 
@@ -85,8 +76,8 @@ public class AssetBase extends ResourceBase {
      * {@inheritDoc}
      */
     @Override
-    public AssetBase withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public AssetBase withDescription(String description) {
+        super.withDescription(description);
         return this;
     }
 
@@ -100,13 +91,21 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AssetBase withTags(Map<String, String> tags) {
+        super.withTags(tags);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -116,10 +115,10 @@ public class AssetBase extends ResourceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", this.isArchived);
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", this.isAnonymous);
+        jsonWriter.writeBooleanField("isArchived", this.isArchived);
         return jsonWriter.writeEndObject();
     }
 
@@ -140,16 +139,16 @@ public class AssetBase extends ResourceBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedAssetBase.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAssetBase.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedAssetBase.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedAssetBase.isArchived = reader.getNullable(JsonReader::getBoolean);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAssetBase.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedAssetBase.isAnonymous = reader.getNullable(JsonReader::getBoolean);
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedAssetBase.isArchived = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }

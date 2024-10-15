@@ -69,7 +69,6 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
      */
     @Override
     public void validate() {
-        super.validate();
         if (administratorAccount() != null) {
             administratorAccount().validate();
         }
