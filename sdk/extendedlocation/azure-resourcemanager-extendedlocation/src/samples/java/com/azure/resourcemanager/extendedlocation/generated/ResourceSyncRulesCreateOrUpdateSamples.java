@@ -16,7 +16,7 @@ import java.util.Map;
 public final class ResourceSyncRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesCreate_Update.json
      */
     /**

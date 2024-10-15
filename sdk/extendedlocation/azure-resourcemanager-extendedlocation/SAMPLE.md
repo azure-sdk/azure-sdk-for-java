@@ -24,6 +24,7 @@
 
 ```java
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationPropertiesAuthentication;
+import com.azure.resourcemanager.extendedlocation.models.HostType;
 import com.azure.resourcemanager.extendedlocation.models.Identity;
 import com.azure.resourcemanager.extendedlocation.models.ResourceIdentityType;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ import java.util.Arrays;
 public final class CustomLocationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsCreate_Update.json
      */
     /**
@@ -56,6 +57,7 @@ public final class CustomLocationsCreateOrUpdateSamples {
             .withDisplayName("customLocationLocation01")
             .withHostResourceId(
                 "/subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/testresourcegroup/providers/Microsoft.ContainerService/managedClusters/cluster01")
+            .withHostType(HostType.KUBERNETES)
             .withNamespace("namespace01")
             .create();
     }
@@ -71,7 +73,7 @@ public final class CustomLocationsCreateOrUpdateSamples {
 public final class CustomLocationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsDelete.json
      */
     /**
@@ -98,7 +100,7 @@ import java.util.Map;
 public final class CustomLocationsFindTargetResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsFindTargetResourceGroup.json
      */
     /**
@@ -138,7 +140,7 @@ public final class CustomLocationsFindTargetResourceGroupSamples {
 public final class CustomLocationsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsGet.json
      */
     /**
@@ -162,7 +164,7 @@ public final class CustomLocationsGetByResourceGroupSamples {
 public final class CustomLocationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsListBySubscription.json
      */
     /**
@@ -186,7 +188,7 @@ public final class CustomLocationsListSamples {
 public final class CustomLocationsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsListByResourceGroup.json
      */
     /**
@@ -210,7 +212,7 @@ public final class CustomLocationsListByResourceGroupSamples {
 public final class CustomLocationsListEnabledResourceTypesSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsListEnabledResourceTypes.json
      */
     /**
@@ -234,7 +236,7 @@ public final class CustomLocationsListEnabledResourceTypesSamples {
 public final class CustomLocationsListOperationsSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsListOperations.json
      */
     /**
@@ -265,7 +267,7 @@ import java.util.Map;
 public final class CustomLocationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * CustomLocationsPatch.json
      */
     /**
@@ -315,7 +317,7 @@ import java.util.Map;
 public final class ResourceSyncRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesCreate_Update.json
      */
     /**
@@ -363,7 +365,7 @@ public final class ResourceSyncRulesCreateOrUpdateSamples {
 public final class ResourceSyncRulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesDelete.json
      */
     /**
@@ -389,7 +391,7 @@ public final class ResourceSyncRulesDeleteSamples {
 public final class ResourceSyncRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesGet.json
      */
     /**
@@ -414,7 +416,7 @@ public final class ResourceSyncRulesGetSamples {
 public final class ResourceSyncRulesListByCustomLocationIdSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesListByCustomLocationID.json
      */
     /**
@@ -443,7 +445,7 @@ import java.util.Map;
 public final class ResourceSyncRulesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
+     * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2024-09-15-preview/examples/
      * ResourceSyncRulesPatch.json
      */
     /**
