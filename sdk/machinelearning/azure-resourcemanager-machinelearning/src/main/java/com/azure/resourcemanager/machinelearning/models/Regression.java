@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -32,6 +33,16 @@ public final class Regression extends AutoMLVertical {
     private RegressionTrainingSettings trainingSettings;
 
     /*
+     * Columns to use for CVSplit data.
+     */
+    private List<String> cvSplitColumnNames;
+
+    /*
+     * Featurization inputs needed for AutoML job.
+     */
+    private TableVerticalFeaturizationSettings featurizationSettings;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     private TableVerticalLimitSettings limitSettings;
@@ -43,32 +54,9 @@ public final class Regression extends AutoMLVertical {
     private NCrossValidations nCrossValidations;
 
     /*
-     * Columns to use for CVSplit data.
-     */
-    private List<String> cvSplitColumnNames;
-
-    /*
-     * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
-     * data to be weighted up or down.
-     */
-    private String weightColumnName;
-
-    /*
-     * Validation data inputs.
-     */
-    private MLTableJobInput validationData;
-
-    /*
      * Test data input.
      */
     private MLTableJobInput testData;
-
-    /*
-     * The fraction of training dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
-     */
-    private Double validationDataSize;
 
     /*
      * The fraction of test dataset that needs to be set aside for validation purpose.
@@ -78,9 +66,22 @@ public final class Regression extends AutoMLVertical {
     private Double testDataSize;
 
     /*
-     * Featurization inputs needed for AutoML job.
+     * Validation data inputs.
      */
-    private TableVerticalFeaturizationSettings featurizationSettings;
+    private MLTableJobInput validationData;
+
+    /*
+     * The fraction of training dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     */
+    private Double validationDataSize;
+
+    /*
+     * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
+     * data to be weighted up or down.
+     */
+    private String weightColumnName;
 
     /**
      * Creates an instance of Regression class.
@@ -139,6 +140,46 @@ public final class Regression extends AutoMLVertical {
     }
 
     /**
+     * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * 
+     * @return the cvSplitColumnNames value.
+     */
+    public List<String> cvSplitColumnNames() {
+        return this.cvSplitColumnNames;
+    }
+
+    /**
+     * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * 
+     * @param cvSplitColumnNames the cvSplitColumnNames value to set.
+     * @return the Regression object itself.
+     */
+    public Regression withCvSplitColumnNames(List<String> cvSplitColumnNames) {
+        this.cvSplitColumnNames = cvSplitColumnNames;
+        return this;
+    }
+
+    /**
+     * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
+     * 
+     * @return the featurizationSettings value.
+     */
+    public TableVerticalFeaturizationSettings featurizationSettings() {
+        return this.featurizationSettings;
+    }
+
+    /**
+     * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
+     * 
+     * @param featurizationSettings the featurizationSettings value to set.
+     * @return the Regression object itself.
+     */
+    public Regression withFeaturizationSettings(TableVerticalFeaturizationSettings featurizationSettings) {
+        this.featurizationSettings = featurizationSettings;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
      * 
      * @return the limitSettings value.
@@ -181,44 +222,46 @@ public final class Regression extends AutoMLVertical {
     }
 
     /**
-     * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * Get the testData property: Test data input.
      * 
-     * @return the cvSplitColumnNames value.
+     * @return the testData value.
      */
-    public List<String> cvSplitColumnNames() {
-        return this.cvSplitColumnNames;
+    public MLTableJobInput testData() {
+        return this.testData;
     }
 
     /**
-     * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * Set the testData property: Test data input.
      * 
-     * @param cvSplitColumnNames the cvSplitColumnNames value to set.
+     * @param testData the testData value to set.
      * @return the Regression object itself.
      */
-    public Regression withCvSplitColumnNames(List<String> cvSplitColumnNames) {
-        this.cvSplitColumnNames = cvSplitColumnNames;
+    public Regression withTestData(MLTableJobInput testData) {
+        this.testData = testData;
         return this;
     }
 
     /**
-     * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
-     * as an input, causing rows in the data to be weighted up or down.
+     * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
      * 
-     * @return the weightColumnName value.
+     * @return the testDataSize value.
      */
-    public String weightColumnName() {
-        return this.weightColumnName;
+    public Double testDataSize() {
+        return this.testDataSize;
     }
 
     /**
-     * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
-     * as an input, causing rows in the data to be weighted up or down.
+     * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
      * 
-     * @param weightColumnName the weightColumnName value to set.
+     * @param testDataSize the testDataSize value to set.
      * @return the Regression object itself.
      */
-    public Regression withWeightColumnName(String weightColumnName) {
-        this.weightColumnName = weightColumnName;
+    public Regression withTestDataSize(Double testDataSize) {
+        this.testDataSize = testDataSize;
         return this;
     }
 
@@ -239,26 +282,6 @@ public final class Regression extends AutoMLVertical {
      */
     public Regression withValidationData(MLTableJobInput validationData) {
         this.validationData = validationData;
-        return this;
-    }
-
-    /**
-     * Get the testData property: Test data input.
-     * 
-     * @return the testData value.
-     */
-    public MLTableJobInput testData() {
-        return this.testData;
-    }
-
-    /**
-     * Set the testData property: Test data input.
-     * 
-     * @param testData the testData value to set.
-     * @return the Regression object itself.
-     */
-    public Regression withTestData(MLTableJobInput testData) {
-        this.testData = testData;
         return this;
     }
 
@@ -289,46 +312,24 @@ public final class Regression extends AutoMLVertical {
     }
 
     /**
-     * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
+     * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
      * 
-     * @return the testDataSize value.
+     * @return the weightColumnName value.
      */
-    public Double testDataSize() {
-        return this.testDataSize;
+    public String weightColumnName() {
+        return this.weightColumnName;
     }
 
     /**
-     * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
+     * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
      * 
-     * @param testDataSize the testDataSize value to set.
+     * @param weightColumnName the weightColumnName value to set.
      * @return the Regression object itself.
      */
-    public Regression withTestDataSize(Double testDataSize) {
-        this.testDataSize = testDataSize;
-        return this;
-    }
-
-    /**
-     * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     * 
-     * @return the featurizationSettings value.
-     */
-    public TableVerticalFeaturizationSettings featurizationSettings() {
-        return this.featurizationSettings;
-    }
-
-    /**
-     * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     * 
-     * @param featurizationSettings the featurizationSettings value to set.
-     * @return the Regression object itself.
-     */
-    public Regression withFeaturizationSettings(TableVerticalFeaturizationSettings featurizationSettings) {
-        this.featurizationSettings = featurizationSettings;
+    public Regression withWeightColumnName(String weightColumnName) {
+        this.weightColumnName = weightColumnName;
         return this;
     }
 
@@ -345,8 +346,8 @@ public final class Regression extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public Regression withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public Regression withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -354,8 +355,8 @@ public final class Regression extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public Regression withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public Regression withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -366,9 +367,11 @@ public final class Regression extends AutoMLVertical {
      */
     @Override
     public void validate() {
-        super.validate();
         if (trainingSettings() != null) {
             trainingSettings().validate();
+        }
+        if (featurizationSettings() != null) {
+            featurizationSettings().validate();
         }
         if (limitSettings() != null) {
             limitSettings().validate();
@@ -376,16 +379,21 @@ public final class Regression extends AutoMLVertical {
         if (nCrossValidations() != null) {
             nCrossValidations().validate();
         }
-        if (validationData() != null) {
-            validationData().validate();
-        }
         if (testData() != null) {
             testData().validate();
         }
-        if (featurizationSettings() != null) {
-            featurizationSettings().validate();
+        if (validationData() != null) {
+            validationData().validate();
+        }
+        if (trainingData() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property trainingData in model Regression"));
+        } else {
+            trainingData().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Regression.class);
 
     /**
      * {@inheritDoc}
@@ -399,16 +407,16 @@ public final class Regression extends AutoMLVertical {
         jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeStringField("primaryMetric", this.primaryMetric == null ? null : this.primaryMetric.toString());
         jsonWriter.writeJsonField("trainingSettings", this.trainingSettings);
-        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
-        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
         jsonWriter.writeArrayField("cvSplitColumnNames", this.cvSplitColumnNames,
             (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
-        jsonWriter.writeJsonField("validationData", this.validationData);
-        jsonWriter.writeJsonField("testData", this.testData);
-        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
-        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
         jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
+        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
+        jsonWriter.writeJsonField("testData", this.testData);
+        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
+        jsonWriter.writeJsonField("validationData", this.validationData);
+        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
+        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
         return jsonWriter.writeEndObject();
     }
 
@@ -440,25 +448,25 @@ public final class Regression extends AutoMLVertical {
                     deserializedRegression.primaryMetric = RegressionPrimaryMetrics.fromString(reader.getString());
                 } else if ("trainingSettings".equals(fieldName)) {
                     deserializedRegression.trainingSettings = RegressionTrainingSettings.fromJson(reader);
+                } else if ("cvSplitColumnNames".equals(fieldName)) {
+                    List<String> cvSplitColumnNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedRegression.cvSplitColumnNames = cvSplitColumnNames;
+                } else if ("featurizationSettings".equals(fieldName)) {
+                    deserializedRegression.featurizationSettings = TableVerticalFeaturizationSettings.fromJson(reader);
                 } else if ("limitSettings".equals(fieldName)) {
                     deserializedRegression.limitSettings = TableVerticalLimitSettings.fromJson(reader);
                 } else if ("nCrossValidations".equals(fieldName)) {
                     deserializedRegression.nCrossValidations = NCrossValidations.fromJson(reader);
-                } else if ("cvSplitColumnNames".equals(fieldName)) {
-                    List<String> cvSplitColumnNames = reader.readArray(reader1 -> reader1.getString());
-                    deserializedRegression.cvSplitColumnNames = cvSplitColumnNames;
-                } else if ("weightColumnName".equals(fieldName)) {
-                    deserializedRegression.weightColumnName = reader.getString();
-                } else if ("validationData".equals(fieldName)) {
-                    deserializedRegression.validationData = MLTableJobInput.fromJson(reader);
                 } else if ("testData".equals(fieldName)) {
                     deserializedRegression.testData = MLTableJobInput.fromJson(reader);
-                } else if ("validationDataSize".equals(fieldName)) {
-                    deserializedRegression.validationDataSize = reader.getNullable(JsonReader::getDouble);
                 } else if ("testDataSize".equals(fieldName)) {
                     deserializedRegression.testDataSize = reader.getNullable(JsonReader::getDouble);
-                } else if ("featurizationSettings".equals(fieldName)) {
-                    deserializedRegression.featurizationSettings = TableVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("validationData".equals(fieldName)) {
+                    deserializedRegression.validationData = MLTableJobInput.fromJson(reader);
+                } else if ("validationDataSize".equals(fieldName)) {
+                    deserializedRegression.validationDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("weightColumnName".equals(fieldName)) {
+                    deserializedRegression.weightColumnName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
