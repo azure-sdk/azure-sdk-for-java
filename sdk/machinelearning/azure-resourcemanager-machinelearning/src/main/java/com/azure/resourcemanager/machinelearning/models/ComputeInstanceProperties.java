@@ -36,6 +36,11 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
     private ApplicationSharingPolicy applicationSharingPolicy;
 
     /*
+     * Specifies settings for autologger.
+     */
+    private ComputeInstanceAutologgerSettings autologgerSettings;
+
+    /*
      * Specifies policy and settings for SSH access.
      */
     private ComputeInstanceSshSettings sshSettings;
@@ -81,6 +86,27 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
     private ComputeInstanceAuthorizationType computeInstanceAuthorizationType;
 
     /*
+     * Enable Auto OS Patching. Possible values are: true, false.
+     */
+    private Boolean enableOSPatching;
+
+    /*
+     * Enable root access. Possible values are: true, false.
+     */
+    private Boolean enableRootAccess;
+
+    /*
+     * Enable SSO (single sign on). Possible values are: true, false.
+     */
+    private Boolean enableSso;
+
+    /*
+     * Release quota if compute instance stopped. Possible values are: true - release quota if compute instance stopped.
+     * false - don't release quota when compute instance stopped.
+     */
+    private Boolean releaseQuotaOnStop;
+
+    /*
      * Settings for a personal compute instance.
      */
     private PersonalComputeInstanceSettings personalComputeInstanceSettings;
@@ -99,6 +125,12 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
      * The list of schedules to be applied on the computes.
      */
     private ComputeSchedules schedules;
+
+    /*
+     * Stops compute instance after user defined period of inactivity. Time is defined in ISO8601 format. Minimum is 15
+     * min, maximum is 3 days.
+     */
+    private String idleTimeBeforeShutdown;
 
     /*
      * Enable or disable node public IP address provisioning. Possible values are: Possible values are: true - Indicates
@@ -194,6 +226,26 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
      */
     public ComputeInstanceProperties withApplicationSharingPolicy(ApplicationSharingPolicy applicationSharingPolicy) {
         this.applicationSharingPolicy = applicationSharingPolicy;
+        return this;
+    }
+
+    /**
+     * Get the autologgerSettings property: Specifies settings for autologger.
+     * 
+     * @return the autologgerSettings value.
+     */
+    public ComputeInstanceAutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Specifies settings for autologger.
+     * 
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withAutologgerSettings(ComputeInstanceAutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
         return this;
     }
 
@@ -315,6 +367,88 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
     }
 
     /**
+     * Get the enableOSPatching property: Enable Auto OS Patching. Possible values are: true, false.
+     * 
+     * @return the enableOSPatching value.
+     */
+    public Boolean enableOSPatching() {
+        return this.enableOSPatching;
+    }
+
+    /**
+     * Set the enableOSPatching property: Enable Auto OS Patching. Possible values are: true, false.
+     * 
+     * @param enableOSPatching the enableOSPatching value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableOSPatching(Boolean enableOSPatching) {
+        this.enableOSPatching = enableOSPatching;
+        return this;
+    }
+
+    /**
+     * Get the enableRootAccess property: Enable root access. Possible values are: true, false.
+     * 
+     * @return the enableRootAccess value.
+     */
+    public Boolean enableRootAccess() {
+        return this.enableRootAccess;
+    }
+
+    /**
+     * Set the enableRootAccess property: Enable root access. Possible values are: true, false.
+     * 
+     * @param enableRootAccess the enableRootAccess value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableRootAccess(Boolean enableRootAccess) {
+        this.enableRootAccess = enableRootAccess;
+        return this;
+    }
+
+    /**
+     * Get the enableSso property: Enable SSO (single sign on). Possible values are: true, false.
+     * 
+     * @return the enableSso value.
+     */
+    public Boolean enableSso() {
+        return this.enableSso;
+    }
+
+    /**
+     * Set the enableSso property: Enable SSO (single sign on). Possible values are: true, false.
+     * 
+     * @param enableSso the enableSso value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableSso(Boolean enableSso) {
+        this.enableSso = enableSso;
+        return this;
+    }
+
+    /**
+     * Get the releaseQuotaOnStop property: Release quota if compute instance stopped. Possible values are: true -
+     * release quota if compute instance stopped. false - don't release quota when compute instance stopped.
+     * 
+     * @return the releaseQuotaOnStop value.
+     */
+    public Boolean releaseQuotaOnStop() {
+        return this.releaseQuotaOnStop;
+    }
+
+    /**
+     * Set the releaseQuotaOnStop property: Release quota if compute instance stopped. Possible values are: true -
+     * release quota if compute instance stopped. false - don't release quota when compute instance stopped.
+     * 
+     * @param releaseQuotaOnStop the releaseQuotaOnStop value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withReleaseQuotaOnStop(Boolean releaseQuotaOnStop) {
+        this.releaseQuotaOnStop = releaseQuotaOnStop;
+        return this;
+    }
+
+    /**
      * Get the personalComputeInstanceSettings property: Settings for a personal compute instance.
      * 
      * @return the personalComputeInstanceSettings value.
@@ -381,6 +515,28 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
      */
     public ComputeInstanceProperties withSchedules(ComputeSchedules schedules) {
         this.schedules = schedules;
+        return this;
+    }
+
+    /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     * 
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     * 
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
         return this;
     }
 
@@ -453,6 +609,9 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
         if (subnet() != null) {
             subnet().validate();
         }
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (sshSettings() != null) {
             sshSettings().validate();
         }
@@ -507,14 +666,20 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
         jsonWriter.writeJsonField("subnet", this.subnet);
         jsonWriter.writeStringField("applicationSharingPolicy",
             this.applicationSharingPolicy == null ? null : this.applicationSharingPolicy.toString());
+        jsonWriter.writeJsonField("autologgerSettings", this.autologgerSettings);
         jsonWriter.writeJsonField("sshSettings", this.sshSettings);
         jsonWriter.writeArrayField("customServices", this.customServices,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("computeInstanceAuthorizationType",
             this.computeInstanceAuthorizationType == null ? null : this.computeInstanceAuthorizationType.toString());
+        jsonWriter.writeBooleanField("enableOSPatching", this.enableOSPatching);
+        jsonWriter.writeBooleanField("enableRootAccess", this.enableRootAccess);
+        jsonWriter.writeBooleanField("enableSSO", this.enableSso);
+        jsonWriter.writeBooleanField("releaseQuotaOnStop", this.releaseQuotaOnStop);
         jsonWriter.writeJsonField("personalComputeInstanceSettings", this.personalComputeInstanceSettings);
         jsonWriter.writeJsonField("setupScripts", this.setupScripts);
         jsonWriter.writeJsonField("schedules", this.schedules);
+        jsonWriter.writeStringField("idleTimeBeforeShutdown", this.idleTimeBeforeShutdown);
         jsonWriter.writeBooleanField("enableNodePublicIp", this.enableNodePublicIp);
         return jsonWriter.writeEndObject();
     }
@@ -541,6 +706,9 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
                 } else if ("applicationSharingPolicy".equals(fieldName)) {
                     deserializedComputeInstanceProperties.applicationSharingPolicy
                         = ApplicationSharingPolicy.fromString(reader.getString());
+                } else if ("autologgerSettings".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.autologgerSettings
+                        = ComputeInstanceAutologgerSettings.fromJson(reader);
                 } else if ("sshSettings".equals(fieldName)) {
                     deserializedComputeInstanceProperties.sshSettings = ComputeInstanceSshSettings.fromJson(reader);
                 } else if ("customServices".equals(fieldName)) {
@@ -565,6 +733,15 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
                 } else if ("computeInstanceAuthorizationType".equals(fieldName)) {
                     deserializedComputeInstanceProperties.computeInstanceAuthorizationType
                         = ComputeInstanceAuthorizationType.fromString(reader.getString());
+                } else if ("enableOSPatching".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.enableOSPatching = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableRootAccess".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.enableRootAccess = reader.getNullable(JsonReader::getBoolean);
+                } else if ("enableSSO".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.enableSso = reader.getNullable(JsonReader::getBoolean);
+                } else if ("releaseQuotaOnStop".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.releaseQuotaOnStop
+                        = reader.getNullable(JsonReader::getBoolean);
                 } else if ("personalComputeInstanceSettings".equals(fieldName)) {
                     deserializedComputeInstanceProperties.personalComputeInstanceSettings
                         = PersonalComputeInstanceSettings.fromJson(reader);
@@ -574,6 +751,8 @@ public final class ComputeInstanceProperties implements JsonSerializable<Compute
                     deserializedComputeInstanceProperties.lastOperation = ComputeInstanceLastOperation.fromJson(reader);
                 } else if ("schedules".equals(fieldName)) {
                     deserializedComputeInstanceProperties.schedules = ComputeSchedules.fromJson(reader);
+                } else if ("idleTimeBeforeShutdown".equals(fieldName)) {
+                    deserializedComputeInstanceProperties.idleTimeBeforeShutdown = reader.getString();
                 } else if ("enableNodePublicIp".equals(fieldName)) {
                     deserializedComputeInstanceProperties.enableNodePublicIp
                         = reader.getNullable(JsonReader::getBoolean);

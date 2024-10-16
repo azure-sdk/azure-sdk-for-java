@@ -20,39 +20,19 @@ import java.util.List;
 public final class OnlineEndpointTrackedResourceArmPaginatedResult
     implements JsonSerializable<OnlineEndpointTrackedResourceArmPaginatedResult> {
     /*
-     * An array of objects of type OnlineEndpoint.
-     */
-    private List<OnlineEndpointInner> value;
-
-    /*
      * The link to the next page of OnlineEndpoint objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type OnlineEndpoint.
+     */
+    private List<OnlineEndpointInner> value;
 
     /**
      * Creates an instance of OnlineEndpointTrackedResourceArmPaginatedResult class.
      */
     public OnlineEndpointTrackedResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type OnlineEndpoint.
-     * 
-     * @return the value value.
-     */
-    public List<OnlineEndpointInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type OnlineEndpoint.
-     * 
-     * @param value the value value to set.
-     * @return the OnlineEndpointTrackedResourceArmPaginatedResult object itself.
-     */
-    public OnlineEndpointTrackedResourceArmPaginatedResult withValue(List<OnlineEndpointInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type OnlineEndpoint.
+     * 
+     * @return the value value.
+     */
+    public List<OnlineEndpointInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type OnlineEndpoint.
+     * 
+     * @param value the value value to set.
+     * @return the OnlineEndpointTrackedResourceArmPaginatedResult object itself.
+     */
+    public OnlineEndpointTrackedResourceArmPaginatedResult withValue(List<OnlineEndpointInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedOnlineEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<OnlineEndpointInner> value
                         = reader.readArray(reader1 -> OnlineEndpointInner.fromJson(reader1));
                     deserializedOnlineEndpointTrackedResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedOnlineEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
