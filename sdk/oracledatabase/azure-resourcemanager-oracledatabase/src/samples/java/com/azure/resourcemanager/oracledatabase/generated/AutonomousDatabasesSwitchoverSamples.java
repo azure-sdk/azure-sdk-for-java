@@ -11,9 +11,8 @@ import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
  */
 public final class AutonomousDatabasesSwitchoverSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_switchover.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabase_switchover.json
      */
     /**
      * Sample code: Perform switchover action on Autonomous Database.
@@ -28,9 +27,8 @@ public final class AutonomousDatabasesSwitchoverSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_switchover.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/preview/2024-10-01-preview/examples/
+     * autonomousDatabase_switchover.json
      */
     /**
      * Sample code: AutonomousDatabases_Switchover.
