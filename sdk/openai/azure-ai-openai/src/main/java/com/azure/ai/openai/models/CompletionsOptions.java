@@ -599,7 +599,9 @@ public final class CompletionsOptions implements JsonSerializable<CompletionsOpt
         jsonWriter.writeNumberField("frequency_penalty", this.frequencyPenalty);
         jsonWriter.writeNumberField("best_of", this.bestOf);
         jsonWriter.writeBooleanField("stream", this.stream);
+        jsonWriter.writeJsonField("stream_options", this.streamOptions);
         jsonWriter.writeStringField("model", this.model);
+        jsonWriter.writeNumberField("seed", this.seed);
         return jsonWriter.writeEndObject();
     }
 
@@ -630,7 +632,9 @@ public final class CompletionsOptions implements JsonSerializable<CompletionsOpt
             Double frequencyPenalty = null;
             Integer bestOf = null;
             Boolean stream = null;
+            ChatCompletionStreamOptions streamOptions = null;
             String model = null;
+            Integer seed = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -664,8 +668,12 @@ public final class CompletionsOptions implements JsonSerializable<CompletionsOpt
                     bestOf = reader.getNullable(JsonReader::getInt);
                 } else if ("stream".equals(fieldName)) {
                     stream = reader.getNullable(JsonReader::getBoolean);
+                } else if ("stream_options".equals(fieldName)) {
+                    streamOptions = ChatCompletionStreamOptions.fromJson(reader);
                 } else if ("model".equals(fieldName)) {
                     model = reader.getString();
+                } else if ("seed".equals(fieldName)) {
+                    seed = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }
@@ -685,8 +693,78 @@ public final class CompletionsOptions implements JsonSerializable<CompletionsOpt
             deserializedCompletionsOptions.frequencyPenalty = frequencyPenalty;
             deserializedCompletionsOptions.bestOf = bestOf;
             deserializedCompletionsOptions.stream = stream;
+            deserializedCompletionsOptions.streamOptions = streamOptions;
             deserializedCompletionsOptions.model = model;
+            deserializedCompletionsOptions.seed = seed;
             return deserializedCompletionsOptions;
         });
+    }
+
+    /*
+     * Options for streaming response. Only set this when you set `stream: true`.
+     */
+    @Generated
+    private ChatCompletionStreamOptions streamOptions;
+
+    /*
+     * If specified, our system will make a best effort to sample deterministically, such that repeated requests with
+     * the same `seed` and parameters should return the same result.
+     * 
+     * Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor
+     * changes in the backend.
+     */
+    @Generated
+    private Integer seed;
+
+    /**
+     * Get the streamOptions property: Options for streaming response. Only set this when you set `stream: true`.
+     *
+     * @return the streamOptions value.
+     */
+    @Generated
+    public ChatCompletionStreamOptions getStreamOptions() {
+        return this.streamOptions;
+    }
+
+    /**
+     * Set the streamOptions property: Options for streaming response. Only set this when you set `stream: true`.
+     *
+     * @param streamOptions the streamOptions value to set.
+     * @return the CompletionsOptions object itself.
+     */
+    @Generated
+    public CompletionsOptions setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+        this.streamOptions = streamOptions;
+        return this;
+    }
+
+    /**
+     * Get the seed property: If specified, our system will make a best effort to sample deterministically, such that
+     * repeated requests with the same `seed` and parameters should return the same result.
+     *
+     * Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor
+     * changes in the backend.
+     *
+     * @return the seed value.
+     */
+    @Generated
+    public Integer getSeed() {
+        return this.seed;
+    }
+
+    /**
+     * Set the seed property: If specified, our system will make a best effort to sample deterministically, such that
+     * repeated requests with the same `seed` and parameters should return the same result.
+     *
+     * Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor
+     * changes in the backend.
+     *
+     * @param seed the seed value to set.
+     * @return the CompletionsOptions object itself.
+     */
+    @Generated
+    public CompletionsOptions setSeed(Integer seed) {
+        this.seed = seed;
+        return this;
     }
 }
