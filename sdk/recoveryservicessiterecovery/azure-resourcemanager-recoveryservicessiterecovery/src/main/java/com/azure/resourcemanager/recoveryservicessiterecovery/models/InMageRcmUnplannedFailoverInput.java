@@ -6,34 +6,51 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * InMageRcm provider specific input for unplanned failover.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
-@JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProviderSpecificInput {
     /*
+     * The class type.
+     */
+    private String instanceType = "InMageRcm";
+
+    /*
      * A value indicating whether VM is to be shutdown.
      */
-    @JsonProperty(value = "performShutdown", required = true)
     private String performShutdown;
 
     /*
      * The recovery point id to be passed to failover to a particular recovery point. In case of latest recovery point,
      * null should be passed.
      */
-    @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
+
+    /*
+     * A value indicating the inplace OS Upgrade version.
+     */
+    private String osUpgradeVersion;
 
     /**
      * Creates an instance of InMageRcmUnplannedFailoverInput class.
      */
     public InMageRcmUnplannedFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -79,18 +96,85 @@ public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProv
     }
 
     /**
+     * Get the osUpgradeVersion property: A value indicating the inplace OS Upgrade version.
+     * 
+     * @return the osUpgradeVersion value.
+     */
+    public String osUpgradeVersion() {
+        return this.osUpgradeVersion;
+    }
+
+    /**
+     * Set the osUpgradeVersion property: A value indicating the inplace OS Upgrade version.
+     * 
+     * @param osUpgradeVersion the osUpgradeVersion value to set.
+     * @return the InMageRcmUnplannedFailoverInput object itself.
+     */
+    public InMageRcmUnplannedFailoverInput withOsUpgradeVersion(String osUpgradeVersion) {
+        this.osUpgradeVersion = osUpgradeVersion;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (performShutdown() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property performShutdown in model InMageRcmUnplannedFailoverInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property performShutdown in model InMageRcmUnplannedFailoverInput"));
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(InMageRcmUnplannedFailoverInput.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("performShutdown", this.performShutdown);
+        jsonWriter.writeStringField("instanceType", this.instanceType);
+        jsonWriter.writeStringField("recoveryPointId", this.recoveryPointId);
+        jsonWriter.writeStringField("osUpgradeVersion", this.osUpgradeVersion);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of InMageRcmUnplannedFailoverInput from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of InMageRcmUnplannedFailoverInput if the JsonReader was pointing to an instance of it, or
+     * null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the InMageRcmUnplannedFailoverInput.
+     */
+    public static InMageRcmUnplannedFailoverInput fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            InMageRcmUnplannedFailoverInput deserializedInMageRcmUnplannedFailoverInput
+                = new InMageRcmUnplannedFailoverInput();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("performShutdown".equals(fieldName)) {
+                    deserializedInMageRcmUnplannedFailoverInput.performShutdown = reader.getString();
+                } else if ("instanceType".equals(fieldName)) {
+                    deserializedInMageRcmUnplannedFailoverInput.instanceType = reader.getString();
+                } else if ("recoveryPointId".equals(fieldName)) {
+                    deserializedInMageRcmUnplannedFailoverInput.recoveryPointId = reader.getString();
+                } else if ("osUpgradeVersion".equals(fieldName)) {
+                    deserializedInMageRcmUnplannedFailoverInput.osUpgradeVersion = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedInMageRcmUnplannedFailoverInput;
+        });
+    }
 }

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class TargetComputeSizesListByReplicationProtectedIte {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /TargetComputeSizes_ListByReplicationProtectedItems.json
      */
     /**
@@ -20,8 +20,9 @@ public final class TargetComputeSizesListByReplicationProtectedIte {
      */
     public static void getsTheListOfTargetComputeSizesForTheReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.targetComputeSizes().listByReplicationProtectedItems("avraiMgDiskVault", "avraiMgDiskVaultRG",
-            "asr-a2a-default-centraluseuap", "asr-a2a-default-centraluseuap-container",
-            "468c912d-b1ab-4ea2-97eb-4b5095155db2", com.azure.core.util.Context.NONE);
+        manager.targetComputeSizes()
+            .listByReplicationProtectedItems("avraiMgDiskVaultRG", "avraiMgDiskVault", "asr-a2a-default-centraluseuap",
+                "asr-a2a-default-centraluseuap-container", "468c912d-b1ab-4ea2-97eb-4b5095155db2",
+                com.azure.core.util.Context.NONE);
     }
 }
