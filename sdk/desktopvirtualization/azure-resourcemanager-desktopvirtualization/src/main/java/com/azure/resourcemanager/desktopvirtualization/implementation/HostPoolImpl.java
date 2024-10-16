@@ -12,17 +12,21 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInn
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolPatch;
-import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenList;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
@@ -203,6 +207,22 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerModel().managedPrivateUdp();
+    }
+
+    public DirectUdp directUdp() {
+        return this.innerModel().directUdp();
+    }
+
+    public PublicUdp publicUdp() {
+        return this.innerModel().publicUdp();
+    }
+
+    public RelayUdp relayUdp() {
+        return this.innerModel().relayUdp();
     }
 
     public Region region() {
@@ -539,6 +559,46 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     public HostPoolImpl withAgentUpdate(AgentUpdateProperties agentUpdate) {
         this.innerModel().withAgentUpdate(agentUpdate);
         return this;
+    }
+
+    public HostPoolImpl withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withManagedPrivateUdp(managedPrivateUdp);
+            return this;
+        } else {
+            this.updateHostPool.withManagedPrivateUdp(managedPrivateUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withDirectUdp(DirectUdp directUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withDirectUdp(directUdp);
+            return this;
+        } else {
+            this.updateHostPool.withDirectUdp(directUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withPublicUdp(PublicUdp publicUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublicUdp(publicUdp);
+            return this;
+        } else {
+            this.updateHostPool.withPublicUdp(publicUdp);
+            return this;
+        }
+    }
+
+    public HostPoolImpl withRelayUdp(RelayUdp relayUdp) {
+        if (isInCreateMode()) {
+            this.innerModel().withRelayUdp(relayUdp);
+            return this;
+        } else {
+            this.updateHostPool.withRelayUdp(relayUdp);
+            return this;
+        }
     }
 
     public HostPoolImpl withRegistrationInfo(RegistrationInfoPatch registrationInfo) {

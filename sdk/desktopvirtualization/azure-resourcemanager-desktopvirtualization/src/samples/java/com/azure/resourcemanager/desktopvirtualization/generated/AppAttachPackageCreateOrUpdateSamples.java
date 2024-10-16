@@ -18,7 +18,7 @@ import java.util.Arrays;
 public final class AppAttachPackageCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * AppAttachPackage_Create.json
      */
     /**

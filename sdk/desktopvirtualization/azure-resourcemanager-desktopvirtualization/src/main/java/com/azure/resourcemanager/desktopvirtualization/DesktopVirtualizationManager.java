@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -28,8 +28,8 @@ import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachP
 import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationGroupsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopVirtualizationApiClientBuilder;
+import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.HostPoolsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixImagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixPackagesImpl;
@@ -273,7 +273,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.2.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
