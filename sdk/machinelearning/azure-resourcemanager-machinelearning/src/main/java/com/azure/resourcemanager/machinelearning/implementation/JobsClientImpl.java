@@ -52,20 +52,20 @@ public final class JobsClientImpl implements JobsClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of JobsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    JobsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    JobsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(JobsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesJobs to be used by the proxy service to
+     * The interface defining all the services for AzureMachineLearningServicesJobs to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
