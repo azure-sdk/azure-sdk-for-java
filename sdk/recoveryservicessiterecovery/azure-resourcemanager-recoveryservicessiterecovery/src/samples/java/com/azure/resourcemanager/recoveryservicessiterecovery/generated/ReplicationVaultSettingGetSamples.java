@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class ReplicationVaultSettingGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultSetting_Get.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ReplicationVaultSettingGetSamples {
      */
     public static void
         getsTheVaultSetting(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultSettings().getWithResponse("vault1", "resourceGroupPS1", "default",
-            com.azure.core.util.Context.NONE);
+        manager.replicationVaultSettings()
+            .getWithResponse("resourceGroupPS1", "vault1", "default", com.azure.core.util.Context.NONE);
     }
 }

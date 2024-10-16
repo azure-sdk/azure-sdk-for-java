@@ -5,197 +5,193 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 /**
  * HyperVReplicaAzure specific enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
-@JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtectionProviderSpecificInput {
     /*
+     * The class type.
+     */
+    private String instanceType = "HyperVReplicaAzure";
+
+    /*
      * The Hyper-V host VM Id.
      */
-    @JsonProperty(value = "hvHostVmId")
     private String hvHostVmId;
 
     /*
      * The VM Name.
      */
-    @JsonProperty(value = "vmName")
     private String vmName;
 
     /*
      * The OS type associated with VM.
      */
-    @JsonProperty(value = "osType")
     private String osType;
+
+    /*
+     * The OS name selected by user.
+     */
+    private String userSelectedOSName;
 
     /*
      * The OS disk VHD id associated with VM.
      */
-    @JsonProperty(value = "vhdId")
     private String vhdId;
 
     /*
      * The storage account Id.
      */
-    @JsonProperty(value = "targetStorageAccountId")
     private String targetStorageAccountId;
 
     /*
      * The selected target Azure network Id.
      */
-    @JsonProperty(value = "targetAzureNetworkId")
     private String targetAzureNetworkId;
 
     /*
      * The selected target Azure subnet Id.
      */
-    @JsonProperty(value = "targetAzureSubnetId")
     private String targetAzureSubnetId;
 
     /*
      * The selected option to enable RDP\SSH on target vm after failover. String value of
      * SrsDataContract.EnableRDPOnTargetOption enum.
      */
-    @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;
 
     /*
      * The target azure VM Name.
      */
-    @JsonProperty(value = "targetAzureVmName")
     private String targetAzureVmName;
 
     /*
      * The storage account to be used for logging during replication.
      */
-    @JsonProperty(value = "logStorageAccountId")
     private String logStorageAccountId;
 
     /*
      * The list of VHD Ids of disks to be protected.
      */
-    @JsonProperty(value = "disksToInclude")
     private List<String> disksToInclude;
 
     /*
      * The Id of the target resource group (for classic deployment) in which the failover VM is to be created.
      */
-    @JsonProperty(value = "targetAzureV1ResourceGroupId")
     private String targetAzureV1ResourceGroupId;
 
     /*
      * The Id of the target resource group (for resource manager deployment) in which the failover VM is to be created.
      */
-    @JsonProperty(value = "targetAzureV2ResourceGroupId")
     private String targetAzureV2ResourceGroupId;
 
     /*
      * A value indicating whether managed disks should be used during failover.
      */
-    @JsonProperty(value = "useManagedDisks")
     private String useManagedDisks;
 
     /*
      * The target availability set ARM Id for resource manager deployment.
      */
-    @JsonProperty(value = "targetAvailabilitySetId")
     private String targetAvailabilitySetId;
 
     /*
      * The target availability zone.
      */
-    @JsonProperty(value = "targetAvailabilityZone")
     private String targetAvailabilityZone;
 
     /*
      * License type.
      */
-    @JsonProperty(value = "licenseType")
     private LicenseType licenseType;
 
     /*
      * The SQL Server license type.
      */
-    @JsonProperty(value = "sqlServerLicenseType")
     private SqlServerLicenseType sqlServerLicenseType;
+
+    /*
+     * The license type for Linux VM's.
+     */
+    private LinuxLicenseType linuxLicenseType;
+
+    /*
+     * The target VM security profile.
+     */
+    private SecurityProfileProperties targetVmSecurityProfile;
 
     /*
      * The target VM size.
      */
-    @JsonProperty(value = "targetVmSize")
     private String targetVmSize;
 
     /*
      * The proximity placement group ARM Id.
      */
-    @JsonProperty(value = "targetProximityPlacementGroupId")
     private String targetProximityPlacementGroupId;
 
     /*
      * A value indicating whether managed disks should be used during replication.
      */
-    @JsonProperty(value = "useManagedDisksForReplication")
     private String useManagedDisksForReplication;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
-    @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
 
     /*
      * The disks to include list for managed disks.
      */
-    @JsonProperty(value = "disksToIncludeForManagedDisks")
     private List<HyperVReplicaAzureDiskInputDetails> disksToIncludeForManagedDisks;
 
     /*
      * The DiskEncryptionSet ARM Id.
      */
-    @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
 
     /*
      * The target VM tags.
      */
-    @JsonProperty(value = "targetVmTags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetVmTags;
 
     /*
      * The tags for the seed managed disks.
      */
-    @JsonProperty(value = "seedManagedDiskTags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> seedManagedDiskTags;
 
     /*
      * The tags for the target managed disks.
      */
-    @JsonProperty(value = "targetManagedDiskTags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetManagedDiskTags;
 
     /*
      * The tags for the target NICs.
      */
-    @JsonProperty(value = "targetNicTags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetNicTags;
 
     /**
      * Creates an instance of HyperVReplicaAzureEnableProtectionInput class.
      */
     public HyperVReplicaAzureEnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -255,6 +251,26 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      */
     public HyperVReplicaAzureEnableProtectionInput withOsType(String osType) {
         this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
         return this;
     }
 
@@ -567,6 +583,47 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Get the targetVmSize property: The target VM size.
      * 
      * @return the targetVmSize value.
@@ -631,7 +688,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -640,7 +697,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the HyperVReplicaAzureEnableProtectionInput object itself.
@@ -779,9 +836,164 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      */
     @Override
     public void validate() {
-        super.validate();
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
+        }
         if (disksToIncludeForManagedDisks() != null) {
             disksToIncludeForManagedDisks().forEach(e -> e.validate());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("instanceType", this.instanceType);
+        jsonWriter.writeStringField("hvHostVmId", this.hvHostVmId);
+        jsonWriter.writeStringField("vmName", this.vmName);
+        jsonWriter.writeStringField("osType", this.osType);
+        jsonWriter.writeStringField("userSelectedOSName", this.userSelectedOSName);
+        jsonWriter.writeStringField("vhdId", this.vhdId);
+        jsonWriter.writeStringField("targetStorageAccountId", this.targetStorageAccountId);
+        jsonWriter.writeStringField("targetAzureNetworkId", this.targetAzureNetworkId);
+        jsonWriter.writeStringField("targetAzureSubnetId", this.targetAzureSubnetId);
+        jsonWriter.writeStringField("enableRdpOnTargetOption", this.enableRdpOnTargetOption);
+        jsonWriter.writeStringField("targetAzureVmName", this.targetAzureVmName);
+        jsonWriter.writeStringField("logStorageAccountId", this.logStorageAccountId);
+        jsonWriter.writeArrayField("disksToInclude", this.disksToInclude,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("targetAzureV1ResourceGroupId", this.targetAzureV1ResourceGroupId);
+        jsonWriter.writeStringField("targetAzureV2ResourceGroupId", this.targetAzureV2ResourceGroupId);
+        jsonWriter.writeStringField("useManagedDisks", this.useManagedDisks);
+        jsonWriter.writeStringField("targetAvailabilitySetId", this.targetAvailabilitySetId);
+        jsonWriter.writeStringField("targetAvailabilityZone", this.targetAvailabilityZone);
+        jsonWriter.writeStringField("licenseType", this.licenseType == null ? null : this.licenseType.toString());
+        jsonWriter.writeStringField("sqlServerLicenseType",
+            this.sqlServerLicenseType == null ? null : this.sqlServerLicenseType.toString());
+        jsonWriter.writeStringField("linuxLicenseType",
+            this.linuxLicenseType == null ? null : this.linuxLicenseType.toString());
+        jsonWriter.writeJsonField("targetVmSecurityProfile", this.targetVmSecurityProfile);
+        jsonWriter.writeStringField("targetVmSize", this.targetVmSize);
+        jsonWriter.writeStringField("targetProximityPlacementGroupId", this.targetProximityPlacementGroupId);
+        jsonWriter.writeStringField("useManagedDisksForReplication", this.useManagedDisksForReplication);
+        jsonWriter.writeStringField("diskType", this.diskType == null ? null : this.diskType.toString());
+        jsonWriter.writeArrayField("disksToIncludeForManagedDisks", this.disksToIncludeForManagedDisks,
+            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("diskEncryptionSetId", this.diskEncryptionSetId);
+        jsonWriter.writeMapField("targetVmTags", this.targetVmTags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("seedManagedDiskTags", this.seedManagedDiskTags,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("targetManagedDiskTags", this.targetManagedDiskTags,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("targetNicTags", this.targetNicTags, (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of HyperVReplicaAzureEnableProtectionInput from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of HyperVReplicaAzureEnableProtectionInput if the JsonReader was pointing to an instance of
+     * it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the HyperVReplicaAzureEnableProtectionInput.
+     */
+    public static HyperVReplicaAzureEnableProtectionInput fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            HyperVReplicaAzureEnableProtectionInput deserializedHyperVReplicaAzureEnableProtectionInput
+                = new HyperVReplicaAzureEnableProtectionInput();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("instanceType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.instanceType = reader.getString();
+                } else if ("hvHostVmId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.hvHostVmId = reader.getString();
+                } else if ("vmName".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.vmName = reader.getString();
+                } else if ("osType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.osType = reader.getString();
+                } else if ("userSelectedOSName".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.userSelectedOSName = reader.getString();
+                } else if ("vhdId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.vhdId = reader.getString();
+                } else if ("targetStorageAccountId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetStorageAccountId = reader.getString();
+                } else if ("targetAzureNetworkId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAzureNetworkId = reader.getString();
+                } else if ("targetAzureSubnetId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAzureSubnetId = reader.getString();
+                } else if ("enableRdpOnTargetOption".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.enableRdpOnTargetOption = reader.getString();
+                } else if ("targetAzureVmName".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAzureVmName = reader.getString();
+                } else if ("logStorageAccountId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.logStorageAccountId = reader.getString();
+                } else if ("disksToInclude".equals(fieldName)) {
+                    List<String> disksToInclude = reader.readArray(reader1 -> reader1.getString());
+                    deserializedHyperVReplicaAzureEnableProtectionInput.disksToInclude = disksToInclude;
+                } else if ("targetAzureV1ResourceGroupId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAzureV1ResourceGroupId
+                        = reader.getString();
+                } else if ("targetAzureV2ResourceGroupId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAzureV2ResourceGroupId
+                        = reader.getString();
+                } else if ("useManagedDisks".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.useManagedDisks = reader.getString();
+                } else if ("targetAvailabilitySetId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAvailabilitySetId = reader.getString();
+                } else if ("targetAvailabilityZone".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetAvailabilityZone = reader.getString();
+                } else if ("licenseType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.licenseType
+                        = LicenseType.fromString(reader.getString());
+                } else if ("sqlServerLicenseType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.sqlServerLicenseType
+                        = SqlServerLicenseType.fromString(reader.getString());
+                } else if ("linuxLicenseType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.linuxLicenseType
+                        = LinuxLicenseType.fromString(reader.getString());
+                } else if ("targetVmSecurityProfile".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetVmSecurityProfile
+                        = SecurityProfileProperties.fromJson(reader);
+                } else if ("targetVmSize".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetVmSize = reader.getString();
+                } else if ("targetProximityPlacementGroupId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetProximityPlacementGroupId
+                        = reader.getString();
+                } else if ("useManagedDisksForReplication".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.useManagedDisksForReplication
+                        = reader.getString();
+                } else if ("diskType".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.diskType
+                        = DiskAccountType.fromString(reader.getString());
+                } else if ("disksToIncludeForManagedDisks".equals(fieldName)) {
+                    List<HyperVReplicaAzureDiskInputDetails> disksToIncludeForManagedDisks
+                        = reader.readArray(reader1 -> HyperVReplicaAzureDiskInputDetails.fromJson(reader1));
+                    deserializedHyperVReplicaAzureEnableProtectionInput.disksToIncludeForManagedDisks
+                        = disksToIncludeForManagedDisks;
+                } else if ("diskEncryptionSetId".equals(fieldName)) {
+                    deserializedHyperVReplicaAzureEnableProtectionInput.diskEncryptionSetId = reader.getString();
+                } else if ("targetVmTags".equals(fieldName)) {
+                    Map<String, String> targetVmTags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetVmTags = targetVmTags;
+                } else if ("seedManagedDiskTags".equals(fieldName)) {
+                    Map<String, String> seedManagedDiskTags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedHyperVReplicaAzureEnableProtectionInput.seedManagedDiskTags = seedManagedDiskTags;
+                } else if ("targetManagedDiskTags".equals(fieldName)) {
+                    Map<String, String> targetManagedDiskTags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetManagedDiskTags = targetManagedDiskTags;
+                } else if ("targetNicTags".equals(fieldName)) {
+                    Map<String, String> targetNicTags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedHyperVReplicaAzureEnableProtectionInput.targetNicTags = targetNicTags;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedHyperVReplicaAzureEnableProtectionInput;
+        });
     }
 }
