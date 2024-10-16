@@ -10,7 +10,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class HostPoolsListRegistrationTokensSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * HostPools_ListRegistrationToken_Post.json
      */
     /**

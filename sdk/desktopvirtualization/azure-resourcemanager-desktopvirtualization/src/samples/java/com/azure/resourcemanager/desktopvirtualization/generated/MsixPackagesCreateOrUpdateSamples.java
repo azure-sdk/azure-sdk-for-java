@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class MsixPackagesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-09-10/examples/
      * MsixPackage_Create.json
      */
     /**
