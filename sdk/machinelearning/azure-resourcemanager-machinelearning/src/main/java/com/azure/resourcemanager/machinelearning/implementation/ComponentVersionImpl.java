@@ -9,7 +9,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersion;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
-import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 
 public final class ComponentVersionImpl
     implements ComponentVersion, ComponentVersion.Definition, ComponentVersion.Update {
@@ -51,33 +50,31 @@ public final class ComponentVersionImpl
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String componentName;
 
     private String version;
 
-    public ComponentVersionImpl withExistingComponent(String resourceGroupName, String workspaceName, String name) {
+    public ComponentVersionImpl withExistingComponent(String resourceGroupName, String registryName,
+        String componentName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.componentName = componentName;
         return this;
     }
 
     public ComponentVersion create() {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryComponentVersions()
+            .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ComponentVersion create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryComponentVersions()
+            .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -93,18 +90,15 @@ public final class ComponentVersionImpl
 
     public ComponentVersion apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryComponentVersions()
+            .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ComponentVersion apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryComponentVersions()
+            .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -113,33 +107,25 @@ public final class ComponentVersionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "components");
+        this.registryName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "registries");
+        this.componentName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "components");
         this.version = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
     public ComponentVersion refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+            .getRegistryComponentVersions()
+            .getWithResponse(resourceGroupName, registryName, componentName, version, Context.NONE)
             .getValue();
         return this;
     }
 
     public ComponentVersion refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getComponentVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+            .getRegistryComponentVersions()
+            .getWithResponse(resourceGroupName, registryName, componentName, version, context)
             .getValue();
         return this;
-    }
-
-    public void publish(DestinationAsset body) {
-        serviceManager.componentVersions().publish(resourceGroupName, workspaceName, name, version, body);
-    }
-
-    public void publish(DestinationAsset body, Context context) {
-        serviceManager.componentVersions().publish(resourceGroupName, workspaceName, name, version, body, context);
     }
 
     public ComponentVersionImpl withProperties(ComponentVersionProperties properties) {

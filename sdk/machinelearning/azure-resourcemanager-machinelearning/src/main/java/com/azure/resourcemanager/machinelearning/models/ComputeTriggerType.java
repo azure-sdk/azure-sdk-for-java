@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Is the trigger type recurrence or cron.
+ * Defines values for ComputeTriggerType.
  */
 public final class ComputeTriggerType extends ExpandableStringEnum<ComputeTriggerType> {
     /**

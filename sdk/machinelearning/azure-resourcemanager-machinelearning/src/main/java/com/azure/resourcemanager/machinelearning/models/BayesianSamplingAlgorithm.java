@@ -44,7 +44,6 @@ public final class BayesianSamplingAlgorithm extends SamplingAlgorithm {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

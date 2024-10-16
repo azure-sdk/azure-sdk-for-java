@@ -19,14 +19,14 @@ import java.util.Map;
 @Fluent
 public final class NotificationSetting implements JsonSerializable<NotificationSetting> {
     /*
-     * This is the email recipient list which has a limitation of 499 characters in total concat with comma separator
-     */
-    private List<String> emails;
-
-    /*
      * Send email notification to user on specified notification type
      */
     private List<EmailNotificationEnableType> emailOn;
+
+    /*
+     * This is the email recipient list which has a limitation of 499 characters in total concat with comma separator
+     */
+    private List<String> emails;
 
     /*
      * Send webhook callback to a service. Key is a user-provided name for the webhook.
@@ -37,6 +37,26 @@ public final class NotificationSetting implements JsonSerializable<NotificationS
      * Creates an instance of NotificationSetting class.
      */
     public NotificationSetting() {
+    }
+
+    /**
+     * Get the emailOn property: Send email notification to user on specified notification type.
+     * 
+     * @return the emailOn value.
+     */
+    public List<EmailNotificationEnableType> emailOn() {
+        return this.emailOn;
+    }
+
+    /**
+     * Set the emailOn property: Send email notification to user on specified notification type.
+     * 
+     * @param emailOn the emailOn value to set.
+     * @return the NotificationSetting object itself.
+     */
+    public NotificationSetting withEmailOn(List<EmailNotificationEnableType> emailOn) {
+        this.emailOn = emailOn;
+        return this;
     }
 
     /**
@@ -58,26 +78,6 @@ public final class NotificationSetting implements JsonSerializable<NotificationS
      */
     public NotificationSetting withEmails(List<String> emails) {
         this.emails = emails;
-        return this;
-    }
-
-    /**
-     * Get the emailOn property: Send email notification to user on specified notification type.
-     * 
-     * @return the emailOn value.
-     */
-    public List<EmailNotificationEnableType> emailOn() {
-        return this.emailOn;
-    }
-
-    /**
-     * Set the emailOn property: Send email notification to user on specified notification type.
-     * 
-     * @param emailOn the emailOn value to set.
-     * @return the NotificationSetting object itself.
-     */
-    public NotificationSetting withEmailOn(List<EmailNotificationEnableType> emailOn) {
-        this.emailOn = emailOn;
         return this;
     }
 
@@ -122,9 +122,9 @@ public final class NotificationSetting implements JsonSerializable<NotificationS
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("emails", this.emails, (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("emailOn", this.emailOn,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeArrayField("emails", this.emails, (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("webhooks", this.webhooks, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
@@ -144,13 +144,13 @@ public final class NotificationSetting implements JsonSerializable<NotificationS
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("emails".equals(fieldName)) {
-                    List<String> emails = reader.readArray(reader1 -> reader1.getString());
-                    deserializedNotificationSetting.emails = emails;
-                } else if ("emailOn".equals(fieldName)) {
+                if ("emailOn".equals(fieldName)) {
                     List<EmailNotificationEnableType> emailOn
                         = reader.readArray(reader1 -> EmailNotificationEnableType.fromString(reader1.getString()));
                     deserializedNotificationSetting.emailOn = emailOn;
+                } else if ("emails".equals(fieldName)) {
+                    List<String> emails = reader.readArray(reader1 -> reader1.getString());
+                    deserializedNotificationSetting.emails = emails;
                 } else if ("webhooks".equals(fieldName)) {
                     Map<String, Webhook> webhooks = reader.readMap(reader1 -> Webhook.fromJson(reader1));
                     deserializedNotificationSetting.webhooks = webhooks;

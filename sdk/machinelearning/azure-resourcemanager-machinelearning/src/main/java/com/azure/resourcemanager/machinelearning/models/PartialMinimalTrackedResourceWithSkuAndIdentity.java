@@ -17,39 +17,19 @@ import java.util.Map;
 @Fluent
 public final class PartialMinimalTrackedResourceWithSkuAndIdentity extends PartialMinimalTrackedResource {
     /*
-     * Sku details required for ARM contract for Autoscaling.
-     */
-    private PartialSku sku;
-
-    /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
     private PartialManagedServiceIdentity identity;
+
+    /*
+     * Sku details required for ARM contract for Autoscaling.
+     */
+    private PartialSku sku;
 
     /**
      * Creates an instance of PartialMinimalTrackedResourceWithSkuAndIdentity class.
      */
     public PartialMinimalTrackedResourceWithSkuAndIdentity() {
-    }
-
-    /**
-     * Get the sku property: Sku details required for ARM contract for Autoscaling.
-     * 
-     * @return the sku value.
-     */
-    public PartialSku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: Sku details required for ARM contract for Autoscaling.
-     * 
-     * @param sku the sku value to set.
-     * @return the PartialMinimalTrackedResourceWithSkuAndIdentity object itself.
-     */
-    public PartialMinimalTrackedResourceWithSkuAndIdentity withSku(PartialSku sku) {
-        this.sku = sku;
-        return this;
     }
 
     /**
@@ -73,6 +53,26 @@ public final class PartialMinimalTrackedResourceWithSkuAndIdentity extends Parti
     }
 
     /**
+     * Get the sku property: Sku details required for ARM contract for Autoscaling.
+     * 
+     * @return the sku value.
+     */
+    public PartialSku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: Sku details required for ARM contract for Autoscaling.
+     * 
+     * @param sku the sku value to set.
+     * @return the PartialMinimalTrackedResourceWithSkuAndIdentity object itself.
+     */
+    public PartialMinimalTrackedResourceWithSkuAndIdentity withSku(PartialSku sku) {
+        this.sku = sku;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -88,12 +88,11 @@ public final class PartialMinimalTrackedResourceWithSkuAndIdentity extends Parti
      */
     @Override
     public void validate() {
-        super.validate();
-        if (sku() != null) {
-            sku().validate();
-        }
         if (identity() != null) {
             identity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
     }
 
@@ -104,8 +103,8 @@ public final class PartialMinimalTrackedResourceWithSkuAndIdentity extends Parti
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
 
@@ -128,11 +127,11 @@ public final class PartialMinimalTrackedResourceWithSkuAndIdentity extends Parti
                 if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedPartialMinimalTrackedResourceWithSkuAndIdentity.withTags(tags);
-                } else if ("sku".equals(fieldName)) {
-                    deserializedPartialMinimalTrackedResourceWithSkuAndIdentity.sku = PartialSku.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedPartialMinimalTrackedResourceWithSkuAndIdentity.identity
                         = PartialManagedServiceIdentity.fromJson(reader);
+                } else if ("sku".equals(fieldName)) {
+                    deserializedPartialMinimalTrackedResourceWithSkuAndIdentity.sku = PartialSku.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
