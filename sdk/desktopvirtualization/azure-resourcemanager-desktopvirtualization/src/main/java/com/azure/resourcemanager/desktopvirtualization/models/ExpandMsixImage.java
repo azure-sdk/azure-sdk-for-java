@@ -113,7 +113,7 @@ public interface ExpandMsixImage {
     List<MsixPackageDependencies> packageDependencies();
 
     /**
-     * Gets the version property: Package version found in the appxmanifest.xml.
+     * Gets the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */

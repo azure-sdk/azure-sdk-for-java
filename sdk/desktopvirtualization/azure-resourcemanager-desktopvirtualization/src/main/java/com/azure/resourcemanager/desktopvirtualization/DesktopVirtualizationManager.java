@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -24,13 +24,16 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
+import com.azure.resourcemanager.desktopvirtualization.implementation.ActiveSessionHostConfigurationsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackageInfoesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationGroupsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.ControlSessionHostUpdatesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopVirtualizationApiClientBuilder;
+import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.HostPoolsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.InitiateSessionHostUpdatesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixImagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.OperationsImpl;
@@ -39,16 +42,23 @@ import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateLin
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPersonalSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlanPooledSchedulesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlansImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostConfigurationsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostManagementsImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostManagementsUpdateStatusImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostOperationsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.StartMenuItemsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.UserSessionsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.WorkspacesImpl;
+import com.azure.resourcemanager.desktopvirtualization.models.ActiveSessionHostConfigurations;
 import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackageInfoes;
 import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroups;
 import com.azure.resourcemanager.desktopvirtualization.models.Applications;
+import com.azure.resourcemanager.desktopvirtualization.models.ControlSessionHostUpdates;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktops;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPools;
+import com.azure.resourcemanager.desktopvirtualization.models.InitiateSessionHostUpdates;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.Operations;
@@ -57,6 +67,10 @@ import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkResourc
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPersonalSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPooledSchedules;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlans;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostConfigurations;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostManagements;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostManagementsUpdateStatus;
+import com.azure.resourcemanager.desktopvirtualization.models.SessionHostOperations;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHosts;
 import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItems;
 import com.azure.resourcemanager.desktopvirtualization.models.UserSessions;
@@ -96,9 +110,23 @@ public final class DesktopVirtualizationManager {
 
     private HostPools hostPools;
 
+    private SessionHostManagements sessionHostManagements;
+
+    private InitiateSessionHostUpdates initiateSessionHostUpdates;
+
+    private ControlSessionHostUpdates controlSessionHostUpdates;
+
+    private SessionHostManagementsUpdateStatus sessionHostManagementsUpdateStatus;
+
+    private SessionHostConfigurations sessionHostConfigurations;
+
+    private ActiveSessionHostConfigurations activeSessionHostConfigurations;
+
     private UserSessions userSessions;
 
     private SessionHosts sessionHosts;
+
+    private SessionHostOperations sessionHostOperations;
 
     private MsixPackages msixPackages;
 
@@ -273,7 +301,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.2.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -467,6 +495,84 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
+     * Gets the resource collection API of SessionHostManagements.
+     * 
+     * @return Resource collection API of SessionHostManagements.
+     */
+    public SessionHostManagements sessionHostManagements() {
+        if (this.sessionHostManagements == null) {
+            this.sessionHostManagements
+                = new SessionHostManagementsImpl(clientObject.getSessionHostManagements(), this);
+        }
+        return sessionHostManagements;
+    }
+
+    /**
+     * Gets the resource collection API of InitiateSessionHostUpdates.
+     * 
+     * @return Resource collection API of InitiateSessionHostUpdates.
+     */
+    public InitiateSessionHostUpdates initiateSessionHostUpdates() {
+        if (this.initiateSessionHostUpdates == null) {
+            this.initiateSessionHostUpdates
+                = new InitiateSessionHostUpdatesImpl(clientObject.getInitiateSessionHostUpdates(), this);
+        }
+        return initiateSessionHostUpdates;
+    }
+
+    /**
+     * Gets the resource collection API of ControlSessionHostUpdates.
+     * 
+     * @return Resource collection API of ControlSessionHostUpdates.
+     */
+    public ControlSessionHostUpdates controlSessionHostUpdates() {
+        if (this.controlSessionHostUpdates == null) {
+            this.controlSessionHostUpdates
+                = new ControlSessionHostUpdatesImpl(clientObject.getControlSessionHostUpdates(), this);
+        }
+        return controlSessionHostUpdates;
+    }
+
+    /**
+     * Gets the resource collection API of SessionHostManagementsUpdateStatus.
+     * 
+     * @return Resource collection API of SessionHostManagementsUpdateStatus.
+     */
+    public SessionHostManagementsUpdateStatus sessionHostManagementsUpdateStatus() {
+        if (this.sessionHostManagementsUpdateStatus == null) {
+            this.sessionHostManagementsUpdateStatus = new SessionHostManagementsUpdateStatusImpl(
+                clientObject.getSessionHostManagementsUpdateStatus(), this);
+        }
+        return sessionHostManagementsUpdateStatus;
+    }
+
+    /**
+     * Gets the resource collection API of SessionHostConfigurations.
+     * 
+     * @return Resource collection API of SessionHostConfigurations.
+     */
+    public SessionHostConfigurations sessionHostConfigurations() {
+        if (this.sessionHostConfigurations == null) {
+            this.sessionHostConfigurations
+                = new SessionHostConfigurationsImpl(clientObject.getSessionHostConfigurations(), this);
+        }
+        return sessionHostConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of ActiveSessionHostConfigurations.
+     * 
+     * @return Resource collection API of ActiveSessionHostConfigurations.
+     */
+    public ActiveSessionHostConfigurations activeSessionHostConfigurations() {
+        if (this.activeSessionHostConfigurations == null) {
+            this.activeSessionHostConfigurations
+                = new ActiveSessionHostConfigurationsImpl(clientObject.getActiveSessionHostConfigurations(), this);
+        }
+        return activeSessionHostConfigurations;
+    }
+
+    /**
      * Gets the resource collection API of UserSessions.
      * 
      * @return Resource collection API of UserSessions.
@@ -488,6 +594,18 @@ public final class DesktopVirtualizationManager {
             this.sessionHosts = new SessionHostsImpl(clientObject.getSessionHosts(), this);
         }
         return sessionHosts;
+    }
+
+    /**
+     * Gets the resource collection API of SessionHostOperations.
+     * 
+     * @return Resource collection API of SessionHostOperations.
+     */
+    public SessionHostOperations sessionHostOperations() {
+        if (this.sessionHostOperations == null) {
+            this.sessionHostOperations = new SessionHostOperationsImpl(clientObject.getSessionHostOperations(), this);
+        }
+        return sessionHostOperations;
     }
 
     /**

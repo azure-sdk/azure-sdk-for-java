@@ -11,9 +11,9 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.Application
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroup;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.util.Collections;
 import java.util.Map;
 
@@ -60,15 +60,15 @@ public final class ApplicationGroupImpl
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
+    public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
+    public Sku sku() {
         return this.innerModel().sku();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
     }
 
@@ -247,17 +247,17 @@ public final class ApplicationGroupImpl
         return this;
     }
 
-    public ApplicationGroupImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public ApplicationGroupImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public ApplicationGroupImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public ApplicationGroupImpl withSku(Sku sku) {
         this.innerModel().withSku(sku);
         return this;
     }
 
-    public ApplicationGroupImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public ApplicationGroupImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }
