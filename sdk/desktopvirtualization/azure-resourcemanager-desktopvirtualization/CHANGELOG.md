@@ -1,14 +1,355 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-16)
 
-### Features Added
+- Azure Resource Manager DesktopVirtualization client library for Java. This package contains Microsoft Azure SDK for DesktopVirtualization Management SDK.  Package tag package-preview-2024-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.ResourceIdentityType` was removed
 
-### Other Changes
+* `models.ResourceModelWithAllowedPropertySetPlan` was removed
+
+* `models.Identity` was removed
+
+* `models.ScalingScheduleDaysOfWeekItem` was removed
+
+* `models.ResourceModelWithAllowedPropertySetIdentity` was removed
+
+* `models.ResourceModelWithAllowedPropertySetSku` was removed
+
+#### `models.ScalingPlanPersonalSchedule$DefinitionStages` was modified
+
+* Stage 2, 3, 4, 5, 6 was added
+
+#### `models.ScalingPlanPooledSchedule$DefinitionStages` was modified
+
+* Stage 2, 3, 4, 5, 6, 7, 8 was added
+
+#### `models.ScalingPlanPooledSchedule$Definition` was modified
+
+* `withRampUpCapacityThresholdPct(java.lang.Integer)` was removed
+* `withRampDownCapacityThresholdPct(java.lang.Integer)` was removed
+
+#### `models.Workspace` was modified
+
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+
+#### `models.ApplicationGroup` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.HostPool` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+
+#### `models.ResourceModelWithAllowedPropertySet` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+
+#### `models.AppAttachPackages` was modified
+
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+
+#### `models.HostPool$Definition` was modified
+
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+#### `models.ScalingPlanPooledSchedule` was modified
+
+* `java.lang.Integer rampUpCapacityThresholdPct()` -> `int rampUpCapacityThresholdPct()`
+* `java.lang.Integer rampDownCapacityThresholdPct()` -> `int rampDownCapacityThresholdPct()`
+
+#### `models.SessionHosts` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,com.azure.core.util.Context)` was removed
+
+#### `models.ScalingPlan` was modified
+
+* `models.ResourceModelWithAllowedPropertySetPlan plan()` -> `models.Plan plan()`
+* `models.ResourceModelWithAllowedPropertySetIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.ResourceModelWithAllowedPropertySetSku sku()` -> `models.Sku sku()`
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+
+#### `models.Workspace$Definition` was modified
+
+* `withPlan(models.ResourceModelWithAllowedPropertySetPlan)` was removed
+* `withSku(models.ResourceModelWithAllowedPropertySetSku)` was removed
+* `withIdentity(models.ResourceModelWithAllowedPropertySetIdentity)` was removed
+
+### Features Added
+
+* `models.SessionHostManagementList` was added
+
+* `models.VirtualMachineDiskType` was added
+
+* `models.MarketplaceInfoPatchProperties` was added
+
+* `models.ActiveDirectoryInfoProperties` was added
+
+* `models.DiskInfoProperties` was added
+
+* `models.SessionHostConfigurations` was added
+
+* `models.UserAssignedIdentity` was added
+
+* `models.AzureActiveDirectoryInfoProperties` was added
+
+* `models.SessionHostConfigurationList` was added
+
+* `models.SessionHostManagementsUpdateStatus` was added
+
+* `models.SessionHostManagementUpdateStatus` was added
+
+* `models.PublicUdp` was added
+
+* `models.DomainInfoPatchProperties` was added
+
+* `models.ImageInfoPatchProperties` was added
+
+* `models.SessionHostManagementOperationProgress` was added
+
+* `models.KeyVaultCredentialsProperties` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.KeyVaultCredentialsPatchProperties` was added
+
+* `models.SessionHostConfiguration` was added
+
+* `models.SecurityInfoPatchProperties` was added
+
+* `models.BootDiagnosticsInfoProperties` was added
+
+* `models.ActiveSessionHostConfiguration` was added
+
+* `models.ControlSessionHostUpdates` was added
+
+* `models.DomainInfoProperties` was added
+
+* `models.ActiveSessionHostConfigurationList` was added
+
+* `models.CustomInfoPatchProperties` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.ActiveSessionHostConfigurations` was added
+
+* `models.SessionHostConfigurationPatch` was added
+
+* `models.SessionHostManagementPatch` was added
+
+* `models.BootDiagnosticsInfoPatchProperties` was added
+
+* `models.DirectUdp` was added
+
+* `models.NetworkInfoPatchProperties` was added
+
+* `models.SessionHostManagement` was added
+
+* `models.MarketplaceInfoProperties` was added
+
+* `models.SecurityInfoProperties` was added
+
+* `models.SessionHostOperations` was added
+
+* `models.HostPoolUpdateAction` was added
+
+* `models.ManagedPrivateUdp` was added
+
+* `models.UpdateSessionHostsRequestBody` was added
+
+* `models.InitiateSessionHostUpdates` was added
+
+* `models.ProvisioningStateShc` was added
+
+* `models.HostPoolUpdateControlParameter` was added
+
+* `models.ImageInfoProperties` was added
+
+* `models.DiskInfoPatchProperties` was added
+
+* `models.HostPoolUpdateConfigurationProperties` was added
+
+* `models.NetworkInfoProperties` was added
+
+* `models.VirtualMachineSecurityType` was added
+
+* `models.ManagementType` was added
+
+* `models.SessionHostManagementUpdateStatusProperties` was added
+
+* `models.RelayUdp` was added
+
+* `models.ActiveDirectoryInfoPatchProperties` was added
+
+* `models.DomainJoinType` was added
+
+* `models.HostPoolUpdateConfigurationPatchProperties` was added
+
+* `models.CustomInfoProperties` was added
+
+* `models.SessionHostManagements` was added
+
+* `models.Type` was added
+
+#### `models.ScalingPlanPooledSchedule$Definition` was modified
+
+* `withRampDownCapacityThresholdPct(int)` was added
+* `withRampUpCapacityThresholdPct(int)` was added
+
+#### `models.HostPool$Update` was modified
+
+* `withRelayUdp(models.RelayUdp)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `withPublicUdp(models.PublicUdp)` was added
+
+#### `models.AppAttachPackagePatch` was modified
+
+* `withTags(java.util.Map)` was added
+* `tags()` was added
+
+#### `models.AppAttachPackagePatchProperties` was modified
+
+* `customData()` was added
+* `packageLookbackUrl()` was added
+* `withCustomData(java.lang.String)` was added
+* `withPackageLookbackUrl(java.lang.String)` was added
+
+#### `models.HostPool` was modified
+
+* `managementType()` was added
+* `publicUdp()` was added
+* `relayUdp()` was added
+* `directUdp()` was added
+* `managedPrivateUdp()` was added
+
+#### `models.HostPoolPatch` was modified
+
+* `withDirectUdp(models.DirectUdp)` was added
+* `publicUdp()` was added
+* `directUdp()` was added
+* `relayUdp()` was added
+* `managedPrivateUdp()` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+
+#### `models.ResourceModelWithAllowedPropertySet` was modified
+
+* `withSku(models.Sku)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPlan(models.Plan)` was added
+
+#### `models.HostPoolProperties` was modified
+
+* `relayUdp()` was added
+* `directUdp()` was added
+* `managedPrivateUdp()` was added
+* `managementType()` was added
+* `publicUdp()` was added
+
+#### `DesktopVirtualizationManager` was modified
+
+* `controlSessionHostUpdates()` was added
+* `initiateSessionHostUpdates()` was added
+* `sessionHostConfigurations()` was added
+* `sessionHostOperations()` was added
+* `sessionHostManagements()` was added
+* `activeSessionHostConfigurations()` was added
+* `sessionHostManagementsUpdateStatus()` was added
+
+#### `models.AppAttachPackages` was modified
+
+* `delete(java.lang.String,java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.AppAttachPackage$Update` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.AppAttachPackageProperties` was modified
+
+* `withCustomData(java.lang.String)` was added
+* `packageOwnerName()` was added
+* `withPackageLookbackUrl(java.lang.String)` was added
+* `packageLookbackUrl()` was added
+* `withPackageOwnerName(java.lang.String)` was added
+* `customData()` was added
+
+#### `models.ScalingPlanPooledSchedulePatch` was modified
+
+* `namePropertiesName()` was added
+
+#### `models.ApplicationGroup$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withSku(models.Sku)` was added
+* `withPlan(models.Plan)` was added
+
+#### `models.HostPool$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPublicUdp(models.PublicUdp)` was added
+* `withDirectUdp(models.DirectUdp)` was added
+* `withPlan(models.Plan)` was added
+* `withRelayUdp(models.RelayUdp)` was added
+* `withManagedPrivateUdp(models.ManagedPrivateUdp)` was added
+* `withSku(models.Sku)` was added
+* `withManagementType(models.ManagementType)` was added
+
+#### `models.ScalingPlanPooledSchedule` was modified
+
+* `namePropertiesName()` was added
+
+#### `models.SessionHost` was modified
+
+* `sessionHostConfiguration()` was added
+* `lastSessionHostUpdateTime()` was added
+
+#### `models.SessionHosts` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.ScalingPlan$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withSku(models.Sku)` was added
+* `withPlan(models.Plan)` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withPlan(models.Plan)` was added
+* `withSku(models.Sku)` was added
 
 ## 1.2.0 (2024-09-25)
 

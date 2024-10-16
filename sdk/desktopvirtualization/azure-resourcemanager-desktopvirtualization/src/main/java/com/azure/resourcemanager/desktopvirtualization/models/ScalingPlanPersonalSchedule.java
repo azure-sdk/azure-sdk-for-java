@@ -257,8 +257,9 @@ public interface ScalingPlanPersonalSchedule {
     /**
      * The entirety of the ScalingPlanPersonalSchedule definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithDaysOfWeek, DefinitionStages.WithRampUpStartTime, DefinitionStages.WithPeakStartTime,
+        DefinitionStages.WithRampDownStartTime, DefinitionStages.WithOffPeakStartTime, DefinitionStages.WithCreate {
     }
 
     /**
@@ -282,24 +283,87 @@ public interface ScalingPlanPersonalSchedule {
              * @param scalingPlanName The name of the scaling plan.
              * @return the next definition stage.
              */
-            WithCreate withExistingScalingPlan(String resourceGroupName, String scalingPlanName);
+            WithDaysOfWeek withExistingScalingPlan(String resourceGroupName, String scalingPlanName);
+        }
+
+        /**
+         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify daysOfWeek.
+         */
+        interface WithDaysOfWeek {
+            /**
+             * Specifies the daysOfWeek property: Set of days of the week on which this schedule is active..
+             * 
+             * @param daysOfWeek Set of days of the week on which this schedule is active.
+             * @return the next definition stage.
+             */
+            WithRampUpStartTime withDaysOfWeek(List<DayOfWeek> daysOfWeek);
+        }
+
+        /**
+         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify rampUpStartTime.
+         */
+        interface WithRampUpStartTime {
+            /**
+             * Specifies the rampUpStartTime property: Starting time for ramp up period..
+             * 
+             * @param rampUpStartTime Starting time for ramp up period.
+             * @return the next definition stage.
+             */
+            WithPeakStartTime withRampUpStartTime(Time rampUpStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify peakStartTime.
+         */
+        interface WithPeakStartTime {
+            /**
+             * Specifies the peakStartTime property: Starting time for peak period..
+             * 
+             * @param peakStartTime Starting time for peak period.
+             * @return the next definition stage.
+             */
+            WithRampDownStartTime withPeakStartTime(Time peakStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify rampDownStartTime.
+         */
+        interface WithRampDownStartTime {
+            /**
+             * Specifies the rampDownStartTime property: Starting time for ramp down period..
+             * 
+             * @param rampDownStartTime Starting time for ramp down period.
+             * @return the next definition stage.
+             */
+            WithOffPeakStartTime withRampDownStartTime(Time rampDownStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify offPeakStartTime.
+         */
+        interface WithOffPeakStartTime {
+            /**
+             * Specifies the offPeakStartTime property: Starting time for off-peak period..
+             * 
+             * @param offPeakStartTime Starting time for off-peak period.
+             * @return the next definition stage.
+             */
+            WithCreate withOffPeakStartTime(Time offPeakStartTime);
         }
 
         /**
          * The stage of the ScalingPlanPersonalSchedule definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithDaysOfWeek, DefinitionStages.WithRampUpStartTime,
-            DefinitionStages.WithRampUpAutoStartHosts, DefinitionStages.WithRampUpStartVMOnConnect,
-            DefinitionStages.WithRampUpActionOnDisconnect, DefinitionStages.WithRampUpMinutesToWaitOnDisconnect,
-            DefinitionStages.WithRampUpActionOnLogoff, DefinitionStages.WithRampUpMinutesToWaitOnLogoff,
-            DefinitionStages.WithPeakStartTime, DefinitionStages.WithPeakStartVMOnConnect,
+        interface WithCreate extends DefinitionStages.WithRampUpAutoStartHosts,
+            DefinitionStages.WithRampUpStartVMOnConnect, DefinitionStages.WithRampUpActionOnDisconnect,
+            DefinitionStages.WithRampUpMinutesToWaitOnDisconnect, DefinitionStages.WithRampUpActionOnLogoff,
+            DefinitionStages.WithRampUpMinutesToWaitOnLogoff, DefinitionStages.WithPeakStartVMOnConnect,
             DefinitionStages.WithPeakActionOnDisconnect, DefinitionStages.WithPeakMinutesToWaitOnDisconnect,
             DefinitionStages.WithPeakActionOnLogoff, DefinitionStages.WithPeakMinutesToWaitOnLogoff,
-            DefinitionStages.WithRampDownStartTime, DefinitionStages.WithRampDownStartVMOnConnect,
-            DefinitionStages.WithRampDownActionOnDisconnect, DefinitionStages.WithRampDownMinutesToWaitOnDisconnect,
-            DefinitionStages.WithRampDownActionOnLogoff, DefinitionStages.WithRampDownMinutesToWaitOnLogoff,
-            DefinitionStages.WithOffPeakStartTime, DefinitionStages.WithOffPeakStartVMOnConnect,
+            DefinitionStages.WithRampDownStartVMOnConnect, DefinitionStages.WithRampDownActionOnDisconnect,
+            DefinitionStages.WithRampDownMinutesToWaitOnDisconnect, DefinitionStages.WithRampDownActionOnLogoff,
+            DefinitionStages.WithRampDownMinutesToWaitOnLogoff, DefinitionStages.WithOffPeakStartVMOnConnect,
             DefinitionStages.WithOffPeakActionOnDisconnect, DefinitionStages.WithOffPeakMinutesToWaitOnDisconnect,
             DefinitionStages.WithOffPeakActionOnLogoff, DefinitionStages.WithOffPeakMinutesToWaitOnLogoff {
             /**
@@ -316,32 +380,6 @@ public interface ScalingPlanPersonalSchedule {
              * @return the created resource.
              */
             ScalingPlanPersonalSchedule create(Context context);
-        }
-
-        /**
-         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify daysOfWeek.
-         */
-        interface WithDaysOfWeek {
-            /**
-             * Specifies the daysOfWeek property: Set of days of the week on which this schedule is active..
-             * 
-             * @param daysOfWeek Set of days of the week on which this schedule is active.
-             * @return the next definition stage.
-             */
-            WithCreate withDaysOfWeek(List<DayOfWeek> daysOfWeek);
-        }
-
-        /**
-         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify rampUpStartTime.
-         */
-        interface WithRampUpStartTime {
-            /**
-             * Specifies the rampUpStartTime property: Starting time for ramp up period..
-             * 
-             * @param rampUpStartTime Starting time for ramp up period.
-             * @return the next definition stage.
-             */
-            WithCreate withRampUpStartTime(Time rampUpStartTime);
         }
 
         /**
@@ -435,19 +473,6 @@ public interface ScalingPlanPersonalSchedule {
         }
 
         /**
-         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify peakStartTime.
-         */
-        interface WithPeakStartTime {
-            /**
-             * Specifies the peakStartTime property: Starting time for peak period..
-             * 
-             * @param peakStartTime Starting time for peak period.
-             * @return the next definition stage.
-             */
-            WithCreate withPeakStartTime(Time peakStartTime);
-        }
-
-        /**
          * The stage of the ScalingPlanPersonalSchedule definition allowing to specify peakStartVMOnConnect.
          */
         interface WithPeakStartVMOnConnect {
@@ -517,19 +542,6 @@ public interface ScalingPlanPersonalSchedule {
              * @return the next definition stage.
              */
             WithCreate withPeakMinutesToWaitOnLogoff(Integer peakMinutesToWaitOnLogoff);
-        }
-
-        /**
-         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify rampDownStartTime.
-         */
-        interface WithRampDownStartTime {
-            /**
-             * Specifies the rampDownStartTime property: Starting time for ramp down period..
-             * 
-             * @param rampDownStartTime Starting time for ramp down period.
-             * @return the next definition stage.
-             */
-            WithCreate withRampDownStartTime(Time rampDownStartTime);
         }
 
         /**
@@ -604,19 +616,6 @@ public interface ScalingPlanPersonalSchedule {
              * @return the next definition stage.
              */
             WithCreate withRampDownMinutesToWaitOnLogoff(Integer rampDownMinutesToWaitOnLogoff);
-        }
-
-        /**
-         * The stage of the ScalingPlanPersonalSchedule definition allowing to specify offPeakStartTime.
-         */
-        interface WithOffPeakStartTime {
-            /**
-             * Specifies the offPeakStartTime property: Starting time for off-peak period..
-             * 
-             * @param offPeakStartTime Starting time for off-peak period.
-             * @return the next definition stage.
-             */
-            WithCreate withOffPeakStartTime(Time offPeakStartTime);
         }
 
         /**
