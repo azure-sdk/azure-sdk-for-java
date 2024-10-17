@@ -53,21 +53,21 @@ public final class RegistriesClientImpl implements RegistriesClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of RegistriesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RegistriesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    RegistriesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service
             = RestProxy.create(RegistriesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesRegistries to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesRegistries to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")

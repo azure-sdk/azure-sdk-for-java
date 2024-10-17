@@ -55,21 +55,21 @@ public final class ServerlessEndpointsClientImpl implements ServerlessEndpointsC
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ServerlessEndpointsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ServerlessEndpointsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ServerlessEndpointsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(ServerlessEndpointsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesServerlessEndpoints to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesServerlessEndpoints to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
