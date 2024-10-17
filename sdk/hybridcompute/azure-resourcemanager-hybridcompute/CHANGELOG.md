@@ -1,14 +1,120 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-17)
+
+- Azure Resource Manager HybridCompute client library for Java. This package contains Microsoft Azure SDK for HybridCompute Management SDK. The Hybrid Compute Management Client. Package tag package-preview-2024-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.MachineRunCommandsListResult` was added
 
-### Bugs Fixed
+* `models.ExtensionPublisherListResult` was added
 
-### Other Changes
+* `models.ExtensionTypes` was added
+
+* `models.Gateway$DefinitionStages` was added
+
+* `models.GatewaysListResult` was added
+
+* `models.MachineRunCommand$UpdateStages` was added
+
+* `models.ExtensionPublishers` was added
+
+* `models.Settings` was added
+
+* `models.ExtensionValueV2` was added
+
+* `models.MachineRunCommand` was added
+
+* `models.StorageProfile` was added
+
+* `models.Gateway$Definition` was added
+
+* `models.SettingsOperations` was added
+
+* `models.MachineRunCommandUpdate` was added
+
+* `models.MachineRunCommand$Update` was added
+
+* `models.GatewayUpdate` was added
+
+* `models.ExtensionMetadataV2s` was added
+
+* `models.ExtensionTypeListResult` was added
+
+* `models.MachineRunCommand$Definition` was added
+
+* `models.Gateway$Update` was added
+
+* `models.Processor` was added
+
+* `models.ExtensionsStatusLevelTypes` was added
+
+* `models.Gateway` was added
+
+* `models.Disk` was added
+
+* `models.ExtensionPublisher` was added
+
+* `models.ExtensionsResourceStatus` was added
+
+* `models.GatewayType` was added
+
+* `models.MachineRunCommandInstanceView` was added
+
+* `models.HardwareProfile` was added
+
+* `models.RunCommandManagedIdentity` was added
+
+* `models.MachineRunCommands` was added
+
+* `models.FirmwareProfile` was added
+
+* `models.ExtensionType` was added
+
+* `models.Gateways` was added
+
+* `models.Gateway$UpdateStages` was added
+
+* `models.MachineRunCommandScriptSource` was added
+
+* `models.RunCommandInputParameter` was added
+
+* `models.ExtensionValueListResultV2` was added
+
+* `models.MachineRunCommand$DefinitionStages` was added
+
+* `models.ExecutionState` was added
+
+#### `models.MachineProperties` was modified
+
+* `hardwareProfile()` was added
+* `firmwareProfile()` was added
+* `storageProfile()` was added
+
+#### `models.NetworkInterface` was modified
+
+* `withId(java.lang.String)` was added
+* `macAddress()` was added
+* `withName(java.lang.String)` was added
+* `name()` was added
+* `id()` was added
+* `withMacAddress(java.lang.String)` was added
+
+#### `models.Machine` was modified
+
+* `firmwareProfile()` was added
+* `hardwareProfile()` was added
+* `storageProfile()` was added
+
+#### `HybridComputeManager` was modified
+
+* `extensionMetadataV2s()` was added
+* `extensionPublishers()` was added
+* `settingsOperations()` was added
+* `gateways()` was added
+* `machineRunCommands()` was added
+* `extensionTypes()` was added
 
 ## 1.0.0 (2024-10-10)
 
