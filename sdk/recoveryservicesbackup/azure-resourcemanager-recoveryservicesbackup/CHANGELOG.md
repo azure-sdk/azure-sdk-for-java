@@ -1,14 +1,1418 @@
 # Release History
 
-## 1.5.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-17)
+
+- Azure Resource Manager RecoveryServicesBackup client library for Java. This package contains Microsoft Azure SDK for RecoveryServicesBackup Management SDK. Open API 2.0 Specs for Azure RecoveryServices Backup service. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.AzureWorkloadSqlPointInTimeRecoveryPoint` was modified
 
-### Bugs Fixed
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
-### Other Changes
+#### `models.MabJobTaskDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSClassicComputeVMContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IaaSvmContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationStatusExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetRestoreInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RestoreFileSpecs` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSComputeVMProtectedItem` was modified
+
+* `virtualMachineId()` was added
+* `protectedItemDataId()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `friendlyName()` was added
+* `healthStatus()` was added
+* `vaultId()` was added
+* `backupManagementType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `workloadType()` was added
+* `lastBackupTime()` was added
+
+#### `models.AzureWorkloadPointInTimeRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileShareProvisionIlrRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RetentionDuration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapHanaHsr` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadRecoveryPoint` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationStatusValidateOperationExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProtectionIntentResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVMAppContainerProtectableContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapHanaSystemWorkloadItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IaasVMRestoreRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationStatusProvisionIlrExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSapHanaDatabaseWorkloadItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabFileFolderProtectedItem` was modified
+
+* `workloadType()` was added
+* `backupManagementType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `vaultId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GenericRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IaasVMBackupRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ListRecoveryPointsRecommendedForMoveRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DpmBackupEngine` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabContainerExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSqlRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GenericContainerExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureStorageProtectableContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NameInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MoveRPAcrossTiersRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapHanaDBInstance` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FetchTieringCostInfoForRehydrationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupEngineBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationWorkerResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RestoreRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProtectableContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrepareDataMoveRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureFileShareBackupRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentityInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapHanaDatabaseProtectedItem` was modified
+
+* `protectionStatus()` was added
+* `vaultId()` was added
+* `friendlyName()` was added
+* `backupManagementType()` was added
+* `workloadType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LongTermSchedulePolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSqlInstanceProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSqlAvailabilityGroupProtectableItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.YearlyRetentionSchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapAseDatabaseProtectedItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `workloadType()` was added
+* `backupManagementType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `friendlyName()` was added
+* `protectionStatus()` was added
+* `vaultId()` was added
+
+#### `models.AzureFileShareProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecoveryPointMoveReadinessInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PointInTimeRange` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadErrorInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadSqlRestoreWithRehydrateRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MabContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentityProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSvmJobExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ResourceHealthDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadJobTaskDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSvmErrorInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupResourceVaultConfig` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GenericProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SqlDataDirectory` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupResourceEncryptionConfig` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClientDiscoveryForServiceSpecification` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IaasVMRestoreWithRehydrationRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ValidateOperationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSapHanaPointInTimeRestoreRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSqlPointInTimeRestoreRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSqlAutoProtectionIntent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceGuardOperationDetail` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SubProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DpmContainerExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MabJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureStorageJobTaskDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileShareRestoreRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KeyAndSecretDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ErrorDetail` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProtectionContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadContainerExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSapHanaPointInTimeRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSComputeVMProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MonthlyRetentionSchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RetentionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetDiskNetworkAccessSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.JobResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSapHanaRestoreWithRehydrateRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupResourceEncryptionConfigExtended` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabErrorInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecoveryPointResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Settings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSvmProtectedItem` was modified
+
+* `backupManagementType()` was added
+* `workloadType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `vaultId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ContainerIdentityInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadContainerAutoProtectionIntent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.InstantItemRecoveryTarget` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ValidateOperationResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProtectableContainerResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DpmErrorInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.InstantRPAdditionalDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HourlySchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VaultJobExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RecoveryPointProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationResultInfoBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DpmProtectedItemExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSvmJob` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FetchTieringCostSavingsInfoForVaultRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureStorageErrorInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExtendedProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DailyRetentionFormat` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SimpleRetentionPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupStatusRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadInquiryDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DpmJobExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadItemResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EncryptionDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PreBackupValidation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedManagedIdentityDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSvmProtectionPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.LongTermRetentionPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapAseSystemWorkloadItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IaasVmilrRegistrationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.InquiryValidation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DpmJobTaskDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabFileFolderProtectedItemExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureSqlProtectedItemExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DailyRetentionSchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RecoveryPointDiskConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceGuardProxyBaseResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RestoreRequestResource` was modified
+
+* `id()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `name()` was added
+
+#### `models.ProtectedItemResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UnlockDeleteRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureSqlProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProtectionContainerResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ValidateIaasVMRestoreOperationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureStorageJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WeeklyRetentionSchedule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WeeklySchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSqlDatabaseProtectedItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `workloadType()` was added
+* `backupManagementType()` was added
+* `vaultId()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `friendlyName()` was added
+* `protectionStatus()` was added
+
+#### `models.RecoveryPointRehydrationInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WorkloadProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SimpleSchedulePolicyV2` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.VaultRetentionPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadProtectedItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `backupManagementType()` was added
+* `vaultId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `workloadType()` was added
+
+#### `models.AzureVmWorkloadItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSqlInstanceWorkloadItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentityBasedRestoreDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupManagementUsageList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SchedulePolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProtectionIntent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ProtectionPolicyResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureResourceProtectionIntent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SecurityPinBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BackupEngineBaseResourceList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ProtectedItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureSqlContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSapHanaSystemProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureSqlagWorkloadContainerProtectionContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RecoveryPointTierInformationV2` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupResourceEncryptionConfigResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `name()` was added
+* `id()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSqlRecoveryPointExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSvmJobTaskDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.InquiryInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSapAseDatabaseWorkloadItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.KekDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabJobExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TriggerDataMoveRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadRestoreRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VaultJob` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.IlrRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSqlDatabaseWorkloadItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadProtectableItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SecuredVMDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.GenericContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVMAppContainerProtectionContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClientDiscoveryDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TieringCostRehydrationInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IaasVMRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClientDiscoveryForProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IlrRequestResource` was modified
+
+* `name()` was added
+* `id()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSapHanaDBInstanceProtectedItem` was modified
+
+* `friendlyName()` was added
+* `backupManagementType()` was added
+* `workloadType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `vaultId()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `protectionStatus()` was added
+
+#### `models.IaaSvmProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureBackupServerContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureBackupServerEngine` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DailySchedule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSClassicComputeVMProtectableItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExportJobsOperationResultInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TieringPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ValidateOperationRequestResource` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileShareRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationStatusJobExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadBackupRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ResourceGuardProxyBase` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FeatureSupportRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ValidateRestoreOperationRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecoveryPointTierInformation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadAutoProtectionIntent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WorkloadProtectableItemResourceList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FetchTieringCostInfoRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Day` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DpmJob` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVMResourceFeatureSupportRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupEngineExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSvmHealthDetails` was modified
+
+* `recommendations()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `title()` was added
+* `message()` was added
+* `code()` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SnapshotRestoreParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSClassicComputeVMProtectedItem` was modified
+
+* `backupManagementType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `workloadType()` was added
+* `virtualMachineId()` was added
+* `lastBackupTime()` was added
+* `protectedItemDataId()` was added
+* `friendlyName()` was added
+* `vaultId()` was added
+* `healthStatus()` was added
+
+#### `models.GenericProtectedItem` was modified
+
+* `vaultId()` was added
+* `workloadType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `backupManagementType()` was added
+
+#### `models.VaultJobErrorInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadProtectedItemExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSapHanaRecoveryPoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationStatusJobsExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecoveryPoint` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationStatusError` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureBackupGoalFeatureSupportRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureVmWorkloadSqlDatabaseProtectableItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SimpleSchedulePolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SqlDataDirectoryMapping` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureVmWorkloadSapAseSystemProtectableItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClientScriptForConnect` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SnapshotBackupAdditionalDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileshareProtectedItem` was modified
+
+* `vaultId()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `backupManagementType()` was added
+* `workloadType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureStorageJobExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Job` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PreValidateEnableBackupRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KpiResourceHealthDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.WeeklyRetentionFormat` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DistributedNodesInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadJobExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureRecoveryServiceVaultProtectionIntent` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureFileshareProtectedItemExtendedInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureFileShareProtectionPolicy` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiskExclusionProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FetchTieringCostSavingsInfoForProtectedItemRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureSqlProtectedItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `workloadType()` was added
+* `backupManagementType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `vaultId()` was added
+
+#### `models.BackupRequestResource` was modified
+
+* `name()` was added
+* `id()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSvmProtectedItemExtendedInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationResultInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClientDiscoveryForLogSpecification` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSapHanaRestoreRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LogSchedulePolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExtendedLocation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiskInformation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadPointInTimeRestoreRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureWorkloadSqlRestoreRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BekDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureIaaSvmJobV2` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrepareDataMoveResponse` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureStorageContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TieringCostSavingInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FetchTieringCostSavingsInfoForPolicyRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.MabContainerHealthDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TargetAfsRestoreInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureIaaSComputeVMContainer` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClientDiscoveryResponse` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DpmContainer` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BackupResourceConfig` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DpmProtectedItem` was modified
+
+* `backupManagementType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `vaultId()` was added
+* `workloadType()` was added
+
+#### `models.AzureVmWorkloadSapHanaDatabaseProtectableItem` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.4.0 (2024-05-23)
 
