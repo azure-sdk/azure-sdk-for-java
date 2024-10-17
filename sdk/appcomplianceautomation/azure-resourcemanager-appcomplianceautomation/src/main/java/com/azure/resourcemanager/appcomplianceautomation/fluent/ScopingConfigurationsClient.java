@@ -75,8 +75,8 @@ public interface ScopingConfigurationsClient {
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -85,15 +85,15 @@ public interface ScopingConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ScopingConfigurationResourceInner> createOrUpdateWithResponse(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties, Context context);
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource, Context context);
 
     /**
      * Get the AppComplianceAutomation scoping configuration of the specific report.
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -101,7 +101,7 @@ public interface ScopingConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ScopingConfigurationResourceInner createOrUpdate(String reportName, String scopingConfigurationName,
-        ScopingConfigurationResourceInner properties);
+        ScopingConfigurationResourceInner resource);
 
     /**
      * Clean the AppComplianceAutomation scoping configuration of the specific report.

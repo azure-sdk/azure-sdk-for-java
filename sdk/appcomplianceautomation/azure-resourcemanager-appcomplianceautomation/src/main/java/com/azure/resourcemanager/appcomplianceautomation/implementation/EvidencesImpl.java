@@ -63,10 +63,9 @@ public final class EvidencesImpl implements Evidences {
     }
 
     public Response<EvidenceResource> createOrUpdateWithResponse(String reportName, String evidenceName,
-        EvidenceResourceInner properties, String offerGuid, String reportCreatorTenantId, Context context) {
+        EvidenceResourceInner resource, String offerGuid, String reportCreatorTenantId, Context context) {
         Response<EvidenceResourceInner> inner = this.serviceClient()
-            .createOrUpdateWithResponse(reportName, evidenceName, properties, offerGuid, reportCreatorTenantId,
-                context);
+            .createOrUpdateWithResponse(reportName, evidenceName, resource, offerGuid, reportCreatorTenantId, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EvidenceResourceImpl(inner.getValue(), this.manager()));
@@ -75,8 +74,8 @@ public final class EvidencesImpl implements Evidences {
         }
     }
 
-    public EvidenceResource createOrUpdate(String reportName, String evidenceName, EvidenceResourceInner properties) {
-        EvidenceResourceInner inner = this.serviceClient().createOrUpdate(reportName, evidenceName, properties);
+    public EvidenceResource createOrUpdate(String reportName, String evidenceName, EvidenceResourceInner resource) {
+        EvidenceResourceInner inner = this.serviceClient().createOrUpdate(reportName, evidenceName, resource);
         if (inner != null) {
             return new EvidenceResourceImpl(inner, this.manager());
         } else {

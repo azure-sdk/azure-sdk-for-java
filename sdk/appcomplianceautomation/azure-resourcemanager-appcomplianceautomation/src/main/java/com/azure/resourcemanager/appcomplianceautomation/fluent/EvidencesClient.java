@@ -83,7 +83,7 @@ public interface EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param offerGuid The offerGuid which mapping to the reports.
      * @param reportCreatorTenantId The tenant id of the report creator.
      * @param context The context to associate with this operation.
@@ -94,21 +94,21 @@ public interface EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<EvidenceResourceInner> createOrUpdateWithResponse(String reportName, String evidenceName,
-        EvidenceResourceInner properties, String offerGuid, String reportCreatorTenantId, Context context);
+        EvidenceResourceInner resource, String offerGuid, String reportCreatorTenantId, Context context);
 
     /**
      * Create or Update an evidence a specified report.
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation evidence resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    EvidenceResourceInner createOrUpdate(String reportName, String evidenceName, EvidenceResourceInner properties);
+    EvidenceResourceInner createOrUpdate(String reportName, String evidenceName, EvidenceResourceInner resource);
 
     /**
      * Delete an existent evidence from a specified report.

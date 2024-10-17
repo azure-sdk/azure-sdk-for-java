@@ -61,9 +61,9 @@ public final class ScopingConfigurationsImpl implements ScopingConfigurations {
     }
 
     public Response<ScopingConfigurationResource> createOrUpdateWithResponse(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties, Context context) {
-        Response<ScopingConfigurationResourceInner> inner = this.serviceClient()
-            .createOrUpdateWithResponse(reportName, scopingConfigurationName, properties, context);
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource, Context context) {
+        Response<ScopingConfigurationResourceInner> inner
+            = this.serviceClient().createOrUpdateWithResponse(reportName, scopingConfigurationName, resource, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ScopingConfigurationResourceImpl(inner.getValue(), this.manager()));
@@ -73,9 +73,9 @@ public final class ScopingConfigurationsImpl implements ScopingConfigurations {
     }
 
     public ScopingConfigurationResource createOrUpdate(String reportName, String scopingConfigurationName,
-        ScopingConfigurationResourceInner properties) {
+        ScopingConfigurationResourceInner resource) {
         ScopingConfigurationResourceInner inner
-            = this.serviceClient().createOrUpdate(reportName, scopingConfigurationName, properties);
+            = this.serviceClient().createOrUpdate(reportName, scopingConfigurationName, resource);
         if (inner != null) {
             return new ScopingConfigurationResourceImpl(inner, this.manager());
         } else {

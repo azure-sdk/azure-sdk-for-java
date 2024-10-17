@@ -21,8 +21,8 @@ import com.azure.resourcemanager.appcomplianceautomation.models.CheckNameAvailab
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportFixResult;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportResource;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportResourcePatch;
-import com.azure.resourcemanager.appcomplianceautomation.models.Reports;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportVerificationResult;
+import com.azure.resourcemanager.appcomplianceautomation.models.Reports;
 import com.azure.resourcemanager.appcomplianceautomation.models.ScopingQuestions;
 import com.azure.resourcemanager.appcomplianceautomation.models.SyncCertRecordRequest;
 import com.azure.resourcemanager.appcomplianceautomation.models.SyncCertRecordResponse;
@@ -71,8 +71,8 @@ public final class ReportsImpl implements Reports {
         }
     }
 
-    public ReportResource createOrUpdate(String reportName, ReportResourceInner properties) {
-        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, properties);
+    public ReportResource createOrUpdate(String reportName, ReportResourceInner resource) {
+        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, resource);
         if (inner != null) {
             return new ReportResourceImpl(inner, this.manager());
         } else {
@@ -80,8 +80,8 @@ public final class ReportsImpl implements Reports {
         }
     }
 
-    public ReportResource createOrUpdate(String reportName, ReportResourceInner properties, Context context) {
-        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, properties, context);
+    public ReportResource createOrUpdate(String reportName, ReportResourceInner resource, Context context) {
+        ReportResourceInner inner = this.serviceClient().createOrUpdate(reportName, resource, context);
         if (inner != null) {
             return new ReportResourceImpl(inner, this.manager());
         } else {

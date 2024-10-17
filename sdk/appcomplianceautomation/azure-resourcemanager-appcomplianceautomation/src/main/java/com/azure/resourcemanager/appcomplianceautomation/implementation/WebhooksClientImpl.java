@@ -91,9 +91,8 @@ public final class WebhooksClientImpl implements WebhooksClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WebhookResourceInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
-            @PathParam("webhookName") String webhookName,
-            @BodyParam("application/json") WebhookResourceInner properties, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("webhookName") String webhookName, @BodyParam("application/json") WebhookResourceInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/webhooks/{webhookName}")
@@ -428,7 +427,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -437,7 +436,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebhookResourceInner>> createOrUpdateWithResponseAsync(String reportName, String webhookName,
-        WebhookResourceInner properties) {
+        WebhookResourceInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -448,15 +447,15 @@ public final class WebhooksClientImpl implements WebhooksClient {
         if (webhookName == null) {
             return Mono.error(new IllegalArgumentException("Parameter webhookName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                reportName, webhookName, properties, accept, context))
+                reportName, webhookName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -465,7 +464,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -475,7 +474,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebhookResourceInner>> createOrUpdateWithResponseAsync(String reportName, String webhookName,
-        WebhookResourceInner properties, Context context) {
+        WebhookResourceInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -486,15 +485,15 @@ public final class WebhooksClientImpl implements WebhooksClient {
         if (webhookName == null) {
             return Mono.error(new IllegalArgumentException("Parameter webhookName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), reportName, webhookName,
-            properties, accept, context);
+            resource, accept, context);
     }
 
     /**
@@ -502,7 +501,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -510,8 +509,8 @@ public final class WebhooksClientImpl implements WebhooksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WebhookResourceInner> createOrUpdateAsync(String reportName, String webhookName,
-        WebhookResourceInner properties) {
-        return createOrUpdateWithResponseAsync(reportName, webhookName, properties)
+        WebhookResourceInner resource) {
+        return createOrUpdateWithResponseAsync(reportName, webhookName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -520,7 +519,7 @@ public final class WebhooksClientImpl implements WebhooksClient {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -529,8 +528,8 @@ public final class WebhooksClientImpl implements WebhooksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WebhookResourceInner> createOrUpdateWithResponse(String reportName, String webhookName,
-        WebhookResourceInner properties, Context context) {
-        return createOrUpdateWithResponseAsync(reportName, webhookName, properties, context).block();
+        WebhookResourceInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(reportName, webhookName, resource, context).block();
     }
 
     /**
@@ -538,15 +537,15 @@ public final class WebhooksClientImpl implements WebhooksClient {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation webhook resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WebhookResourceInner createOrUpdate(String reportName, String webhookName, WebhookResourceInner properties) {
-        return createOrUpdateWithResponse(reportName, webhookName, properties, Context.NONE).getValue();
+    public WebhookResourceInner createOrUpdate(String reportName, String webhookName, WebhookResourceInner resource) {
+        return createOrUpdateWithResponse(reportName, webhookName, resource, Context.NONE).getValue();
     }
 
     /**

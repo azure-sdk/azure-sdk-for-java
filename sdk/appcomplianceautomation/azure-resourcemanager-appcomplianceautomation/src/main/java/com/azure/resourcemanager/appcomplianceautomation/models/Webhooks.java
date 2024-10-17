@@ -75,7 +75,7 @@ public interface Webhooks {
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -83,20 +83,20 @@ public interface Webhooks {
      * @return a class represent an AppComplianceAutomation webhook resource along with {@link Response}.
      */
     Response<WebhookResource> createOrUpdateWithResponse(String reportName, String webhookName,
-        WebhookResourceInner properties, Context context);
+        WebhookResourceInner resource, Context context);
 
     /**
      * Create a new AppComplianceAutomation webhook or update an exiting AppComplianceAutomation webhook.
      * 
      * @param reportName Report Name.
      * @param webhookName Webhook Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation webhook resource.
      */
-    WebhookResource createOrUpdate(String reportName, String webhookName, WebhookResourceInner properties);
+    WebhookResource createOrUpdate(String reportName, String webhookName, WebhookResourceInner resource);
 
     /**
      * Update an exiting AppComplianceAutomation webhook.

@@ -104,7 +104,7 @@ public final class ReportsClientImpl implements ReportsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
-            @BodyParam("application/json") ReportResourceInner properties, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") ReportResourceInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -453,7 +453,7 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -462,7 +462,7 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String reportName,
-        ReportResourceInner properties) {
+        ReportResourceInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -470,15 +470,15 @@ public final class ReportsClientImpl implements ReportsClient {
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                reportName, properties, accept, context))
+                reportName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -486,7 +486,7 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -496,7 +496,7 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String reportName,
-        ReportResourceInner properties, Context context) {
+        ReportResourceInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -504,14 +504,14 @@ public final class ReportsClientImpl implements ReportsClient {
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), reportName, properties,
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), reportName, resource,
             accept, context);
     }
 
@@ -519,7 +519,7 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -527,8 +527,8 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(String reportName,
-        ReportResourceInner properties) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, properties);
+        ReportResourceInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, resource);
         return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
             ReportResourceInner.class, ReportResourceInner.class, this.client.getContext());
     }
@@ -537,7 +537,7 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -546,9 +546,9 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(String reportName,
-        ReportResourceInner properties, Context context) {
+        ReportResourceInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, properties, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, resource, context);
         return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
             ReportResourceInner.class, ReportResourceInner.class, context);
     }
@@ -557,7 +557,7 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -565,15 +565,15 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
-        ReportResourceInner properties) {
-        return this.beginCreateOrUpdateAsync(reportName, properties).getSyncPoller();
+        ReportResourceInner resource) {
+        return this.beginCreateOrUpdateAsync(reportName, resource).getSyncPoller();
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -582,30 +582,30 @@ public final class ReportsClientImpl implements ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
-        ReportResourceInner properties, Context context) {
-        return this.beginCreateOrUpdateAsync(reportName, properties, context).getSyncPoller();
+        ReportResourceInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(reportName, resource, context).getSyncPoller();
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ReportResourceInner> createOrUpdateAsync(String reportName, ReportResourceInner properties) {
-        return beginCreateOrUpdateAsync(reportName, properties).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<ReportResourceInner> createOrUpdateAsync(String reportName, ReportResourceInner resource) {
+        return beginCreateOrUpdateAsync(reportName, resource).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -613,9 +613,9 @@ public final class ReportsClientImpl implements ReportsClient {
      * @return a class represent an AppComplianceAutomation report resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ReportResourceInner> createOrUpdateAsync(String reportName, ReportResourceInner properties,
+    private Mono<ReportResourceInner> createOrUpdateAsync(String reportName, ReportResourceInner resource,
         Context context) {
-        return beginCreateOrUpdateAsync(reportName, properties, context).last()
+        return beginCreateOrUpdateAsync(reportName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -623,22 +623,22 @@ public final class ReportsClientImpl implements ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ReportResourceInner createOrUpdate(String reportName, ReportResourceInner properties) {
-        return createOrUpdateAsync(reportName, properties).block();
+    public ReportResourceInner createOrUpdate(String reportName, ReportResourceInner resource) {
+        return createOrUpdateAsync(reportName, resource).block();
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -646,8 +646,8 @@ public final class ReportsClientImpl implements ReportsClient {
      * @return a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ReportResourceInner createOrUpdate(String reportName, ReportResourceInner properties, Context context) {
-        return createOrUpdateAsync(reportName, properties, context).block();
+    public ReportResourceInner createOrUpdate(String reportName, ReportResourceInner resource, Context context) {
+        return createOrUpdateAsync(reportName, resource, context).block();
     }
 
     /**
