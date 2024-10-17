@@ -23,7 +23,7 @@ public final class PrivateEndpointConnectionsListByMongoClusterMockTests {
     @Test
     public void testListByMongoCluster() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"groupIds\":[\"zbinjeputtm\",\"ywnuzoq\",\"tiyqzrnkcqv\"],\"privateEndpoint\":{\"id\":\"whzlsicohoq\"},\"privateLinkServiceConnectionState\":{\"status\":\"Rejected\",\"description\":\"lryav\",\"actionsRequired\":\"heun\"},\"provisioningState\":\"Failed\"},\"id\":\"gyxzk\",\"name\":\"noc\",\"type\":\"koklya\"}]}";
+            = "{\"value\":[{\"properties\":{\"groupIds\":[\"ankxmyskpbhenb\"],\"privateEndpoint\":{\"id\":\"xywnytnrsynlqidy\"},\"privateLinkServiceConnectionState\":{\"status\":\"Rejected\",\"description\":\"zfcl\",\"actionsRequired\":\"axdbabph\"},\"provisioningState\":\"Failed\"},\"id\":\"lfktsths\",\"name\":\"cocmnyyaztt\",\"type\":\"twwrqp\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,13 +33,13 @@ public final class PrivateEndpointConnectionsListByMongoClusterMockTests {
                 new AzureProfile("", "", AzureEnvironment.AZURE));
 
         PagedIterable<PrivateEndpointConnectionResource> response = manager.privateEndpointConnections()
-            .listByMongoCluster("agalpbuxwgipwhon", "wkgshwa", com.azure.core.util.Context.NONE);
+            .listByMongoCluster("jrunmpxtt", "bh", com.azure.core.util.Context.NONE);
 
         Assertions.assertEquals(PrivateEndpointServiceConnectionStatus.REJECTED,
             response.iterator().next().properties().privateLinkServiceConnectionState().status());
-        Assertions.assertEquals("lryav",
+        Assertions.assertEquals("zfcl",
             response.iterator().next().properties().privateLinkServiceConnectionState().description());
-        Assertions.assertEquals("heun",
+        Assertions.assertEquals("axdbabph",
             response.iterator().next().properties().privateLinkServiceConnectionState().actionsRequired());
     }
 }
