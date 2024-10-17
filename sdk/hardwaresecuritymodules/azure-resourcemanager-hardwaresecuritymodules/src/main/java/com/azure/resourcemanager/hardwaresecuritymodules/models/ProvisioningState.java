@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.hardwaresecuritymodules.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -38,6 +37,11 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     public static final ProvisioningState CANCELED = fromString("Canceled");
 
     /**
+     * Static value Updating for ProvisioningState.
+     */
+    public static final ProvisioningState UPDATING = fromString("Updating");
+
+    /**
      * Creates a new instance of ProvisioningState value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -52,7 +56,6 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
      * @param name a name to look for.
      * @return the corresponding ProvisioningState.
      */
-    @JsonCreator
     public static ProvisioningState fromString(String name) {
         return fromString(name, ProvisioningState.class);
     }
