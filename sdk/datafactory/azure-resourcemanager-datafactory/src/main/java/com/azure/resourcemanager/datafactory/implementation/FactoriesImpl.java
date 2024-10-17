@@ -65,16 +65,6 @@ public final class FactoriesImpl implements Factories {
         }
     }
 
-    public PagedIterable<Factory> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<FactoryInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Factory> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<FactoryInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
     public Response<Factory> getByResourceGroupWithResponse(String resourceGroupName, String factoryName,
         String ifNoneMatch, Context context) {
         Response<FactoryInner> inner
