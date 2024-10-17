@@ -52,16 +52,16 @@ public final class ServerlessEndpointImpl
         }
     }
 
-    public ServerlessEndpointProperties properties() {
-        return this.innerModel().properties();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String kind() {
         return this.innerModel().kind();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public ServerlessEndpointProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Sku sku() {
@@ -214,13 +214,13 @@ public final class ServerlessEndpointImpl
         }
     }
 
-    public ServerlessEndpointImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
+    public ServerlessEndpointImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public ServerlessEndpointImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public ServerlessEndpointImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
@@ -229,13 +229,13 @@ public final class ServerlessEndpointImpl
         return this;
     }
 
-    public ServerlessEndpointImpl withSku(PartialSku sku) {
-        this.updateBody.withSku(sku);
+    public ServerlessEndpointImpl withIdentity(PartialManagedServiceIdentity identity) {
+        this.updateBody.withIdentity(identity);
         return this;
     }
 
-    public ServerlessEndpointImpl withIdentity(PartialManagedServiceIdentity identity) {
-        this.updateBody.withIdentity(identity);
+    public ServerlessEndpointImpl withSku(PartialSku sku) {
+        this.updateBody.withSku(sku);
         return this;
     }
 

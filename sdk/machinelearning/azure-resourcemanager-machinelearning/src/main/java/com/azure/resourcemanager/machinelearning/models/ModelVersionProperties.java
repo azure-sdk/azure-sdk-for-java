@@ -22,6 +22,11 @@ public final class ModelVersionProperties extends AssetBase {
     private Map<String, FlavorData> flavors;
 
     /*
+     * Name of the training job which produced this model
+     */
+    private String jobName;
+
+    /*
      * The storage format for this entity. Used for NCD.
      */
     private String modelType;
@@ -32,11 +37,6 @@ public final class ModelVersionProperties extends AssetBase {
     private String modelUri;
 
     /*
-     * Name of the training job which produced this model
-     */
-    private String jobName;
-
-    /*
      * Provisioning state for the model version.
      */
     private AssetProvisioningState provisioningState;
@@ -45,6 +45,11 @@ public final class ModelVersionProperties extends AssetBase {
      * Stage in the model lifecycle assigned to this model
      */
     private String stage;
+
+    /*
+     * System metadata.
+     */
+    private Object systemMetadata;
 
     /**
      * Creates an instance of ModelVersionProperties class.
@@ -69,6 +74,26 @@ public final class ModelVersionProperties extends AssetBase {
      */
     public ModelVersionProperties withFlavors(Map<String, FlavorData> flavors) {
         this.flavors = flavors;
+        return this;
+    }
+
+    /**
+     * Get the jobName property: Name of the training job which produced this model.
+     * 
+     * @return the jobName value.
+     */
+    public String jobName() {
+        return this.jobName;
+    }
+
+    /**
+     * Set the jobName property: Name of the training job which produced this model.
+     * 
+     * @param jobName the jobName value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withJobName(String jobName) {
+        this.jobName = jobName;
         return this;
     }
 
@@ -113,26 +138,6 @@ public final class ModelVersionProperties extends AssetBase {
     }
 
     /**
-     * Get the jobName property: Name of the training job which produced this model.
-     * 
-     * @return the jobName value.
-     */
-    public String jobName() {
-        return this.jobName;
-    }
-
-    /**
-     * Set the jobName property: Name of the training job which produced this model.
-     * 
-     * @param jobName the jobName value to set.
-     * @return the ModelVersionProperties object itself.
-     */
-    public ModelVersionProperties withJobName(String jobName) {
-        this.jobName = jobName;
-        return this;
-    }
-
-    /**
      * Get the provisioningState property: Provisioning state for the model version.
      * 
      * @return the provisioningState value.
@@ -162,11 +167,22 @@ public final class ModelVersionProperties extends AssetBase {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the systemMetadata property: System metadata.
+     * 
+     * @return the systemMetadata value.
      */
-    @Override
-    public ModelVersionProperties withIsArchived(Boolean isArchived) {
-        super.withIsArchived(isArchived);
+    public Object systemMetadata() {
+        return this.systemMetadata;
+    }
+
+    /**
+     * Set the systemMetadata property: System metadata.
+     * 
+     * @param systemMetadata the systemMetadata value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withSystemMetadata(Object systemMetadata) {
+        this.systemMetadata = systemMetadata;
         return this;
     }
 
@@ -183,8 +199,8 @@ public final class ModelVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public ModelVersionProperties withDescription(String description) {
-        super.withDescription(description);
+    public ModelVersionProperties withIsArchived(Boolean isArchived) {
+        super.withIsArchived(isArchived);
         return this;
     }
 
@@ -192,8 +208,8 @@ public final class ModelVersionProperties extends AssetBase {
      * {@inheritDoc}
      */
     @Override
-    public ModelVersionProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public ModelVersionProperties withDescription(String description) {
+        super.withDescription(description);
         return this;
     }
 
@@ -207,13 +223,21 @@ public final class ModelVersionProperties extends AssetBase {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ModelVersionProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (flavors() != null) {
             flavors().values().forEach(e -> {
                 if (e != null) {
@@ -230,15 +254,16 @@ public final class ModelVersionProperties extends AssetBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeBooleanField("isArchived", isArchived());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAnonymous", isAnonymous());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeMapField("flavors", this.flavors, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("jobName", this.jobName);
         jsonWriter.writeStringField("modelType", this.modelType);
         jsonWriter.writeStringField("modelUri", this.modelUri);
-        jsonWriter.writeStringField("jobName", this.jobName);
         jsonWriter.writeStringField("stage", this.stage);
+        jsonWriter.writeUntypedField("systemMetadata", this.systemMetadata);
         return jsonWriter.writeEndObject();
     }
 
@@ -259,30 +284,32 @@ public final class ModelVersionProperties extends AssetBase {
 
                 if ("description".equals(fieldName)) {
                     deserializedModelVersionProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedModelVersionProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedModelVersionProperties.withProperties(properties);
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedModelVersionProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedModelVersionProperties.withTags(tags);
                 } else if ("isAnonymous".equals(fieldName)) {
                     deserializedModelVersionProperties.withIsAnonymous(reader.getNullable(JsonReader::getBoolean));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedModelVersionProperties.withIsArchived(reader.getNullable(JsonReader::getBoolean));
                 } else if ("flavors".equals(fieldName)) {
                     Map<String, FlavorData> flavors = reader.readMap(reader1 -> FlavorData.fromJson(reader1));
                     deserializedModelVersionProperties.flavors = flavors;
+                } else if ("jobName".equals(fieldName)) {
+                    deserializedModelVersionProperties.jobName = reader.getString();
                 } else if ("modelType".equals(fieldName)) {
                     deserializedModelVersionProperties.modelType = reader.getString();
                 } else if ("modelUri".equals(fieldName)) {
                     deserializedModelVersionProperties.modelUri = reader.getString();
-                } else if ("jobName".equals(fieldName)) {
-                    deserializedModelVersionProperties.jobName = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedModelVersionProperties.provisioningState
                         = AssetProvisioningState.fromString(reader.getString());
                 } else if ("stage".equals(fieldName)) {
                     deserializedModelVersionProperties.stage = reader.getString();
+                } else if ("systemMetadata".equals(fieldName)) {
+                    deserializedModelVersionProperties.systemMetadata = reader.readUntyped();
                 } else {
                     reader.skipChildren();
                 }
