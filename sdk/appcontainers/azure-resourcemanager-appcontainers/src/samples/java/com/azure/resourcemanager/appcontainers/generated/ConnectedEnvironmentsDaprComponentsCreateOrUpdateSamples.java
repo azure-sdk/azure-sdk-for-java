@@ -4,7 +4,10 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
+import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentDaprComponentProperties;
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
+import com.azure.resourcemanager.appcontainers.models.DaprServiceBindMetadata;
 import com.azure.resourcemanager.appcontainers.models.Secret;
 import java.util.Arrays;
 
@@ -13,7 +16,7 @@ import java.util.Arrays;
  */
 public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ConnectedEnvironmentsDaprComponents_CreateOrUpdate.json
      */
     /**
@@ -26,16 +29,21 @@ public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
         manager.connectedEnvironmentsDaprComponents()
             .define("reddog")
             .withExistingConnectedEnvironment("examplerg", "myenvironment")
-            .withComponentType("state.azure.cosmosdb")
-            .withVersion("v1")
-            .withIgnoreErrors(false)
-            .withInitTimeout("50s")
-            .withSecrets(Arrays.asList(new Secret().withName("masterkey").withValue("keyvalue")))
-            .withMetadata(Arrays.asList(new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
-                new DaprMetadata().withName("database").withValue("itemsDB"),
-                new DaprMetadata().withName("collection").withValue("items"),
-                new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
-            .withScopes(Arrays.asList("container-app-1", "container-app-2"))
+            .withProperties(new ConnectedEnvironmentDaprComponentProperties().withComponentType("state.azure.cosmosdb")
+                .withVersion("v1")
+                .withIgnoreErrors(false)
+                .withInitTimeout("50s")
+                .withSecrets(Arrays.asList(new Secret().withName("masterkey").withValue("keyvalue")))
+                .withMetadata(Arrays.asList(new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
+                    new DaprMetadata().withName("database").withValue("itemsDB"),
+                    new DaprMetadata().withName("collection").withValue("items"),
+                    new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
+                .withScopes(Arrays.asList("container-app-1", "container-app-2"))
+                .withServiceComponentBind(Arrays.asList(new DaprComponentServiceBinding().withName("statestore")
+                    .withServiceId(
+                        "/subscriptions/9f7371f1-b593-4c3c-84e2-9167806ad358/resourceGroups/ca-syn2-group/providers/Microsoft.App/containerapps/cappredis")
+                    .withMetadata(
+                        new DaprServiceBindMetadata().withName("daprcomponentBind").withValue("redis-bind")))))
             .create();
     }
 }

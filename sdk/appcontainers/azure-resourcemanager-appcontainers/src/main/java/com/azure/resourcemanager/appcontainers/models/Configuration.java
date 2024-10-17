@@ -45,14 +45,31 @@ public final class Configuration implements JsonSerializable<Configuration> {
     private Dapr dapr;
 
     /*
+     * App runtime configuration for the Container App.
+     */
+    private Runtime runtime;
+
+    /*
      * Optional. Max inactive revisions a Container App can have.
      */
     private Integer maxInactiveRevisions;
 
     /*
+     * Optional. The percent of the total number of replicas that must be brought up before revision transition occurs.
+     * Defaults to 100 when none is given. Value must be greater than 0 and less than or equal to 100.
+     */
+    private Integer revisionTransitionThreshold;
+
+    /*
      * Container App to be a dev Container App Service
      */
     private Service service;
+
+    /*
+     * Optional settings for Managed Identities that are assigned to the Container App. If a Managed Identity is not
+     * specified here, default settings will be used.
+     */
+    private List<IdentitySettings> identitySettings;
 
     /**
      * Creates an instance of Configuration class.
@@ -171,6 +188,26 @@ public final class Configuration implements JsonSerializable<Configuration> {
     }
 
     /**
+     * Get the runtime property: App runtime configuration for the Container App.
+     * 
+     * @return the runtime value.
+     */
+    public Runtime runtime() {
+        return this.runtime;
+    }
+
+    /**
+     * Set the runtime property: App runtime configuration for the Container App.
+     * 
+     * @param runtime the runtime value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRuntime(Runtime runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
      * Get the maxInactiveRevisions property: Optional. Max inactive revisions a Container App can have.
      * 
      * @return the maxInactiveRevisions value.
@@ -187,6 +224,30 @@ public final class Configuration implements JsonSerializable<Configuration> {
      */
     public Configuration withMaxInactiveRevisions(Integer maxInactiveRevisions) {
         this.maxInactiveRevisions = maxInactiveRevisions;
+        return this;
+    }
+
+    /**
+     * Get the revisionTransitionThreshold property: Optional. The percent of the total number of replicas that must be
+     * brought up before revision transition occurs. Defaults to 100 when none is given. Value must be greater than 0
+     * and less than or equal to 100.
+     * 
+     * @return the revisionTransitionThreshold value.
+     */
+    public Integer revisionTransitionThreshold() {
+        return this.revisionTransitionThreshold;
+    }
+
+    /**
+     * Set the revisionTransitionThreshold property: Optional. The percent of the total number of replicas that must be
+     * brought up before revision transition occurs. Defaults to 100 when none is given. Value must be greater than 0
+     * and less than or equal to 100.
+     * 
+     * @param revisionTransitionThreshold the revisionTransitionThreshold value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRevisionTransitionThreshold(Integer revisionTransitionThreshold) {
+        this.revisionTransitionThreshold = revisionTransitionThreshold;
         return this;
     }
 
@@ -211,6 +272,28 @@ public final class Configuration implements JsonSerializable<Configuration> {
     }
 
     /**
+     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @return the identitySettings value.
+     */
+    public List<IdentitySettings> identitySettings() {
+        return this.identitySettings;
+    }
+
+    /**
+     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @param identitySettings the identitySettings value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withIdentitySettings(List<IdentitySettings> identitySettings) {
+        this.identitySettings = identitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -228,8 +311,14 @@ public final class Configuration implements JsonSerializable<Configuration> {
         if (dapr() != null) {
             dapr().validate();
         }
+        if (runtime() != null) {
+            runtime().validate();
+        }
         if (service() != null) {
             service().validate();
+        }
+        if (identitySettings() != null) {
+            identitySettings().forEach(e -> e.validate());
         }
     }
 
@@ -245,8 +334,12 @@ public final class Configuration implements JsonSerializable<Configuration> {
         jsonWriter.writeJsonField("ingress", this.ingress);
         jsonWriter.writeArrayField("registries", this.registries, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("dapr", this.dapr);
+        jsonWriter.writeJsonField("runtime", this.runtime);
         jsonWriter.writeNumberField("maxInactiveRevisions", this.maxInactiveRevisions);
+        jsonWriter.writeNumberField("revisionTransitionThreshold", this.revisionTransitionThreshold);
         jsonWriter.writeJsonField("service", this.service);
+        jsonWriter.writeArrayField("identitySettings", this.identitySettings,
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -278,10 +371,18 @@ public final class Configuration implements JsonSerializable<Configuration> {
                     deserializedConfiguration.registries = registries;
                 } else if ("dapr".equals(fieldName)) {
                     deserializedConfiguration.dapr = Dapr.fromJson(reader);
+                } else if ("runtime".equals(fieldName)) {
+                    deserializedConfiguration.runtime = Runtime.fromJson(reader);
                 } else if ("maxInactiveRevisions".equals(fieldName)) {
                     deserializedConfiguration.maxInactiveRevisions = reader.getNullable(JsonReader::getInt);
+                } else if ("revisionTransitionThreshold".equals(fieldName)) {
+                    deserializedConfiguration.revisionTransitionThreshold = reader.getNullable(JsonReader::getInt);
                 } else if ("service".equals(fieldName)) {
                     deserializedConfiguration.service = Service.fromJson(reader);
+                } else if ("identitySettings".equals(fieldName)) {
+                    List<IdentitySettings> identitySettings
+                        = reader.readArray(reader1 -> IdentitySettings.fromJson(reader1));
+                    deserializedConfiguration.identitySettings = identitySettings;
                 } else {
                     reader.skipChildren();
                 }
