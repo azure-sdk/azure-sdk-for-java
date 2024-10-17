@@ -47,7 +47,7 @@ public final class VirtualMachineScaleSetNetworkProfileTests {
             model.networkInterfaceConfigurations().get(0).properties().auxiliaryMode());
         Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A4,
             model.networkInterfaceConfigurations().get(0).properties().auxiliarySku());
-        Assertions.assertEquals(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE, model.networkApiVersion());
+        Assertions.assertEquals(NetworkApiVersion.V2020_11_01, model.networkApiVersion());
     }
 
     @org.junit.jupiter.api.Test
@@ -94,7 +94,7 @@ public final class VirtualMachineScaleSetNetworkProfileTests {
                             .withDeleteOption(DeleteOptions.DETACH)
                             .withAuxiliaryMode(NetworkInterfaceAuxiliaryMode.ACCELERATED_CONNECTIONS)
                             .withAuxiliarySku(NetworkInterfaceAuxiliarySku.NONE))))
-                .withNetworkApiVersion(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE);
+                .withNetworkApiVersion(NetworkApiVersion.V2020_11_01);
         model = BinaryData.fromObject(model).toObject(VirtualMachineScaleSetNetworkProfile.class);
         Assertions.assertEquals("xgcp", model.healthProbe().id());
         Assertions.assertEquals("maajrmvdjwzrlo", model.networkInterfaceConfigurations().get(0).name());
@@ -117,6 +117,6 @@ public final class VirtualMachineScaleSetNetworkProfileTests {
             model.networkInterfaceConfigurations().get(0).properties().auxiliaryMode());
         Assertions.assertEquals(NetworkInterfaceAuxiliarySku.A4,
             model.networkInterfaceConfigurations().get(0).properties().auxiliarySku());
-        Assertions.assertEquals(NetworkApiVersion.TWO_ZERO_TWO_ZERO_ONE_ONE_ZERO_ONE, model.networkApiVersion());
+        Assertions.assertEquals(NetworkApiVersion.V2020_11_01, model.networkApiVersion());
     }
 }
