@@ -47,13 +47,6 @@ public interface DataFactoryManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the FactoriesClient object to access its operations.
      * 
      * @return the FactoriesClient object.

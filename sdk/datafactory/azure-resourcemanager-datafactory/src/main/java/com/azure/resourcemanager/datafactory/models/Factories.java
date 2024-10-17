@@ -59,29 +59,6 @@ public interface Factories {
     Factory configureFactoryRepo(String locationId, FactoryRepoUpdate factoryRepoUpdate);
 
     /**
-     * Lists factories.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Factory> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists factories.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Factory> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
      * Gets a factory.
      * 
      * @param resourceGroupName The resource group name.
