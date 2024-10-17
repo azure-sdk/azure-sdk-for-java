@@ -85,7 +85,7 @@ public interface ReportsClient {
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -93,13 +93,13 @@ public interface ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
-        ReportResourceInner properties);
+        ReportResourceInner resource);
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -108,26 +108,26 @@ public interface ReportsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
-        ReportResourceInner properties, Context context);
+        ReportResourceInner resource, Context context);
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ReportResourceInner createOrUpdate(String reportName, ReportResourceInner properties);
+    ReportResourceInner createOrUpdate(String reportName, ReportResourceInner resource);
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
      * 
      * @param reportName Report Name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -135,7 +135,7 @@ public interface ReportsClient {
      * @return a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ReportResourceInner createOrUpdate(String reportName, ReportResourceInner properties, Context context);
+    ReportResourceInner createOrUpdate(String reportName, ReportResourceInner resource, Context context);
 
     /**
      * Update an exiting AppComplianceAutomation report.

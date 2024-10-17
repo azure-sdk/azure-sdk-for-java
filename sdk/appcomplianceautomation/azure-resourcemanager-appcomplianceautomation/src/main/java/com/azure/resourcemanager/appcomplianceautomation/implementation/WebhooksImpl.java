@@ -60,9 +60,9 @@ public final class WebhooksImpl implements Webhooks {
     }
 
     public Response<WebhookResource> createOrUpdateWithResponse(String reportName, String webhookName,
-        WebhookResourceInner properties, Context context) {
+        WebhookResourceInner resource, Context context) {
         Response<WebhookResourceInner> inner
-            = this.serviceClient().createOrUpdateWithResponse(reportName, webhookName, properties, context);
+            = this.serviceClient().createOrUpdateWithResponse(reportName, webhookName, resource, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new WebhookResourceImpl(inner.getValue(), this.manager()));
@@ -71,8 +71,8 @@ public final class WebhooksImpl implements Webhooks {
         }
     }
 
-    public WebhookResource createOrUpdate(String reportName, String webhookName, WebhookResourceInner properties) {
-        WebhookResourceInner inner = this.serviceClient().createOrUpdate(reportName, webhookName, properties);
+    public WebhookResource createOrUpdate(String reportName, String webhookName, WebhookResourceInner resource) {
+        WebhookResourceInner inner = this.serviceClient().createOrUpdate(reportName, webhookName, resource);
         if (inner != null) {
             return new WebhookResourceImpl(inner, this.manager());
         } else {

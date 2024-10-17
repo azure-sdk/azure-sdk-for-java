@@ -95,7 +95,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
             @QueryParam("api-version") String apiVersion, @QueryParam("offerGuid") String offerGuid,
             @QueryParam("reportCreatorTenantId") String reportCreatorTenantId,
             @PathParam("reportName") String reportName, @PathParam("evidenceName") String evidenceName,
-            @BodyParam("application/json") EvidenceResourceInner properties, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") EvidenceResourceInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -429,7 +429,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param offerGuid The offerGuid which mapping to the reports.
      * @param reportCreatorTenantId The tenant id of the report creator.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -440,7 +440,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EvidenceResourceInner>> createOrUpdateWithResponseAsync(String reportName,
-        String evidenceName, EvidenceResourceInner properties, String offerGuid, String reportCreatorTenantId) {
+        String evidenceName, EvidenceResourceInner resource, String offerGuid, String reportCreatorTenantId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -451,15 +451,15 @@ public final class EvidencesClientImpl implements EvidencesClient {
         if (evidenceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter evidenceName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                offerGuid, reportCreatorTenantId, reportName, evidenceName, properties, accept, context))
+                offerGuid, reportCreatorTenantId, reportName, evidenceName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -468,7 +468,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param offerGuid The offerGuid which mapping to the reports.
      * @param reportCreatorTenantId The tenant id of the report creator.
      * @param context The context to associate with this operation.
@@ -480,7 +480,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EvidenceResourceInner>> createOrUpdateWithResponseAsync(String reportName,
-        String evidenceName, EvidenceResourceInner properties, String offerGuid, String reportCreatorTenantId,
+        String evidenceName, EvidenceResourceInner resource, String offerGuid, String reportCreatorTenantId,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -492,15 +492,15 @@ public final class EvidencesClientImpl implements EvidencesClient {
         if (evidenceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter evidenceName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), offerGuid,
-            reportCreatorTenantId, reportName, evidenceName, properties, accept, context);
+            reportCreatorTenantId, reportName, evidenceName, resource, accept, context);
     }
 
     /**
@@ -508,7 +508,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -516,10 +516,10 @@ public final class EvidencesClientImpl implements EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EvidenceResourceInner> createOrUpdateAsync(String reportName, String evidenceName,
-        EvidenceResourceInner properties) {
+        EvidenceResourceInner resource) {
         final String offerGuid = null;
         final String reportCreatorTenantId = null;
-        return createOrUpdateWithResponseAsync(reportName, evidenceName, properties, offerGuid, reportCreatorTenantId)
+        return createOrUpdateWithResponseAsync(reportName, evidenceName, resource, offerGuid, reportCreatorTenantId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -528,7 +528,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @param offerGuid The offerGuid which mapping to the reports.
      * @param reportCreatorTenantId The tenant id of the report creator.
      * @param context The context to associate with this operation.
@@ -539,8 +539,8 @@ public final class EvidencesClientImpl implements EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EvidenceResourceInner> createOrUpdateWithResponse(String reportName, String evidenceName,
-        EvidenceResourceInner properties, String offerGuid, String reportCreatorTenantId, Context context) {
-        return createOrUpdateWithResponseAsync(reportName, evidenceName, properties, offerGuid, reportCreatorTenantId,
+        EvidenceResourceInner resource, String offerGuid, String reportCreatorTenantId, Context context) {
+        return createOrUpdateWithResponseAsync(reportName, evidenceName, resource, offerGuid, reportCreatorTenantId,
             context).block();
     }
 
@@ -549,7 +549,7 @@ public final class EvidencesClientImpl implements EvidencesClient {
      * 
      * @param reportName Report Name.
      * @param evidenceName The evidence name.
-     * @param properties Parameters for the create or update operation.
+     * @param resource Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -557,10 +557,10 @@ public final class EvidencesClientImpl implements EvidencesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public EvidenceResourceInner createOrUpdate(String reportName, String evidenceName,
-        EvidenceResourceInner properties) {
+        EvidenceResourceInner resource) {
         final String offerGuid = null;
         final String reportCreatorTenantId = null;
-        return createOrUpdateWithResponse(reportName, evidenceName, properties, offerGuid, reportCreatorTenantId,
+        return createOrUpdateWithResponse(reportName, evidenceName, resource, offerGuid, reportCreatorTenantId,
             Context.NONE).getValue();
     }
 
