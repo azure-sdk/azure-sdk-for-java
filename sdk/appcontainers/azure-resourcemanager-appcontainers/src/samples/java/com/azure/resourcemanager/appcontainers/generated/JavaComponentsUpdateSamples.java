@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class JavaComponentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/JavaComponents_Patch.json
+     * specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/JavaComponents_Patch.json
      */
     /**
      * Sample code: Patch Java Component.
@@ -39,7 +39,7 @@ public final class JavaComponentsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * JavaComponents_Patch_ServiceBind.json
      */
     /**

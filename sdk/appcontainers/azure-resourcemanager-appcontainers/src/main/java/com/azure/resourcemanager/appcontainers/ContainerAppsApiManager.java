@@ -42,6 +42,7 @@ import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsBuild
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsBuildsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsLabelHistoriesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsPatchesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionReplicasImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
@@ -56,6 +57,7 @@ import com.azure.resourcemanager.appcontainers.implementation.JavaComponentsImpl
 import com.azure.resourcemanager.appcontainers.implementation.JobsExecutionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JobsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.LogicAppsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.MaintenanceConfigurationsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedCertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentPrivateEndpointConnectionsImpl;
@@ -85,6 +87,7 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppsAuthConfigs;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsBuilds;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsBuildsByContainerApps;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsDiagnostics;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsLabelHistories;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsPatches;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionReplicas;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
@@ -99,6 +102,7 @@ import com.azure.resourcemanager.appcontainers.models.JavaComponents;
 import com.azure.resourcemanager.appcontainers.models.Jobs;
 import com.azure.resourcemanager.appcontainers.models.JobsExecutions;
 import com.azure.resourcemanager.appcontainers.models.LogicApps;
+import com.azure.resourcemanager.appcontainers.models.MaintenanceConfigurations;
 import com.azure.resourcemanager.appcontainers.models.ManagedCertificates;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPrivateEndpointConnections;
@@ -157,6 +161,8 @@ public final class ContainerAppsApiManager {
 
     private ContainerAppsPatches containerAppsPatches;
 
+    private ContainerAppsLabelHistories containerAppsLabelHistories;
+
     private ContainerAppsRevisions containerAppsRevisions;
 
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
@@ -200,6 +206,8 @@ public final class ContainerAppsApiManager {
     private DaprComponents daprComponents;
 
     private DaprSubscriptions daprSubscriptions;
+
+    private MaintenanceConfigurations maintenanceConfigurations;
 
     private ManagedEnvironmentsStorages managedEnvironmentsStorages;
 
@@ -375,7 +383,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -546,7 +554,8 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of ConnectedEnvironmentsDaprComponents. It manages DaprComponent.
+     * Gets the resource collection API of ConnectedEnvironmentsDaprComponents. It manages
+     * ConnectedEnvironmentDaprComponent.
      * 
      * @return Resource collection API of ConnectedEnvironmentsDaprComponents.
      */
@@ -618,6 +627,19 @@ public final class ContainerAppsApiManager {
             this.containerAppsPatches = new ContainerAppsPatchesImpl(clientObject.getContainerAppsPatches(), this);
         }
         return containerAppsPatches;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsLabelHistories.
+     * 
+     * @return Resource collection API of ContainerAppsLabelHistories.
+     */
+    public ContainerAppsLabelHistories containerAppsLabelHistories() {
+        if (this.containerAppsLabelHistories == null) {
+            this.containerAppsLabelHistories
+                = new ContainerAppsLabelHistoriesImpl(clientObject.getContainerAppsLabelHistories(), this);
+        }
+        return containerAppsLabelHistories;
     }
 
     /**
@@ -870,7 +892,7 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of DaprComponents.
+     * Gets the resource collection API of DaprComponents. It manages DaprComponent.
      * 
      * @return Resource collection API of DaprComponents.
      */
@@ -891,6 +913,19 @@ public final class ContainerAppsApiManager {
             this.daprSubscriptions = new DaprSubscriptionsImpl(clientObject.getDaprSubscriptions(), this);
         }
         return daprSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of MaintenanceConfigurations. It manages MaintenanceConfigurationResource.
+     * 
+     * @return Resource collection API of MaintenanceConfigurations.
+     */
+    public MaintenanceConfigurations maintenanceConfigurations() {
+        if (this.maintenanceConfigurations == null) {
+            this.maintenanceConfigurations
+                = new MaintenanceConfigurationsImpl(clientObject.getMaintenanceConfigurations(), this);
+        }
+        return maintenanceConfigurations;
     }
 
     /**
