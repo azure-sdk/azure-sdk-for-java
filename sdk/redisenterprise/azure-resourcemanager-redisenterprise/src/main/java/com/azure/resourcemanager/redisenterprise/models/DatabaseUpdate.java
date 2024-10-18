@@ -5,21 +5,22 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * A partial update to the RedisEnterprise database.
  */
 @Fluent
-public final class DatabaseUpdate {
+public final class DatabaseUpdate implements JsonSerializable<DatabaseUpdate> {
     /*
-     * RedisEnterprise database properties
-     * 
      * Properties of the database.
      */
-    @JsonProperty(value = "properties")
     private DatabaseProperties innerProperties;
 
     /**
@@ -29,9 +30,7 @@ public final class DatabaseUpdate {
     }
 
     /**
-     * Get the innerProperties property: RedisEnterprise database properties
-     * 
-     * Properties of the database.
+     * Get the innerProperties property: Properties of the database.
      * 
      * @return the innerProperties value.
      */
@@ -225,40 +224,6 @@ public final class DatabaseUpdate {
     }
 
     /**
-     * Get the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().redisVersion();
-    }
-
-    /**
-     * Get the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.innerProperties() == null ? null : this.innerProperties().deferUpgrade();
-    }
-
-    /**
-     * Set the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @param deferUpgrade the deferUpgrade value to set.
-     * @return the DatabaseUpdate object itself.
-     */
-    public DatabaseUpdate withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withDeferUpgrade(deferUpgrade);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -267,5 +232,41 @@ public final class DatabaseUpdate {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DatabaseUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DatabaseUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DatabaseUpdate.
+     */
+    public static DatabaseUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DatabaseUpdate deserializedDatabaseUpdate = new DatabaseUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("properties".equals(fieldName)) {
+                    deserializedDatabaseUpdate.innerProperties = DatabaseProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDatabaseUpdate;
+        });
     }
 }

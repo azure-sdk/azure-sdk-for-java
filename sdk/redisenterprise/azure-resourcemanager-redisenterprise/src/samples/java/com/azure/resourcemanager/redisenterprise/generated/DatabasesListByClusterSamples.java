@@ -9,7 +9,8 @@ package com.azure.resourcemanager.redisenterprise.generated;
  */
 public final class DatabasesListByClusterSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-03-01-preview/examples/RedisEnterpriseDatabasesListByCluster.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2024-10-01/examples/
+     * RedisEnterpriseDatabasesListByCluster.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesListByCluster.
