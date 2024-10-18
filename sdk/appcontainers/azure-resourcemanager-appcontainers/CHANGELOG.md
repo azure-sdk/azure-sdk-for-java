@@ -1,14 +1,801 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2024-10-18)
 
-### Features Added
+- Azure Resource Manager ContainerAppsApi client library for Java. This package contains Microsoft Azure SDK for ContainerAppsApi Management SDK. Functions is an extension resource to revisions and the api listed is used to proxy the call from Web RP to the function app's host process, this api is not exposed to users and only Web RP is allowed to invoke functions extension resource. Package tag package-preview-2024-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DaprComponent$DefinitionStages` was modified
 
-### Other Changes
+* `withExistingConnectedEnvironment(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.ContainerAppsSourceControls` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ConnectedEnvironmentsDaprComponents` was modified
+
+* `models.DaprComponent get(java.lang.String,java.lang.String,java.lang.String)` -> `models.ConnectedEnvironmentDaprComponent get(java.lang.String,java.lang.String,java.lang.String)`
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `models.DaprComponent$DefinitionStages$Blank define(java.lang.String)` -> `models.ConnectedEnvironmentDaprComponent$DefinitionStages$Blank define(java.lang.String)`
+* `com.azure.core.http.rest.Response deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `void deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `models.DaprComponent getById(java.lang.String)` -> `models.ConnectedEnvironmentDaprComponent getById(java.lang.String)`
+
+#### `models.ConnectedEnvironmentsCertificates` was modified
+
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `com.azure.core.http.rest.Response deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `void deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+
+#### `models.DaprComponents` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.DaprComponentInner)` was removed
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.DaprComponentInner,com.azure.core.util.Context)` was removed
+
+#### `models.DaprComponent$Definition` was modified
+
+* `withExistingConnectedEnvironment(java.lang.String,java.lang.String)` was removed
+
+#### `models.ConnectedEnvironmentsStorages` was modified
+
+* `com.azure.core.http.rest.Response deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` -> `void deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)`
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.SessionContainer` was added
+
+* `models.ContainerAppsBuilds` was added
+
+* `models.HttpConnectionPool` was added
+
+* `models.SessionPoolUpdatableProperties` was added
+
+* `models.LoggerSetting` was added
+
+* `models.ScaleConfiguration` was added
+
+* `models.RuntimeJavaAgentLogging` was added
+
+* `models.LabelHistoryRecordItem` was added
+
+* `models.BuildProvisioningState` was added
+
+* `models.DaprSubscriptions` was added
+
+* `models.PatchType` was added
+
+* `models.HttpRouteConfigProperties` was added
+
+* `models.SmbStorage` was added
+
+* `models.CertificateKeyVaultProperties` was added
+
+* `models.EnvironmentVariable` was added
+
+* `models.DotNetComponentServiceBind` was added
+
+* `models.AppResiliencies` was added
+
+* `models.PrivateEndpoint` was added
+
+* `models.JavaComponentServiceBind` was added
+
+* `models.LogsConfiguration` was added
+
+* `models.PatchApplyStatus` was added
+
+* `models.DaprSubscription$UpdateStages` was added
+
+* `models.ConnectedEnvironmentDaprComponent` was added
+
+* `models.DotNetComponent$DefinitionStages` was added
+
+* `models.HttpGet` was added
+
+* `models.ContainerAppsPatches` was added
+
+* `models.LogicApps` was added
+
+* `models.PrivateEndpointConnection$Definition` was added
+
+* `models.SessionPool$UpdateStages` was added
+
+* `models.MaintenanceConfigurationResource` was added
+
+* `models.DotNetComponentProvisioningState` was added
+
+* `models.DotNetComponentType` was added
+
+* `models.FunctionsExtensions` was added
+
+* `models.DaprComponentResiliencyPoliciesCollection` was added
+
+* `models.ConnectedEnvironmentDaprComponent$DefinitionStages` was added
+
+* `models.PatchCollection` was added
+
+* `models.AppResiliency$Definition` was added
+
+* `models.DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration` was added
+
+* `models.HttpRouteConfigs` was added
+
+* `models.ContainerAppsPatchResource` was added
+
+* `models.DaprSubscription$DefinitionStages` was added
+
+* `models.OtlpConfiguration` was added
+
+* `models.MetricsConfiguration` was added
+
+* `models.ScgRoute` was added
+
+* `models.MaintenanceConfigurationResource$UpdateStages` was added
+
+* `models.DaprSubscriptionBulkSubscribeOptions` was added
+
+* `models.JavaComponent$Definition` was added
+
+* `models.PrivateEndpointServiceConnectionStatus` was added
+
+* `models.LabelHistoryCollection` was added
+
+* `models.SessionIngress` was added
+
+* `models.BuildsByBuilderResources` was added
+
+* `models.BuildResource` was added
+
+* `models.ContainerAppsBuildConfiguration` was added
+
+* `models.WorkflowEnvelopeCollection` was added
+
+* `models.TimeoutPolicy` was added
+
+* `models.DotNetComponentConfigurationProperty` was added
+
+* `models.ContainerAppsBuildCollection` was added
+
+* `models.DaprSubscriptionsCollection` was added
+
+* `models.ErrorEntity` was added
+
+* `models.PrivateLinkServiceConnectionState` was added
+
+* `models.DaprSubscriptionRoutes` was added
+
+* `models.PatchProperties` was added
+
+* `models.HttpRetryPolicy` was added
+
+* `models.PatchDetails` was added
+
+* `models.PrivateEndpointConnectionProvisioningState` was added
+
+* `models.CircuitBreakerPolicy` was added
+
+* `models.TcpRetryPolicy` was added
+
+* `models.SessionPoolSecret` was added
+
+* `models.HeaderMatch` was added
+
+* `models.BuilderCollection` was added
+
+* `models.BuildStatus` was added
+
+* `models.DaprSubscription` was added
+
+* `models.DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration` was added
+
+* `models.BuildToken` was added
+
+* `models.DaprComponentResiliencyPolicyConfiguration` was added
+
+* `models.WorkflowEnvelope` was added
+
+* `models.OpenTelemetryConfiguration` was added
+
+* `models.PrivateLinkResourceListResult` was added
+
+* `models.DaprComponentResiliencyPolicy$Update` was added
+
+* `models.LogicAppsProxyMethod` was added
+
+* `models.HttpRouteAction` was added
+
+* `models.ConnectedEnvironmentDaprComponentsCollection` was added
+
+* `models.DestinationsConfiguration` was added
+
+* `models.CertificateType` was added
+
+* `models.ConnectedEnvironmentDaprComponentProperties` was added
+
+* `models.BuildCollection` was added
+
+* `models.ScheduledEntry` was added
+
+* `models.ExecutionType` was added
+
+* `models.ManagedIdentitySetting` was added
+
+* `models.ContainerExecutionStatus` was added
+
+* `models.DaprComponentServiceBinding` was added
+
+* `models.MaintenanceConfigurationCollection` was added
+
+* `models.ContainerAppsBuildsByContainerApps` was added
+
+* `models.CustomContainerTemplate` was added
+
+* `models.WorkflowArtifacts` was added
+
+* `models.LabelHistoryProperties` was added
+
+* `models.SessionNetworkConfiguration` was added
+
+* `models.PatchingMode` was added
+
+* `models.ContainerAppsBuildResource` was added
+
+* `models.PrivateEndpointConnection$UpdateStages` was added
+
+* `models.JavaComponent$DefinitionStages` was added
+
+* `models.ConnectedEnvironmentDaprComponent$UpdateStages` was added
+
+* `models.HttpRouteProvisioningState` was added
+
+* `models.ManagedServiceIdentityAutoGenerated` was added
+
+* `models.ExecutionStatus` was added
+
+* `models.ConnectedEnvironmentDaprComponent$Definition` was added
+
+* `models.ContainerRegistryWithCustomImage` was added
+
+* `models.JavaComponentType` was added
+
+* `models.RuntimeDotnet` was added
+
+* `models.AppResiliency$UpdateStages` was added
+
+* `models.SpringCloudGatewayComponent` was added
+
+* `models.ConnectedEnvironmentDaprComponentProvisioningState` was added
+
+* `models.Kind` was added
+
+* `models.ContainerAppsSessionPools` was added
+
+* `models.ContainerAppPropertiesPatchingConfiguration` was added
+
+* `models.BuilderResource$Definition` was added
+
+* `models.Header` was added
+
+* `models.TcpConnectionPool` was added
+
+* `models.JavaComponents` was added
+
+* `models.DaprSubscription$Definition` was added
+
+* `models.BuilderProvisioningState` was added
+
+* `models.DotNetComponent$UpdateStages` was added
+
+* `models.LabelHistory` was added
+
+* `models.DaprComponentResiliencyPolicyTimeoutPolicyConfiguration` was added
+
+* `models.LogicApp$Definition` was added
+
+* `models.HttpRouteProvisioningErrors` was added
+
+* `models.Runtime` was added
+
+* `models.JavaComponentPropertiesScale` was added
+
+* `models.BuildResource$UpdateStages` was added
+
+* `models.ManagedEnvironmentPrivateEndpointConnections` was added
+
+* `models.DotNetComponents` was added
+
+* `models.WorkflowState` was added
+
+* `models.PrivateEndpointConnectionListResult` was added
+
+* `models.AppResiliency` was added
+
+* `models.BuilderResource$Update` was added
+
+* `models.BuildConfiguration` was added
+
+* `models.PoolManagementType` was added
+
+* `models.BuildResource$Update` was added
+
+* `models.IdentitySettingsLifeCycle` was added
+
+* `models.HttpRouteConfig$Definition` was added
+
+* `models.SessionPoolProvisioningState` was added
+
+* `models.SpringBootAdminComponent` was added
+
+* `models.PatchDetailsOldLayer` was added
+
+* `models.ConnectedEnvironmentDaprComponent$Update` was added
+
+* `models.DotNetComponent$Update` was added
+
+* `models.JavaComponentConfigurationProperty` was added
+
+* `models.HttpRouteConfig$DefinitionStages` was added
+
+* `models.SpringCloudConfigComponent` was added
+
+* `models.ConnectedEnvironmentStorageProvisioningState` was added
+
+* `models.MaintenanceConfigurations` was added
+
+* `models.PrivateEndpointConnection` was added
+
+* `models.BuilderResourceUpdate` was added
+
+* `models.SessionPool$Definition` was added
+
+* `models.AppResiliency$DefinitionStages` was added
+
+* `models.ImageType` was added
+
+* `models.BuildAuthTokens` was added
+
+* `models.ContainerRegistry` was added
+
+* `models.IngressTargetPortHttpScheme` was added
+
+* `models.WorkflowEnvelopeProperties` was added
+
+* `models.WorkflowHealthState` was added
+
+* `models.HttpRouteConfig` was added
+
+* `models.DaprServiceBindMetadata` was added
+
+* `models.MaintenanceConfigurationResource$DefinitionStages` was added
+
+* `models.TracesConfiguration` was added
+
+* `models.DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration` was added
+
+* `models.SessionPool$DefinitionStages` was added
+
+* `models.PrivateEndpointConnection$Update` was added
+
+* `models.LogicApp$UpdateStages` was added
+
+* `models.MaintenanceConfigurationResource$Update` was added
+
+* `models.AppInsightsConfiguration` was added
+
+* `models.WorkflowHealth` was added
+
+* `models.DaprComponentResiliencyPolicy$Definition` was added
+
+* `models.SessionPool` was added
+
+* `models.NfsAzureFileProperties` was added
+
+* `models.PrivateLinkResource` was added
+
+* `models.DaprComponentResiliencyPolicy$DefinitionStages` was added
+
+* `models.SessionContainerResources` was added
+
+* `models.PatchSkipConfig` was added
+
+* `models.HttpRouteConfig$Update` was added
+
+* `models.DaprComponentResiliencyPolicies` was added
+
+* `models.AppResiliencyCollection` was added
+
+* `models.DotNetComponent` was added
+
+* `models.ContainerAppsLabelHistories` was added
+
+* `models.SessionPool$Update` was added
+
+* `models.HttpRouteMatch` was added
+
+* `models.BuilderResource$DefinitionStages` was added
+
+* `models.JavaComponentsCollection` was added
+
+* `models.Builders` was added
+
+* `models.Level` was added
+
+* `models.BuildResource$DefinitionStages` was added
+
+* `models.JavaComponent` was added
+
+* `models.AppResiliency$Update` was added
+
+* `models.SessionNetworkStatus` was added
+
+* `models.DaprSubscription$Update` was added
+
+* `models.WeekDay` was added
+
+* `models.DataDogConfiguration` was added
+
+* `models.DotNetComponentsCollection` was added
+
+* `models.ManagedEnvironmentPrivateLinkResources` was added
+
+* `models.RuntimeJava` was added
+
+* `models.MaintenanceConfigurationResource$Definition` was added
+
+* `models.DotNetComponent$Definition` was added
+
+* `models.HttpRouteConfig$UpdateStages` was added
+
+* `models.DaprComponentResiliencyPolicy$UpdateStages` was added
+
+* `models.JavaComponent$UpdateStages` was added
+
+* `models.LogicApp` was added
+
+* `models.JavaComponentProvisioningState` was added
+
+* `models.PatchDetailsNewLayer` was added
+
+* `models.HttpRouteConfigCollection` was added
+
+* `models.DetectionStatus` was added
+
+* `models.ReplicaExecutionStatus` was added
+
+* `models.PreBuildStep` was added
+
+* `models.BuilderResource$UpdateStages` was added
+
+* `models.RuntimeJavaAgent` was added
+
+* `models.DynamicPoolConfiguration` was added
+
+* `models.IdentitySettings` was added
+
+* `models.HttpRouteTarget` was added
+
+* `models.DaprComponentResiliencyPolicy` was added
+
+* `models.JobRunningState` was added
+
+* `models.ContainerType` was added
+
+* `models.SessionRegistryCredentials` was added
+
+* `models.HttpRouteRule` was added
+
+* `models.JavaComponentProperties` was added
+
+* `models.BuilderResource` was added
+
+* `models.BuildResource$Definition` was added
+
+* `models.Builds` was added
+
+* `models.SessionPoolCollection` was added
+
+* `models.HttpRoute` was added
+
+* `models.LogicApp$Update` was added
+
+* `models.NacosComponent` was added
+
+* `models.LogicApp$DefinitionStages` was added
+
+* `models.JavaComponent$Update` was added
+
+* `models.JavaComponentIngress` was added
+
+* `models.PublicNetworkAccess` was added
+
+* `models.DaprSubscriptionRouteRule` was added
+
+* `models.PrivateEndpointConnection$DefinitionStages` was added
+
+* `models.SpringCloudEurekaComponent` was added
+
+#### `models.ContainerAppsSourceControls` was modified
+
+* `deleteByIdWithResponse(java.lang.String,java.lang.String,java.lang.Boolean,java.lang.Boolean,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.ServiceBind` was modified
+
+* `customizedKeys()` was added
+* `withCustomizedKeys(java.util.Map)` was added
+* `clientType()` was added
+* `withClientType(java.lang.String)` was added
+
+#### `models.Job` was modified
+
+* `resume(com.azure.core.util.Context)` was added
+* `runningState()` was added
+* `suspend(com.azure.core.util.Context)` was added
+* `extendedLocation()` was added
+* `suspend()` was added
+* `resume()` was added
+
+#### `models.Revision` was modified
+
+* `labels()` was added
+
+#### `models.WorkloadProfile` was modified
+
+* `withEnableFips(java.lang.Boolean)` was added
+* `enableFips()` was added
+
+#### `models.InitContainer` was modified
+
+* `withImageType(models.ImageType)` was added
+
+#### `models.QueueScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+* `withAccountName(java.lang.String)` was added
+* `accountName()` was added
+
+#### `models.ConnectedEnvironmentsDaprComponents` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.ConnectedEnvironmentStorageProperties` was modified
+
+* `smb()` was added
+* `deploymentErrors()` was added
+* `withSmb(models.SmbStorage)` was added
+* `provisioningState()` was added
+
+#### `models.ManagedEnvironmentStorageProperties` was modified
+
+* `withNfsAzureFile(models.NfsAzureFileProperties)` was added
+* `nfsAzureFile()` was added
+
+#### `models.GithubActionConfiguration` was modified
+
+* `withDockerfilePath(java.lang.String)` was added
+* `dockerfilePath()` was added
+* `withBuildEnvironmentVariables(java.util.List)` was added
+* `buildEnvironmentVariables()` was added
+
+#### `models.DaprComponent` was modified
+
+* `serviceComponentBind()` was added
+
+#### `models.TcpScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.Scale` was modified
+
+* `cooldownPeriod()` was added
+* `withCooldownPeriod(java.lang.Integer)` was added
+* `withPollingInterval(java.lang.Integer)` was added
+* `pollingInterval()` was added
+
+#### `models.LogAnalyticsConfiguration` was modified
+
+* `dynamicJsonColumns()` was added
+* `withDynamicJsonColumns(java.lang.Boolean)` was added
+
+#### `models.ManagedEnvironment` was modified
+
+* `availabilityZones()` was added
+* `appInsightsConfiguration()` was added
+* `openTelemetryConfiguration()` was added
+* `identity()` was added
+* `publicNetworkAccess()` was added
+* `privateEndpointConnections()` was added
+
+#### `models.ConnectedEnvironmentsCertificates` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.HttpScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.DaprComponents` was modified
+
+* `deleteById(java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+
+#### `models.Container` was modified
+
+* `withImageType(models.ImageType)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `certificateType()` was added
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+* `withCertificateType(models.CertificateType)` was added
+* `certificateKeyVaultProperties()` was added
+* `deploymentErrors()` was added
+
+#### `models.ContainerApp` was modified
+
+* `patchingConfiguration()` was added
+* `kind()` was added
+* `deploymentErrors()` was added
+
+#### `models.JobScaleRule` was modified
+
+* `identity()` was added
+* `withIdentity(java.lang.String)` was added
+
+#### `models.ReplicaContainer` was modified
+
+* `debugEndpoint()` was added
+
+#### `models.ContainerApp$Definition` was modified
+
+* `withPatchingConfiguration(models.ContainerAppPropertiesPatchingConfiguration)` was added
+* `withKind(models.Kind)` was added
+
+#### `models.CustomDomainConfiguration` was modified
+
+* `certificateKeyVaultProperties()` was added
+* `withCertificateKeyVaultProperties(models.CertificateKeyVaultProperties)` was added
+
+#### `models.Configuration` was modified
+
+* `withIdentitySettings(java.util.List)` was added
+* `targetLabel()` was added
+* `revisionTransitionThreshold()` was added
+* `identitySettings()` was added
+* `runtime()` was added
+* `withRevisionTransitionThreshold(java.lang.Integer)` was added
+* `withTargetLabel(java.lang.String)` was added
+* `withRuntime(models.Runtime)` was added
+
+#### `models.DaprComponent$Definition` was modified
+
+* `withExistingManagedEnvironment(java.lang.String,java.lang.String)` was added
+* `withServiceComponentBind(java.util.List)` was added
+
+#### `models.ManagedEnvironment$Update` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was added
+* `withAppInsightsConfiguration(models.AppInsightsConfiguration)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withOpenTelemetryConfiguration(models.OpenTelemetryConfiguration)` was added
+* `withAvailabilityZones(java.util.List)` was added
+
+#### `models.SourceControl$Definition` was modified
+
+* `withXMsGithubAuxiliary(java.lang.String)` was added
+
+#### `models.ConnectedEnvironmentsStorages` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Job$Definition` was modified
+
+* `withExtendedLocation(models.ExtendedLocation)` was added
+
+#### `models.Jobs` was modified
+
+* `resume(java.lang.String,java.lang.String)` was added
+* `suspend(java.lang.String,java.lang.String)` was added
+* `resume(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `suspend(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.DaprComponent$Update` was modified
+
+* `withServiceComponentBind(java.util.List)` was added
+
+#### `models.ManagedEnvironment$Definition` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `withOpenTelemetryConfiguration(models.OpenTelemetryConfiguration)` was added
+* `withAvailabilityZones(java.util.List)` was added
+* `withAppInsightsConfiguration(models.AppInsightsConfiguration)` was added
+
+#### `models.ContainerApp$Update` was modified
+
+* `withPatchingConfiguration(models.ContainerAppPropertiesPatchingConfiguration)` was added
+
+#### `models.JobConfiguration` was modified
+
+* `identitySettings()` was added
+* `withIdentitySettings(java.util.List)` was added
+
+#### `models.SourceControl$Update` was modified
+
+* `withXMsGithubAuxiliary(java.lang.String)` was added
+
+#### `models.Job$Update` was modified
+
+* `withExtendedLocation(models.ExtendedLocation)` was added
+
+#### `models.JobExecution` was modified
+
+* `detailedStatus()` was added
+
+#### `models.JobPatchProperties` was modified
+
+* `withExtendedLocation(models.ExtendedLocation)` was added
+* `extendedLocation()` was added
+
+#### `ContainerAppsApiManager` was modified
+
+* `daprComponentResiliencyPolicies()` was added
+* `daprSubscriptions()` was added
+* `containerAppsLabelHistories()` was added
+* `containerAppsPatches()` was added
+* `builders()` was added
+* `httpRouteConfigs()` was added
+* `containerAppsBuildsByContainerApps()` was added
+* `builds()` was added
+* `managedEnvironmentPrivateEndpointConnections()` was added
+* `functionsExtensions()` was added
+* `buildsByBuilderResources()` was added
+* `containerAppsBuilds()` was added
+* `maintenanceConfigurations()` was added
+* `containerAppsSessionPools()` was added
+* `dotNetComponents()` was added
+* `javaComponents()` was added
+* `appResiliencies()` was added
+* `logicApps()` was added
+* `managedEnvironmentPrivateLinkResources()` was added
+* `buildAuthTokens()` was added
+
+#### `models.BaseContainer` was modified
+
+* `withImageType(models.ImageType)` was added
+* `imageType()` was added
+
+#### `models.BlobStorageTokenStore` was modified
+
+* `managedIdentityResourceId()` was added
+* `blobContainerUri()` was added
+* `withClientId(java.lang.String)` was added
+* `withManagedIdentityResourceId(java.lang.String)` was added
+* `withBlobContainerUri(java.lang.String)` was added
+* `clientId()` was added
+
+#### `models.CustomScaleRule` was modified
+
+* `withIdentity(java.lang.String)` was added
+* `identity()` was added
+
+#### `models.ContainerResources` was modified
+
+* `gpu()` was added
+* `withGpu(java.lang.Double)` was added
+
+#### `models.Ingress` was modified
+
+* `targetPortHttpScheme()` was added
+* `withTargetPortHttpScheme(models.IngressTargetPortHttpScheme)` was added
 
 ## 1.1.0-beta.1 (2024-10-17)
 
