@@ -17,14 +17,19 @@ import java.io.IOException;
 @Fluent
 public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     /*
-     * Output Asset URI.
+     * Output Asset Name.
      */
-    private String uri;
+    private String assetName;
 
     /*
      * Output Asset Delivery Mode.
      */
     private OutputDeliveryMode mode;
+
+    /*
+     * Output Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of AssetJobOutput class.
@@ -33,22 +38,22 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     }
 
     /**
-     * Get the uri property: Output Asset URI.
+     * Get the assetName property: Output Asset Name.
      * 
-     * @return the uri value.
+     * @return the assetName value.
      */
-    public String uri() {
-        return this.uri;
+    public String assetName() {
+        return this.assetName;
     }
 
     /**
-     * Set the uri property: Output Asset URI.
+     * Set the assetName property: Output Asset Name.
      * 
-     * @param uri the uri value to set.
+     * @param assetName the assetName value to set.
      * @return the AssetJobOutput object itself.
      */
-    public AssetJobOutput withUri(String uri) {
-        this.uri = uri;
+    public AssetJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
         return this;
     }
 
@@ -73,6 +78,26 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     }
 
     /**
+     * Get the uri property: Output Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: Output Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withUri(String uri) {
+        this.uri = uri;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,8 +111,9 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("uri", this.uri);
+        jsonWriter.writeStringField("assetName", this.assetName);
         jsonWriter.writeStringField("mode", this.mode == null ? null : this.mode.toString());
+        jsonWriter.writeStringField("uri", this.uri);
         return jsonWriter.writeEndObject();
     }
 
@@ -106,10 +132,12 @@ public class AssetJobOutput implements JsonSerializable<AssetJobOutput> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("uri".equals(fieldName)) {
-                    deserializedAssetJobOutput.uri = reader.getString();
+                if ("assetName".equals(fieldName)) {
+                    deserializedAssetJobOutput.assetName = reader.getString();
                 } else if ("mode".equals(fieldName)) {
                     deserializedAssetJobOutput.mode = OutputDeliveryMode.fromString(reader.getString());
+                } else if ("uri".equals(fieldName)) {
+                    deserializedAssetJobOutput.uri = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

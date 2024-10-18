@@ -54,7 +54,6 @@ public final class CommandJobLimits extends JobLimits {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
