@@ -10,7 +10,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 public final class LogicAppsListWorkflowsConnectionsSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/LogicApps_ListConnections.
+     * specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/LogicApps_ListConnections.
      * json
      */
     /**
