@@ -159,6 +159,13 @@ public interface ContainerAppsApiClient {
     ContainerAppsPatchesClient getContainerAppsPatches();
 
     /**
+     * Gets the ContainerAppsLabelHistoriesClient object to access its operations.
+     * 
+     * @return the ContainerAppsLabelHistoriesClient object.
+     */
+    ContainerAppsLabelHistoriesClient getContainerAppsLabelHistories();
+
+    /**
      * Gets the ContainerAppsRevisionsClient object to access its operations.
      * 
      * @return the ContainerAppsRevisionsClient object.
