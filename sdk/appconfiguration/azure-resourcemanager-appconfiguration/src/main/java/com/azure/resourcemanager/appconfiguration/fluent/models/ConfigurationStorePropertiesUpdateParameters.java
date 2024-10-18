@@ -5,44 +5,73 @@
 package com.azure.resourcemanager.appconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.appconfiguration.models.SasProperties;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
+import java.io.IOException;
 
-/** The properties for updating a configuration store. */
+/**
+ * The properties for updating a configuration store.
+ */
 @Fluent
-public final class ConfigurationStorePropertiesUpdateParameters {
+public final class ConfigurationStorePropertiesUpdateParameters
+    implements JsonSerializable<ConfigurationStorePropertiesUpdateParameters> {
     /*
      * The encryption settings of the configuration store.
      */
-    @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
     /*
-     * Disables all authentication methods other than AAD authentication.
+     * Disables access key authentication.
      */
-    @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;
+
+    /*
+     * The SAS authentication settings of the configuration store.
+     */
+    private SasProperties sas;
 
     /*
      * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
-    @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
      * Property specifying whether protection against purge is enabled for this configuration store.
      */
-    @JsonProperty(value = "enablePurgeProtection")
     private Boolean enablePurgeProtection;
 
-    /** Creates an instance of ConfigurationStorePropertiesUpdateParameters class. */
+    /*
+     * Property specifying the configuration of data plane proxy for Azure Resource Manager (ARM).
+     */
+    private DataPlaneProxyProperties dataPlaneProxy;
+
+    /*
+     * Property specifying the configuration of telemetry to update for this configuration store
+     */
+    private TelemetryProperties telemetry;
+
+    /*
+     * Property specifying the configuration of experimentation to update for this configuration store
+     */
+    private ExperimentationProperties experimentation;
+
+    /**
+     * Creates an instance of ConfigurationStorePropertiesUpdateParameters class.
+     */
     public ConfigurationStorePropertiesUpdateParameters() {
     }
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -51,7 +80,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -61,8 +90,8 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
-     * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * Get the disableLocalAuth property: Disables access key authentication.
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -70,8 +99,8 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
-     * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * Set the disableLocalAuth property: Disables access key authentication.
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -81,9 +110,29 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
+     * Get the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @return the sas value.
+     */
+    public SasProperties sas() {
+        return this.sas;
+    }
+
+    /**
+     * Set the sas property: The SAS authentication settings of the configuration store.
+     * 
+     * @param sas the sas value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withSas(SasProperties sas) {
+        this.sas = sas;
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
      * private endpoint is enabled.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -93,12 +142,12 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     /**
      * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
      * private endpoint is enabled.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
-    public ConfigurationStorePropertiesUpdateParameters withPublicNetworkAccess(
-        PublicNetworkAccess publicNetworkAccess) {
+    public ConfigurationStorePropertiesUpdateParameters
+        withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
         return this;
     }
@@ -106,7 +155,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -116,7 +165,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -126,13 +175,157 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.dataPlaneProxy;
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        this.dataPlaneProxy = dataPlaneProxy;
+        return this;
+    }
+
+    /**
+     * Get the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.telemetry;
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry to update for this configuration
+     * store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withTelemetry(TelemetryProperties telemetry) {
+        this.telemetry = telemetry;
+        return this;
+    }
+
+    /**
+     * Get the experimentation property: Property specifying the configuration of experimentation to update for this
+     * configuration store.
+     * 
+     * @return the experimentation value.
+     */
+    public ExperimentationProperties experimentation() {
+        return this.experimentation;
+    }
+
+    /**
+     * Set the experimentation property: Property specifying the configuration of experimentation to update for this
+     * configuration store.
+     * 
+     * @param experimentation the experimentation value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withExperimentation(ExperimentationProperties experimentation) {
+        this.experimentation = experimentation;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (encryption() != null) {
             encryption().validate();
         }
+        if (sas() != null) {
+            sas().validate();
+        }
+        if (dataPlaneProxy() != null) {
+            dataPlaneProxy().validate();
+        }
+        if (telemetry() != null) {
+            telemetry().validate();
+        }
+        if (experimentation() != null) {
+            experimentation().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("encryption", this.encryption);
+        jsonWriter.writeBooleanField("disableLocalAuth", this.disableLocalAuth);
+        jsonWriter.writeJsonField("sas", this.sas);
+        jsonWriter.writeStringField("publicNetworkAccess",
+            this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
+        jsonWriter.writeBooleanField("enablePurgeProtection", this.enablePurgeProtection);
+        jsonWriter.writeJsonField("dataPlaneProxy", this.dataPlaneProxy);
+        jsonWriter.writeJsonField("telemetry", this.telemetry);
+        jsonWriter.writeJsonField("experimentation", this.experimentation);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ConfigurationStorePropertiesUpdateParameters from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ConfigurationStorePropertiesUpdateParameters if the JsonReader was pointing to an instance
+     * of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ConfigurationStorePropertiesUpdateParameters.
+     */
+    public static ConfigurationStorePropertiesUpdateParameters fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ConfigurationStorePropertiesUpdateParameters deserializedConfigurationStorePropertiesUpdateParameters
+                = new ConfigurationStorePropertiesUpdateParameters();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("encryption".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.encryption
+                        = EncryptionProperties.fromJson(reader);
+                } else if ("disableLocalAuth".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.disableLocalAuth
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("sas".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.sas = SasProperties.fromJson(reader);
+                } else if ("publicNetworkAccess".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.publicNetworkAccess
+                        = PublicNetworkAccess.fromString(reader.getString());
+                } else if ("enablePurgeProtection".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.enablePurgeProtection
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("dataPlaneProxy".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.dataPlaneProxy
+                        = DataPlaneProxyProperties.fromJson(reader);
+                } else if ("telemetry".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.telemetry
+                        = TelemetryProperties.fromJson(reader);
+                } else if ("experimentation".equals(fieldName)) {
+                    deserializedConfigurationStorePropertiesUpdateParameters.experimentation
+                        = ExperimentationProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedConfigurationStorePropertiesUpdateParameters;
+        });
     }
 }
