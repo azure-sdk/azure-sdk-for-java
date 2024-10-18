@@ -19,7 +19,7 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
     /*
      * Container registry server.
      */
-    private String server;
+    private String registryServer;
 
     /*
      * Container registry username.
@@ -31,12 +31,6 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
      */
     private String passwordSecretRef;
 
-    /*
-     * A Managed Identity to use to authenticate with Azure Container Registry. For user-assigned identities, use the
-     * full user-assigned identity Resource ID. For system-assigned identities, use 'system'
-     */
-    private String identity;
-
     /**
      * Creates an instance of SessionRegistryCredentials class.
      */
@@ -44,22 +38,22 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
     }
 
     /**
-     * Get the server property: Container registry server.
+     * Get the registryServer property: Container registry server.
      * 
-     * @return the server value.
+     * @return the registryServer value.
      */
-    public String server() {
-        return this.server;
+    public String registryServer() {
+        return this.registryServer;
     }
 
     /**
-     * Set the server property: Container registry server.
+     * Set the registryServer property: Container registry server.
      * 
-     * @param server the server value to set.
+     * @param registryServer the registryServer value to set.
      * @return the SessionRegistryCredentials object itself.
      */
-    public SessionRegistryCredentials withServer(String server) {
-        this.server = server;
+    public SessionRegistryCredentials withRegistryServer(String registryServer) {
+        this.registryServer = registryServer;
         return this;
     }
 
@@ -104,30 +98,6 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
     }
 
     /**
-     * Get the identity property: A Managed Identity to use to authenticate with Azure Container Registry. For
-     * user-assigned identities, use the full user-assigned identity Resource ID. For system-assigned identities, use
-     * 'system'.
-     * 
-     * @return the identity value.
-     */
-    public String identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: A Managed Identity to use to authenticate with Azure Container Registry. For
-     * user-assigned identities, use the full user-assigned identity Resource ID. For system-assigned identities, use
-     * 'system'.
-     * 
-     * @param identity the identity value to set.
-     * @return the SessionRegistryCredentials object itself.
-     */
-    public SessionRegistryCredentials withIdentity(String identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -141,10 +111,9 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("server", this.server);
+        jsonWriter.writeStringField("registryServer", this.registryServer);
         jsonWriter.writeStringField("username", this.username);
         jsonWriter.writeStringField("passwordSecretRef", this.passwordSecretRef);
-        jsonWriter.writeStringField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -163,14 +132,12 @@ public final class SessionRegistryCredentials implements JsonSerializable<Sessio
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("server".equals(fieldName)) {
-                    deserializedSessionRegistryCredentials.server = reader.getString();
+                if ("registryServer".equals(fieldName)) {
+                    deserializedSessionRegistryCredentials.registryServer = reader.getString();
                 } else if ("username".equals(fieldName)) {
                     deserializedSessionRegistryCredentials.username = reader.getString();
                 } else if ("passwordSecretRef".equals(fieldName)) {
                     deserializedSessionRegistryCredentials.passwordSecretRef = reader.getString();
-                } else if ("identity".equals(fieldName)) {
-                    deserializedSessionRegistryCredentials.identity = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
