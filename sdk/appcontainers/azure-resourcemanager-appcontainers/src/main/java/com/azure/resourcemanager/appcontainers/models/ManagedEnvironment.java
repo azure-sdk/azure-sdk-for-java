@@ -155,6 +155,13 @@ public interface ManagedEnvironment {
     Boolean zoneRedundant();
 
     /**
+     * Gets the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @return the availabilityZones value.
+     */
+    List<String> availabilityZones();
+
+    /**
      * Gets the customDomainConfiguration property: Custom domain configuration for the environment.
      * 
      * @return the customDomainConfiguration value.
@@ -310,11 +317,12 @@ public interface ManagedEnvironment {
          * The stage of the ManagedEnvironment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithDaprAIInstrumentationKey,
-            DefinitionStages.WithDaprAIConnectionString, DefinitionStages.WithVnetConfiguration,
-            DefinitionStages.WithAppLogsConfiguration, DefinitionStages.WithAppInsightsConfiguration,
-            DefinitionStages.WithOpenTelemetryConfiguration, DefinitionStages.WithZoneRedundant,
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithKind, DefinitionStages.WithIdentity,
+            DefinitionStages.WithDaprAIInstrumentationKey, DefinitionStages.WithDaprAIConnectionString,
+            DefinitionStages.WithVnetConfiguration, DefinitionStages.WithAppLogsConfiguration,
+            DefinitionStages.WithAppInsightsConfiguration, DefinitionStages.WithOpenTelemetryConfiguration,
+            DefinitionStages.WithZoneRedundant, DefinitionStages.WithAvailabilityZones,
             DefinitionStages.WithCustomDomainConfiguration, DefinitionStages.WithWorkloadProfiles,
             DefinitionStages.WithKedaConfiguration, DefinitionStages.WithDaprConfiguration,
             DefinitionStages.WithInfrastructureResourceGroup, DefinitionStages.WithPeerAuthentication,
@@ -476,6 +484,19 @@ public interface ManagedEnvironment {
         }
 
         /**
+         * The stage of the ManagedEnvironment definition allowing to specify availabilityZones.
+         */
+        interface WithAvailabilityZones {
+            /**
+             * Specifies the availabilityZones property: The list of availability zones to use for managed environment.
+             * 
+             * @param availabilityZones The list of availability zones to use for managed environment.
+             * @return the next definition stage.
+             */
+            WithCreate withAvailabilityZones(List<String> availabilityZones);
+        }
+
+        /**
          * The stage of the ManagedEnvironment definition allowing to specify customDomainConfiguration.
          */
         interface WithCustomDomainConfiguration {
@@ -601,9 +622,10 @@ public interface ManagedEnvironment {
         UpdateStages.WithDaprAIInstrumentationKey, UpdateStages.WithDaprAIConnectionString,
         UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration,
         UpdateStages.WithAppInsightsConfiguration, UpdateStages.WithOpenTelemetryConfiguration,
-        UpdateStages.WithCustomDomainConfiguration, UpdateStages.WithWorkloadProfiles,
-        UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration, UpdateStages.WithPeerAuthentication,
-        UpdateStages.WithPeerTrafficConfiguration, UpdateStages.WithPublicNetworkAccess {
+        UpdateStages.WithAvailabilityZones, UpdateStages.WithCustomDomainConfiguration,
+        UpdateStages.WithWorkloadProfiles, UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration,
+        UpdateStages.WithPeerAuthentication, UpdateStages.WithPeerTrafficConfiguration,
+        UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          * 
@@ -749,6 +771,19 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify availabilityZones.
+         */
+        interface WithAvailabilityZones {
+            /**
+             * Specifies the availabilityZones property: The list of availability zones to use for managed environment.
+             * 
+             * @param availabilityZones The list of availability zones to use for managed environment.
+             * @return the next definition stage.
+             */
+            Update withAvailabilityZones(List<String> availabilityZones);
         }
 
         /**

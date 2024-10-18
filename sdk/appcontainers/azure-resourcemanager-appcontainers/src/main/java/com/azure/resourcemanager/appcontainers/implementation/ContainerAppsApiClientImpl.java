@@ -41,6 +41,7 @@ import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsBuildsByConta
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsBuildsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsDiagnosticsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsLabelHistoriesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsPatchesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionReplicasClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionsClient;
@@ -387,6 +388,20 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public ContainerAppsPatchesClient getContainerAppsPatches() {
         return this.containerAppsPatches;
+    }
+
+    /**
+     * The ContainerAppsLabelHistoriesClient object to access its operations.
+     */
+    private final ContainerAppsLabelHistoriesClient containerAppsLabelHistories;
+
+    /**
+     * Gets the ContainerAppsLabelHistoriesClient object to access its operations.
+     * 
+     * @return the ContainerAppsLabelHistoriesClient object.
+     */
+    public ContainerAppsLabelHistoriesClient getContainerAppsLabelHistories() {
+        return this.containerAppsLabelHistories;
     }
 
     /**
@@ -784,7 +799,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-08-02-preview";
+        this.apiVersion = "2024-10-02-preview";
         this.appResiliencies = new AppResilienciesClientImpl(this);
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
@@ -801,6 +816,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.containerAppsBuildsByContainerApps = new ContainerAppsBuildsByContainerAppsClientImpl(this);
         this.containerAppsBuilds = new ContainerAppsBuildsClientImpl(this);
         this.containerAppsPatches = new ContainerAppsPatchesClientImpl(this);
+        this.containerAppsLabelHistories = new ContainerAppsLabelHistoriesClientImpl(this);
         this.containerAppsRevisions = new ContainerAppsRevisionsClientImpl(this);
         this.containerAppsRevisionReplicas = new ContainerAppsRevisionReplicasClientImpl(this);
         this.containerAppsDiagnostics = new ContainerAppsDiagnosticsClientImpl(this);
