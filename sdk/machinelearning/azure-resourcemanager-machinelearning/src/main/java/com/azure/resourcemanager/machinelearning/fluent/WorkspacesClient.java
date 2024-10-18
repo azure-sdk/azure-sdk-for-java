@@ -19,8 +19,8 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeys
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTokenResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 
 /**
  * An instance of this class provides access to all the operations defined in WorkspacesClient.
@@ -183,7 +183,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters);
+        WorkspaceUpdateParametersInner parameters);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -199,7 +199,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters, Context context);
+        WorkspaceUpdateParametersInner parameters, Context context);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -213,7 +213,7 @@ public interface WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters);
+    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters);
 
     /**
      * Updates a machine learning workspace with the specified parameters.
@@ -228,7 +228,7 @@ public interface WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters,
+    WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParametersInner parameters,
         Context context);
 
     /**

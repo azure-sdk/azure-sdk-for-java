@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 import com.azure.resourcemanager.machinelearning.models.CodeVersionProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public final class CodeVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Workspace/CodeVersion/createOrUpdate.json
      */
     /**
@@ -25,14 +26,13 @@ public final class CodeVersionsCreateOrUpdateSamples {
     public static void
         createOrUpdateWorkspaceCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeVersions()
-            .define("string")
-            .withExistingCode("test-rg", "my-aml-workspace", "string")
-            .withProperties(new CodeVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
-                .withProperties(mapOf("string", "string"))
-                .withIsAnonymous(false)
-                .withCodeUri("fakeTokenPlaceholder"))
-            .create();
+            .createOrUpdateWithResponse("test-rg", "my-aml-workspace", "string", "string",
+                new CodeVersionInner().withProperties(new CodeVersionProperties().withDescription("string")
+                    .withProperties(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string"))
+                    .withIsAnonymous(false)
+                    .withCodeUri("fakeTokenPlaceholder")),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

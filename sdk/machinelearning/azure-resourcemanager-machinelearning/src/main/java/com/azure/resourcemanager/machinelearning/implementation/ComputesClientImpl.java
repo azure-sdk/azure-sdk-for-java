@@ -57,21 +57,21 @@ public final class ComputesClientImpl implements ComputesClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ComputesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ComputesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ComputesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(ComputesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesComputes to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesComputes to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

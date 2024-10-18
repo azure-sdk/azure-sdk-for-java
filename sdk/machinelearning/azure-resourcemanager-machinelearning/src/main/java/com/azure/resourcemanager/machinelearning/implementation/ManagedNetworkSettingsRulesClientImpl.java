@@ -50,22 +50,22 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ManagedNetworkSettingsRulesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ManagedNetworkSettingsRulesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ManagedNetworkSettingsRulesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(ManagedNetworkSettingsRulesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesManagedNetworkSettingsRules to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesManagedNetworkSettingsRules to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

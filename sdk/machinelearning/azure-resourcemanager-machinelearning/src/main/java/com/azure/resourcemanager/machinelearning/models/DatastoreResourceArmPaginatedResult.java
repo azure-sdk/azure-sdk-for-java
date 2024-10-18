@@ -20,39 +20,19 @@ import java.util.List;
 public final class DatastoreResourceArmPaginatedResult
     implements JsonSerializable<DatastoreResourceArmPaginatedResult> {
     /*
-     * An array of objects of type Datastore.
-     */
-    private List<DatastoreInner> value;
-
-    /*
      * The link to the next page of Datastore objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type Datastore.
+     */
+    private List<DatastoreInner> value;
 
     /**
      * Creates an instance of DatastoreResourceArmPaginatedResult class.
      */
     public DatastoreResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type Datastore.
-     * 
-     * @return the value value.
-     */
-    public List<DatastoreInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type Datastore.
-     * 
-     * @param value the value value to set.
-     * @return the DatastoreResourceArmPaginatedResult object itself.
-     */
-    public DatastoreResourceArmPaginatedResult withValue(List<DatastoreInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class DatastoreResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type Datastore.
+     * 
+     * @return the value value.
+     */
+    public List<DatastoreInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type Datastore.
+     * 
+     * @param value the value value to set.
+     * @return the DatastoreResourceArmPaginatedResult object itself.
+     */
+    public DatastoreResourceArmPaginatedResult withValue(List<DatastoreInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class DatastoreResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class DatastoreResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedDatastoreResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<DatastoreInner> value = reader.readArray(reader1 -> DatastoreInner.fromJson(reader1));
                     deserializedDatastoreResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedDatastoreResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
