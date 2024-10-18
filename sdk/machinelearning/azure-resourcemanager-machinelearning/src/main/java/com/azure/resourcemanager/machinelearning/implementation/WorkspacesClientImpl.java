@@ -42,9 +42,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeys
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTokenResultInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceListResult;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -61,21 +61,21 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of WorkspacesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    WorkspacesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    WorkspacesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service
             = RestProxy.create(WorkspacesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesWorkspaces to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesWorkspaces to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -116,8 +116,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
-            @BodyParam("application/json") WorkspaceUpdateParameters parameters, @HeaderParam("Accept") String accept,
-            Context context);
+            @BodyParam("application/json") WorkspaceUpdateParametersInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces")
@@ -842,7 +842,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters) {
+        WorkspaceUpdateParametersInner parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -885,7 +885,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters, Context context) {
+        WorkspaceUpdateParametersInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -925,7 +925,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdateAsync(String resourceGroupName,
-        String workspaceName, WorkspaceUpdateParameters parameters) {
+        String workspaceName, WorkspaceUpdateParametersInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, workspaceName, parameters);
         return this.client.<WorkspaceInner, WorkspaceInner>getLroResult(mono, this.client.getHttpPipeline(),
             WorkspaceInner.class, WorkspaceInner.class, this.client.getContext());
@@ -945,7 +945,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdateAsync(String resourceGroupName,
-        String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
             = updateWithResponseAsync(resourceGroupName, workspaceName, parameters, context);
@@ -966,7 +966,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(String resourceGroupName,
-        String workspaceName, WorkspaceUpdateParameters parameters) {
+        String workspaceName, WorkspaceUpdateParametersInner parameters) {
         return this.beginUpdateAsync(resourceGroupName, workspaceName, parameters).getSyncPoller();
     }
 
@@ -984,7 +984,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginUpdate(String resourceGroupName,
-        String workspaceName, WorkspaceUpdateParameters parameters, Context context) {
+        String workspaceName, WorkspaceUpdateParametersInner parameters, Context context) {
         return this.beginUpdateAsync(resourceGroupName, workspaceName, parameters, context).getSyncPoller();
     }
 
@@ -1001,7 +1001,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters) {
+        WorkspaceUpdateParametersInner parameters) {
         return beginUpdateAsync(resourceGroupName, workspaceName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1020,7 +1020,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName,
-        WorkspaceUpdateParameters parameters, Context context) {
+        WorkspaceUpdateParametersInner parameters, Context context) {
         return beginUpdateAsync(resourceGroupName, workspaceName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1037,7 +1037,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters) {
+    public WorkspaceInner update(String resourceGroupName, String workspaceName,
+        WorkspaceUpdateParametersInner parameters) {
         return updateAsync(resourceGroupName, workspaceName, parameters).block();
     }
 
@@ -1054,8 +1055,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return an object that represents a machine learning workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspaceUpdateParameters parameters,
-        Context context) {
+    public WorkspaceInner update(String resourceGroupName, String workspaceName,
+        WorkspaceUpdateParametersInner parameters, Context context) {
         return updateAsync(resourceGroupName, workspaceName, parameters, context).block();
     }
 

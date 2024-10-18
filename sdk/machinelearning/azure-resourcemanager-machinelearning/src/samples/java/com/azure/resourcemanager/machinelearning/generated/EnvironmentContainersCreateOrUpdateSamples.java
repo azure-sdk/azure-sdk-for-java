@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerInner;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public final class EnvironmentContainersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Workspace/EnvironmentContainer/createOrUpdate.json
      */
     /**
@@ -25,13 +26,14 @@ public final class EnvironmentContainersCreateOrUpdateSamples {
     public static void createOrUpdateWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentContainers()
-            .define("testEnvironment")
-            .withExistingWorkspace("testrg123", "testworkspace")
-            .withProperties(new EnvironmentContainerProperties().withDescription("string")
-                .withTags(mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
-                .withProperties(
-                    mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
-            .create();
+            .createOrUpdateWithResponse("testrg123", "testworkspace", "testEnvironment",
+                new EnvironmentContainerInner().withProperties(new EnvironmentContainerProperties()
+                    .withDescription("string")
+                    .withProperties(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
+                    .withTags(
+                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))),
+                com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available
