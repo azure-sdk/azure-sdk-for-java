@@ -43,7 +43,6 @@ public final class UserIdentity extends IdentityConfiguration {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

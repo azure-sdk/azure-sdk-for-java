@@ -43,7 +43,6 @@ public final class NoneDatastoreCredentials extends DatastoreCredentials {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
