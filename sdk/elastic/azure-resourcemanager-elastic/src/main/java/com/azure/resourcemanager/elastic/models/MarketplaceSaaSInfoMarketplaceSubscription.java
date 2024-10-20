@@ -5,24 +5,42 @@
 package com.azure.resourcemanager.elastic.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** Marketplace Subscription. */
+/**
+ * Marketplace Subscription.
+ */
 @Fluent
-public final class MarketplaceSaaSInfoMarketplaceSubscription {
+public final class MarketplaceSaaSInfoMarketplaceSubscription
+    implements JsonSerializable<MarketplaceSaaSInfoMarketplaceSubscription> {
     /*
      * Marketplace Subscription Id. This is a GUID-formatted string.
      */
-    @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class. */
+    /*
+     * Publisher Id of the Marketplace offer.
+     */
+    private String publisherId;
+
+    /*
+     * Offer Id of the Marketplace offer,
+     */
+    private String offerId;
+
+    /**
+     * Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class.
+     */
     public MarketplaceSaaSInfoMarketplaceSubscription() {
     }
 
     /**
      * Get the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +49,7 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
 
     /**
      * Set the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @param id the id value to set.
      * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
      */
@@ -41,10 +59,93 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
     }
 
     /**
+     * Get the publisherId property: Publisher Id of the Marketplace offer.
+     * 
+     * @return the publisherId value.
+     */
+    public String publisherId() {
+        return this.publisherId;
+    }
+
+    /**
+     * Set the publisherId property: Publisher Id of the Marketplace offer.
+     * 
+     * @param publisherId the publisherId value to set.
+     * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
+     */
+    public MarketplaceSaaSInfoMarketplaceSubscription withPublisherId(String publisherId) {
+        this.publisherId = publisherId;
+        return this;
+    }
+
+    /**
+     * Get the offerId property: Offer Id of the Marketplace offer,.
+     * 
+     * @return the offerId value.
+     */
+    public String offerId() {
+        return this.offerId;
+    }
+
+    /**
+     * Set the offerId property: Offer Id of the Marketplace offer,.
+     * 
+     * @param offerId the offerId value to set.
+     * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
+     */
+    public MarketplaceSaaSInfoMarketplaceSubscription withOfferId(String offerId) {
+        this.offerId = offerId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("publisherId", this.publisherId);
+        jsonWriter.writeStringField("offerId", this.offerId);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MarketplaceSaaSInfoMarketplaceSubscription from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MarketplaceSaaSInfoMarketplaceSubscription if the JsonReader was pointing to an instance
+     * of it, or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MarketplaceSaaSInfoMarketplaceSubscription.
+     */
+    public static MarketplaceSaaSInfoMarketplaceSubscription fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MarketplaceSaaSInfoMarketplaceSubscription deserializedMarketplaceSaaSInfoMarketplaceSubscription
+                = new MarketplaceSaaSInfoMarketplaceSubscription();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedMarketplaceSaaSInfoMarketplaceSubscription.id = reader.getString();
+                } else if ("publisherId".equals(fieldName)) {
+                    deserializedMarketplaceSaaSInfoMarketplaceSubscription.publisherId = reader.getString();
+                } else if ("offerId".equals(fieldName)) {
+                    deserializedMarketplaceSaaSInfoMarketplaceSubscription.offerId = reader.getString();
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMarketplaceSaaSInfoMarketplaceSubscription;
+        });
     }
 }
