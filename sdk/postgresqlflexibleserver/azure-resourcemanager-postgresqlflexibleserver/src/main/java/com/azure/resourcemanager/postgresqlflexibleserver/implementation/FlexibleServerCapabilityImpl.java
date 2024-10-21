@@ -15,6 +15,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.OnlineResizeSup
 import com.azure.resourcemanager.postgresqlflexibleserver.models.RestrictedEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerVersionCapability;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.StorageAutoGrowthSupportedEnum;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.SupportedFeature;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ZoneRedundantHaAndGeoBackupSupportedEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ZoneRedundantHaSupportedEnum;
 import java.util.Collections;
@@ -23,10 +24,10 @@ import java.util.List;
 public final class FlexibleServerCapabilityImpl implements FlexibleServerCapability {
     private FlexibleServerCapabilityInner innerObject;
 
-    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager;
+    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager;
 
     FlexibleServerCapabilityImpl(FlexibleServerCapabilityInner innerObject,
-        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager) {
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -54,6 +55,15 @@ public final class FlexibleServerCapabilityImpl implements FlexibleServerCapabil
 
     public List<ServerVersionCapability> supportedServerVersions() {
         List<ServerVersionCapability> inner = this.innerModel().supportedServerVersions();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<SupportedFeature> supportedFeatures() {
+        List<SupportedFeature> inner = this.innerModel().supportedFeatures();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -102,7 +112,7 @@ public final class FlexibleServerCapabilityImpl implements FlexibleServerCapabil
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager() {
+    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager manager() {
         return this.serviceManager;
     }
 }
