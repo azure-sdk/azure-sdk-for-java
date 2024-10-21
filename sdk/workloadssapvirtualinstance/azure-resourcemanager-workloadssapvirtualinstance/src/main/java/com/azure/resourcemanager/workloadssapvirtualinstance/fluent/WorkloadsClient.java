@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface WorkloadsClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -47,11 +47,11 @@ public interface WorkloadsClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ResourceProvidersClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the ResourceProvidersClient object.
+     * @return the OperationsClient object.
      */
-    ResourceProvidersClient getResourceProviders();
+    OperationsClient getOperations();
 
     /**
      * Gets the SapVirtualInstancesClient object to access its operations.
@@ -61,20 +61,6 @@ public interface WorkloadsClient {
     SapVirtualInstancesClient getSapVirtualInstances();
 
     /**
-     * Gets the SapCentralInstancesClient object to access its operations.
-     * 
-     * @return the SapCentralInstancesClient object.
-     */
-    SapCentralInstancesClient getSapCentralInstances();
-
-    /**
-     * Gets the SapDatabaseInstancesClient object to access its operations.
-     * 
-     * @return the SapDatabaseInstancesClient object.
-     */
-    SapDatabaseInstancesClient getSapDatabaseInstances();
-
-    /**
      * Gets the SapApplicationServerInstancesClient object to access its operations.
      * 
      * @return the SapApplicationServerInstancesClient object.
@@ -82,9 +68,16 @@ public interface WorkloadsClient {
     SapApplicationServerInstancesClient getSapApplicationServerInstances();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the SapCentralServerInstancesClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the SapCentralServerInstancesClient object.
      */
-    OperationsClient getOperations();
+    SapCentralServerInstancesClient getSapCentralServerInstances();
+
+    /**
+     * Gets the SapDatabaseInstancesClient object to access its operations.
+     * 
+     * @return the SapDatabaseInstancesClient object.
+     */
+    SapDatabaseInstancesClient getSapDatabaseInstances();
 }
