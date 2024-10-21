@@ -5,10 +5,15 @@
 package com.azure.resourcemanager.storagecache.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.storagecache.models.ConflictResolutionMode;
+import com.azure.resourcemanager.storagecache.models.ImportJobAdminStatus;
 import com.azure.resourcemanager.storagecache.models.ImportJobProvisioningStateType;
 import com.azure.resourcemanager.storagecache.models.ImportStatusType;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -16,35 +21,43 @@ import java.util.List;
  * Properties of the import job.
  */
 @Fluent
-public final class ImportJobProperties {
+public final class ImportJobProperties implements JsonSerializable<ImportJobProperties> {
     /*
      * ARM provisioning state.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ImportJobProvisioningStateType provisioningState;
+
+    /*
+     * The administrative status of the import job. Possible values: 'Enable', 'Disable'. Passing in a value of
+     * 'Disable' will cancel the current active import job. By default it is set to 'Enable'.
+     */
+    private ImportJobAdminStatus adminStatus;
 
     /*
      * An array of blob paths/prefixes that get imported into the cluster namespace. It has '/' as the default value.
      */
-    @JsonProperty(value = "importPrefixes")
     private List<String> importPrefixes;
 
     /*
-     * How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough explanation of these resolution modes.
+     * How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a
+     * file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do
+     * anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the
+     * import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not
+     * previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored
+     * but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough
+     * explanation of these resolution modes.
      */
-    @JsonProperty(value = "conflictResolutionMode")
     private ConflictResolutionMode conflictResolutionMode;
 
     /*
-     * Total non-conflict oriented errors the import job will tolerate before exiting with failure. -1 means infinite. 0 means exit immediately and is the default.
+     * Total non-conflict oriented errors the import job will tolerate before exiting with failure. -1 means infinite. 0
+     * means exit immediately and is the default.
      */
-    @JsonProperty(value = "maximumErrors")
     private Integer maximumErrors;
 
     /*
      * The status of the import
      */
-    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ImportJobPropertiesStatus innerStatus;
 
     /**
@@ -60,6 +73,28 @@ public final class ImportJobProperties {
      */
     public ImportJobProvisioningStateType provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the adminStatus property: The administrative status of the import job. Possible values: 'Enable', 'Disable'.
+     * Passing in a value of 'Disable' will cancel the current active import job. By default it is set to 'Enable'.
+     * 
+     * @return the adminStatus value.
+     */
+    public ImportJobAdminStatus adminStatus() {
+        return this.adminStatus;
+    }
+
+    /**
+     * Set the adminStatus property: The administrative status of the import job. Possible values: 'Enable', 'Disable'.
+     * Passing in a value of 'Disable' will cancel the current active import job. By default it is set to 'Enable'.
+     * 
+     * @param adminStatus the adminStatus value to set.
+     * @return the ImportJobProperties object itself.
+     */
+    public ImportJobProperties withAdminStatus(ImportJobAdminStatus adminStatus) {
+        this.adminStatus = adminStatus;
+        return this;
     }
 
     /**
@@ -150,11 +185,11 @@ public final class ImportJobProperties {
     }
 
     /**
-     * Get the state property: The state of the import job. InProgress indicates the import is still running. Canceled
-     * indicates it has been canceled by the user. Completed indicates import finished, successfully importing all
-     * discovered blobs into the Lustre namespace. CompletedPartial indicates the import finished but some blobs either
-     * were found to be conflicting and could not be imported or other errors were encountered. Failed means the import
-     * was unable to complete due to a fatal error.
+     * Get the state property: The operational state of the import job. InProgress indicates the import is still
+     * running. Canceled indicates it has been canceled by the user. Completed indicates import finished, successfully
+     * importing all discovered blobs into the Lustre namespace. CompletedPartial indicates the import finished but some
+     * blobs either were found to be conflicting and could not be imported or other errors were encountered. Failed
+     * means the import was unable to complete due to a fatal error.
      * 
      * @return the state value.
      */
@@ -199,6 +234,64 @@ public final class ImportJobProperties {
     }
 
     /**
+     * Get the importedFiles property: Number of new or modified files that have been imported into the filesystem.
+     * 
+     * @return the importedFiles value.
+     */
+    public Long importedFiles() {
+        return this.innerStatus() == null ? null : this.innerStatus().importedFiles();
+    }
+
+    /**
+     * Get the importedDirectories property: Number of new or modified directories that have been imported into the
+     * filesystem.
+     * 
+     * @return the importedDirectories value.
+     */
+    public Long importedDirectories() {
+        return this.innerStatus() == null ? null : this.innerStatus().importedDirectories();
+    }
+
+    /**
+     * Get the importedSymlinks property: Number of newly added symbolic links into the filesystem.
+     * 
+     * @return the importedSymlinks value.
+     */
+    public Long importedSymlinks() {
+        return this.innerStatus() == null ? null : this.innerStatus().importedSymlinks();
+    }
+
+    /**
+     * Get the preexistingFiles property: Number of files that already exist in the filesystem and have not been
+     * modified.
+     * 
+     * @return the preexistingFiles value.
+     */
+    public Long preexistingFiles() {
+        return this.innerStatus() == null ? null : this.innerStatus().preexistingFiles();
+    }
+
+    /**
+     * Get the preexistingDirectories property: Number of directories that already exist in the filesystem and have not
+     * been modified.
+     * 
+     * @return the preexistingDirectories value.
+     */
+    public Long preexistingDirectories() {
+        return this.innerStatus() == null ? null : this.innerStatus().preexistingDirectories();
+    }
+
+    /**
+     * Get the preexistingSymlinks property: Number of symbolic links that already exist in the filesystem and have not
+     * been modified.
+     * 
+     * @return the preexistingSymlinks value.
+     */
+    public Long preexistingSymlinks() {
+        return this.innerStatus() == null ? null : this.innerStatus().preexistingSymlinks();
+    }
+
+    /**
      * Get the blobsImportedPerSecond property: A recent and frequently updated rate of total files, directories, and
      * symlinks imported per second.
      * 
@@ -209,7 +302,7 @@ public final class ImportJobProperties {
     }
 
     /**
-     * Get the lastCompletionTime property: The time of the last completed archive operation.
+     * Get the lastCompletionTime property: The time (in UTC) of the last completed import job.
      * 
      * @return the lastCompletionTime value.
      */
@@ -218,7 +311,7 @@ public final class ImportJobProperties {
     }
 
     /**
-     * Get the lastStartedTime property: The time the latest archive operation started.
+     * Get the lastStartedTime property: The time (in UTC) the latest import job started.
      * 
      * @return the lastStartedTime value.
      */
@@ -253,5 +346,59 @@ public final class ImportJobProperties {
         if (innerStatus() != null) {
             innerStatus().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("adminStatus", this.adminStatus == null ? null : this.adminStatus.toString());
+        jsonWriter.writeArrayField("importPrefixes", this.importPrefixes,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("conflictResolutionMode",
+            this.conflictResolutionMode == null ? null : this.conflictResolutionMode.toString());
+        jsonWriter.writeNumberField("maximumErrors", this.maximumErrors);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ImportJobProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ImportJobProperties if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the ImportJobProperties.
+     */
+    public static ImportJobProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ImportJobProperties deserializedImportJobProperties = new ImportJobProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("provisioningState".equals(fieldName)) {
+                    deserializedImportJobProperties.provisioningState
+                        = ImportJobProvisioningStateType.fromString(reader.getString());
+                } else if ("adminStatus".equals(fieldName)) {
+                    deserializedImportJobProperties.adminStatus = ImportJobAdminStatus.fromString(reader.getString());
+                } else if ("importPrefixes".equals(fieldName)) {
+                    List<String> importPrefixes = reader.readArray(reader1 -> reader1.getString());
+                    deserializedImportJobProperties.importPrefixes = importPrefixes;
+                } else if ("conflictResolutionMode".equals(fieldName)) {
+                    deserializedImportJobProperties.conflictResolutionMode
+                        = ConflictResolutionMode.fromString(reader.getString());
+                } else if ("maximumErrors".equals(fieldName)) {
+                    deserializedImportJobProperties.maximumErrors = reader.getNullable(JsonReader::getInt);
+                } else if ("status".equals(fieldName)) {
+                    deserializedImportJobProperties.innerStatus = ImportJobPropertiesStatus.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedImportJobProperties;
+        });
     }
 }
