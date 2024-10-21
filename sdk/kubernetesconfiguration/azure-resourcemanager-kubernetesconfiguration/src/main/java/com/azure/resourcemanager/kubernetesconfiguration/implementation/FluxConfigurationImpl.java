@@ -13,6 +13,7 @@ import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfiguratio
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ObjectStatusDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceKindType;
@@ -26,8 +27,7 @@ public final class FluxConfigurationImpl implements FluxConfiguration {
 
     private final com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager serviceManager;
 
-    FluxConfigurationImpl(
-        FluxConfigurationInner innerObject,
+    FluxConfigurationImpl(FluxConfigurationInner innerObject,
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -75,6 +75,10 @@ public final class FluxConfigurationImpl implements FluxConfiguration {
 
     public AzureBlobDefinition azureBlob() {
         return this.innerModel().azureBlob();
+    }
+
+    public OciRepositoryDefinition ociRepository() {
+        return this.innerModel().ociRepository();
     }
 
     public Map<String, KustomizationDefinition> kustomizations() {
