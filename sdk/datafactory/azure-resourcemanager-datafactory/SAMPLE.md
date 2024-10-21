@@ -58,7 +58,6 @@
 - [GetByResourceGroup](#factories_getbyresourcegroup)
 - [GetDataPlaneAccess](#factories_getdataplaneaccess)
 - [GetGitHubAccessToken](#factories_getgithubaccesstoken)
-- [List](#factories_list)
 - [ListByResourceGroup](#factories_listbyresourcegroup)
 - [Update](#factories_update)
 
@@ -1326,28 +1325,6 @@ public final class FactoriesGetGitHubAccessTokenSamples {
                     .withGitHubClientId("some")
                     .withGitHubAccessTokenBaseUrl("fakeTokenPlaceholder"),
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Factories_List
-
-```java
-/**
- * Samples for Factories List.
- */
-public final class FactoriesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/Factories_List.json
-     */
-    /**
-     * Sample code: Factories_List.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void factoriesList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.factories().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
