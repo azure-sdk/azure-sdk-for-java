@@ -5,24 +5,31 @@
 package com.azure.resourcemanager.eventgrid.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * The identity information with the event subscription.
  */
 @Fluent
-public final class EventSubscriptionIdentity {
+public final class EventSubscriptionIdentity implements JsonSerializable<EventSubscriptionIdentity> {
     /*
      * The type of managed identity used. Can be either 'SystemAssigned' or 'UserAssigned'.
      */
-    @JsonProperty(value = "type")
     private EventSubscriptionIdentityType type;
 
     /*
      * The user identity associated with the resource.
      */
-    @JsonProperty(value = "userAssignedIdentity")
     private String userAssignedIdentity;
+
+    /*
+     * The details of the Federated Identity Credential (FIC) used with the resource delivery.
+     */
+    private FederatedIdentityCredentialInfo federatedIdentityCredentialInfo;
 
     /**
      * Creates an instance of EventSubscriptionIdentity class.
@@ -71,10 +78,80 @@ public final class EventSubscriptionIdentity {
     }
 
     /**
+     * Get the federatedIdentityCredentialInfo property: The details of the Federated Identity Credential (FIC) used
+     * with the resource delivery.
+     * 
+     * @return the federatedIdentityCredentialInfo value.
+     */
+    public FederatedIdentityCredentialInfo federatedIdentityCredentialInfo() {
+        return this.federatedIdentityCredentialInfo;
+    }
+
+    /**
+     * Set the federatedIdentityCredentialInfo property: The details of the Federated Identity Credential (FIC) used
+     * with the resource delivery.
+     * 
+     * @param federatedIdentityCredentialInfo the federatedIdentityCredentialInfo value to set.
+     * @return the EventSubscriptionIdentity object itself.
+     */
+    public EventSubscriptionIdentity
+        withFederatedIdentityCredentialInfo(FederatedIdentityCredentialInfo federatedIdentityCredentialInfo) {
+        this.federatedIdentityCredentialInfo = federatedIdentityCredentialInfo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (federatedIdentityCredentialInfo() != null) {
+            federatedIdentityCredentialInfo().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
+        jsonWriter.writeStringField("userAssignedIdentity", this.userAssignedIdentity);
+        jsonWriter.writeJsonField("federatedIdentityCredentialInfo", this.federatedIdentityCredentialInfo);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of EventSubscriptionIdentity from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of EventSubscriptionIdentity if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the EventSubscriptionIdentity.
+     */
+    public static EventSubscriptionIdentity fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            EventSubscriptionIdentity deserializedEventSubscriptionIdentity = new EventSubscriptionIdentity();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("type".equals(fieldName)) {
+                    deserializedEventSubscriptionIdentity.type
+                        = EventSubscriptionIdentityType.fromString(reader.getString());
+                } else if ("userAssignedIdentity".equals(fieldName)) {
+                    deserializedEventSubscriptionIdentity.userAssignedIdentity = reader.getString();
+                } else if ("federatedIdentityCredentialInfo".equals(fieldName)) {
+                    deserializedEventSubscriptionIdentity.federatedIdentityCredentialInfo
+                        = FederatedIdentityCredentialInfo.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedEventSubscriptionIdentity;
+        });
     }
 }
