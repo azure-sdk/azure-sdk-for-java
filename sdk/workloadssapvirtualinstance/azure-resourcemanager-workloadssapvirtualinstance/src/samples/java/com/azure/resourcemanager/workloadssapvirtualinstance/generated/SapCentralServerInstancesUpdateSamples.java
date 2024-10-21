@@ -9,23 +9,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for SapCentralInstances Update.
+ * Samples for SapCentralServerInstances Update.
  */
-public final class SapCentralInstancesUpdateSamples {
+public final class SapCentralServerInstancesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_Update.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_Update.json
      */
     /**
-     * Sample code: SAPCentralInstances_Update.
+     * Sample code: SapCentralServerInstances_Update.
      * 
      * @param manager Entry point to WorkloadsSapVirtualInstanceManager.
      */
-    public static void sAPCentralInstancesUpdate(
+    public static void sapCentralServerInstancesUpdate(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        SapCentralServerInstance resource = manager.sapCentralInstances()
-            .getWithResponse("test-rg", "X00", "centralServer", com.azure.core.util.Context.NONE).getValue();
+        SapCentralServerInstance resource = manager.sapCentralServerInstances()
+            .getWithResponse("test-rg", "X00", "centralServer", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 

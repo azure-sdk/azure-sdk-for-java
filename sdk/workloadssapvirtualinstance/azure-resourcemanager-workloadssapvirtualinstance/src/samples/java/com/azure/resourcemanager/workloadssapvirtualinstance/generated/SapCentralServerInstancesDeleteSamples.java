@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.workloadssapvirtualinstance.generated;
 
 /**
- * Samples for SapCentralInstances List.
+ * Samples for SapCentralServerInstances Delete.
  */
-public final class SapCentralInstancesListSamples {
+public final class SapCentralServerInstancesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/
-     * examples/sapcentralinstances/SAPCentralInstances_List.json
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/stable/2024-09-01/examples/
+     * SapCentralInstances_Delete.json
      */
     /**
-     * Sample code: SAPCentralInstances_List.
+     * Sample code: SapCentralServerInstances_Delete.
      * 
      * @param manager Entry point to WorkloadsSapVirtualInstanceManager.
      */
-    public static void sAPCentralInstancesList(
+    public static void sapCentralServerInstancesDelete(
         com.azure.resourcemanager.workloadssapvirtualinstance.WorkloadsSapVirtualInstanceManager manager) {
-        manager.sapCentralInstances().list("test-rg", "X00", com.azure.core.util.Context.NONE);
+        manager.sapCentralServerInstances().delete("test-rg", "X00", "centralServer", com.azure.core.util.Context.NONE);
     }
 }
