@@ -14,7 +14,7 @@ import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
-import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccessType;
 import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
@@ -35,68 +35,143 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         this.serviceManager = serviceManager;
     }
 
-    public String workspaceId() {
-        return this.innerModel().workspaceId();
+    public Boolean allowPublicAccessWhenBehindVnet() {
+        return this.innerModel().allowPublicAccessWhenBehindVnet();
     }
 
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public String keyVault() {
-        return this.innerModel().keyVault();
+    public Boolean allowRoleAssignmentOnRG() {
+        return this.innerModel().allowRoleAssignmentOnRG();
     }
 
     public String applicationInsights() {
         return this.innerModel().applicationInsights();
     }
 
+    public List<String> associatedWorkspaces() {
+        List<String> inner = this.innerModel().associatedWorkspaces();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> containerRegistries() {
+        List<String> inner = this.innerModel().containerRegistries();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public String containerRegistry() {
         return this.innerModel().containerRegistry();
     }
 
-    public String storageAccount() {
-        return this.innerModel().storageAccount();
+    public String description() {
+        return this.innerModel().description();
     }
 
     public String discoveryUrl() {
         return this.innerModel().discoveryUrl();
     }
 
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
+    public Boolean enableDataIsolation() {
+        return this.innerModel().enableDataIsolation();
+    }
+
+    public Boolean enableServiceSideCmkEncryption() {
+        return this.innerModel().enableServiceSideCmkEncryption();
+    }
+
+    public Boolean enableSimplifiedCmk() {
+        return this.innerModel().enableSimplifiedCmk();
+    }
+
+    public Boolean enableSoftwareBillOfMaterials() {
+        return this.innerModel().enableSoftwareBillOfMaterials();
     }
 
     public EncryptionProperty encryption() {
         return this.innerModel().encryption();
     }
 
+    public List<String> existingWorkspaces() {
+        List<String> inner = this.innerModel().existingWorkspaces();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerModel().featureStoreSettings();
+    }
+
+    public String friendlyName() {
+        return this.innerModel().friendlyName();
+    }
+
     public Boolean hbiWorkspace() {
         return this.innerModel().hbiWorkspace();
     }
 
-    public String serviceProvisionedResourceGroup() {
-        return this.innerModel().serviceProvisionedResourceGroup();
-    }
-
-    public Integer privateLinkCount() {
-        return this.innerModel().privateLinkCount();
+    public String hubResourceId() {
+        return this.innerModel().hubResourceId();
     }
 
     public String imageBuildCompute() {
         return this.innerModel().imageBuildCompute();
     }
 
-    public Boolean allowPublicAccessWhenBehindVnet() {
-        return this.innerModel().allowPublicAccessWhenBehindVnet();
+    public List<String> ipAllowlist() {
+        List<String> inner = this.innerModel().ipAllowlist();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
+    public String keyVault() {
+        return this.innerModel().keyVault();
+    }
+
+    public List<String> keyVaults() {
+        List<String> inner = this.innerModel().keyVaults();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public String mlFlowTrackingUri() {
+        return this.innerModel().mlFlowTrackingUri();
+    }
+
+    public NotebookResourceInfo notebookInfo() {
+        NotebookResourceInfoInner inner = this.innerModel().notebookInfo();
+        if (inner != null) {
+            return new NotebookResourceInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public String primaryUserAssignedIdentity() {
+        return this.innerModel().primaryUserAssignedIdentity();
     }
 
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -110,8 +185,28 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         }
     }
 
+    public Integer privateLinkCount() {
+        return this.innerModel().privateLinkCount();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
     public ServerlessComputeSettings serverlessComputeSettings() {
         return this.innerModel().serverlessComputeSettings();
+    }
+
+    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
+        return this.innerModel().serviceManagedResourcesSettings();
+    }
+
+    public String serviceProvisionedResourceGroup() {
+        return this.innerModel().serviceProvisionedResourceGroup();
     }
 
     public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
@@ -123,54 +218,16 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         }
     }
 
-    public NotebookResourceInfo notebookInfo() {
-        NotebookResourceInfoInner inner = this.innerModel().notebookInfo();
-        if (inner != null) {
-            return new NotebookResourceInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public Integer softDeleteRetentionInDays() {
+        return this.innerModel().softDeleteRetentionInDays();
     }
 
-    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
-        return this.innerModel().serviceManagedResourcesSettings();
+    public String storageAccount() {
+        return this.innerModel().storageAccount();
     }
 
-    public String primaryUserAssignedIdentity() {
-        return this.innerModel().primaryUserAssignedIdentity();
-    }
-
-    public String tenantId() {
-        return this.innerModel().tenantId();
-    }
-
-    public Boolean storageHnsEnabled() {
-        return this.innerModel().storageHnsEnabled();
-    }
-
-    public String mlFlowTrackingUri() {
-        return this.innerModel().mlFlowTrackingUri();
-    }
-
-    public Boolean v1LegacyMode() {
-        return this.innerModel().v1LegacyMode();
-    }
-
-    public ManagedNetworkSettings managedNetwork() {
-        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
-        if (inner != null) {
-            return new ManagedNetworkSettingsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public FeatureStoreSettings featureStoreSettings() {
-        return this.innerModel().featureStoreSettings();
-    }
-
-    public List<String> associatedWorkspaces() {
-        List<String> inner = this.innerModel().associatedWorkspaces();
+    public List<String> storageAccounts() {
+        List<String> inner = this.innerModel().storageAccounts();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -178,16 +235,28 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         }
     }
 
-    public Boolean enableDataIsolation() {
-        return this.innerModel().enableDataIsolation();
+    public Boolean storageHnsEnabled() {
+        return this.innerModel().storageHnsEnabled();
     }
 
-    public String hubResourceId() {
-        return this.innerModel().hubResourceId();
+    public String systemDatastoresAuthMode() {
+        return this.innerModel().systemDatastoresAuthMode();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
+    }
+
+    public Boolean v1LegacyMode() {
+        return this.innerModel().v1LegacyMode();
     }
 
     public WorkspaceHubConfig workspaceHubConfig() {
         return this.innerModel().workspaceHubConfig();
+    }
+
+    public String workspaceId() {
+        return this.innerModel().workspaceId();
     }
 
     public WorkspacePropertiesInner innerModel() {

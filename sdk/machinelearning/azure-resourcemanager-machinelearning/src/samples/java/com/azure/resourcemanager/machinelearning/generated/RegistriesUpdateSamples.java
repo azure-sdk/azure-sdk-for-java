@@ -19,8 +19,8 @@ import java.util.Map;
 public final class RegistriesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/update-UserCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-07-01-
+     * preview/examples/Registries/update-UserCreated.json
      */
     /**
      * Sample code: Update Registry with user created accounts.
@@ -36,18 +36,18 @@ public final class RegistriesUpdateSamples {
             .withTags(mapOf())
             .withIdentity(new RegistryPartialManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.BASIC)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.BASIC))
             .apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/update-SystemCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-07-01-
+     * preview/examples/Registries/update-SystemCreated.json
      */
     /**
      * Sample code: Update Registry with system created accounts.
@@ -64,11 +64,11 @@ public final class RegistriesUpdateSamples {
             .withIdentity(
                 new RegistryPartialManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                     .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
-            .withSku(new PartialSku().withName("string")
-                .withTier(SkuTier.BASIC)
-                .withSize("string")
+            .withSku(new PartialSku().withCapacity(1)
                 .withFamily("string")
-                .withCapacity(1))
+                .withName("string")
+                .withSize("string")
+                .withTier(SkuTier.BASIC))
             .apply();
     }
 

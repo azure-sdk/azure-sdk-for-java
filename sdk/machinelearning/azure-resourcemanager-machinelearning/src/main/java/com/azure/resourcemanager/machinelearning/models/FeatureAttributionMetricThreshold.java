@@ -18,19 +18,39 @@ import java.io.IOException;
 @Fluent
 public final class FeatureAttributionMetricThreshold implements JsonSerializable<FeatureAttributionMetricThreshold> {
     /*
-     * The threshold value. If null, a default value will be set depending on the selected metric.
-     */
-    private MonitoringThreshold threshold;
-
-    /*
      * [Required] The feature attribution metric to calculate.
      */
     private FeatureAttributionMetric metric;
+
+    /*
+     * The threshold value. If null, a default value will be set depending on the selected metric.
+     */
+    private MonitoringThreshold threshold;
 
     /**
      * Creates an instance of FeatureAttributionMetricThreshold class.
      */
     public FeatureAttributionMetricThreshold() {
+    }
+
+    /**
+     * Get the metric property: [Required] The feature attribution metric to calculate.
+     * 
+     * @return the metric value.
+     */
+    public FeatureAttributionMetric metric() {
+        return this.metric;
+    }
+
+    /**
+     * Set the metric property: [Required] The feature attribution metric to calculate.
+     * 
+     * @param metric the metric value to set.
+     * @return the FeatureAttributionMetricThreshold object itself.
+     */
+    public FeatureAttributionMetricThreshold withMetric(FeatureAttributionMetric metric) {
+        this.metric = metric;
+        return this;
     }
 
     /**
@@ -56,38 +76,18 @@ public final class FeatureAttributionMetricThreshold implements JsonSerializable
     }
 
     /**
-     * Get the metric property: [Required] The feature attribution metric to calculate.
-     * 
-     * @return the metric value.
-     */
-    public FeatureAttributionMetric metric() {
-        return this.metric;
-    }
-
-    /**
-     * Set the metric property: [Required] The feature attribution metric to calculate.
-     * 
-     * @param metric the metric value to set.
-     * @return the FeatureAttributionMetricThreshold object itself.
-     */
-    public FeatureAttributionMetricThreshold withMetric(FeatureAttributionMetric metric) {
-        this.metric = metric;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (threshold() != null) {
-            threshold().validate();
-        }
         if (metric() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property metric in model FeatureAttributionMetricThreshold"));
+        }
+        if (threshold() != null) {
+            threshold().validate();
         }
     }
 

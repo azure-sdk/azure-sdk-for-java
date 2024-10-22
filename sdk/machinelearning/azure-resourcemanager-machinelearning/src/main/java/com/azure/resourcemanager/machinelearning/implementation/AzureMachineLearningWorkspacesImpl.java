@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -31,9 +31,18 @@ import com.azure.resourcemanager.machinelearning.fluent.CodeVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.ComponentContainersClient;
 import com.azure.resourcemanager.machinelearning.fluent.ComponentVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.ComputesClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiBlocklistItemsClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiBlocklistItemsOperationsClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiBlocklistOperationsClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiBlocklistsClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiPoliciesClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionRaiPolicyOperationsClient;
+import com.azure.resourcemanager.machinelearning.fluent.ConnectionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.DataContainersClient;
-import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.DataVersionsClient;
+import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
+import com.azure.resourcemanager.machinelearning.fluent.EndpointDeploymentsClient;
+import com.azure.resourcemanager.machinelearning.fluent.EndpointsClient;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentContainersClient;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.FeaturesClient;
@@ -53,6 +62,8 @@ import com.azure.resourcemanager.machinelearning.fluent.OperationsClient;
 import com.azure.resourcemanager.machinelearning.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.machinelearning.fluent.QuotasClient;
+import com.azure.resourcemanager.machinelearning.fluent.RaiPoliciesClient;
+import com.azure.resourcemanager.machinelearning.fluent.RaiPolicyOperationsClient;
 import com.azure.resourcemanager.machinelearning.fluent.RegistriesClient;
 import com.azure.resourcemanager.machinelearning.fluent.RegistryCodeContainersClient;
 import com.azure.resourcemanager.machinelearning.fluent.RegistryCodeVersionsClient;
@@ -171,34 +182,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
-     * The WorkspacesClient object to access its operations.
-     */
-    private final WorkspacesClient workspaces;
-
-    /**
-     * Gets the WorkspacesClient object to access its operations.
-     * 
-     * @return the WorkspacesClient object.
-     */
-    public WorkspacesClient getWorkspaces() {
-        return this.workspaces;
-    }
-
-    /**
      * The UsagesClient object to access its operations.
      */
     private final UsagesClient usages;
@@ -252,76 +235,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
      */
     public ComputesClient getComputes() {
         return this.computes;
-    }
-
-    /**
-     * The PrivateEndpointConnectionsClient object to access its operations.
-     */
-    private final PrivateEndpointConnectionsClient privateEndpointConnections;
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     * 
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /**
-     * The PrivateLinkResourcesClient object to access its operations.
-     */
-    private final PrivateLinkResourcesClient privateLinkResources;
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    public PrivateLinkResourcesClient getPrivateLinkResources() {
-        return this.privateLinkResources;
-    }
-
-    /**
-     * The WorkspaceConnectionsClient object to access its operations.
-     */
-    private final WorkspaceConnectionsClient workspaceConnections;
-
-    /**
-     * Gets the WorkspaceConnectionsClient object to access its operations.
-     * 
-     * @return the WorkspaceConnectionsClient object.
-     */
-    public WorkspaceConnectionsClient getWorkspaceConnections() {
-        return this.workspaceConnections;
-    }
-
-    /**
-     * The ManagedNetworkSettingsRulesClient object to access its operations.
-     */
-    private final ManagedNetworkSettingsRulesClient managedNetworkSettingsRules;
-
-    /**
-     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
-     * 
-     * @return the ManagedNetworkSettingsRulesClient object.
-     */
-    public ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules() {
-        return this.managedNetworkSettingsRules;
-    }
-
-    /**
-     * The ManagedNetworkProvisionsClient object to access its operations.
-     */
-    private final ManagedNetworkProvisionsClient managedNetworkProvisions;
-
-    /**
-     * Gets the ManagedNetworkProvisionsClient object to access its operations.
-     * 
-     * @return the ManagedNetworkProvisionsClient object.
-     */
-    public ManagedNetworkProvisionsClient getManagedNetworkProvisions() {
-        return this.managedNetworkProvisions;
     }
 
     /**
@@ -448,6 +361,20 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
      */
     public RegistryEnvironmentVersionsClient getRegistryEnvironmentVersions() {
         return this.registryEnvironmentVersions;
+    }
+
+    /**
+     * The MarketplaceSubscriptionsClient object to access its operations.
+     */
+    private final MarketplaceSubscriptionsClient marketplaceSubscriptions;
+
+    /**
+     * Gets the MarketplaceSubscriptionsClient object to access its operations.
+     * 
+     * @return the MarketplaceSubscriptionsClient object.
+     */
+    public MarketplaceSubscriptionsClient getMarketplaceSubscriptions() {
+        return this.marketplaceSubscriptions;
     }
 
     /**
@@ -717,20 +644,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
     }
 
     /**
-     * The MarketplaceSubscriptionsClient object to access its operations.
-     */
-    private final MarketplaceSubscriptionsClient marketplaceSubscriptions;
-
-    /**
-     * Gets the MarketplaceSubscriptionsClient object to access its operations.
-     * 
-     * @return the MarketplaceSubscriptionsClient object.
-     */
-    public MarketplaceSubscriptionsClient getMarketplaceSubscriptions() {
-        return this.marketplaceSubscriptions;
-    }
-
-    /**
      * The ModelContainersClient object to access its operations.
      */
     private final ModelContainersClient modelContainers;
@@ -843,6 +756,258 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
+     * The WorkspacesClient object to access its operations.
+     */
+    private final WorkspacesClient workspaces;
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    public WorkspacesClient getWorkspaces() {
+        return this.workspaces;
+    }
+
+    /**
+     * The WorkspaceConnectionsClient object to access its operations.
+     */
+    private final WorkspaceConnectionsClient workspaceConnections;
+
+    /**
+     * Gets the WorkspaceConnectionsClient object to access its operations.
+     * 
+     * @return the WorkspaceConnectionsClient object.
+     */
+    public WorkspaceConnectionsClient getWorkspaceConnections() {
+        return this.workspaceConnections;
+    }
+
+    /**
+     * The ConnectionsClient object to access its operations.
+     */
+    private final ConnectionsClient connections;
+
+    /**
+     * Gets the ConnectionsClient object to access its operations.
+     * 
+     * @return the ConnectionsClient object.
+     */
+    public ConnectionsClient getConnections() {
+        return this.connections;
+    }
+
+    /**
+     * The ConnectionRaiBlocklistsClient object to access its operations.
+     */
+    private final ConnectionRaiBlocklistsClient connectionRaiBlocklists;
+
+    /**
+     * Gets the ConnectionRaiBlocklistsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistsClient object.
+     */
+    public ConnectionRaiBlocklistsClient getConnectionRaiBlocklists() {
+        return this.connectionRaiBlocklists;
+    }
+
+    /**
+     * The ConnectionRaiBlocklistOperationsClient object to access its operations.
+     */
+    private final ConnectionRaiBlocklistOperationsClient connectionRaiBlocklistOperations;
+
+    /**
+     * Gets the ConnectionRaiBlocklistOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistOperationsClient object.
+     */
+    public ConnectionRaiBlocklistOperationsClient getConnectionRaiBlocklistOperations() {
+        return this.connectionRaiBlocklistOperations;
+    }
+
+    /**
+     * The ConnectionRaiBlocklistItemsClient object to access its operations.
+     */
+    private final ConnectionRaiBlocklistItemsClient connectionRaiBlocklistItems;
+
+    /**
+     * Gets the ConnectionRaiBlocklistItemsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistItemsClient object.
+     */
+    public ConnectionRaiBlocklistItemsClient getConnectionRaiBlocklistItems() {
+        return this.connectionRaiBlocklistItems;
+    }
+
+    /**
+     * The ConnectionRaiBlocklistItemsOperationsClient object to access its operations.
+     */
+    private final ConnectionRaiBlocklistItemsOperationsClient connectionRaiBlocklistItemsOperations;
+
+    /**
+     * Gets the ConnectionRaiBlocklistItemsOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistItemsOperationsClient object.
+     */
+    public ConnectionRaiBlocklistItemsOperationsClient getConnectionRaiBlocklistItemsOperations() {
+        return this.connectionRaiBlocklistItemsOperations;
+    }
+
+    /**
+     * The ConnectionRaiPoliciesClient object to access its operations.
+     */
+    private final ConnectionRaiPoliciesClient connectionRaiPolicies;
+
+    /**
+     * Gets the ConnectionRaiPoliciesClient object to access its operations.
+     * 
+     * @return the ConnectionRaiPoliciesClient object.
+     */
+    public ConnectionRaiPoliciesClient getConnectionRaiPolicies() {
+        return this.connectionRaiPolicies;
+    }
+
+    /**
+     * The ConnectionRaiPolicyOperationsClient object to access its operations.
+     */
+    private final ConnectionRaiPolicyOperationsClient connectionRaiPolicyOperations;
+
+    /**
+     * Gets the ConnectionRaiPolicyOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiPolicyOperationsClient object.
+     */
+    public ConnectionRaiPolicyOperationsClient getConnectionRaiPolicyOperations() {
+        return this.connectionRaiPolicyOperations;
+    }
+
+    /**
+     * The EndpointDeploymentsClient object to access its operations.
+     */
+    private final EndpointDeploymentsClient endpointDeployments;
+
+    /**
+     * Gets the EndpointDeploymentsClient object to access its operations.
+     * 
+     * @return the EndpointDeploymentsClient object.
+     */
+    public EndpointDeploymentsClient getEndpointDeployments() {
+        return this.endpointDeployments;
+    }
+
+    /**
+     * The EndpointsClient object to access its operations.
+     */
+    private final EndpointsClient endpoints;
+
+    /**
+     * Gets the EndpointsClient object to access its operations.
+     * 
+     * @return the EndpointsClient object.
+     */
+    public EndpointsClient getEndpoints() {
+        return this.endpoints;
+    }
+
+    /**
+     * The RaiPoliciesClient object to access its operations.
+     */
+    private final RaiPoliciesClient raiPolicies;
+
+    /**
+     * Gets the RaiPoliciesClient object to access its operations.
+     * 
+     * @return the RaiPoliciesClient object.
+     */
+    public RaiPoliciesClient getRaiPolicies() {
+        return this.raiPolicies;
+    }
+
+    /**
+     * The RaiPolicyOperationsClient object to access its operations.
+     */
+    private final RaiPolicyOperationsClient raiPolicyOperations;
+
+    /**
+     * Gets the RaiPolicyOperationsClient object to access its operations.
+     * 
+     * @return the RaiPolicyOperationsClient object.
+     */
+    public RaiPolicyOperationsClient getRaiPolicyOperations() {
+        return this.raiPolicyOperations;
+    }
+
+    /**
+     * The ManagedNetworkSettingsRulesClient object to access its operations.
+     */
+    private final ManagedNetworkSettingsRulesClient managedNetworkSettingsRules;
+
+    /**
+     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
+     * 
+     * @return the ManagedNetworkSettingsRulesClient object.
+     */
+    public ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules() {
+        return this.managedNetworkSettingsRules;
+    }
+
+    /**
+     * The PrivateEndpointConnectionsClient object to access its operations.
+     */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * The PrivateLinkResourcesClient object to access its operations.
+     */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
+    /**
+     * The ManagedNetworkProvisionsClient object to access its operations.
+     */
+    private final ManagedNetworkProvisionsClient managedNetworkProvisions;
+
+    /**
+     * Gets the ManagedNetworkProvisionsClient object to access its operations.
+     * 
+     * @return the ManagedNetworkProvisionsClient object.
+     */
+    public ManagedNetworkProvisionsClient getManagedNetworkProvisions() {
+        return this.managedNetworkProvisions;
+    }
+
+    /**
      * Initializes an instance of AzureMachineLearningWorkspaces client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -859,18 +1024,11 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-01";
-        this.operations = new OperationsClientImpl(this);
-        this.workspaces = new WorkspacesClientImpl(this);
+        this.apiVersion = "2024-07-01-preview";
         this.usages = new UsagesClientImpl(this);
         this.virtualMachineSizes = new VirtualMachineSizesClientImpl(this);
         this.quotas = new QuotasClientImpl(this);
         this.computes = new ComputesClientImpl(this);
-        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.workspaceConnections = new WorkspaceConnectionsClientImpl(this);
-        this.managedNetworkSettingsRules = new ManagedNetworkSettingsRulesClientImpl(this);
-        this.managedNetworkProvisions = new ManagedNetworkProvisionsClientImpl(this);
         this.registryCodeContainers = new RegistryCodeContainersClientImpl(this);
         this.registryCodeVersions = new RegistryCodeVersionsClientImpl(this);
         this.registryComponentContainers = new RegistryComponentContainersClientImpl(this);
@@ -880,6 +1038,7 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.registryDataReferences = new RegistryDataReferencesClientImpl(this);
         this.registryEnvironmentContainers = new RegistryEnvironmentContainersClientImpl(this);
         this.registryEnvironmentVersions = new RegistryEnvironmentVersionsClientImpl(this);
+        this.marketplaceSubscriptions = new MarketplaceSubscriptionsClientImpl(this);
         this.registryModelContainers = new RegistryModelContainersClientImpl(this);
         this.registryModelVersions = new RegistryModelVersionsClientImpl(this);
         this.batchEndpoints = new BatchEndpointsClientImpl(this);
@@ -899,7 +1058,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.featurestoreEntityContainers = new FeaturestoreEntityContainersClientImpl(this);
         this.featurestoreEntityVersions = new FeaturestoreEntityVersionsClientImpl(this);
         this.jobs = new JobsClientImpl(this);
-        this.marketplaceSubscriptions = new MarketplaceSubscriptionsClientImpl(this);
         this.modelContainers = new ModelContainersClientImpl(this);
         this.modelVersions = new ModelVersionsClientImpl(this);
         this.onlineEndpoints = new OnlineEndpointsClientImpl(this);
@@ -908,6 +1066,24 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.serverlessEndpoints = new ServerlessEndpointsClientImpl(this);
         this.registries = new RegistriesClientImpl(this);
         this.workspaceFeatures = new WorkspaceFeaturesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.workspaces = new WorkspacesClientImpl(this);
+        this.workspaceConnections = new WorkspaceConnectionsClientImpl(this);
+        this.connections = new ConnectionsClientImpl(this);
+        this.connectionRaiBlocklists = new ConnectionRaiBlocklistsClientImpl(this);
+        this.connectionRaiBlocklistOperations = new ConnectionRaiBlocklistOperationsClientImpl(this);
+        this.connectionRaiBlocklistItems = new ConnectionRaiBlocklistItemsClientImpl(this);
+        this.connectionRaiBlocklistItemsOperations = new ConnectionRaiBlocklistItemsOperationsClientImpl(this);
+        this.connectionRaiPolicies = new ConnectionRaiPoliciesClientImpl(this);
+        this.connectionRaiPolicyOperations = new ConnectionRaiPolicyOperationsClientImpl(this);
+        this.endpointDeployments = new EndpointDeploymentsClientImpl(this);
+        this.endpoints = new EndpointsClientImpl(this);
+        this.raiPolicies = new RaiPoliciesClientImpl(this);
+        this.raiPolicyOperations = new RaiPolicyOperationsClientImpl(this);
+        this.managedNetworkSettingsRules = new ManagedNetworkSettingsRulesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.managedNetworkProvisions = new ManagedNetworkProvisionsClientImpl(this);
     }
 
     /**
