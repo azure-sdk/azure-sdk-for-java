@@ -17,39 +17,19 @@ import java.io.IOException;
 @Fluent
 public class AzureDatastore implements JsonSerializable<AzureDatastore> {
     /*
-     * Azure Subscription Id
-     */
-    private String subscriptionId;
-
-    /*
      * Azure Resource Group name
      */
     private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    private String subscriptionId;
 
     /**
      * Creates an instance of AzureDatastore class.
      */
     public AzureDatastore() {
-    }
-
-    /**
-     * Get the subscriptionId property: Azure Subscription Id.
-     * 
-     * @return the subscriptionId value.
-     */
-    public String subscriptionId() {
-        return this.subscriptionId;
-    }
-
-    /**
-     * Set the subscriptionId property: Azure Subscription Id.
-     * 
-     * @param subscriptionId the subscriptionId value to set.
-     * @return the AzureDatastore object itself.
-     */
-    public AzureDatastore withSubscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
     }
 
     /**
@@ -73,6 +53,26 @@ public class AzureDatastore implements JsonSerializable<AzureDatastore> {
     }
 
     /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDatastore object itself.
+     */
+    public AzureDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,8 +86,8 @@ public class AzureDatastore implements JsonSerializable<AzureDatastore> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         jsonWriter.writeStringField("resourceGroup", this.resourceGroup);
+        jsonWriter.writeStringField("subscriptionId", this.subscriptionId);
         return jsonWriter.writeEndObject();
     }
 
@@ -106,10 +106,10 @@ public class AzureDatastore implements JsonSerializable<AzureDatastore> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("subscriptionId".equals(fieldName)) {
-                    deserializedAzureDatastore.subscriptionId = reader.getString();
-                } else if ("resourceGroup".equals(fieldName)) {
+                if ("resourceGroup".equals(fieldName)) {
                     deserializedAzureDatastore.resourceGroup = reader.getString();
+                } else if ("subscriptionId".equals(fieldName)) {
+                    deserializedAzureDatastore.subscriptionId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

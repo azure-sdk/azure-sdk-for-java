@@ -106,10 +106,10 @@ public class JobInput implements JsonSerializable<JobInput> {
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("mltable".equals(discriminatorValue)) {
                     return MLTableJobInput.fromJson(readerToUse.reset());
-                } else if ("custom_model".equals(discriminatorValue)) {
-                    return CustomModelJobInput.fromJson(readerToUse.reset());
                 } else if ("mlflow_model".equals(discriminatorValue)) {
                     return MLFlowModelJobInput.fromJson(readerToUse.reset());
+                } else if ("custom_model".equals(discriminatorValue)) {
+                    return CustomModelJobInput.fromJson(readerToUse.reset());
                 } else if ("literal".equals(discriminatorValue)) {
                     return LiteralJobInput.fromJson(readerToUse.reset());
                 } else if ("triton_model".equals(discriminatorValue)) {
