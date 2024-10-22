@@ -14,8 +14,8 @@ import com.azure.resourcemanager.hardwaresecuritymodules.models.PrivateLinkServi
 public final class CloudHsmClusterPrivateEndpointConnectionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/preview/2023-12-10-
-     * preview/examples/CloudHsmClusterPrivateEndpointConnection_Create_MaximumSet_Gen.json
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
+     * examples/CloudHsmClusterPrivateEndpointConnection_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: CloudHsmClusterPrivateEndpointConnection_Create_MaximumSet_Gen.
@@ -24,7 +24,8 @@ public final class CloudHsmClusterPrivateEndpointConnectionsCreateSamples {
      */
     public static void cloudHsmClusterPrivateEndpointConnectionCreateMaximumSetGen(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.cloudHsmClusterPrivateEndpointConnections().define("sample-pec")
+        manager.cloudHsmClusterPrivateEndpointConnections()
+            .define("sample-pec")
             .withExistingCloudHsmCluster("rgcloudhsm", "chsm1")
             .withProperties(new PrivateEndpointConnectionProperties().withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
