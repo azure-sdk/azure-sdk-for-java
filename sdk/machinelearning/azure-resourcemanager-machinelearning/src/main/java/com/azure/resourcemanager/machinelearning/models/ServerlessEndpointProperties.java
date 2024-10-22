@@ -18,24 +18,14 @@ import java.io.IOException;
 @Fluent
 public final class ServerlessEndpointProperties implements JsonSerializable<ServerlessEndpointProperties> {
     /*
-     * The model settings (model id) for the model being serviced on the ServerlessEndpoint.
-     */
-    private ModelSettings modelSettings;
-
-    /*
      * [Required] Specifies the authentication mode for the Serverless endpoint.
      */
     private ServerlessInferenceEndpointAuthMode authMode;
 
     /*
-     * The inference uri to target when making requests against the serverless endpoint
+     * Specifies the content safety options. If omitted, the default content safety settings will be configured
      */
-    private ServerlessInferenceEndpoint inferenceEndpoint;
-
-    /*
-     * Provisioning state for the endpoint.
-     */
-    private EndpointProvisioningState provisioningState;
+    private ContentSafety contentSafety;
 
     /*
      * The current state of the ServerlessEndpoint.
@@ -43,41 +33,29 @@ public final class ServerlessEndpointProperties implements JsonSerializable<Serv
     private ServerlessEndpointState endpointState;
 
     /*
+     * The inference uri to target when making requests against the serverless endpoint
+     */
+    private ServerlessInferenceEndpoint inferenceEndpoint;
+
+    /*
      * The MarketplaceSubscription Azure ID associated to this ServerlessEndpoint.
      */
     private String marketplaceSubscriptionId;
 
     /*
-     * Specifies the content safety options. If omitted, the default content safety settings will be configured
+     * The model settings (model id) for the model being serviced on the ServerlessEndpoint.
      */
-    private ContentSafety contentSafety;
+    private ModelSettings modelSettings;
+
+    /*
+     * Provisioning state for the endpoint.
+     */
+    private EndpointProvisioningState provisioningState;
 
     /**
      * Creates an instance of ServerlessEndpointProperties class.
      */
     public ServerlessEndpointProperties() {
-    }
-
-    /**
-     * Get the modelSettings property: The model settings (model id) for the model being serviced on the
-     * ServerlessEndpoint.
-     * 
-     * @return the modelSettings value.
-     */
-    public ModelSettings modelSettings() {
-        return this.modelSettings;
-    }
-
-    /**
-     * Set the modelSettings property: The model settings (model id) for the model being serviced on the
-     * ServerlessEndpoint.
-     * 
-     * @param modelSettings the modelSettings value to set.
-     * @return the ServerlessEndpointProperties object itself.
-     */
-    public ServerlessEndpointProperties withModelSettings(ModelSettings modelSettings) {
-        this.modelSettings = modelSettings;
-        return this;
     }
 
     /**
@@ -98,44 +76,6 @@ public final class ServerlessEndpointProperties implements JsonSerializable<Serv
     public ServerlessEndpointProperties withAuthMode(ServerlessInferenceEndpointAuthMode authMode) {
         this.authMode = authMode;
         return this;
-    }
-
-    /**
-     * Get the inferenceEndpoint property: The inference uri to target when making requests against the serverless
-     * endpoint.
-     * 
-     * @return the inferenceEndpoint value.
-     */
-    public ServerlessInferenceEndpoint inferenceEndpoint() {
-        return this.inferenceEndpoint;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state for the endpoint.
-     * 
-     * @return the provisioningState value.
-     */
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the endpointState property: The current state of the ServerlessEndpoint.
-     * 
-     * @return the endpointState value.
-     */
-    public ServerlessEndpointState endpointState() {
-        return this.endpointState;
-    }
-
-    /**
-     * Get the marketplaceSubscriptionId property: The MarketplaceSubscription Azure ID associated to this
-     * ServerlessEndpoint.
-     * 
-     * @return the marketplaceSubscriptionId value.
-     */
-    public String marketplaceSubscriptionId() {
-        return this.marketplaceSubscriptionId;
     }
 
     /**
@@ -161,24 +101,84 @@ public final class ServerlessEndpointProperties implements JsonSerializable<Serv
     }
 
     /**
+     * Get the endpointState property: The current state of the ServerlessEndpoint.
+     * 
+     * @return the endpointState value.
+     */
+    public ServerlessEndpointState endpointState() {
+        return this.endpointState;
+    }
+
+    /**
+     * Get the inferenceEndpoint property: The inference uri to target when making requests against the serverless
+     * endpoint.
+     * 
+     * @return the inferenceEndpoint value.
+     */
+    public ServerlessInferenceEndpoint inferenceEndpoint() {
+        return this.inferenceEndpoint;
+    }
+
+    /**
+     * Get the marketplaceSubscriptionId property: The MarketplaceSubscription Azure ID associated to this
+     * ServerlessEndpoint.
+     * 
+     * @return the marketplaceSubscriptionId value.
+     */
+    public String marketplaceSubscriptionId() {
+        return this.marketplaceSubscriptionId;
+    }
+
+    /**
+     * Get the modelSettings property: The model settings (model id) for the model being serviced on the
+     * ServerlessEndpoint.
+     * 
+     * @return the modelSettings value.
+     */
+    public ModelSettings modelSettings() {
+        return this.modelSettings;
+    }
+
+    /**
+     * Set the modelSettings property: The model settings (model id) for the model being serviced on the
+     * ServerlessEndpoint.
+     * 
+     * @param modelSettings the modelSettings value to set.
+     * @return the ServerlessEndpointProperties object itself.
+     */
+    public ServerlessEndpointProperties withModelSettings(ModelSettings modelSettings) {
+        this.modelSettings = modelSettings;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the endpoint.
+     * 
+     * @return the provisioningState value.
+     */
+    public EndpointProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (modelSettings() != null) {
-            modelSettings().validate();
-        }
         if (authMode() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property authMode in model ServerlessEndpointProperties"));
         }
+        if (contentSafety() != null) {
+            contentSafety().validate();
+        }
         if (inferenceEndpoint() != null) {
             inferenceEndpoint().validate();
         }
-        if (contentSafety() != null) {
-            contentSafety().validate();
+        if (modelSettings() != null) {
+            modelSettings().validate();
         }
     }
 
@@ -191,8 +191,8 @@ public final class ServerlessEndpointProperties implements JsonSerializable<Serv
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("authMode", this.authMode == null ? null : this.authMode.toString());
-        jsonWriter.writeJsonField("modelSettings", this.modelSettings);
         jsonWriter.writeJsonField("contentSafety", this.contentSafety);
+        jsonWriter.writeJsonField("modelSettings", this.modelSettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -215,21 +215,21 @@ public final class ServerlessEndpointProperties implements JsonSerializable<Serv
                 if ("authMode".equals(fieldName)) {
                     deserializedServerlessEndpointProperties.authMode
                         = ServerlessInferenceEndpointAuthMode.fromString(reader.getString());
-                } else if ("modelSettings".equals(fieldName)) {
-                    deserializedServerlessEndpointProperties.modelSettings = ModelSettings.fromJson(reader);
-                } else if ("inferenceEndpoint".equals(fieldName)) {
-                    deserializedServerlessEndpointProperties.inferenceEndpoint
-                        = ServerlessInferenceEndpoint.fromJson(reader);
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedServerlessEndpointProperties.provisioningState
-                        = EndpointProvisioningState.fromString(reader.getString());
+                } else if ("contentSafety".equals(fieldName)) {
+                    deserializedServerlessEndpointProperties.contentSafety = ContentSafety.fromJson(reader);
                 } else if ("endpointState".equals(fieldName)) {
                     deserializedServerlessEndpointProperties.endpointState
                         = ServerlessEndpointState.fromString(reader.getString());
+                } else if ("inferenceEndpoint".equals(fieldName)) {
+                    deserializedServerlessEndpointProperties.inferenceEndpoint
+                        = ServerlessInferenceEndpoint.fromJson(reader);
                 } else if ("marketplaceSubscriptionId".equals(fieldName)) {
                     deserializedServerlessEndpointProperties.marketplaceSubscriptionId = reader.getString();
-                } else if ("contentSafety".equals(fieldName)) {
-                    deserializedServerlessEndpointProperties.contentSafety = ContentSafety.fromJson(reader);
+                } else if ("modelSettings".equals(fieldName)) {
+                    deserializedServerlessEndpointProperties.modelSettings = ModelSettings.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedServerlessEndpointProperties.provisioningState
+                        = EndpointProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

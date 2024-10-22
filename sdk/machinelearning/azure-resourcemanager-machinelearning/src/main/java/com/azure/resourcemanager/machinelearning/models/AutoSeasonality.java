@@ -43,7 +43,6 @@ public final class AutoSeasonality extends Seasonality {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
