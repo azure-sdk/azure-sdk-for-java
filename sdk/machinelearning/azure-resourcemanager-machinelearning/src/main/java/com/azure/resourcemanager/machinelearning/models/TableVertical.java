@@ -18,6 +18,16 @@ import java.util.List;
 @Fluent
 public class TableVertical implements JsonSerializable<TableVertical> {
     /*
+     * Columns to use for CVSplit data.
+     */
+    private List<String> cvSplitColumnNames;
+
+    /*
+     * Featurization inputs needed for AutoML job.
+     */
+    private TableVerticalFeaturizationSettings featurizationSettings;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     private TableVerticalLimitSettings limitSettings;
@@ -29,32 +39,9 @@ public class TableVertical implements JsonSerializable<TableVertical> {
     private NCrossValidations nCrossValidations;
 
     /*
-     * Columns to use for CVSplit data.
-     */
-    private List<String> cvSplitColumnNames;
-
-    /*
-     * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
-     * data to be weighted up or down.
-     */
-    private String weightColumnName;
-
-    /*
-     * Validation data inputs.
-     */
-    private MLTableJobInput validationData;
-
-    /*
      * Test data input.
      */
     private MLTableJobInput testData;
-
-    /*
-     * The fraction of training dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
-     */
-    private Double validationDataSize;
 
     /*
      * The fraction of test dataset that needs to be set aside for validation purpose.
@@ -64,14 +51,67 @@ public class TableVertical implements JsonSerializable<TableVertical> {
     private Double testDataSize;
 
     /*
-     * Featurization inputs needed for AutoML job.
+     * Validation data inputs.
      */
-    private TableVerticalFeaturizationSettings featurizationSettings;
+    private MLTableJobInput validationData;
+
+    /*
+     * The fraction of training dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     */
+    private Double validationDataSize;
+
+    /*
+     * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
+     * data to be weighted up or down.
+     */
+    private String weightColumnName;
 
     /**
      * Creates an instance of TableVertical class.
      */
     public TableVertical() {
+    }
+
+    /**
+     * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * 
+     * @return the cvSplitColumnNames value.
+     */
+    public List<String> cvSplitColumnNames() {
+        return this.cvSplitColumnNames;
+    }
+
+    /**
+     * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * 
+     * @param cvSplitColumnNames the cvSplitColumnNames value to set.
+     * @return the TableVertical object itself.
+     */
+    public TableVertical withCvSplitColumnNames(List<String> cvSplitColumnNames) {
+        this.cvSplitColumnNames = cvSplitColumnNames;
+        return this;
+    }
+
+    /**
+     * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
+     * 
+     * @return the featurizationSettings value.
+     */
+    public TableVerticalFeaturizationSettings featurizationSettings() {
+        return this.featurizationSettings;
+    }
+
+    /**
+     * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
+     * 
+     * @param featurizationSettings the featurizationSettings value to set.
+     * @return the TableVertical object itself.
+     */
+    public TableVertical withFeaturizationSettings(TableVerticalFeaturizationSettings featurizationSettings) {
+        this.featurizationSettings = featurizationSettings;
+        return this;
     }
 
     /**
@@ -117,44 +157,46 @@ public class TableVertical implements JsonSerializable<TableVertical> {
     }
 
     /**
-     * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * Get the testData property: Test data input.
      * 
-     * @return the cvSplitColumnNames value.
+     * @return the testData value.
      */
-    public List<String> cvSplitColumnNames() {
-        return this.cvSplitColumnNames;
+    public MLTableJobInput testData() {
+        return this.testData;
     }
 
     /**
-     * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
+     * Set the testData property: Test data input.
      * 
-     * @param cvSplitColumnNames the cvSplitColumnNames value to set.
+     * @param testData the testData value to set.
      * @return the TableVertical object itself.
      */
-    public TableVertical withCvSplitColumnNames(List<String> cvSplitColumnNames) {
-        this.cvSplitColumnNames = cvSplitColumnNames;
+    public TableVertical withTestData(MLTableJobInput testData) {
+        this.testData = testData;
         return this;
     }
 
     /**
-     * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
-     * as an input, causing rows in the data to be weighted up or down.
+     * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
      * 
-     * @return the weightColumnName value.
+     * @return the testDataSize value.
      */
-    public String weightColumnName() {
-        return this.weightColumnName;
+    public Double testDataSize() {
+        return this.testDataSize;
     }
 
     /**
-     * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
-     * as an input, causing rows in the data to be weighted up or down.
+     * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
      * 
-     * @param weightColumnName the weightColumnName value to set.
+     * @param testDataSize the testDataSize value to set.
      * @return the TableVertical object itself.
      */
-    public TableVertical withWeightColumnName(String weightColumnName) {
-        this.weightColumnName = weightColumnName;
+    public TableVertical withTestDataSize(Double testDataSize) {
+        this.testDataSize = testDataSize;
         return this;
     }
 
@@ -175,26 +217,6 @@ public class TableVertical implements JsonSerializable<TableVertical> {
      */
     public TableVertical withValidationData(MLTableJobInput validationData) {
         this.validationData = validationData;
-        return this;
-    }
-
-    /**
-     * Get the testData property: Test data input.
-     * 
-     * @return the testData value.
-     */
-    public MLTableJobInput testData() {
-        return this.testData;
-    }
-
-    /**
-     * Set the testData property: Test data input.
-     * 
-     * @param testData the testData value to set.
-     * @return the TableVertical object itself.
-     */
-    public TableVertical withTestData(MLTableJobInput testData) {
-        this.testData = testData;
         return this;
     }
 
@@ -225,46 +247,24 @@ public class TableVertical implements JsonSerializable<TableVertical> {
     }
 
     /**
-     * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
+     * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
      * 
-     * @return the testDataSize value.
+     * @return the weightColumnName value.
      */
-    public Double testDataSize() {
-        return this.testDataSize;
+    public String weightColumnName() {
+        return this.weightColumnName;
     }
 
     /**
-     * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0)
-     * Applied when validation dataset is not provided.
+     * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
      * 
-     * @param testDataSize the testDataSize value to set.
+     * @param weightColumnName the weightColumnName value to set.
      * @return the TableVertical object itself.
      */
-    public TableVertical withTestDataSize(Double testDataSize) {
-        this.testDataSize = testDataSize;
-        return this;
-    }
-
-    /**
-     * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     * 
-     * @return the featurizationSettings value.
-     */
-    public TableVerticalFeaturizationSettings featurizationSettings() {
-        return this.featurizationSettings;
-    }
-
-    /**
-     * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     * 
-     * @param featurizationSettings the featurizationSettings value to set.
-     * @return the TableVertical object itself.
-     */
-    public TableVertical withFeaturizationSettings(TableVerticalFeaturizationSettings featurizationSettings) {
-        this.featurizationSettings = featurizationSettings;
+    public TableVertical withWeightColumnName(String weightColumnName) {
+        this.weightColumnName = weightColumnName;
         return this;
     }
 
@@ -274,20 +274,20 @@ public class TableVertical implements JsonSerializable<TableVertical> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (featurizationSettings() != null) {
+            featurizationSettings().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
         }
         if (nCrossValidations() != null) {
             nCrossValidations().validate();
         }
-        if (validationData() != null) {
-            validationData().validate();
-        }
         if (testData() != null) {
             testData().validate();
         }
-        if (featurizationSettings() != null) {
-            featurizationSettings().validate();
+        if (validationData() != null) {
+            validationData().validate();
         }
     }
 
@@ -297,16 +297,16 @@ public class TableVertical implements JsonSerializable<TableVertical> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
-        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
         jsonWriter.writeArrayField("cvSplitColumnNames", this.cvSplitColumnNames,
             (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
-        jsonWriter.writeJsonField("validationData", this.validationData);
-        jsonWriter.writeJsonField("testData", this.testData);
-        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
-        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
         jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
+        jsonWriter.writeJsonField("nCrossValidations", this.nCrossValidations);
+        jsonWriter.writeJsonField("testData", this.testData);
+        jsonWriter.writeNumberField("testDataSize", this.testDataSize);
+        jsonWriter.writeJsonField("validationData", this.validationData);
+        jsonWriter.writeNumberField("validationDataSize", this.validationDataSize);
+        jsonWriter.writeStringField("weightColumnName", this.weightColumnName);
         return jsonWriter.writeEndObject();
     }
 
@@ -325,26 +325,26 @@ public class TableVertical implements JsonSerializable<TableVertical> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("limitSettings".equals(fieldName)) {
-                    deserializedTableVertical.limitSettings = TableVerticalLimitSettings.fromJson(reader);
-                } else if ("nCrossValidations".equals(fieldName)) {
-                    deserializedTableVertical.nCrossValidations = NCrossValidations.fromJson(reader);
-                } else if ("cvSplitColumnNames".equals(fieldName)) {
+                if ("cvSplitColumnNames".equals(fieldName)) {
                     List<String> cvSplitColumnNames = reader.readArray(reader1 -> reader1.getString());
                     deserializedTableVertical.cvSplitColumnNames = cvSplitColumnNames;
-                } else if ("weightColumnName".equals(fieldName)) {
-                    deserializedTableVertical.weightColumnName = reader.getString();
-                } else if ("validationData".equals(fieldName)) {
-                    deserializedTableVertical.validationData = MLTableJobInput.fromJson(reader);
-                } else if ("testData".equals(fieldName)) {
-                    deserializedTableVertical.testData = MLTableJobInput.fromJson(reader);
-                } else if ("validationDataSize".equals(fieldName)) {
-                    deserializedTableVertical.validationDataSize = reader.getNullable(JsonReader::getDouble);
-                } else if ("testDataSize".equals(fieldName)) {
-                    deserializedTableVertical.testDataSize = reader.getNullable(JsonReader::getDouble);
                 } else if ("featurizationSettings".equals(fieldName)) {
                     deserializedTableVertical.featurizationSettings
                         = TableVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedTableVertical.limitSettings = TableVerticalLimitSettings.fromJson(reader);
+                } else if ("nCrossValidations".equals(fieldName)) {
+                    deserializedTableVertical.nCrossValidations = NCrossValidations.fromJson(reader);
+                } else if ("testData".equals(fieldName)) {
+                    deserializedTableVertical.testData = MLTableJobInput.fromJson(reader);
+                } else if ("testDataSize".equals(fieldName)) {
+                    deserializedTableVertical.testDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("validationData".equals(fieldName)) {
+                    deserializedTableVertical.validationData = MLTableJobInput.fromJson(reader);
+                } else if ("validationDataSize".equals(fieldName)) {
+                    deserializedTableVertical.validationDataSize = reader.getNullable(JsonReader::getDouble);
+                } else if ("weightColumnName".equals(fieldName)) {
+                    deserializedTableVertical.weightColumnName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
