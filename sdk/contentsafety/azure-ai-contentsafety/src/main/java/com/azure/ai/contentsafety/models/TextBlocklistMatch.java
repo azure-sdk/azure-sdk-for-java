@@ -29,26 +29,6 @@ public final class TextBlocklistMatch implements JsonSerializable<TextBlocklistM
     @Generated
     private final String blocklistItemId;
 
-    /*
-     * The content of the matched item.
-     */
-    @Generated
-    private final String blocklistItemText;
-
-    /**
-     * Creates an instance of TextBlocklistMatch class.
-     *
-     * @param blocklistName the blocklistName value to set.
-     * @param blocklistItemId the blocklistItemId value to set.
-     * @param blocklistItemText the blocklistItemText value to set.
-     */
-    @Generated
-    private TextBlocklistMatch(String blocklistName, String blocklistItemId, String blocklistItemText) {
-        this.blocklistName = blocklistName;
-        this.blocklistItemId = blocklistItemId;
-        this.blocklistItemText = blocklistItemText;
-    }
-
     /**
      * Get the blocklistName property: The name of the matched blocklist.
      *
@@ -70,16 +50,6 @@ public final class TextBlocklistMatch implements JsonSerializable<TextBlocklistM
     }
 
     /**
-     * Get the blocklistItemText property: The content of the matched item.
-     *
-     * @return the blocklistItemText value.
-     */
-    @Generated
-    public String getBlocklistItemText() {
-        return this.blocklistItemText;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Generated
@@ -88,7 +58,6 @@ public final class TextBlocklistMatch implements JsonSerializable<TextBlocklistM
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("blocklistName", this.blocklistName);
         jsonWriter.writeStringField("blocklistItemId", this.blocklistItemId);
-        jsonWriter.writeStringField("blocklistItemText", this.blocklistItemText);
         return jsonWriter.writeEndObject();
     }
 
@@ -106,7 +75,6 @@ public final class TextBlocklistMatch implements JsonSerializable<TextBlocklistM
         return jsonReader.readObject(reader -> {
             String blocklistName = null;
             String blocklistItemId = null;
-            String blocklistItemText = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -114,13 +82,23 @@ public final class TextBlocklistMatch implements JsonSerializable<TextBlocklistM
                     blocklistName = reader.getString();
                 } else if ("blocklistItemId".equals(fieldName)) {
                     blocklistItemId = reader.getString();
-                } else if ("blocklistItemText".equals(fieldName)) {
-                    blocklistItemText = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new TextBlocklistMatch(blocklistName, blocklistItemId, blocklistItemText);
+            return new TextBlocklistMatch(blocklistName, blocklistItemId);
         });
+    }
+
+    /**
+     * Creates an instance of TextBlocklistMatch class.
+     *
+     * @param blocklistName the blocklistName value to set.
+     * @param blocklistItemId the blocklistItemId value to set.
+     */
+    @Generated
+    private TextBlocklistMatch(String blocklistName, String blocklistItemId) {
+        this.blocklistName = blocklistName;
+        this.blocklistItemId = blocklistItemId;
     }
 }
