@@ -16,8 +16,6 @@ import java.util.List;
 /**
  * Contains the counts of VMs in each power state in a given zone, fault domain, as known by the StandbyPool resource
  * provider.
- * Note: any updates to pool resources outside of StandbyPoolRP (i.e deleting a VM through portal) are not reflected
- * here.
  * Note: any resources in the Running state may still be installing extensions / not fully provisioned.
  */
 @Immutable
