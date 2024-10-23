@@ -125,9 +125,8 @@ public interface ManagedEnvironment {
     String staticIp();
 
     /**
-     * Gets the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Gets the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @return the appLogsConfiguration value.
      */
@@ -425,12 +424,10 @@ public interface ManagedEnvironment {
         interface WithAppLogsConfiguration {
             /**
              * Specifies the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * app logs to configured destination..
              * 
-             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export app logs to
+             * configured destination.
              * @return the next definition stage.
              */
             WithCreate withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
@@ -714,12 +711,10 @@ public interface ManagedEnvironment {
         interface WithAppLogsConfiguration {
             /**
              * Specifies the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * app logs to configured destination..
              * 
-             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export
-             * app logs to a destination. Currently only "log-analytics" is
-             * supported.
+             * @param appLogsConfiguration Cluster configuration which enables the log daemon to export app logs to
+             * configured destination.
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);

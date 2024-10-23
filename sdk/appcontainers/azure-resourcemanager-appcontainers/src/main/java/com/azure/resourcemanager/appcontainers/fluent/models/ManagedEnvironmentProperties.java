@@ -65,9 +65,7 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     private String staticIp;
 
     /*
-     * Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported
+     * Cluster configuration which enables the log daemon to export app logs to configured destination.
      */
     private AppLogsConfiguration appLogsConfiguration;
 
@@ -244,9 +242,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     }
 
     /**
-     * Get the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Get the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @return the appLogsConfiguration value.
      */
@@ -255,9 +252,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     }
 
     /**
-     * Set the appLogsConfiguration property: Cluster configuration which enables the log daemon to export
-     * app logs to a destination. Currently only "log-analytics" is
-     * supported.
+     * Set the appLogsConfiguration property: Cluster configuration which enables the log daemon to export app logs to
+     * configured destination.
      * 
      * @param appLogsConfiguration the appLogsConfiguration value to set.
      * @return the ManagedEnvironmentProperties object itself.
