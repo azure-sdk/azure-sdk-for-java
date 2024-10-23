@@ -24,22 +24,6 @@ public final class AnalyzeTextResult implements JsonSerializable<AnalyzeTextResu
     @Generated
     private List<TextBlocklistMatch> blocklistsMatch;
 
-    /*
-     * Analysis result for categories.
-     */
-    @Generated
-    private final List<TextCategoriesAnalysis> categoriesAnalysis;
-
-    /**
-     * Creates an instance of AnalyzeTextResult class.
-     *
-     * @param categoriesAnalysis the categoriesAnalysis value to set.
-     */
-    @Generated
-    private AnalyzeTextResult(List<TextCategoriesAnalysis> categoriesAnalysis) {
-        this.categoriesAnalysis = categoriesAnalysis;
-    }
-
     /**
      * Get the blocklistsMatch property: The blocklist match details.
      *
@@ -51,24 +35,12 @@ public final class AnalyzeTextResult implements JsonSerializable<AnalyzeTextResu
     }
 
     /**
-     * Get the categoriesAnalysis property: Analysis result for categories.
-     *
-     * @return the categoriesAnalysis value.
-     */
-    @Generated
-    public List<TextCategoriesAnalysis> getCategoriesAnalysis() {
-        return this.categoriesAnalysis;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Generated
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("categoriesAnalysis", this.categoriesAnalysis,
-            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeArrayField("blocklistsMatch", this.blocklistsMatch,
             (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
@@ -80,28 +52,31 @@ public final class AnalyzeTextResult implements JsonSerializable<AnalyzeTextResu
      * @param jsonReader The JsonReader being read.
      * @return An instance of AnalyzeTextResult if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the AnalyzeTextResult.
      */
     @Generated
     public static AnalyzeTextResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            List<TextCategoriesAnalysis> categoriesAnalysis = null;
-            List<TextBlocklistMatch> blocklistsMatch = null;
+            AnalyzeTextResult deserializedAnalyzeTextResult = new AnalyzeTextResult();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("categoriesAnalysis".equals(fieldName)) {
-                    categoriesAnalysis = reader.readArray(reader1 -> TextCategoriesAnalysis.fromJson(reader1));
-                } else if ("blocklistsMatch".equals(fieldName)) {
-                    blocklistsMatch = reader.readArray(reader1 -> TextBlocklistMatch.fromJson(reader1));
+                if ("blocklistsMatch".equals(fieldName)) {
+                    List<TextBlocklistMatch> blocklistsMatch
+                        = reader.readArray(reader1 -> TextBlocklistMatch.fromJson(reader1));
+                    deserializedAnalyzeTextResult.blocklistsMatch = blocklistsMatch;
                 } else {
                     reader.skipChildren();
                 }
             }
-            AnalyzeTextResult deserializedAnalyzeTextResult = new AnalyzeTextResult(categoriesAnalysis);
-            deserializedAnalyzeTextResult.blocklistsMatch = blocklistsMatch;
             return deserializedAnalyzeTextResult;
         });
+    }
+
+    /**
+     * Creates an instance of AnalyzeTextResult class.
+     */
+    @Generated
+    private AnalyzeTextResult() {
     }
 }
