@@ -13,8 +13,7 @@ import java.util.Arrays;
  */
 public final class DatabasesForceLinkToReplicationGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2024-10-01/examples/
      * RedisEnterpriseDatabasesForceLink.json
      */
     /**

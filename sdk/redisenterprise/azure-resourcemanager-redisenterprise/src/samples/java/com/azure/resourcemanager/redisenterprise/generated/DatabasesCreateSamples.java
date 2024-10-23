@@ -4,11 +4,9 @@
 
 package com.azure.resourcemanager.redisenterprise.generated;
 
-import com.azure.resourcemanager.redisenterprise.models.AccessKeysAuthentication;
 import com.azure.resourcemanager.redisenterprise.models.AofFrequency;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
-import com.azure.resourcemanager.redisenterprise.models.DeferUpgradeSetting;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.LinkedDatabase;
 import com.azure.resourcemanager.redisenterprise.models.Module;
@@ -21,8 +19,7 @@ import java.util.Arrays;
  */
 public final class DatabasesCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2024-10-01/examples/
      * RedisEnterpriseDatabasesCreate.json
      */
     /**
@@ -43,14 +40,11 @@ public final class DatabasesCreateSamples {
             .withModules(Arrays.asList(new Module().withName("RedisBloom").withArgs("ERROR_RATE 0.00 INITIAL_SIZE 400"),
                 new Module().withName("RedisTimeSeries").withArgs("RETENTION_POLICY 20"),
                 new Module().withName("RediSearch")))
-            .withDeferUpgrade(DeferUpgradeSetting.NOT_DEFERRED)
-            .withAccessKeysAuthentication(AccessKeysAuthentication.ENABLED)
             .create();
     }
 
     /*
-     * x-ms-original-file:
-     * specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2024-09-01-preview/examples/
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2024-10-01/examples/
      * RedisEnterpriseDatabasesCreateWithGeoReplication.json
      */
     /**
@@ -69,10 +63,9 @@ public final class DatabasesCreateSamples {
             .withEvictionPolicy(EvictionPolicy.NO_EVICTION)
             .withGeoReplication(new DatabasePropertiesGeoReplication().withGroupNickname("groupName")
                 .withLinkedDatabases(Arrays.asList(new LinkedDatabase().withId(
-                    "/subscriptions/e7b5a9d2-6b6a-4d2f-9143-20d9a10f5b8f/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default"),
+                    "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default"),
                     new LinkedDatabase().withId(
-                        "/subscriptions/e7b5a9d2-6b6a-4d2f-9143-20d9a10f5b8e/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"))))
-            .withAccessKeysAuthentication(AccessKeysAuthentication.ENABLED)
+                        "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"))))
             .create();
     }
 }

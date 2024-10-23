@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import java.util.List;
@@ -34,13 +33,6 @@ public interface Database {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the clientProtocol property: Specifies whether redis clients can connect using TLS-encrypted or plaintext
@@ -73,8 +65,7 @@ public interface Database {
     ResourceState resourceState();
 
     /**
-     * Gets the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Gets the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @return the clusteringPolicy value.
      */
@@ -108,29 +99,6 @@ public interface Database {
      * @return the geoReplication value.
      */
     DatabasePropertiesGeoReplication geoReplication();
-
-    /**
-     * Gets the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    String redisVersion();
-
-    /**
-     * Gets the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    DeferUpgradeSetting deferUpgrade();
-
-    /**
-     * Gets the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with
-     * the current access keys. Can be updated even after database is created.
-     * 
-     * @return the accessKeysAuthentication value.
-     */
-    AccessKeysAuthentication accessKeysAuthentication();
 
     /**
      * Gets the name of the resource group.
@@ -171,7 +139,8 @@ public interface Database {
              * Specifies resourceGroupName, clusterName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param clusterName The name of the Redis Enterprise cluster.
+             * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+             * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
              * @return the next definition stage.
              */
             WithCreate withExistingRedisEnterprise(String resourceGroupName, String clusterName);
@@ -183,8 +152,7 @@ public interface Database {
          */
         interface WithCreate extends DefinitionStages.WithClientProtocol, DefinitionStages.WithPort,
             DefinitionStages.WithClusteringPolicy, DefinitionStages.WithEvictionPolicy,
-            DefinitionStages.WithPersistence, DefinitionStages.WithModules, DefinitionStages.WithGeoReplication,
-            DefinitionStages.WithDeferUpgrade, DefinitionStages.WithAccessKeysAuthentication {
+            DefinitionStages.WithPersistence, DefinitionStages.WithModules, DefinitionStages.WithGeoReplication {
             /**
              * Executes the create request.
              * 
@@ -235,11 +203,10 @@ public interface Database {
          */
         interface WithClusteringPolicy {
             /**
-             * Specifies the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be
-             * chosen at create time, and cannot be changed without deleting the database..
+             * Specifies the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create
+             * time..
              * 
-             * @param clusteringPolicy Clustering policy - default is OSSCluster. This property must be chosen at create
-             * time, and cannot be changed without deleting the database.
+             * @param clusteringPolicy Clustering policy - default is OSSCluster. Specified at create time.
              * @return the next definition stage.
              */
             WithCreate withClusteringPolicy(ClusteringPolicy clusteringPolicy);
@@ -299,36 +266,6 @@ public interface Database {
              */
             WithCreate withGeoReplication(DatabasePropertiesGeoReplication geoReplication);
         }
-
-        /**
-         * The stage of the Database definition allowing to specify deferUpgrade.
-         */
-        interface WithDeferUpgrade {
-            /**
-             * Specifies the deferUpgrade property: Option to defer upgrade when newest version is released - default is
-             * NotDeferred. Learn more: https://aka.ms/redisversionupgrade.
-             * 
-             * @param deferUpgrade Option to defer upgrade when newest version is released - default is NotDeferred.
-             * Learn more: https://aka.ms/redisversionupgrade.
-             * @return the next definition stage.
-             */
-            WithCreate withDeferUpgrade(DeferUpgradeSetting deferUpgrade);
-        }
-
-        /**
-         * The stage of the Database definition allowing to specify accessKeysAuthentication.
-         */
-        interface WithAccessKeysAuthentication {
-            /**
-             * Specifies the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny
-             * access with the current access keys. Can be updated even after database is created..
-             * 
-             * @param accessKeysAuthentication This property can be Enabled/Disabled to allow or deny access with the
-             * current access keys. Can be updated even after database is created.
-             * @return the next definition stage.
-             */
-            WithCreate withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication);
-        }
     }
 
     /**
@@ -341,8 +278,8 @@ public interface Database {
     /**
      * The template for Database update.
      */
-    interface Update extends UpdateStages.WithClientProtocol, UpdateStages.WithEvictionPolicy,
-        UpdateStages.WithPersistence, UpdateStages.WithDeferUpgrade, UpdateStages.WithAccessKeysAuthentication {
+    interface Update
+        extends UpdateStages.WithClientProtocol, UpdateStages.WithEvictionPolicy, UpdateStages.WithPersistence {
         /**
          * Executes the update request.
          * 
@@ -403,36 +340,6 @@ public interface Database {
              */
             Update withPersistence(Persistence persistence);
         }
-
-        /**
-         * The stage of the Database update allowing to specify deferUpgrade.
-         */
-        interface WithDeferUpgrade {
-            /**
-             * Specifies the deferUpgrade property: Option to defer upgrade when newest version is released - default is
-             * NotDeferred. Learn more: https://aka.ms/redisversionupgrade.
-             * 
-             * @param deferUpgrade Option to defer upgrade when newest version is released - default is NotDeferred.
-             * Learn more: https://aka.ms/redisversionupgrade.
-             * @return the next definition stage.
-             */
-            Update withDeferUpgrade(DeferUpgradeSetting deferUpgrade);
-        }
-
-        /**
-         * The stage of the Database update allowing to specify accessKeysAuthentication.
-         */
-        interface WithAccessKeysAuthentication {
-            /**
-             * Specifies the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny
-             * access with the current access keys. Can be updated even after database is created..
-             * 
-             * @param accessKeysAuthentication This property can be Enabled/Disabled to allow or deny access with the
-             * current access keys. Can be updated even after database is created.
-             * @return the next definition stage.
-             */
-            Update withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication);
-        }
     }
 
     /**
@@ -451,7 +358,7 @@ public interface Database {
     Database refresh(Context context);
 
     /**
-     * Retrieves the access keys for the Redis Enterprise database.
+     * Retrieves the access keys for the RedisEnterprise database.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -462,7 +369,7 @@ public interface Database {
     Response<AccessKeys> listKeysWithResponse(Context context);
 
     /**
-     * Retrieves the access keys for the Redis Enterprise database.
+     * Retrieves the access keys for the RedisEnterprise database.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -471,7 +378,7 @@ public interface Database {
     AccessKeys listKeys();
 
     /**
-     * Regenerates the Redis Enterprise database's access keys.
+     * Regenerates the RedisEnterprise database's access keys.
      * 
      * @param parameters Specifies which key to regenerate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -482,7 +389,7 @@ public interface Database {
     AccessKeys regenerateKey(RegenerateKeyParameters parameters);
 
     /**
-     * Regenerates the Redis Enterprise database's access keys.
+     * Regenerates the RedisEnterprise database's access keys.
      * 
      * @param parameters Specifies which key to regenerate.
      * @param context The context to associate with this operation.
@@ -601,22 +508,4 @@ public interface Database {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void flush(FlushParameters parameters, Context context);
-
-    /**
-     * Upgrades the database Redis version to the latest available.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void upgradeDBRedisVersion();
-
-    /**
-     * Upgrades the database Redis version to the latest available.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void upgradeDBRedisVersion(Context context);
 }

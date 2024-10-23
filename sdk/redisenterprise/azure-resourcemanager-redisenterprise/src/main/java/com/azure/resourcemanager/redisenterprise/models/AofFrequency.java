@@ -8,8 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Sets the frequency at which data is written to disk. Defaults to '1s', meaning 'every second'. Note that the 'always'
- * setting is deprecated, because of its performance impact.
+ * Sets the frequency at which data is written to disk.
  */
 public final class AofFrequency extends ExpandableStringEnum<AofFrequency> {
     /**
