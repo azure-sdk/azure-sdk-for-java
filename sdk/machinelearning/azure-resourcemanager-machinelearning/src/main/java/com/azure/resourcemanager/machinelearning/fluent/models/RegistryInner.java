@@ -12,6 +12,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.machinelearning.models.ArmResourceId;
+import com.azure.resourcemanager.machinelearning.models.ManagedResourceGroupSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.RegistryPrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.RegistryRegionArmDetails;
@@ -51,9 +52,9 @@ public final class RegistryInner extends Resource {
     private SystemData systemData;
 
     /*
-     * Fully qualified resource Id for the resource.
+     * The type of the resource.
      */
-    private String id;
+    private String type;
 
     /*
      * The name of the resource.
@@ -61,9 +62,9 @@ public final class RegistryInner extends Resource {
     private String name;
 
     /*
-     * The type of the resource.
+     * Fully qualified resource Id for the resource.
      */
-    private String type;
+    private String id;
 
     /**
      * Creates an instance of RegistryInner class.
@@ -152,13 +153,13 @@ public final class RegistryInner extends Resource {
     }
 
     /**
-     * Get the id property: Fully qualified resource Id for the resource.
+     * Get the type property: The type of the resource.
      * 
-     * @return the id value.
+     * @return the type value.
      */
     @Override
-    public String id() {
-        return this.id;
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -172,13 +173,13 @@ public final class RegistryInner extends Resource {
     }
 
     /**
-     * Get the type property: The type of the resource.
+     * Get the id property: Fully qualified resource Id for the resource.
      * 
-     * @return the type value.
+     * @return the id value.
      */
     @Override
-    public String type() {
-        return this.type;
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -265,6 +266,29 @@ public final class RegistryInner extends Resource {
             this.innerProperties = new RegistryProperties();
         }
         this.innerProperties().withManagedResourceGroup(managedResourceGroup);
+        return this;
+    }
+
+    /**
+     * Get the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @return the managedResourceGroupSettings value.
+     */
+    public ManagedResourceGroupSettings managedResourceGroupSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedResourceGroupSettings();
+    }
+
+    /**
+     * Set the managedResourceGroupSettings property: Managed resource group specific settings.
+     * 
+     * @param managedResourceGroupSettings the managedResourceGroupSettings value to set.
+     * @return the RegistryInner object itself.
+     */
+    public RegistryInner withManagedResourceGroupSettings(ManagedResourceGroupSettings managedResourceGroupSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RegistryProperties();
+        }
+        this.innerProperties().withManagedResourceGroupSettings(managedResourceGroupSettings);
         return this;
     }
 
