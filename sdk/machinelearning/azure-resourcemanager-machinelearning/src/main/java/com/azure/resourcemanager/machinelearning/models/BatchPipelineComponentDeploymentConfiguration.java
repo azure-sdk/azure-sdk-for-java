@@ -145,7 +145,6 @@ public final class BatchPipelineComponentDeploymentConfiguration extends BatchDe
      */
     @Override
     public void validate() {
-        super.validate();
         if (componentId() != null) {
             componentId().validate();
         }
