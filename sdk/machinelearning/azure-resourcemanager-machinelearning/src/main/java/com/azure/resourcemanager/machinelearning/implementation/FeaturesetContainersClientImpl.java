@@ -51,21 +51,21 @@ public final class FeaturesetContainersClientImpl implements FeaturesetContainer
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of FeaturesetContainersClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    FeaturesetContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    FeaturesetContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(FeaturesetContainersService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesFeaturesetContainers to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesFeaturesetContainers to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
