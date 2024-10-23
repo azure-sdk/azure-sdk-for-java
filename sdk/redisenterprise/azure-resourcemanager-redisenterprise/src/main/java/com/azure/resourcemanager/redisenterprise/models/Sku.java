@@ -13,20 +13,18 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * SKU parameters supplied to the create Redis Enterprise cluster operation.
+ * SKU parameters supplied to the create RedisEnterprise operation.
  */
 @Fluent
 public final class Sku implements JsonSerializable<Sku> {
     /*
-     * The level of Redis Enterprise cluster to deploy. Possible values: ('Balanced_B5', 'MemoryOptimized_M10',
-     * 'ComputeOptimized_X5', etc.). For more information on SKUs see the latest pricing documentation. Note that
-     * additional SKUs may become supported in the future.
+     * The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)
      */
     private SkuName name;
 
     /*
-     * This property is only used with Enterprise and EnterpriseFlash SKUs. Determines the size of the cluster. Valid
-     * values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for EnterpriseFlash SKUs.
+     * The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for
+     * Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
      */
     private Integer capacity;
 
@@ -37,9 +35,8 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Get the name property: The level of Redis Enterprise cluster to deploy. Possible values: ('Balanced_B5',
-     * 'MemoryOptimized_M10', 'ComputeOptimized_X5', etc.). For more information on SKUs see the latest pricing
-     * documentation. Note that additional SKUs may become supported in the future.
+     * Get the name property: The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10,
+     * EnterpriseFlash_F300 etc.).
      * 
      * @return the name value.
      */
@@ -48,9 +45,8 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Set the name property: The level of Redis Enterprise cluster to deploy. Possible values: ('Balanced_B5',
-     * 'MemoryOptimized_M10', 'ComputeOptimized_X5', etc.). For more information on SKUs see the latest pricing
-     * documentation. Note that additional SKUs may become supported in the future.
+     * Set the name property: The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10,
+     * EnterpriseFlash_F300 etc.).
      * 
      * @param name the name value to set.
      * @return the Sku object itself.
@@ -61,9 +57,8 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Get the capacity property: This property is only used with Enterprise and EnterpriseFlash SKUs. Determines the
-     * size of the cluster. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for EnterpriseFlash
-     * SKUs.
+     * Get the capacity property: The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid
+     * values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
      * 
      * @return the capacity value.
      */
@@ -72,9 +67,8 @@ public final class Sku implements JsonSerializable<Sku> {
     }
 
     /**
-     * Set the capacity property: This property is only used with Enterprise and EnterpriseFlash SKUs. Determines the
-     * size of the cluster. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for EnterpriseFlash
-     * SKUs.
+     * Set the capacity property: The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid
+     * values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs.
      * 
      * @param capacity the capacity value to set.
      * @return the Sku object itself.

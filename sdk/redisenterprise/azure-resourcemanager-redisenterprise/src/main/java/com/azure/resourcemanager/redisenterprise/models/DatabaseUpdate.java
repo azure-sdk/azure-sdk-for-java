@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * A partial update to the Redis Enterprise database.
+ * A partial update to the RedisEnterprise database.
  */
 @Fluent
 public final class DatabaseUpdate implements JsonSerializable<DatabaseUpdate> {
@@ -107,8 +107,7 @@ public final class DatabaseUpdate implements JsonSerializable<DatabaseUpdate> {
     }
 
     /**
-     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Get the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @return the clusteringPolicy value.
      */
@@ -117,8 +116,7 @@ public final class DatabaseUpdate implements JsonSerializable<DatabaseUpdate> {
     }
 
     /**
-     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. This property must be chosen at
-     * create time, and cannot be changed without deleting the database.
+     * Set the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create time.
      * 
      * @param clusteringPolicy the clusteringPolicy value to set.
      * @return the DatabaseUpdate object itself.
@@ -222,65 +220,6 @@ public final class DatabaseUpdate implements JsonSerializable<DatabaseUpdate> {
             this.innerProperties = new DatabaseProperties();
         }
         this.innerProperties().withGeoReplication(geoReplication);
-        return this;
-    }
-
-    /**
-     * Get the redisVersion property: Version of Redis the database is running on, e.g. '6.0'.
-     * 
-     * @return the redisVersion value.
-     */
-    public String redisVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().redisVersion();
-    }
-
-    /**
-     * Get the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @return the deferUpgrade value.
-     */
-    public DeferUpgradeSetting deferUpgrade() {
-        return this.innerProperties() == null ? null : this.innerProperties().deferUpgrade();
-    }
-
-    /**
-     * Set the deferUpgrade property: Option to defer upgrade when newest version is released - default is NotDeferred.
-     * Learn more: https://aka.ms/redisversionupgrade.
-     * 
-     * @param deferUpgrade the deferUpgrade value to set.
-     * @return the DatabaseUpdate object itself.
-     */
-    public DatabaseUpdate withDeferUpgrade(DeferUpgradeSetting deferUpgrade) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withDeferUpgrade(deferUpgrade);
-        return this;
-    }
-
-    /**
-     * Get the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @return the accessKeysAuthentication value.
-     */
-    public AccessKeysAuthentication accessKeysAuthentication() {
-        return this.innerProperties() == null ? null : this.innerProperties().accessKeysAuthentication();
-    }
-
-    /**
-     * Set the accessKeysAuthentication property: This property can be Enabled/Disabled to allow or deny access with the
-     * current access keys. Can be updated even after database is created.
-     * 
-     * @param accessKeysAuthentication the accessKeysAuthentication value to set.
-     * @return the DatabaseUpdate object itself.
-     */
-    public DatabaseUpdate withAccessKeysAuthentication(AccessKeysAuthentication accessKeysAuthentication) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DatabaseProperties();
-        }
-        this.innerProperties().withAccessKeysAuthentication(accessKeysAuthentication);
         return this;
     }
 
