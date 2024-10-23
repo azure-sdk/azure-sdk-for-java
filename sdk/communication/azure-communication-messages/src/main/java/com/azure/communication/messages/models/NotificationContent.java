@@ -120,8 +120,20 @@ public class NotificationContent implements JsonSerializable<NotificationContent
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("text".equals(discriminatorValue)) {
                     return TextNotificationContent.fromJson(readerToUse.reset());
-                } else if ("image".equals(discriminatorValue)) {
+                } else if ("image_v0".equals(discriminatorValue)) {
                     return MediaNotificationContent.fromJson(readerToUse.reset());
+                } else if ("image".equals(discriminatorValue)) {
+                    return ImageNotificationContent.fromJson(readerToUse.reset());
+                } else if ("document".equals(discriminatorValue)) {
+                    return DocumentNotificationContent.fromJson(readerToUse.reset());
+                } else if ("video".equals(discriminatorValue)) {
+                    return VideoNotificationContent.fromJson(readerToUse.reset());
+                } else if ("audio".equals(discriminatorValue)) {
+                    return AudioNotificationContent.fromJson(readerToUse.reset());
+                } else if ("reaction".equals(discriminatorValue)) {
+                    return ReactionNotificationContent.fromJson(readerToUse.reset());
+                } else if ("sticker".equals(discriminatorValue)) {
+                    return StickerNotificationContent.fromJson(readerToUse.reset());
                 } else if ("template".equals(discriminatorValue)) {
                     return TemplateNotificationContent.fromJson(readerToUse.reset());
                 } else {
