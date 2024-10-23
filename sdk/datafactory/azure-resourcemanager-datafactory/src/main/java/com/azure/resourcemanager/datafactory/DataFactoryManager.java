@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -40,11 +40,10 @@ import com.azure.resourcemanager.datafactory.implementation.IntegrationRuntimesI
 import com.azure.resourcemanager.datafactory.implementation.LinkedServicesImpl;
 import com.azure.resourcemanager.datafactory.implementation.ManagedPrivateEndpointsImpl;
 import com.azure.resourcemanager.datafactory.implementation.ManagedVirtualNetworksImpl;
-import com.azure.resourcemanager.datafactory.implementation.OperationsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PipelineRunsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PipelinesImpl;
-import com.azure.resourcemanager.datafactory.implementation.PrivateEndpointConnectionOperationsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PrivateEndPointConnectionsImpl;
+import com.azure.resourcemanager.datafactory.implementation.PrivateEndpointConnectionOperationsImpl;
 import com.azure.resourcemanager.datafactory.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.datafactory.implementation.TriggerRunsImpl;
 import com.azure.resourcemanager.datafactory.implementation.TriggersImpl;
@@ -63,11 +62,10 @@ import com.azure.resourcemanager.datafactory.models.IntegrationRuntimes;
 import com.azure.resourcemanager.datafactory.models.LinkedServices;
 import com.azure.resourcemanager.datafactory.models.ManagedPrivateEndpoints;
 import com.azure.resourcemanager.datafactory.models.ManagedVirtualNetworks;
-import com.azure.resourcemanager.datafactory.models.Operations;
 import com.azure.resourcemanager.datafactory.models.PipelineRuns;
 import com.azure.resourcemanager.datafactory.models.Pipelines;
-import com.azure.resourcemanager.datafactory.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.datafactory.models.PrivateEndPointConnections;
+import com.azure.resourcemanager.datafactory.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.datafactory.models.PrivateLinkResources;
 import com.azure.resourcemanager.datafactory.models.TriggerRuns;
 import com.azure.resourcemanager.datafactory.models.Triggers;
@@ -84,8 +82,6 @@ import java.util.stream.Collectors;
  * V2 services.
  */
 public final class DataFactoryManager {
-    private Operations operations;
-
     private Factories factories;
 
     private ExposureControls exposureControls;
@@ -294,7 +290,7 @@ public final class DataFactoryManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datafactory")
                 .append("/")
-                .append("1.0.0-beta.30");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -338,18 +334,6 @@ public final class DataFactoryManager {
                 .build();
             return new DataFactoryManager(httpPipeline, profile, defaultPollInterval);
         }
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**
