@@ -23,8 +23,8 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.computefleet.fluent.ComputeFleetManagementClient;
-import com.azure.resourcemanager.computefleet.implementation.ComputeFleetManagementClientBuilder;
+import com.azure.resourcemanager.computefleet.fluent.AzureFleetClient;
+import com.azure.resourcemanager.computefleet.implementation.AzureFleetClientBuilder;
 import com.azure.resourcemanager.computefleet.implementation.FleetsImpl;
 import com.azure.resourcemanager.computefleet.implementation.OperationsImpl;
 import com.azure.resourcemanager.computefleet.models.Fleets;
@@ -44,12 +44,12 @@ public final class ComputeFleetManager {
 
     private Fleets fleets;
 
-    private final ComputeFleetManagementClient clientObject;
+    private final AzureFleetClient clientObject;
 
     private ComputeFleetManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new ComputeFleetManagementClientBuilder().pipeline(httpPipeline)
+        this.clientObject = new AzureFleetClientBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
             .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
@@ -279,12 +279,12 @@ public final class ComputeFleetManager {
     }
 
     /**
-     * Gets wrapped service client ComputeFleetManagementClient providing direct access to the underlying auto-generated
-     * API implementation, based on Azure REST API.
+     * Gets wrapped service client AzureFleetClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client ComputeFleetManagementClient.
+     * @return Wrapped service client AzureFleetClient.
      */
-    public ComputeFleetManagementClient serviceClient() {
+    public AzureFleetClient serviceClient() {
         return this.clientObject;
     }
 }

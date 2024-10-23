@@ -42,25 +42,25 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * The service client containing this operation class.
      */
-    private final ComputeFleetManagementClientImpl client;
+    private final AzureFleetClientImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(ComputeFleetManagementClientImpl client) {
+    OperationsClientImpl(AzureFleetClientImpl client) {
         this.service
             = RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ComputeFleetManagementClientOperations to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureFleetClientOperations to be used by the proxy service to perform
+     * REST calls.
      */
     @Host("{endpoint}")
-    @ServiceInterface(name = "ComputeFleetManageme")
+    @ServiceInterface(name = "AzureFleetClientOper")
     public interface OperationsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.AzureFleet/operations")
