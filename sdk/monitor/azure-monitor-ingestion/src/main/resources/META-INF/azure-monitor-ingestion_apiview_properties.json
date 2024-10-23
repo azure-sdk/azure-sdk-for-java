@@ -1,0 +1,12 @@
+{
+  "flavor": "azure", 
+  "CrossLanguageDefinitionId": {
+    "com.azure.monitor.ingestion.LogsIngestionAsyncClient": "LogsIngestionClient",
+    "com.azure.monitor.ingestion.LogsIngestionAsyncClient.upload": "LogsIngestionClient.upload",
+    "com.azure.monitor.ingestion.LogsIngestionAsyncClient.uploadWithResponse": "LogsIngestionClient.upload",
+    "com.azure.monitor.ingestion.LogsIngestionClient": "LogsIngestionClient",
+    "com.azure.monitor.ingestion.LogsIngestionClient.upload": "LogsIngestionClient.upload",
+    "com.azure.monitor.ingestion.LogsIngestionClient.uploadWithResponse": "LogsIngestionClient.upload",
+    "com.azure.monitor.ingestion.LogsIngestionClientBuilder": "LogsIngestionClient"
+  }
+}
