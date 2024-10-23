@@ -389,6 +389,29 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
+     * Get the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @return the availabilityZones value.
+     */
+    public List<String> availabilityZones() {
+        return this.innerProperties() == null ? null : this.innerProperties().availabilityZones();
+    }
+
+    /**
+     * Set the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @param availabilityZones the availabilityZones value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withAvailabilityZones(List<String> availabilityZones) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withAvailabilityZones(availabilityZones);
+        return this;
+    }
+
+    /**
      * Get the customDomainConfiguration property: Custom domain configuration for the environment.
      * 
      * @return the customDomainConfiguration value.
