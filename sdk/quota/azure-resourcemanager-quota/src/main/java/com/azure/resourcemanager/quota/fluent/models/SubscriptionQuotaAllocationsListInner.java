@@ -6,21 +6,27 @@ package com.azure.resourcemanager.quota.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.quota.models.QuotaProperties;
+import com.azure.resourcemanager.quota.models.SubscriptionQuotaAllocationsListProperties;
 import java.io.IOException;
 
 /**
- * Quota limit.
+ * Subscription quota list.
  */
 @Fluent
-public final class CurrentQuotaLimitBaseInner extends ProxyResource {
+public final class SubscriptionQuotaAllocationsListInner extends ProxyResource {
     /*
-     * Quota properties for the specified resource, based on the API called, Quotas or Usages.
+     * The properties property.
      */
-    private QuotaProperties properties;
+    private SubscriptionQuotaAllocationsListProperties properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -38,31 +44,38 @@ public final class CurrentQuotaLimitBaseInner extends ProxyResource {
     private String id;
 
     /**
-     * Creates an instance of CurrentQuotaLimitBaseInner class.
+     * Creates an instance of SubscriptionQuotaAllocationsListInner class.
      */
-    public CurrentQuotaLimitBaseInner() {
+    public SubscriptionQuotaAllocationsListInner() {
     }
 
     /**
-     * Get the properties property: Quota properties for the specified resource, based on the API called, Quotas or
-     * Usages.
+     * Get the properties property: The properties property.
      * 
      * @return the properties value.
      */
-    public QuotaProperties properties() {
+    public SubscriptionQuotaAllocationsListProperties properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: Quota properties for the specified resource, based on the API called, Quotas or
-     * Usages.
+     * Set the properties property: The properties property.
      * 
      * @param properties the properties value to set.
-     * @return the CurrentQuotaLimitBaseInner object itself.
+     * @return the SubscriptionQuotaAllocationsListInner object itself.
      */
-    public CurrentQuotaLimitBaseInner withProperties(QuotaProperties properties) {
+    public SubscriptionQuotaAllocationsListInner withProperties(SubscriptionQuotaAllocationsListProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -117,35 +130,39 @@ public final class CurrentQuotaLimitBaseInner extends ProxyResource {
     }
 
     /**
-     * Reads an instance of CurrentQuotaLimitBaseInner from the JsonReader.
+     * Reads an instance of SubscriptionQuotaAllocationsListInner from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of CurrentQuotaLimitBaseInner if the JsonReader was pointing to an instance of it, or null if
-     * it was pointing to JSON null.
+     * @return An instance of SubscriptionQuotaAllocationsListInner if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the CurrentQuotaLimitBaseInner.
+     * @throws IOException If an error occurs while reading the SubscriptionQuotaAllocationsListInner.
      */
-    public static CurrentQuotaLimitBaseInner fromJson(JsonReader jsonReader) throws IOException {
+    public static SubscriptionQuotaAllocationsListInner fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            CurrentQuotaLimitBaseInner deserializedCurrentQuotaLimitBaseInner = new CurrentQuotaLimitBaseInner();
+            SubscriptionQuotaAllocationsListInner deserializedSubscriptionQuotaAllocationsListInner
+                = new SubscriptionQuotaAllocationsListInner();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("id".equals(fieldName)) {
-                    deserializedCurrentQuotaLimitBaseInner.id = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
-                    deserializedCurrentQuotaLimitBaseInner.name = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
-                    deserializedCurrentQuotaLimitBaseInner.type = reader.getString();
+                    deserializedSubscriptionQuotaAllocationsListInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedCurrentQuotaLimitBaseInner.properties = QuotaProperties.fromJson(reader);
+                    deserializedSubscriptionQuotaAllocationsListInner.properties
+                        = SubscriptionQuotaAllocationsListProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedSubscriptionQuotaAllocationsListInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedCurrentQuotaLimitBaseInner;
+            return deserializedSubscriptionQuotaAllocationsListInner;
         });
     }
 }

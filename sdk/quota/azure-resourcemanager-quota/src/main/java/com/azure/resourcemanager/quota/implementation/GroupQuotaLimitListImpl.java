@@ -5,16 +5,17 @@
 package com.azure.resourcemanager.quota.implementation;
 
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.quota.fluent.models.GroupQuotaLimitInner;
-import com.azure.resourcemanager.quota.models.GroupQuotaDetails;
-import com.azure.resourcemanager.quota.models.GroupQuotaLimit;
+import com.azure.resourcemanager.quota.fluent.models.GroupQuotaLimitListInner;
+import com.azure.resourcemanager.quota.models.GroupQuotaLimitList;
+import com.azure.resourcemanager.quota.models.GroupQuotaLimitListProperties;
 
-public final class GroupQuotaLimitImpl implements GroupQuotaLimit {
-    private GroupQuotaLimitInner innerObject;
+public final class GroupQuotaLimitListImpl implements GroupQuotaLimitList {
+    private GroupQuotaLimitListInner innerObject;
 
     private final com.azure.resourcemanager.quota.QuotaManager serviceManager;
 
-    GroupQuotaLimitImpl(GroupQuotaLimitInner innerObject, com.azure.resourcemanager.quota.QuotaManager serviceManager) {
+    GroupQuotaLimitListImpl(GroupQuotaLimitListInner innerObject,
+        com.azure.resourcemanager.quota.QuotaManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -31,7 +32,7 @@ public final class GroupQuotaLimitImpl implements GroupQuotaLimit {
         return this.innerModel().type();
     }
 
-    public GroupQuotaDetails properties() {
+    public GroupQuotaLimitListProperties properties() {
         return this.innerModel().properties();
     }
 
@@ -39,7 +40,7 @@ public final class GroupQuotaLimitImpl implements GroupQuotaLimit {
         return this.innerModel().systemData();
     }
 
-    public GroupQuotaLimitInner innerModel() {
+    public GroupQuotaLimitListInner innerModel() {
         return this.innerObject;
     }
 
