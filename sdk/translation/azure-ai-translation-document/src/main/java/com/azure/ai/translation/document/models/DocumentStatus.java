@@ -48,7 +48,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
      * List of possible statuses for job or document
      */
     @Generated
-    private final Status status;
+    private final TranslationStatus status;
 
     /*
      * To language
@@ -70,39 +70,10 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
     private final double progress;
 
     /*
-     * Document Id
-     */
-    @Generated
-    private final String id;
-
-    /*
      * Character charged by the API
      */
     @Generated
     private Integer characterCharged;
-
-    /**
-     * Creates an instance of DocumentStatus class.
-     *
-     * @param sourcePath the sourcePath value to set.
-     * @param createdDateTimeUtc the createdDateTimeUtc value to set.
-     * @param lastActionDateTimeUtc the lastActionDateTimeUtc value to set.
-     * @param status the status value to set.
-     * @param to the to value to set.
-     * @param progress the progress value to set.
-     * @param id the id value to set.
-     */
-    @Generated
-    private DocumentStatus(String sourcePath, OffsetDateTime createdDateTimeUtc, OffsetDateTime lastActionDateTimeUtc,
-        Status status, String to, double progress, String id) {
-        this.sourcePath = sourcePath;
-        this.createdDateTimeUtc = createdDateTimeUtc;
-        this.lastActionDateTimeUtc = lastActionDateTimeUtc;
-        this.status = status;
-        this.to = to;
-        this.progress = progress;
-        this.id = id;
-    }
 
     /**
      * Get the path property: Location of the document or folder.
@@ -150,7 +121,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
      * @return the status value.
      */
     @Generated
-    public Status getStatus() {
+    public TranslationStatus getStatus() {
         return this.status;
     }
 
@@ -186,16 +157,6 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
     }
 
     /**
-     * Get the id property: Document Id.
-     *
-     * @return the id value.
-     */
-    @Generated
-    public String getId() {
-        return this.id;
-    }
-
-    /**
      * Get the characterCharged property: Character charged by the API.
      *
      * @return the characterCharged value.
@@ -224,7 +185,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("to", this.to);
         jsonWriter.writeDoubleField("progress", this.progress);
-        jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("id", this.documentId);
         jsonWriter.writeStringField("path", this.path);
         jsonWriter.writeJsonField("error", this.error);
         jsonWriter.writeNumberField("characterCharged", this.characterCharged);
@@ -246,10 +207,10 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
             String sourcePath = null;
             OffsetDateTime createdDateTimeUtc = null;
             OffsetDateTime lastActionDateTimeUtc = null;
-            Status status = null;
+            TranslationStatus status = null;
             String to = null;
             double progress = 0.0;
-            String id = null;
+            String documentId = null;
             String path = null;
             TranslationError error = null;
             Integer characterCharged = null;
@@ -265,13 +226,13 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
                     lastActionDateTimeUtc = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("status".equals(fieldName)) {
-                    status = Status.fromString(reader.getString());
+                    status = TranslationStatus.fromString(reader.getString());
                 } else if ("to".equals(fieldName)) {
                     to = reader.getString();
                 } else if ("progress".equals(fieldName)) {
                     progress = reader.getDouble();
                 } else if ("id".equals(fieldName)) {
-                    id = reader.getString();
+                    documentId = reader.getString();
                 } else if ("path".equals(fieldName)) {
                     path = reader.getString();
                 } else if ("error".equals(fieldName)) {
@@ -282,12 +243,51 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
                     reader.skipChildren();
                 }
             }
-            DocumentStatus deserializedDocumentStatus
-                = new DocumentStatus(sourcePath, createdDateTimeUtc, lastActionDateTimeUtc, status, to, progress, id);
+            DocumentStatus deserializedDocumentStatus = new DocumentStatus(sourcePath, createdDateTimeUtc,
+                lastActionDateTimeUtc, status, to, progress, documentId);
             deserializedDocumentStatus.path = path;
             deserializedDocumentStatus.error = error;
             deserializedDocumentStatus.characterCharged = characterCharged;
             return deserializedDocumentStatus;
         });
+    }
+
+    /*
+     * Document Id
+     */
+    @Generated
+    private final String documentId;
+
+    /**
+     * Creates an instance of DocumentStatus class.
+     *
+     * @param sourcePath the sourcePath value to set.
+     * @param createdDateTimeUtc the createdDateTimeUtc value to set.
+     * @param lastActionDateTimeUtc the lastActionDateTimeUtc value to set.
+     * @param status the status value to set.
+     * @param to the to value to set.
+     * @param progress the progress value to set.
+     * @param documentId the documentId value to set.
+     */
+    @Generated
+    private DocumentStatus(String sourcePath, OffsetDateTime createdDateTimeUtc, OffsetDateTime lastActionDateTimeUtc,
+        TranslationStatus status, String to, double progress, String documentId) {
+        this.sourcePath = sourcePath;
+        this.createdDateTimeUtc = createdDateTimeUtc;
+        this.lastActionDateTimeUtc = lastActionDateTimeUtc;
+        this.status = status;
+        this.to = to;
+        this.progress = progress;
+        this.documentId = documentId;
+    }
+
+    /**
+     * Get the documentId property: Document Id.
+     *
+     * @return the documentId value.
+     */
+    @Generated
+    public String getDocumentId() {
+        return this.documentId;
     }
 }
