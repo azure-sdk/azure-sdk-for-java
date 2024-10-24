@@ -11,6 +11,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.PrivateE
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.ServerInner;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AuthConfig;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Backup;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.Cluster;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CreateModeForUpdate;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DataEncryption;
@@ -37,7 +38,7 @@ import java.util.stream.Collectors;
 public final class ServerImpl implements Server, Server.Definition, Server.Update {
     private ServerInner innerObject;
 
-    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager;
+    private final com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -167,6 +168,10 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         }
     }
 
+    public Cluster cluster() {
+        return this.innerModel().cluster();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -183,7 +188,7 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager() {
+    private com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager manager() {
         return this.serviceManager;
     }
 
@@ -212,7 +217,7 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         return this;
     }
 
-    ServerImpl(String name, com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager) {
+    ServerImpl(String name, com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager) {
         this.innerObject = new ServerInner();
         this.serviceManager = serviceManager;
         this.serverName = name;
@@ -238,7 +243,7 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
     }
 
     ServerImpl(ServerInner innerObject,
-        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager serviceManager) {
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlServerManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -326,8 +331,13 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
     }
 
     public ServerImpl withAdministratorLogin(String administratorLogin) {
-        this.innerModel().withAdministratorLogin(administratorLogin);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withAdministratorLogin(administratorLogin);
+            return this;
+        } else {
+            this.updateParameters.withAdministratorLogin(administratorLogin);
+            return this;
+        }
     }
 
     public ServerImpl withAdministratorLoginPassword(String administratorLoginPassword) {
@@ -437,6 +447,11 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
 
     public ServerImpl withCreateMode(CreateMode createMode) {
         this.innerModel().withCreateMode(createMode);
+        return this;
+    }
+
+    public ServerImpl withCluster(Cluster cluster) {
+        this.innerModel().withCluster(cluster);
         return this;
     }
 
