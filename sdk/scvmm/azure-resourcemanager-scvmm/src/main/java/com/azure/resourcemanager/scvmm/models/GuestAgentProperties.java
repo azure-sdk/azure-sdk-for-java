@@ -5,51 +5,60 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class GuestAgentProperties implements JsonSerializable<GuestAgentProperties> {
+public final class GuestAgentProperties {
     /*
      * Gets a unique identifier for this resource.
      */
+    @JsonProperty(value = "uuid", access = JsonProperty.Access.WRITE_ONLY)
     private String uuid;
 
     /*
      * Username / Password Credentials to provision guest agent.
      */
+    @JsonProperty(value = "credentials")
     private GuestCredential credentials;
 
     /*
      * HTTP Proxy configuration for the VM.
      */
+    @JsonProperty(value = "httpProxyConfig")
     private HttpProxyConfiguration httpProxyConfig;
 
     /*
      * Gets or sets the guest agent provisioning action.
      */
+    @JsonProperty(value = "provisioningAction")
     private ProvisioningAction provisioningAction;
 
     /*
      * Gets the guest agent status.
      */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
     /*
      * Gets the name of the corresponding resource in Kubernetes.
      */
+    @JsonProperty(value = "customResourceName", access = JsonProperty.Access.WRITE_ONLY)
     private String customResourceName;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
+
+    /*
+     * The resource id of the private link scope this machine is assigned to, if any.
+     */
+    @JsonProperty(value = "privateLinkScopeResourceId")
+    private String privateLinkScopeResourceId;
 
     /**
      * Creates an instance of GuestAgentProperties class.
@@ -154,6 +163,28 @@ public final class GuestAgentProperties implements JsonSerializable<GuestAgentPr
     }
 
     /**
+     * Get the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
+     * to, if any.
+     * 
+     * @return the privateLinkScopeResourceId value.
+     */
+    public String privateLinkScopeResourceId() {
+        return this.privateLinkScopeResourceId;
+    }
+
+    /**
+     * Set the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
+     * to, if any.
+     * 
+     * @param privateLinkScopeResourceId the privateLinkScopeResourceId value to set.
+     * @return the GuestAgentProperties object itself.
+     */
+    public GuestAgentProperties withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.privateLinkScopeResourceId = privateLinkScopeResourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -165,58 +196,5 @@ public final class GuestAgentProperties implements JsonSerializable<GuestAgentPr
         if (httpProxyConfig() != null) {
             httpProxyConfig().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("credentials", this.credentials);
-        jsonWriter.writeJsonField("httpProxyConfig", this.httpProxyConfig);
-        jsonWriter.writeStringField("provisioningAction",
-            this.provisioningAction == null ? null : this.provisioningAction.toString());
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of GuestAgentProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of GuestAgentProperties if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the GuestAgentProperties.
-     */
-    public static GuestAgentProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            GuestAgentProperties deserializedGuestAgentProperties = new GuestAgentProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("uuid".equals(fieldName)) {
-                    deserializedGuestAgentProperties.uuid = reader.getString();
-                } else if ("credentials".equals(fieldName)) {
-                    deserializedGuestAgentProperties.credentials = GuestCredential.fromJson(reader);
-                } else if ("httpProxyConfig".equals(fieldName)) {
-                    deserializedGuestAgentProperties.httpProxyConfig = HttpProxyConfiguration.fromJson(reader);
-                } else if ("provisioningAction".equals(fieldName)) {
-                    deserializedGuestAgentProperties.provisioningAction
-                        = ProvisioningAction.fromString(reader.getString());
-                } else if ("status".equals(fieldName)) {
-                    deserializedGuestAgentProperties.status = reader.getString();
-                } else if ("customResourceName".equals(fieldName)) {
-                    deserializedGuestAgentProperties.customResourceName = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedGuestAgentProperties.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedGuestAgentProperties;
-        });
     }
 }

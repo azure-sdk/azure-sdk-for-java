@@ -5,41 +5,84 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class OsProfileForVmInstance implements JsonSerializable<OsProfileForVmInstance> {
+public final class OsProfileForVmInstance {
     /*
      * Admin password of the virtual machine.
      */
+    @JsonProperty(value = "adminPassword")
     private String adminPassword;
 
     /*
      * Gets or sets computer name.
      */
+    @JsonProperty(value = "computerName")
     private String computerName;
 
     /*
      * Gets the type of the os.
      */
+    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
      * Gets os sku.
      */
+    @JsonProperty(value = "osSku", access = JsonProperty.Access.WRITE_ONLY)
     private String osSku;
 
     /*
      * Gets os version.
      */
+    @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String osVersion;
+
+    /*
+     * Gets or sets the domain name.
+     */
+    @JsonProperty(value = "domainName")
+    private String domainName;
+
+    /*
+     * Gets or sets the domain username.
+     */
+    @JsonProperty(value = "domainUsername")
+    private String domainUsername;
+
+    /*
+     * Password of the domain the VM has to join.
+     */
+    @JsonProperty(value = "domainPassword")
+    private String domainPassword;
+
+    /*
+     * Gets or sets the workgroup.
+     */
+    @JsonProperty(value = "workgroup")
+    private String workgroup;
+
+    /*
+     * Gets or sets the product key.Input format xxxxx-xxxxx-xxxxx-xxxxx-xxxxx
+     */
+    @JsonProperty(value = "productKey")
+    private String productKey;
+
+    /*
+     * Gets or sets the index value of the timezone.
+     */
+    @JsonProperty(value = "timezone")
+    private Integer timezone;
+
+    /*
+     * Get or sets the commands to be run once at the time of creation separated by semicolons.
+     */
+    @JsonProperty(value = "runOnceCommands")
+    private String runOnceCommands;
 
     /**
      * Creates an instance of OsProfileForVmInstance class.
@@ -115,55 +158,152 @@ public final class OsProfileForVmInstance implements JsonSerializable<OsProfileF
     }
 
     /**
+     * Get the domainName property: Gets or sets the domain name.
+     * 
+     * @return the domainName value.
+     */
+    public String domainName() {
+        return this.domainName;
+    }
+
+    /**
+     * Set the domainName property: Gets or sets the domain name.
+     * 
+     * @param domainName the domainName value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withDomainName(String domainName) {
+        this.domainName = domainName;
+        return this;
+    }
+
+    /**
+     * Get the domainUsername property: Gets or sets the domain username.
+     * 
+     * @return the domainUsername value.
+     */
+    public String domainUsername() {
+        return this.domainUsername;
+    }
+
+    /**
+     * Set the domainUsername property: Gets or sets the domain username.
+     * 
+     * @param domainUsername the domainUsername value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withDomainUsername(String domainUsername) {
+        this.domainUsername = domainUsername;
+        return this;
+    }
+
+    /**
+     * Get the domainPassword property: Password of the domain the VM has to join.
+     * 
+     * @return the domainPassword value.
+     */
+    public String domainPassword() {
+        return this.domainPassword;
+    }
+
+    /**
+     * Set the domainPassword property: Password of the domain the VM has to join.
+     * 
+     * @param domainPassword the domainPassword value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withDomainPassword(String domainPassword) {
+        this.domainPassword = domainPassword;
+        return this;
+    }
+
+    /**
+     * Get the workgroup property: Gets or sets the workgroup.
+     * 
+     * @return the workgroup value.
+     */
+    public String workgroup() {
+        return this.workgroup;
+    }
+
+    /**
+     * Set the workgroup property: Gets or sets the workgroup.
+     * 
+     * @param workgroup the workgroup value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withWorkgroup(String workgroup) {
+        this.workgroup = workgroup;
+        return this;
+    }
+
+    /**
+     * Get the productKey property: Gets or sets the product key.Input format xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.
+     * 
+     * @return the productKey value.
+     */
+    public String productKey() {
+        return this.productKey;
+    }
+
+    /**
+     * Set the productKey property: Gets or sets the product key.Input format xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.
+     * 
+     * @param productKey the productKey value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withProductKey(String productKey) {
+        this.productKey = productKey;
+        return this;
+    }
+
+    /**
+     * Get the timezone property: Gets or sets the index value of the timezone.
+     * 
+     * @return the timezone value.
+     */
+    public Integer timezone() {
+        return this.timezone;
+    }
+
+    /**
+     * Set the timezone property: Gets or sets the index value of the timezone.
+     * 
+     * @param timezone the timezone value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withTimezone(Integer timezone) {
+        this.timezone = timezone;
+        return this;
+    }
+
+    /**
+     * Get the runOnceCommands property: Get or sets the commands to be run once at the time of creation separated by
+     * semicolons.
+     * 
+     * @return the runOnceCommands value.
+     */
+    public String runOnceCommands() {
+        return this.runOnceCommands;
+    }
+
+    /**
+     * Set the runOnceCommands property: Get or sets the commands to be run once at the time of creation separated by
+     * semicolons.
+     * 
+     * @param runOnceCommands the runOnceCommands value to set.
+     * @return the OsProfileForVmInstance object itself.
+     */
+    public OsProfileForVmInstance withRunOnceCommands(String runOnceCommands) {
+        this.runOnceCommands = runOnceCommands;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("adminPassword", this.adminPassword);
-        jsonWriter.writeStringField("computerName", this.computerName);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of OsProfileForVmInstance from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of OsProfileForVmInstance if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the OsProfileForVmInstance.
-     */
-    public static OsProfileForVmInstance fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            OsProfileForVmInstance deserializedOsProfileForVmInstance = new OsProfileForVmInstance();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("adminPassword".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.adminPassword = reader.getString();
-                } else if ("computerName".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.computerName = reader.getString();
-                } else if ("osType".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osType = OsType.fromString(reader.getString());
-                } else if ("osSku".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osSku = reader.getString();
-                } else if ("osVersion".equals(fieldName)) {
-                    deserializedOsProfileForVmInstance.osVersion = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedOsProfileForVmInstance;
-        });
     }
 }

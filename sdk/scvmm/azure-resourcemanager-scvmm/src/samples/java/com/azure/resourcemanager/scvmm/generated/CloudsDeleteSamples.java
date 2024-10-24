@@ -12,7 +12,7 @@ import com.azure.resourcemanager.scvmm.models.ForceDelete;
 public final class CloudsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Clouds_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Delete_MaximumSet.
@@ -25,7 +25,7 @@ public final class CloudsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Delete_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Clouds_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Delete_MinimumSet.

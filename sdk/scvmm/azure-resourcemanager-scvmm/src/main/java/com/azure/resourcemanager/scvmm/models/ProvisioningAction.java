@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.util.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -41,6 +42,7 @@ public final class ProvisioningAction extends ExpandableStringEnum<ProvisioningA
      * @param name a name to look for.
      * @return the corresponding ProvisioningAction.
      */
+    @JsonCreator
     public static ProvisioningAction fromString(String name) {
         return fromString(name, ProvisioningAction.class);
     }

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.util.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -37,6 +38,7 @@ public final class SkipShutdown extends ExpandableStringEnum<SkipShutdown> {
      * @param name a name to look for.
      * @return the corresponding SkipShutdown.
      */
+    @JsonCreator
     public static SkipShutdown fromString(String name) {
         return fromString(name, SkipShutdown.class);
     }

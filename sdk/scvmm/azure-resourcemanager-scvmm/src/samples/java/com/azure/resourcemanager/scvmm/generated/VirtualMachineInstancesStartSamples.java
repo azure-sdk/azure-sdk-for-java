@@ -9,7 +9,7 @@ package com.azure.resourcemanager.scvmm.generated;
  */
 public final class VirtualMachineInstancesStartSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualMachineInstances_Start_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +22,7 @@ public final class VirtualMachineInstancesStartSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualMachineInstances_Start_MaximumSet_Gen.json
      */
     /**

@@ -5,45 +5,47 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The StorageQoSPolicy definition.
  */
 @Fluent
-public final class StorageQosPolicy implements JsonSerializable<StorageQosPolicy> {
+public final class StorageQosPolicy {
     /*
      * The name of the policy.
      */
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * The ID of the QoS policy.
      */
+    @JsonProperty(value = "id")
     private String id;
 
     /*
      * The maximum IO operations per second.
      */
+    @JsonProperty(value = "iopsMaximum")
     private Long iopsMaximum;
 
     /*
      * The minimum IO operations per second.
      */
+    @JsonProperty(value = "iopsMinimum")
     private Long iopsMinimum;
 
     /*
      * The Bandwidth Limit for internet traffic.
      */
+    @JsonProperty(value = "bandwidthLimit")
     private Long bandwidthLimit;
 
     /*
      * The underlying policy.
      */
+    @JsonProperty(value = "policyId")
     private String policyId;
 
     /**
@@ -178,56 +180,5 @@ public final class StorageQosPolicy implements JsonSerializable<StorageQosPolicy
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("id", this.id);
-        jsonWriter.writeNumberField("iopsMaximum", this.iopsMaximum);
-        jsonWriter.writeNumberField("iopsMinimum", this.iopsMinimum);
-        jsonWriter.writeNumberField("bandwidthLimit", this.bandwidthLimit);
-        jsonWriter.writeStringField("policyId", this.policyId);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of StorageQosPolicy from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of StorageQosPolicy if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the StorageQosPolicy.
-     */
-    public static StorageQosPolicy fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            StorageQosPolicy deserializedStorageQosPolicy = new StorageQosPolicy();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("name".equals(fieldName)) {
-                    deserializedStorageQosPolicy.name = reader.getString();
-                } else if ("id".equals(fieldName)) {
-                    deserializedStorageQosPolicy.id = reader.getString();
-                } else if ("iopsMaximum".equals(fieldName)) {
-                    deserializedStorageQosPolicy.iopsMaximum = reader.getNullable(JsonReader::getLong);
-                } else if ("iopsMinimum".equals(fieldName)) {
-                    deserializedStorageQosPolicy.iopsMinimum = reader.getNullable(JsonReader::getLong);
-                } else if ("bandwidthLimit".equals(fieldName)) {
-                    deserializedStorageQosPolicy.bandwidthLimit = reader.getNullable(JsonReader::getLong);
-                } else if ("policyId".equals(fieldName)) {
-                    deserializedStorageQosPolicy.policyId = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedStorageQosPolicy;
-        });
     }
 }

@@ -5,45 +5,47 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource update properties.
  */
 @Fluent
-public final class HardwareProfileUpdate implements JsonSerializable<HardwareProfileUpdate> {
+public final class HardwareProfileUpdate {
     /*
      * MemoryMB is the size of a virtual machine's memory, in MB.
      */
+    @JsonProperty(value = "memoryMB")
     private Integer memoryMB;
 
     /*
      * Gets or sets the number of vCPUs for the vm.
      */
+    @JsonProperty(value = "cpuCount")
     private Integer cpuCount;
 
     /*
      * Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs.
      */
+    @JsonProperty(value = "limitCpuForMigration")
     private LimitCpuForMigration limitCpuForMigration;
 
     /*
      * Gets or sets a value indicating whether to enable dynamic memory or not.
      */
+    @JsonProperty(value = "dynamicMemoryEnabled")
     private DynamicMemoryEnabled dynamicMemoryEnabled;
 
     /*
      * Gets or sets the max dynamic memory for the vm.
      */
+    @JsonProperty(value = "dynamicMemoryMaxMB")
     private Integer dynamicMemoryMaxMB;
 
     /*
      * Gets or sets the min dynamic memory for the vm.
      */
+    @JsonProperty(value = "dynamicMemoryMinMB")
     private Integer dynamicMemoryMinMB;
 
     /**
@@ -180,60 +182,5 @@ public final class HardwareProfileUpdate implements JsonSerializable<HardwarePro
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeNumberField("memoryMB", this.memoryMB);
-        jsonWriter.writeNumberField("cpuCount", this.cpuCount);
-        jsonWriter.writeStringField("limitCpuForMigration",
-            this.limitCpuForMigration == null ? null : this.limitCpuForMigration.toString());
-        jsonWriter.writeStringField("dynamicMemoryEnabled",
-            this.dynamicMemoryEnabled == null ? null : this.dynamicMemoryEnabled.toString());
-        jsonWriter.writeNumberField("dynamicMemoryMaxMB", this.dynamicMemoryMaxMB);
-        jsonWriter.writeNumberField("dynamicMemoryMinMB", this.dynamicMemoryMinMB);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of HardwareProfileUpdate from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of HardwareProfileUpdate if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the HardwareProfileUpdate.
-     */
-    public static HardwareProfileUpdate fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            HardwareProfileUpdate deserializedHardwareProfileUpdate = new HardwareProfileUpdate();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("memoryMB".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.memoryMB = reader.getNullable(JsonReader::getInt);
-                } else if ("cpuCount".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.cpuCount = reader.getNullable(JsonReader::getInt);
-                } else if ("limitCpuForMigration".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.limitCpuForMigration
-                        = LimitCpuForMigration.fromString(reader.getString());
-                } else if ("dynamicMemoryEnabled".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.dynamicMemoryEnabled
-                        = DynamicMemoryEnabled.fromString(reader.getString());
-                } else if ("dynamicMemoryMaxMB".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.dynamicMemoryMaxMB = reader.getNullable(JsonReader::getInt);
-                } else if ("dynamicMemoryMinMB".equals(fieldName)) {
-                    deserializedHardwareProfileUpdate.dynamicMemoryMinMB = reader.getNullable(JsonReader::getInt);
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedHardwareProfileUpdate;
-        });
     }
 }

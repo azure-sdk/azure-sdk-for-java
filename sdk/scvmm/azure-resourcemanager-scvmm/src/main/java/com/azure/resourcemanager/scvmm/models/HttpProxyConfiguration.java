@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * HTTP Proxy configuration for the VM.
  */
 @Fluent
-public final class HttpProxyConfiguration implements JsonSerializable<HttpProxyConfiguration> {
+public final class HttpProxyConfiguration {
     /*
      * Gets or sets httpsProxy url.
      */
+    @JsonProperty(value = "httpsProxy")
     private String httpsProxy;
 
     /**
@@ -53,41 +50,5 @@ public final class HttpProxyConfiguration implements JsonSerializable<HttpProxyC
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("httpsProxy", this.httpsProxy);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of HttpProxyConfiguration from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of HttpProxyConfiguration if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the HttpProxyConfiguration.
-     */
-    public static HttpProxyConfiguration fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            HttpProxyConfiguration deserializedHttpProxyConfiguration = new HttpProxyConfiguration();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("httpsProxy".equals(fieldName)) {
-                    deserializedHttpProxyConfiguration.httpsProxy = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedHttpProxyConfiguration;
-        });
     }
 }

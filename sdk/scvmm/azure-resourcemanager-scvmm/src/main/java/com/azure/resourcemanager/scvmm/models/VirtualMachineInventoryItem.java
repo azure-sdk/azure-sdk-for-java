@@ -5,81 +5,77 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
  * The Virtual machine inventory item.
  */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "inventoryType",
+    defaultImpl = VirtualMachineInventoryItem.class,
+    visible = true)
+@JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     /*
      * They inventory type.
      */
+    @JsonTypeId
+    @JsonProperty(value = "inventoryType", required = true)
     private InventoryType inventoryType = InventoryType.VIRTUAL_MACHINE;
 
     /*
      * Gets the type of the os.
      */
+    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
      * Gets os name.
      */
+    @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
 
     /*
      * Gets os version.
      */
+    @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String osVersion;
 
     /*
      * Gets the power state of the virtual machine.
      */
+    @JsonProperty(value = "powerState", access = JsonProperty.Access.WRITE_ONLY)
     private String powerState;
 
     /*
      * Gets or sets the nic ip addresses.
      */
+    @JsonProperty(value = "ipAddresses")
     private List<String> ipAddresses;
 
     /*
      * Cloud inventory resource details where the VM is present.
      */
+    @JsonProperty(value = "cloud")
     private InventoryItemDetails cloud;
 
     /*
      * Gets the bios guid.
      */
+    @JsonProperty(value = "biosGuid", access = JsonProperty.Access.WRITE_ONLY)
     private String biosGuid;
 
     /*
      * Gets the tracked resource id corresponding to the inventory resource.
      */
+    @JsonProperty(value = "managedMachineResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String managedMachineResourceId;
-
-    /*
-     * Gets the tracked resource id corresponding to the inventory resource.
-     */
-    private String managedResourceId;
-
-    /*
-     * Gets the UUID (which is assigned by Vmm) for the inventory item.
-     */
-    private String uuid;
-
-    /*
-     * Gets the Managed Object name in Vmm for the inventory item.
-     */
-    private String inventoryItemName;
-
-    /*
-     * Provisioning state of the resource.
-     */
-    private ProvisioningState provisioningState;
 
     /**
      * Creates an instance of VirtualMachineInventoryItem class.
@@ -192,46 +188,6 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     }
 
     /**
-     * Get the managedResourceId property: Gets the tracked resource id corresponding to the inventory resource.
-     * 
-     * @return the managedResourceId value.
-     */
-    @Override
-    public String managedResourceId() {
-        return this.managedResourceId;
-    }
-
-    /**
-     * Get the uuid property: Gets the UUID (which is assigned by Vmm) for the inventory item.
-     * 
-     * @return the uuid value.
-     */
-    @Override
-    public String uuid() {
-        return this.uuid;
-    }
-
-    /**
-     * Get the inventoryItemName property: Gets the Managed Object name in Vmm for the inventory item.
-     * 
-     * @return the inventoryItemName value.
-     */
-    @Override
-    public String inventoryItemName() {
-        return this.inventoryItemName;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state of the resource.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -242,70 +198,5 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
         if (cloud() != null) {
             cloud().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryType", this.inventoryType == null ? null : this.inventoryType.toString());
-        jsonWriter.writeArrayField("ipAddresses", this.ipAddresses, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("cloud", this.cloud);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineInventoryItem from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineInventoryItem if the JsonReader was pointing to an instance of it, or null
-     * if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualMachineInventoryItem.
-     */
-    public static VirtualMachineInventoryItem fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineInventoryItem deserializedVirtualMachineInventoryItem = new VirtualMachineInventoryItem();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("managedResourceId".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.managedResourceId = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.uuid = reader.getString();
-                } else if ("inventoryItemName".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.inventoryItemName = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else if ("inventoryType".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.inventoryType
-                        = InventoryType.fromString(reader.getString());
-                } else if ("osType".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.osType = OsType.fromString(reader.getString());
-                } else if ("osName".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.osName = reader.getString();
-                } else if ("osVersion".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.osVersion = reader.getString();
-                } else if ("powerState".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.powerState = reader.getString();
-                } else if ("ipAddresses".equals(fieldName)) {
-                    List<String> ipAddresses = reader.readArray(reader1 -> reader1.getString());
-                    deserializedVirtualMachineInventoryItem.ipAddresses = ipAddresses;
-                } else if ("cloud".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.cloud = InventoryItemDetails.fromJson(reader);
-                } else if ("biosGuid".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.biosGuid = reader.getString();
-                } else if ("managedMachineResourceId".equals(fieldName)) {
-                    deserializedVirtualMachineInventoryItem.managedMachineResourceId = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineInventoryItem;
-        });
     }
 }

@@ -5,40 +5,41 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class VirtualNetworkProperties implements JsonSerializable<VirtualNetworkProperties> {
+public final class VirtualNetworkProperties {
     /*
      * Gets or sets the inventory Item ID for the resource.
      */
+    @JsonProperty(value = "inventoryItemId")
     private String inventoryItemId;
 
     /*
      * Unique ID of the virtual network.
      */
+    @JsonProperty(value = "uuid")
     private String uuid;
 
     /*
      * ARM Id of the vmmServer resource in which this resource resides.
      */
+    @JsonProperty(value = "vmmServerId")
     private String vmmServerId;
 
     /*
      * Name of the virtual network in vmmServer.
      */
+    @JsonProperty(value = "networkName", access = JsonProperty.Access.WRITE_ONLY)
     private String networkName;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -131,52 +132,5 @@ public final class VirtualNetworkProperties implements JsonSerializable<VirtualN
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryItemId", this.inventoryItemId);
-        jsonWriter.writeStringField("uuid", this.uuid);
-        jsonWriter.writeStringField("vmmServerId", this.vmmServerId);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualNetworkProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualNetworkProperties if the JsonReader was pointing to an instance of it, or null if
-     * it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualNetworkProperties.
-     */
-    public static VirtualNetworkProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualNetworkProperties deserializedVirtualNetworkProperties = new VirtualNetworkProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("inventoryItemId".equals(fieldName)) {
-                    deserializedVirtualNetworkProperties.inventoryItemId = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedVirtualNetworkProperties.uuid = reader.getString();
-                } else if ("vmmServerId".equals(fieldName)) {
-                    deserializedVirtualNetworkProperties.vmmServerId = reader.getString();
-                } else if ("networkName".equals(fieldName)) {
-                    deserializedVirtualNetworkProperties.networkName = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVirtualNetworkProperties.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualNetworkProperties;
-        });
     }
 }

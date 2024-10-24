@@ -5,56 +5,60 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class VirtualMachineInstanceProperties implements JsonSerializable<VirtualMachineInstanceProperties> {
+public final class VirtualMachineInstanceProperties {
     /*
      * Availability Sets in vm.
      */
+    @JsonProperty(value = "availabilitySets")
     private List<AvailabilitySetListItem> availabilitySets;
 
     /*
      * OS properties.
      */
+    @JsonProperty(value = "osProfile")
     private OsProfileForVmInstance osProfile;
 
     /*
      * Hardware properties.
      */
+    @JsonProperty(value = "hardwareProfile")
     private HardwareProfile hardwareProfile;
 
     /*
      * Network properties.
      */
+    @JsonProperty(value = "networkProfile")
     private NetworkProfile networkProfile;
 
     /*
      * Storage properties.
      */
+    @JsonProperty(value = "storageProfile")
     private StorageProfile storageProfile;
 
     /*
      * Gets the infrastructure profile.
      */
+    @JsonProperty(value = "infrastructureProfile")
     private InfrastructureProfile infrastructureProfile;
 
     /*
      * Gets the power state of the virtual machine.
      */
+    @JsonProperty(value = "powerState", access = JsonProperty.Access.WRITE_ONLY)
     private String powerState;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -225,66 +229,5 @@ public final class VirtualMachineInstanceProperties implements JsonSerializable<
         if (infrastructureProfile() != null) {
             infrastructureProfile().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("availabilitySets", this.availabilitySets,
-            (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeJsonField("osProfile", this.osProfile);
-        jsonWriter.writeJsonField("hardwareProfile", this.hardwareProfile);
-        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
-        jsonWriter.writeJsonField("storageProfile", this.storageProfile);
-        jsonWriter.writeJsonField("infrastructureProfile", this.infrastructureProfile);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineInstanceProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineInstanceProperties if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualMachineInstanceProperties.
-     */
-    public static VirtualMachineInstanceProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineInstanceProperties deserializedVirtualMachineInstanceProperties
-                = new VirtualMachineInstanceProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("availabilitySets".equals(fieldName)) {
-                    List<AvailabilitySetListItem> availabilitySets
-                        = reader.readArray(reader1 -> AvailabilitySetListItem.fromJson(reader1));
-                    deserializedVirtualMachineInstanceProperties.availabilitySets = availabilitySets;
-                } else if ("osProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.osProfile = OsProfileForVmInstance.fromJson(reader);
-                } else if ("hardwareProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.hardwareProfile = HardwareProfile.fromJson(reader);
-                } else if ("networkProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.networkProfile = NetworkProfile.fromJson(reader);
-                } else if ("storageProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.storageProfile = StorageProfile.fromJson(reader);
-                } else if ("infrastructureProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.infrastructureProfile
-                        = InfrastructureProfile.fromJson(reader);
-                } else if ("powerState".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.powerState = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceProperties.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineInstanceProperties;
-        });
     }
 }

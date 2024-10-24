@@ -5,21 +5,18 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Defines the resource update properties.
  */
 @Fluent
-public final class StorageProfileUpdate implements JsonSerializable<StorageProfileUpdate> {
+public final class StorageProfileUpdate {
     /*
      * Gets or sets the list of virtual disks associated with the virtual machine.
      */
+    @JsonProperty(value = "disks")
     private List<VirtualDiskUpdate> disks;
 
     /**
@@ -57,42 +54,5 @@ public final class StorageProfileUpdate implements JsonSerializable<StorageProfi
         if (disks() != null) {
             disks().forEach(e -> e.validate());
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("disks", this.disks, (writer, element) -> writer.writeJson(element));
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of StorageProfileUpdate from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of StorageProfileUpdate if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the StorageProfileUpdate.
-     */
-    public static StorageProfileUpdate fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            StorageProfileUpdate deserializedStorageProfileUpdate = new StorageProfileUpdate();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("disks".equals(fieldName)) {
-                    List<VirtualDiskUpdate> disks = reader.readArray(reader1 -> VirtualDiskUpdate.fromJson(reader1));
-                    deserializedStorageProfileUpdate.disks = disks;
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedStorageProfileUpdate;
-        });
     }
 }
