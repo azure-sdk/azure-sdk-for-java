@@ -87,6 +87,11 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
     private Boolean zoneRedundant;
 
     /*
+     * The list of availability zones to use for managed environment
+     */
+    private List<String> availabilityZones;
+
+    /*
      * Custom domain configuration for the environment
      */
     private CustomDomainConfiguration customDomainConfiguration;
@@ -326,6 +331,26 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
      */
     public ManagedEnvironmentProperties withZoneRedundant(Boolean zoneRedundant) {
         this.zoneRedundant = zoneRedundant;
+        return this;
+    }
+
+    /**
+     * Get the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @return the availabilityZones value.
+     */
+    public List<String> availabilityZones() {
+        return this.availabilityZones;
+    }
+
+    /**
+     * Set the availabilityZones property: The list of availability zones to use for managed environment.
+     * 
+     * @param availabilityZones the availabilityZones value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withAvailabilityZones(List<String> availabilityZones) {
+        this.availabilityZones = availabilityZones;
         return this;
     }
 
@@ -570,6 +595,8 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
         jsonWriter.writeJsonField("appInsightsConfiguration", this.appInsightsConfiguration);
         jsonWriter.writeJsonField("openTelemetryConfiguration", this.openTelemetryConfiguration);
         jsonWriter.writeBooleanField("zoneRedundant", this.zoneRedundant);
+        jsonWriter.writeArrayField("availabilityZones", this.availabilityZones,
+            (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("customDomainConfiguration", this.customDomainConfiguration);
         jsonWriter.writeArrayField("workloadProfiles", this.workloadProfiles,
             (writer, element) -> writer.writeJson(element));
@@ -624,6 +651,9 @@ public final class ManagedEnvironmentProperties implements JsonSerializable<Mana
                         = OpenTelemetryConfiguration.fromJson(reader);
                 } else if ("zoneRedundant".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.zoneRedundant = reader.getNullable(JsonReader::getBoolean);
+                } else if ("availabilityZones".equals(fieldName)) {
+                    List<String> availabilityZones = reader.readArray(reader1 -> reader1.getString());
+                    deserializedManagedEnvironmentProperties.availabilityZones = availabilityZones;
                 } else if ("customDomainConfiguration".equals(fieldName)) {
                     deserializedManagedEnvironmentProperties.customDomainConfiguration
                         = CustomDomainConfiguration.fromJson(reader);
