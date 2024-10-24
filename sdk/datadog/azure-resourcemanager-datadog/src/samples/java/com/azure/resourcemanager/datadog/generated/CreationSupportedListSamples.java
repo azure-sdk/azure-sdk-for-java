@@ -4,17 +4,20 @@
 
 package com.azure.resourcemanager.datadog.generated;
 
-/** Samples for CreationSupported List. */
+/**
+ * Samples for CreationSupported List.
+ */
 public final class CreationSupportedListSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/CreationSupported_List.json
+     * x-ms-original-file:
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/CreationSupported_Get.json
      */
     /**
-     * Sample code: CreationSupported_List.
-     *
+     * Sample code: CreationSupported_Get.
+     * 
      * @param manager Entry point to MicrosoftDatadogManager.
      */
-    public static void creationSupportedList(com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
-        manager.creationSupporteds().list("00000000-0000-0000-0000", com.azure.core.util.Context.NONE);
+    public static void creationSupportedGet(com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
+        manager.creationSupporteds().listWithResponse("00000000-0000-0000-0000", com.azure.core.util.Context.NONE);
     }
 }

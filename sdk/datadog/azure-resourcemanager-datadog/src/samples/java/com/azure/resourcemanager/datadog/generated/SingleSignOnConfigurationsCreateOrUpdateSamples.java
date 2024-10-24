@@ -4,20 +4,22 @@
 
 package com.azure.resourcemanager.datadog.generated;
 
-/** Samples for SingleSignOnConfigurations CreateOrUpdate. */
+/**
+ * Samples for SingleSignOnConfigurations CreateOrUpdate.
+ */
 public final class SingleSignOnConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/SingleSignOnConfigurations_CreateOrUpdate.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/
+     * SingleSignOnConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to MicrosoftDatadogManager.
      */
-    public static void singleSignOnConfigurationsCreateOrUpdate(
-        com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
-        manager
-            .singleSignOnConfigurations()
+    public static void
+        singleSignOnConfigurationsCreateOrUpdate(com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
+        manager.singleSignOnConfigurations()
             .define("default")
             .withExistingMonitor("myResourceGroup", "myMonitor")
             .create();

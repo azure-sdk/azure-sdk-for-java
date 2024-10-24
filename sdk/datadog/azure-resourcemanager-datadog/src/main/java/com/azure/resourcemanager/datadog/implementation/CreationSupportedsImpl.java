@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.datadog.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -21,32 +20,37 @@ public final class CreationSupportedsImpl implements CreationSupporteds {
 
     private final com.azure.resourcemanager.datadog.MicrosoftDatadogManager serviceManager;
 
-    public CreationSupportedsImpl(
-        CreationSupportedsClient innerClient,
+    public CreationSupportedsImpl(CreationSupportedsClient innerClient,
         com.azure.resourcemanager.datadog.MicrosoftDatadogManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<CreateResourceSupportedResponse> list(String datadogOrganizationId) {
-        PagedIterable<CreateResourceSupportedResponseInner> inner = this.serviceClient().list(datadogOrganizationId);
-        return Utils.mapPage(inner, inner1 -> new CreateResourceSupportedResponseImpl(inner1, this.manager()));
+    public Response<CreateResourceSupportedResponse> listWithResponse(String datadogOrganizationId, Context context) {
+        Response<CreateResourceSupportedResponseInner> inner
+            = this.serviceClient().listWithResponse(datadogOrganizationId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new CreateResourceSupportedResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<CreateResourceSupportedResponse> list(String datadogOrganizationId, Context context) {
-        PagedIterable<CreateResourceSupportedResponseInner> inner =
-            this.serviceClient().list(datadogOrganizationId, context);
-        return Utils.mapPage(inner, inner1 -> new CreateResourceSupportedResponseImpl(inner1, this.manager()));
+    public CreateResourceSupportedResponse list(String datadogOrganizationId) {
+        CreateResourceSupportedResponseInner inner = this.serviceClient().list(datadogOrganizationId);
+        if (inner != null) {
+            return new CreateResourceSupportedResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<CreateResourceSupportedResponse> getWithResponse(String datadogOrganizationId, Context context) {
-        Response<CreateResourceSupportedResponseInner> inner =
-            this.serviceClient().getWithResponse(datadogOrganizationId, context);
+        Response<CreateResourceSupportedResponseInner> inner
+            = this.serviceClient().getWithResponse(datadogOrganizationId, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CreateResourceSupportedResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;

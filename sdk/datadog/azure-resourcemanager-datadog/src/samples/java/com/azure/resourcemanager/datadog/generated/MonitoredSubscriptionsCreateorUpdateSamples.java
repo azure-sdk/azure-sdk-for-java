@@ -4,18 +4,21 @@
 
 package com.azure.resourcemanager.datadog.generated;
 
-/** Samples for MonitoredSubscriptions CreateorUpdate. */
+/**
+ * Samples for MonitoredSubscriptions CreateorUpdate.
+ */
 public final class MonitoredSubscriptionsCreateorUpdateSamples {
     /*
-     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/MonitoredSubscriptions_CreateorUpdate.json
+     * x-ms-original-file: specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/
+     * MonitoredSubscriptions_CreateorUpdate.json
      */
     /**
      * Sample code: Monitors_AddMonitoredSubscriptions.
-     *
+     * 
      * @param manager Entry point to MicrosoftDatadogManager.
      */
-    public static void monitorsAddMonitoredSubscriptions(
-        com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
+    public static void
+        monitorsAddMonitoredSubscriptions(com.azure.resourcemanager.datadog.MicrosoftDatadogManager manager) {
         manager.monitoredSubscriptions().define("default").withExistingMonitor("myResourceGroup", "myMonitor").create();
     }
 }
