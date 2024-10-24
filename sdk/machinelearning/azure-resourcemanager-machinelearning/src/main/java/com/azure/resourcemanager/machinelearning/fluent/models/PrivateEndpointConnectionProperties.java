@@ -5,34 +5,33 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpoint;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnectionState;
+import com.azure.resourcemanager.machinelearning.models.WorkspacePrivateEndpointResource;
 import java.io.IOException;
 
 /**
- * Properties of the PrivateEndpointConnectProperties.
+ * Private endpoint connection properties.
  */
 @Fluent
 public final class PrivateEndpointConnectionProperties
     implements JsonSerializable<PrivateEndpointConnectionProperties> {
     /*
-     * The resource of private end point.
+     * The Private Endpoint resource.
      */
-    private PrivateEndpoint privateEndpoint;
+    private WorkspacePrivateEndpointResource privateEndpoint;
 
     /*
-     * A collection of information about the state of the connection between service consumer and provider.
+     * The connection state.
      */
     private PrivateLinkServiceConnectionState privateLinkServiceConnectionState;
 
     /*
-     * The provisioning state of the private endpoint connection resource.
+     * The current provisioning state.
      */
     private PrivateEndpointConnectionProvisioningState provisioningState;
 
@@ -43,28 +42,27 @@ public final class PrivateEndpointConnectionProperties
     }
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the privateEndpoint property: The Private Endpoint resource.
      * 
      * @return the privateEndpoint value.
      */
-    public PrivateEndpoint privateEndpoint() {
+    public WorkspacePrivateEndpointResource privateEndpoint() {
         return this.privateEndpoint;
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The Private Endpoint resource.
      * 
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
      */
-    public PrivateEndpointConnectionProperties withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
+    public PrivateEndpointConnectionProperties withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint) {
         this.privateEndpoint = privateEndpoint;
         return this;
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
+     * Get the privateLinkServiceConnectionState property: The connection state.
      * 
      * @return the privateLinkServiceConnectionState value.
      */
@@ -73,8 +71,7 @@ public final class PrivateEndpointConnectionProperties
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
+     * Set the privateLinkServiceConnectionState property: The connection state.
      * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
@@ -86,12 +83,24 @@ public final class PrivateEndpointConnectionProperties
     }
 
     /**
-     * Get the provisioningState property: The provisioning state of the private endpoint connection resource.
+     * Get the provisioningState property: The current provisioning state.
      * 
      * @return the provisioningState value.
      */
     public PrivateEndpointConnectionProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: The current provisioning state.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the PrivateEndpointConnectionProperties object itself.
+     */
+    public PrivateEndpointConnectionProperties
+        withProvisioningState(PrivateEndpointConnectionProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
     }
 
     /**
@@ -103,16 +112,10 @@ public final class PrivateEndpointConnectionProperties
         if (privateEndpoint() != null) {
             privateEndpoint().validate();
         }
-        if (privateLinkServiceConnectionState() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property privateLinkServiceConnectionState in model PrivateEndpointConnectionProperties"));
-        } else {
+        if (privateLinkServiceConnectionState() != null) {
             privateLinkServiceConnectionState().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionProperties.class);
 
     /**
      * {@inheritDoc}
@@ -120,8 +123,10 @@ public final class PrivateEndpointConnectionProperties
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("privateLinkServiceConnectionState", this.privateLinkServiceConnectionState);
         jsonWriter.writeJsonField("privateEndpoint", this.privateEndpoint);
+        jsonWriter.writeJsonField("privateLinkServiceConnectionState", this.privateLinkServiceConnectionState);
+        jsonWriter.writeStringField("provisioningState",
+            this.provisioningState == null ? null : this.provisioningState.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -131,7 +136,6 @@ public final class PrivateEndpointConnectionProperties
      * @param jsonReader The JsonReader being read.
      * @return An instance of PrivateEndpointConnectionProperties if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the PrivateEndpointConnectionProperties.
      */
     public static PrivateEndpointConnectionProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -142,11 +146,12 @@ public final class PrivateEndpointConnectionProperties
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("privateLinkServiceConnectionState".equals(fieldName)) {
+                if ("privateEndpoint".equals(fieldName)) {
+                    deserializedPrivateEndpointConnectionProperties.privateEndpoint
+                        = WorkspacePrivateEndpointResource.fromJson(reader);
+                } else if ("privateLinkServiceConnectionState".equals(fieldName)) {
                     deserializedPrivateEndpointConnectionProperties.privateLinkServiceConnectionState
                         = PrivateLinkServiceConnectionState.fromJson(reader);
-                } else if ("privateEndpoint".equals(fieldName)) {
-                    deserializedPrivateEndpointConnectionProperties.privateEndpoint = PrivateEndpoint.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedPrivateEndpointConnectionProperties.provisioningState
                         = PrivateEndpointConnectionProvisioningState.fromString(reader.getString());

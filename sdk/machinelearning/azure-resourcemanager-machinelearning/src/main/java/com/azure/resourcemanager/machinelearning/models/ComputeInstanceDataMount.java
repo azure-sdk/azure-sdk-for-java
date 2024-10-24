@@ -40,6 +40,11 @@ public final class ComputeInstanceDataMount implements JsonSerializable<ComputeI
     private MountAction mountAction;
 
     /*
+     * Mount Mode.
+     */
+    private MountMode mountMode;
+
+    /*
      * who this data mount created by.
      */
     private String createdBy;
@@ -147,6 +152,26 @@ public final class ComputeInstanceDataMount implements JsonSerializable<ComputeI
      */
     public ComputeInstanceDataMount withMountAction(MountAction mountAction) {
         this.mountAction = mountAction;
+        return this;
+    }
+
+    /**
+     * Get the mountMode property: Mount Mode.
+     * 
+     * @return the mountMode value.
+     */
+    public MountMode mountMode() {
+        return this.mountMode;
+    }
+
+    /**
+     * Set the mountMode property: Mount Mode.
+     * 
+     * @param mountMode the mountMode value to set.
+     * @return the ComputeInstanceDataMount object itself.
+     */
+    public ComputeInstanceDataMount withMountMode(MountMode mountMode) {
+        this.mountMode = mountMode;
         return this;
     }
 
@@ -268,6 +293,7 @@ public final class ComputeInstanceDataMount implements JsonSerializable<ComputeI
         jsonWriter.writeStringField("sourceType", this.sourceType == null ? null : this.sourceType.toString());
         jsonWriter.writeStringField("mountName", this.mountName);
         jsonWriter.writeStringField("mountAction", this.mountAction == null ? null : this.mountAction.toString());
+        jsonWriter.writeStringField("mountMode", this.mountMode == null ? null : this.mountMode.toString());
         jsonWriter.writeStringField("createdBy", this.createdBy);
         jsonWriter.writeStringField("mountPath", this.mountPath);
         jsonWriter.writeStringField("mountState", this.mountState == null ? null : this.mountState.toString());
@@ -300,6 +326,8 @@ public final class ComputeInstanceDataMount implements JsonSerializable<ComputeI
                     deserializedComputeInstanceDataMount.mountName = reader.getString();
                 } else if ("mountAction".equals(fieldName)) {
                     deserializedComputeInstanceDataMount.mountAction = MountAction.fromString(reader.getString());
+                } else if ("mountMode".equals(fieldName)) {
+                    deserializedComputeInstanceDataMount.mountMode = MountMode.fromString(reader.getString());
                 } else if ("createdBy".equals(fieldName)) {
                     deserializedComputeInstanceDataMount.createdBy = reader.getString();
                 } else if ("mountPath".equals(fieldName)) {
