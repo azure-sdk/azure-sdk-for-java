@@ -14,30 +14,36 @@ public final class ApplicationProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ApplicationProfile model = BinaryData.fromString(
-            "{\"galleryApplications\":[{\"tags\":\"lynqwwncwzzh\",\"order\":953152084,\"packageReferenceId\":\"trmgucnapkte\",\"configurationReference\":\"llwptfdy\",\"treatFailureAsDeploymentFailure\":true,\"enableAutomaticUpgrade\":false}]}")
+            "{\"galleryApplications\":[{\"tags\":\"ppfufl\",\"order\":15051004,\"packageReferenceId\":\"mh\",\"configurationReference\":\"xyjrxsagafcnih\",\"treatFailureAsDeploymentFailure\":true,\"enableAutomaticUpgrade\":false},{\"tags\":\"edgfbcvkcvq\",\"order\":1489059266,\"packageReferenceId\":\"eqdcv\",\"configurationReference\":\"hvoodsotbobzd\",\"treatFailureAsDeploymentFailure\":false,\"enableAutomaticUpgrade\":true}]}")
             .toObject(ApplicationProfile.class);
-        Assertions.assertEquals("lynqwwncwzzh", model.galleryApplications().get(0).tags());
-        Assertions.assertEquals(953152084, model.galleryApplications().get(0).order());
-        Assertions.assertEquals("trmgucnapkte", model.galleryApplications().get(0).packageReferenceId());
-        Assertions.assertEquals("llwptfdy", model.galleryApplications().get(0).configurationReference());
+        Assertions.assertEquals("ppfufl", model.galleryApplications().get(0).tags());
+        Assertions.assertEquals(15051004, model.galleryApplications().get(0).order());
+        Assertions.assertEquals("mh", model.galleryApplications().get(0).packageReferenceId());
+        Assertions.assertEquals("xyjrxsagafcnih", model.galleryApplications().get(0).configurationReference());
         Assertions.assertEquals(true, model.galleryApplications().get(0).treatFailureAsDeploymentFailure());
         Assertions.assertEquals(false, model.galleryApplications().get(0).enableAutomaticUpgrade());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        ApplicationProfile model = new ApplicationProfile()
-            .withGalleryApplications(Arrays.asList(new VMGalleryApplication().withTags("lynqwwncwzzh")
-                .withOrder(953152084)
-                .withPackageReferenceId("trmgucnapkte")
-                .withConfigurationReference("llwptfdy")
+        ApplicationProfile model = new ApplicationProfile().withGalleryApplications(Arrays.asList(
+            new VMGalleryApplication().withTags("ppfufl")
+                .withOrder(15051004)
+                .withPackageReferenceId("mh")
+                .withConfigurationReference("xyjrxsagafcnih")
                 .withTreatFailureAsDeploymentFailure(true)
-                .withEnableAutomaticUpgrade(false)));
+                .withEnableAutomaticUpgrade(false),
+            new VMGalleryApplication().withTags("edgfbcvkcvq")
+                .withOrder(1489059266)
+                .withPackageReferenceId("eqdcv")
+                .withConfigurationReference("hvoodsotbobzd")
+                .withTreatFailureAsDeploymentFailure(false)
+                .withEnableAutomaticUpgrade(true)));
         model = BinaryData.fromObject(model).toObject(ApplicationProfile.class);
-        Assertions.assertEquals("lynqwwncwzzh", model.galleryApplications().get(0).tags());
-        Assertions.assertEquals(953152084, model.galleryApplications().get(0).order());
-        Assertions.assertEquals("trmgucnapkte", model.galleryApplications().get(0).packageReferenceId());
-        Assertions.assertEquals("llwptfdy", model.galleryApplications().get(0).configurationReference());
+        Assertions.assertEquals("ppfufl", model.galleryApplications().get(0).tags());
+        Assertions.assertEquals(15051004, model.galleryApplications().get(0).order());
+        Assertions.assertEquals("mh", model.galleryApplications().get(0).packageReferenceId());
+        Assertions.assertEquals("xyjrxsagafcnih", model.galleryApplications().get(0).configurationReference());
         Assertions.assertEquals(true, model.galleryApplications().get(0).treatFailureAsDeploymentFailure());
         Assertions.assertEquals(false, model.galleryApplications().get(0).enableAutomaticUpgrade());
     }

@@ -14,20 +14,19 @@ public final class VMDiskSecurityProfileTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         VMDiskSecurityProfile model = BinaryData
-            .fromString(
-                "{\"securityEncryptionType\":\"DiskWithVMGuestState\",\"diskEncryptionSet\":{\"id\":\"gnzscxaqwo\"}}")
+            .fromString("{\"securityEncryptionType\":\"VMGuestStateOnly\",\"diskEncryptionSet\":{\"id\":\"dtjixhb\"}}")
             .toObject(VMDiskSecurityProfile.class);
-        Assertions.assertEquals(SecurityEncryptionTypes.DISK_WITH_VMGUEST_STATE, model.securityEncryptionType());
-        Assertions.assertEquals("gnzscxaqwo", model.diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY, model.securityEncryptionType());
+        Assertions.assertEquals("dtjixhb", model.diskEncryptionSet().id());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         VMDiskSecurityProfile model
-            = new VMDiskSecurityProfile().withSecurityEncryptionType(SecurityEncryptionTypes.DISK_WITH_VMGUEST_STATE)
-                .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("gnzscxaqwo"));
+            = new VMDiskSecurityProfile().withSecurityEncryptionType(SecurityEncryptionTypes.VMGUEST_STATE_ONLY)
+                .withDiskEncryptionSet(new DiskEncryptionSetParameters().withId("dtjixhb"));
         model = BinaryData.fromObject(model).toObject(VMDiskSecurityProfile.class);
-        Assertions.assertEquals(SecurityEncryptionTypes.DISK_WITH_VMGUEST_STATE, model.securityEncryptionType());
-        Assertions.assertEquals("gnzscxaqwo", model.diskEncryptionSet().id());
+        Assertions.assertEquals(SecurityEncryptionTypes.VMGUEST_STATE_ONLY, model.securityEncryptionType());
+        Assertions.assertEquals("dtjixhb", model.diskEncryptionSet().id());
     }
 }
