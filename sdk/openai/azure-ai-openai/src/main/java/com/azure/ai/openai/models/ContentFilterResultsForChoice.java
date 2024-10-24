@@ -83,13 +83,6 @@ public final class ContentFilterResultsForChoice implements JsonSerializable<Con
     private ContentFilterCitedDetectionResult protectedMaterialCode;
 
     /**
-     * Creates an instance of ContentFilterResultsForChoice class.
-     */
-    @Generated
-    private ContentFilterResultsForChoice() {
-    }
-
-    /**
      * Get the sexual property: Describes language related to anatomical organs and genitals, romantic relationships,
      * acts portrayed in erotic or affectionate terms, physical sexual acts, including
      * those portrayed as an assault or a forced sexual violent act against one’s will,
@@ -196,6 +189,7 @@ public final class ContentFilterResultsForChoice implements JsonSerializable<Con
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("ungrounded_material", this.ungroundedMaterial);
         jsonWriter.writeJsonField("sexual", this.sexual);
         jsonWriter.writeJsonField("violence", this.violence);
         jsonWriter.writeJsonField("hate", this.hate);
@@ -214,42 +208,87 @@ public final class ContentFilterResultsForChoice implements JsonSerializable<Con
      * @param jsonReader The JsonReader being read.
      * @return An instance of ContentFilterResultsForChoice if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ContentFilterResultsForChoice.
      */
     @Generated
     public static ContentFilterResultsForChoice fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ContentFilterResultsForChoice deserializedContentFilterResultsForChoice
-                = new ContentFilterResultsForChoice();
+            ContentFilterCompletionTextSpanResult ungroundedMaterial = null;
+            ContentFilterResult sexual = null;
+            ContentFilterResult violence = null;
+            ContentFilterResult hate = null;
+            ContentFilterResult selfHarm = null;
+            ContentFilterDetectionResult profanity = null;
+            ContentFilterDetailedResults customBlocklists = null;
+            ResponseError error = null;
+            ContentFilterDetectionResult protectedMaterialText = null;
+            ContentFilterCitedDetectionResult protectedMaterialCode = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("sexual".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.sexual = ContentFilterResult.fromJson(reader);
+                if ("ungrounded_material".equals(fieldName)) {
+                    ungroundedMaterial = ContentFilterCompletionTextSpanResult.fromJson(reader);
+                } else if ("sexual".equals(fieldName)) {
+                    sexual = ContentFilterResult.fromJson(reader);
                 } else if ("violence".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.violence = ContentFilterResult.fromJson(reader);
+                    violence = ContentFilterResult.fromJson(reader);
                 } else if ("hate".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.hate = ContentFilterResult.fromJson(reader);
+                    hate = ContentFilterResult.fromJson(reader);
                 } else if ("self_harm".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.selfHarm = ContentFilterResult.fromJson(reader);
+                    selfHarm = ContentFilterResult.fromJson(reader);
                 } else if ("profanity".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.profanity = ContentFilterDetectionResult.fromJson(reader);
+                    profanity = ContentFilterDetectionResult.fromJson(reader);
                 } else if ("custom_blocklists".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.customBlocklists
-                        = ContentFilterDetailedResults.fromJson(reader);
+                    customBlocklists = ContentFilterDetailedResults.fromJson(reader);
                 } else if ("error".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.error = ResponseError.fromJson(reader);
+                    error = ResponseError.fromJson(reader);
                 } else if ("protected_material_text".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.protectedMaterialText
-                        = ContentFilterDetectionResult.fromJson(reader);
+                    protectedMaterialText = ContentFilterDetectionResult.fromJson(reader);
                 } else if ("protected_material_code".equals(fieldName)) {
-                    deserializedContentFilterResultsForChoice.protectedMaterialCode
-                        = ContentFilterCitedDetectionResult.fromJson(reader);
+                    protectedMaterialCode = ContentFilterCitedDetectionResult.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
+            ContentFilterResultsForChoice deserializedContentFilterResultsForChoice
+                = new ContentFilterResultsForChoice(ungroundedMaterial);
+            deserializedContentFilterResultsForChoice.sexual = sexual;
+            deserializedContentFilterResultsForChoice.violence = violence;
+            deserializedContentFilterResultsForChoice.hate = hate;
+            deserializedContentFilterResultsForChoice.selfHarm = selfHarm;
+            deserializedContentFilterResultsForChoice.profanity = profanity;
+            deserializedContentFilterResultsForChoice.customBlocklists = customBlocklists;
+            deserializedContentFilterResultsForChoice.error = error;
+            deserializedContentFilterResultsForChoice.protectedMaterialText = protectedMaterialText;
+            deserializedContentFilterResultsForChoice.protectedMaterialCode = protectedMaterialCode;
             return deserializedContentFilterResultsForChoice;
         });
+    }
+
+    /*
+     * Information about detection of ungrounded material.
+     */
+    @Generated
+    private final ContentFilterCompletionTextSpanResult ungroundedMaterial;
+
+    /**
+     * Creates an instance of ContentFilterResultsForChoice class.
+     *
+     * @param ungroundedMaterial the ungroundedMaterial value to set.
+     */
+    @Generated
+    private ContentFilterResultsForChoice(ContentFilterCompletionTextSpanResult ungroundedMaterial) {
+        this.ungroundedMaterial = ungroundedMaterial;
+    }
+
+    /**
+     * Get the ungroundedMaterial property: Information about detection of ungrounded material.
+     *
+     * @return the ungroundedMaterial value.
+     */
+    @Generated
+    public ContentFilterCompletionTextSpanResult getUngroundedMaterial() {
+        return this.ungroundedMaterial;
     }
 }
