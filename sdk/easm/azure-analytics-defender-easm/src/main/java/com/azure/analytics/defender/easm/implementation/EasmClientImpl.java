@@ -243,27 +243,27 @@ public final class EasmClientImpl {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
-        @Post("/dataConnections:validate")
+        @Post("/dataConnections/{dataConnectionName}:validate")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> validateDataConnection(@HostParam("endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
-        @Post("/dataConnections:validate")
+        @Post("/dataConnections/{dataConnectionName}:validate")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> validateDataConnectionSync(@HostParam("endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("dataConnectionName") String dataConnectionName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Get("/dataConnections/{dataConnectionName}")
         @ExpectedResponses({ 200 })
@@ -347,27 +347,27 @@ public final class EasmClientImpl {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept,
             RequestOptions requestOptions, Context context);
 
-        @Post("/discoGroups:validate")
+        @Post("/discoGroups/{groupName}:validate")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> validateDiscoGroup(@HostParam("endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
-        @Post("/discoGroups:validate")
+        @Post("/discoGroups/{groupName}:validate")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> validateDiscoGroupSync(@HostParam("endpoint") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData body,
-            RequestOptions requestOptions, Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("groupName") String groupName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Get("/discoGroups/{groupName}")
         @ExpectedResponses({ 200 })
@@ -1583,10 +1583,17 @@ public final class EasmClientImpl {
      * {@code
      * {
      *     kind: String (Required)
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
      * }
      * }
      * </pre>
@@ -1612,6 +1619,7 @@ public final class EasmClientImpl {
      * }
      * </pre>
      * 
+     * @param dataConnectionName The caller provided unique name for the resource.
      * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1622,12 +1630,13 @@ public final class EasmClientImpl {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> validateDataConnectionWithResponseAsync(BinaryData body,
-        RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> validateDataConnectionWithResponseAsync(String dataConnectionName,
+        BinaryData body, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.validateDataConnection(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, context));
+        return FluxUtil.withContext(
+            context -> service.validateDataConnection(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                dataConnectionName, contentType, accept, body, requestOptions, context));
     }
 
     /**
@@ -1638,10 +1647,17 @@ public final class EasmClientImpl {
      * {@code
      * {
      *     kind: String (Required)
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
      * }
      * }
      * </pre>
@@ -1667,6 +1683,7 @@ public final class EasmClientImpl {
      * }
      * </pre>
      * 
+     * @param dataConnectionName The caller provided unique name for the resource.
      * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1676,11 +1693,12 @@ public final class EasmClientImpl {
      * @return validate result for validate action endpoints along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDataConnectionWithResponse(BinaryData body, RequestOptions requestOptions) {
+    public Response<BinaryData> validateDataConnectionWithResponse(String dataConnectionName, BinaryData body,
+        RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.validateDataConnectionSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            contentType, accept, body, requestOptions, Context.NONE);
+            dataConnectionName, contentType, accept, body, requestOptions, Context.NONE);
     }
 
     /**
@@ -1769,10 +1787,17 @@ public final class EasmClientImpl {
      * {@code
      * {
      *     kind: String (Required)
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
      * }
      * }
      * </pre>
@@ -1825,10 +1850,17 @@ public final class EasmClientImpl {
      * {@code
      * {
      *     kind: String (Required)
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
      * }
      * }
      * </pre>
@@ -2250,7 +2282,9 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     description: String (Optional)
      *     tier: String (Optional)
      *     frequencyMilliseconds: Long (Optional)
@@ -2266,6 +2300,24 @@ public final class EasmClientImpl {
      *     excludes (Optional): [
      *         (recursive schema, see above)
      *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
      *     templateId: String (Optional)
      * }
      * }
@@ -2292,6 +2344,7 @@ public final class EasmClientImpl {
      * }
      * </pre>
      * 
+     * @param groupName The caller provided unique name for the resource.
      * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -2302,12 +2355,12 @@ public final class EasmClientImpl {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> validateDiscoGroupWithResponseAsync(BinaryData body,
+    public Mono<Response<BinaryData>> validateDiscoGroupWithResponseAsync(String groupName, BinaryData body,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.validateDiscoGroup(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), contentType, accept, body, requestOptions, context));
+            this.getServiceVersion().getVersion(), groupName, contentType, accept, body, requestOptions, context));
     }
 
     /**
@@ -2317,7 +2370,9 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     description: String (Optional)
      *     tier: String (Optional)
      *     frequencyMilliseconds: Long (Optional)
@@ -2333,6 +2388,24 @@ public final class EasmClientImpl {
      *     excludes (Optional): [
      *         (recursive schema, see above)
      *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
      *     templateId: String (Optional)
      * }
      * }
@@ -2359,6 +2432,7 @@ public final class EasmClientImpl {
      * }
      * </pre>
      * 
+     * @param groupName The caller provided unique name for the resource.
      * @param body Body parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -2368,11 +2442,12 @@ public final class EasmClientImpl {
      * @return validate result for validate action endpoints along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDiscoGroupWithResponse(BinaryData body, RequestOptions requestOptions) {
+    public Response<BinaryData> validateDiscoGroupWithResponse(String groupName, BinaryData body,
+        RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
-        return service.validateDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), contentType,
-            accept, body, requestOptions, Context.NONE);
+        return service.validateDiscoGroupSync(this.getEndpoint(), this.getServiceVersion().getVersion(), groupName,
+            contentType, accept, body, requestOptions, Context.NONE);
     }
 
     /**
@@ -2508,7 +2583,9 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     description: String (Optional)
      *     tier: String (Optional)
      *     frequencyMilliseconds: Long (Optional)
@@ -2524,6 +2601,24 @@ public final class EasmClientImpl {
      *     excludes (Optional): [
      *         (recursive schema, see above)
      *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
      *     templateId: String (Optional)
      * }
      * }
@@ -2600,7 +2695,9 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     description: String (Optional)
      *     tier: String (Optional)
      *     frequencyMilliseconds: Long (Optional)
@@ -2616,6 +2713,24 @@ public final class EasmClientImpl {
      *     excludes (Optional): [
      *         (recursive schema, see above)
      *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
      *     templateId: String (Optional)
      * }
      * }
@@ -3961,8 +4076,11 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     filter: String (Required)
-     *     description: String (Required)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
+     *     filter: String (Optional)
+     *     description: String (Optional)
      * }
      * }
      * </pre>
@@ -4006,8 +4124,11 @@ public final class EasmClientImpl {
      * <pre>
      * {@code
      * {
-     *     filter: String (Required)
-     *     description: String (Required)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
+     *     filter: String (Optional)
+     *     description: String (Optional)
      * }
      * }
      * </pre>
