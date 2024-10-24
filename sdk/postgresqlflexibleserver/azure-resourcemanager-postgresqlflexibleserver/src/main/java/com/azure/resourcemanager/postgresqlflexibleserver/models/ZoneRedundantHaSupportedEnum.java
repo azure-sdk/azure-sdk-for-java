@@ -5,12 +5,12 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * A value indicating whether Zone Redundant HA is supported in this region. "Enabled" means zone redundant HA is
- * supported. "Disabled" stands for zone redundant HA is not supported.
+ * supported. "Disabled" stands for zone redundant HA is not supported. Will be deprecated in future, please look to
+ * Supported Features for "ZoneRedundantHa".
  */
 public final class ZoneRedundantHaSupportedEnum extends ExpandableStringEnum<ZoneRedundantHaSupportedEnum> {
     /**
@@ -38,7 +38,6 @@ public final class ZoneRedundantHaSupportedEnum extends ExpandableStringEnum<Zon
      * @param name a name to look for.
      * @return the corresponding ZoneRedundantHaSupportedEnum.
      */
-    @JsonCreator
     public static ZoneRedundantHaSupportedEnum fromString(String name) {
         return fromString(name, ZoneRedundantHaSupportedEnum.class);
     }
