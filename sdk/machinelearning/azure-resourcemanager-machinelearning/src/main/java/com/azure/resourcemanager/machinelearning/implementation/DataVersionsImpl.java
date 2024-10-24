@@ -71,6 +71,29 @@ public final class DataVersionsImpl implements DataVersions {
         }
     }
 
+    public Response<DataVersionBase> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String name, String version, DataVersionBaseInner body, Context context) {
+        Response<DataVersionBaseInner> inner = this.serviceClient()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new DataVersionBaseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DataVersionBase createOrUpdate(String resourceGroupName, String workspaceName, String name, String version,
+        DataVersionBaseInner body) {
+        DataVersionBaseInner inner
+            = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, version, body);
+        if (inner != null) {
+            return new DataVersionBaseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void publish(String resourceGroupName, String workspaceName, String name, String version,
         DestinationAsset body) {
         this.serviceClient().publish(resourceGroupName, workspaceName, name, version, body);
@@ -81,111 +104,11 @@ public final class DataVersionsImpl implements DataVersions {
         this.serviceClient().publish(resourceGroupName, workspaceName, name, version, body, context);
     }
 
-    public DataVersionBase getById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = ResourceManagerUtils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "data");
-        if (name == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'data'.", id)));
-        }
-        String version = ResourceManagerUtils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE).getValue();
-    }
-
-    public Response<DataVersionBase> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = ResourceManagerUtils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "data");
-        if (name == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'data'.", id)));
-        }
-        String version = ResourceManagerUtils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = ResourceManagerUtils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "data");
-        if (name == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'data'.", id)));
-        }
-        String version = ResourceManagerUtils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = ResourceManagerUtils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = ResourceManagerUtils.getValueFromIdByName(id, "data");
-        if (name == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'data'.", id)));
-        }
-        String version = ResourceManagerUtils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
-    }
-
     private DataVersionsClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public DataVersionBaseImpl define(String name) {
-        return new DataVersionBaseImpl(name, this.manager());
     }
 }

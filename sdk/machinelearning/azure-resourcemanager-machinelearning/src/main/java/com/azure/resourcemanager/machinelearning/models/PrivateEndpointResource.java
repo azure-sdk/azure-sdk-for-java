@@ -68,7 +68,6 @@ public final class PrivateEndpointResource extends PrivateEndpoint {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
