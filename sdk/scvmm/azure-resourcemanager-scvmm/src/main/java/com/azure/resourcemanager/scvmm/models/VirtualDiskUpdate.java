@@ -5,55 +5,59 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Virtual Disk Update model.
  */
 @Fluent
-public final class VirtualDiskUpdate implements JsonSerializable<VirtualDiskUpdate> {
+public final class VirtualDiskUpdate {
     /*
      * Gets or sets the name of the disk.
      */
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Gets or sets the disk id.
      */
+    @JsonProperty(value = "diskId")
     private String diskId;
 
     /*
      * Gets or sets the disk total size.
      */
+    @JsonProperty(value = "diskSizeGB")
     private Integer diskSizeGB;
 
     /*
      * Gets or sets the disk bus.
      */
+    @JsonProperty(value = "bus")
     private Integer bus;
 
     /*
      * Gets or sets the disk lun.
      */
+    @JsonProperty(value = "lun")
     private Integer lun;
 
     /*
      * Gets or sets the disk bus type.
      */
+    @JsonProperty(value = "busType")
     private String busType;
 
     /*
      * Gets or sets the disk vhd type.
      */
+    @JsonProperty(value = "vhdType")
     private String vhdType;
 
     /*
      * The QoS policy for the disk.
      */
+    @JsonProperty(value = "storageQoSPolicy")
     private StorageQosPolicyDetails storageQosPolicy;
 
     /**
@@ -231,62 +235,5 @@ public final class VirtualDiskUpdate implements JsonSerializable<VirtualDiskUpda
         if (storageQosPolicy() != null) {
             storageQosPolicy().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("diskId", this.diskId);
-        jsonWriter.writeNumberField("diskSizeGB", this.diskSizeGB);
-        jsonWriter.writeNumberField("bus", this.bus);
-        jsonWriter.writeNumberField("lun", this.lun);
-        jsonWriter.writeStringField("busType", this.busType);
-        jsonWriter.writeStringField("vhdType", this.vhdType);
-        jsonWriter.writeJsonField("storageQoSPolicy", this.storageQosPolicy);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualDiskUpdate from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualDiskUpdate if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualDiskUpdate.
-     */
-    public static VirtualDiskUpdate fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualDiskUpdate deserializedVirtualDiskUpdate = new VirtualDiskUpdate();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("name".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.name = reader.getString();
-                } else if ("diskId".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.diskId = reader.getString();
-                } else if ("diskSizeGB".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.diskSizeGB = reader.getNullable(JsonReader::getInt);
-                } else if ("bus".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.bus = reader.getNullable(JsonReader::getInt);
-                } else if ("lun".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.lun = reader.getNullable(JsonReader::getInt);
-                } else if ("busType".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.busType = reader.getString();
-                } else if ("vhdType".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.vhdType = reader.getString();
-                } else if ("storageQoSPolicy".equals(fieldName)) {
-                    deserializedVirtualDiskUpdate.storageQosPolicy = StorageQosPolicyDetails.fromJson(reader);
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualDiskUpdate;
-        });
     }
 }

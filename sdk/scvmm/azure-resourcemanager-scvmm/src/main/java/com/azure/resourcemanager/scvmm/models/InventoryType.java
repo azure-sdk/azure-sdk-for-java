@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.util.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -46,6 +47,7 @@ public final class InventoryType extends ExpandableStringEnum<InventoryType> {
      * @param name a name to look for.
      * @return the corresponding InventoryType.
      */
+    @JsonCreator
     public static InventoryType fromString(String name) {
         return fromString(name, InventoryType.class);
     }

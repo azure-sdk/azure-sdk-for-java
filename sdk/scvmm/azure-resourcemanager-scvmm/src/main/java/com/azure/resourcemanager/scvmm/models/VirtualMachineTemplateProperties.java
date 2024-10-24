@@ -5,106 +5,120 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class VirtualMachineTemplateProperties implements JsonSerializable<VirtualMachineTemplateProperties> {
+public final class VirtualMachineTemplateProperties {
     /*
      * Gets or sets the inventory Item ID for the resource.
      */
+    @JsonProperty(value = "inventoryItemId")
     private String inventoryItemId;
 
     /*
      * Unique ID of the virtual machine template.
      */
+    @JsonProperty(value = "uuid")
     private String uuid;
 
     /*
      * ARM Id of the vmmServer resource in which this resource resides.
      */
+    @JsonProperty(value = "vmmServerId")
     private String vmmServerId;
 
     /*
      * Gets the type of the os.
      */
+    @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
      * Gets os name.
      */
+    @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
 
     /*
      * Gets computer name.
      */
+    @JsonProperty(value = "computerName", access = JsonProperty.Access.WRITE_ONLY)
     private String computerName;
 
     /*
      * MemoryMB is the desired size of a virtual machine's memory, in MB.
      */
+    @JsonProperty(value = "memoryMB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer memoryMB;
 
     /*
      * Gets the desired number of vCPUs for the vm.
      */
+    @JsonProperty(value = "cpuCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer cpuCount;
 
     /*
      * Gets a value indicating whether to enable processor compatibility mode for live migration of VMs.
      */
+    @JsonProperty(value = "limitCpuForMigration", access = JsonProperty.Access.WRITE_ONLY)
     private LimitCpuForMigration limitCpuForMigration;
 
     /*
      * Gets a value indicating whether to enable dynamic memory or not.
      */
+    @JsonProperty(value = "dynamicMemoryEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private DynamicMemoryEnabled dynamicMemoryEnabled;
 
     /*
      * Gets a value indicating whether the vm template is customizable or not.
      */
+    @JsonProperty(value = "isCustomizable", access = JsonProperty.Access.WRITE_ONLY)
     private IsCustomizable isCustomizable;
 
     /*
      * Gets the max dynamic memory for the vm.
      */
+    @JsonProperty(value = "dynamicMemoryMaxMB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer dynamicMemoryMaxMB;
 
     /*
      * Gets the min dynamic memory for the vm.
      */
+    @JsonProperty(value = "dynamicMemoryMinMB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer dynamicMemoryMinMB;
 
     /*
      * Gets highly available property.
      */
+    @JsonProperty(value = "isHighlyAvailable", access = JsonProperty.Access.WRITE_ONLY)
     private IsHighlyAvailable isHighlyAvailable;
 
     /*
      * Gets the generation for the vm.
      */
+    @JsonProperty(value = "generation", access = JsonProperty.Access.WRITE_ONLY)
     private Integer generation;
 
     /*
      * Gets the network interfaces of the template.
      */
+    @JsonProperty(value = "networkInterfaces", access = JsonProperty.Access.WRITE_ONLY)
     private List<NetworkInterface> networkInterfaces;
 
     /*
      * Gets the disks of the template.
      */
+    @JsonProperty(value = "disks", access = JsonProperty.Access.WRITE_ONLY)
     private List<VirtualDisk> disks;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -321,88 +335,5 @@ public final class VirtualMachineTemplateProperties implements JsonSerializable<
         if (disks() != null) {
             disks().forEach(e -> e.validate());
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryItemId", this.inventoryItemId);
-        jsonWriter.writeStringField("uuid", this.uuid);
-        jsonWriter.writeStringField("vmmServerId", this.vmmServerId);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineTemplateProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineTemplateProperties if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualMachineTemplateProperties.
-     */
-    public static VirtualMachineTemplateProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineTemplateProperties deserializedVirtualMachineTemplateProperties
-                = new VirtualMachineTemplateProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("inventoryItemId".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.inventoryItemId = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.uuid = reader.getString();
-                } else if ("vmmServerId".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.vmmServerId = reader.getString();
-                } else if ("osType".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.osType = OsType.fromString(reader.getString());
-                } else if ("osName".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.osName = reader.getString();
-                } else if ("computerName".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.computerName = reader.getString();
-                } else if ("memoryMB".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.memoryMB = reader.getNullable(JsonReader::getInt);
-                } else if ("cpuCount".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.cpuCount = reader.getNullable(JsonReader::getInt);
-                } else if ("limitCpuForMigration".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.limitCpuForMigration
-                        = LimitCpuForMigration.fromString(reader.getString());
-                } else if ("dynamicMemoryEnabled".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.dynamicMemoryEnabled
-                        = DynamicMemoryEnabled.fromString(reader.getString());
-                } else if ("isCustomizable".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.isCustomizable
-                        = IsCustomizable.fromString(reader.getString());
-                } else if ("dynamicMemoryMaxMB".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.dynamicMemoryMaxMB
-                        = reader.getNullable(JsonReader::getInt);
-                } else if ("dynamicMemoryMinMB".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.dynamicMemoryMinMB
-                        = reader.getNullable(JsonReader::getInt);
-                } else if ("isHighlyAvailable".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.isHighlyAvailable
-                        = IsHighlyAvailable.fromString(reader.getString());
-                } else if ("generation".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.generation = reader.getNullable(JsonReader::getInt);
-                } else if ("networkInterfaces".equals(fieldName)) {
-                    List<NetworkInterface> networkInterfaces
-                        = reader.readArray(reader1 -> NetworkInterface.fromJson(reader1));
-                    deserializedVirtualMachineTemplateProperties.networkInterfaces = networkInterfaces;
-                } else if ("disks".equals(fieldName)) {
-                    List<VirtualDisk> disks = reader.readArray(reader1 -> VirtualDisk.fromJson(reader1));
-                    deserializedVirtualMachineTemplateProperties.disks = disks;
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVirtualMachineTemplateProperties.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineTemplateProperties;
-        });
     }
 }

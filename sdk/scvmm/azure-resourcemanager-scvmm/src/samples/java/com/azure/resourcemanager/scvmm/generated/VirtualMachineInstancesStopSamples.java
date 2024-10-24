@@ -12,7 +12,7 @@ import com.azure.resourcemanager.scvmm.models.StopVirtualMachineOptions;
  */
 public final class VirtualMachineInstancesStopSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualMachineInstances_Stop_MaximumSet_Gen.json
      */
     /**
@@ -27,7 +27,7 @@ public final class VirtualMachineInstancesStopSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VirtualMachineInstances_Stop_MinimumSet_Gen.json
      */
     /**

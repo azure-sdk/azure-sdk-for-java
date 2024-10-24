@@ -5,51 +5,54 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class CloudProperties implements JsonSerializable<CloudProperties> {
+public final class CloudProperties {
     /*
      * Gets or sets the inventory Item ID for the resource.
      */
+    @JsonProperty(value = "inventoryItemId")
     private String inventoryItemId;
 
     /*
      * Unique ID of the cloud.
      */
+    @JsonProperty(value = "uuid")
     private String uuid;
 
     /*
      * ARM Id of the vmmServer resource in which this resource resides.
      */
+    @JsonProperty(value = "vmmServerId")
     private String vmmServerId;
 
     /*
      * Name of the cloud in VmmServer.
      */
+    @JsonProperty(value = "cloudName", access = JsonProperty.Access.WRITE_ONLY)
     private String cloudName;
 
     /*
      * Capacity of the cloud.
      */
+    @JsonProperty(value = "cloudCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private CloudCapacity cloudCapacity;
 
     /*
      * List of QoS policies available for the cloud.
      */
+    @JsonProperty(value = "storageQoSPolicies", access = JsonProperty.Access.WRITE_ONLY)
     private List<StorageQosPolicy> storageQosPolicies;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -166,57 +169,5 @@ public final class CloudProperties implements JsonSerializable<CloudProperties> 
         if (storageQosPolicies() != null) {
             storageQosPolicies().forEach(e -> e.validate());
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("inventoryItemId", this.inventoryItemId);
-        jsonWriter.writeStringField("uuid", this.uuid);
-        jsonWriter.writeStringField("vmmServerId", this.vmmServerId);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of CloudProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of CloudProperties if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the CloudProperties.
-     */
-    public static CloudProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            CloudProperties deserializedCloudProperties = new CloudProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("inventoryItemId".equals(fieldName)) {
-                    deserializedCloudProperties.inventoryItemId = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedCloudProperties.uuid = reader.getString();
-                } else if ("vmmServerId".equals(fieldName)) {
-                    deserializedCloudProperties.vmmServerId = reader.getString();
-                } else if ("cloudName".equals(fieldName)) {
-                    deserializedCloudProperties.cloudName = reader.getString();
-                } else if ("cloudCapacity".equals(fieldName)) {
-                    deserializedCloudProperties.cloudCapacity = CloudCapacity.fromJson(reader);
-                } else if ("storageQoSPolicies".equals(fieldName)) {
-                    List<StorageQosPolicy> storageQosPolicies
-                        = reader.readArray(reader1 -> StorageQosPolicy.fromJson(reader1));
-                    deserializedCloudProperties.storageQosPolicies = storageQosPolicies;
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedCloudProperties.provisioningState = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedCloudProperties;
-        });
     }
 }
