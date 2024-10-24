@@ -9,7 +9,9 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
  */
 public final class MaintenancesListSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/preview/2023-10-01-preview/examples/MaintenancesListByServer.json
+     * x-ms-original-file:
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Maintenance/stable/2023-12-30/examples/
+     * MaintenancesListByServer.json
      */
     /**
      * Sample code: List maintenances on a server.
