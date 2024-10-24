@@ -221,7 +221,7 @@ public interface Service {
     /**
      * The template for Service update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -267,6 +267,19 @@ public interface Service {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
+        /**
+         * The stage of the Service update allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The resource-specific properties for this resource..
+             * 
+             * @param properties The resource-specific properties for this resource.
+             * @return the next definition stage.
+             */
+            Update withProperties(ServiceUpdateProperties properties);
+        }
     }
 
     /**
@@ -306,4 +319,27 @@ public interface Service {
      * @return the metadata schema export result.
      */
     MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest body, Context context);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    ImportFromApimSuccessResult importFromApim(ImportFromApimRequest body);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    ImportFromApimSuccessResult importFromApim(ImportFromApimRequest body, Context context);
 }

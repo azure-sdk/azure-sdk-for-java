@@ -11,8 +11,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
+import com.azure.resourcemanager.apicenter.fluent.models.ImportFromApimSuccessResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
 
@@ -242,4 +244,66 @@ public interface ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemaExportResultInner exportMetadataSchema(String resourceGroupName, String serviceName,
         MetadataSchemaExportRequest body, Context context);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApim(String resourceGroupName, String serviceName, ImportFromApimRequest body);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApim(String resourceGroupName, String serviceName, ImportFromApimRequest body, Context context);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ImportFromApimSuccessResultInner importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ImportFromApimSuccessResultInner importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body, Context context);
 }

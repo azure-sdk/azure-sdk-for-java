@@ -34,8 +34,10 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apicenter.fluent.ServicesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.ImportFromApimSuccessResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.ServiceListResult;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
@@ -137,6 +139,16 @@ public final class ServicesClientImpl implements ServicesClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @BodyParam("application/json") MetadataSchemaExportRequest body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/importFromApim")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> importFromApim(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @BodyParam("application/json") ImportFromApimRequest body, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -1129,11 +1141,244 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> importFromApimWithResponseAsync(String resourceGroupName,
+        String serviceName, ImportFromApimRequest body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.importFromApim(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> importFromApimWithResponseAsync(String resourceGroupName,
+        String serviceName, ImportFromApimRequest body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.importFromApim(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, serviceName, body, accept, context);
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApimAsync(String resourceGroupName, String serviceName, ImportFromApimRequest body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = importFromApimWithResponseAsync(resourceGroupName, serviceName, body);
+        return this.client.<ImportFromApimSuccessResultInner, ImportFromApimSuccessResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ImportFromApimSuccessResultInner.class,
+            ImportFromApimSuccessResultInner.class, this.client.getContext());
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApimAsync(String resourceGroupName, String serviceName, ImportFromApimRequest body,
+            Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = importFromApimWithResponseAsync(resourceGroupName, serviceName, body, context);
+        return this.client.<ImportFromApimSuccessResultInner, ImportFromApimSuccessResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ImportFromApimSuccessResultInner.class,
+            ImportFromApimSuccessResultInner.class, context);
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApim(String resourceGroupName, String serviceName, ImportFromApimRequest body) {
+        return this.beginImportFromApimAsync(resourceGroupName, serviceName, body).getSyncPoller();
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ImportFromApimSuccessResultInner>, ImportFromApimSuccessResultInner>
+        beginImportFromApim(String resourceGroupName, String serviceName, ImportFromApimRequest body, Context context) {
+        return this.beginImportFromApimAsync(resourceGroupName, serviceName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ImportFromApimSuccessResultInner> importFromApimAsync(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body) {
+        return beginImportFromApimAsync(resourceGroupName, serviceName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ImportFromApimSuccessResultInner> importFromApimAsync(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body, Context context) {
+        return beginImportFromApimAsync(resourceGroupName, serviceName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ImportFromApimSuccessResultInner importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body) {
+        return importFromApimAsync(resourceGroupName, serviceName, body).block();
+    }
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ImportFromApimSuccessResultInner importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body, Context context) {
+        return importFromApimAsync(resourceGroupName, serviceName, body, context).block();
+    }
+
+    /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1161,9 +1406,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1190,9 +1433,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1220,9 +1461,7 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ApisDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-06-01-preview/examples/Apis_Delete.json
      */
     /**
      * Sample code: Apis_Delete.
@@ -18,7 +18,8 @@ public final class ApisDeleteSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apisDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apis().deleteWithResponse("contoso-resources", "contoso", "default", "echo-api",
-            com.azure.core.util.Context.NONE);
+        manager.apis()
+            .deleteWithResponse("contoso-resources", "contoso", "default", "echo-api",
+                com.azure.core.util.Context.NONE);
     }
 }

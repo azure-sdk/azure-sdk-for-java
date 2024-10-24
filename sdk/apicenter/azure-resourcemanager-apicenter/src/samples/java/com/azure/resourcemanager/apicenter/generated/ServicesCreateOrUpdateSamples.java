@@ -17,8 +17,8 @@ import java.util.Map;
 public final class ServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_CreateOrUpdate.
-     * json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-06-01-preview/examples/
+     * Services_CreateOrUpdate.json
      */
     /**
      * Sample code: Services_CreateOrUpdate.
@@ -26,8 +26,12 @@ public final class ServicesCreateOrUpdateSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void servicesCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().define("contoso").withRegion("East US").withExistingResourceGroup("contoso-resources")
-            .withTags(mapOf()).withProperties(new ServiceProperties())
+        manager.services()
+            .define("contoso")
+            .withRegion("East US")
+            .withExistingResourceGroup("contoso-resources")
+            .withTags(mapOf())
+            .withProperties(new ServiceProperties())
             .withIdentity(new ManagedServiceIdentity()
                 .withType(ManagedServiceIdentityType.fromString("SystemAssigned, UserAssigned"))
                 .withUserAssignedIdentities(mapOf(
