@@ -7,9 +7,7 @@ import com.azure.analytics.defender.easm.implementation.EasmClientImpl;
 import com.azure.analytics.defender.easm.models.AssetResource;
 import com.azure.analytics.defender.easm.models.AssetUpdateData;
 import com.azure.analytics.defender.easm.models.DataConnection;
-import com.azure.analytics.defender.easm.models.DataConnectionData;
 import com.azure.analytics.defender.easm.models.DiscoGroup;
-import com.azure.analytics.defender.easm.models.DiscoGroupData;
 import com.azure.analytics.defender.easm.models.DiscoRunResult;
 import com.azure.analytics.defender.easm.models.DiscoTemplate;
 import com.azure.analytics.defender.easm.models.ReportAssetSnapshotRequest;
@@ -18,7 +16,6 @@ import com.azure.analytics.defender.easm.models.ReportAssetSummaryRequest;
 import com.azure.analytics.defender.easm.models.ReportAssetSummaryResult;
 import com.azure.analytics.defender.easm.models.ReportBillableAssetSummaryResult;
 import com.azure.analytics.defender.easm.models.SavedFilter;
-import com.azure.analytics.defender.easm.models.SavedFilterData;
 import com.azure.analytics.defender.easm.models.Task;
 import com.azure.analytics.defender.easm.models.ValidateResult;
 import com.azure.core.annotation.Generated;
@@ -260,57 +257,6 @@ public final class EasmClient {
     }
 
     /**
-     * Validate a data connection with a given dataConnectionName.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     kind: String (Required)
-     *     name: String (Optional)
-     *     content: String(assets/attackSurfaceInsights) (Optional)
-     *     frequency: String(daily/weekly/monthly) (Optional)
-     *     frequencyOffset: Integer (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             value: Object (Optional)
-     *         }
-     *     }
-     * }
-     * }
-     * </pre>
-     *
-     * @param body Body parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return validate result for validate action endpoints along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDataConnectionWithResponse(BinaryData body, RequestOptions requestOptions) {
-        return this.serviceClient.validateDataConnectionWithResponse(body, requestOptions);
-    }
-
-    /**
      * Retrieve a data connection with a given dataConnectionName.
      * <p><strong>Response Body Schema</strong></p>
      * 
@@ -356,10 +302,17 @@ public final class EasmClient {
      * {@code
      * {
      *     kind: String (Required)
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
      *     frequency: String(daily/weekly/monthly) (Optional)
      *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
      * }
      * }
      * </pre>
@@ -489,69 +442,6 @@ public final class EasmClient {
     }
 
     /**
-     * Validate a discovery group with a given groupName.
-     * <p><strong>Request Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     name: String (Optional)
-     *     description: String (Optional)
-     *     tier: String (Optional)
-     *     frequencyMilliseconds: Long (Optional)
-     *     seeds (Optional): [
-     *          (Optional){
-     *             kind: String(as/attribute/contact/domain/host/ipBlock) (Optional)
-     *             name: String (Optional)
-     *         }
-     *     ]
-     *     names (Optional): [
-     *         String (Optional)
-     *     ]
-     *     excludes (Optional): [
-     *         (recursive schema, see above)
-     *     ]
-     *     templateId: String (Optional)
-     * }
-     * }
-     * </pre>
-     * 
-     * <p><strong>Response Body Schema</strong></p>
-     * 
-     * <pre>
-     * {@code
-     * {
-     *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             value: Object (Optional)
-     *         }
-     *     }
-     * }
-     * }
-     * </pre>
-     *
-     * @param body Body parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return validate result for validate action endpoints along with {@link Response}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> validateDiscoGroupWithResponse(BinaryData body, RequestOptions requestOptions) {
-        return this.serviceClient.validateDiscoGroupWithResponse(body, requestOptions);
-    }
-
-    /**
      * Retrieve a discovery group with a given groupName.
      * <p><strong>Response Body Schema</strong></p>
      * 
@@ -620,7 +510,9 @@ public final class EasmClient {
      * <pre>
      * {@code
      * {
-     *     name: String (Optional)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
      *     description: String (Optional)
      *     tier: String (Optional)
      *     frequencyMilliseconds: Long (Optional)
@@ -636,6 +528,24 @@ public final class EasmClient {
      *     excludes (Optional): [
      *         (recursive schema, see above)
      *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
      *     templateId: String (Optional)
      * }
      * }
@@ -1113,8 +1023,11 @@ public final class EasmClient {
      * <pre>
      * {@code
      * {
-     *     filter: String (Required)
-     *     description: String (Required)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
+     *     filter: String (Optional)
+     *     description: String (Optional)
      * }
      * }
      * </pre>
@@ -1423,27 +1336,6 @@ public final class EasmClient {
     }
 
     /**
-     * Validate a data connection with a given dataConnectionName.
-     *
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return validate result for validate action endpoints.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ValidateResult validateDataConnection(DataConnectionData body) {
-        // Generated convenience method for validateDataConnectionWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return validateDataConnectionWithResponse(BinaryData.fromObject(body), requestOptions).getValue()
-            .toObject(ValidateResult.class);
-    }
-
-    /**
      * Retrieve a data connection with a given dataConnectionName.
      *
      * @param dataConnectionName The caller provided unique name for the resource.
@@ -1462,28 +1354,6 @@ public final class EasmClient {
         RequestOptions requestOptions = new RequestOptions();
         return getDataConnectionWithResponse(dataConnectionName, requestOptions).getValue()
             .toObject(DataConnection.class);
-    }
-
-    /**
-     * Create or replace a data connection with a given dataConnectionName.
-     *
-     * @param dataConnectionName The caller provided unique name for the resource.
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataConnection createOrReplaceDataConnection(String dataConnectionName, DataConnectionData body) {
-        // Generated convenience method for createOrReplaceDataConnectionWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return createOrReplaceDataConnectionWithResponse(dataConnectionName, BinaryData.fromObject(body),
-            requestOptions).getValue().toObject(DataConnection.class);
     }
 
     /**
@@ -1553,27 +1423,6 @@ public final class EasmClient {
     }
 
     /**
-     * Validate a discovery group with a given groupName.
-     *
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return validate result for validate action endpoints.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ValidateResult validateDiscoGroup(DiscoGroupData body) {
-        // Generated convenience method for validateDiscoGroupWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return validateDiscoGroupWithResponse(BinaryData.fromObject(body), requestOptions).getValue()
-            .toObject(ValidateResult.class);
-    }
-
-    /**
      * Retrieve a discovery group with a given groupName.
      *
      * @param groupName The caller provided unique name for the resource.
@@ -1591,28 +1440,6 @@ public final class EasmClient {
         // Generated convenience method for getDiscoGroupWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getDiscoGroupWithResponse(groupName, requestOptions).getValue().toObject(DiscoGroup.class);
-    }
-
-    /**
-     * Create a discovery group with a given groupName.
-     *
-     * @param groupName The caller provided unique name for the resource.
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DiscoGroup createOrReplaceDiscoGroup(String groupName, DiscoGroupData body) {
-        // Generated convenience method for createOrReplaceDiscoGroupWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return createOrReplaceDiscoGroupWithResponse(groupName, BinaryData.fromObject(body), requestOptions).getValue()
-            .toObject(DiscoGroup.class);
     }
 
     /**
@@ -1879,29 +1706,6 @@ public final class EasmClient {
     }
 
     /**
-     * Create or replace a saved filter with a given filterName.
-     *
-     * @param filterName The caller provided unique name for the resource.
-     * @param body Body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SavedFilter createOrReplaceSavedFilter(String filterName, SavedFilterData body) {
-        // Generated convenience method for createOrReplaceSavedFilterWithResponse
-        RequestOptions requestOptions = new RequestOptions();
-        return createOrReplaceSavedFilterWithResponse(filterName, BinaryData.fromObject(body), requestOptions)
-            .getValue()
-            .toObject(SavedFilter.class);
-    }
-
-    /**
      * Delete a saved filter with a given filterName.
      *
      * @param filterName The caller provided unique name for the resource.
@@ -2007,5 +1811,262 @@ public final class EasmClient {
         // Generated convenience method for cancelTaskWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return cancelTaskWithResponse(taskId, requestOptions).getValue().toObject(Task.class);
+    }
+
+    /**
+     * Validate a data connection with a given dataConnectionName.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     kind: String (Required)
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
+     *     content: String(assets/attackSurfaceInsights) (Optional)
+     *     createdDate: OffsetDateTime (Optional)
+     *     frequency: String(daily/weekly/monthly) (Optional)
+     *     frequencyOffset: Integer (Optional)
+     *     updatedDate: OffsetDateTime (Optional)
+     *     userUpdatedAt: OffsetDateTime (Optional)
+     *     active: Boolean (Optional)
+     *     inactiveMessage: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             value: Object (Optional)
+     *         }
+     *     }
+     * }
+     * }
+     * </pre>
+     *
+     * @param dataConnectionName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return validate result for validate action endpoints along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> validateDataConnectionWithResponse(String dataConnectionName, BinaryData body,
+        RequestOptions requestOptions) {
+        return this.serviceClient.validateDataConnectionWithResponse(dataConnectionName, body, requestOptions);
+    }
+
+    /**
+     * Validate a discovery group with a given groupName.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Required)
+     *     displayName: String (Optional)
+     *     description: String (Optional)
+     *     tier: String (Optional)
+     *     frequencyMilliseconds: Long (Optional)
+     *     seeds (Optional): [
+     *          (Optional){
+     *             kind: String(as/attribute/contact/domain/host/ipBlock) (Optional)
+     *             name: String (Optional)
+     *         }
+     *     ]
+     *     names (Optional): [
+     *         String (Optional)
+     *     ]
+     *     excludes (Optional): [
+     *         (recursive schema, see above)
+     *     ]
+     *     latestRun (Optional): {
+     *         submittedDate: OffsetDateTime (Optional)
+     *         startedDate: OffsetDateTime (Optional)
+     *         completedDate: OffsetDateTime (Optional)
+     *         tier: String (Optional)
+     *         state: String(pending/running/completed/failed) (Optional)
+     *         totalAssetsFoundCount: Long (Optional)
+     *         seeds (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         excludes (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         names (Optional): [
+     *             String (Optional)
+     *         ]
+     *     }
+     *     createdDate: OffsetDateTime (Optional)
+     *     templateId: String (Optional)
+     * }
+     * }
+     * </pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>
+     * {@code
+     * {
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             value: Object (Optional)
+     *         }
+     *     }
+     * }
+     * }
+     * </pre>
+     *
+     * @param groupName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return validate result for validate action endpoints along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> validateDiscoGroupWithResponse(String groupName, BinaryData body,
+        RequestOptions requestOptions) {
+        return this.serviceClient.validateDiscoGroupWithResponse(groupName, body, requestOptions);
+    }
+
+    /**
+     * Validate a data connection with a given dataConnectionName.
+     *
+     * @param dataConnectionName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validate result for validate action endpoints.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidateResult validateDataConnection(String dataConnectionName, DataConnection body) {
+        // Generated convenience method for validateDataConnectionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return validateDataConnectionWithResponse(dataConnectionName, BinaryData.fromObject(body), requestOptions)
+            .getValue()
+            .toObject(ValidateResult.class);
+    }
+
+    /**
+     * Create or replace a data connection with a given dataConnectionName.
+     *
+     * @param dataConnectionName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataConnection createOrReplaceDataConnection(String dataConnectionName, DataConnection body) {
+        // Generated convenience method for createOrReplaceDataConnectionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return createOrReplaceDataConnectionWithResponse(dataConnectionName, BinaryData.fromObject(body),
+            requestOptions).getValue().toObject(DataConnection.class);
+    }
+
+    /**
+     * Validate a discovery group with a given groupName.
+     *
+     * @param groupName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validate result for validate action endpoints.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidateResult validateDiscoGroup(String groupName, DiscoGroup body) {
+        // Generated convenience method for validateDiscoGroupWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return validateDiscoGroupWithResponse(groupName, BinaryData.fromObject(body), requestOptions).getValue()
+            .toObject(ValidateResult.class);
+    }
+
+    /**
+     * Create a discovery group with a given groupName.
+     *
+     * @param groupName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DiscoGroup createOrReplaceDiscoGroup(String groupName, DiscoGroup body) {
+        // Generated convenience method for createOrReplaceDiscoGroupWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return createOrReplaceDiscoGroupWithResponse(groupName, BinaryData.fromObject(body), requestOptions).getValue()
+            .toObject(DiscoGroup.class);
+    }
+
+    /**
+     * Create or replace a saved filter with a given filterName.
+     *
+     * @param filterName The caller provided unique name for the resource.
+     * @param body Body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SavedFilter createOrReplaceSavedFilter(String filterName, SavedFilter body) {
+        // Generated convenience method for createOrReplaceSavedFilterWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return createOrReplaceSavedFilterWithResponse(filterName, BinaryData.fromObject(body), requestOptions)
+            .getValue()
+            .toObject(SavedFilter.class);
     }
 }
