@@ -91,11 +91,18 @@ public interface Server {
     String administratorLoginPassword();
 
     /**
-     * Gets the version property: Server version.
+     * Gets the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @return the version value.
      */
     ServerVersion version();
+
+    /**
+     * Gets the fullVersion property: Major version and actual engine version.
+     * 
+     * @return the fullVersion value.
+     */
+    String fullVersion();
 
     /**
      * Gets the availabilityZone property: availability Zone information of the server.
@@ -162,6 +169,13 @@ public interface Server {
     String fullyQualifiedDomainName();
 
     /**
+     * Gets the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @return the databasePort value.
+     */
+    Integer databasePort();
+
+    /**
      * Gets the storage property: Storage related properties of a server.
      * 
      * @return the storage value.
@@ -197,7 +211,15 @@ public interface Server {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
-     * Gets the maintenanceWindow property: Maintenance window of a server.
+     * Gets the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @return the maintenancePolicy value.
+     */
+    MaintenancePolicy maintenancePolicy();
+
+    /**
+     * Gets the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @return the maintenanceWindow value.
      */
@@ -297,8 +319,9 @@ public interface Server {
             DefinitionStages.WithAdministratorLogin, DefinitionStages.WithAdministratorLoginPassword,
             DefinitionStages.WithVersion, DefinitionStages.WithAvailabilityZone, DefinitionStages.WithCreateMode,
             DefinitionStages.WithSourceServerResourceId, DefinitionStages.WithRestorePointInTime,
-            DefinitionStages.WithReplicationRole, DefinitionStages.WithDataEncryption, DefinitionStages.WithStorage,
-            DefinitionStages.WithBackup, DefinitionStages.WithHighAvailability, DefinitionStages.WithNetwork,
+            DefinitionStages.WithReplicationRole, DefinitionStages.WithDataEncryption,
+            DefinitionStages.WithDatabasePort, DefinitionStages.WithStorage, DefinitionStages.WithBackup,
+            DefinitionStages.WithHighAvailability, DefinitionStages.WithNetwork, DefinitionStages.WithMaintenancePolicy,
             DefinitionStages.WithImportSourceProperties {
             /**
              * Executes the create request.
@@ -389,9 +412,10 @@ public interface Server {
          */
         interface WithVersion {
             /**
-             * Specifies the version property: Server version..
+             * Specifies the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for
+             * MySQL 5.7.
              * 
-             * @param version Server version.
+             * @param version Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
              * @return the next definition stage.
              */
             WithCreate withVersion(ServerVersion version);
@@ -478,6 +502,20 @@ public interface Server {
         }
 
         /**
+         * The stage of the Server definition allowing to specify databasePort.
+         */
+        interface WithDatabasePort {
+            /**
+             * Specifies the databasePort property: The server database port. Can only be specified when the server is
+             * being created..
+             * 
+             * @param databasePort The server database port. Can only be specified when the server is being created.
+             * @return the next definition stage.
+             */
+            WithCreate withDatabasePort(Integer databasePort);
+        }
+
+        /**
          * The stage of the Server definition allowing to specify storage.
          */
         interface WithStorage {
@@ -530,6 +568,19 @@ public interface Server {
         }
 
         /**
+         * The stage of the Server definition allowing to specify maintenancePolicy.
+         */
+        interface WithMaintenancePolicy {
+            /**
+             * Specifies the maintenancePolicy property: Maintenance policy of a server..
+             * 
+             * @param maintenancePolicy Maintenance policy of a server.
+             * @return the next definition stage.
+             */
+            WithCreate withMaintenancePolicy(MaintenancePolicy maintenancePolicy);
+        }
+
+        /**
          * The stage of the Server definition allowing to specify importSourceProperties.
          */
         interface WithImportSourceProperties {
@@ -555,8 +606,9 @@ public interface Server {
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithSku,
         UpdateStages.WithAdministratorLoginPassword, UpdateStages.WithVersion, UpdateStages.WithStorage,
-        UpdateStages.WithBackup, UpdateStages.WithHighAvailability, UpdateStages.WithMaintenanceWindow,
-        UpdateStages.WithReplicationRole, UpdateStages.WithDataEncryption, UpdateStages.WithNetwork {
+        UpdateStages.WithBackup, UpdateStages.WithHighAvailability, UpdateStages.WithMaintenancePolicy,
+        UpdateStages.WithMaintenanceWindow, UpdateStages.WithReplicationRole, UpdateStages.WithDataEncryption,
+        UpdateStages.WithNetwork {
         /**
          * Executes the update request.
          * 
@@ -679,6 +731,19 @@ public interface Server {
              * @return the next definition stage.
              */
             Update withHighAvailability(HighAvailability highAvailability);
+        }
+
+        /**
+         * The stage of the Server update allowing to specify maintenancePolicy.
+         */
+        interface WithMaintenancePolicy {
+            /**
+             * Specifies the maintenancePolicy property: Maintenance policy of a server..
+             * 
+             * @param maintenancePolicy Maintenance policy of a server.
+             * @return the next definition stage.
+             */
+            Update withMaintenancePolicy(MaintenancePolicy maintenancePolicy);
         }
 
         /**
@@ -869,4 +934,27 @@ public interface Server {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void resetGtid(ServerGtidSetParameter parameters, Context context);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param parameters The required parameters for detach vnet on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(ServerDetachVNetParameter parameters);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param parameters The required parameters for detach vnet on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(ServerDetachVNetParameter parameters, Context context);
 }

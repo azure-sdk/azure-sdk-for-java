@@ -254,6 +254,34 @@ public interface Servers {
     void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters, Context context);
 
     /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    Server detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters,
+        Context context);
+
+    /**
      * Gets information about a server.
      * 
      * @param id the resource ID.

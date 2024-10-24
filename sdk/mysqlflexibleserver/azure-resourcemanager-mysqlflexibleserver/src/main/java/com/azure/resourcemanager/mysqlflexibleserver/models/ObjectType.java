@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -23,6 +22,11 @@ public final class ObjectType extends ExpandableStringEnum<ObjectType> {
     public static final ObjectType IMPORT_FROM_STORAGE_RESPONSE = fromString("ImportFromStorageResponse");
 
     /**
+     * Static value RestoreSnapshotResponse for ObjectType.
+     */
+    public static final ObjectType RESTORE_SNAPSHOT_RESPONSE = fromString("RestoreSnapshotResponse");
+
+    /**
      * Creates a new instance of ObjectType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -37,7 +41,6 @@ public final class ObjectType extends ExpandableStringEnum<ObjectType> {
      * @param name a name to look for.
      * @return the corresponding ObjectType.
      */
-    @JsonCreator
     public static ObjectType fromString(String name) {
         return fromString(name, ObjectType.class);
     }
