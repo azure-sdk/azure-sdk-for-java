@@ -51,22 +51,22 @@ public final class FeaturestoreEntityVersionsClientImpl implements FeaturestoreE
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of FeaturestoreEntityVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    FeaturestoreEntityVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    FeaturestoreEntityVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(FeaturestoreEntityVersionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesFeaturestoreEntityVersions to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesFeaturestoreEntityVersions to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

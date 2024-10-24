@@ -51,22 +51,22 @@ public final class RegistryEnvironmentVersionsClientImpl implements RegistryEnvi
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of RegistryEnvironmentVersionsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RegistryEnvironmentVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    RegistryEnvironmentVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(RegistryEnvironmentVersionsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesRegistryEnvironmentVersions to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesRegistryEnvironmentVersions to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
