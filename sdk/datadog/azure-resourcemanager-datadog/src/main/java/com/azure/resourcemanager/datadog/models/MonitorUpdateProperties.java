@@ -5,31 +5,36 @@
 package com.azure.resourcemanager.datadog.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
-/** The set of properties that can be update in a PATCH request to a monitor resource. */
+/**
+ * The set of properties that can be update in a PATCH request to a monitor resource.
+ */
 @Fluent
-public final class MonitorUpdateProperties {
+public final class MonitorUpdateProperties implements JsonSerializable<MonitorUpdateProperties> {
     /*
      * Flag specifying if the resource monitoring is enabled or disabled.
      */
-    @JsonProperty(value = "monitoringStatus")
     private MonitoringStatus monitoringStatus;
 
     /*
-     * The new cloud security posture management value of the monitor resource. This collects configuration information
-     * for all resources in a subscription and track conformance to industry benchmarks.
+     * The new cspm value of the monitor resource.
      */
-    @JsonProperty(value = "cspm")
     private Boolean cspm;
 
-    /** Creates an instance of MonitorUpdateProperties class. */
+    /**
+     * Creates an instance of MonitorUpdateProperties class.
+     */
     public MonitorUpdateProperties() {
     }
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -38,7 +43,7 @@ public final class MonitorUpdateProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorUpdateProperties object itself.
      */
@@ -48,9 +53,8 @@ public final class MonitorUpdateProperties {
     }
 
     /**
-     * Get the cspm property: The new cloud security posture management value of the monitor resource. This collects
-     * configuration information for all resources in a subscription and track conformance to industry benchmarks.
-     *
+     * Get the cspm property: The new cspm value of the monitor resource.
+     * 
      * @return the cspm value.
      */
     public Boolean cspm() {
@@ -58,9 +62,8 @@ public final class MonitorUpdateProperties {
     }
 
     /**
-     * Set the cspm property: The new cloud security posture management value of the monitor resource. This collects
-     * configuration information for all resources in a subscription and track conformance to industry benchmarks.
-     *
+     * Set the cspm property: The new cspm value of the monitor resource.
+     * 
      * @param cspm the cspm value to set.
      * @return the MonitorUpdateProperties object itself.
      */
@@ -71,9 +74,50 @@ public final class MonitorUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("monitoringStatus",
+            this.monitoringStatus == null ? null : this.monitoringStatus.toString());
+        jsonWriter.writeBooleanField("cspm", this.cspm);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of MonitorUpdateProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of MonitorUpdateProperties if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the MonitorUpdateProperties.
+     */
+    public static MonitorUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            MonitorUpdateProperties deserializedMonitorUpdateProperties = new MonitorUpdateProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("monitoringStatus".equals(fieldName)) {
+                    deserializedMonitorUpdateProperties.monitoringStatus
+                        = MonitoringStatus.fromString(reader.getString());
+                } else if ("cspm".equals(fieldName)) {
+                    deserializedMonitorUpdateProperties.cspm = reader.getNullable(JsonReader::getBoolean);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedMonitorUpdateProperties;
+        });
     }
 }

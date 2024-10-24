@@ -4,38 +4,39 @@
 
 package com.azure.resourcemanager.datadog.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of CreationSupporteds. */
+/**
+ * Resource collection API of CreationSupporteds.
+ */
 public interface CreationSupporteds {
     /**
      * Informs if the current subscription is being already monitored for selected Datadog organization.
-     *
-     * @param datadogOrganizationId Datadog Organization Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<CreateResourceSupportedResponse> list(String datadogOrganizationId);
-
-    /**
-     * Informs if the current subscription is being already monitored for selected Datadog organization.
-     *
+     * 
      * @param datadogOrganizationId Datadog Organization Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return datadog resource can be created or not along with {@link Response}.
      */
-    PagedIterable<CreateResourceSupportedResponse> list(String datadogOrganizationId, Context context);
+    Response<CreateResourceSupportedResponse> listWithResponse(String datadogOrganizationId, Context context);
 
     /**
      * Informs if the current subscription is being already monitored for selected Datadog organization.
-     *
+     * 
+     * @param datadogOrganizationId Datadog Organization Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return datadog resource can be created or not.
+     */
+    CreateResourceSupportedResponse list(String datadogOrganizationId);
+
+    /**
+     * Informs if the current subscription is being already monitored for selected Datadog organization.
+     * 
      * @param datadogOrganizationId Datadog Organization Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +48,7 @@ public interface CreationSupporteds {
 
     /**
      * Informs if the current subscription is being already monitored for selected Datadog organization.
-     *
+     * 
      * @param datadogOrganizationId Datadog Organization Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

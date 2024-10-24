@@ -12,14 +12,18 @@ public final class LinkedResourceImpl implements LinkedResource {
 
     private final com.azure.resourcemanager.datadog.MicrosoftDatadogManager serviceManager;
 
-    LinkedResourceImpl(
-        LinkedResourceInner innerObject, com.azure.resourcemanager.datadog.MicrosoftDatadogManager serviceManager) {
+    LinkedResourceImpl(LinkedResourceInner innerObject,
+        com.azure.resourcemanager.datadog.MicrosoftDatadogManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
 
     public String id() {
         return this.innerModel().id();
+    }
+
+    public String location() {
+        return this.innerModel().location();
     }
 
     public LinkedResourceInner innerModel() {
