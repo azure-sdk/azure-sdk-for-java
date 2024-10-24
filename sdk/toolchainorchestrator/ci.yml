@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/toolchainorchestrator/ci.yml
+      - sdk/toolchainorchestrator/azure-resourcemanager-toolchainorchestrator/
+    exclude:
+      - sdk/toolchainorchestrator/pom.xml
+      - sdk/toolchainorchestrator/azure-resourcemanager-toolchainorchestrator/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/toolchainorchestrator/ci.yml
+      - sdk/toolchainorchestrator/azure-resourcemanager-toolchainorchestrator/
+    exclude:
+      - sdk/toolchainorchestrator/pom.xml
+      - sdk/toolchainorchestrator/azure-resourcemanager-toolchainorchestrator/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagertoolchainorchestrator
+    displayName: azure-resourcemanager-toolchainorchestrator
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: toolchainorchestrator
+    Artifacts:
+      - name: azure-resourcemanager-toolchainorchestrator
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagertoolchainorchestrator
+        releaseInBatch: ${{ parameters.release_azureresourcemanagertoolchainorchestrator }}
