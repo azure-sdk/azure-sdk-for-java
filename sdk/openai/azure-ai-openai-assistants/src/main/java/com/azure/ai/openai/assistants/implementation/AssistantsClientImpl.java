@@ -2773,6 +2773,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     stream: Boolean (Optional)
      *     temperature: Double (Optional)
      *     top_p: Double (Optional)
@@ -2836,6 +2837,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -2912,6 +2914,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     stream: Boolean (Optional)
      *     temperature: Double (Optional)
      *     top_p: Double (Optional)
@@ -2975,6 +2978,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3068,6 +3072,7 @@ public final class AssistantsClientImpl {
      *                 last_messages: Integer (Optional)
      *             }
      *             tool_choice: BinaryData (Required)
+     *             parallel_tool_calls: boolean (Required)
      *             response_format: BinaryData (Required)
      *             metadata (Required): {
      *                 String: String (Required)
@@ -3164,6 +3169,7 @@ public final class AssistantsClientImpl {
      *                 last_messages: Integer (Optional)
      *             }
      *             tool_choice: BinaryData (Required)
+     *             parallel_tool_calls: boolean (Required)
      *             response_format: BinaryData (Required)
      *             metadata (Required): {
      *                 String: String (Required)
@@ -3238,6 +3244,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3311,6 +3318,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3393,6 +3401,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3480,6 +3489,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3571,6 +3581,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3663,6 +3674,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3737,6 +3749,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3810,6 +3823,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -3878,6 +3892,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
      *             file_ids (Optional): [
@@ -3953,6 +3968,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
@@ -4024,6 +4040,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     parallel_tool_calls: Boolean (Optional)
      *     tool_resources (Optional): {
      *         code_interpreter (Optional): {
      *             file_ids (Optional): [
@@ -4099,6 +4116,7 @@ public final class AssistantsClientImpl {
      *         last_messages: Integer (Optional)
      *     }
      *     tool_choice: BinaryData (Required)
+     *     parallel_tool_calls: boolean (Required)
      *     response_format: BinaryData (Required)
      *     metadata (Required): {
      *         String: String (Required)
