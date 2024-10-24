@@ -10,8 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class MetadataSchemasDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_Delete.
-     * json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-06-01-preview/examples/
+     * MetadataSchemas_Delete.json
      */
     /**
      * Sample code: MetadataSchemas_Delete.
@@ -19,7 +19,7 @@ public final class MetadataSchemasDeleteSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void metadataSchemasDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.metadataSchemas().deleteWithResponse("contoso-resources", "contoso", "author",
-            com.azure.core.util.Context.NONE);
+        manager.metadataSchemas()
+            .deleteWithResponse("contoso-resources", "contoso", "author", com.azure.core.util.Context.NONE);
     }
 }

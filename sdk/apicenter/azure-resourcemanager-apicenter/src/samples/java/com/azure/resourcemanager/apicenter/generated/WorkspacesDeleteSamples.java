@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class WorkspacesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-06-01-preview/examples/
+     * Workspaces_Delete.json
      */
     /**
      * Sample code: Workspaces_Delete.
@@ -18,7 +19,7 @@ public final class WorkspacesDeleteSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void workspacesDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.workspaces().deleteWithResponse("contoso-resources", "contoso", "default",
-            com.azure.core.util.Context.NONE);
+        manager.workspaces()
+            .deleteWithResponse("contoso-resources", "contoso", "default", com.azure.core.util.Context.NONE);
     }
 }
