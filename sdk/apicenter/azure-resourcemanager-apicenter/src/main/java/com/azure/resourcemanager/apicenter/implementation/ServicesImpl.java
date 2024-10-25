@@ -10,8 +10,11 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.ServicesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.ImportFromApimSuccessResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimRequest;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimSuccessResult;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.Service;
@@ -97,6 +100,28 @@ public final class ServicesImpl implements Services {
             = this.serviceClient().exportMetadataSchema(resourceGroupName, serviceName, body, context);
         if (inner != null) {
             return new MetadataSchemaExportResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ImportFromApimSuccessResult importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body) {
+        ImportFromApimSuccessResultInner inner
+            = this.serviceClient().importFromApim(resourceGroupName, serviceName, body);
+        if (inner != null) {
+            return new ImportFromApimSuccessResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ImportFromApimSuccessResult importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body, Context context) {
+        ImportFromApimSuccessResultInner inner
+            = this.serviceClient().importFromApim(resourceGroupName, serviceName, body, context);
+        if (inner != null) {
+            return new ImportFromApimSuccessResultImpl(inner, this.manager());
         } else {
             return null;
         }

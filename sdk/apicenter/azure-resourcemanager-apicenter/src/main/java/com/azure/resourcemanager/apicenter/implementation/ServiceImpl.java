@@ -8,12 +8,15 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimRequest;
+import com.azure.resourcemanager.apicenter.models.ImportFromApimSuccessResult;
 import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.Service;
 import com.azure.resourcemanager.apicenter.models.ServiceProperties;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
+import com.azure.resourcemanager.apicenter.models.ServiceUpdateProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -164,6 +167,14 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
         return serviceManager.services().exportMetadataSchema(resourceGroupName, serviceName, body, context);
     }
 
+    public ImportFromApimSuccessResult importFromApim(ImportFromApimRequest body) {
+        return serviceManager.services().importFromApim(resourceGroupName, serviceName, body);
+    }
+
+    public ImportFromApimSuccessResult importFromApim(ImportFromApimRequest body, Context context) {
+        return serviceManager.services().importFromApim(resourceGroupName, serviceName, body, context);
+    }
+
     public ServiceImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -197,6 +208,11 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             this.updateProperties.withIdentity(identity);
             return this;
         }
+    }
+
+    public ServiceImpl withProperties(ServiceUpdateProperties properties) {
+        this.updateProperties.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {

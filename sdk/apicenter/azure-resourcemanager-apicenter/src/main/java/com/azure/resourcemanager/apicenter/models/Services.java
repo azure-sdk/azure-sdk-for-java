@@ -134,6 +134,35 @@ public interface Services {
         MetadataSchemaExportRequest body, Context context);
 
     /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    ImportFromApimSuccessResult importFromApim(String resourceGroupName, String serviceName,
+        ImportFromApimRequest body);
+
+    /**
+     * Imports APIs from Azure API Management.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the import operation was successfully completed.
+     */
+    ImportFromApimSuccessResult importFromApim(String resourceGroupName, String serviceName, ImportFromApimRequest body,
+        Context context);
+
+    /**
      * Returns details of the service.
      * 
      * @param id the resource ID.
