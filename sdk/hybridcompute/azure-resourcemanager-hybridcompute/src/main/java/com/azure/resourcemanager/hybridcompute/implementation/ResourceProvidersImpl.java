@@ -7,6 +7,8 @@ package com.azure.resourcemanager.hybridcompute.implementation;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.hybridcompute.fluent.models.MachineExtensionSetupInner;
+import com.azure.resourcemanager.hybridcompute.models.MachineExtensionSetup;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionUpgrade;
 import com.azure.resourcemanager.hybridcompute.models.ResourceProviders;
 
@@ -31,6 +33,28 @@ public final class ResourceProvidersImpl implements ResourceProviders {
     public void upgradeExtensions(String resourceGroupName, String machineName,
         MachineExtensionUpgrade extensionUpgradeParameters, Context context) {
         this.serviceClient().upgradeExtensions(resourceGroupName, machineName, extensionUpgradeParameters, context);
+    }
+
+    public MachineExtensionSetup setupExtensions(String resourceGroupName, String machineName,
+        MachineExtensionSetupInner extensionSetupBody) {
+        MachineExtensionSetupInner inner
+            = this.serviceClient().setupExtensions(resourceGroupName, machineName, extensionSetupBody);
+        if (inner != null) {
+            return new MachineExtensionSetupImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public MachineExtensionSetup setupExtensions(String resourceGroupName, String machineName,
+        MachineExtensionSetupInner extensionSetupBody, Context context) {
+        MachineExtensionSetupInner inner
+            = this.serviceClient().setupExtensions(resourceGroupName, machineName, extensionSetupBody, context);
+        if (inner != null) {
+            return new MachineExtensionSetupImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     private ResourceProvidersClient serviceClient() {

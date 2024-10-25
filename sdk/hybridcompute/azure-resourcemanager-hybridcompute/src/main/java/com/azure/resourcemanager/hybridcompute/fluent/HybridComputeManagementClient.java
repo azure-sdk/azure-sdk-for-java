@@ -89,6 +89,27 @@ public interface HybridComputeManagementClient {
     ExtensionMetadatasClient getExtensionMetadatas();
 
     /**
+     * Gets the ExtensionMetadataV2sClient object to access its operations.
+     * 
+     * @return the ExtensionMetadataV2sClient object.
+     */
+    ExtensionMetadataV2sClient getExtensionMetadataV2s();
+
+    /**
+     * Gets the ExtensionTypesClient object to access its operations.
+     * 
+     * @return the ExtensionTypesClient object.
+     */
+    ExtensionTypesClient getExtensionTypes();
+
+    /**
+     * Gets the ExtensionPublishersClient object to access its operations.
+     * 
+     * @return the ExtensionPublishersClient object.
+     */
+    ExtensionPublishersClient getExtensionPublishers();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
@@ -101,6 +122,27 @@ public interface HybridComputeManagementClient {
      * @return the NetworkProfilesClient object.
      */
     NetworkProfilesClient getNetworkProfiles();
+
+    /**
+     * Gets the MachineRunCommandsClient object to access its operations.
+     * 
+     * @return the MachineRunCommandsClient object.
+     */
+    MachineRunCommandsClient getMachineRunCommands();
+
+    /**
+     * Gets the GatewaysClient object to access its operations.
+     * 
+     * @return the GatewaysClient object.
+     */
+    GatewaysClient getGateways();
+
+    /**
+     * Gets the SettingsOperationsClient object to access its operations.
+     * 
+     * @return the SettingsOperationsClient object.
+     */
+    SettingsOperationsClient getSettingsOperations();
 
     /**
      * Gets the PrivateLinkScopesClient object to access its operations.
