@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ApiVersionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-06-01-preview/examples/
+     * ApiVersions_Delete.json
      */
     /**
      * Sample code: ApiVersions_Delete.
@@ -18,7 +19,8 @@ public final class ApiVersionsDeleteSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiVersionsDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiVersions().deleteWithResponse("contoso-resources", "contoso", "default", "echo-api", "2023-01-01",
-            com.azure.core.util.Context.NONE);
+        manager.apiVersions()
+            .deleteWithResponse("contoso-resources", "contoso", "default", "echo-api", "2023-01-01",
+                com.azure.core.util.Context.NONE);
     }
 }
