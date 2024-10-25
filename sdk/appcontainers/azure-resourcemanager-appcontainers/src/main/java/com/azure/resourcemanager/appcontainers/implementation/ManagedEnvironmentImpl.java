@@ -118,6 +118,15 @@ public final class ManagedEnvironmentImpl
         return this.innerModel().zoneRedundant();
     }
 
+    public List<String> availabilityZones() {
+        List<String> inner = this.innerModel().availabilityZones();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public CustomDomainConfiguration customDomainConfiguration() {
         return this.innerModel().customDomainConfiguration();
     }
@@ -329,6 +338,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withZoneRedundant(Boolean zoneRedundant) {
         this.innerModel().withZoneRedundant(zoneRedundant);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withAvailabilityZones(List<String> availabilityZones) {
+        this.innerModel().withAvailabilityZones(availabilityZones);
         return this;
     }
 
