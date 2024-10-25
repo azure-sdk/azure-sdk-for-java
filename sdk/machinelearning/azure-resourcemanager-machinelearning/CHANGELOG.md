@@ -1,14 +1,943 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-25)
 
-### Features Added
+- Azure Resource Manager Machine Learning client library for Java. This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-preview-2024-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+* `models.FqdnEndpointsProperties` was removed
 
-### Other Changes
+* `models.EncryptionKeyVaultProperties` was removed
+
+* `models.ValueFormat` was removed
+
+* `models.PublicNetworkAccess` was removed
+
+* `models.PrivateEndpointServiceConnectionStatus` was removed
+
+#### `models.WorkspaceConnectionPropertiesV2` was modified
+
+* `value()` was removed
+* `valueFormat()` was removed
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.ListWorkspaceKeysResult` was modified
+
+* `userStorageResourceId()` was removed
+
+#### `models.FqdnEndpoints` was modified
+
+* `withProperties(models.FqdnEndpointsProperties)` was removed
+* `properties()` was removed
+
+#### `models.Workspace$Update` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+
+#### `models.PrivateEndpointConnection$Definition` was modified
+
+* `withPrivateEndpoint(models.PrivateEndpoint)` was removed
+
+#### `models.ServicePrincipalAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValueFormat(models.ValueFormat)` was removed
+* `withValue(java.lang.String)` was removed
+
+#### `models.Workspaces` was modified
+
+* `list(java.lang.String,com.azure.core.util.Context)` was removed
+* `listByResourceGroup(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `models.PrivateEndpointServiceConnectionStatus status()` -> `models.EndpointServiceConnectionStatus status()`
+* `withStatus(models.PrivateEndpointServiceConnectionStatus)` was removed
+
+#### `models.OAuth2AuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.Workspace$Definition` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+
+#### `models.Datastores` was modified
+
+* `listSecretsWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.PrivateLinkResource` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `com.azure.core.management.SystemData systemData()` -> `com.azure.core.management.SystemData systemData()`
+* `models.ManagedServiceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `withLocation(java.lang.String)` was removed
+* `java.lang.String name()` -> `java.lang.String name()`
+* `java.util.List requiredZoneNames()` -> `java.util.List requiredZoneNames()`
+* `models.Sku sku()` -> `models.Sku sku()`
+* `withRequiredZoneNames(java.util.List)` was removed
+* `withTags(java.util.Map)` was removed
+* `validate()` was removed
+* `withIdentity(models.ManagedServiceIdentity)` was removed
+* `java.util.Map tags()` -> `java.util.Map tags()`
+* `java.lang.String groupId()` -> `java.lang.String groupId()`
+* `java.lang.String type()` -> `java.lang.String type()`
+* `java.lang.String location()` -> `java.lang.String location()`
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `java.lang.String id()` -> `java.lang.String id()`
+* `withSku(models.Sku)` was removed
+* `java.util.List requiredMembers()` -> `java.util.List requiredMembers()`
+
+#### `models.PrivateEndpointConnection$Update` was modified
+
+* `withPrivateEndpoint(models.PrivateEndpoint)` was removed
+
+#### `models.ApiKeyAuthWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.Workspace` was modified
+
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccessType publicNetworkAccess()`
+
+#### `models.Datastore` was modified
+
+* `listSecretsWithResponse(com.azure.core.util.Context)` was removed
+
+#### `models.NoneAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValueFormat(models.ValueFormat)` was removed
+* `withValue(java.lang.String)` was removed
+
+#### `models.CustomKeysWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.UsernamePasswordAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValueFormat(models.ValueFormat)` was removed
+* `withValue(java.lang.String)` was removed
+
+#### `models.AccountKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValueFormat(models.ValueFormat)` was removed
+* `withValue(java.lang.String)` was removed
+
+#### `models.WorkspacePropertiesUpdateParameters` was modified
+
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccessType publicNetworkAccess()`
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccessType publicNetworkAccess()`
+
+#### `models.AccessKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValueFormat(models.ValueFormat)` was removed
+* `withValue(java.lang.String)` was removed
+
+#### `models.AadAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.WorkspaceProperties` was modified
+
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccessType publicNetworkAccess()`
+
+#### `models.SharedPrivateLinkResource` was modified
+
+* `models.PrivateEndpointServiceConnectionStatus status()` -> `models.EndpointServiceConnectionStatus status()`
+* `withStatus(models.PrivateEndpointServiceConnectionStatus)` was removed
+
+#### `models.PrivateLinkResources` was modified
+
+* `listWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `models.PrivateLinkResourceListResult list(java.lang.String,java.lang.String)` -> `com.azure.core.http.rest.PagedIterable list(java.lang.String,java.lang.String)`
+
+#### `models.SasAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.EncryptionProperty` was modified
+
+* `models.EncryptionKeyVaultProperties keyVaultProperties()` -> `models.KeyVaultProperties keyVaultProperties()`
+* `withKeyVaultProperties(models.EncryptionKeyVaultProperties)` was removed
+
+#### `models.ManagedIdentityAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `java.util.List value()` -> `java.util.List value()`
+* `innerModel()` was removed
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `models.PrivateEndpoint privateEndpoint()` -> `models.WorkspacePrivateEndpointResource privateEndpoint()`
+
+#### `models.PatAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withValue(java.lang.String)` was removed
+* `withValueFormat(models.ValueFormat)` was removed
+
+### Features Added
+
+* `models.GroupEnvironmentConfiguration` was added
+
+* `models.ManagedOnlineEndpointResourceProperties` was added
+
+* `models.ManagedPERequirement` was added
+
+* `models.DeltaModelStatusRequest` was added
+
+* `models.Endpoints` was added
+
+* `models.GroupStatus` was added
+
+* `models.RaiPolicyPropertiesBasicResource$DefinitionStages` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$Update` was added
+
+* `models.RaiPolicyType` was added
+
+* `models.RaiBlocklistItemPropertiesBasicResource$Definition` was added
+
+* `models.RaiPolicies` was added
+
+* `models.EndpointResourcePropertiesBasicResource` was added
+
+* `models.EndpointDeployments` was added
+
+* `models.IpRule` was added
+
+* `models.CapabilityHost$Update` was added
+
+* `models.InferenceGroup$DefinitionStages` was added
+
+* `models.DeploymentModelVersionUpgradeOption` was added
+
+* `models.InferenceEndpointTrackedResourceArmPaginatedResult` was added
+
+* `models.InferencePoolTrackedResourceArmPaginatedResult` was added
+
+* `models.CapabilityHosts` was added
+
+* `models.InferenceEndpointProperties` was added
+
+* `models.ServiceAccountKeyName` was added
+
+* `models.EndpointDeploymentResourceProperties` was added
+
+* `models.IdleShutdownSetting` was added
+
+* `models.InferencePool` was added
+
+* `models.RaiPolicyPropertiesBasicResource$Definition` was added
+
+* `models.RaiBlocklistProperties` was added
+
+* `models.ServerlessOffer` was added
+
+* `models.CapabilityHost$UpdateStages` was added
+
+* `models.ManagedResourceGroupSettings` was added
+
+* `models.ConnectionRaiPolicyOperations` was added
+
+* `models.StringKeyValuePair` was added
+
+* `models.CapabilityHost$DefinitionStages` was added
+
+* `models.EndpointResourcePropertiesBasicResource$Definition` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResource$UpdateStages` was added
+
+* `models.EndpointModelSkuProperties` was added
+
+* `models.InferenceGroup` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResourceArmPaginatedResult` was added
+
+* `models.EndpointResourcePropertiesBasicResource$UpdateStages` was added
+
+* `models.InferenceEndpoint$DefinitionStages` was added
+
+* `models.RequestConfiguration` was added
+
+* `models.EndpointDeploymentModel` was added
+
+* `models.EndpointResourcePropertiesBasicResource$DefinitionStages` was added
+
+* `models.ManagedResourceGroupAssignedIdentities` was added
+
+* `models.MountMode` was added
+
+* `models.EndpointKeys` was added
+
+* `models.EndpointResourceProperties` was added
+
+* `models.InferencePool$DefinitionStages` was added
+
+* `models.RaiBlocklistPropertiesBasicResource$DefinitionStages` was added
+
+* `models.ActualCapacityInfo` was added
+
+* `models.ServerlessEndpointCapacityReservation` was added
+
+* `models.SpeechEndpointResourceProperties` was added
+
+* `models.InferenceGroupProperties` was added
+
+* `models.EndpointResourcePropertiesBasicResource$Update` was added
+
+* `models.AllowedContentLevel` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResource$Update` was added
+
+* `models.CapabilityHost` was added
+
+* `models.CognitiveServiceEndpointDeploymentResourceProperties` was added
+
+* `models.FqdnEndpointsPropertyBag` was added
+
+* `models.InferencePool$Update` was added
+
+* `models.JobResources` was added
+
+* `models.ServerlessEndpointModelSettings` was added
+
+* `models.AuthMode` was added
+
+* `models.ServerlessEndpointResourceProperties` was added
+
+* `models.ConnectionRaiBlocklists` was added
+
+* `models.AccountApiKeys` was added
+
+* `models.EndpointType` was added
+
+* `models.DeltaModelListRequest` was added
+
+* `models.EndpointModelDeprecationProperties` was added
+
+* `models.ConnectionRaiPolicies` was added
+
+* `models.EndpointModelSkuRateLimitProperties` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResource` was added
+
+* `models.RaiPolicyContentFilter` was added
+
+* `models.FineTuningJob` was added
+
+* `models.ResizeSchema` was added
+
+* `models.ModelProvider` was added
+
+* `models.MlflowAutologger` was added
+
+* `models.RaiBlocklistItemPropertiesBasicResource$DefinitionStages` was added
+
+* `models.ComputeInstanceAutologgerSettings` was added
+
+* `models.AzureOpenAiHyperParameters` was added
+
+* `models.ConnectionRaiBlocklistItems` was added
+
+* `models.FineTuningTaskType` was added
+
+* `models.GroupModelConfiguration` was added
+
+* `models.RaiBlocklistPropertiesBasicResource$Definition` was added
+
+* `models.DefaultActionType` was added
+
+* `models.CustomModelFineTuning` was added
+
+* `models.CapabilityHostKind` was added
+
+* `models.DeltaModelStatusResponse` was added
+
+* `models.ConnectionRaiBlocklistItemsOperations` was added
+
+* `models.WorkspaceConnectionUpdateParameter` was added
+
+* `models.ScaleUnitConfiguration` was added
+
+* `models.ConnectionRaiBlocklistOperations` was added
+
+* `models.OpenAIEndpointDeploymentResourceProperties` was added
+
+* `models.SystemDatastoresAuthMode` was added
+
+* `models.EndpointModelProperties` was added
+
+* `models.DeltaModelCurrentState` was added
+
+* `models.PoolProvisioningState` was added
+
+* `models.FirewallSku` was added
+
+* `models.InferenceGroup$Definition` was added
+
+* `models.RaiBlocklistItemBulkRequest` was added
+
+* `models.InferenceGroupTrackedResourceArmPaginatedResult` was added
+
+* `models.Connections` was added
+
+* `models.JupyterKernelConfig` was added
+
+* `models.InferenceEndpoint` was added
+
+* `models.ManagedOnlineEndpointDeploymentResourceProperties` was added
+
+* `models.RaiBlocklistItemPropertiesBasicResource` was added
+
+* `models.CapabilityHost$Definition` was added
+
+* `models.AzureOpenAiFineTuning` was added
+
+* `models.RaiBlocklistPropertiesBasicResource` was added
+
+* `models.InferenceGroup$Update` was added
+
+* `models.ModelLifecycleStatus` was added
+
+* `models.RaiPolicyMode` was added
+
+* `models.RaiPolicyOperations` was added
+
+* `models.KeyVaultProperties` was added
+
+* `models.InferenceEndpoint$Update` was added
+
+* `models.EndpointModelSkuCapacityProperties` was added
+
+* `models.EndpointModelSkuRateLimitRulePatternProperties` was added
+
+* `models.OsPatchingStatus` was added
+
+* `models.InferenceEndpoint$Definition` was added
+
+* `models.PatchStatus` was added
+
+* `models.InferenceGroups` was added
+
+* `models.ServerlessEndpointInferenceEndpoint` was added
+
+* `models.EndpointResourcePropertiesBasicResourceArmPaginatedResult` was added
+
+* `models.ServerlessEndpointContentSafety` was added
+
+* `models.StringArmPaginatedResult` was added
+
+* `models.ContentSafetyEndpointDeploymentResourceProperties` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResource$DefinitionStages` was added
+
+* `models.CapabilityHostProperties` was added
+
+* `models.WorkspacePrivateEndpointResource` was added
+
+* `models.NetworkAcls` was added
+
+* `models.SpeechEndpointDeploymentResourceProperties` was added
+
+* `models.InferencePoolProperties` was added
+
+* `models.RaiBlocklistPropertiesBasicResourceArmPaginatedResult` was added
+
+* `models.RaiPolicyPropertiesBasicResource` was added
+
+* `models.RaiPolicyContentSource` was added
+
+* `models.RaiBlocklistConfig` was added
+
+* `models.ContentSafetyEndpointResourceProperties` was added
+
+* `models.InferenceGroup$UpdateStages` was added
+
+* `models.InferenceEndpoints` was added
+
+* `models.DeltaModelModifyRequest` was added
+
+* `models.InferencePool$UpdateStages` was added
+
+* `models.ManagedPEStatus` was added
+
+* `models.InferenceEndpoint$UpdateStages` was added
+
+* `models.EndpointDeploymentResourcePropertiesBasicResource$Definition` was added
+
+* `models.InferencePool$Definition` was added
+
+* `models.FineTuningVertical` was added
+
+* `models.DefaultResourceProvisioningState` was added
+
+* `models.PropertiesBase` was added
+
+* `models.SecretExpiry` was added
+
+* `models.InferencePools` was added
+
+* `models.RaiBlocklistItemPropertiesBasicResourceArmPaginatedResult` was added
+
+* `models.CapabilityHostProvisioningState` was added
+
+* `models.RaiPolicyPropertiesBasicResourceArmPaginatedResult` was added
+
+* `models.RegenerateServiceAccountKeyContent` was added
+
+* `models.EndpointModels` was added
+
+* `models.OpenAIEndpointResourceProperties` was added
+
+* `models.CognitiveServicesSku` was added
+
+* `models.RaiPolicyProperties` was added
+
+* `models.RaiBlocklistItemProperties` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$UpdateStages` was added
+
+* `models.EndpointModelSkuRateLimitRuleProperties` was added
+
+#### `models.Registry$Definition` was modified
+
+* `withManagedResourceGroupSettings(models.ManagedResourceGroupSettings)` was added
+
+#### `models.DiagnoseRequestProperties` was modified
+
+* `requiredResourceProviders()` was added
+* `withRequiredResourceProviders(java.util.Map)` was added
+
+#### `models.WorkspaceConnectionPropertiesV2` was modified
+
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withError(java.lang.String)` was added
+* `useWorkspaceManagedIdentity()` was added
+* `peStatus()` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `peRequirement()` was added
+* `error()` was added
+
+#### `models.ListWorkspaceKeysResult` was modified
+
+* `userStorageArmId()` was added
+
+#### `models.MLFlowModelJobOutput` was modified
+
+* `assetName()` was added
+* `withAssetName(java.lang.String)` was added
+
+#### `models.FqdnEndpoints` was modified
+
+* `category()` was added
+* `endpoints()` was added
+* `withEndpoints(java.util.List)` was added
+* `withCategory(java.lang.String)` was added
+
+#### `models.Registry` was modified
+
+* `managedResourceGroupSettings()` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.Workspace$Update` was modified
+
+* `withSystemDatastoresAuthMode(models.SystemDatastoresAuthMode)` was added
+* `withEnableSoftwareBillOfMaterials(java.lang.Boolean)` was added
+* `withSoftDeleteRetentionInDays(java.lang.Integer)` was added
+* `withNetworkAcls(models.NetworkAcls)` was added
+* `withPublicNetworkAccess(models.PublicNetworkAccessType)` was added
+* `withIpAllowlist(java.util.List)` was added
+* `withAllowRoleAssignmentOnRG(java.lang.Boolean)` was added
+
+#### `models.Image` was modified
+
+* `withVersion(java.lang.String)` was added
+* `version()` was added
+
+#### `models.PrivateEndpointConnection$Definition` was modified
+
+* `withPrivateEndpoint(models.WorkspacePrivateEndpointResource)` was added
+* `withProvisioningState(models.PrivateEndpointConnectionProvisioningState)` was added
+
+#### `models.ServicePrincipalAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+
+#### `models.PrivateEndpointOutboundRule` was modified
+
+* `withFqdns(java.util.List)` was added
+* `parentRuleNames()` was added
+* `fqdns()` was added
+
+#### `models.Workspaces` was modified
+
+* `listByResourceGroup(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `withStatus(models.EndpointServiceConnectionStatus)` was added
+
+#### `models.Computes` was modified
+
+* `resize(java.lang.String,java.lang.String,java.lang.String,models.ResizeSchema,com.azure.core.util.Context)` was added
+* `resize(java.lang.String,java.lang.String,java.lang.String,models.ResizeSchema)` was added
+* `updateCustomServices(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `updateDataMountsWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `updateIdleShutdownSettingWithResponse(java.lang.String,java.lang.String,java.lang.String,models.IdleShutdownSetting,com.azure.core.util.Context)` was added
+* `updateIdleShutdownSetting(java.lang.String,java.lang.String,java.lang.String,models.IdleShutdownSetting)` was added
+* `updateDataMounts(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `updateCustomServicesWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getAllowedResizeSizes(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getAllowedResizeSizesWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.AssetJobOutput` was modified
+
+* `withAssetName(java.lang.String)` was added
+* `assetName()` was added
+
+#### `models.OAuth2AuthTypeWorkspaceConnectionProperties` was modified
+
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+
+#### `models.Workspace$Definition` was modified
+
+* `withExistingWorkspaces(java.util.List)` was added
+* `withAllowRoleAssignmentOnRG(java.lang.Boolean)` was added
+* `withPublicNetworkAccess(models.PublicNetworkAccessType)` was added
+* `withEnableSoftwareBillOfMaterials(java.lang.Boolean)` was added
+* `withNetworkAcls(models.NetworkAcls)` was added
+* `withProvisionNetworkNow(java.lang.Boolean)` was added
+* `withKeyVaults(java.util.List)` was added
+* `withEnableServiceSideCmkEncryption(java.lang.Boolean)` was added
+* `withIpAllowlist(java.util.List)` was added
+* `withSystemDatastoresAuthMode(models.SystemDatastoresAuthMode)` was added
+* `withSoftDeleteRetentionInDays(java.lang.Integer)` was added
+* `withStorageAccounts(java.util.List)` was added
+* `withEnableSimplifiedCmk(java.lang.Boolean)` was added
+* `withContainerRegistries(java.util.List)` was added
+
+#### `models.Datastores` was modified
+
+* `listSecretsWithResponse(java.lang.String,java.lang.String,java.lang.String,models.SecretExpiry,com.azure.core.util.Context)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `innerModel()` was added
+
+#### `models.PrivateEndpointConnection$Update` was modified
+
+* `withProvisioningState(models.PrivateEndpointConnectionProvisioningState)` was added
+* `withPrivateEndpoint(models.WorkspacePrivateEndpointResource)` was added
+
+#### `models.ApiKeyAuthWorkspaceConnectionProperties` was modified
+
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+* `testConnection(java.lang.String,java.lang.String,java.lang.String)` was added
+* `testConnection(java.lang.String,java.lang.String,java.lang.String,fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner,com.azure.core.util.Context)` was added
+
+#### `models.ManagedNetworkSettings` was modified
+
+* `firewallSku()` was added
+* `changeableIsolationModes()` was added
+
+#### `models.Workspace` was modified
+
+* `keyVaults()` was added
+* `containerRegistries()` was added
+* `provisionNetworkNow()` was added
+* `storageAccounts()` was added
+* `allowRoleAssignmentOnRG()` was added
+* `systemDatastoresAuthMode()` was added
+* `networkAcls()` was added
+* `enableSoftwareBillOfMaterials()` was added
+* `enableServiceSideCmkEncryption()` was added
+* `agentsEndpointUri()` was added
+* `ipAllowlist()` was added
+* `enableSimplifiedCmk()` was added
+* `existingWorkspaces()` was added
+* `softDeleteRetentionInDays()` was added
+
+#### `models.UriFileJobOutput` was modified
+
+* `assetName()` was added
+* `withAssetName(java.lang.String)` was added
+
+#### `models.Datastore` was modified
+
+* `listSecretsWithResponse(models.SecretExpiry,com.azure.core.util.Context)` was added
+
+#### `models.NoneAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+
+#### `MachineLearningManager` was modified
+
+* `connectionRaiBlocklists()` was added
+* `capabilityHosts()` was added
+* `connectionRaiBlocklistItems()` was added
+* `endpointDeployments()` was added
+* `connections()` was added
+* `raiPolicyOperations()` was added
+* `connectionRaiPolicies()` was added
+* `inferenceEndpoints()` was added
+* `inferencePools()` was added
+* `connectionRaiBlocklistOperations()` was added
+* `endpoints()` was added
+* `connectionRaiPolicyOperations()` was added
+* `inferenceGroups()` was added
+* `connectionRaiBlocklistItemsOperations()` was added
+* `raiPolicies()` was added
+
+#### `models.ImageMetadata` was modified
+
+* `osPatchingStatus()` was added
+
+#### `models.CustomKeysWorkspaceConnectionProperties` was modified
+
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+
+#### `models.UsernamePasswordAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+
+#### `models.AccountKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+
+#### `models.WorkspacePropertiesUpdateParameters` was modified
+
+* `enableSoftwareBillOfMaterials()` was added
+* `ipAllowlist()` was added
+* `systemDatastoresAuthMode()` was added
+* `networkAcls()` was added
+* `softDeleteRetentionInDays()` was added
+* `allowRoleAssignmentOnRG()` was added
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `ipAllowlist()` was added
+* `withPublicNetworkAccess(models.PublicNetworkAccessType)` was added
+* `withEnableSoftwareBillOfMaterials(java.lang.Boolean)` was added
+* `withAllowRoleAssignmentOnRG(java.lang.Boolean)` was added
+* `networkAcls()` was added
+* `softDeleteRetentionInDays()` was added
+* `allowRoleAssignmentOnRG()` was added
+* `enableSoftwareBillOfMaterials()` was added
+* `withNetworkAcls(models.NetworkAcls)` was added
+* `withSystemDatastoresAuthMode(models.SystemDatastoresAuthMode)` was added
+* `systemDatastoresAuthMode()` was added
+* `withIpAllowlist(java.util.List)` was added
+* `withSoftDeleteRetentionInDays(java.lang.Integer)` was added
+
+#### `models.UriFolderJobOutput` was modified
+
+* `assetName()` was added
+* `withAssetName(java.lang.String)` was added
+
+#### `models.MLTableJobOutput` was modified
+
+* `withAssetName(java.lang.String)` was added
+* `assetName()` was added
+
+#### `models.AccessKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+
+#### `models.CustomService` was modified
+
+* `kernel()` was added
+* `withKernel(models.JupyterKernelConfig)` was added
+
+#### `models.AadAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withError(java.lang.String)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+
+#### `models.TritonModelJobOutput` was modified
+
+* `withAssetName(java.lang.String)` was added
+* `assetName()` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResource` was modified
+
+* `update()` was added
+* `resourceGroupName()` was added
+* `testConnection(fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner,com.azure.core.util.Context)` was added
+* `testConnection()` was added
+
+#### `models.WorkspaceProperties` was modified
+
+* `allowRoleAssignmentOnRG()` was added
+* `provisionNetworkNow()` was added
+* `existingWorkspaces()` was added
+* `systemDatastoresAuthMode()` was added
+* `enableSoftwareBillOfMaterials()` was added
+* `storageAccounts()` was added
+* `enableServiceSideCmkEncryption()` was added
+* `networkAcls()` was added
+* `agentsEndpointUri()` was added
+* `enableSimplifiedCmk()` was added
+* `softDeleteRetentionInDays()` was added
+* `containerRegistries()` was added
+* `keyVaults()` was added
+* `ipAllowlist()` was added
+
+#### `models.OutboundRule` was modified
+
+* `parentRuleNames()` was added
+
+#### `models.SharedPrivateLinkResource` was modified
+
+* `withStatus(models.EndpointServiceConnectionStatus)` was added
+
+#### `models.ComputeResource` was modified
+
+* `resize(models.ResizeSchema,com.azure.core.util.Context)` was added
+* `updateIdleShutdownSettingWithResponse(models.IdleShutdownSetting,com.azure.core.util.Context)` was added
+* `updateDataMounts(java.util.List)` was added
+* `updateCustomServicesWithResponse(java.util.List,com.azure.core.util.Context)` was added
+* `getAllowedResizeSizesWithResponse(com.azure.core.util.Context)` was added
+* `getAllowedResizeSizes()` was added
+* `resize(models.ResizeSchema)` was added
+* `updateCustomServices(java.util.List)` was added
+* `updateIdleShutdownSetting(models.IdleShutdownSetting)` was added
+* `updateDataMountsWithResponse(java.util.List,com.azure.core.util.Context)` was added
+
+#### `models.CustomModelJobOutput` was modified
+
+* `assetName()` was added
+* `withAssetName(java.lang.String)` was added
+
+#### `models.PrivateLinkResources` was modified
+
+* `list(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.SasAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+
+#### `models.ServiceTagOutboundRule` was modified
+
+* `parentRuleNames()` was added
+
+#### `models.EncryptionProperty` was modified
+
+* `withCosmosDbResourceId(java.lang.String)` was added
+* `withSearchAccountResourceId(java.lang.String)` was added
+* `storageAccountResourceId()` was added
+* `cosmosDbResourceId()` was added
+* `withStorageAccountResourceId(java.lang.String)` was added
+* `withKeyVaultProperties(models.KeyVaultProperties)` was added
+* `searchAccountResourceId()` was added
+
+#### `models.ManagedIdentityAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+
+#### `models.ServiceTagDestination` was modified
+
+* `withAddressPrefixes(java.util.List)` was added
+
+#### `models.NotebookResourceInfo` was modified
+
+* `isPrivateLinkEnabled()` was added
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `withValue(java.util.List)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `validate()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ComputeInstanceProperties` was modified
+
+* `enableOSPatching()` was added
+* `withEnableRootAccess(java.lang.Boolean)` was added
+* `withEnableSso(java.lang.Boolean)` was added
+* `withReleaseQuotaOnStop(java.lang.Boolean)` was added
+* `enableRootAccess()` was added
+* `releaseQuotaOnStop()` was added
+* `autologgerSettings()` was added
+* `withEnableOSPatching(java.lang.Boolean)` was added
+* `idleTimeBeforeShutdown()` was added
+* `enableSso()` was added
+* `withAutologgerSettings(models.ComputeInstanceAutologgerSettings)` was added
+* `withIdleTimeBeforeShutdown(java.lang.String)` was added
+
+#### `models.ComputeInstanceDataMount` was modified
+
+* `mountMode()` was added
+* `withMountMode(models.MountMode)` was added
+
+#### `models.FqdnOutboundRule` was modified
+
+* `parentRuleNames()` was added
+
+#### `models.PatAuthTypeWorkspaceConnectionProperties` was modified
+
+* `withUseWorkspaceManagedIdentity(java.lang.Boolean)` was added
+* `withError(java.lang.String)` was added
+* `withPeRequirement(models.ManagedPERequirement)` was added
+* `withPeStatus(models.ManagedPEStatus)` was added
 
 ## 1.1.0 (2024-08-22)
 

@@ -86,7 +86,7 @@ public interface OutboundRuleBasicResource {
              * Specifies resourceGroupName, workspaceName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param workspaceName Azure Machine Learning Workspace Name.
              * @return the next definition stage.
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
