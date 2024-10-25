@@ -13,6 +13,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.HighAvailabilityValidationEstimationInner;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerInner;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerDetachVNetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForUpdate;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
@@ -574,4 +575,65 @@ public interface ServersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters, Context context);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of represents a server.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServerInner>, ServerInner> beginDetachVNet(String resourceGroupName, String serverName,
+        ServerDetachVNetParameter parameters);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of represents a server.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServerInner>, ServerInner> beginDetachVNet(String resourceGroupName, String serverName,
+        ServerDetachVNetParameter parameters, Context context);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServerInner detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters);
+
+    /**
+     * Detach VNet on a server.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param parameters The required parameters for detach vnet on a server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServerInner detachVNet(String resourceGroupName, String serverName, ServerDetachVNetParameter parameters,
+        Context context);
 }
