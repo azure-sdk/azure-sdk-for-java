@@ -5,19 +5,32 @@
 package com.azure.resourcemanager.dashboard.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Server configurations of a Grafana instance.
  */
 @Fluent
-public final class GrafanaConfigurations {
+public final class GrafanaConfigurations implements JsonSerializable<GrafanaConfigurations> {
     /*
      * Email server settings.
      * https://grafana.com/docs/grafana/v9.0/setup-grafana/configure-grafana/#smtp
      */
-    @JsonProperty(value = "smtp")
     private Smtp smtp;
+
+    /*
+     * Grafana Snapshots settings
+     */
+    private Snapshots snapshots;
+
+    /*
+     * Grafana users settings
+     */
+    private Users users;
 
     /**
      * Creates an instance of GrafanaConfigurations class.
@@ -48,6 +61,46 @@ public final class GrafanaConfigurations {
     }
 
     /**
+     * Get the snapshots property: Grafana Snapshots settings.
+     * 
+     * @return the snapshots value.
+     */
+    public Snapshots snapshots() {
+        return this.snapshots;
+    }
+
+    /**
+     * Set the snapshots property: Grafana Snapshots settings.
+     * 
+     * @param snapshots the snapshots value to set.
+     * @return the GrafanaConfigurations object itself.
+     */
+    public GrafanaConfigurations withSnapshots(Snapshots snapshots) {
+        this.snapshots = snapshots;
+        return this;
+    }
+
+    /**
+     * Get the users property: Grafana users settings.
+     * 
+     * @return the users value.
+     */
+    public Users users() {
+        return this.users;
+    }
+
+    /**
+     * Set the users property: Grafana users settings.
+     * 
+     * @param users the users value to set.
+     * @return the GrafanaConfigurations object itself.
+     */
+    public GrafanaConfigurations withUsers(Users users) {
+        this.users = users;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -56,5 +109,53 @@ public final class GrafanaConfigurations {
         if (smtp() != null) {
             smtp().validate();
         }
+        if (snapshots() != null) {
+            snapshots().validate();
+        }
+        if (users() != null) {
+            users().validate();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("smtp", this.smtp);
+        jsonWriter.writeJsonField("snapshots", this.snapshots);
+        jsonWriter.writeJsonField("users", this.users);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of GrafanaConfigurations from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of GrafanaConfigurations if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the GrafanaConfigurations.
+     */
+    public static GrafanaConfigurations fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            GrafanaConfigurations deserializedGrafanaConfigurations = new GrafanaConfigurations();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("smtp".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.smtp = Smtp.fromJson(reader);
+                } else if ("snapshots".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.snapshots = Snapshots.fromJson(reader);
+                } else if ("users".equals(fieldName)) {
+                    deserializedGrafanaConfigurations.users = Users.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedGrafanaConfigurations;
+        });
     }
 }

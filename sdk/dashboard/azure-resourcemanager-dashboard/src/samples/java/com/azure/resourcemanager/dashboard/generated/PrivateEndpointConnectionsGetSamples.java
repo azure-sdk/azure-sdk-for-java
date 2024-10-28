@@ -9,7 +9,8 @@ package com.azure.resourcemanager.dashboard.generated;
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/preview/2023-10-01-preview/examples/
      * PrivateEndpointConnections_Get.json
      */
     /**
@@ -18,7 +19,7 @@ public final class PrivateEndpointConnectionsGetSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void privateEndpointConnectionsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().getWithResponse("myResourceGroup", "myWorkspace", "myConnection",
-            com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
     }
 }
