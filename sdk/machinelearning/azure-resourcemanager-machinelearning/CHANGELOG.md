@@ -1,14 +1,440 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-28)
 
-### Features Added
+- Azure Resource Manager Machine Learning client library for Java. This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2024-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ComponentContainer$DefinitionStages` was modified
 
-### Other Changes
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.DataContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.EnvironmentContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.ModelContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.CodeContainer$DefinitionStages` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.CodeVersions` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `define(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ComponentContainers` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `define(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.DataContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.DataVersionBase` was modified
+
+* `publish(models.DestinationAsset)` was removed
+* `publish(models.DestinationAsset,com.azure.core.util.Context)` was removed
+
+#### `models.DataContainers` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ComponentVersion` was modified
+
+* `publish(models.DestinationAsset)` was removed
+* `publish(models.DestinationAsset,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryComponentVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryEnvironmentContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryCodeContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryEnvironmentVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner)` was removed
+
+#### `models.EnvironmentContainers` was modified
+
+* `deleteById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ModelContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.CodeContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.RegistryCodeVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryDataContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner)` was removed
+
+#### `models.EnvironmentContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.CodeVersion` was modified
+
+* `publish(models.DestinationAsset,com.azure.core.util.Context)` was removed
+* `publish(models.DestinationAsset)` was removed
+
+#### `MachineLearningManager` was modified
+
+* `fluent.AzureMachineLearningWorkspaces serviceClient()` -> `fluent.AzureMachineLearningServices serviceClient()`
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `fluent.models.ManagedNetworkSettingsInner managedNetwork()` -> `models.ManagedNetworkSettings managedNetwork()`
+* `withEnableDataIsolation(java.lang.Boolean)` was removed
+* `withTags(java.util.Map)` was removed
+* `withIdentity(models.ManagedServiceIdentity)` was removed
+* `withSku(models.Sku)` was removed
+* `validate()` was removed
+* `java.util.Map tags()` -> `java.util.Map tags()`
+* `withApplicationInsights(java.lang.String)` was removed
+* `java.lang.Boolean v1LegacyMode()` -> `java.lang.Boolean v1LegacyMode()`
+* `withFriendlyName(java.lang.String)` was removed
+* `withImageBuildCompute(java.lang.String)` was removed
+* `java.lang.String primaryUserAssignedIdentity()` -> `java.lang.String primaryUserAssignedIdentity()`
+* `java.lang.String friendlyName()` -> `java.lang.String friendlyName()`
+* `withFeatureStoreSettings(models.FeatureStoreSettings)` was removed
+* `java.lang.Boolean enableDataIsolation()` -> `java.lang.Boolean enableDataIsolation()`
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `withManagedNetwork(fluent.models.ManagedNetworkSettingsInner)` was removed
+* `java.lang.String containerRegistry()` -> `java.lang.String containerRegistry()`
+* `models.EncryptionUpdateProperties encryption()` -> `models.EncryptionUpdateProperties encryption()`
+* `withDescription(java.lang.String)` was removed
+* `models.FeatureStoreSettings featureStoreSettings()` -> `models.FeatureStoreSettings featureStoreSettings()`
+* `models.ServerlessComputeSettings serverlessComputeSettings()` -> `models.ServerlessComputeSettings serverlessComputeSettings()`
+* `models.ServiceManagedResourcesSettings serviceManagedResourcesSettings()` -> `models.ServiceManagedResourcesSettings serviceManagedResourcesSettings()`
+* `withPublicNetworkAccess(models.PublicNetworkAccess)` was removed
+* `withV1LegacyMode(java.lang.Boolean)` was removed
+* `models.Sku sku()` -> `models.Sku sku()`
+* `withEncryption(models.EncryptionUpdateProperties)` was removed
+* `withServiceManagedResourcesSettings(models.ServiceManagedResourcesSettings)` was removed
+* `java.lang.String description()` -> `java.lang.String description()`
+* `withContainerRegistry(java.lang.String)` was removed
+* `java.lang.String applicationInsights()` -> `java.lang.String applicationInsights()`
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `java.lang.String imageBuildCompute()` -> `java.lang.String imageBuildCompute()`
+* `models.ManagedServiceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+* `models.PublicNetworkAccess publicNetworkAccess()` -> `models.PublicNetworkAccess publicNetworkAccess()`
+* `withPrimaryUserAssignedIdentity(java.lang.String)` was removed
+* `withServerlessComputeSettings(models.ServerlessComputeSettings)` was removed
+
+#### `models.RegistryComponentContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner,com.azure.core.util.Context)` was removed
+
+#### `models.ComponentVersions` was modified
+
+* `getById(java.lang.String)` was removed
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryDataVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner)` was removed
+
+#### `models.CodeContainers` was modified
+
+* `getById(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.DataVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.EnvironmentVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ComponentContainer$Definition` was modified
+
+* `withExistingWorkspace(java.lang.String,java.lang.String)` was removed
+
+#### `models.ModelVersions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+
+#### `models.ModelVersion` was modified
+
+* `publish(models.DestinationAsset)` was removed
+* `publish(models.DestinationAsset,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryModelVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner,com.azure.core.util.Context)` was removed
+
+#### `models.ModelContainers` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.EnvironmentVersion` was modified
+
+* `publish(models.DestinationAsset)` was removed
+* `publish(models.DestinationAsset,com.azure.core.util.Context)` was removed
+
+#### `models.RegistryModelContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner,com.azure.core.util.Context)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner)` was removed
+
+### Features Added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$Update` was added
+
+* `models.WorkspaceConnectionUpdateParameter` was added
+
+* `models.FirewallSku` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$UpdateStages` was added
+
+#### `models.CodeVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeVersionInner,com.azure.core.util.Context)` was added
+
+#### `models.ComponentContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.DataContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.DataVersionBase` was modified
+
+* `createOrGetStartPendingUpload(models.PendingUploadRequestDto)` was added
+* `createOrGetStartPendingUploadWithResponse(models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+
+#### `models.DataContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.DataContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.RegistryComponentVersions` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getById(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+* `define(java.lang.String)` was added
+
+#### `models.RegistryEnvironmentContainers` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getById(java.lang.String)` was added
+* `deleteById(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+
+#### `models.RegistryCodeContainers` was modified
+
+* `deleteById(java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.RegistryEnvironmentVersions` was modified
+
+* `define(java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+
+#### `models.EnvironmentContainers` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentContainerInner)` was added
+
+#### `models.ModelContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.CodeContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.RegistryCodeVersions` was modified
+
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+* `deleteById(java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.RegistryDataContainers` was modified
+
+* `getById(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+* `define(java.lang.String)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.EnvironmentContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.ManagedNetworkSettings` was modified
+
+* `firewallSku()` was added
+
+#### `models.WorkspaceUpdateParameters` was modified
+
+* `innerModel()` was added
+
+#### `models.RegistryComponentContainers` was modified
+
+* `define(java.lang.String)` was added
+* `getById(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResource` was modified
+
+* `resourceGroupName()` was added
+* `update()` was added
+
+#### `models.ComponentVersions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ComponentVersionInner,com.azure.core.util.Context)` was added
+
+#### `models.RegistryDataVersions` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+* `define(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getById(java.lang.String)` was added
+
+#### `models.CodeContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.CodeContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.DataVersions` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.DataVersionBaseInner)` was added
+
+#### `models.EnvironmentVersions` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.EnvironmentVersionInner)` was added
+
+#### `models.ComponentContainer$Definition` was modified
+
+* `withExistingRegistry(java.lang.String,java.lang.String)` was added
+
+#### `models.ModelVersions` was modified
+
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelVersionInner)` was added
+
+#### `models.ModelVersion` was modified
+
+* `createOrGetStartPendingUploadWithResponse(models.PendingUploadRequestDto,com.azure.core.util.Context)` was added
+* `createOrGetStartPendingUpload(models.PendingUploadRequestDto)` was added
+
+#### `models.RegistryModelVersions` was modified
+
+* `getById(java.lang.String)` was added
+* `define(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+
+#### `models.ModelContainers` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner)` was added
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,fluent.models.ModelContainerInner,com.azure.core.util.Context)` was added
+
+#### `models.RegistryModelContainers` was modified
+
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+* `getById(java.lang.String)` was added
 
 ## 1.1.0 (2024-08-22)
 

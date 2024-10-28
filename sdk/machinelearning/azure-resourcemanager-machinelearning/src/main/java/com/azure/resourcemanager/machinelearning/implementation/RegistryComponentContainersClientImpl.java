@@ -50,22 +50,22 @@ public final class RegistryComponentContainersClientImpl implements RegistryComp
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of RegistryComponentContainersClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RegistryComponentContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    RegistryComponentContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(RegistryComponentContainersService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesRegistryComponentContainers to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesRegistryComponentContainers to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")

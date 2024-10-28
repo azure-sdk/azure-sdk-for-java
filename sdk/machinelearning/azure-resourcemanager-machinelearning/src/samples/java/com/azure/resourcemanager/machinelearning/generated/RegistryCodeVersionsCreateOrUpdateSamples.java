@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 import com.azure.resourcemanager.machinelearning.models.CodeVersionProperties;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Map;
 public final class RegistryCodeVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-10-01/
      * examples/Registry/CodeVersion/createOrUpdate.json
      */
     /**
@@ -26,13 +25,14 @@ public final class RegistryCodeVersionsCreateOrUpdateSamples {
     public static void
         createOrUpdateRegistryCodeVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.registryCodeVersions()
-            .createOrUpdate("test-rg", "my-aml-registry", "string", "string",
-                new CodeVersionInner().withProperties(new CodeVersionProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
-                    .withProperties(mapOf("string", "string"))
-                    .withIsAnonymous(false)
-                    .withCodeUri("fakeTokenPlaceholder")),
-                com.azure.core.util.Context.NONE);
+            .define("string")
+            .withExistingCode("test-rg", "my-aml-registry", "string")
+            .withProperties(new CodeVersionProperties().withDescription("string")
+                .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withIsAnonymous(false)
+                .withCodeUri("fakeTokenPlaceholder"))
+            .create();
     }
 
     // Use "Map.of" if available

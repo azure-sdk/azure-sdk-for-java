@@ -7,7 +7,6 @@ package com.azure.resourcemanager.machinelearning.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
-import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersion;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionProperties;
 
@@ -51,33 +50,31 @@ public final class EnvironmentVersionImpl
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String environmentName;
 
     private String version;
 
-    public EnvironmentVersionImpl withExistingEnvironment(String resourceGroupName, String workspaceName, String name) {
+    public EnvironmentVersionImpl withExistingEnvironment(String resourceGroupName, String registryName,
+        String environmentName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.environmentName = environmentName;
         return this;
     }
 
     public EnvironmentVersion create() {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryEnvironmentVersions()
+            .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public EnvironmentVersion create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryEnvironmentVersions()
+            .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -94,18 +91,15 @@ public final class EnvironmentVersionImpl
 
     public EnvironmentVersion apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(),
-                Context.NONE)
-            .getValue();
+            .getRegistryEnvironmentVersions()
+            .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
     public EnvironmentVersion apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-            .getValue();
+            .getRegistryEnvironmentVersions()
+            .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -114,33 +108,25 @@ public final class EnvironmentVersionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "environments");
+        this.registryName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "registries");
+        this.environmentName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "environments");
         this.version = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
     public EnvironmentVersion refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+            .getRegistryEnvironmentVersions()
+            .getWithResponse(resourceGroupName, registryName, environmentName, version, Context.NONE)
             .getValue();
         return this;
     }
 
     public EnvironmentVersion refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getEnvironmentVersions()
-            .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+            .getRegistryEnvironmentVersions()
+            .getWithResponse(resourceGroupName, registryName, environmentName, version, context)
             .getValue();
         return this;
-    }
-
-    public void publish(DestinationAsset body) {
-        serviceManager.environmentVersions().publish(resourceGroupName, workspaceName, name, version, body);
-    }
-
-    public void publish(DestinationAsset body, Context context) {
-        serviceManager.environmentVersions().publish(resourceGroupName, workspaceName, name, version, body, context);
     }
 
     public EnvironmentVersionImpl withProperties(EnvironmentVersionProperties properties) {
