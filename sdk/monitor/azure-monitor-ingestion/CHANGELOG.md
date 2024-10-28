@@ -2,13 +2,44 @@
 
 ## 1.3.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `LogsIngestionAsyncClient` was modified
 
-### Other Changes
+* `upload(java.lang.String,java.lang.String,java.lang.Iterable)` was removed
+* `upload(java.lang.String,java.lang.String,java.lang.Iterable,models.LogsUploadOptions)` was removed
+
+#### `LogsIngestionClient` was modified
+
+* `upload(java.lang.String,java.lang.String,java.lang.Iterable,models.LogsUploadOptions)` was removed
+* `upload(java.lang.String,java.lang.String,java.lang.Iterable)` was removed
+* `upload(java.lang.String,java.lang.String,java.lang.Iterable,models.LogsUploadOptions,com.azure.core.util.Context)` was removed
+* `close()` was removed
+
+#### `LogsIngestionClientBuilder` was modified
+
+* `audience(models.LogsIngestionAudience)` was removed
+
+#### `implementation.Utils` was modified
+
+* `registerShutdownHook(java.util.concurrent.ExecutorService,int)` was removed
+* `createThreadPool()` was removed
+
+### Features Added
+
+* `implementation.LogsIngestionClientImpl$LogsIngestionClientService` was added
+
+* `implementation.LogsIngestionClientImpl` was added
+
+#### `LogsIngestionAsyncClient` was modified
+
+* `upload(java.lang.String,java.lang.String,java.util.List,java.lang.String)` was added
+* `upload(java.lang.String,java.lang.String,java.util.List)` was added
+
+#### `LogsIngestionClient` was modified
+
+* `upload(java.lang.String,java.lang.String,java.util.List)` was added
+* `upload(java.lang.String,java.lang.String,java.util.List,java.lang.String)` was added
 
 ## 1.2.6 (2024-10-25)
 
