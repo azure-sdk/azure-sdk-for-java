@@ -89,7 +89,7 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
         Mono<Response<ScopingConfigurationResourceInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
             @PathParam("scopingConfigurationName") String scopingConfigurationName,
-            @BodyParam("application/json") ScopingConfigurationResourceInner properties,
+            @BodyParam("application/json") ScopingConfigurationResourceInner resource,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -347,8 +347,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -357,7 +357,7 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScopingConfigurationResourceInner>> createOrUpdateWithResponseAsync(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties) {
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -369,15 +369,15 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
             return Mono.error(
                 new IllegalArgumentException("Parameter scopingConfigurationName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                reportName, scopingConfigurationName, properties, accept, context))
+                reportName, scopingConfigurationName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -386,8 +386,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -397,7 +397,7 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScopingConfigurationResourceInner>> createOrUpdateWithResponseAsync(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties, Context context) {
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -409,15 +409,15 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
             return Mono.error(
                 new IllegalArgumentException("Parameter scopingConfigurationName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            properties.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), reportName,
-            scopingConfigurationName, properties, accept, context);
+            scopingConfigurationName, resource, accept, context);
     }
 
     /**
@@ -425,8 +425,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -435,8 +435,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScopingConfigurationResourceInner> createOrUpdateAsync(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties) {
-        return createOrUpdateWithResponseAsync(reportName, scopingConfigurationName, properties)
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource) {
+        return createOrUpdateWithResponseAsync(reportName, scopingConfigurationName, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -445,8 +445,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -455,8 +455,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ScopingConfigurationResourceInner> createOrUpdateWithResponse(String reportName,
-        String scopingConfigurationName, ScopingConfigurationResourceInner properties, Context context) {
-        return createOrUpdateWithResponseAsync(reportName, scopingConfigurationName, properties, context).block();
+        String scopingConfigurationName, ScopingConfigurationResourceInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(reportName, scopingConfigurationName, resource, context).block();
     }
 
     /**
@@ -464,8 +464,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      * 
      * @param reportName Report Name.
      * @param scopingConfigurationName The scoping configuration of the specific report.
-     * @param properties Parameters for the create or update operation, this is a singleton resource, so please make
-     * sure you're using 'default' as the name.
+     * @param resource Parameters for the create or update operation, this is a singleton resource, so please make sure
+     * you're using 'default' as the name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -473,8 +473,8 @@ public final class ScopingConfigurationsClientImpl implements ScopingConfigurati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ScopingConfigurationResourceInner createOrUpdate(String reportName, String scopingConfigurationName,
-        ScopingConfigurationResourceInner properties) {
-        return createOrUpdateWithResponse(reportName, scopingConfigurationName, properties, Context.NONE).getValue();
+        ScopingConfigurationResourceInner resource) {
+        return createOrUpdateWithResponse(reportName, scopingConfigurationName, resource, Context.NONE).getValue();
     }
 
     /**
