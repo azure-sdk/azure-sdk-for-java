@@ -1,14 +1,149 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-29)
+
+- Azure Resource Manager AzureDigitalTwins client library for Java. This package contains Microsoft Azure SDK for AzureDigitalTwins Management SDK. Azure Digital Twins Client for managing DigitalTwinsInstance. Package tag package-2023-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+#### `models.ConnectionProperties` was modified
 
-### Bugs Fixed
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
-### Other Changes
+#### `models.ExternalResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `name()` was added
+* `type()` was added
+* `id()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DigitalTwinsEndpointResourceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventGrid` was modified
+
+* `createdTime()` was added
+* `provisioningState()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `endpointType()` was added
+
+#### `models.DigitalTwinsEndpointResourceProperties` was modified
+
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DigitalTwinsDescriptionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DigitalTwinsResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `id()` was added
+* `name()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ManagedIdentityReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DigitalTwinsPatchDescription` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DigitalTwinsPatchProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConnectionState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DigitalTwinsIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TimeSeriesDatabaseConnectionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TimeSeriesDatabaseConnectionProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `connectionType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureDataExplorerConnectionProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `connectionType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CheckNameRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.GroupIdInformationProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventHub` was modified
+
+* `endpointType()` was added
+* `provisioningState()` was added
+* `createdTime()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ConnectionPropertiesPrivateLinkServiceConnectionState` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServiceBus` was modified
+
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `provisioningState()` was added
+* `createdTime()` was added
 
 ## 1.2.0 (2023-03-24)
 
