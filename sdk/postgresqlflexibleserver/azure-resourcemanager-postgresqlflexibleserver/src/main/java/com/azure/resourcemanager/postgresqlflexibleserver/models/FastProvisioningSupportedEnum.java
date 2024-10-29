@@ -5,12 +5,12 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * Gets a value indicating whether fast provisioning is supported. "Enabled" means fast provisioning is supported.
- * "Disabled" stands for fast provisioning is not supported.
+ * "Disabled" stands for fast provisioning is not supported. Will be deprecated in future, please look to Supported
+ * Features for "FastProvisioning".
  */
 public final class FastProvisioningSupportedEnum extends ExpandableStringEnum<FastProvisioningSupportedEnum> {
     /**
@@ -38,7 +38,6 @@ public final class FastProvisioningSupportedEnum extends ExpandableStringEnum<Fa
      * @param name a name to look for.
      * @return the corresponding FastProvisioningSupportedEnum.
      */
-    @JsonCreator
     public static FastProvisioningSupportedEnum fromString(String name) {
         return fromString(name, FastProvisioningSupportedEnum.class);
     }
