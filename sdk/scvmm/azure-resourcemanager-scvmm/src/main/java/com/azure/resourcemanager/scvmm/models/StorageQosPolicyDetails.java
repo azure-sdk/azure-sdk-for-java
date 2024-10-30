@@ -5,25 +5,23 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The StorageQoSPolicyDetails definition.
  */
 @Fluent
-public final class StorageQosPolicyDetails implements JsonSerializable<StorageQosPolicyDetails> {
+public final class StorageQosPolicyDetails {
     /*
      * The name of the policy.
      */
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * The ID of the QoS policy.
      */
+    @JsonProperty(value = "id")
     private String id;
 
     /**
@@ -78,44 +76,5 @@ public final class StorageQosPolicyDetails implements JsonSerializable<StorageQo
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("id", this.id);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of StorageQosPolicyDetails from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of StorageQosPolicyDetails if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the StorageQosPolicyDetails.
-     */
-    public static StorageQosPolicyDetails fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            StorageQosPolicyDetails deserializedStorageQosPolicyDetails = new StorageQosPolicyDetails();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("name".equals(fieldName)) {
-                    deserializedStorageQosPolicyDetails.name = reader.getString();
-                } else if ("id".equals(fieldName)) {
-                    deserializedStorageQosPolicyDetails.id = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedStorageQosPolicyDetails;
-        });
     }
 }

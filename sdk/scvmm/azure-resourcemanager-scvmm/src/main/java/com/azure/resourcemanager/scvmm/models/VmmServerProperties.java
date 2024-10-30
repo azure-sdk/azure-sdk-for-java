@@ -6,55 +6,59 @@ package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Defines the resource properties.
  */
 @Fluent
-public final class VmmServerProperties implements JsonSerializable<VmmServerProperties> {
+public final class VmmServerProperties {
     /*
      * Credentials to connect to VmmServer.
      */
+    @JsonProperty(value = "credentials")
     private VmmCredential credentials;
 
     /*
      * Fqdn is the hostname/ip of the vmmServer.
      */
+    @JsonProperty(value = "fqdn", required = true)
     private String fqdn;
 
     /*
      * Port is the port on which the vmmServer is listening.
      */
+    @JsonProperty(value = "port")
     private Integer port;
 
     /*
      * Gets the connection status to the vmmServer.
      */
+    @JsonProperty(value = "connectionStatus", access = JsonProperty.Access.WRITE_ONLY)
     private String connectionStatus;
 
     /*
      * Gets any error message if connection to vmmServer is having any issue.
      */
+    @JsonProperty(value = "errorMessage", access = JsonProperty.Access.WRITE_ONLY)
     private String errorMessage;
 
     /*
      * Unique ID of vmmServer.
      */
+    @JsonProperty(value = "uuid", access = JsonProperty.Access.WRITE_ONLY)
     private String uuid;
 
     /*
      * Version is the version of the vmmSever.
      */
+    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
 
     /*
      * Provisioning state of the resource.
      */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -184,58 +188,4 @@ public final class VmmServerProperties implements JsonSerializable<VmmServerProp
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(VmmServerProperties.class);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("fqdn", this.fqdn);
-        jsonWriter.writeJsonField("credentials", this.credentials);
-        jsonWriter.writeNumberField("port", this.port);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VmmServerProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VmmServerProperties if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the VmmServerProperties.
-     */
-    public static VmmServerProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VmmServerProperties deserializedVmmServerProperties = new VmmServerProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("fqdn".equals(fieldName)) {
-                    deserializedVmmServerProperties.fqdn = reader.getString();
-                } else if ("credentials".equals(fieldName)) {
-                    deserializedVmmServerProperties.credentials = VmmCredential.fromJson(reader);
-                } else if ("port".equals(fieldName)) {
-                    deserializedVmmServerProperties.port = reader.getNullable(JsonReader::getInt);
-                } else if ("connectionStatus".equals(fieldName)) {
-                    deserializedVmmServerProperties.connectionStatus = reader.getString();
-                } else if ("errorMessage".equals(fieldName)) {
-                    deserializedVmmServerProperties.errorMessage = reader.getString();
-                } else if ("uuid".equals(fieldName)) {
-                    deserializedVmmServerProperties.uuid = reader.getString();
-                } else if ("version".equals(fieldName)) {
-                    deserializedVmmServerProperties.version = reader.getString();
-                } else if ("provisioningState".equals(fieldName)) {
-                    deserializedVmmServerProperties.provisioningState
-                        = ProvisioningState.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVmmServerProperties;
-        });
-    }
 }

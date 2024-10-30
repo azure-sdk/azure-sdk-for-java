@@ -5,42 +5,42 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * Virtual Machine Instance Properties Update model.
  */
 @Fluent
-public final class VirtualMachineInstanceUpdateProperties
-    implements JsonSerializable<VirtualMachineInstanceUpdateProperties> {
+public final class VirtualMachineInstanceUpdateProperties {
     /*
      * Availability Sets in vm.
      */
+    @JsonProperty(value = "availabilitySets")
     private List<AvailabilitySetListItem> availabilitySets;
 
     /*
      * Hardware properties.
      */
+    @JsonProperty(value = "hardwareProfile")
     private HardwareProfileUpdate hardwareProfile;
 
     /*
      * Network properties.
      */
+    @JsonProperty(value = "networkProfile")
     private NetworkProfileUpdate networkProfile;
 
     /*
      * Storage properties.
      */
+    @JsonProperty(value = "storageProfile")
     private StorageProfileUpdate storageProfile;
 
     /*
      * Gets the infrastructure profile.
      */
+    @JsonProperty(value = "infrastructureProfile")
     private InfrastructureProfileUpdate infrastructureProfile;
 
     /**
@@ -171,61 +171,5 @@ public final class VirtualMachineInstanceUpdateProperties
         if (infrastructureProfile() != null) {
             infrastructureProfile().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("availabilitySets", this.availabilitySets,
-            (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeJsonField("hardwareProfile", this.hardwareProfile);
-        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
-        jsonWriter.writeJsonField("storageProfile", this.storageProfile);
-        jsonWriter.writeJsonField("infrastructureProfile", this.infrastructureProfile);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualMachineInstanceUpdateProperties from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualMachineInstanceUpdateProperties if the JsonReader was pointing to an instance of
-     * it, or null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualMachineInstanceUpdateProperties.
-     */
-    public static VirtualMachineInstanceUpdateProperties fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualMachineInstanceUpdateProperties deserializedVirtualMachineInstanceUpdateProperties
-                = new VirtualMachineInstanceUpdateProperties();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("availabilitySets".equals(fieldName)) {
-                    List<AvailabilitySetListItem> availabilitySets
-                        = reader.readArray(reader1 -> AvailabilitySetListItem.fromJson(reader1));
-                    deserializedVirtualMachineInstanceUpdateProperties.availabilitySets = availabilitySets;
-                } else if ("hardwareProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceUpdateProperties.hardwareProfile
-                        = HardwareProfileUpdate.fromJson(reader);
-                } else if ("networkProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceUpdateProperties.networkProfile
-                        = NetworkProfileUpdate.fromJson(reader);
-                } else if ("storageProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceUpdateProperties.storageProfile
-                        = StorageProfileUpdate.fromJson(reader);
-                } else if ("infrastructureProfile".equals(fieldName)) {
-                    deserializedVirtualMachineInstanceUpdateProperties.infrastructureProfile
-                        = InfrastructureProfileUpdate.fromJson(reader);
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualMachineInstanceUpdateProperties;
-        });
     }
 }

@@ -5,86 +5,96 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Virtual disk model.
  */
 @Fluent
-public final class VirtualDisk implements JsonSerializable<VirtualDisk> {
+public final class VirtualDisk {
     /*
      * Gets or sets the name of the disk.
      */
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Gets the display name of the virtual disk as shown in the vmmServer. This is the fallback label for a disk when
      * the name is not set.
      */
+    @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
     /*
      * Gets or sets the disk id.
      */
+    @JsonProperty(value = "diskId")
     private String diskId;
 
     /*
      * Gets or sets the disk total size.
      */
+    @JsonProperty(value = "diskSizeGB")
     private Integer diskSizeGB;
 
     /*
      * Gets the max disk size.
      */
+    @JsonProperty(value = "maxDiskSizeGB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer maxDiskSizeGB;
 
     /*
      * Gets or sets the disk bus.
      */
+    @JsonProperty(value = "bus")
     private Integer bus;
 
     /*
      * Gets or sets the disk lun.
      */
+    @JsonProperty(value = "lun")
     private Integer lun;
 
     /*
      * Gets or sets the disk bus type.
      */
+    @JsonProperty(value = "busType")
     private String busType;
 
     /*
      * Gets or sets the disk vhd type.
      */
+    @JsonProperty(value = "vhdType")
     private String vhdType;
 
     /*
      * Gets the disk volume type.
      */
+    @JsonProperty(value = "volumeType", access = JsonProperty.Access.WRITE_ONLY)
     private String volumeType;
 
     /*
      * Gets the disk vhd format type.
      */
+    @JsonProperty(value = "vhdFormatType", access = JsonProperty.Access.WRITE_ONLY)
     private String vhdFormatType;
 
     /*
      * Gets or sets the disk id in the template.
      */
+    @JsonProperty(value = "templateDiskId")
     private String templateDiskId;
 
     /*
      * The QoS policy for the disk.
      */
+    @JsonProperty(value = "storageQoSPolicy")
     private StorageQosPolicyDetails storageQosPolicy;
 
     /*
      * Gets or sets a value indicating diff disk.
      */
+    @JsonProperty(value = "createDiffDisk")
     private CreateDiffDisk createDiffDisk;
 
     /**
@@ -339,77 +349,5 @@ public final class VirtualDisk implements JsonSerializable<VirtualDisk> {
         if (storageQosPolicy() != null) {
             storageQosPolicy().validate();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("diskId", this.diskId);
-        jsonWriter.writeNumberField("diskSizeGB", this.diskSizeGB);
-        jsonWriter.writeNumberField("bus", this.bus);
-        jsonWriter.writeNumberField("lun", this.lun);
-        jsonWriter.writeStringField("busType", this.busType);
-        jsonWriter.writeStringField("vhdType", this.vhdType);
-        jsonWriter.writeStringField("templateDiskId", this.templateDiskId);
-        jsonWriter.writeJsonField("storageQoSPolicy", this.storageQosPolicy);
-        jsonWriter.writeStringField("createDiffDisk",
-            this.createDiffDisk == null ? null : this.createDiffDisk.toString());
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of VirtualDisk from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of VirtualDisk if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the VirtualDisk.
-     */
-    public static VirtualDisk fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            VirtualDisk deserializedVirtualDisk = new VirtualDisk();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("name".equals(fieldName)) {
-                    deserializedVirtualDisk.name = reader.getString();
-                } else if ("displayName".equals(fieldName)) {
-                    deserializedVirtualDisk.displayName = reader.getString();
-                } else if ("diskId".equals(fieldName)) {
-                    deserializedVirtualDisk.diskId = reader.getString();
-                } else if ("diskSizeGB".equals(fieldName)) {
-                    deserializedVirtualDisk.diskSizeGB = reader.getNullable(JsonReader::getInt);
-                } else if ("maxDiskSizeGB".equals(fieldName)) {
-                    deserializedVirtualDisk.maxDiskSizeGB = reader.getNullable(JsonReader::getInt);
-                } else if ("bus".equals(fieldName)) {
-                    deserializedVirtualDisk.bus = reader.getNullable(JsonReader::getInt);
-                } else if ("lun".equals(fieldName)) {
-                    deserializedVirtualDisk.lun = reader.getNullable(JsonReader::getInt);
-                } else if ("busType".equals(fieldName)) {
-                    deserializedVirtualDisk.busType = reader.getString();
-                } else if ("vhdType".equals(fieldName)) {
-                    deserializedVirtualDisk.vhdType = reader.getString();
-                } else if ("volumeType".equals(fieldName)) {
-                    deserializedVirtualDisk.volumeType = reader.getString();
-                } else if ("vhdFormatType".equals(fieldName)) {
-                    deserializedVirtualDisk.vhdFormatType = reader.getString();
-                } else if ("templateDiskId".equals(fieldName)) {
-                    deserializedVirtualDisk.templateDiskId = reader.getString();
-                } else if ("storageQoSPolicy".equals(fieldName)) {
-                    deserializedVirtualDisk.storageQosPolicy = StorageQosPolicyDetails.fromJson(reader);
-                } else if ("createDiffDisk".equals(fieldName)) {
-                    deserializedVirtualDisk.createDiffDisk = CreateDiffDisk.fromString(reader.getString());
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedVirtualDisk;
-        });
     }
 }

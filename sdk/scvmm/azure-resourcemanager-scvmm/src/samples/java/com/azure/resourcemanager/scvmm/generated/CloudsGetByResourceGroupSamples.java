@@ -10,7 +10,7 @@ package com.azure.resourcemanager.scvmm.generated;
 public final class CloudsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MaximumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Clouds_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Get_MaximumSet.
@@ -23,7 +23,7 @@ public final class CloudsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/Clouds_Get_MinimumSet_Gen.json
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/Clouds_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Clouds_Get_MinimumSet.

@@ -1,14 +1,230 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-10-30)
 
-### Features Added
+- Azure Resource Manager Scvmm client library for Java. This package contains Microsoft Azure SDK for Scvmm Management SDK. SCVMM Client. Package tag package-2024-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.VirtualNetworkInventoryItem` was modified* `inventoryItemName()` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `managedResourceId()` was removed
+* `uuid()` was removed
+* `provisioningState()` was removed
 
-### Other Changes
+#### `models.VmmServerTagsUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.AvailabilitySetTagsUpdate` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.InfrastructureProfileUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.InfrastructureProfile` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.InventoryItemDetails` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.CloudTagsUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.OperationDisplay` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.ExtendedLocation` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineTemplateInventoryItem` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `uuid()` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `provisioningState()` was removed
+* `managedResourceId()` was removed
+* `inventoryItemName()` was removed
+
+#### `models.InventoryItemProperties` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.CloudProperties` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineInstanceProperties` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.InventoryItemListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.StopVirtualMachineOptions` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VmInstanceHybridIdentityMetadataListResult` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.NetworkInterface` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.AvailabilitySetProperties` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.NetworkInterfaceUpdate` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.NetworkProfileUpdate` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineTemplateListResult` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.GuestAgentProperties` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineCreateCheckpoint` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.NetworkProfile` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.CloudInventoryItem` was modified* `inventoryItemName()` was removed
+* `uuid()` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `managedResourceId()` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `provisioningState()` was removed
+
+#### `models.VirtualNetworkListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.StorageProfile` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineInstances` was modified* `stop(java.lang.String,models.StopVirtualMachineOptions)` was removed
+
+#### `models.VirtualMachineRestoreCheckpoint` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineInventoryItem` was modified* `managedResourceId()` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `inventoryItemName()` was removed
+* `provisioningState()` was removed
+* `uuid()` was removed
+
+#### `models.AvailabilitySetListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.OperationListResult` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VmmServerListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.CloudCapacity` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.Checkpoint` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.CloudListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineDeleteCheckpoint` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.AvailabilitySetListItem` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualDisk` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.HardwareProfile` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.StorageQosPolicyDetails` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.HttpProxyConfiguration` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VmmCredential` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.StorageProfileUpdate` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.StorageQosPolicy` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.GuestCredential` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.HardwareProfileUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineInstanceUpdateProperties` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VmmServerProperties` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualMachineInstanceListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineTemplateTagsUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VirtualDiskUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.OsProfileForVmInstance` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.VmInstanceHybridIdentityMetadataProperties` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualNetworkTagsUpdate` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+#### `models.GuestAgentListResult` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineInstanceUpdate` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualNetworkProperties` was modified* `toJson(com.azure.json.JsonWriter)` was removed
+* `fromJson(com.azure.json.JsonReader)` was removed
+
+#### `models.VirtualMachineTemplateProperties` was modified* `fromJson(com.azure.json.JsonReader)` was removed
+* `toJson(com.azure.json.JsonWriter)` was removed
+
+### Features Added
+
+#### `models.GuestAgentProperties` was modified
+
+* `privateLinkScopeResourceId()` was added
+* `withPrivateLinkScopeResourceId(java.lang.String)` was added
+
+#### `models.VirtualMachineInstances` was modified
+
+* `stop(java.lang.String)` was added
+
+#### `models.OsProfileForVmInstance` was modified
+
+* `domainPassword()` was added
+* `withDomainPassword(java.lang.String)` was added
+* `withDomainName(java.lang.String)` was added
+* `withRunOnceCommands(java.lang.String)` was added
+* `productKey()` was added
+* `domainName()` was added
+* `timezone()` was added
+* `withTimezone(java.lang.Integer)` was added
+* `withDomainUsername(java.lang.String)` was added
+* `withWorkgroup(java.lang.String)` was added
+* `runOnceCommands()` was added
+* `withProductKey(java.lang.String)` was added
+* `domainUsername()` was added
+* `workgroup()` was added
 
 ## 1.0.0 (2024-06-26)
 

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.util.ExpandableStringEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -36,6 +37,7 @@ public final class DeleteFromHost extends ExpandableStringEnum<DeleteFromHost> {
      * @param name a name to look for.
      * @return the corresponding DeleteFromHost.
      */
+    @JsonCreator
     public static DeleteFromHost fromString(String name) {
         return fromString(name, DeleteFromHost.class);
     }

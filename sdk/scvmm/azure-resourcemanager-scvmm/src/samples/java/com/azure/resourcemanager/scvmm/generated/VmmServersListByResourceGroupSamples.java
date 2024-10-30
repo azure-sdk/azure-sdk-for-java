@@ -9,7 +9,7 @@ package com.azure.resourcemanager.scvmm.generated;
  */
 public final class VmmServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VmmServers_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +22,7 @@ public final class VmmServersListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2024-06-01/examples/
      * VmmServers_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
