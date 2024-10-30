@@ -17,6 +17,11 @@ public final class EmissionType extends ExpandableStringEnum<EmissionType> {
     public static final EmissionType IPFIX = fromString("IPFIX");
 
     /**
+     * Static value FlowLogs for EmissionType.
+     */
+    public static final EmissionType FLOW_LOGS = fromString("FlowLogs");
+
+    /**
      * Creates a new instance of EmissionType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

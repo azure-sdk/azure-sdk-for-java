@@ -20,7 +20,35 @@ import java.util.Arrays;
 public final class CollectorPoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyCreateVirtualTap.json
+     */
+    /**
+     * Sample code: Create a collection policy with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void createACollectionPolicyWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies()
+            .define("cp1")
+            .withRegion("West US")
+            .withExistingAzureTrafficCollector("rg1", "atc")
+            .withIngestionPolicy(new IngestionPolicyPropertiesFormat().withIngestionType(IngestionType.VIRTUAL_TAP)
+                .withIngestionSources(Arrays.asList(new IngestionSourcesPropertiesFormat()
+                    .withSourceType(SourceType.RESOURCE)
+                    .withResourceId(
+                        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkTaps/vtap"))))
+            .withEmissionPolicies(
+                Arrays.asList(new EmissionPoliciesPropertiesFormat().withEmissionType(EmissionType.FLOW_LOGS)
+                    .withEmissionDestinations(Arrays
+                        .asList(new EmissionPolicyDestination().withDestinationType(DestinationType.AZURE_MONITOR)))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyCreate.json
      */
     /**

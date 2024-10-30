@@ -10,7 +10,7 @@ package com.azure.resourcemanager.networkfunction.generated;
 public final class CollectorPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyGet.json
      */
     /**
@@ -20,6 +20,21 @@ public final class CollectorPoliciesGetSamples {
      */
     public static void
         getCollectionPolicy(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyGetVirtualTap.json
+     */
+    /**
+     * Sample code: Get Collector Policy with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void getCollectorPolicyWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }

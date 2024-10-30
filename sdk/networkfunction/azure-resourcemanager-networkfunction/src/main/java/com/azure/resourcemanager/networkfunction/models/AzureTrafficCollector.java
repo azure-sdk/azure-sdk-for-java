@@ -79,6 +79,21 @@ public interface AzureTrafficCollector {
     ResourceReference virtualHub();
 
     /**
+     * Gets the dataSubnet property: Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     * 
+     * @return the dataSubnet value.
+     */
+    ResourceReference dataSubnet();
+
+    /**
+     * Gets the managementSubnet property: Reference to the management subnet resource. This resource must be named
+     * 'atcManagementSubnet'.
+     * 
+     * @return the managementSubnet value.
+     */
+    ResourceReference managementSubnet();
+
+    /**
      * Gets the provisioningState property: The provisioning state of the application rule collection resource.
      * 
      * @return the provisioningState value.
@@ -168,7 +183,8 @@ public interface AzureTrafficCollector {
          * The stage of the AzureTrafficCollector definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithVirtualHub {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithVirtualHub,
+            DefinitionStages.WithDataSubnet, DefinitionStages.WithManagementSubnet {
             /**
              * Executes the create request.
              * 
@@ -209,6 +225,35 @@ public interface AzureTrafficCollector {
              * @return the next definition stage.
              */
             WithCreate withVirtualHub(ResourceReference virtualHub);
+        }
+
+        /**
+         * The stage of the AzureTrafficCollector definition allowing to specify dataSubnet.
+         */
+        interface WithDataSubnet {
+            /**
+             * Specifies the dataSubnet property: Reference to the data subnet resource. This resource must be named
+             * 'atcDataSubnet'..
+             * 
+             * @param dataSubnet Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+             * @return the next definition stage.
+             */
+            WithCreate withDataSubnet(ResourceReference dataSubnet);
+        }
+
+        /**
+         * The stage of the AzureTrafficCollector definition allowing to specify managementSubnet.
+         */
+        interface WithManagementSubnet {
+            /**
+             * Specifies the managementSubnet property: Reference to the management subnet resource. This resource must
+             * be named 'atcManagementSubnet'..
+             * 
+             * @param managementSubnet Reference to the management subnet resource. This resource must be named
+             * 'atcManagementSubnet'.
+             * @return the next definition stage.
+             */
+            WithCreate withManagementSubnet(ResourceReference managementSubnet);
         }
     }
 

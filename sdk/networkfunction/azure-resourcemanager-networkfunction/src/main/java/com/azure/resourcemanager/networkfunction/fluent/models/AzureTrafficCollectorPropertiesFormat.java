@@ -31,6 +31,16 @@ public final class AzureTrafficCollectorPropertiesFormat
     private ResourceReference virtualHub;
 
     /*
+     * Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     */
+    private ResourceReference dataSubnet;
+
+    /*
+     * Reference to the management subnet resource. This resource must be named 'atcManagementSubnet'.
+     */
+    private ResourceReference managementSubnet;
+
+    /*
      * The provisioning state of the application rule collection resource.
      */
     private ProvisioningState provisioningState;
@@ -71,6 +81,48 @@ public final class AzureTrafficCollectorPropertiesFormat
     }
 
     /**
+     * Get the dataSubnet property: Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     * 
+     * @return the dataSubnet value.
+     */
+    public ResourceReference dataSubnet() {
+        return this.dataSubnet;
+    }
+
+    /**
+     * Set the dataSubnet property: Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     * 
+     * @param dataSubnet the dataSubnet value to set.
+     * @return the AzureTrafficCollectorPropertiesFormat object itself.
+     */
+    public AzureTrafficCollectorPropertiesFormat withDataSubnet(ResourceReference dataSubnet) {
+        this.dataSubnet = dataSubnet;
+        return this;
+    }
+
+    /**
+     * Get the managementSubnet property: Reference to the management subnet resource. This resource must be named
+     * 'atcManagementSubnet'.
+     * 
+     * @return the managementSubnet value.
+     */
+    public ResourceReference managementSubnet() {
+        return this.managementSubnet;
+    }
+
+    /**
+     * Set the managementSubnet property: Reference to the management subnet resource. This resource must be named
+     * 'atcManagementSubnet'.
+     * 
+     * @param managementSubnet the managementSubnet value to set.
+     * @return the AzureTrafficCollectorPropertiesFormat object itself.
+     */
+    public AzureTrafficCollectorPropertiesFormat withManagementSubnet(ResourceReference managementSubnet) {
+        this.managementSubnet = managementSubnet;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning state of the application rule collection resource.
      * 
      * @return the provisioningState value.
@@ -91,6 +143,12 @@ public final class AzureTrafficCollectorPropertiesFormat
         if (virtualHub() != null) {
             virtualHub().validate();
         }
+        if (dataSubnet() != null) {
+            dataSubnet().validate();
+        }
+        if (managementSubnet() != null) {
+            managementSubnet().validate();
+        }
     }
 
     /**
@@ -100,6 +158,8 @@ public final class AzureTrafficCollectorPropertiesFormat
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("virtualHub", this.virtualHub);
+        jsonWriter.writeJsonField("dataSubnet", this.dataSubnet);
+        jsonWriter.writeJsonField("managementSubnet", this.managementSubnet);
         return jsonWriter.writeEndObject();
     }
 
@@ -125,6 +185,11 @@ public final class AzureTrafficCollectorPropertiesFormat
                     deserializedAzureTrafficCollectorPropertiesFormat.collectorPolicies = collectorPolicies;
                 } else if ("virtualHub".equals(fieldName)) {
                     deserializedAzureTrafficCollectorPropertiesFormat.virtualHub = ResourceReference.fromJson(reader);
+                } else if ("dataSubnet".equals(fieldName)) {
+                    deserializedAzureTrafficCollectorPropertiesFormat.dataSubnet = ResourceReference.fromJson(reader);
+                } else if ("managementSubnet".equals(fieldName)) {
+                    deserializedAzureTrafficCollectorPropertiesFormat.managementSubnet
+                        = ResourceReference.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedAzureTrafficCollectorPropertiesFormat.provisioningState
                         = ProvisioningState.fromString(reader.getString());

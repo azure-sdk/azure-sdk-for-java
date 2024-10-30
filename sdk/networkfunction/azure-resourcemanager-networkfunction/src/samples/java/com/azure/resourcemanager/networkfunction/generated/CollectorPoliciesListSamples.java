@@ -10,7 +10,22 @@ package com.azure.resourcemanager.networkfunction.generated;
 public final class CollectorPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPoliciesListVirtualTap.json
+     */
+    /**
+     * Sample code: List of Collection Policies with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void listOfCollectionPoliciesWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies().list("rg1", "atc", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPoliciesList.json
      */
     /**

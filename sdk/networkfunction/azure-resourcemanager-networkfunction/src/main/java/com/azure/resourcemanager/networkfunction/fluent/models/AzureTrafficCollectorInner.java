@@ -165,6 +165,54 @@ public final class AzureTrafficCollectorInner extends Resource {
     }
 
     /**
+     * Get the dataSubnet property: Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     * 
+     * @return the dataSubnet value.
+     */
+    public ResourceReference dataSubnet() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataSubnet();
+    }
+
+    /**
+     * Set the dataSubnet property: Reference to the data subnet resource. This resource must be named 'atcDataSubnet'.
+     * 
+     * @param dataSubnet the dataSubnet value to set.
+     * @return the AzureTrafficCollectorInner object itself.
+     */
+    public AzureTrafficCollectorInner withDataSubnet(ResourceReference dataSubnet) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureTrafficCollectorPropertiesFormat();
+        }
+        this.innerProperties().withDataSubnet(dataSubnet);
+        return this;
+    }
+
+    /**
+     * Get the managementSubnet property: Reference to the management subnet resource. This resource must be named
+     * 'atcManagementSubnet'.
+     * 
+     * @return the managementSubnet value.
+     */
+    public ResourceReference managementSubnet() {
+        return this.innerProperties() == null ? null : this.innerProperties().managementSubnet();
+    }
+
+    /**
+     * Set the managementSubnet property: Reference to the management subnet resource. This resource must be named
+     * 'atcManagementSubnet'.
+     * 
+     * @param managementSubnet the managementSubnet value to set.
+     * @return the AzureTrafficCollectorInner object itself.
+     */
+    public AzureTrafficCollectorInner withManagementSubnet(ResourceReference managementSubnet) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureTrafficCollectorPropertiesFormat();
+        }
+        this.innerProperties().withManagementSubnet(managementSubnet);
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning state of the application rule collection resource.
      * 
      * @return the provisioningState value.

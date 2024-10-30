@@ -68,6 +68,14 @@ public final class AzureTrafficCollectorImpl
         return this.innerModel().virtualHub();
     }
 
+    public ResourceReference dataSubnet() {
+        return this.innerModel().dataSubnet();
+    }
+
+    public ResourceReference managementSubnet() {
+        return this.innerModel().managementSubnet();
+    }
+
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -192,6 +200,16 @@ public final class AzureTrafficCollectorImpl
 
     public AzureTrafficCollectorImpl withVirtualHub(ResourceReference virtualHub) {
         this.innerModel().withVirtualHub(virtualHub);
+        return this;
+    }
+
+    public AzureTrafficCollectorImpl withDataSubnet(ResourceReference dataSubnet) {
+        this.innerModel().withDataSubnet(dataSubnet);
+        return this;
+    }
+
+    public AzureTrafficCollectorImpl withManagementSubnet(ResourceReference managementSubnet) {
+        this.innerModel().withManagementSubnet(managementSubnet);
         return this;
     }
 

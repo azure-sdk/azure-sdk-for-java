@@ -17,6 +17,11 @@ public final class IngestionType extends ExpandableStringEnum<IngestionType> {
     public static final IngestionType IPFIX = fromString("IPFIX");
 
     /**
+     * Static value VirtualTap for IngestionType.
+     */
+    public static final IngestionType VIRTUAL_TAP = fromString("VirtualTap");
+
+    /**
      * Creates a new instance of IngestionType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

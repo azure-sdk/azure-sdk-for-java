@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.networkfunction.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Resource reference properties.
  */
-@Immutable
+@Fluent
 public final class ResourceReference implements JsonSerializable<ResourceReference> {
     /*
      * Resource ID.
@@ -37,6 +37,17 @@ public final class ResourceReference implements JsonSerializable<ResourceReferen
     }
 
     /**
+     * Set the id property: Resource ID.
+     * 
+     * @param id the id value to set.
+     * @return the ResourceReference object itself.
+     */
+    public ResourceReference withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -50,6 +61,7 @@ public final class ResourceReference implements JsonSerializable<ResourceReferen
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("id", this.id);
         return jsonWriter.writeEndObject();
     }
 

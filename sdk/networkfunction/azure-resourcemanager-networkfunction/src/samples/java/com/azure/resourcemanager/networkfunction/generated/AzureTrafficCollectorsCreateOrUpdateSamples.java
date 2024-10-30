@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
+import com.azure.resourcemanager.networkfunction.models.ResourceReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
 public final class AzureTrafficCollectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorCreate.json
      */
     /**
@@ -28,6 +29,10 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
             .withRegion("West US")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withDataSubnet(new ResourceReference().withId(
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet2/subnets/atcDataSubnet"))
+            .withManagementSubnet(new ResourceReference().withId(
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet2/subnets/atcManagementSubnet"))
             .create();
     }
 

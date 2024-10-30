@@ -14,7 +14,7 @@ import java.util.Map;
 public final class CollectorPoliciesUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyUpdateTags.json
      */
     /**
@@ -24,6 +24,24 @@ public final class CollectorPoliciesUpdateTagsSamples {
      */
     public static void
         updateCollectorPolicyTags(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        CollectorPolicy resource = manager.collectorPolicies()
+            .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyUpdateTagsVirtualTap.json
+     */
+    /**
+     * Sample code: Update Collector Policy tags with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void updateCollectorPolicyTagsWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         CollectorPolicy resource = manager.collectorPolicies()
             .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
             .getValue();

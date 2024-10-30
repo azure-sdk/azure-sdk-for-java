@@ -30,6 +30,7 @@
 ### AzureTrafficCollectors_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.networkfunction.models.ResourceReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ import java.util.Map;
 public final class AzureTrafficCollectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorCreate.json
      */
     /**
@@ -54,6 +55,10 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
             .withRegion("West US")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withDataSubnet(new ResourceReference().withId(
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet2/subnets/atcDataSubnet"))
+            .withManagementSubnet(new ResourceReference().withId(
+                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet2/subnets/atcManagementSubnet"))
             .create();
     }
 
@@ -80,7 +85,7 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
 public final class AzureTrafficCollectorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorDelete.json
      */
     /**
@@ -104,7 +109,7 @@ public final class AzureTrafficCollectorsDeleteSamples {
 public final class AzureTrafficCollectorsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorGet.json
      */
     /**
@@ -132,7 +137,7 @@ import java.util.Map;
 public final class AzureTrafficCollectorsUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorUpdateTags.json
      */
     /**
@@ -171,7 +176,7 @@ public final class AzureTrafficCollectorsUpdateTagsSamples {
 public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorsByResourceGroupList.json
      */
     /**
@@ -195,7 +200,7 @@ public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSampl
 public final class AzureTrafficCollectorsBySubscriptionListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorsBySubscriptionList.json
      */
     /**
@@ -229,7 +234,35 @@ import java.util.Arrays;
 public final class CollectorPoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyCreateVirtualTap.json
+     */
+    /**
+     * Sample code: Create a collection policy with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void createACollectionPolicyWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies()
+            .define("cp1")
+            .withRegion("West US")
+            .withExistingAzureTrafficCollector("rg1", "atc")
+            .withIngestionPolicy(new IngestionPolicyPropertiesFormat().withIngestionType(IngestionType.VIRTUAL_TAP)
+                .withIngestionSources(Arrays.asList(new IngestionSourcesPropertiesFormat()
+                    .withSourceType(SourceType.RESOURCE)
+                    .withResourceId(
+                        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkTaps/vtap"))))
+            .withEmissionPolicies(
+                Arrays.asList(new EmissionPoliciesPropertiesFormat().withEmissionType(EmissionType.FLOW_LOGS)
+                    .withEmissionDestinations(Arrays
+                        .asList(new EmissionPolicyDestination().withDestinationType(DestinationType.AZURE_MONITOR)))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyCreate.json
      */
     /**
@@ -266,7 +299,7 @@ public final class CollectorPoliciesCreateOrUpdateSamples {
 public final class CollectorPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyDelete.json
      */
     /**
@@ -290,7 +323,7 @@ public final class CollectorPoliciesDeleteSamples {
 public final class CollectorPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyGet.json
      */
     /**
@@ -300,6 +333,21 @@ public final class CollectorPoliciesGetSamples {
      */
     public static void
         getCollectionPolicy(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyGetVirtualTap.json
+     */
+    /**
+     * Sample code: Get Collector Policy with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void getCollectorPolicyWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }
@@ -314,7 +362,22 @@ public final class CollectorPoliciesGetSamples {
 public final class CollectorPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPoliciesListVirtualTap.json
+     */
+    /**
+     * Sample code: List of Collection Policies with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void listOfCollectionPoliciesWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        manager.collectorPolicies().list("rg1", "atc", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPoliciesList.json
      */
     /**
@@ -342,7 +405,7 @@ import java.util.Map;
 public final class CollectorPoliciesUpdateTagsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * CollectorPolicyUpdateTags.json
      */
     /**
@@ -352,6 +415,24 @@ public final class CollectorPoliciesUpdateTagsSamples {
      */
     public static void
         updateCollectorPolicyTags(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
+        CollectorPolicy resource = manager.collectorPolicies()
+            .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
+     * CollectorPolicyUpdateTagsVirtualTap.json
+     */
+    /**
+     * Sample code: Update Collector Policy tags with virtualTap.
+     * 
+     * @param manager Entry point to AzureTrafficCollectorManager.
+     */
+    public static void updateCollectorPolicyTagsWithVirtualTap(
+        com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         CollectorPolicy resource = manager.collectorPolicies()
             .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
             .getValue();
@@ -381,7 +462,7 @@ public final class CollectorPoliciesUpdateTagsSamples {
 public final class NetworkFunctionListOperationsSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * OperationsList.json
      */
     /**

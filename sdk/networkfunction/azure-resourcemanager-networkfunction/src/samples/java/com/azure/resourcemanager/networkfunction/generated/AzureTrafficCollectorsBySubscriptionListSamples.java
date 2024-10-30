@@ -10,7 +10,7 @@ package com.azure.resourcemanager.networkfunction.generated;
 public final class AzureTrafficCollectorsBySubscriptionListSamples {
     /*
      * x-ms-original-file:
-     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/
+     * specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2024-12-01/examples/
      * AzureTrafficCollectorsBySubscriptionList.json
      */
     /**
