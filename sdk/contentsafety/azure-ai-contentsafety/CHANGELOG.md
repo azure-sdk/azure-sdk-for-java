@@ -2,14 +2,138 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.AddOrUpdateTextBlocklistItemsResult` was not changed
+#### `models.AnalyzeImageOutputType` was not changed
+#### `implementation.BlocklistClientImpl` was not changed
+#### `BlocklistAsyncClient` was not changed
+#### `models.AnalyzeTextResult` was not changed
+#### `models.TextBlocklistMatch` was not changed
+#### `models.AnalyzeImageOptions` was not changed
+#### `implementation.ContentSafetyClientImpl$ContentSafetyClientService` was modified* `analyzeText(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeImage(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeImageSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `analyzeTextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
 
-### Other Changes
+#### `models.TextBlocklistItem` was not changed
+#### `models.RemoveTextBlocklistItemsOptions` was not changed
+#### `implementation.ContentSafetyClientImpl` was not changed
+#### `models.AnalyzeTextOutputType` was not changed
+#### `implementation.BlocklistClientImpl$BlocklistClientService` was modified* `addOrUpdateBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `removeBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `addOrUpdateBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
+* `removeBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was removed
 
+#### `models.TextBlocklist` was not changed
+#### `models.ImageCategory` was not changed
+#### `models.AnalyzeTextOptions` was not changed
+#### `ContentSafetyAsyncClient` was not changed
+#### `ContentSafetyClient` was not changed
+#### `implementation.JsonMergePatchHelper$TextBlocklistAccessor` was not changed
+#### `models.ImageCategoriesAnalysis` was not changed
+#### `models.AnalyzeImageResult` was not changed
+#### `models.TextCategory` was not changed
+#### `BlocklistClientBuilder` was not changed
+#### `models.AddOrUpdateTextBlocklistItemsOptions` was not changed
+#### `ContentSafetyClientBuilder` was not changed
+#### `implementation.JsonMergePatchHelper` was not changed
+#### `ContentSafetyServiceVersion` was not changed
+#### `models.ContentSafetyImageData` was not changed
+#### `models.TextCategoriesAnalysis` was not changed
+#### `BlocklistClient` was not changed
+### Features Added
+
+#### `models.AddOrUpdateTextBlocklistItemsResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `BlocklistAsyncClient` was modified
+
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
+
+#### `models.AnalyzeTextResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TextBlocklistMatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AnalyzeImageOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `implementation.ContentSafetyClientImpl$ContentSafetyClientService` was modified
+
+* `analyzeImageSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeText(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeTextSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `analyzeImage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `models.TextBlocklistItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RemoveTextBlocklistItemsOptions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `implementation.BlocklistClientImpl$BlocklistClientService` was modified
+
+* `removeBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `addOrUpdateBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `addOrUpdateBlocklistItems(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `removeBlocklistItemsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `models.TextBlocklist` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AnalyzeTextOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `implementation.JsonMergePatchHelper$TextBlocklistAccessor` was modified
+
+* `isJsonMergePatch(models.TextBlocklist)` was added
+
+#### `models.ImageCategoriesAnalysis` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AnalyzeImageResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AddOrUpdateTextBlocklistItemsOptions` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ContentSafetyImageData` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TextCategoriesAnalysis` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `BlocklistClient` was modified
+
+* `createOrUpdateTextBlocklist(java.lang.String,models.TextBlocklist)` was added
 
 ## 1.0.7 (2024-09-27)
 
