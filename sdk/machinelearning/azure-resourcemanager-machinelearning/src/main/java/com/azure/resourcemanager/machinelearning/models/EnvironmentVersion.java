@@ -83,14 +83,15 @@ public interface EnvironmentVersion {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, environmentName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Name of EnvironmentVersion. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param environmentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingEnvironment(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingEnvironment(String resourceGroupName, String registryName,
+                String environmentName);
         }
 
         /**
@@ -187,25 +188,4 @@ public interface EnvironmentVersion {
      * @return the refreshed resource.
      */
     EnvironmentVersion refresh(Context context);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body);
-
-    /**
-     * Publish version asset into registry.
-     * 
-     * @param body Destination registry info.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void publish(DestinationAsset body, Context context);
 }

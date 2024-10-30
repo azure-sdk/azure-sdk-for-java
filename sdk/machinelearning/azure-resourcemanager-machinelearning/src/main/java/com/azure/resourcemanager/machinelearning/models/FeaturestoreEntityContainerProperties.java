@@ -22,14 +22,14 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
     private AssetProvisioningState provisioningState;
 
     /*
-     * The latest version inside this container.
-     */
-    private String latestVersion;
-
-    /*
      * The next auto incremental version
      */
     private String nextVersion;
+
+    /*
+     * The latest version inside this container.
+     */
+    private String latestVersion;
 
     /**
      * Creates an instance of FeaturestoreEntityContainerProperties class.
@@ -47,16 +47,6 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
     }
 
     /**
-     * Get the latestVersion property: The latest version inside this container.
-     * 
-     * @return the latestVersion value.
-     */
-    @Override
-    public String latestVersion() {
-        return this.latestVersion;
-    }
-
-    /**
      * Get the nextVersion property: The next auto incremental version.
      * 
      * @return the nextVersion value.
@@ -64,6 +54,16 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
     @Override
     public String nextVersion() {
         return this.nextVersion;
+    }
+
+    /**
+     * Get the latestVersion property: The latest version inside this container.
+     * 
+     * @return the latestVersion value.
+     */
+    @Override
+    public String latestVersion() {
+        return this.latestVersion;
     }
 
     /**
@@ -88,8 +88,8 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
      * {@inheritDoc}
      */
     @Override
-    public FeaturestoreEntityContainerProperties withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public FeaturestoreEntityContainerProperties withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -97,8 +97,8 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
      * {@inheritDoc}
      */
     @Override
-    public FeaturestoreEntityContainerProperties withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public FeaturestoreEntityContainerProperties withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -109,7 +109,6 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -119,8 +118,8 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isArchived", isArchived());
         return jsonWriter.writeEndObject();
     }
@@ -143,12 +142,12 @@ public final class FeaturestoreEntityContainerProperties extends AssetContainer 
 
                 if ("description".equals(fieldName)) {
                     deserializedFeaturestoreEntityContainerProperties.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedFeaturestoreEntityContainerProperties.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedFeaturestoreEntityContainerProperties.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedFeaturestoreEntityContainerProperties.withTags(tags);
                 } else if ("isArchived".equals(fieldName)) {
                     deserializedFeaturestoreEntityContainerProperties
                         .withIsArchived(reader.getNullable(JsonReader::getBoolean));

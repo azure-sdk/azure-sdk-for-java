@@ -51,21 +51,21 @@ public final class FeaturestoreEntityContainersClientImpl implements Featurestor
     /**
      * The service client containing this operation class.
      */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of FeaturestoreEntityContainersClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    FeaturestoreEntityContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    FeaturestoreEntityContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(FeaturestoreEntityContainersService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesFeaturestoreEntityContainers to be used
+     * The interface defining all the services for AzureMachineLearningServicesFeaturestoreEntityContainers to be used
      * by the proxy service to perform REST calls.
      */
     @Host("{$host}")
