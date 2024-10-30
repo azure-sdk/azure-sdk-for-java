@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.postgresqlflexibleserver.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
  * Determines if geo-backup is supported in this region. "Enabled" means geo-backup is supported. "Disabled" stands for
- * geo-back is not supported.
+ * geo-back is not supported. Will be deprecated in future, please look to Supported Features for "GeoBackup".
  */
 public final class GeoBackupSupportedEnum extends ExpandableStringEnum<GeoBackupSupportedEnum> {
     /**
@@ -38,7 +37,6 @@ public final class GeoBackupSupportedEnum extends ExpandableStringEnum<GeoBackup
      * @param name a name to look for.
      * @return the corresponding GeoBackupSupportedEnum.
      */
-    @JsonCreator
     public static GeoBackupSupportedEnum fromString(String name) {
         return fromString(name, GeoBackupSupportedEnum.class);
     }
