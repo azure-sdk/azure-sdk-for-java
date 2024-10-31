@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.implementation;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkProvisionStatusInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisionStatus;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
@@ -48,6 +49,10 @@ public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings 
         } else {
             return null;
         }
+    }
+
+    public FirewallSku firewallSku() {
+        return this.innerModel().firewallSku();
     }
 
     public ManagedNetworkSettingsInner innerModel() {
