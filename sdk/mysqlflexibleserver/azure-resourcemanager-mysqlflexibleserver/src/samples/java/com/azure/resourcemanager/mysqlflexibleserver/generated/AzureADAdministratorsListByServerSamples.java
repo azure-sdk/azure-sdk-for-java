@@ -9,7 +9,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
  */
 public final class AzureADAdministratorsListByServerSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/preview/2023-06-01-preview/examples/AzureADAdministratorsListByServer.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/AAD/stable/2023-12-30/examples/
+     * AzureADAdministratorsListByServer.json
      */
     /**
      * Sample code: List Azure AD administrators in a server.
