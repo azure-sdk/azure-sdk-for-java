@@ -159,7 +159,7 @@ public final class SingleDocumentTranslationClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> documentTranslate(@HostParam("endpoint") String endpoint,
+        Mono<Response<BinaryData>> translate(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @QueryParam("targetLanguage") String targetLanguage,
             @HeaderParam("content-type") String contentType, @HeaderParam("Accept") String accept,
             @BodyParam("multipart/form-data") BinaryData documentTranslateContent, RequestOptions requestOptions,
@@ -172,7 +172,7 @@ public final class SingleDocumentTranslationClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> documentTranslateSync(@HostParam("endpoint") String endpoint,
+        Response<BinaryData> translateSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @QueryParam("targetLanguage") String targetLanguage,
             @HeaderParam("content-type") String contentType, @HeaderParam("Accept") String accept,
             @BodyParam("multipart/form-data") BinaryData documentTranslateContent, RequestOptions requestOptions,
@@ -197,6 +197,8 @@ public final class SingleDocumentTranslationClientImpl {
      * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>Specifies that the service is allowed to fall back to a
      * general system when a custom system doesn't exist.
      * Possible values are: true (default) or false.</td></tr>
+     * <tr><td>translateTextWithinImage</td><td>Boolean</td><td>No</td><td>Optional boolean parameter to translate text
+     * within an image in the document</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -219,12 +221,12 @@ public final class SingleDocumentTranslationClientImpl {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> documentTranslateWithResponseAsync(String targetLanguage,
+    public Mono<Response<BinaryData>> translateWithResponseAsync(String targetLanguage,
         BinaryData documentTranslateContent, RequestOptions requestOptions) {
         final String contentType = "multipart/form-data";
         final String accept = "application/octet-stream";
         return FluxUtil
-            .withContext(context -> service.documentTranslate(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            .withContext(context -> service.translate(this.getEndpoint(), this.getServiceVersion().getVersion(),
                 targetLanguage, contentType, accept, documentTranslateContent, requestOptions, context));
     }
 
@@ -246,6 +248,8 @@ public final class SingleDocumentTranslationClientImpl {
      * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>Specifies that the service is allowed to fall back to a
      * general system when a custom system doesn't exist.
      * Possible values are: true (default) or false.</td></tr>
+     * <tr><td>translateTextWithinImage</td><td>Boolean</td><td>No</td><td>Optional boolean parameter to translate text
+     * within an image in the document</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -268,11 +272,11 @@ public final class SingleDocumentTranslationClientImpl {
      * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> documentTranslateWithResponse(String targetLanguage,
-        BinaryData documentTranslateContent, RequestOptions requestOptions) {
+    public Response<BinaryData> translateWithResponse(String targetLanguage, BinaryData documentTranslateContent,
+        RequestOptions requestOptions) {
         final String contentType = "multipart/form-data";
         final String accept = "application/octet-stream";
-        return service.documentTranslateSync(this.getEndpoint(), this.getServiceVersion().getVersion(), targetLanguage,
+        return service.translateSync(this.getEndpoint(), this.getServiceVersion().getVersion(), targetLanguage,
             contentType, accept, documentTranslateContent, requestOptions, Context.NONE);
     }
 }

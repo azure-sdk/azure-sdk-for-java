@@ -48,7 +48,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
      * List of possible statuses for job or document
      */
     @Generated
-    private final Status status;
+    private final TranslationStatus status;
 
     /*
      * To language
@@ -80,29 +80,6 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
      */
     @Generated
     private Integer characterCharged;
-
-    /**
-     * Creates an instance of DocumentStatus class.
-     *
-     * @param sourcePath the sourcePath value to set.
-     * @param createdDateTimeUtc the createdDateTimeUtc value to set.
-     * @param lastActionDateTimeUtc the lastActionDateTimeUtc value to set.
-     * @param status the status value to set.
-     * @param to the to value to set.
-     * @param progress the progress value to set.
-     * @param id the id value to set.
-     */
-    @Generated
-    private DocumentStatus(String sourcePath, OffsetDateTime createdDateTimeUtc, OffsetDateTime lastActionDateTimeUtc,
-        Status status, String to, double progress, String id) {
-        this.sourcePath = sourcePath;
-        this.createdDateTimeUtc = createdDateTimeUtc;
-        this.lastActionDateTimeUtc = lastActionDateTimeUtc;
-        this.status = status;
-        this.to = to;
-        this.progress = progress;
-        this.id = id;
-    }
 
     /**
      * Get the path property: Location of the document or folder.
@@ -150,7 +127,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
      * @return the status value.
      */
     @Generated
-    public Status getStatus() {
+    public TranslationStatus getStatus() {
         return this.status;
     }
 
@@ -228,6 +205,8 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
         jsonWriter.writeStringField("path", this.path);
         jsonWriter.writeJsonField("error", this.error);
         jsonWriter.writeNumberField("characterCharged", this.characterCharged);
+        jsonWriter.writeNumberField("totalImageScansCharged", this.totalImageScansCharged);
+        jsonWriter.writeNumberField("totalImageScansFailed", this.totalImageScansFailed);
         return jsonWriter.writeEndObject();
     }
 
@@ -246,13 +225,15 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
             String sourcePath = null;
             OffsetDateTime createdDateTimeUtc = null;
             OffsetDateTime lastActionDateTimeUtc = null;
-            Status status = null;
+            TranslationStatus status = null;
             String to = null;
             double progress = 0.0;
             String id = null;
             String path = null;
             TranslationError error = null;
             Integer characterCharged = null;
+            Integer totalImageScansCharged = null;
+            Integer totalImageScansFailed = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -265,7 +246,7 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
                     lastActionDateTimeUtc = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("status".equals(fieldName)) {
-                    status = Status.fromString(reader.getString());
+                    status = TranslationStatus.fromString(reader.getString());
                 } else if ("to".equals(fieldName)) {
                     to = reader.getString();
                 } else if ("progress".equals(fieldName)) {
@@ -278,6 +259,10 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
                     error = TranslationError.fromJson(reader);
                 } else if ("characterCharged".equals(fieldName)) {
                     characterCharged = reader.getNullable(JsonReader::getInt);
+                } else if ("totalImageScansCharged".equals(fieldName)) {
+                    totalImageScansCharged = reader.getNullable(JsonReader::getInt);
+                } else if ("totalImageScansFailed".equals(fieldName)) {
+                    totalImageScansFailed = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }
@@ -287,7 +272,64 @@ public final class DocumentStatus implements JsonSerializable<DocumentStatus> {
             deserializedDocumentStatus.path = path;
             deserializedDocumentStatus.error = error;
             deserializedDocumentStatus.characterCharged = characterCharged;
+            deserializedDocumentStatus.totalImageScansCharged = totalImageScansCharged;
+            deserializedDocumentStatus.totalImageScansFailed = totalImageScansFailed;
             return deserializedDocumentStatus;
         });
+    }
+
+    /*
+     * Total image scans charged by the API
+     */
+    @Generated
+    private Integer totalImageScansCharged;
+
+    /*
+     * Total image scans failed
+     */
+    @Generated
+    private Integer totalImageScansFailed;
+
+    /**
+     * Creates an instance of DocumentStatus class.
+     *
+     * @param sourcePath the sourcePath value to set.
+     * @param createdDateTimeUtc the createdDateTimeUtc value to set.
+     * @param lastActionDateTimeUtc the lastActionDateTimeUtc value to set.
+     * @param status the status value to set.
+     * @param to the to value to set.
+     * @param progress the progress value to set.
+     * @param id the id value to set.
+     */
+    @Generated
+    private DocumentStatus(String sourcePath, OffsetDateTime createdDateTimeUtc, OffsetDateTime lastActionDateTimeUtc,
+        TranslationStatus status, String to, double progress, String id) {
+        this.sourcePath = sourcePath;
+        this.createdDateTimeUtc = createdDateTimeUtc;
+        this.lastActionDateTimeUtc = lastActionDateTimeUtc;
+        this.status = status;
+        this.to = to;
+        this.progress = progress;
+        this.id = id;
+    }
+
+    /**
+     * Get the totalImageScansCharged property: Total image scans charged by the API.
+     *
+     * @return the totalImageScansCharged value.
+     */
+    @Generated
+    public Integer getTotalImageScansCharged() {
+        return this.totalImageScansCharged;
+    }
+
+    /**
+     * Get the totalImageScansFailed property: Total image scans failed.
+     *
+     * @return the totalImageScansFailed value.
+     */
+    @Generated
+    public Integer getTotalImageScansFailed() {
+        return this.totalImageScansFailed;
     }
 }
