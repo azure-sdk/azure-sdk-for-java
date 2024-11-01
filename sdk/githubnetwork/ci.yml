@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/githubnetwork/ci.yml
+      - sdk/githubnetwork/azure-resourcemanager-githubnetwork/
+    exclude:
+      - sdk/githubnetwork/pom.xml
+      - sdk/githubnetwork/azure-resourcemanager-githubnetwork/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/githubnetwork/ci.yml
+      - sdk/githubnetwork/azure-resourcemanager-githubnetwork/
+    exclude:
+      - sdk/githubnetwork/pom.xml
+      - sdk/githubnetwork/azure-resourcemanager-githubnetwork/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagergithubnetwork
+    displayName: azure-resourcemanager-githubnetwork
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: githubnetwork
+    Artifacts:
+      - name: azure-resourcemanager-githubnetwork
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagergithubnetwork
+        releaseInBatch: ${{ parameters.release_azureresourcemanagergithubnetwork }}
