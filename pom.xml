@@ -146,6 +146,7 @@
     <module>sdk/modelsrepository</module>
     <module>sdk/mongocluster</module>
     <module>sdk/monitor</module>
+    <module>sdk/mpcnetworkfunction</module>
     <module>sdk/mysql</module>
     <module>sdk/mysqlflexibleserver</module>
     <module>sdk/netapp</module>
