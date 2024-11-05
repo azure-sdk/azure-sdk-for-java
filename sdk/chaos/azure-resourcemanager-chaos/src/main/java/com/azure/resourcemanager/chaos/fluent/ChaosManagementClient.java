@@ -68,13 +68,6 @@ public interface ChaosManagementClient {
     ExperimentsClient getExperiments();
 
     /**
-     * Gets the OperationStatusesClient object to access its operations.
-     * 
-     * @return the OperationStatusesClient object.
-     */
-    OperationStatusesClient getOperationStatuses();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
@@ -82,11 +75,11 @@ public interface ChaosManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the TargetTypesClient object to access its operations.
+     * Gets the OperationStatusesClient object to access its operations.
      * 
-     * @return the TargetTypesClient object.
+     * @return the OperationStatusesClient object.
      */
-    TargetTypesClient getTargetTypes();
+    OperationStatusesClient getOperationStatuses();
 
     /**
      * Gets the TargetsClient object to access its operations.
@@ -94,4 +87,11 @@ public interface ChaosManagementClient {
      * @return the TargetsClient object.
      */
     TargetsClient getTargets();
+
+    /**
+     * Gets the TargetTypesClient object to access its operations.
+     * 
+     * @return the TargetTypesClient object.
+     */
+    TargetTypesClient getTargetTypes();
 }

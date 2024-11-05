@@ -1,14 +1,183 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-05)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. Package tag package-preview-2024-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ChaosTargetListSelector` was removed
 
-### Other Changes
+#### `models.ChaosTargetSimpleFilterParameters` was removed
+
+#### `models.ChaosTargetQuerySelector` was removed
+
+#### `models.ChaosExperimentBranch` was removed
+
+#### `models.ChaosTargetFilter` was removed
+
+#### `models.ChaosTargetSimpleFilter` was removed
+
+#### `models.ChaosExperimentStep` was removed
+
+#### `models.ChaosExperimentAction` was removed
+
+#### `models.ChaosTargetSelector` was removed
+
+#### `models.DelayAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+#### `models.ContinuousAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+#### `models.OperationStatus` was modified
+
+* `java.lang.String startTime()` -> `java.time.OffsetDateTime startTime()`
+* `java.lang.String endTime()` -> `java.time.OffsetDateTime endTime()`
+
+#### `models.DiscreteAction` was modified
+
+* `models.ChaosExperimentAction withName(java.lang.String)` -> `models.Action withName(java.lang.String)`
+
+### Features Added
+
+* `models.Selector` was added
+
+* `models.SimpleFilter` was added
+
+* `models.Action` was added
+
+* `models.Filter` was added
+
+* `models.Branch` was added
+
+* `models.QuerySelector` was added
+
+* `models.SimpleFilterParameters` was added
+
+* `models.Step` was added
+
+* `models.ListSelector` was added
+
+#### `models.TargetListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DelayAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CapabilityTypeListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentExecutionDetailsPropertiesRunInformation` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StepStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ContinuousAction` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+
+#### `models.CapabilityTypePropertiesRuntimeProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExperimentExecutionActionTargetDetailsError` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ExperimentExecutionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KeyValuePair` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.BranchStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TargetTypeListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiscreteAction` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+
+#### `models.ActionStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CapabilityListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExperimentExecutionActionTargetDetailsProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TargetReference` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0 (2024-03-15)
 
