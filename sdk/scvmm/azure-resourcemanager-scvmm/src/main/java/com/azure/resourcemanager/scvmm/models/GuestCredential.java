@@ -6,25 +6,23 @@ package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Username / Password Credentials to connect to guest.
  */
 @Fluent
-public final class GuestCredential implements JsonSerializable<GuestCredential> {
+public final class GuestCredential {
     /*
      * Gets or sets username to connect with the guest.
      */
+    @JsonProperty(value = "username", required = true)
     private String username;
 
     /*
      * Gets or sets the password to connect with the guest.
      */
+    @JsonProperty(value = "password")
     private String password;
 
     /**
@@ -90,44 +88,4 @@ public final class GuestCredential implements JsonSerializable<GuestCredential> 
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(GuestCredential.class);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("username", this.username);
-        jsonWriter.writeStringField("password", this.password);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of GuestCredential from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of GuestCredential if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the GuestCredential.
-     */
-    public static GuestCredential fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            GuestCredential deserializedGuestCredential = new GuestCredential();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("username".equals(fieldName)) {
-                    deserializedGuestCredential.username = reader.getString();
-                } else if ("password".equals(fieldName)) {
-                    deserializedGuestCredential.password = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedGuestCredential;
-        });
-    }
 }

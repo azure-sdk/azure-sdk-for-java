@@ -5,50 +5,53 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Network Interface Update model.
  */
 @Fluent
-public final class NetworkInterfaceUpdate implements JsonSerializable<NetworkInterfaceUpdate> {
+public final class NetworkInterfaceUpdate {
     /*
      * Gets or sets the name of the network interface.
      */
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Gets or sets the nic MAC address.
      */
+    @JsonProperty(value = "macAddress")
     private String macAddress;
 
     /*
      * Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic.
      */
+    @JsonProperty(value = "virtualNetworkId")
     private String virtualNetworkId;
 
     /*
      * Gets or sets the ipv4 address type.
      */
+    @JsonProperty(value = "ipv4AddressType")
     private AllocationMethod ipv4AddressType;
 
     /*
      * Gets or sets the ipv6 address type.
      */
+    @JsonProperty(value = "ipv6AddressType")
     private AllocationMethod ipv6AddressType;
 
     /*
      * Gets or sets the mac address type.
      */
+    @JsonProperty(value = "macAddressType")
     private AllocationMethod macAddressType;
 
     /*
      * Gets or sets the nic id.
      */
+    @JsonProperty(value = "nicId")
     private String nicId;
 
     /**
@@ -205,64 +208,5 @@ public final class NetworkInterfaceUpdate implements JsonSerializable<NetworkInt
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("macAddress", this.macAddress);
-        jsonWriter.writeStringField("virtualNetworkId", this.virtualNetworkId);
-        jsonWriter.writeStringField("ipv4AddressType",
-            this.ipv4AddressType == null ? null : this.ipv4AddressType.toString());
-        jsonWriter.writeStringField("ipv6AddressType",
-            this.ipv6AddressType == null ? null : this.ipv6AddressType.toString());
-        jsonWriter.writeStringField("macAddressType",
-            this.macAddressType == null ? null : this.macAddressType.toString());
-        jsonWriter.writeStringField("nicId", this.nicId);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of NetworkInterfaceUpdate from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of NetworkInterfaceUpdate if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the NetworkInterfaceUpdate.
-     */
-    public static NetworkInterfaceUpdate fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            NetworkInterfaceUpdate deserializedNetworkInterfaceUpdate = new NetworkInterfaceUpdate();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("name".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.name = reader.getString();
-                } else if ("macAddress".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.macAddress = reader.getString();
-                } else if ("virtualNetworkId".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.virtualNetworkId = reader.getString();
-                } else if ("ipv4AddressType".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.ipv4AddressType
-                        = AllocationMethod.fromString(reader.getString());
-                } else if ("ipv6AddressType".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.ipv6AddressType
-                        = AllocationMethod.fromString(reader.getString());
-                } else if ("macAddressType".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.macAddressType = AllocationMethod.fromString(reader.getString());
-                } else if ("nicId".equals(fieldName)) {
-                    deserializedNetworkInterfaceUpdate.nicId = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedNetworkInterfaceUpdate;
-        });
     }
 }
