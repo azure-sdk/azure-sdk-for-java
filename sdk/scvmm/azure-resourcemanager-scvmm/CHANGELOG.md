@@ -1,14 +1,131 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-05)
 
-### Features Added
+- Azure Resource Manager SCVMM client library for Java. This package contains Microsoft Azure SDK for SCVMM Management SDK. The Microsoft.ScVmm Rest API spec. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `ScvmmManager$Configurable` was removed
 
-### Other Changes
+#### `models.InventoryItemListResult` was removed
+
+#### `models.VmInstanceHybridIdentityMetadataListResult` was removed
+
+#### `models.VirtualMachineTemplateListResult` was removed
+
+#### `models.VirtualNetworkListResult` was removed
+
+#### `models.AvailabilitySetListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.VmmServerListResult` was removed
+
+#### `models.CloudListResult` was removed
+
+#### `ScvmmManager` was removed
+
+#### `models.VirtualMachineInstanceUpdateProperties` was removed
+
+#### `models.VirtualMachineInstanceListResult` was removed
+
+#### `models.GuestAgentListResult` was removed
+
+#### `models.VirtualMachineInstances` was modified
+
+* `stop(java.lang.String,models.StopVirtualMachineOptions)` was removed
+
+#### `models.Checkpoint` was modified
+
+* `withDescription(java.lang.String)` was removed
+* `withCheckpointId(java.lang.String)` was removed
+* `withName(java.lang.String)` was removed
+* `withParentCheckpointId(java.lang.String)` was removed
+
+#### `models.StorageQosPolicy` was modified
+
+* `withId(java.lang.String)` was removed
+* `withName(java.lang.String)` was removed
+* `withPolicyId(java.lang.String)` was removed
+* `withBandwidthLimit(java.lang.Long)` was removed
+* `withIopsMinimum(java.lang.Long)` was removed
+* `withIopsMaximum(java.lang.Long)` was removed
+
+#### `models.VmInstanceHybridIdentityMetadataProperties` was modified
+
+* `withResourceUid(java.lang.String)` was removed
+* `withPublicKey(java.lang.String)` was removed
+
+#### `models.VirtualMachineInstanceUpdate` was modified
+
+* `properties()` was removed
+* `withProperties(models.VirtualMachineInstanceUpdateProperties)` was removed
+
+### Features Added
+
+* `implementation.models.VirtualMachineInstanceListResult` was added
+
+* `implementation.models.VmmServerListResult` was added
+
+* `SCVMMManager` was added
+
+* `SCVMMManager$Configurable` was added
+
+* `implementation.models.VirtualNetworkListResult` was added
+
+* `implementation.models.InventoryItemListResult` was added
+
+* `implementation.models.GuestAgentListResult` was added
+
+* `implementation.models.VirtualMachineTemplateListResult` was added
+
+* `implementation.models.AvailabilitySetListResult` was added
+
+* `implementation.models.VmInstanceHybridIdentityMetadataListResult` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.CloudListResult` was added
+
+#### `models.GuestAgentProperties` was modified
+
+* `privateLinkScopeResourceId()` was added
+* `withPrivateLinkScopeResourceId(java.lang.String)` was added
+
+#### `models.VirtualMachineInstances` was modified
+
+* `stop(java.lang.String)` was added
+
+#### `models.OsProfileForVmInstance` was modified
+
+* `withRunOnceCommands(java.lang.String)` was added
+* `productKey()` was added
+* `domainPassword()` was added
+* `runOnceCommands()` was added
+* `domainUsername()` was added
+* `withTimezone(java.lang.Integer)` was added
+* `withWorkgroup(java.lang.String)` was added
+* `workgroup()` was added
+* `withProductKey(java.lang.String)` was added
+* `withDomainPassword(java.lang.String)` was added
+* `timezone()` was added
+* `domainName()` was added
+* `withDomainUsername(java.lang.String)` was added
+* `withDomainName(java.lang.String)` was added
+
+#### `models.VirtualMachineInstanceUpdate` was modified
+
+* `networkProfile()` was added
+* `withInfrastructureProfile(models.InfrastructureProfileUpdate)` was added
+* `withNetworkProfile(models.NetworkProfileUpdate)` was added
+* `hardwareProfile()` was added
+* `infrastructureProfile()` was added
+* `withStorageProfile(models.StorageProfileUpdate)` was added
+* `availabilitySets()` was added
+* `storageProfile()` was added
+* `withHardwareProfile(models.HardwareProfileUpdate)` was added
+* `withAvailabilitySets(java.util.List)` was added
 
 ## 1.0.0 (2024-06-26)
 
