@@ -67,7 +67,7 @@ import java.util.Map;
  */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ContainerApps_SourceToCloudApp_CreateOrUpdate.json
      */
     /**
@@ -136,6 +136,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
                         .withLogLevel(LogLevel.DEBUG)
                         .withEnableApiLogging(true))
                     .withMaxInactiveRevisions(10)
+                    .withRevisionTransitionThreshold(100)
                     .withService(new Service().withType("redis")))
             .withTemplate(new Template()
                 .withInitContainers(Arrays.asList(new InitContainer().withImage("repo/testcontainerApp0:v4")
@@ -187,7 +188,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ContainerApps_CreateOrUpdate_ConnectedEnvironment.json
      */
     /**
@@ -261,7 +262,8 @@ public final class ContainerAppsCreateOrUpdateSamples {
                             .withLogging(new RuntimeJavaAgentLogging().withLoggerSettings(Arrays.asList(
                                 new LoggerSetting().withLogger("org.springframework.boot").withLevel(Level.DEBUG))))))
                         .withDotnet(new RuntimeDotnet().withAutoConfigureDataProtection(true)))
-                    .withMaxInactiveRevisions(10))
+                    .withMaxInactiveRevisions(10)
+                    .withRevisionTransitionThreshold(100))
             .withTemplate(new Template()
                 .withInitContainers(Arrays.asList(new InitContainer().withImage("repo/testcontainerApp0:v4")
                     .withName("testinitcontainerApp0")
@@ -291,7 +293,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/ContainerApps_CreateOrUpdate
+     * specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/ContainerApps_CreateOrUpdate
      * .json
      */
     /**
@@ -372,6 +374,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                     .withLevel(Level.DEBUG))))))
                         .withDotnet(new RuntimeDotnet().withAutoConfigureDataProtection(true)))
                     .withMaxInactiveRevisions(10)
+                    .withRevisionTransitionThreshold(100)
                     .withService(new Service().withType("redis"))
                     .withIdentitySettings(Arrays.asList(new IdentitySettings().withIdentity(
                         "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity")
@@ -382,7 +385,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
                     .withName("testinitcontainerApp0")
                     .withCommand(Arrays.asList("/bin/sh"))
                     .withArgs(Arrays.asList("-c", "while true; do echo hello; sleep 10;done"))
-                    .withResources(new ContainerResources().withCpu(0.2D).withMemory("100Mi"))))
+                    .withResources(new ContainerResources().withCpu(0.2D).withMemory("100Mi").withGpu(1.0D))))
                 .withContainers(Arrays.asList(new Container()
                     .withImage("repo/testcontainerApp0:v1")
                     .withName("testcontainerApp0")
@@ -437,7 +440,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ContainerApps_TcpApp_CreateOrUpdate.json
      */
     /**
@@ -476,7 +479,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ContainerApps_Kind_CreateOrUpdate.json
      */
     /**
@@ -506,7 +509,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-08-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-10-02-preview/examples/
      * ContainerApps_ManagedBy_CreateOrUpdate.json
      */
     /**

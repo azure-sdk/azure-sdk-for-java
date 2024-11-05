@@ -20,7 +20,7 @@ import java.util.List;
  * Dapr Component.
  */
 @Fluent
-public final class DaprComponentInner extends ProxyResource {
+public class DaprComponentInner extends ProxyResource {
     /*
      * Dapr Component resource specific properties
      */
@@ -62,12 +62,34 @@ public final class DaprComponentInner extends ProxyResource {
     }
 
     /**
+     * Set the innerProperties property: Dapr Component resource specific properties.
+     * 
+     * @param innerProperties the innerProperties value to set.
+     * @return the DaprComponentInner object itself.
+     */
+    DaprComponentInner withInnerProperties(DaprComponentProperties innerProperties) {
+        this.innerProperties = innerProperties;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Set the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @param systemData the systemData value to set.
+     * @return the DaprComponentInner object itself.
+     */
+    DaprComponentInner withSystemData(SystemData systemData) {
+        this.systemData = systemData;
+        return this;
     }
 
     /**
