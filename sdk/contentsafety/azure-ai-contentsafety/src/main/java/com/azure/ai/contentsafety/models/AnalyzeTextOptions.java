@@ -19,13 +19,6 @@ import java.util.List;
 public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOptions> {
 
     /*
-     * The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code points) in the text of one
-     * request.
-     */
-    @Generated
-    private final String text;
-
-    /*
      * The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories
      * will be returned.
      */
@@ -55,22 +48,11 @@ public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOpt
     /**
      * Creates an instance of AnalyzeTextOptions class.
      *
-     * @param text the text value to set.
+     * @param text2 the text2 value to set.
      */
     @Generated
-    public AnalyzeTextOptions(String text) {
-        this.text = text;
-    }
-
-    /**
-     * Get the text property: The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code
-     * points) in the text of one request.
-     *
-     * @return the text value.
-     */
-    @Generated
-    public String getText() {
-        return this.text;
+    public AnalyzeTextOptions(String text2) {
+        this.text2 = text2;
     }
 
     /**
@@ -176,7 +158,7 @@ public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOpt
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("text", this.text);
+        jsonWriter.writeStringField("text2", this.text2);
         jsonWriter.writeArrayField("categories", this.categories,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeArrayField("blocklistNames", this.blocklistNames,
@@ -198,7 +180,7 @@ public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOpt
     @Generated
     public static AnalyzeTextOptions fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            String text = null;
+            String text2 = null;
             List<TextCategory> categories = null;
             List<String> blocklistNames = null;
             Boolean haltOnBlocklistHit = null;
@@ -206,8 +188,8 @@ public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOpt
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("text".equals(fieldName)) {
-                    text = reader.getString();
+                if ("text2".equals(fieldName)) {
+                    text2 = reader.getString();
                 } else if ("categories".equals(fieldName)) {
                     categories = reader.readArray(reader1 -> TextCategory.fromString(reader1.getString()));
                 } else if ("blocklistNames".equals(fieldName)) {
@@ -220,12 +202,30 @@ public final class AnalyzeTextOptions implements JsonSerializable<AnalyzeTextOpt
                     reader.skipChildren();
                 }
             }
-            AnalyzeTextOptions deserializedAnalyzeTextOptions = new AnalyzeTextOptions(text);
+            AnalyzeTextOptions deserializedAnalyzeTextOptions = new AnalyzeTextOptions(text2);
             deserializedAnalyzeTextOptions.categories = categories;
             deserializedAnalyzeTextOptions.blocklistNames = blocklistNames;
             deserializedAnalyzeTextOptions.haltOnBlocklistHit = haltOnBlocklistHit;
             deserializedAnalyzeTextOptions.outputType = outputType;
             return deserializedAnalyzeTextOptions;
         });
+    }
+
+    /*
+     * The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code points) in the text of one
+     * request.
+     */
+    @Generated
+    private final String text2;
+
+    /**
+     * Get the text2 property: The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code
+     * points) in the text of one request.
+     *
+     * @return the text2 value.
+     */
+    @Generated
+    public String getText2() {
+        return this.text2;
     }
 }
