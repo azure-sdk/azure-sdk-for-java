@@ -49,16 +49,16 @@ public final class BatchEndpointImpl implements BatchEndpoint, BatchEndpoint.Def
         }
     }
 
-    public BatchEndpointProperties properties() {
-        return this.innerModel().properties();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String kind() {
         return this.innerModel().kind();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public BatchEndpointProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Sku sku() {
@@ -201,13 +201,13 @@ public final class BatchEndpointImpl implements BatchEndpoint, BatchEndpoint.Def
         }
     }
 
-    public BatchEndpointImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
+    public BatchEndpointImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public BatchEndpointImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public BatchEndpointImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
