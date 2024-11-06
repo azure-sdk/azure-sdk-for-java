@@ -9,7 +9,8 @@ package com.azure.resourcemanager.dashboard.generated;
  */
 public final class GrafanaFetchAvailablePluginsSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/preview/2023-10-01-preview/examples/
      * Grafana_FetchAvailablePlugins.json
      */
     /**
@@ -18,7 +19,7 @@ public final class GrafanaFetchAvailablePluginsSamples {
      * @param manager Entry point to DashboardManager.
      */
     public static void grafanaFetchAvailablePlugins(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace",
-            com.azure.core.util.Context.NONE);
+        manager.grafanas()
+            .fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
