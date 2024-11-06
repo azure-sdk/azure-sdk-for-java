@@ -44,7 +44,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to SourceControlConfigurationManager. KubernetesConfiguration Client. */
+/**
+ * Entry point to SourceControlConfigurationManager.
+ * KubernetesConfiguration Client.
+ */
 public final class SourceControlConfigurationManager {
     private Extensions extensions;
 
@@ -73,7 +76,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Creates an instance of SourceControlConfiguration service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the SourceControlConfiguration service API instance.
@@ -86,7 +89,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Creates an instance of SourceControlConfiguration service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the SourceControlConfiguration service API instance.
@@ -100,14 +103,16 @@ public final class SourceControlConfigurationManager {
     /**
      * Gets a Configurable instance that can be used to create SourceControlConfigurationManager with optional
      * configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new SourceControlConfigurationManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -179,8 +184,8 @@ public final class SourceControlConfigurationManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -222,7 +227,7 @@ public final class SourceControlConfigurationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.kubernetesconfiguration")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -270,7 +275,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of Extensions.
-     *
+     * 
      * @return Resource collection API of Extensions.
      */
     public Extensions extensions() {
@@ -282,7 +287,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of OperationStatus.
-     *
+     * 
      * @return Resource collection API of OperationStatus.
      */
     public OperationStatus operationStatus() {
@@ -294,7 +299,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of FluxConfigurations.
-     *
+     * 
      * @return Resource collection API of FluxConfigurations.
      */
     public FluxConfigurations fluxConfigurations() {
@@ -306,7 +311,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of FluxConfigOperationStatus.
-     *
+     * 
      * @return Resource collection API of FluxConfigOperationStatus.
      */
     public FluxConfigOperationStatus fluxConfigOperationStatus() {
@@ -319,7 +324,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of SourceControlConfigurations.
-     *
+     * 
      * @return Resource collection API of SourceControlConfigurations.
      */
     public SourceControlConfigurations sourceControlConfigurations() {
@@ -332,7 +337,7 @@ public final class SourceControlConfigurationManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -345,7 +350,7 @@ public final class SourceControlConfigurationManager {
     /**
      * Gets wrapped service client SourceControlConfigurationClient providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client SourceControlConfigurationClient.
      */
     public SourceControlConfigurationClient serviceClient() {

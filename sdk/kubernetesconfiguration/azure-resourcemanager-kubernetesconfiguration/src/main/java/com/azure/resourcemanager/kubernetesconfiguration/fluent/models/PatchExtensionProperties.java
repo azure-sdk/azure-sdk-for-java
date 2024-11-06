@@ -5,55 +5,81 @@
 package com.azure.resourcemanager.kubernetesconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.kubernetesconfiguration.models.AutoUpgradeMode;
+import java.io.IOException;
 import java.util.Map;
 
-/** Updatable properties of an Extension Patch Request. */
+/**
+ * Updatable properties of an Extension Patch Request.
+ */
 @Fluent
-public final class PatchExtensionProperties {
+public final class PatchExtensionProperties implements JsonSerializable<PatchExtensionProperties> {
+    /*
+     * Defines extension automatic upgrades modes
+     */
+    private AutoUpgradeMode autoUpgradeMode;
+
     /*
      * Flag to note if this extension participates in auto upgrade of minor version, or not.
      */
-    @JsonProperty(value = "autoUpgradeMinorVersion")
     private Boolean autoUpgradeMinorVersion;
 
     /*
      * ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if
      * autoUpgradeMinorVersion is 'true'.
      */
-    @JsonProperty(value = "releaseTrain")
     private String releaseTrain;
 
     /*
      * Version of the extension for this extension, if it is 'pinned' to a specific version. autoUpgradeMinorVersion
      * must be 'false'.
      */
-    @JsonProperty(value = "version")
     private String version;
 
     /*
      * Configuration settings, as name-value pairs for configuring this extension.
      */
-    @JsonProperty(value = "configurationSettings")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> configurationSettings;
 
     /*
      * Configuration settings that are sensitive, as name-value pairs for configuring this extension.
      */
-    @JsonProperty(value = "configurationProtectedSettings")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> configurationProtectedSettings;
 
-    /** Creates an instance of PatchExtensionProperties class. */
+    /**
+     * Creates an instance of PatchExtensionProperties class.
+     */
     public PatchExtensionProperties() {
+    }
+
+    /**
+     * Get the autoUpgradeMode property: Defines extension automatic upgrades modes.
+     * 
+     * @return the autoUpgradeMode value.
+     */
+    public AutoUpgradeMode autoUpgradeMode() {
+        return this.autoUpgradeMode;
+    }
+
+    /**
+     * Set the autoUpgradeMode property: Defines extension automatic upgrades modes.
+     * 
+     * @param autoUpgradeMode the autoUpgradeMode value to set.
+     * @return the PatchExtensionProperties object itself.
+     */
+    public PatchExtensionProperties withAutoUpgradeMode(AutoUpgradeMode autoUpgradeMode) {
+        this.autoUpgradeMode = autoUpgradeMode;
+        return this;
     }
 
     /**
      * Get the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @return the autoUpgradeMinorVersion value.
      */
     public Boolean autoUpgradeMinorVersion() {
@@ -63,7 +89,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -75,7 +101,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @return the releaseTrain value.
      */
     public String releaseTrain() {
@@ -85,7 +111,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @param releaseTrain the releaseTrain value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -97,7 +123,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -107,7 +133,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @param version the version value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -119,7 +145,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @return the configurationSettings value.
      */
     public Map<String, String> configurationSettings() {
@@ -129,7 +155,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @param configurationSettings the configurationSettings value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -141,7 +167,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -151,7 +177,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -163,9 +189,68 @@ public final class PatchExtensionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("autoUpgradeMode",
+            this.autoUpgradeMode == null ? null : this.autoUpgradeMode.toString());
+        jsonWriter.writeBooleanField("autoUpgradeMinorVersion", this.autoUpgradeMinorVersion);
+        jsonWriter.writeStringField("releaseTrain", this.releaseTrain);
+        jsonWriter.writeStringField("version", this.version);
+        jsonWriter.writeMapField("configurationSettings", this.configurationSettings,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("configurationProtectedSettings", this.configurationProtectedSettings,
+            (writer, element) -> writer.writeString(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of PatchExtensionProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of PatchExtensionProperties if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the PatchExtensionProperties.
+     */
+    public static PatchExtensionProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            PatchExtensionProperties deserializedPatchExtensionProperties = new PatchExtensionProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("autoUpgradeMode".equals(fieldName)) {
+                    deserializedPatchExtensionProperties.autoUpgradeMode
+                        = AutoUpgradeMode.fromString(reader.getString());
+                } else if ("autoUpgradeMinorVersion".equals(fieldName)) {
+                    deserializedPatchExtensionProperties.autoUpgradeMinorVersion
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("releaseTrain".equals(fieldName)) {
+                    deserializedPatchExtensionProperties.releaseTrain = reader.getString();
+                } else if ("version".equals(fieldName)) {
+                    deserializedPatchExtensionProperties.version = reader.getString();
+                } else if ("configurationSettings".equals(fieldName)) {
+                    Map<String, String> configurationSettings = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPatchExtensionProperties.configurationSettings = configurationSettings;
+                } else if ("configurationProtectedSettings".equals(fieldName)) {
+                    Map<String, String> configurationProtectedSettings = reader.readMap(reader1 -> reader1.getString());
+                    deserializedPatchExtensionProperties.configurationProtectedSettings
+                        = configurationProtectedSettings;
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedPatchExtensionProperties;
+        });
     }
 }

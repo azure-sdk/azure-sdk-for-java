@@ -4,36 +4,34 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
+import com.azure.resourcemanager.kubernetesconfiguration.models.AutoUpgradeMode;
 import com.azure.resourcemanager.kubernetesconfiguration.models.PatchExtension;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Extensions Update. */
+/**
+ * Samples for Extensions Update.
+ */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/PatchExtension.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2024-09-01/
+     * examples/PatchExtension.json
      */
     /**
      * Sample code: Update Extension.
-     *
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void updateExtension(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .update(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "ClusterMonitor",
-                new PatchExtension()
-                    .withAutoUpgradeMinorVersion(true)
+    public static void
+        updateExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .update("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
+                new PatchExtension().withAutoUpgradeMode(AutoUpgradeMode.COMPATIBLE)
+                    .withAutoUpgradeMinorVersion(false)
                     .withReleaseTrain("Preview")
-                    .withConfigurationSettings(
-                        mapOf(
-                            "omsagent.env.clusterName", "clusterName1", "omsagent.secret.wsid", "fakeTokenPlaceholder"))
+                    .withConfigurationSettings(mapOf("omsagent.env.clusterName", "clusterName1", "omsagent.secret.wsid",
+                        "fakeTokenPlaceholder"))
                     .withConfigurationProtectedSettings(mapOf("omsagent.secret.key", "fakeTokenPlaceholder")),
                 com.azure.core.util.Context.NONE);
     }
