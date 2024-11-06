@@ -1,14 +1,582 @@
 # Release History
 
-## 1.1.0-beta.3 (Unreleased)
+## 1.0.0-beta.1 (2024-11-06)
 
-### Features Added
+- Azure Resource Manager CognitiveServices client library for Java. This package contains Microsoft Azure SDK for CognitiveServices Management SDK. Cognitive Services Management Client. Package tag package-2024-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Usage` was modified
 
-### Other Changes
+* `withLimit(java.lang.Double)` was removed
+* `models.QuotaUsageStatus status()` -> `models.QuotaUsageStatus status()`
+* `models.UnitType unit()` -> `models.UnitType unit()`
+* `java.lang.Double limit()` -> `java.lang.Double limit()`
+* `withCurrentValue(java.lang.Double)` was removed
+* `withQuotaPeriod(java.lang.String)` was removed
+* `java.lang.String nextResetTime()` -> `java.lang.String nextResetTime()`
+* `withUnit(models.UnitType)` was removed
+* `models.MetricName name()` -> `models.MetricName name()`
+* `validate()` was removed
+* `withNextResetTime(java.lang.String)` was removed
+* `withName(models.MetricName)` was removed
+* `java.lang.String quotaPeriod()` -> `java.lang.String quotaPeriod()`
+* `withStatus(models.QuotaUsageStatus)` was removed
+* `java.lang.Double currentValue()` -> `java.lang.Double currentValue()`
+
+#### `models.Deployment$Update` was modified
+
+* `withProperties(models.DeploymentProperties)` was removed
+
+### Features Added
+
+* `models.BillingMeterInfo` was added
+
+* `models.EncryptionScopeListResult` was added
+
+* `models.EncryptionScopeProvisioningState` was added
+
+* `models.DeploymentModelVersionUpgradeOption` was added
+
+* `models.RaiBlocklist$DefinitionStages` was added
+
+* `models.ProvisioningIssueProperties` was added
+
+* `models.RaiPolicies` was added
+
+* `models.Usages` was added
+
+* `models.NetworkSecurityPerimeterConfigurationProperties` was added
+
+* `models.ModelCapacityListResult` was added
+
+* `models.RaiPolicy$Definition` was added
+
+* `models.DeploymentCapacitySettings` was added
+
+* `models.RaiContentFilter` was added
+
+* `models.AbusePenalty` was added
+
+* `models.NetworkSecurityPerimeterAccessRuleProperties` was added
+
+* `models.RaiBlocklist$Update` was added
+
+* `models.RaiPolicy$DefinitionStages` was added
+
+* `models.RaiBlocklistItems` was added
+
+* `models.ModelListResult` was added
+
+* `models.NetworkSecurityPerimeterAccessRule` was added
+
+* `models.CapacityConfig` was added
+
+* `models.RaiContentFilterProperties` was added
+
+* `models.RaiBlocklistItem$DefinitionStages` was added
+
+* `models.CalculateModelCapacityResult` was added
+
+* `models.DefenderForAISettingResult` was added
+
+* `models.ModelSkuCapacityProperties` was added
+
+* `models.RaiContentFilters` was added
+
+* `models.RaiBlocklistProperties` was added
+
+* `models.DefenderForAISetting$Update` was added
+
+* `models.RaiPolicy$Update` was added
+
+* `models.EncryptionScope$DefinitionStages` was added
+
+* `models.RaiBlocklistConfig` was added
+
+* `models.NetworkSecurityPerimeterAccessRulePropertiesSubscriptionsItem` was added
+
+* `models.RaiContentFilterListResult` was added
+
+* `models.NetworkSecurityPerimeterConfigurations` was added
+
+* `models.ByPassSelection` was added
+
+* `models.ProvisioningIssue` was added
+
+* `models.EncryptionScopes` was added
+
+* `models.RaiBlocklist$Definition` was added
+
+* `models.ModelCapacityCalculatorWorkloadRequestParam` was added
+
+* `models.RaiPolicy` was added
+
+* `models.NetworkSecurityPerimeter` was added
+
+* `models.SkuResource` was added
+
+* `models.CalculateModelCapacityParameter` was added
+
+* `models.AbusePenaltyAction` was added
+
+* `models.ContentLevel` was added
+
+* `models.NspAccessRuleDirection` was added
+
+* `models.RaiPolicyContentFilter` was added
+
+* `models.RaiBlocklistItem$Definition` was added
+
+* `models.DefenderForAISetting$DefinitionStages` was added
+
+* `models.UserOwnedAmlWorkspace` was added
+
+* `models.NetworkSecurityPerimeterProfileInfo` was added
+
+* `models.ModelSku` was added
+
+* `models.Models` was added
+
+* `models.DefenderForAISettings` was added
+
+* `models.LocationBasedModelCapacities` was added
+
+* `models.RaiMonitorConfig` was added
+
+* `models.RaiPolicyContentSource` was added
+
+* `models.ModelCapacities` was added
+
+* `models.RaiBlocklistItemProperties` was added
+
+* `models.RaiBlockListItemsResult` was added
+
+* `models.CalculateModelCapacityResultEstimatedCapacity` was added
+
+* `models.RaiPolicy$UpdateStages` was added
+
+* `models.ModelCapacityCalculatorWorkload` was added
+
+* `models.RaiBlocklist$UpdateStages` was added
+
+* `models.RaiPolicyProperties` was added
+
+* `models.RaiBlocklistItem$UpdateStages` was added
+
+* `models.DefenderForAISetting$Definition` was added
+
+* `models.NetworkSecurityPerimeterConfigurationAssociationInfo` was added
+
+* `models.NetworkSecurityPerimeterConfiguration` was added
+
+* `models.EncryptionScopeProperties` was added
+
+* `models.RaiBlocklistItem$Update` was added
+
+* `models.RaiBlocklistItemBulkRequest` was added
+
+* `models.RaiPolicyMode` was added
+
+* `models.ModelCapacityListResultValueItem` was added
+
+* `models.DefenderForAISettingState` was added
+
+* `models.DefenderForAISetting` was added
+
+* `models.Model` was added
+
+* `models.RaiBlocklistItem` was added
+
+* `models.EncryptionScope` was added
+
+* `models.RaiBlocklist` was added
+
+* `models.DefenderForAISetting$UpdateStages` was added
+
+* `models.EncryptionScopeState` was added
+
+* `models.DeploymentSkuListResult` was added
+
+* `models.RaiBlocklists` was added
+
+* `models.EncryptionScope$UpdateStages` was added
+
+* `models.EncryptionScope$Update` was added
+
+* `models.RaiBlockListResult` was added
+
+* `models.NetworkSecurityPerimeterConfigurationList` was added
+
+* `models.EncryptionScope$Definition` was added
+
+* `models.RaiPolicyType` was added
+
+* `models.CustomBlocklistConfig` was added
+
+* `models.RaiPolicyListResult` was added
+
+#### `models.ResourceProviders` was modified
+
+* `calculateModelCapacity(models.CalculateModelCapacityParameter)` was added
+* `calculateModelCapacityWithResponse(models.CalculateModelCapacityParameter,com.azure.core.util.Context)` was added
+
+#### `models.RegenerateKeyParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AzureEntityResource` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `id()` was added
+* `name()` was added
+* `type()` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentPlanAccountAssociation$Definition` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.CommitmentPlanAccountAssociation$Update` was modified
+
+* `withTags(java.util.Map)` was added
+
+#### `models.Sku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AccountModel` was modified
+
+* `sourceAccount()` was added
+* `skus()` was added
+* `publisher()` was added
+* `source()` was added
+* `isDefaultVersion()` was added
+
+#### `models.ResourceSkuRestrictions` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ApiProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualNetworkRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ThrottlingRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CommitmentCost` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CheckSkuAvailabilityParameter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PatchResourceTagsAndSku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `id()` was added
+* `name()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+
+#### `models.SkuAvailability` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SkuCapability` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NetworkRuleSet` was modified
+
+* `withBypass(models.ByPassSelection)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `bypass()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.RequestMatchPattern` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CommitmentPlanListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AccountListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Usage` was modified
+
+* `innerModel()` was added
+
+#### `models.Encryption` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentQuota` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AccountModelListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentTierListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RegionSetting` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Deployment$Update` was modified
+
+* `withSku(models.Sku)` was added
+* `withTags(java.util.Map)` was added
+
+#### `models.Identity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CommitmentPeriod` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UserOwnedStorage` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `CognitiveServicesManager` was modified
+
+* `encryptionScopes()` was added
+* `raiBlocklistItems()` was added
+* `raiPolicies()` was added
+* `raiBlocklists()` was added
+* `locationBasedModelCapacities()` was added
+* `usages()` was added
+* `networkSecurityPerimeterConfigurations()` was added
+* `models()` was added
+* `defenderForAISettings()` was added
+* `modelCapacities()` was added
+* `raiContentFilters()` was added
+
+#### `models.CheckDomainAvailabilityParameter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UsageListResult` was modified
+
+* `nextLink()` was added
+
+#### `models.CommitmentPlanAccountAssociationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeploymentModel` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withSourceAccount(java.lang.String)` was added
+* `sourceAccount()` was added
+* `withSource(java.lang.String)` was added
+* `withPublisher(java.lang.String)` was added
+* `publisher()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `source()` was added
+
+#### `models.AccountProperties` was modified
+
+* `raiMonitorConfig()` was added
+* `abusePenalty()` was added
+* `withRaiMonitorConfig(models.RaiMonitorConfig)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withAmlWorkspace(models.UserOwnedAmlWorkspace)` was added
+* `amlWorkspace()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Deployment` was modified
+
+* `tags()` was added
+* `sku()` was added
+
+#### `models.PrivateEndpointConnectionProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceSkuRestrictionInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentPlanAssociation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SkuChangeInfo` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KeyVaultProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeploymentProperties` was modified
+
+* `withParentDeploymentName(java.lang.String)` was added
+* `versionUpgradeOption()` was added
+* `withCurrentCapacity(java.lang.Integer)` was added
+* `capacitySettings()` was added
+* `parentDeploymentName()` was added
+* `rateLimits()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dynamicThrottlingEnabled()` was added
+* `currentCapacity()` was added
+* `withCapacitySettings(models.DeploymentCapacitySettings)` was added
+* `withVersionUpgradeOption(models.DeploymentModelVersionUpgradeOption)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.QuotaLimit` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Deployments` was modified
+
+* `listSkus(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listSkus(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.MetricName` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceSkuListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeploymentScaleSettings` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AccountSku` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MultiRegionSettings` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PatchResourceTags` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CallRateLimit` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentPlanProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `provisioningIssues()` was added
+
+#### `models.ModelDeprecationInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkResourceProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CommitmentPlanAccountAssociation` was modified
+
+* `tags()` was added
+
+#### `models.Deployment$Definition` was modified
+
+* `withTags(java.util.Map)` was added
+* `withSku(models.Sku)` was added
+
+#### `models.IpRule` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeploymentListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0-beta.2 (2024-10-31)
 
