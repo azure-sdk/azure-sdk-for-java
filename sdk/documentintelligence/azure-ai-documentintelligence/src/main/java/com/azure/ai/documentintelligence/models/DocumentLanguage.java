@@ -23,7 +23,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
      * or BCP 47 language tag (ex. "zh-Hans").
      */
     @Generated
-    private final String locale;
+    private final long locale;
 
     /*
      * Location of the text elements in the concatenated content the language applies
@@ -46,7 +46,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
      * @param confidence the confidence value to set.
      */
     @Generated
-    private DocumentLanguage(String locale, List<DocumentSpan> spans, double confidence) {
+    private DocumentLanguage(long locale, List<DocumentSpan> spans, double confidence) {
         this.locale = locale;
         this.spans = spans;
         this.confidence = confidence;
@@ -59,7 +59,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
      * @return the locale value.
      */
     @Generated
-    public String getLocale() {
+    public long getLocale() {
         return this.locale;
     }
 
@@ -91,7 +91,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("locale", this.locale);
+        jsonWriter.writeLongField("locale", this.locale);
         jsonWriter.writeArrayField("spans", this.spans, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeDoubleField("confidence", this.confidence);
         return jsonWriter.writeEndObject();
@@ -109,7 +109,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
     @Generated
     public static DocumentLanguage fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            String locale = null;
+            long locale = 0L;
             List<DocumentSpan> spans = null;
             double confidence = 0.0;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -117,7 +117,7 @@ public final class DocumentLanguage implements JsonSerializable<DocumentLanguage
                 reader.nextToken();
 
                 if ("locale".equals(fieldName)) {
-                    locale = reader.getString();
+                    locale = reader.getLong();
                 } else if ("spans".equals(fieldName)) {
                     spans = reader.readArray(reader1 -> DocumentSpan.fromJson(reader1));
                 } else if ("confidence".equals(fieldName)) {
