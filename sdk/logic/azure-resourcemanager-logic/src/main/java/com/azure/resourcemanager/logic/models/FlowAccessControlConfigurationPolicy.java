@@ -28,6 +28,11 @@ public final class FlowAccessControlConfigurationPolicy
      */
     private OpenAuthenticationAccessPolicies openAuthenticationPolicies;
 
+    /*
+     * The SAS authentication policy for workflow.
+     */
+    private SasAuthenticationPolicy sasAuthenticationPolicy;
+
     /**
      * Creates an instance of FlowAccessControlConfigurationPolicy class.
      */
@@ -77,6 +82,27 @@ public final class FlowAccessControlConfigurationPolicy
     }
 
     /**
+     * Get the sasAuthenticationPolicy property: The SAS authentication policy for workflow.
+     * 
+     * @return the sasAuthenticationPolicy value.
+     */
+    public SasAuthenticationPolicy sasAuthenticationPolicy() {
+        return this.sasAuthenticationPolicy;
+    }
+
+    /**
+     * Set the sasAuthenticationPolicy property: The SAS authentication policy for workflow.
+     * 
+     * @param sasAuthenticationPolicy the sasAuthenticationPolicy value to set.
+     * @return the FlowAccessControlConfigurationPolicy object itself.
+     */
+    public FlowAccessControlConfigurationPolicy
+        withSasAuthenticationPolicy(SasAuthenticationPolicy sasAuthenticationPolicy) {
+        this.sasAuthenticationPolicy = sasAuthenticationPolicy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -87,6 +113,9 @@ public final class FlowAccessControlConfigurationPolicy
         }
         if (openAuthenticationPolicies() != null) {
             openAuthenticationPolicies().validate();
+        }
+        if (sasAuthenticationPolicy() != null) {
+            sasAuthenticationPolicy().validate();
         }
     }
 
@@ -99,6 +128,7 @@ public final class FlowAccessControlConfigurationPolicy
         jsonWriter.writeArrayField("allowedCallerIpAddresses", this.allowedCallerIpAddresses,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("openAuthenticationPolicies", this.openAuthenticationPolicies);
+        jsonWriter.writeJsonField("sasAuthenticationPolicy", this.sasAuthenticationPolicy);
         return jsonWriter.writeEndObject();
     }
 
@@ -126,6 +156,9 @@ public final class FlowAccessControlConfigurationPolicy
                 } else if ("openAuthenticationPolicies".equals(fieldName)) {
                     deserializedFlowAccessControlConfigurationPolicy.openAuthenticationPolicies
                         = OpenAuthenticationAccessPolicies.fromJson(reader);
+                } else if ("sasAuthenticationPolicy".equals(fieldName)) {
+                    deserializedFlowAccessControlConfigurationPolicy.sasAuthenticationPolicy
+                        = SasAuthenticationPolicy.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

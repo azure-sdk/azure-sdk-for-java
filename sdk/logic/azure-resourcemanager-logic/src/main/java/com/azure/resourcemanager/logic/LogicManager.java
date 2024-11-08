@@ -309,7 +309,7 @@ public final class LogicManager {
                 .append("-")
                 .append("com.azure.resourcemanager.logic")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
