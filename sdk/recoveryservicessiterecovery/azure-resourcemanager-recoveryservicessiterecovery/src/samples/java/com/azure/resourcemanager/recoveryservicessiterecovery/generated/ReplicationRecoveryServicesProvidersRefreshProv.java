@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class ReplicationRecoveryServicesProvidersRefreshProv {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_RefreshProvider.json
      */
     /**
@@ -20,7 +20,8 @@ public final class ReplicationRecoveryServicesProvidersRefreshProv {
      */
     public static void refreshDetailsFromTheRecoveryServicesProvider(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().refreshProvider("vault1", "resourceGroupPS1", "cloud1",
-            "241641e6-ee7b-4ee4-8141-821fadda43fa", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .refreshProvider("resourceGroupPS1", "vault1", "cloud1", "241641e6-ee7b-4ee4-8141-821fadda43fa",
+                com.azure.core.util.Context.NONE);
     }
 }

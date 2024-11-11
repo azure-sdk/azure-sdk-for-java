@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
 public final class ReplicationEligibilityResultsOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationEligibilityResults_Get.json
      */
     /**
@@ -20,7 +20,7 @@ public final class ReplicationEligibilityResultsOperationGetSamples {
      */
     public static void getsTheValidationErrorsInCaseTheVMIsUnsuitableForProtection(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationEligibilityResultsOperations().getWithResponse("testRg1", "testVm1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationEligibilityResultsOperations()
+            .getWithResponse("testRg1", "testVm1", com.azure.core.util.Context.NONE);
     }
 }

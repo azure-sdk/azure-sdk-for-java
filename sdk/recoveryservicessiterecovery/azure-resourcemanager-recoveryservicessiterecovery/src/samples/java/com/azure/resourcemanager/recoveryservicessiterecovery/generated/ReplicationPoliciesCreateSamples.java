@@ -13,7 +13,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.HyperVRepli
 public final class ReplicationPoliciesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_Create.json
      */
     /**
@@ -23,7 +23,9 @@ public final class ReplicationPoliciesCreateSamples {
      */
     public static void
         createsThePolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().define("protectionprofile1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationPolicies()
+            .define("protectionprofile1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(
                 new CreatePolicyInputProperties().withProviderSpecificInput(new HyperVReplicaAzurePolicyInput()))
             .create();

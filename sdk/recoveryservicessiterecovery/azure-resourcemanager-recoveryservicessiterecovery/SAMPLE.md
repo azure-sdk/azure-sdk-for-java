@@ -1,6 +1,14 @@
 # Code snippets and samples
 
 
+## ClusterRecoveryPointOperation
+
+- [Get](#clusterrecoverypointoperation_get)
+
+## ClusterRecoveryPoints
+
+- [ListByReplicationProtectionCluster](#clusterrecoverypoints_listbyreplicationprotectioncluster)
+
 ## MigrationRecoveryPoints
 
 - [Get](#migrationrecoverypoints_get)
@@ -130,6 +138,21 @@
 - [UpdateAppliance](#replicationprotecteditems_updateappliance)
 - [UpdateMobilityService](#replicationprotecteditems_updatemobilityservice)
 
+## ReplicationProtectionClusters
+
+- [ApplyRecoveryPoint](#replicationprotectionclusters_applyrecoverypoint)
+- [Create](#replicationprotectionclusters_create)
+- [FailoverCommit](#replicationprotectionclusters_failovercommit)
+- [Get](#replicationprotectionclusters_get)
+- [GetOperationResults](#replicationprotectionclusters_getoperationresults)
+- [List](#replicationprotectionclusters_list)
+- [ListByReplicationProtectionContainers](#replicationprotectionclusters_listbyreplicationprotectioncontainers)
+- [Purge](#replicationprotectionclusters_purge)
+- [RepairReplication](#replicationprotectionclusters_repairreplication)
+- [TestFailover](#replicationprotectionclusters_testfailover)
+- [TestFailoverCleanup](#replicationprotectionclusters_testfailovercleanup)
+- [UnplannedFailover](#replicationprotectionclusters_unplannedfailover)
+
 ## ReplicationProtectionContainerMappings
 
 - [Create](#replicationprotectioncontainermappings_create)
@@ -148,6 +171,7 @@
 - [Get](#replicationprotectioncontainers_get)
 - [List](#replicationprotectioncontainers_list)
 - [ListByReplicationFabrics](#replicationprotectioncontainers_listbyreplicationfabrics)
+- [SwitchClusterProtection](#replicationprotectioncontainers_switchclusterprotection)
 - [SwitchProtection](#replicationprotectioncontainers_switchprotection)
 
 ## ReplicationProtectionIntents
@@ -222,6 +246,58 @@
 ## TargetComputeSizes
 
 - [ListByReplicationProtectedItems](#targetcomputesizes_listbyreplicationprotecteditems)
+### ClusterRecoveryPointOperation_Get
+
+```java
+/**
+ * Samples for ClusterRecoveryPointOperation Get.
+ */
+public final class ClusterRecoveryPointOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ClusterRecoveryPoint_Get.json
+     */
+    /**
+     * Sample code: Gets a recovery point.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void
+        getsARecoveryPoint(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.clusterRecoveryPointOperations()
+            .getWithResponse("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                "06b9ae7f-f21d-4a76-9897-5cf5d6004d80", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ClusterRecoveryPoints_ListByReplicationProtectionCluster
+
+```java
+/**
+ * Samples for ClusterRecoveryPoints ListByReplicationProtectionCluster.
+ */
+public final class ClusterRecoveryPointsListByReplicationProtectio {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ClusterRecoveryPoints_ListByReplicationProtectionCluster.json
+     */
+    /**
+     * Sample code: Gets the list of cluster recovery points.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfClusterRecoveryPoints(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.clusterRecoveryPoints()
+            .listByReplicationProtectionCluster("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus",
+                "testcluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### MigrationRecoveryPoints_Get
 
 ```java
@@ -231,7 +307,7 @@
 public final class MigrationRecoveryPointsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /MigrationRecoveryPoints_Get.json
      */
     /**
@@ -241,9 +317,9 @@ public final class MigrationRecoveryPointsGetSamples {
      */
     public static void getsARecoveryPointForAMigrationItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.migrationRecoveryPoints().getWithResponse("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1", "b22134ea-620c-474b-9fa5-3c1cb47708e3",
-            com.azure.core.util.Context.NONE);
+        manager.migrationRecoveryPoints()
+            .getWithResponse("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                "b22134ea-620c-474b-9fa5-3c1cb47708e3", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -257,7 +333,7 @@ public final class MigrationRecoveryPointsGetSamples {
 public final class MigrationRecoveryPointsListByReplicationMigrati {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /MigrationRecoveryPoints_ListByReplicationMigrationItems.json
      */
     /**
@@ -267,8 +343,9 @@ public final class MigrationRecoveryPointsListByReplicationMigrati {
      */
     public static void getsTheRecoveryPointsForAMigrationItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.migrationRecoveryPoints().listByReplicationMigrationItems("migrationvault", "resourcegroup1",
-            "vmwarefabric1", "vmwareContainer1", "virtualmachine1", com.azure.core.util.Context.NONE);
+        manager.migrationRecoveryPoints()
+            .listByReplicationMigrationItems("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1",
+                "virtualmachine1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -282,7 +359,7 @@ public final class MigrationRecoveryPointsListByReplicationMigrati {
 public final class OperationsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /Operations_List.json
      */
     /**
@@ -306,7 +383,7 @@ public final class OperationsListByResourceGroupSamples {
 public final class RecoveryPointsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /RecoveryPoints_Get.json
      */
     /**
@@ -316,9 +393,10 @@ public final class RecoveryPointsGetSamples {
      */
     public static void
         getsARecoveryPoint(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.recoveryPoints().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            "b22134ea-620c-474b-9fa5-3c1cb47708e3", com.azure.core.util.Context.NONE);
+        manager.recoveryPoints()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b", "b22134ea-620c-474b-9fa5-3c1cb47708e3",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -332,7 +410,7 @@ public final class RecoveryPointsGetSamples {
 public final class RecoveryPointsListByReplicationProtectedItemsSa {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /RecoveryPoints_ListByReplicationProtectedItems.json
      */
     /**
@@ -342,9 +420,10 @@ public final class RecoveryPointsListByReplicationProtectedItemsSa {
      */
     public static void getsTheListOfRecoveryPointsForAReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.recoveryPoints().listByReplicationProtectedItems("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.recoveryPoints()
+            .listByReplicationProtectedItems("resourceGroupPS1", "vault1", "cloud1",
+                "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -361,7 +440,7 @@ import java.util.Arrays;
 public final class ReplicationAlertSettingsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationAlertSettings_Create.json
      */
     /**
@@ -371,9 +450,12 @@ public final class ReplicationAlertSettingsCreateSamples {
      */
     public static void configuresEmailNotificationsForThisVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAlertSettings().define("defaultAlertSetting").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationAlertSettings()
+            .define("defaultAlertSetting")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new ConfigureAlertRequestProperties().withSendToOwners("false")
-                .withCustomEmailAddresses(Arrays.asList("ronehr@microsoft.com")).withLocale(""))
+                .withCustomEmailAddresses(Arrays.asList("ronehr@microsoft.com"))
+                .withLocale(""))
             .create();
     }
 }
@@ -388,7 +470,7 @@ public final class ReplicationAlertSettingsCreateSamples {
 public final class ReplicationAlertSettingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationAlertSettings_Get.json
      */
     /**
@@ -398,8 +480,8 @@ public final class ReplicationAlertSettingsGetSamples {
      */
     public static void getsAnEmailNotificationAlertConfiguration(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAlertSettings().getWithResponse("vault1", "resourceGroupPS1", "defaultAlertSetting",
-            com.azure.core.util.Context.NONE);
+        manager.replicationAlertSettings()
+            .getWithResponse("resourceGroupPS1", "vault1", "defaultAlertSetting", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -413,7 +495,7 @@ public final class ReplicationAlertSettingsGetSamples {
 public final class ReplicationAlertSettingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationAlertSettings_List.json
      */
     /**
@@ -423,7 +505,7 @@ public final class ReplicationAlertSettingsListSamples {
      */
     public static void getsTheListOfConfiguredEmailNotificationAlertConfigurations(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAlertSettings().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationAlertSettings().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -437,7 +519,7 @@ public final class ReplicationAlertSettingsListSamples {
 public final class ReplicationAppliancesListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationAppliances_List.json
      */
     /**
@@ -447,7 +529,7 @@ public final class ReplicationAppliancesListSamples {
      */
     public static void
         getsTheListOfAppliances(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAppliances().list("vault1", "resourceGroupPS1", null, com.azure.core.util.Context.NONE);
+        manager.replicationAppliances().list("resourceGroupPS1", "vault1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -461,7 +543,7 @@ public final class ReplicationAppliancesListSamples {
 public final class ReplicationEligibilityResultsOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationEligibilityResults_Get.json
      */
     /**
@@ -471,8 +553,8 @@ public final class ReplicationEligibilityResultsOperationGetSamples {
      */
     public static void getsTheValidationErrorsInCaseTheVMIsUnsuitableForProtection(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationEligibilityResultsOperations().getWithResponse("testRg1", "testVm1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationEligibilityResultsOperations()
+            .getWithResponse("testRg1", "testVm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -486,7 +568,7 @@ public final class ReplicationEligibilityResultsOperationGetSamples {
 public final class ReplicationEligibilityResultsOperationListSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationEligibilityResults_List.json
      */
     /**
@@ -496,8 +578,8 @@ public final class ReplicationEligibilityResultsOperationListSampl {
      */
     public static void getsTheValidationErrorsInCaseTheVMIsUnsuitableForProtection(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationEligibilityResultsOperations().listWithResponse("testRg1", "testVm2",
-            com.azure.core.util.Context.NONE);
+        manager.replicationEligibilityResultsOperations()
+            .listWithResponse("testRg1", "testVm2", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -511,7 +593,7 @@ public final class ReplicationEligibilityResultsOperationListSampl {
 public final class ReplicationEventsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationEvents_Get.json
      */
     /**
@@ -521,8 +603,9 @@ public final class ReplicationEventsGetSamples {
      */
     public static void getTheDetailsOfAnAzureSiteRecoveryEvent(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationEvents().getWithResponse("vault1", "resourceGroupPS1",
-            "654b71d0-b2ce-4e6e-a861-98528d4bd375", com.azure.core.util.Context.NONE);
+        manager.replicationEvents()
+            .getWithResponse("resourceGroupPS1", "vault1", "654b71d0-b2ce-4e6e-a861-98528d4bd375",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -536,7 +619,7 @@ public final class ReplicationEventsGetSamples {
 public final class ReplicationEventsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationEvents_List.json
      */
     /**
@@ -546,7 +629,7 @@ public final class ReplicationEventsListSamples {
      */
     public static void getsTheListOfAzureSiteRecoveryEvents(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationEvents().list("vault1", "resourceGroupPS1", null, com.azure.core.util.Context.NONE);
+        manager.replicationEvents().list("resourceGroupPS1", "vault1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -560,7 +643,7 @@ public final class ReplicationEventsListSamples {
 public final class ReplicationFabricsCheckConsistencySamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_CheckConsistency.json
      */
     /**
@@ -570,8 +653,8 @@ public final class ReplicationFabricsCheckConsistencySamples {
      */
     public static void checksTheConsistencyOfTheASRFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().checkConsistency("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .checkConsistency("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -588,7 +671,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.FabricSpeci
 public final class ReplicationFabricsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_Create.json
      */
     /**
@@ -598,7 +681,9 @@ public final class ReplicationFabricsCreateSamples {
      */
     public static void createsAnAzureSiteRecoveryFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().define("cloud1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationFabrics()
+            .define("cloud1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new FabricCreationInputProperties().withCustomDetails(new FabricSpecificCreationInput()))
             .create();
     }
@@ -614,7 +699,7 @@ public final class ReplicationFabricsCreateSamples {
 public final class ReplicationFabricsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_Delete.json
      */
     /**
@@ -624,7 +709,7 @@ public final class ReplicationFabricsDeleteSamples {
      */
     public static void
         deletesTheSite(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().delete("vault1", "resourceGroupPS1", "cloud1", com.azure.core.util.Context.NONE);
+        manager.replicationFabrics().delete("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -638,7 +723,7 @@ public final class ReplicationFabricsDeleteSamples {
 public final class ReplicationFabricsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_Get.json
      */
     /**
@@ -648,8 +733,8 @@ public final class ReplicationFabricsGetSamples {
      */
     public static void getsTheDetailsOfAnASRFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().getWithResponse("vault1", "resourceGroupPS1", "cloud1", null,
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -663,7 +748,7 @@ public final class ReplicationFabricsGetSamples {
 public final class ReplicationFabricsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_List.json
      */
     /**
@@ -673,7 +758,7 @@ public final class ReplicationFabricsListSamples {
      */
     public static void
         getsTheListOfASRFabrics(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationFabrics().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -687,7 +772,7 @@ public final class ReplicationFabricsListSamples {
 public final class ReplicationFabricsMigrateToAadSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_MigrateToAad.json
      */
     /**
@@ -697,8 +782,8 @@ public final class ReplicationFabricsMigrateToAadSamples {
      */
     public static void
         migratesTheSiteToAAD(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().migrateToAad("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .migrateToAad("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -712,7 +797,7 @@ public final class ReplicationFabricsMigrateToAadSamples {
 public final class ReplicationFabricsPurgeSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_Purge.json
      */
     /**
@@ -722,7 +807,7 @@ public final class ReplicationFabricsPurgeSamples {
      */
     public static void
         purgesTheSite(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().purge("vault1", "resourceGroupPS1", "cloud1", com.azure.core.util.Context.NONE);
+        manager.replicationFabrics().purge("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -740,7 +825,7 @@ import java.util.Arrays;
 public final class ReplicationFabricsReassociateGatewaySamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_ReassociateGateway.json
      */
     /**
@@ -750,13 +835,15 @@ public final class ReplicationFabricsReassociateGatewaySamples {
      */
     public static void performFailoverOfTheProcessServer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().reassociateGateway("MadhaviVault", "MadhaviVRG", "GRACE-V2A-1",
-            new FailoverProcessServerRequest().withProperties(new FailoverProcessServerRequestProperties()
-                .withContainerName("cloud_1f3c15af-2256-4568-9e06-e1ef4f728f75")
-                .withSourceProcessServerId("AFA0EC54-1894-4E44-9CAB02DB8854B117")
-                .withTargetProcessServerId("5D3ED340-85AE-C646-B338641E015DA405")
-                .withVmsToMigrate(Arrays.asList("Vm1", "Vm2")).withUpdateType("ServerLevel")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .reassociateGateway("MadhaviVRG", "MadhaviVault", "GRACE-V2A-1",
+                new FailoverProcessServerRequest().withProperties(new FailoverProcessServerRequestProperties()
+                    .withContainerName("cloud_1f3c15af-2256-4568-9e06-e1ef4f728f75")
+                    .withSourceProcessServerId("AFA0EC54-1894-4E44-9CAB02DB8854B117")
+                    .withTargetProcessServerId("5D3ED340-85AE-C646-B338641E015DA405")
+                    .withVmsToMigrate(Arrays.asList("Vm1", "Vm2"))
+                    .withUpdateType("ServerLevel")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -770,7 +857,7 @@ public final class ReplicationFabricsReassociateGatewaySamples {
 public final class ReplicationFabricsRemoveInfraSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationInfrastructure_Delete.json
      */
     /**
@@ -780,8 +867,8 @@ public final class ReplicationFabricsRemoveInfraSamples {
      */
     public static void removesTheApplianceSInfrastructureUnderTheFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().removeInfra("resourceGroupPS1", "vault1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .removeInfra("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -798,7 +885,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.RenewCertif
 public final class ReplicationFabricsRenewCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationFabrics_RenewCertificate.json
      */
     /**
@@ -808,10 +895,11 @@ public final class ReplicationFabricsRenewCertificateSamples {
      */
     public static void renewsCertificateForTheFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().renewCertificate("vault1", "resourceGroupPS1", "cloud1",
-            new RenewCertificateInput()
-                .withProperties(new RenewCertificateInputProperties().withRenewCertificateType("Cloud")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .renewCertificate("resourceGroupPS1", "vault1", "cloud1",
+                new RenewCertificateInput()
+                    .withProperties(new RenewCertificateInputProperties().withRenewCertificateType("Cloud")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -825,7 +913,7 @@ public final class ReplicationFabricsRenewCertificateSamples {
 public final class ReplicationJobsCancelSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_Cancel.json
      */
     /**
@@ -835,8 +923,9 @@ public final class ReplicationJobsCancelSamples {
      */
     public static void
         cancelsTheSpecifiedJob(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().cancel("vault1", "resourceGroupPS1", "2653c648-fc72-4316-86f3-fdf8eaa0066b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .cancel("resourceGroupPS1", "vault1", "2653c648-fc72-4316-86f3-fdf8eaa0066b",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -852,7 +941,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.JobQueryPar
 public final class ReplicationJobsExportSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_Export.json
      */
     /**
@@ -862,10 +951,13 @@ public final class ReplicationJobsExportSamples {
      */
     public static void exportsTheDetailsOfTheAzureSiteRecoveryJobsOfTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().export("vault1", "resourceGroupPS1",
-            new JobQueryParameter().withStartTime("2017-04-27T14:26:51.9161395Z")
-                .withEndTime("2017-05-04T14:26:51.9161395Z").withAffectedObjectTypes("").withJobStatus(""),
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .export("resourceGroupPS1", "vault1",
+                new JobQueryParameter().withStartTime("2017-04-27T14:26:51.9161395Z")
+                    .withEndTime("2017-05-04T14:26:51.9161395Z")
+                    .withAffectedObjectTypes("")
+                    .withJobStatus(""),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -879,7 +971,7 @@ public final class ReplicationJobsExportSamples {
 public final class ReplicationJobsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_Get.json
      */
     /**
@@ -889,8 +981,9 @@ public final class ReplicationJobsGetSamples {
      */
     public static void
         getsTheJobDetails(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().getWithResponse("vault1", "resourceGroupPS1", "58776d0b-3141-48b2-a377-9ad863eb160d",
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .getWithResponse("resourceGroupPS1", "vault1", "58776d0b-3141-48b2-a377-9ad863eb160d",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -904,7 +997,7 @@ public final class ReplicationJobsGetSamples {
 public final class ReplicationJobsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_List.json
      */
     /**
@@ -914,7 +1007,7 @@ public final class ReplicationJobsListSamples {
      */
     public static void
         getsTheListOfJobs(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().list("vault1", "resourceGroupPS1", null, com.azure.core.util.Context.NONE);
+        manager.replicationJobs().list("resourceGroupPS1", "vault1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -928,7 +1021,7 @@ public final class ReplicationJobsListSamples {
 public final class ReplicationJobsRestartSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_Restart.json
      */
     /**
@@ -938,8 +1031,9 @@ public final class ReplicationJobsRestartSamples {
      */
     public static void
         restartsTheSpecifiedJob(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().restart("vault1", "resourceGroupPS1", "0664564c-353e-401a-ab0c-722257c10e25",
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .restart("resourceGroupPS1", "vault1", "0664564c-353e-401a-ab0c-722257c10e25",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -956,7 +1050,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.ResumeJobPa
 public final class ReplicationJobsResumeSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationJobs_Resume.json
      */
     /**
@@ -966,9 +1060,10 @@ public final class ReplicationJobsResumeSamples {
      */
     public static void
         resumesTheSpecifiedJob(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().resume("vault1", "resourceGroupPS1", "58776d0b-3141-48b2-a377-9ad863eb160d",
-            new ResumeJobParams().withProperties(new ResumeJobParamsProperties().withComments(" ")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .resume("resourceGroupPS1", "vault1", "58776d0b-3141-48b2-a377-9ad863eb160d",
+                new ResumeJobParams().withProperties(new ResumeJobParamsProperties().withComments(" ")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -982,7 +1077,7 @@ public final class ReplicationJobsResumeSamples {
 public final class ReplicationLogicalNetworksGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationLogicalNetworks_Get.json
      */
     /**
@@ -992,8 +1087,9 @@ public final class ReplicationLogicalNetworksGetSamples {
      */
     public static void getsALogicalNetworkWithSpecifiedServerIdAndLogicalNetworkName(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationLogicalNetworks().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "87ab394f-165f-4aa9-bd84-b018500b4509", com.azure.core.util.Context.NONE);
+        manager.replicationLogicalNetworks()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "87ab394f-165f-4aa9-bd84-b018500b4509",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1007,7 +1103,7 @@ public final class ReplicationLogicalNetworksGetSamples {
 public final class ReplicationLogicalNetworksListByReplicationFabr {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationLogicalNetworks_ListByReplicationFabrics.json
      */
     /**
@@ -1017,8 +1113,8 @@ public final class ReplicationLogicalNetworksListByReplicationFabr {
      */
     public static void getsTheListOfLogicalNetworksUnderAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationLogicalNetworks().listByReplicationFabrics("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationLogicalNetworks()
+            .listByReplicationFabrics("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1037,7 +1133,7 @@ import java.util.Arrays;
 public final class ReplicationMigrationItemsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Create.json
      */
     /**
@@ -1047,14 +1143,16 @@ public final class ReplicationMigrationItemsCreateSamples {
      */
     public static void
         enablesMigration(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().define("virtualmachine1")
-            .withExistingReplicationProtectionContainer("migrationvault", "resourcegroup1", "vmwarefabric1",
+        manager.replicationMigrationItems()
+            .define("virtualmachine1")
+            .withExistingReplicationProtectionContainer("resourcegroup1", "migrationvault", "vmwarefabric1",
                 "vmwareContainer1")
             .withProperties(new EnableMigrationInputProperties().withPolicyId(
                 "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.RecoveryServices/vaults/migrationvault/replicationPolicies/vmwarepolicy1")
                 .withProviderSpecificDetails(new VMwareCbtEnableMigrationInput().withVmwareMachineId(
                     "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.OffAzure/VMwareSites/vmwaresite1/machines/virtualmachine1")
-                    .withDisksToInclude(Arrays.asList(new VMwareCbtDiskInput().withDiskId("disk1").withIsOSDisk("true")
+                    .withDisksToInclude(Arrays.asList(new VMwareCbtDiskInput().withDiskId("disk1")
+                        .withIsOSDisk("true")
                         .withLogStorageAccountId(
                             "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.Storage/storageAccounts/logStorageAccount1")
                         .withLogStorageAccountSasSecretName("fakeTokenPlaceholder")))
@@ -1080,7 +1178,7 @@ public final class ReplicationMigrationItemsCreateSamples {
 public final class ReplicationMigrationItemsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Delete.json
      */
     /**
@@ -1090,8 +1188,9 @@ public final class ReplicationMigrationItemsDeleteSamples {
      */
     public static void
         deleteTheMigrationItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().delete("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1", null, com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .delete("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1", null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1105,7 +1204,7 @@ public final class ReplicationMigrationItemsDeleteSamples {
 public final class ReplicationMigrationItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Get.json
      */
     /**
@@ -1115,8 +1214,9 @@ public final class ReplicationMigrationItemsGetSamples {
      */
     public static void getsTheDetailsOfAMigrationItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().getWithResponse("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1", com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .getWithResponse("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1130,7 +1230,7 @@ public final class ReplicationMigrationItemsGetSamples {
 public final class ReplicationMigrationItemsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_List.json
      */
     /**
@@ -1140,8 +1240,8 @@ public final class ReplicationMigrationItemsListSamples {
      */
     public static void getsTheListOfMigrationItemsInTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().list("migrationvault", "resourcegroup1", null, null, null,
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .list("resourcegroup1", "migrationvault", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1155,7 +1255,7 @@ public final class ReplicationMigrationItemsListSamples {
 public final class ReplicationMigrationItemsListByReplicationProte {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_ListByReplicationProtectionContainers.json
      */
     /**
@@ -1165,8 +1265,9 @@ public final class ReplicationMigrationItemsListByReplicationProte {
      */
     public static void getsTheListOfMigrationItemsInTheProtectionContainer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().listByReplicationProtectionContainers("migrationvault", "resourcegroup1",
-            "vmwarefabric1", "vmwareContainer1", null, null, null, com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .listByReplicationProtectionContainers("resourcegroup1", "migrationvault", "vmwarefabric1",
+                "vmwareContainer1", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1184,7 +1285,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtMi
 public final class ReplicationMigrationItemsMigrateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Migrate.json
      */
     /**
@@ -1193,11 +1294,11 @@ public final class ReplicationMigrationItemsMigrateSamples {
      * @param manager Entry point to SiteRecoveryManager.
      */
     public static void migrateItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().migrate("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new MigrateInput().withProperties(new MigrateInputProperties()
-                .withProviderSpecificDetails(new VMwareCbtMigrateInput().withPerformShutdown("true"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .migrate("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                new MigrateInput().withProperties(new MigrateInputProperties()
+                    .withProviderSpecificDetails(new VMwareCbtMigrateInput().withPerformShutdown("true"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1214,7 +1315,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.PauseReplic
 public final class ReplicationMigrationItemsPauseReplicationSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_PauseReplication.json
      */
     /**
@@ -1225,7 +1326,7 @@ public final class ReplicationMigrationItemsPauseReplicationSamples {
     public static void
         pauseReplication(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         manager.replicationMigrationItems()
-            .pauseReplication("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1",
+            .pauseReplication("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1",
                 "virtualmachine1",
                 new PauseReplicationInput()
                     .withProperties(new PauseReplicationInputProperties().withInstanceType("VMwareCbt")),
@@ -1247,7 +1348,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtRe
 public final class ReplicationMigrationItemsResumeReplicationSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_ResumeReplication.json
      */
     /**
@@ -1257,12 +1358,13 @@ public final class ReplicationMigrationItemsResumeReplicationSampl {
      */
     public static void
         resumeReplication(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().resumeReplication("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new ResumeReplicationInput()
-                .withProperties(new ResumeReplicationInputProperties().withProviderSpecificDetails(
-                    new VMwareCbtResumeReplicationInput().withDeleteMigrationResources("false"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .resumeReplication("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1",
+                "virtualmachine1",
+                new ResumeReplicationInput()
+                    .withProperties(new ResumeReplicationInputProperties().withProviderSpecificDetails(
+                        new VMwareCbtResumeReplicationInput().withDeleteMigrationResources("false"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1280,7 +1382,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtRe
 public final class ReplicationMigrationItemsResyncSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Resync.json
      */
     /**
@@ -1290,11 +1392,11 @@ public final class ReplicationMigrationItemsResyncSamples {
      */
     public static void
         resynchronizesReplication(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().resync("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new ResyncInput().withProperties(new ResyncInputProperties()
-                .withProviderSpecificDetails(new VMwareCbtResyncInput().withSkipCbtReset("true"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .resync("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                new ResyncInput().withProperties(new ResyncInputProperties()
+                    .withProviderSpecificDetails(new VMwareCbtResyncInput().withSkipCbtReset("true"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1312,7 +1414,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtTe
 public final class ReplicationMigrationItemsTestMigrateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_TestMigrate.json
      */
     /**
@@ -1322,14 +1424,15 @@ public final class ReplicationMigrationItemsTestMigrateSamples {
      */
     public static void
         testMigrateItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().testMigrate("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new TestMigrateInput().withProperties(new TestMigrateInputProperties()
-                .withProviderSpecificDetails(new VMwareCbtTestMigrateInput().withRecoveryPointId(
-                    "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.RecoveryServices/vaults/migrationvault/replicationFabrics/vmwarefabric1/replicationProtectionContainers/vmwareContainer1/replicationMigrationItems/virtualmachine1/migrationRecoveryPoints/9e737191-317e-43d0-8c83-e32ac3b34686")
-                    .withNetworkId(
-                        "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.Network/virtualNetworks/virtualNetwork1"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .testMigrate("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                new TestMigrateInput().withProperties(new TestMigrateInputProperties()
+                    .withProviderSpecificDetails(new VMwareCbtTestMigrateInput().withRecoveryPointId(
+                        "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.RecoveryServices/vaults/migrationvault/replicationFabrics/vmwarefabric1/replicationProtectionContainers/vmwareContainer1/replicationMigrationItems/virtualmachine1/migrationRecoveryPoints/9e737191-317e-43d0-8c83-e32ac3b34686")
+                        .withNetworkId(
+                            "/Subscriptions/cb53d0c3-bd59-4721-89bc-06916a9147ef/resourceGroups/resourcegroup1/providers/Microsoft.Network/virtualNetworks/virtualNetwork1")
+                        .withOsUpgradeVersion("Microsoft Windows Server 2019 (64-bit)"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1346,7 +1449,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.TestMigrate
 public final class ReplicationMigrationItemsTestMigrateCleanupSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_TestMigrateCleanup.json
      */
     /**
@@ -1356,11 +1459,12 @@ public final class ReplicationMigrationItemsTestMigrateCleanupSamp {
      */
     public static void
         testMigrateCleanup(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().testMigrateCleanup("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1",
-            new TestMigrateCleanupInput()
-                .withProperties(new TestMigrateCleanupInputProperties().withComments("Test Failover Cleanup")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .testMigrateCleanup("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1",
+                "virtualmachine1",
+                new TestMigrateCleanupInput()
+                    .withProperties(new TestMigrateCleanupInputProperties().withComments("Test Failover Cleanup")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1378,7 +1482,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VMwareCbtUp
 public final class ReplicationMigrationItemsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationMigrationItems_Update.json
      */
     /**
@@ -1388,10 +1492,14 @@ public final class ReplicationMigrationItemsUpdateSamples {
      */
     public static void
         updatesMigrationItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        MigrationItem resource = manager.replicationMigrationItems().getWithResponse("migrationvault", "resourcegroup1",
-            "vmwarefabric1", "vmwareContainer1", "virtualmachine1", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withProperties(new UpdateMigrationItemInputProperties()
-            .withProviderSpecificDetails(new VMwareCbtUpdateMigrationItemInput())).apply();
+        MigrationItem resource = manager.replicationMigrationItems()
+            .getWithResponse("resourcegroup1", "migrationvault", "vmwarefabric1", "vmwareContainer1", "virtualmachine1",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new UpdateMigrationItemInputProperties()
+                .withProviderSpecificDetails(new VMwareCbtUpdateMigrationItemInput()))
+            .apply();
     }
 }
 ```
@@ -1408,7 +1516,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VmmToAzureC
 public final class ReplicationNetworkMappingsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_Create.json
      */
     /**
@@ -1418,8 +1526,9 @@ public final class ReplicationNetworkMappingsCreateSamples {
      */
     public static void
         createsNetworkMapping(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().define("corpe2amap")
-            .withExistingReplicationNetwork("srce2avaultbvtaC27", "srcBvte2a14C27",
+        manager.replicationNetworkMappings()
+            .define("corpe2amap")
+            .withExistingReplicationNetwork("srcBvte2a14C27", "srce2avaultbvtaC27",
                 "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
                 "e2267b5c-2650-49bd-ab3f-d66aae694c06")
             .withProperties(new CreateNetworkMappingInputProperties().withRecoveryFabricName("Microsoft Azure")
@@ -1440,7 +1549,7 @@ public final class ReplicationNetworkMappingsCreateSamples {
 public final class ReplicationNetworkMappingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_Delete.json
      */
     /**
@@ -1450,9 +1559,10 @@ public final class ReplicationNetworkMappingsDeleteSamples {
      */
     public static void
         deleteNetworkMapping(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().delete("srce2avaultbvtaC27", "srcBvte2a14C27",
-            "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", "e2267b5c-2650-49bd-ab3f-d66aae694c06",
-            "corpe2amap", com.azure.core.util.Context.NONE);
+        manager.replicationNetworkMappings()
+            .delete("srcBvte2a14C27", "srce2avaultbvtaC27",
+                "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
+                "e2267b5c-2650-49bd-ab3f-d66aae694c06", "corpe2amap", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1466,7 +1576,7 @@ public final class ReplicationNetworkMappingsDeleteSamples {
 public final class ReplicationNetworkMappingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_Get.json
      */
     /**
@@ -1476,9 +1586,10 @@ public final class ReplicationNetworkMappingsGetSamples {
      */
     public static void
         getsNetworkMappingByName(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().getWithResponse("srce2avaultbvtaC27", "srcBvte2a14C27",
-            "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", "e2267b5c-2650-49bd-ab3f-d66aae694c06",
-            "corpe2amap", com.azure.core.util.Context.NONE);
+        manager.replicationNetworkMappings()
+            .getWithResponse("srcBvte2a14C27", "srce2avaultbvtaC27",
+                "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
+                "e2267b5c-2650-49bd-ab3f-d66aae694c06", "corpe2amap", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1492,7 +1603,7 @@ public final class ReplicationNetworkMappingsGetSamples {
 public final class ReplicationNetworkMappingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_List.json
      */
     /**
@@ -1502,8 +1613,8 @@ public final class ReplicationNetworkMappingsListSamples {
      */
     public static void getsAllTheNetworkMappingsUnderAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().list("srce2avaultbvtaC27", "srcBvte2a14C27",
-            com.azure.core.util.Context.NONE);
+        manager.replicationNetworkMappings()
+            .list("srcBvte2a14C27", "srce2avaultbvtaC27", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1517,7 +1628,7 @@ public final class ReplicationNetworkMappingsListSamples {
 public final class ReplicationNetworkMappingsListByReplicationNetw {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_ListByReplicationNetworks.json
      */
     /**
@@ -1527,9 +1638,10 @@ public final class ReplicationNetworkMappingsListByReplicationNetw {
      */
     public static void getsAllTheNetworkMappingsUnderANetwork(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworkMappings().listByReplicationNetworks("srce2avaultbvtaC27", "srcBvte2a14C27",
-            "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", "e2267b5c-2650-49bd-ab3f-d66aae694c06",
-            com.azure.core.util.Context.NONE);
+        manager.replicationNetworkMappings()
+            .listByReplicationNetworks("srcBvte2a14C27", "srce2avaultbvtaC27",
+                "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
+                "e2267b5c-2650-49bd-ab3f-d66aae694c06", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1547,7 +1659,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VmmToAzureU
 public final class ReplicationNetworkMappingsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworkMappings_Update.json
      */
     /**
@@ -1558,15 +1670,16 @@ public final class ReplicationNetworkMappingsUpdateSamples {
     public static void
         updatesNetworkMapping(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         NetworkMapping resource = manager.replicationNetworkMappings()
-            .getWithResponse("srce2avaultbvtaC27", "srcBvte2a14C27",
+            .getWithResponse("srcBvte2a14C27", "srce2avaultbvtaC27",
                 "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
                 "e2267b5c-2650-49bd-ab3f-d66aae694c06", "corpe2amap", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withProperties(new UpdateNetworkMappingInputProperties()
-            .withRecoveryFabricName("Microsoft Azure")
-            .withRecoveryNetworkId(
-                "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai2")
-            .withFabricSpecificDetails(new VmmToAzureUpdateNetworkMappingInput())).apply();
+        resource.update()
+            .withProperties(new UpdateNetworkMappingInputProperties().withRecoveryFabricName("Microsoft Azure")
+                .withRecoveryNetworkId(
+                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai2")
+                .withFabricSpecificDetails(new VmmToAzureUpdateNetworkMappingInput()))
+            .apply();
     }
 }
 ```
@@ -1580,7 +1693,7 @@ public final class ReplicationNetworkMappingsUpdateSamples {
 public final class ReplicationNetworksGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworks_Get.json
      */
     /**
@@ -1590,9 +1703,10 @@ public final class ReplicationNetworksGetSamples {
      */
     public static void getsANetworkWithSpecifiedServerIdAndNetworkName(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworks().getWithResponse("srce2avaultbvtaC27", "srcBvte2a14C27",
-            "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", "93ce99d7-1219-4914-aa61-73fe5023988e",
-            com.azure.core.util.Context.NONE);
+        manager.replicationNetworks()
+            .getWithResponse("srcBvte2a14C27", "srce2avaultbvtaC27",
+                "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac",
+                "93ce99d7-1219-4914-aa61-73fe5023988e", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1606,7 +1720,7 @@ public final class ReplicationNetworksGetSamples {
 public final class ReplicationNetworksListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworks_List.json
      */
     /**
@@ -1616,7 +1730,7 @@ public final class ReplicationNetworksListSamples {
      */
     public static void getsTheListOfNetworksViewOnlyAPI(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworks().list("srce2avaultbvtaC27", "srcBvte2a14C27", com.azure.core.util.Context.NONE);
+        manager.replicationNetworks().list("srcBvte2a14C27", "srce2avaultbvtaC27", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1630,7 +1744,7 @@ public final class ReplicationNetworksListSamples {
 public final class ReplicationNetworksListByReplicationFabricsSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationNetworks_ListByReplicationFabrics.json
      */
     /**
@@ -1640,8 +1754,9 @@ public final class ReplicationNetworksListByReplicationFabricsSamp {
      */
     public static void getsTheListOfNetworksUnderAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationNetworks().listByReplicationFabrics("srce2avaultbvtaC27", "srcBvte2a14C27",
-            "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", com.azure.core.util.Context.NONE);
+        manager.replicationNetworks()
+            .listByReplicationFabrics("srcBvte2a14C27", "srce2avaultbvtaC27",
+                "b0cef6e9a4437b81803d0b55ada4f700ab66caae59c35d62723a1589c0cd13ac", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1658,7 +1773,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.HyperVRepli
 public final class ReplicationPoliciesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_Create.json
      */
     /**
@@ -1668,7 +1783,9 @@ public final class ReplicationPoliciesCreateSamples {
      */
     public static void
         createsThePolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().define("protectionprofile1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationPolicies()
+            .define("protectionprofile1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(
                 new CreatePolicyInputProperties().withProviderSpecificInput(new HyperVReplicaAzurePolicyInput()))
             .create();
@@ -1685,7 +1802,7 @@ public final class ReplicationPoliciesCreateSamples {
 public final class ReplicationPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_Delete.json
      */
     /**
@@ -1695,8 +1812,8 @@ public final class ReplicationPoliciesDeleteSamples {
      */
     public static void
         deleteThePolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().delete("vault1", "resourceGroupPS1", "protectionprofile1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationPolicies()
+            .delete("resourceGroupPS1", "vault1", "protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1710,7 +1827,7 @@ public final class ReplicationPoliciesDeleteSamples {
 public final class ReplicationPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_Get.json
      */
     /**
@@ -1720,8 +1837,8 @@ public final class ReplicationPoliciesGetSamples {
      */
     public static void
         getsTheRequestedPolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().getWithResponse("vault1", "resourceGroupPS1", "protectionprofile1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationPolicies()
+            .getWithResponse("resourceGroupPS1", "vault1", "protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1735,7 +1852,7 @@ public final class ReplicationPoliciesGetSamples {
 public final class ReplicationPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_List.json
      */
     /**
@@ -1745,7 +1862,7 @@ public final class ReplicationPoliciesListSamples {
      */
     public static void getsTheListOfReplicationPolicies(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationPolicies().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1763,7 +1880,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UpdatePolic
 public final class ReplicationPoliciesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationPolicies_Update.json
      */
     /**
@@ -1774,7 +1891,7 @@ public final class ReplicationPoliciesUpdateSamples {
     public static void
         updatesThePolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         Policy resource = manager.replicationPolicies()
-            .getWithResponse("vault1", "resourceGroupPS1", "protectionprofile1", com.azure.core.util.Context.NONE)
+            .getWithResponse("resourceGroupPS1", "vault1", "protectionprofile1", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withProperties(
@@ -1793,7 +1910,7 @@ public final class ReplicationPoliciesUpdateSamples {
 public final class ReplicationProtectableItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectableItems_Get.json
      */
     /**
@@ -1803,9 +1920,9 @@ public final class ReplicationProtectableItemsGetSamples {
      */
     public static void getsTheDetailsOfAProtectableItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectableItems().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "c0c14913-3d7a-48ea-9531-cc99e0e686e6",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectableItems()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "c0c14913-3d7a-48ea-9531-cc99e0e686e6", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1819,7 +1936,7 @@ public final class ReplicationProtectableItemsGetSamples {
 public final class ReplicationProtectableItemsListByReplicationPro {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectableItems_ListByReplicationProtectionContainers.json
      */
     /**
@@ -1829,8 +1946,9 @@ public final class ReplicationProtectableItemsListByReplicationPro {
      */
     public static void getsTheListOfProtectableItems(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectableItems().listByReplicationProtectionContainers("vault1", "resourceGroupPS1",
-            "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", null, null, null, com.azure.core.util.Context.NONE);
+        manager.replicationProtectableItems()
+            .listByReplicationProtectionContainers("resourceGroupPS1", "vault1", "cloud1",
+                "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1850,7 +1968,7 @@ import java.util.Arrays;
 public final class ReplicationProtectedItemsAddDisksSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_AddDisks.json
      */
     /**
@@ -1860,16 +1978,17 @@ public final class ReplicationProtectedItemsAddDisksSamples {
      */
     public static void
         addDiskSForProtection(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().addDisks("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new AddDisksInput().withProperties(new AddDisksInputProperties().withProviderSpecificDetails(
-                new A2AAddDisksInput().withVmDisks(Arrays.asList(new A2AVmDiskInputDetails()
-                    .withDiskUri("https://vmstorage.blob.core.windows.net/vhds/datadisk1.vhd")
-                    .withRecoveryAzureStorageAccountId(
-                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourcegroups/recoveryResource/providers/Microsoft.Storage/storageAccounts/recoverystorage")
-                    .withPrimaryStagingAzureStorageAccountId(
-                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourcegroups/primaryResource/providers/Microsoft.Storage/storageAccounts/vmcachestorage"))))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .addDisks("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new AddDisksInput().withProperties(new AddDisksInputProperties().withProviderSpecificDetails(
+                    new A2AAddDisksInput().withVmDisks(Arrays.asList(new A2AVmDiskInputDetails()
+                        .withDiskUri("https://vmstorage.blob.core.windows.net/vhds/datadisk1.vhd")
+                        .withRecoveryAzureStorageAccountId(
+                            "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourcegroups/recoveryResource/providers/Microsoft.Storage/storageAccounts/recoverystorage")
+                        .withPrimaryStagingAzureStorageAccountId(
+                            "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourcegroups/primaryResource/providers/Microsoft.Storage/storageAccounts/vmcachestorage"))))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1887,7 +2006,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.HyperVRepli
 public final class ReplicationProtectedItemsApplyRecoveryPointSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_ApplyRecoveryPoint.json
      */
     /**
@@ -1897,12 +2016,14 @@ public final class ReplicationProtectedItemsApplyRecoveryPointSamp {
      */
     public static void
         changeOrApplyRecoveryPoint(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().applyRecoveryPoint("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new ApplyRecoveryPointInput().withProperties(new ApplyRecoveryPointInputProperties().withRecoveryPointId(
-                "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/f8491e4f-817a-40dd-a90c-af773978c75b/recoveryPoints/e4d05fe9-5dfd-47be-b50b-aad306b2802d")
-                .withProviderSpecificDetails(new HyperVReplicaAzureApplyRecoveryPointInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .applyRecoveryPoint("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new ApplyRecoveryPointInput().withProperties(new ApplyRecoveryPointInputProperties()
+                    .withRecoveryPointId(
+                        "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/f8491e4f-817a-40dd-a90c-af773978c75b/recoveryPoints/e4d05fe9-5dfd-47be-b50b-aad306b2802d")
+                    .withProviderSpecificDetails(new HyperVReplicaAzureApplyRecoveryPointInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1919,7 +2040,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.HyperVRepli
 public final class ReplicationProtectedItemsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Create.json
      */
     /**
@@ -1929,8 +2050,9 @@ public final class ReplicationProtectedItemsCreateSamples {
      */
     public static void
         enablesProtection(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().define("f8491e4f-817a-40dd-a90c-af773978c75b")
-            .withExistingReplicationProtectionContainer("vault1", "resourceGroupPS1", "cloud1",
+        manager.replicationProtectedItems()
+            .define("f8491e4f-817a-40dd-a90c-af773978c75b")
+            .withExistingReplicationProtectionContainer("resourceGroupPS1", "vault1", "cloud1",
                 "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
             .withProperties(new EnableProtectionInputProperties().withPolicyId(
                 "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationPolicies/protectionprofile1")
@@ -1955,7 +2077,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.DisableProt
 public final class ReplicationProtectedItemsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Delete.json
      */
     /**
@@ -1965,11 +2087,12 @@ public final class ReplicationProtectedItemsDeleteSamples {
      */
     public static void
         disablesProtection(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().delete("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "c0c14913-3d7a-48ea-9531-cc99e0e686e6",
-            new DisableProtectionInput().withProperties(new DisableProtectionInputProperties()
-                .withReplicationProviderInput(new DisableProtectionProviderSpecificInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .delete("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "c0c14913-3d7a-48ea-9531-cc99e0e686e6",
+                new DisableProtectionInput().withProperties(new DisableProtectionInputProperties()
+                    .withReplicationProviderInput(new DisableProtectionProviderSpecificInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1983,7 +2106,7 @@ public final class ReplicationProtectedItemsDeleteSamples {
 public final class ReplicationProtectedItemsFailoverCancelSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_FailoverCancel.json
      */
     /**
@@ -1993,9 +2116,9 @@ public final class ReplicationProtectedItemsFailoverCancelSamples {
      */
     public static void
         executeCancelFailover(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().failoverCancel("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .failoverCancel("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2009,7 +2132,7 @@ public final class ReplicationProtectedItemsFailoverCancelSamples {
 public final class ReplicationProtectedItemsFailoverCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_FailoverCommit.json
      */
     /**
@@ -2019,9 +2142,9 @@ public final class ReplicationProtectedItemsFailoverCommitSamples {
      */
     public static void
         executeCommitFailover(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().failoverCommit("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .failoverCommit("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2035,7 +2158,7 @@ public final class ReplicationProtectedItemsFailoverCommitSamples {
 public final class ReplicationProtectedItemsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Get.json
      */
     /**
@@ -2045,9 +2168,9 @@ public final class ReplicationProtectedItemsGetSamples {
      */
     public static void getsTheDetailsOfAReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2061,7 +2184,7 @@ public final class ReplicationProtectedItemsGetSamples {
 public final class ReplicationProtectedItemsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_List.json
      */
     /**
@@ -2071,8 +2194,8 @@ public final class ReplicationProtectedItemsListSamples {
      */
     public static void getsTheListOfReplicationProtectedItems(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().list("vault1", "resourceGroupPS1", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .list("resourceGroupPS1", "vault1", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2086,7 +2209,7 @@ public final class ReplicationProtectedItemsListSamples {
 public final class ReplicationProtectedItemsListByReplicationProte {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_ListByReplicationProtectionContainers.json
      */
     /**
@@ -2096,8 +2219,9 @@ public final class ReplicationProtectedItemsListByReplicationProte {
      */
     public static void getsTheListOfReplicationProtectedItems(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().listByReplicationProtectionContainers("vault1", "resourceGroupPS1",
-            "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .listByReplicationProtectionContainers("resourceGroupPS1", "vault1", "cloud1",
+                "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2115,7 +2239,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.PlannedFail
 public final class ReplicationProtectedItemsPlannedFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_PlannedFailover.json
      */
     /**
@@ -2125,12 +2249,13 @@ public final class ReplicationProtectedItemsPlannedFailoverSamples {
      */
     public static void
         executePlannedFailover(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().plannedFailover("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new PlannedFailoverInput()
-                .withProperties(new PlannedFailoverInputProperties().withFailoverDirection("PrimaryToRecovery")
-                    .withProviderSpecificDetails(new HyperVReplicaAzurePlannedFailoverProviderInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .plannedFailover("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new PlannedFailoverInput()
+                    .withProperties(new PlannedFailoverInputProperties().withFailoverDirection("PrimaryToRecovery")
+                        .withProviderSpecificDetails(new HyperVReplicaAzurePlannedFailoverProviderInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2144,7 +2269,7 @@ public final class ReplicationProtectedItemsPlannedFailoverSamples {
 public final class ReplicationProtectedItemsPurgeSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Purge.json
      */
     /**
@@ -2154,9 +2279,9 @@ public final class ReplicationProtectedItemsPurgeSamples {
      */
     public static void
         purgesProtection(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().purge("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "c0c14913-3d7a-48ea-9531-cc99e0e686e6",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .purge("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "c0c14913-3d7a-48ea-9531-cc99e0e686e6", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2175,7 +2300,7 @@ import java.util.Arrays;
 public final class ReplicationProtectedItemsRemoveDisksSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_RemoveDisks.json
      */
     /**
@@ -2185,12 +2310,13 @@ public final class ReplicationProtectedItemsRemoveDisksSamples {
      */
     public static void
         removesDiskS(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().removeDisks("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new RemoveDisksInput()
-                .withProperties(new RemoveDisksInputProperties().withProviderSpecificDetails(new A2ARemoveDisksInput()
-                    .withVmDisksUris(Arrays.asList("https://vmstorage.blob.core.windows.net/vhds/datadisk1.vhd")))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .removeDisks("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new RemoveDisksInput().withProperties(
+                    new RemoveDisksInputProperties().withProviderSpecificDetails(new A2ARemoveDisksInput()
+                        .withVmDisksUris(Arrays.asList("https://vmstorage.blob.core.windows.net/vhds/datadisk1.vhd")))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2204,7 +2330,7 @@ public final class ReplicationProtectedItemsRemoveDisksSamples {
 public final class ReplicationProtectedItemsRepairReplicationSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_RepairReplication.json
      */
     /**
@@ -2214,9 +2340,9 @@ public final class ReplicationProtectedItemsRepairReplicationSampl {
      */
     public static void resynchronizeOrRepairReplication(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().repairReplication("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .repairReplication("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2234,7 +2360,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReverseRepl
 public final class ReplicationProtectedItemsReprotectSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Reprotect.json
      */
     /**
@@ -2244,12 +2370,13 @@ public final class ReplicationProtectedItemsReprotectSamples {
      */
     public static void executeReverseReplicationReprotect(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().reprotect("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new ReverseReplicationInput()
-                .withProperties(new ReverseReplicationInputProperties().withFailoverDirection("PrimaryToRecovery")
-                    .withProviderSpecificDetails(new HyperVReplicaAzureReprotectInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .reprotect("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new ReverseReplicationInput()
+                    .withProperties(new ReverseReplicationInputProperties().withFailoverDirection("PrimaryToRecovery")
+                        .withProviderSpecificDetails(new HyperVReplicaAzureReprotectInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2268,7 +2395,7 @@ import java.util.Arrays;
 public final class ReplicationProtectedItemsResolveHealthErrorsSam {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_ResolveHealthErrors.json
      */
     /**
@@ -2278,11 +2405,12 @@ public final class ReplicationProtectedItemsResolveHealthErrorsSam {
      */
     public static void
         resolveHealthErrors(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().resolveHealthErrors("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new ResolveHealthInput().withProperties(new ResolveHealthInputProperties()
-                .withHealthErrors(Arrays.asList(new ResolveHealthError().withHealthErrorId("3:8020")))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .resolveHealthErrors("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new ResolveHealthInput().withProperties(new ResolveHealthInputProperties()
+                    .withHealthErrors(Arrays.asList(new ResolveHealthError().withHealthErrorId("3:8020")))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2300,7 +2428,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchProvi
 public final class ReplicationProtectedItemsSwitchProviderSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_SwitchProvider.json
      */
     /**
@@ -2310,16 +2438,17 @@ public final class ReplicationProtectedItemsSwitchProviderSamples {
      */
     public static void
         executeSwitchProvider(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().switchProvider("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new SwitchProviderInput().withProperties(new SwitchProviderInputProperties()
-                .withTargetInstanceType("InMageRcm")
-                .withProviderSpecificDetails(new InMageAzureV2SwitchProviderInput().withTargetVaultId(
-                    "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault2")
-                    .withTargetFabricId(
-                        "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud2")
-                    .withTargetApplianceId("5efaa202-e958-435e-8171-706bf735fcc4"))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .switchProvider("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new SwitchProviderInput().withProperties(new SwitchProviderInputProperties()
+                    .withTargetInstanceType("InMageRcm")
+                    .withProviderSpecificDetails(new InMageAzureV2SwitchProviderInput().withTargetVaultId(
+                        "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault2")
+                        .withTargetFabricId(
+                            "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud2")
+                        .withTargetApplianceId("5efaa202-e958-435e-8171-706bf735fcc4"))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2337,7 +2466,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.TestFailove
 public final class ReplicationProtectedItemsTestFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_TestFailover.json
      */
     /**
@@ -2347,14 +2476,16 @@ public final class ReplicationProtectedItemsTestFailoverSamples {
      */
     public static void
         executeTestFailover(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().testFailover("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new TestFailoverInput().withProperties(new TestFailoverInputProperties()
-                .withFailoverDirection("PrimaryToRecovery").withNetworkType("VmNetworkAsInput")
-                .withNetworkId(
-                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
-                .withProviderSpecificDetails(new HyperVReplicaAzureTestFailoverInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .testFailover("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new TestFailoverInput().withProperties(new TestFailoverInputProperties()
+                    .withFailoverDirection("PrimaryToRecovery")
+                    .withNetworkType("VmNetworkAsInput")
+                    .withNetworkId(
+                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
+                    .withProviderSpecificDetails(new HyperVReplicaAzureTestFailoverInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2371,7 +2502,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.TestFailove
 public final class ReplicationProtectedItemsTestFailoverCleanupSam {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_TestFailoverCleanup.json
      */
     /**
@@ -2381,11 +2512,12 @@ public final class ReplicationProtectedItemsTestFailoverCleanupSam {
      */
     public static void
         executeTestFailoverCleanup(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().testFailoverCleanup("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new TestFailoverCleanupInput()
-                .withProperties(new TestFailoverCleanupInputProperties().withComments("Test Failover Cleanup")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .testFailoverCleanup("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new TestFailoverCleanupInput()
+                    .withProperties(new TestFailoverCleanupInputProperties().withComments("Test Failover Cleanup")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2403,7 +2535,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UnplannedFa
 public final class ReplicationProtectedItemsUnplannedFailoverSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_UnplannedFailover.json
      */
     /**
@@ -2413,12 +2545,14 @@ public final class ReplicationProtectedItemsUnplannedFailoverSampl {
      */
     public static void
         executeUnplannedFailover(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().unplannedFailover("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            new UnplannedFailoverInput().withProperties(new UnplannedFailoverInputProperties()
-                .withFailoverDirection("PrimaryToRecovery").withSourceSiteOperations("NotRequired")
-                .withProviderSpecificDetails(new HyperVReplicaAzureUnplannedFailoverInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .unplannedFailover("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "f8491e4f-817a-40dd-a90c-af773978c75b",
+                new UnplannedFailoverInput()
+                    .withProperties(new UnplannedFailoverInputProperties().withFailoverDirection("PrimaryToRecovery")
+                        .withSourceSiteOperations("NotRequired")
+                        .withProviderSpecificDetails(new HyperVReplicaAzureUnplannedFailoverInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2440,7 +2574,7 @@ import java.util.Arrays;
 public final class ReplicationProtectedItemsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_Update.json
      */
     /**
@@ -2451,20 +2585,24 @@ public final class ReplicationProtectedItemsUpdateSamples {
     public static void updatesTheReplicationProtectedItemSettings(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         ReplicationProtectedItem resource = manager.replicationProtectedItems()
-            .getWithResponse("vault1", "resourceGroupPS1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
                 "f8491e4f-817a-40dd-a90c-af773978c75b", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withProperties(new UpdateReplicationProtectedItemInputProperties()
-            .withRecoveryAzureVMName("vm1").withRecoveryAzureVMSize("Basic_A0")
-            .withSelectedRecoveryAzureNetworkId(
-                "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
-            .withVmNics(Arrays.asList(new VMNicInputDetails().withNicId(
-                "TWljcm9zb2Z0OkY4NDkxRTRGLTgxN0EtNDBERC1BOTBDLUFGNzczOTc4Qzc1Qlw3NjAwMzMxRS03NDk4LTQ0QTQtQjdDNy0xQjY1NkJDREQ1MkQ=")
-                .withIpConfigs(Arrays.asList(new IpConfigInputDetails().withIpConfigName("ipconfig1")
-                    .withIsPrimary(true).withRecoverySubnetName("subnet1").withRecoveryStaticIpAddress("10.0.2.46")))
-                .withSelectionType("SelectedByUser")))
-            .withLicenseType(LicenseType.WINDOWS_SERVER)
-            .withProviderSpecificDetails(new HyperVReplicaAzureUpdateReplicationProtectedItemInput())).apply();
+        resource.update()
+            .withProperties(new UpdateReplicationProtectedItemInputProperties().withRecoveryAzureVMName("vm1")
+                .withRecoveryAzureVMSize("Basic_A0")
+                .withSelectedRecoveryAzureNetworkId(
+                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
+                .withVmNics(Arrays.asList(new VMNicInputDetails().withNicId(
+                    "TWljcm9zb2Z0OkY4NDkxRTRGLTgxN0EtNDBERC1BOTBDLUFGNzczOTc4Qzc1Qlw3NjAwMzMxRS03NDk4LTQ0QTQtQjdDNy0xQjY1NkJDREQ1MkQ=")
+                    .withIpConfigs(Arrays.asList(new IpConfigInputDetails().withIpConfigName("ipconfig1")
+                        .withIsPrimary(true)
+                        .withRecoverySubnetName("subnet1")
+                        .withRecoveryStaticIpAddress("10.0.2.46")))
+                    .withSelectionType("SelectedByUser")))
+                .withLicenseType(LicenseType.WINDOWS_SERVER)
+                .withProviderSpecificDetails(new HyperVReplicaAzureUpdateReplicationProtectedItemInput()))
+            .apply();
     }
 }
 ```
@@ -2482,7 +2620,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UpdateAppli
 public final class ReplicationProtectedItemsUpdateApplianceSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_UpdateAppliance.json
      */
     /**
@@ -2492,14 +2630,14 @@ public final class ReplicationProtectedItemsUpdateApplianceSamples {
      */
     public static void updatesApplianceForReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().updateAppliance("Ayan-0106-SA-Vault", "Ayan-0106-SA-RG",
-            "Ayan-0106-SA-Vaultreplicationfabric", "Ayan-0106-SA-Vaultreplicationcontainer",
-            "idclab-vcen67_50158124-8857-3e08-0893-2ddf8ebb8c1f",
-            new UpdateApplianceForReplicationProtectedItemInput()
-                .withProperties(new UpdateApplianceForReplicationProtectedItemInputProperties()
-                    .withTargetApplianceId("").withProviderSpecificDetails(
-                        new InMageRcmUpdateApplianceForReplicationProtectedItemInput().withRunAsAccountId(""))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .updateAppliance("Ayan-0106-SA-RG", "Ayan-0106-SA-Vault", "Ayan-0106-SA-Vaultreplicationfabric",
+                "Ayan-0106-SA-Vaultreplicationcontainer", "idclab-vcen67_50158124-8857-3e08-0893-2ddf8ebb8c1f",
+                new UpdateApplianceForReplicationProtectedItemInput().withProperties(
+                    new UpdateApplianceForReplicationProtectedItemInputProperties().withTargetApplianceId("")
+                        .withProviderSpecificDetails(
+                            new InMageRcmUpdateApplianceForReplicationProtectedItemInput().withRunAsAccountId(""))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2516,7 +2654,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UpdateMobil
 public final class ReplicationProtectedItemsUpdateMobilityServiceS {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectedItems_UpdateMobilityService.json
      */
     /**
@@ -2526,11 +2664,375 @@ public final class ReplicationProtectedItemsUpdateMobilityServiceS {
      */
     public static void updateTheMobilityServiceOnAProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectedItems().updateMobilityService("WCUSVault", "wcusValidations", "WIN-JKKJ31QI8U2",
-            "cloud_c6780228-83bd-4f3e-a70e-cb46b7da33a0", "79dd20ab-2b40-11e7-9791-0050568f387e",
-            new UpdateMobilityServiceRequest()
-                .withProperties(new UpdateMobilityServiceRequestProperties().withRunAsAccountId("2")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectedItems()
+            .updateMobilityService("wcusValidations", "WCUSVault", "WIN-JKKJ31QI8U2",
+                "cloud_c6780228-83bd-4f3e-a70e-cb46b7da33a0", "79dd20ab-2b40-11e7-9791-0050568f387e",
+                new UpdateMobilityServiceRequest()
+                    .withProperties(new UpdateMobilityServiceRequestProperties().withRunAsAccountId("2")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_ApplyRecoveryPoint
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AApplyClusterRecoveryPointInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ApplyClusterRecoveryPointInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ApplyClusterRecoveryPointInputProperties;
+import java.util.Arrays;
+
+/**
+ * Samples for ReplicationProtectionClusters ApplyRecoveryPoint.
+ */
+public final class ReplicationProtectionClustersApplyRecoveryPoint {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_ApplyRecoveryPoint.json
+     */
+    /**
+     * Sample code: Execute the change recovery point operation for cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void executeTheChangeRecoveryPointOperationForCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .applyRecoveryPoint("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                new ApplyClusterRecoveryPointInput().withProperties(new ApplyClusterRecoveryPointInputProperties()
+                    .withClusterRecoveryPointId(
+                        "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/shashankvaultpvt/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectionClusters/testcluster/recoveryPoints/cc48b7f3-b267-432b-ad76-45528974dc62")
+                    .withIndividualNodeRecoveryPoints(Arrays.asList(
+                        "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/shashankvaultpvt/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectedItems/testVM/recoveryPoints/b5c2051b-79e3-41ad-9d25-244f6ef8ce7d"))
+                    .withProviderSpecificDetails(new A2AApplyClusterRecoveryPointInput())),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_Create
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AReplicationProtectionClusterDetails;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionClusterProperties;
+
+/**
+ * Samples for ReplicationProtectionClusters Create.
+ */
+public final class ReplicationProtectionClustersCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_Create.json
+     */
+    /**
+     * Sample code: Create Replication protection Cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void createReplicationProtectionCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .define("cluster12")
+            .withExistingReplicationProtectionContainer("resourceGroupPS1", "vault1", "eastus", "eastus-container")
+            .withProperties(new ReplicationProtectionClusterProperties().withRecoveryContainerId(
+                "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/centraluseuap/replicationProtectionContainers/centraluseuap-container")
+                .withProviderSpecificDetails(new A2AReplicationProtectionClusterDetails())
+                .withPolicyId(
+                    "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationPolicies/24-hour-retention-policy"))
+            .create();
+    }
+}
+```
+
+### ReplicationProtectionClusters_FailoverCommit
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters FailoverCommit.
+ */
+public final class ReplicationProtectionClustersFailoverCommitSamp {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_FailoverCommit.json
+     */
+    /**
+     * Sample code: Execute commit failover for cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void executeCommitFailoverForCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .failoverCommit("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_Get
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters Get.
+ */
+public final class ReplicationProtectionClustersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_Get.json
+     */
+    /**
+     * Sample code: Gets the details of a Replication protection cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheDetailsOfAReplicationProtectionCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .getWithResponse("resourceGroupPS1", "vault1", "eastus", "eastus-container", "cluster1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_GetOperationResults
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters GetOperationResults.
+ */
+public final class ReplicationProtectionClustersGetOperationResult {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_GetOperationResults.json
+     */
+    /**
+     * Sample code: Tracks the Replication protection cluster async operation.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void tracksTheReplicationProtectionClusterAsyncOperation(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .getOperationResultsWithResponse("resourceGroupPS1", "vault1", "eastus", "eastus-container", "cluster1",
+                "ea63a935-59d5-4b12-aff2-98773f63c116", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_List
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters List.
+ */
+public final class ReplicationProtectionClustersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_List.json
+     */
+    /**
+     * Sample code: Gets the list of Replication protection clusters in vault.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfReplicationProtectionClustersInVault(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .list("resourceGroupPS1", "vault1", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_ListByReplicationProtectionContainers
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters ListByReplicationProtectionContainers.
+ */
+public final class ReplicationProtectionClustersListByReplicationP {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_ListByReplicationProtectionContainers.json
+     */
+    /**
+     * Sample code: Gets the list of Replication protection clusters in fabric, container.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void getsTheListOfReplicationProtectionClustersInFabricContainer(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .listByReplicationProtectionContainers("resourceGroupPS1", "vault1", "eastus", "eastus-container",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_Purge
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters Purge.
+ */
+public final class ReplicationProtectionClustersPurgeSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_Purge.json
+     */
+    /**
+     * Sample code: Purge the replication protection cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void purgeTheReplicationProtectionCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .purge("resourceGroupPS1", "vault1", "eastus", "eastus-container", "cluster1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_RepairReplication
+
+```java
+/**
+ * Samples for ReplicationProtectionClusters RepairReplication.
+ */
+public final class ReplicationProtectionClustersRepairReplicationS {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_RepairReplication.json
+     */
+    /**
+     * Sample code: Resynchronize or repair replication of protection cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void resynchronizeOrRepairReplicationOfProtectionCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .repairReplication("resourceGroupPS1", "vault1", "eastus", "eastus-container", "cluster12",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_TestFailover
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AClusterTestFailoverInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverInputProperties;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.FailoverDirection;
+import java.util.Arrays;
+
+/**
+ * Samples for ReplicationProtectionClusters TestFailover.
+ */
+public final class ReplicationProtectionClustersTestFailoverSamples {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_TestFailover.json
+     */
+    /**
+     * Sample code: Execute test failover for cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void executeTestFailoverForCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .testFailover("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                new ClusterTestFailoverInput().withProperties(new ClusterTestFailoverInputProperties()
+                    .withFailoverDirection(FailoverDirection.PRIMARY_TO_RECOVERY)
+                    .withNetworkType("VmNetworkAsInput")
+                    .withNetworkId(
+                        "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ClusterTestRG-19-01-asr/providers/Microsoft.Network/virtualNetworks/adVNET-asr")
+                    .withProviderSpecificDetails(new A2AClusterTestFailoverInput().withClusterRecoveryPointId(
+                        "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectionClusters/testcluster/recoveryPoints/cc48b7f3-b267-432b-ad76-45528974dc62")
+                        .withIndividualNodeRecoveryPoints(Arrays.asList(
+                            "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectedItems/testVM/recoveryPoints/b5c2051b-79e3-41ad-9d25-244f6ef8ce7d")))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_TestFailoverCleanup
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverCleanupInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverCleanupInputProperties;
+
+/**
+ * Samples for ReplicationProtectionClusters TestFailoverCleanup.
+ */
+public final class ReplicationProtectionClustersTestFailoverCleanu {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_TestFailoverCleanup.json
+     */
+    /**
+     * Sample code: Execute test failover cleanup for cluster.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void executeTestFailoverCleanupForCluster(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .testFailoverCleanup("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                new ClusterTestFailoverCleanupInput().withProperties(
+                    new ClusterTestFailoverCleanupInputProperties().withComments("Test Failover Cleanup")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionClusters_UnplannedFailover
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AClusterUnplannedFailoverInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterUnplannedFailoverInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterUnplannedFailoverInputProperties;
+import java.util.Arrays;
+
+/**
+ * Samples for ReplicationProtectionClusters UnplannedFailover.
+ */
+public final class ReplicationProtectionClustersUnplannedFailoverS {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionClusters_UnplannedFailover.json
+     */
+    /**
+     * Sample code: Execute unplanned cluster failover.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void executeUnplannedClusterFailover(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionClusters()
+            .unplannedFailover("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus", "testcluster",
+                new ClusterUnplannedFailoverInput().withProperties(new ClusterUnplannedFailoverInputProperties()
+                    .withFailoverDirection("primarytorecovery")
+                    .withSourceSiteOperations("NotRequired")
+                    .withProviderSpecificDetails(new A2AClusterUnplannedFailoverInput().withClusterRecoveryPointId(
+                        "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectionClusters/testcluster/recoveryPoints/cc48b7f3-b267-432b-ad76-45528974dc62")
+                        .withIndividualNodeRecoveryPoints(Arrays.asList(
+                            "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/fabric-pri-eastus/replicationProtectionContainers/pri-cloud-eastus/replicationProtectedItems/testVM/recoveryPoints/b5c2051b-79e3-41ad-9d25-244f6ef8ce7d")))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2547,7 +3049,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 public final class ReplicationProtectionContainerMappingsCreateSam {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_Create.json
      */
     /**
@@ -2557,8 +3059,9 @@ public final class ReplicationProtectionContainerMappingsCreateSam {
      */
     public static void createProtectionContainerMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().define("cloud1protectionprofile1")
-            .withExistingReplicationProtectionContainer("vault1", "resourceGroupPS1", "cloud1",
+        manager.replicationProtectionContainerMappings()
+            .define("cloud1protectionprofile1")
+            .withExistingReplicationProtectionContainer("resourceGroupPS1", "vault1", "cloud1",
                 "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
             .withProperties(new CreateProtectionContainerMappingInputProperties()
                 .withTargetProtectionContainerId("Microsoft Azure")
@@ -2583,7 +3086,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 public final class ReplicationProtectionContainerMappingsDeleteSam {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_Delete.json
      */
     /**
@@ -2593,12 +3096,13 @@ public final class ReplicationProtectionContainerMappingsDeleteSam {
      */
     public static void removeProtectionContainerMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().delete("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "cloud1protectionprofile1",
-            new RemoveProtectionContainerMappingInput()
-                .withProperties(new RemoveProtectionContainerMappingInputProperties()
-                    .withProviderSpecificInput(new ReplicationProviderContainerUnmappingInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainerMappings()
+            .delete("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "cloud1protectionprofile1",
+                new RemoveProtectionContainerMappingInput()
+                    .withProperties(new RemoveProtectionContainerMappingInputProperties()
+                        .withProviderSpecificInput(new ReplicationProviderContainerUnmappingInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2612,7 +3116,7 @@ public final class ReplicationProtectionContainerMappingsDeleteSam {
 public final class ReplicationProtectionContainerMappingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_Get.json
      */
     /**
@@ -2622,8 +3126,9 @@ public final class ReplicationProtectionContainerMappingsGetSamples {
      */
     public static void getsAProtectionContainerMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "cloud1protectionprofile1", com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainerMappings()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "cloud1protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2637,7 +3142,7 @@ public final class ReplicationProtectionContainerMappingsGetSamples {
 public final class ReplicationProtectionContainerMappingsListSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_List.json
      */
     /**
@@ -2647,8 +3152,8 @@ public final class ReplicationProtectionContainerMappingsListSampl {
      */
     public static void getsTheListOfAllProtectionContainerMappingsInAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().list("vault1", "resourceGroupPS1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainerMappings()
+            .list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2662,7 +3167,7 @@ public final class ReplicationProtectionContainerMappingsListSampl {
 public final class ReplicationProtectionContainerMappingsListByRep {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_ListByReplicationProtectionContainers.json
      */
     /**
@@ -2672,9 +3177,9 @@ public final class ReplicationProtectionContainerMappingsListByRep {
      */
     public static void getsTheListOfProtectionContainerMappingsForAProtectionContainer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().listByReplicationProtectionContainers("vault1",
-            "resourceGroupPS1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainerMappings()
+            .listByReplicationProtectionContainers("resourceGroupPS1", "vault1", "cloud1",
+                "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2688,7 +3193,7 @@ public final class ReplicationProtectionContainerMappingsListByRep {
 public final class ReplicationProtectionContainerMappingsPurgeSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_Purge.json
      */
     /**
@@ -2698,8 +3203,9 @@ public final class ReplicationProtectionContainerMappingsPurgeSamp {
      */
     public static void purgeProtectionContainerMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainerMappings().purge("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "cloud1protectionprofile1", com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainerMappings()
+            .purge("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                "cloud1protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2718,7 +3224,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.UpdateProte
 public final class ReplicationProtectionContainerMappingsUpdateSam {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainerMappings_Update.json
      */
     /**
@@ -2729,13 +3235,14 @@ public final class ReplicationProtectionContainerMappingsUpdateSam {
     public static void updateProtectionContainerMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         ProtectionContainerMapping resource = manager.replicationProtectionContainerMappings()
-            .getWithResponse("vault1", "resourceGroupPS1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
                 "cloud1protectionprofile1", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withProperties(new UpdateProtectionContainerMappingInputProperties()
-            .withProviderSpecificInput(new A2AUpdateContainerMappingInput()
-                .withAgentAutoUpdateStatus(AgentAutoUpdateStatus.ENABLED).withAutomationAccountArmId(
-                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/automationrg1/providers/Microsoft.Automation/automationAccounts/automationaccount1")))
+        resource.update()
+            .withProperties(new UpdateProtectionContainerMappingInputProperties().withProviderSpecificInput(
+                new A2AUpdateContainerMappingInput().withAgentAutoUpdateStatus(AgentAutoUpdateStatus.ENABLED)
+                    .withAutomationAccountArmId(
+                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/automationrg1/providers/Microsoft.Automation/automationAccounts/automationaccount1")))
             .apply();
     }
 }
@@ -2754,7 +3261,7 @@ import java.util.Arrays;
 public final class ReplicationProtectionContainersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_Create.json
      */
     /**
@@ -2764,8 +3271,9 @@ public final class ReplicationProtectionContainersCreateSamples {
      */
     public static void
         createAProtectionContainer(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().define("cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
-            .withExistingReplicationFabric("vault1", "resourceGroupPS1", "cloud1")
+        manager.replicationProtectionContainers()
+            .define("cloud_6d224fc6-f326-5d35-96de-fbf51efb3179")
+            .withExistingReplicationFabric("resourceGroupPS1", "vault1", "cloud1")
             .withProperties(new CreateProtectionContainerInputProperties()
                 .withProviderSpecificInput(Arrays.asList(new ReplicationProviderSpecificContainerCreationInput())))
             .create();
@@ -2782,7 +3290,7 @@ public final class ReplicationProtectionContainersCreateSamples {
 public final class ReplicationProtectionContainersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_Delete.json
      */
     /**
@@ -2792,8 +3300,9 @@ public final class ReplicationProtectionContainersDeleteSamples {
      */
     public static void removesAProtectionContainer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().delete("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .delete("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2810,7 +3319,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.DiscoverPro
 public final class ReplicationProtectionContainersDiscoverProtecta {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_DiscoverProtectableItem.json
      */
     /**
@@ -2820,11 +3329,14 @@ public final class ReplicationProtectionContainersDiscoverProtecta {
      */
     public static void addsAProtectableItemToTheReplicationProtectionContainer(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().discoverProtectableItem("MadhaviVault", "MadhaviVRG", "V2A-W2K12-660",
-            "cloud_7328549c-5c37-4459-a3c2-e35f9ef6893c",
-            new DiscoverProtectableItemRequest().withProperties(new DiscoverProtectableItemRequestProperties()
-                .withFriendlyName("Test").withIpAddress("10.150.2.3").withOsType("Windows")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .discoverProtectableItem("MadhaviVRG", "MadhaviVault", "V2A-W2K12-660",
+                "cloud_7328549c-5c37-4459-a3c2-e35f9ef6893c",
+                new DiscoverProtectableItemRequest()
+                    .withProperties(new DiscoverProtectableItemRequestProperties().withFriendlyName("Test")
+                        .withIpAddress("10.150.2.3")
+                        .withOsType("Windows")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2838,7 +3350,7 @@ public final class ReplicationProtectionContainersDiscoverProtecta {
 public final class ReplicationProtectionContainersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_Get.json
      */
     /**
@@ -2848,8 +3360,9 @@ public final class ReplicationProtectionContainersGetSamples {
      */
     public static void getsTheProtectionContainerDetails(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2863,7 +3376,7 @@ public final class ReplicationProtectionContainersGetSamples {
 public final class ReplicationProtectionContainersListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_List.json
      */
     /**
@@ -2873,7 +3386,7 @@ public final class ReplicationProtectionContainersListSamples {
      */
     public static void getsTheListOfAllProtectionContainersInAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2887,7 +3400,7 @@ public final class ReplicationProtectionContainersListSamples {
 public final class ReplicationProtectionContainersListByReplicatio {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_ListByReplicationFabrics.json
      */
     /**
@@ -2897,8 +3410,67 @@ public final class ReplicationProtectionContainersListByReplicatio {
      */
     public static void getsTheListOfProtectionContainerForAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().listByReplicationFabrics("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .listByReplicationFabrics("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ReplicationProtectionContainers_SwitchClusterProtection
+
+```java
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AProtectedItemDetail;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2ASwitchClusterProtectionInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AVmManagedDiskInputDetails;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInput;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInputProperties;
+import java.util.Arrays;
+
+/**
+ * Samples for ReplicationProtectionContainers SwitchClusterProtection.
+ */
+public final class ReplicationProtectionContainersSwitchClusterPro {
+    /*
+     * x-ms-original-file:
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
+     * /ReplicationProtectionContainers_SwitchClusterProtection.json
+     */
+    /**
+     * Sample code: Switches protection from one container to another or one replication provider to another.
+     * 
+     * @param manager Entry point to SiteRecoveryManager.
+     */
+    public static void switchesProtectionFromOneContainerToAnotherOrOneReplicationProviderToAnother(
+        com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
+        manager.replicationProtectionContainers()
+            .switchClusterProtection("resourceGroupPS1", "vault1", "fabric-pri-eastus", "pri-cloud-eastus",
+                new SwitchClusterProtectionInput().withProperties(new SwitchClusterProtectionInputProperties()
+                    .withReplicationProtectionClusterName("testcluster")
+                    .withProviderSpecificDetails(new A2ASwitchClusterProtectionInput().withRecoveryContainerId(
+                        "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/fabric-rec-westus/replicationProtectionContainers/rec-cloud-westus")
+                        .withPolicyId(
+                            "/Subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationPolicies/klncksan")
+                        .withProtectedItemsDetail(Arrays.asList(new A2AProtectedItemDetail()
+                            .withVmManagedDisks(Arrays.asList(new A2AVmManagedDiskInputDetails().withDiskId(
+                                "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourcegroups/clustertestrg-19-01/providers/microsoft.compute/disks/sdgql0-osdisk")
+                                .withPrimaryStagingAzureStorageAccountId(
+                                    "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/clustertestrg-19-01/providers/Microsoft.Storage/storageAccounts/ix701lvaasrcache")
+                                .withRecoveryResourceGroupId(
+                                    "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ClusterTestRG-19-01-asr")))
+                            .withRecoveryResourceGroupId(
+                                "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ClusterTestRG-19-01-asr")
+                            .withReplicationProtectedItemName("yNdYnDYKZ7hYU7zyVeBychFBCyAbEkrJcJNUarDrXio"),
+                            new A2AProtectedItemDetail()
+                                .withVmManagedDisks(Arrays.asList(new A2AVmManagedDiskInputDetails().withDiskId(
+                                    "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourcegroups/clustertestrg-19-01/providers/microsoft.compute/disks/sdgql1-osdisk")
+                                    .withPrimaryStagingAzureStorageAccountId(
+                                        "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/clustertestrg-19-01/providers/Microsoft.Storage/storageAccounts/ix701lvaasrcache")
+                                    .withRecoveryResourceGroupId(
+                                        "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ClusterTestRG-19-01-asr")))
+                                .withRecoveryResourceGroupId(
+                                    "/subscriptions/7c943c1b-5122-4097-90c8-861411bdd574/resourceGroups/ClusterTestRG-19-01-asr")
+                                .withReplicationProtectedItemName("kdUdWvpVnm3QgOQPHoVMX8YAtAO8OC4kKNjt40ERSr4"))))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2916,7 +3488,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchProte
 public final class ReplicationProtectionContainersSwitchProtection {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionContainers_SwitchProtection.json
      */
     /**
@@ -2926,12 +3498,12 @@ public final class ReplicationProtectionContainersSwitchProtection {
      */
     public static void switchesProtectionFromOneContainerToAnotherOrOneReplicationProviderToAnother(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().switchProtection("priyanponeboxvault", "priyanprg",
-            "CentralUSCanSite", "CentralUSCancloud",
-            new SwitchProtectionInput()
-                .withProperties(new SwitchProtectionInputProperties().withReplicationProtectedItemName("a2aSwapOsVm")
-                    .withProviderSpecificDetails(new A2ASwitchProtectionInput())),
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .switchProtection("priyanprg", "priyanponeboxvault", "CentralUSCanSite", "CentralUSCancloud",
+                new SwitchProtectionInput().withProperties(
+                    new SwitchProtectionInputProperties().withReplicationProtectedItemName("a2aSwapOsVm")
+                        .withProviderSpecificDetails(new A2ASwitchProtectionInput())),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2949,7 +3521,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.CreateProte
 public final class ReplicationProtectionIntentsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionIntents_Create.json
      */
     /**
@@ -2959,13 +3531,17 @@ public final class ReplicationProtectionIntentsCreateSamples {
      */
     public static void createProtectionIntentResource(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionIntents().define("vm1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationProtectionIntents()
+            .define("vm1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new CreateProtectionIntentProperties()
                 .withProviderSpecificDetails(new A2ACreateProtectionIntentInput().withFabricObjectId(
                     "/subscriptions/509099b2-9d2c-4636-b43e-bd5cafb6be69/resourceGroups/removeOne/providers/Microsoft.Compute/virtualMachines/vmPpgAv5")
-                    .withPrimaryLocation("eastUs2").withRecoveryLocation("westus2")
+                    .withPrimaryLocation("eastUs2")
+                    .withRecoveryLocation("westus2")
                     .withRecoverySubscriptionId("ed5bcdf6-d61e-47bd-8ea9-f2bd379a2640")
-                    .withRecoveryAvailabilityType(A2ARecoveryAvailabilityType.SINGLE).withRecoveryResourceGroupId(
+                    .withRecoveryAvailabilityType(A2ARecoveryAvailabilityType.SINGLE)
+                    .withRecoveryResourceGroupId(
                         "/subscriptions/509099b2-9d2c-4636-b43e-bd5cafb6be69/resourceGroups/removeOne-asr")))
             .create();
     }
@@ -2981,7 +3557,7 @@ public final class ReplicationProtectionIntentsCreateSamples {
 public final class ReplicationProtectionIntentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionIntents_Get.json
      */
     /**
@@ -2991,8 +3567,8 @@ public final class ReplicationProtectionIntentsGetSamples {
      */
     public static void getsTheDetailsOfAReplicationProtectionIntentItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionIntents().getWithResponse("vault1", "resourceGroupPS1", "vm1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionIntents()
+            .getWithResponse("resourceGroupPS1", "vault1", "vm1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3006,7 +3582,7 @@ public final class ReplicationProtectionIntentsGetSamples {
 public final class ReplicationProtectionIntentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationProtectionIntents_List.json
      */
     /**
@@ -3016,8 +3592,8 @@ public final class ReplicationProtectionIntentsListSamples {
      */
     public static void getsTheListOfReplicationProtectionIntentObjects(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionIntents().list("2007vttp", "resourceGroupPS1", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionIntents()
+            .list("resourceGroupPS1", "2007vttp", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3038,7 +3614,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_Create.json
      */
     /**
@@ -3048,7 +3624,9 @@ public final class ReplicationRecoveryPlansCreateSamples {
      */
     public static void createsARecoveryPlanWithTheGivenDetails(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().define("RPtest1").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationRecoveryPlans()
+            .define("RPtest1")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new CreateRecoveryPlanInputProperties().withPrimaryFabricId(
                 "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1")
                 .withRecoveryFabricId("Microsoft Azure")
@@ -3057,7 +3635,8 @@ public final class ReplicationRecoveryPlansCreateSamples {
                     .withReplicationProtectedItems(Arrays.asList(new RecoveryPlanProtectedItem().withId(
                         "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/f8491e4f-817a-40dd-a90c-af773978c75b")
                         .withVirtualMachineId("f8491e4f-817a-40dd-a90c-af773978c75b")))
-                    .withStartGroupActions(Arrays.asList()).withEndGroupActions(Arrays.asList()))))
+                    .withStartGroupActions(Arrays.asList())
+                    .withEndGroupActions(Arrays.asList()))))
             .create();
     }
 }
@@ -3072,7 +3651,7 @@ public final class ReplicationRecoveryPlansCreateSamples {
 public final class ReplicationRecoveryPlansDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_Delete.json
      */
     /**
@@ -3082,8 +3661,8 @@ public final class ReplicationRecoveryPlansDeleteSamples {
      */
     public static void deletesTheSpecifiedRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().delete("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .delete("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3097,7 +3676,7 @@ public final class ReplicationRecoveryPlansDeleteSamples {
 public final class ReplicationRecoveryPlansFailoverCancelSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_FailoverCancel.json
      */
     /**
@@ -3107,8 +3686,8 @@ public final class ReplicationRecoveryPlansFailoverCancelSamples {
      */
     public static void executeCancelFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().failoverCancel("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .failoverCancel("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3122,7 +3701,7 @@ public final class ReplicationRecoveryPlansFailoverCancelSamples {
 public final class ReplicationRecoveryPlansFailoverCommitSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_FailoverCommit.json
      */
     /**
@@ -3132,8 +3711,8 @@ public final class ReplicationRecoveryPlansFailoverCommitSamples {
      */
     public static void executeCommitFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().failoverCommit("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .failoverCommit("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3147,7 +3726,7 @@ public final class ReplicationRecoveryPlansFailoverCommitSamples {
 public final class ReplicationRecoveryPlansGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_Get.json
      */
     /**
@@ -3157,8 +3736,8 @@ public final class ReplicationRecoveryPlansGetSamples {
      */
     public static void getsTheRequestedRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().getWithResponse("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .getWithResponse("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3172,7 +3751,7 @@ public final class ReplicationRecoveryPlansGetSamples {
 public final class ReplicationRecoveryPlansListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_List.json
      */
     /**
@@ -3182,7 +3761,7 @@ public final class ReplicationRecoveryPlansListSamples {
      */
     public static void
         getsTheListOfRecoveryPlans(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3202,7 +3781,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansPlannedFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_PlannedFailover.json
      */
     /**
@@ -3212,11 +3791,12 @@ public final class ReplicationRecoveryPlansPlannedFailoverSamples {
      */
     public static void executePlannedFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().plannedFailover("vault1", "resourceGroupPS1", "RPtest1",
-            new RecoveryPlanPlannedFailoverInput().withProperties(new RecoveryPlanPlannedFailoverInputProperties()
-                .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
-                .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .plannedFailover("resourceGroupPS1", "vault1", "RPtest1",
+                new RecoveryPlanPlannedFailoverInput().withProperties(new RecoveryPlanPlannedFailoverInputProperties()
+                    .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
+                    .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3230,7 +3810,7 @@ public final class ReplicationRecoveryPlansPlannedFailoverSamples {
 public final class ReplicationRecoveryPlansReprotectSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_Reprotect.json
      */
     /**
@@ -3240,8 +3820,8 @@ public final class ReplicationRecoveryPlansReprotectSamples {
      */
     public static void executeReprotectOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().reprotect("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .reprotect("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3261,7 +3841,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansTestFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_TestFailover.json
      */
     /**
@@ -3271,14 +3851,15 @@ public final class ReplicationRecoveryPlansTestFailoverSamples {
      */
     public static void executeTestFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().testFailover("vault1", "resourceGroupPS1", "RPtest1",
-            new RecoveryPlanTestFailoverInput().withProperties(new RecoveryPlanTestFailoverInputProperties()
-                .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
-                .withNetworkType("VmNetworkAsInput")
-                .withNetworkId(
-                    "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
-                .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .testFailover("resourceGroupPS1", "vault1", "RPtest1",
+                new RecoveryPlanTestFailoverInput().withProperties(new RecoveryPlanTestFailoverInputProperties()
+                    .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
+                    .withNetworkType("VmNetworkAsInput")
+                    .withNetworkId(
+                        "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/siterecoveryProd1/providers/Microsoft.Network/virtualNetworks/vnetavrai")
+                    .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3295,7 +3876,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.RecoveryPla
 public final class ReplicationRecoveryPlansTestFailoverCleanupSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_TestFailoverCleanup.json
      */
     /**
@@ -3305,10 +3886,11 @@ public final class ReplicationRecoveryPlansTestFailoverCleanupSamp {
      */
     public static void executeTestFailoverCleanupOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().testFailoverCleanup("vault1", "resourceGroupPS1", "RPtest1",
-            new RecoveryPlanTestFailoverCleanupInput().withProperties(
-                new RecoveryPlanTestFailoverCleanupInputProperties().withComments("Test Failover Cleanup")),
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .testFailoverCleanup("resourceGroupPS1", "vault1", "RPtest1",
+                new RecoveryPlanTestFailoverCleanupInput().withProperties(
+                    new RecoveryPlanTestFailoverCleanupInputProperties().withComments("Test Failover Cleanup")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3329,7 +3911,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansUnplannedFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_UnplannedFailover.json
      */
     /**
@@ -3339,12 +3921,14 @@ public final class ReplicationRecoveryPlansUnplannedFailoverSamples {
      */
     public static void executeUnplannedFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().unplannedFailover("vault1", "resourceGroupPS1", "RPtest1",
-            new RecoveryPlanUnplannedFailoverInput().withProperties(new RecoveryPlanUnplannedFailoverInputProperties()
-                .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
-                .withSourceSiteOperations(SourceSiteOperations.REQUIRED)
-                .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .unplannedFailover("resourceGroupPS1", "vault1", "RPtest1",
+                new RecoveryPlanUnplannedFailoverInput()
+                    .withProperties(new RecoveryPlanUnplannedFailoverInputProperties()
+                        .withFailoverDirection(PossibleOperationsDirections.PRIMARY_TO_RECOVERY)
+                        .withSourceSiteOperations(SourceSiteOperations.REQUIRED)
+                        .withProviderSpecificDetails(Arrays.asList(new RecoveryPlanHyperVReplicaAzureFailoverInput()))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3365,7 +3949,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryPlans_Update.json
      */
     /**
@@ -3376,28 +3960,30 @@ public final class ReplicationRecoveryPlansUpdateSamples {
     public static void updatesTheGivenRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         RecoveryPlan resource = manager.replicationRecoveryPlans()
-            .getWithResponse("vault1", "resourceGroupPS1", "RPtest1", com.azure.core.util.Context.NONE).getValue();
+            .getWithResponse("resourceGroupPS1", "vault1", "RPtest1", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update()
-            .withProperties(new UpdateRecoveryPlanInputProperties().withGroups(
-                Arrays.asList(
-                    new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.SHUTDOWN)
-                        .withReplicationProtectedItems(Arrays.asList()).withStartGroupActions(
-                            Arrays.asList())
-                        .withEndGroupActions(Arrays.asList()),
-                    new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.FAILOVER)
-                        .withReplicationProtectedItems(
-                            Arrays.asList())
-                        .withStartGroupActions(Arrays.asList()).withEndGroupActions(Arrays.asList()),
-                    new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.BOOT)
-                        .withReplicationProtectedItems(Arrays.asList(new RecoveryPlanProtectedItem().withId(
-                            "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/f8491e4f-817a-40dd-a90c-af773978c75b")
-                            .withVirtualMachineId("f8491e4f-817a-40dd-a90c-af773978c75b")))
-                        .withStartGroupActions(Arrays.asList()).withEndGroupActions(Arrays.asList()),
-                    new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.BOOT)
-                        .withReplicationProtectedItems(Arrays.asList(new RecoveryPlanProtectedItem().withId(
-                            "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/c0c14913-3d7a-48ea-9531-cc99e0e686e6")
-                            .withVirtualMachineId("c0c14913-3d7a-48ea-9531-cc99e0e686e6")))
-                        .withStartGroupActions(Arrays.asList()).withEndGroupActions(Arrays.asList()))))
+            .withProperties(new UpdateRecoveryPlanInputProperties().withGroups(Arrays.asList(
+                new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.SHUTDOWN)
+                    .withReplicationProtectedItems(Arrays.asList())
+                    .withStartGroupActions(Arrays.asList())
+                    .withEndGroupActions(Arrays.asList()),
+                new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.FAILOVER)
+                    .withReplicationProtectedItems(Arrays.asList())
+                    .withStartGroupActions(Arrays.asList())
+                    .withEndGroupActions(Arrays.asList()),
+                new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.BOOT)
+                    .withReplicationProtectedItems(Arrays.asList(new RecoveryPlanProtectedItem().withId(
+                        "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/f8491e4f-817a-40dd-a90c-af773978c75b")
+                        .withVirtualMachineId("f8491e4f-817a-40dd-a90c-af773978c75b")))
+                    .withStartGroupActions(Arrays.asList())
+                    .withEndGroupActions(Arrays.asList()),
+                new RecoveryPlanGroup().withGroupType(RecoveryPlanGroupType.BOOT)
+                    .withReplicationProtectedItems(Arrays.asList(new RecoveryPlanProtectedItem().withId(
+                        "/Subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.RecoveryServices/vaults/vault1/replicationFabrics/cloud1/replicationProtectionContainers/cloud_6d224fc6-f326-5d35-96de-fbf51efb3179/replicationProtectedItems/c0c14913-3d7a-48ea-9531-cc99e0e686e6")
+                        .withVirtualMachineId("c0c14913-3d7a-48ea-9531-cc99e0e686e6")))
+                    .withStartGroupActions(Arrays.asList())
+                    .withEndGroupActions(Arrays.asList()))))
             .apply();
     }
 }
@@ -3415,7 +4001,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.IdentityPro
 public final class ReplicationRecoveryServicesProvidersCreateSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_Create.json
      */
     /**
@@ -3425,8 +4011,9 @@ public final class ReplicationRecoveryServicesProvidersCreateSampl {
      */
     public static void addsARecoveryServicesProvider(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().define("vmwareprovider1")
-            .withExistingReplicationFabric("migrationvault", "resourcegroup1", "vmwarefabric1")
+        manager.replicationRecoveryServicesProviders()
+            .define("vmwareprovider1")
+            .withExistingReplicationFabric("resourcegroup1", "migrationvault", "vmwarefabric1")
             .withProperties(new AddRecoveryServicesProviderInputProperties().withMachineName("vmwareprovider1")
                 .withAuthenticationIdentityInput(
                     new IdentityProviderInput().withTenantId("72f988bf-86f1-41af-91ab-2d7cd011db47")
@@ -3454,7 +4041,7 @@ public final class ReplicationRecoveryServicesProvidersCreateSampl {
 public final class ReplicationRecoveryServicesProvidersDeleteSampl {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_Delete.json
      */
     /**
@@ -3467,8 +4054,9 @@ public final class ReplicationRecoveryServicesProvidersDeleteSampl {
     public static void
         deletesProviderFromFabricNoteDeletingProviderForAnyFabricOtherThanSingleHostIsUnsupportedToMaintainBackwardCompatibilityForReleasedClientsTheObjectDeleteRspInputIsUsedIfTheObjectIsEmptyWeAssumeThatItIsOldClientAndContinueTheOldBehavior(
             com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().delete("vault1", "resourceGroupPS1", "cloud1",
-            "241641e6-ee7b-4ee4-8141-821fadda43fa", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .delete("resourceGroupPS1", "vault1", "cloud1", "241641e6-ee7b-4ee4-8141-821fadda43fa",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3482,7 +4070,7 @@ public final class ReplicationRecoveryServicesProvidersDeleteSampl {
 public final class ReplicationRecoveryServicesProvidersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_Get.json
      */
     /**
@@ -3492,8 +4080,9 @@ public final class ReplicationRecoveryServicesProvidersGetSamples {
      */
     public static void getsTheDetailsOfARecoveryServicesProvider(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().getWithResponse("vault1", "resourceGroupPS1", "cloud1",
-            "241641e6-ee7b-4ee4-8141-821fadda43fa", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .getWithResponse("resourceGroupPS1", "vault1", "cloud1", "241641e6-ee7b-4ee4-8141-821fadda43fa",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3507,7 +4096,7 @@ public final class ReplicationRecoveryServicesProvidersGetSamples {
 public final class ReplicationRecoveryServicesProvidersListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_List.json
      */
     /**
@@ -3517,8 +4106,8 @@ public final class ReplicationRecoveryServicesProvidersListSamples {
      */
     public static void getsTheListOfRegisteredRecoveryServicesProvidersInTheVaultThisIsAViewOnlyApi(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().list("vault1", "resourceGroupPS1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3532,7 +4121,7 @@ public final class ReplicationRecoveryServicesProvidersListSamples {
 public final class ReplicationRecoveryServicesProvidersListByRepli {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_ListByReplicationFabrics.json
      */
     /**
@@ -3542,8 +4131,8 @@ public final class ReplicationRecoveryServicesProvidersListByRepli {
      */
     public static void getsTheListOfRegisteredRecoveryServicesProvidersForTheFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().listByReplicationFabrics("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .listByReplicationFabrics("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3557,7 +4146,7 @@ public final class ReplicationRecoveryServicesProvidersListByRepli {
 public final class ReplicationRecoveryServicesProvidersPurgeSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_Purge.json
      */
     /**
@@ -3567,8 +4156,9 @@ public final class ReplicationRecoveryServicesProvidersPurgeSamples {
      */
     public static void purgesRecoveryServiceProviderFromFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().purge("vault1", "resourceGroupPS1", "cloud1",
-            "241641e6-ee7b-4ee4-8141-821fadda43fa", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .purge("resourceGroupPS1", "vault1", "cloud1", "241641e6-ee7b-4ee4-8141-821fadda43fa",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3582,7 +4172,7 @@ public final class ReplicationRecoveryServicesProvidersPurgeSamples {
 public final class ReplicationRecoveryServicesProvidersRefreshProv {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationRecoveryServicesProviders_RefreshProvider.json
      */
     /**
@@ -3592,8 +4182,9 @@ public final class ReplicationRecoveryServicesProvidersRefreshProv {
      */
     public static void refreshDetailsFromTheRecoveryServicesProvider(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryServicesProviders().refreshProvider("vault1", "resourceGroupPS1", "cloud1",
-            "241641e6-ee7b-4ee4-8141-821fadda43fa", com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryServicesProviders()
+            .refreshProvider("resourceGroupPS1", "vault1", "cloud1", "241641e6-ee7b-4ee4-8141-821fadda43fa",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3607,7 +4198,7 @@ public final class ReplicationRecoveryServicesProvidersRefreshProv {
 public final class ReplicationVaultHealthGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultHealth_Get.json
      */
     /**
@@ -3617,8 +4208,8 @@ public final class ReplicationVaultHealthGetSamples {
      */
     public static void getsTheHealthSummaryForTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultHealths().getWithResponse("vault1", "resourceGroupPS1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationVaultHealths()
+            .getWithResponse("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3632,7 +4223,7 @@ public final class ReplicationVaultHealthGetSamples {
 public final class ReplicationVaultHealthRefreshSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultHealth_Refresh.json
      */
     /**
@@ -3642,7 +4233,7 @@ public final class ReplicationVaultHealthRefreshSamples {
      */
     public static void refreshesHealthSummaryOfTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultHealths().refresh("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationVaultHealths().refresh("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3658,7 +4249,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VaultSettin
 public final class ReplicationVaultSettingCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultSetting_Create.json
      */
     /**
@@ -3669,7 +4260,9 @@ public final class ReplicationVaultSettingCreateSamples {
      */
     public static void updatesVaultSettingAVaultSettingObjectIsASingletonPerVaultAndItIsAlwaysPresentByDefault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultSettings().define("default").withExistingVault("vault1", "resourceGroupPS1")
+        manager.replicationVaultSettings()
+            .define("default")
+            .withExistingVault("resourceGroupPS1", "vault1")
             .withProperties(new VaultSettingCreationInputProperties().withMigrationSolutionId(
                 "/subscriptions/c183865e-6077-46f2-a3b1-deb0f4f4650a/resourceGroups/resourceGroupPS1/providers/Microsoft.Migrate/MigrateProjects/resourceGroupPS1-MigrateProject/Solutions/Servers-Migration-ServerMigration"))
             .create();
@@ -3686,7 +4279,7 @@ public final class ReplicationVaultSettingCreateSamples {
 public final class ReplicationVaultSettingGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultSetting_Get.json
      */
     /**
@@ -3696,8 +4289,8 @@ public final class ReplicationVaultSettingGetSamples {
      */
     public static void
         getsTheVaultSetting(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultSettings().getWithResponse("vault1", "resourceGroupPS1", "default",
-            com.azure.core.util.Context.NONE);
+        manager.replicationVaultSettings()
+            .getWithResponse("resourceGroupPS1", "vault1", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3711,7 +4304,7 @@ public final class ReplicationVaultSettingGetSamples {
 public final class ReplicationVaultSettingListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationVaultSetting_List.json
      */
     /**
@@ -3721,7 +4314,7 @@ public final class ReplicationVaultSettingListSamples {
      */
     public static void
         getsTheListOfVaultSetting(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationVaultSettings().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.replicationVaultSettings().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3737,7 +4330,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.AddVCenterR
 public final class ReplicationvCentersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_Create.json
      */
     /**
@@ -3746,10 +4339,14 @@ public final class ReplicationvCentersCreateSamples {
      * @param manager Entry point to SiteRecoveryManager.
      */
     public static void addVCenter(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationvCenters().define("esx-78")
-            .withExistingReplicationFabric("MadhaviVault", "MadhaviVRG", "MadhaviFabric")
-            .withProperties(new AddVCenterRequestProperties().withFriendlyName("esx-78").withIpAddress("inmtest78")
-                .withProcessServerId("5A720CAB-39CB-F445-BD1662B0B33164B5").withPort("443").withRunAsAccountId("2"))
+        manager.replicationvCenters()
+            .define("esx-78")
+            .withExistingReplicationFabric("MadhaviVRG", "MadhaviVault", "MadhaviFabric")
+            .withProperties(new AddVCenterRequestProperties().withFriendlyName("esx-78")
+                .withIpAddress("inmtest78")
+                .withProcessServerId("5A720CAB-39CB-F445-BD1662B0B33164B5")
+                .withPort("443")
+                .withRunAsAccountId("2"))
             .create();
     }
 }
@@ -3764,7 +4361,7 @@ public final class ReplicationvCentersCreateSamples {
 public final class ReplicationvCentersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_Delete.json
      */
     /**
@@ -3774,8 +4371,8 @@ public final class ReplicationvCentersDeleteSamples {
      */
     public static void
         removeVCenterOperation(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationvCenters().delete("MadhaviVault", "MadhaviVRG", "MadhaviFabric", "esx-78",
-            com.azure.core.util.Context.NONE);
+        manager.replicationvCenters()
+            .delete("MadhaviVRG", "MadhaviVault", "MadhaviFabric", "esx-78", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3789,7 +4386,7 @@ public final class ReplicationvCentersDeleteSamples {
 public final class ReplicationvCentersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_Get.json
      */
     /**
@@ -3799,8 +4396,8 @@ public final class ReplicationvCentersGetSamples {
      */
     public static void
         getsTheDetailsOfAVCenter(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationvCenters().getWithResponse("MadhaviVault", "MadhaviVRG", "MadhaviFabric", "esx-78",
-            com.azure.core.util.Context.NONE);
+        manager.replicationvCenters()
+            .getWithResponse("MadhaviVRG", "MadhaviVault", "MadhaviFabric", "esx-78", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3814,7 +4411,7 @@ public final class ReplicationvCentersGetSamples {
 public final class ReplicationvCentersListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_List.json
      */
     /**
@@ -3824,7 +4421,7 @@ public final class ReplicationvCentersListSamples {
      */
     public static void getsTheListOfVCenterRegisteredUnderTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationvCenters().list("MadhaviVault", "MadhaviVRG", com.azure.core.util.Context.NONE);
+        manager.replicationvCenters().list("MadhaviVRG", "MadhaviVault", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3838,7 +4435,7 @@ public final class ReplicationvCentersListSamples {
 public final class ReplicationvCentersListByReplicationFabricsSamp {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_ListByReplicationFabrics.json
      */
     /**
@@ -3848,8 +4445,8 @@ public final class ReplicationvCentersListByReplicationFabricsSamp {
      */
     public static void getsTheListOfVCenterRegisteredUnderAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationvCenters().listByReplicationFabrics("MadhaviVault", "MadhaviVRG", "MadhaviFabric",
-            com.azure.core.util.Context.NONE);
+        manager.replicationvCenters()
+            .listByReplicationFabrics("MadhaviVRG", "MadhaviVault", "MadhaviFabric", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3866,7 +4463,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.VCenter;
 public final class ReplicationvCentersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationvCenters_Update.json
      */
     /**
@@ -3877,7 +4474,7 @@ public final class ReplicationvCentersUpdateSamples {
     public static void
         updateVCenterOperation(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
         VCenter resource = manager.replicationvCenters()
-            .getWithResponse("MadhaviVault", "MadhaviVRG", "MadhaviFabric", "esx-78", com.azure.core.util.Context.NONE)
+            .getWithResponse("MadhaviVRG", "MadhaviVault", "MadhaviFabric", "esx-78", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().withProperties(new UpdateVCenterRequestProperties().withIpAddress("10.150.109.25")).apply();
     }
@@ -3895,7 +4492,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.StorageMapp
 public final class StorageClassificationMappingsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassificationMappings_Create.json
      */
     /**
@@ -3905,8 +4502,9 @@ public final class StorageClassificationMappingsCreateSamples {
      */
     public static void createStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().define("testStorageMapping")
-            .withExistingReplicationStorageClassification("vault1", "resourceGroupPS1",
+        manager.storageClassificationMappings()
+            .define("testStorageMapping")
+            .withExistingReplicationStorageClassification("resourceGroupPS1", "vault1",
                 "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
                 "8891569e-aaef-4a46-a4a0-78c14f2d7b09")
             .withProperties(new StorageMappingInputProperties().withTargetStorageClassificationId(
@@ -3925,7 +4523,7 @@ public final class StorageClassificationMappingsCreateSamples {
 public final class StorageClassificationMappingsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassificationMappings_Delete.json
      */
     /**
@@ -3935,9 +4533,9 @@ public final class StorageClassificationMappingsDeleteSamples {
      */
     public static void deleteAStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().delete("vault1", "resourceGroupPS1",
-            "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-            "testStorageMapping", com.azure.core.util.Context.NONE);
+        manager.storageClassificationMappings()
+            .delete("resourceGroupPS1", "vault1", "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09", "testStorageMapping", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3951,7 +4549,7 @@ public final class StorageClassificationMappingsDeleteSamples {
 public final class StorageClassificationMappingsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassificationMappings_Get.json
      */
     /**
@@ -3961,9 +4559,10 @@ public final class StorageClassificationMappingsGetSamples {
      */
     public static void getsTheDetailsOfAStorageClassificationMapping(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().getWithResponse("vault1", "resourceGroupPS1",
-            "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-            "testStorageMapping", com.azure.core.util.Context.NONE);
+        manager.storageClassificationMappings()
+            .getWithResponse("resourceGroupPS1", "vault1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09", "testStorageMapping", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3977,7 +4576,7 @@ public final class StorageClassificationMappingsGetSamples {
 public final class StorageClassificationMappingsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassificationMappings_List.json
      */
     /**
@@ -3987,7 +4586,7 @@ public final class StorageClassificationMappingsListSamples {
      */
     public static void getsTheListOfStorageClassificationMappingsObjectsUnderAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.storageClassificationMappings().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4001,7 +4600,7 @@ public final class StorageClassificationMappingsListSamples {
 public final class StorageClassificationMappingsListByReplicationS {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassificationMappings_ListByReplicationStorageClassifications.json
      */
     /**
@@ -4011,9 +4610,10 @@ public final class StorageClassificationMappingsListByReplicationS {
      */
     public static void getsTheListOfStorageClassificationMappingsObjectsUnderAStorage(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassificationMappings().listByReplicationStorageClassifications("vault1", "resourceGroupPS1",
-            "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-            com.azure.core.util.Context.NONE);
+        manager.storageClassificationMappings()
+            .listByReplicationStorageClassifications("resourceGroupPS1", "vault1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4027,7 +4627,7 @@ public final class StorageClassificationMappingsListByReplicationS {
 public final class StorageClassificationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassifications_Get.json
      */
     /**
@@ -4037,9 +4637,10 @@ public final class StorageClassificationsGetSamples {
      */
     public static void getsTheDetailsOfAStorageClassification(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassifications().getWithResponse("vault1", "resourceGroupPS1",
-            "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", "8891569e-aaef-4a46-a4a0-78c14f2d7b09",
-            com.azure.core.util.Context.NONE);
+        manager.storageClassifications()
+            .getWithResponse("resourceGroupPS1", "vault1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0",
+                "8891569e-aaef-4a46-a4a0-78c14f2d7b09", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4053,7 +4654,7 @@ public final class StorageClassificationsGetSamples {
 public final class StorageClassificationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassifications_List.json
      */
     /**
@@ -4063,7 +4664,7 @@ public final class StorageClassificationsListSamples {
      */
     public static void getsTheListOfStorageClassificationObjectsUnderAVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassifications().list("vault1", "resourceGroupPS1", com.azure.core.util.Context.NONE);
+        manager.storageClassifications().list("resourceGroupPS1", "vault1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4077,7 +4678,7 @@ public final class StorageClassificationsListSamples {
 public final class StorageClassificationsListByReplicationFabricsS {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /ReplicationStorageClassifications_ListByReplicationFabrics.json
      */
     /**
@@ -4087,8 +4688,9 @@ public final class StorageClassificationsListByReplicationFabricsS {
      */
     public static void getsTheListOfStorageClassificationObjectsUnderAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.storageClassifications().listByReplicationFabrics("vault1", "resourceGroupPS1",
-            "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", com.azure.core.util.Context.NONE);
+        manager.storageClassifications()
+            .listByReplicationFabrics("resourceGroupPS1", "vault1",
+                "2a48e3770ac08aa2be8bfbd94fcfb1cbf2dcc487b78fb9d3bd778304441b06a0", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4102,7 +4704,7 @@ public final class StorageClassificationsListByReplicationFabricsS {
 public final class SupportedOperatingSystemsOperationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /SupportedOperatingSystems_Get.json
      */
     /**
@@ -4112,8 +4714,8 @@ public final class SupportedOperatingSystemsOperationGetSamples {
      */
     public static void getsTheDataOfSupportedOperatingSystemsBySRS(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.supportedOperatingSystemsOperations().getWithResponse("vault1", "resourceGroupPS1", null,
-            com.azure.core.util.Context.NONE);
+        manager.supportedOperatingSystemsOperations()
+            .getWithResponse("resourceGroupPS1", "vault1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4127,7 +4729,7 @@ public final class SupportedOperatingSystemsOperationGetSamples {
 public final class TargetComputeSizesListByReplicationProtectedIte {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-10-01/examples
      * /TargetComputeSizes_ListByReplicationProtectedItems.json
      */
     /**
@@ -4137,9 +4739,10 @@ public final class TargetComputeSizesListByReplicationProtectedIte {
      */
     public static void getsTheListOfTargetComputeSizesForTheReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.targetComputeSizes().listByReplicationProtectedItems("avraiMgDiskVault", "avraiMgDiskVaultRG",
-            "asr-a2a-default-centraluseuap", "asr-a2a-default-centraluseuap-container",
-            "468c912d-b1ab-4ea2-97eb-4b5095155db2", com.azure.core.util.Context.NONE);
+        manager.targetComputeSizes()
+            .listByReplicationProtectedItems("avraiMgDiskVaultRG", "avraiMgDiskVault", "asr-a2a-default-centraluseuap",
+                "asr-a2a-default-centraluseuap-container", "468c912d-b1ab-4ea2-97eb-4b5095155db2",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
