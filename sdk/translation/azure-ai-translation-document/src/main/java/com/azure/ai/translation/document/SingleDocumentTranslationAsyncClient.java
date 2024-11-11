@@ -59,6 +59,8 @@ public final class SingleDocumentTranslationAsyncClient {
      * <tr><td>allowFallback</td><td>Boolean</td><td>No</td><td>Specifies that the service is allowed to fall back to a
      * general system when a custom system doesn't exist.
      * Possible values are: true (default) or false.</td></tr>
+     * <tr><td>translateTextWithinImage</td><td>Boolean</td><td>No</td><td>Optional boolean parameter to translate text
+     * within an image in the document</td></tr>
      * </table>
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Response Body Schema</strong></p>
@@ -82,12 +84,11 @@ public final class SingleDocumentTranslationAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> documentTranslateWithResponse(String targetLanguage, BinaryData documentTranslateContent,
+    Mono<Response<BinaryData>> translateWithResponse(String targetLanguage, BinaryData documentTranslateContent,
         RequestOptions requestOptions) {
-        // Protocol API requires serialization of parts with content-disposition and data, as operation
-        // 'documentTranslate' is 'multipart/form-data'
-        return this.serviceClient.documentTranslateWithResponseAsync(targetLanguage, documentTranslateContent,
-            requestOptions);
+        // Protocol API requires serialization of parts with content-disposition and data, as operation 'translate' is
+        // 'multipart/form-data'
+        return this.serviceClient.translateWithResponseAsync(targetLanguage, documentTranslateContent, requestOptions);
     }
 
     /**
@@ -109,6 +110,7 @@ public final class SingleDocumentTranslationAsyncClient {
      * @param allowFallback Specifies that the service is allowed to fall back to a general system when a custom system
      * doesn't exist.
      * Possible values are: true (default) or false.
+     * @param translateTextWithinImage Optional boolean parameter to translate text within an image in the document.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -119,9 +121,9 @@ public final class SingleDocumentTranslationAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> documentTranslate(String targetLanguage, DocumentTranslateContent documentTranslateContent,
-        String sourceLanguage, String category, Boolean allowFallback) {
-        // Generated convenience method for documentTranslateWithResponse
+    public Mono<BinaryData> translate(String targetLanguage, DocumentTranslateContent documentTranslateContent,
+        String sourceLanguage, String category, Boolean allowFallback, Boolean translateTextWithinImage) {
+        // Generated convenience method for translateWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (sourceLanguage != null) {
             requestOptions.addQueryParam("sourceLanguage", sourceLanguage, false);
@@ -132,7 +134,10 @@ public final class SingleDocumentTranslationAsyncClient {
         if (allowFallback != null) {
             requestOptions.addQueryParam("allowFallback", String.valueOf(allowFallback), false);
         }
-        return documentTranslateWithResponse(targetLanguage,
+        if (translateTextWithinImage != null) {
+            requestOptions.addQueryParam("translateTextWithinImage", String.valueOf(translateTextWithinImage), false);
+        }
+        return translateWithResponse(targetLanguage,
             new MultipartFormDataHelper(requestOptions)
                 .serializeFileField("document", documentTranslateContent.getDocument().getContent(),
                     documentTranslateContent.getDocument().getContentType(),
@@ -180,11 +185,10 @@ public final class SingleDocumentTranslationAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<BinaryData> documentTranslate(String targetLanguage,
-        DocumentTranslateContent documentTranslateContent) {
-        // Generated convenience method for documentTranslateWithResponse
+    public Mono<BinaryData> translate(String targetLanguage, DocumentTranslateContent documentTranslateContent) {
+        // Generated convenience method for translateWithResponse
         RequestOptions requestOptions = new RequestOptions();
-        return documentTranslateWithResponse(targetLanguage,
+        return translateWithResponse(targetLanguage,
             new MultipartFormDataHelper(requestOptions)
                 .serializeFileField("document", documentTranslateContent.getDocument().getContent(),
                     documentTranslateContent.getDocument().getContentType(),
