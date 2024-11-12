@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.util.ExpandableStringEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
@@ -53,6 +52,26 @@ public final class WorkloadItemType extends ExpandableStringEnum<WorkloadItemTyp
     public static final WorkloadItemType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
 
     /**
+     * Static value OracleSystem for WorkloadItemType.
+     */
+    public static final WorkloadItemType ORACLE_SYSTEM = fromString("OracleSystem");
+
+    /**
+     * Static value OracleDatabase for WorkloadItemType.
+     */
+    public static final WorkloadItemType ORACLE_DATABASE = fromString("OracleDatabase");
+
+    /**
+     * Static value AnyDBSystem for WorkloadItemType.
+     */
+    public static final WorkloadItemType ANY_DBSYSTEM = fromString("AnyDBSystem");
+
+    /**
+     * Static value AnyDatabase for WorkloadItemType.
+     */
+    public static final WorkloadItemType ANY_DATABASE = fromString("AnyDatabase");
+
+    /**
      * Creates a new instance of WorkloadItemType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
@@ -67,7 +86,6 @@ public final class WorkloadItemType extends ExpandableStringEnum<WorkloadItemTyp
      * @param name a name to look for.
      * @return the corresponding WorkloadItemType.
      */
-    @JsonCreator
     public static WorkloadItemType fromString(String name) {
         return fromString(name, WorkloadItemType.class);
     }
