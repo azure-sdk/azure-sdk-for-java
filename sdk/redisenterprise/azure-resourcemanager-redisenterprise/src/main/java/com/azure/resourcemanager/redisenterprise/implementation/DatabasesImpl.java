@@ -168,15 +168,6 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().flush(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void upgradeDBRedisVersion(String resourceGroupName, String clusterName, String databaseName) {
-        this.serviceClient().upgradeDBRedisVersion(resourceGroupName, clusterName, databaseName);
-    }
-
-    public void upgradeDBRedisVersion(String resourceGroupName, String clusterName, String databaseName,
-        Context context) {
-        this.serviceClient().upgradeDBRedisVersion(resourceGroupName, clusterName, databaseName, context);
-    }
-
     public Database getById(String id) {
         String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {

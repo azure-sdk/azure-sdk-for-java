@@ -22,12 +22,13 @@ public interface RedisEnterprisesClient {
      * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(String resourceGroupName, String clusterName,
@@ -37,13 +38,14 @@ public interface RedisEnterprisesClient {
      * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterInner>, ClusterInner> beginCreate(String resourceGroupName, String clusterName,
@@ -53,12 +55,13 @@ public interface RedisEnterprisesClient {
      * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the Redis Enterprise cluster.
+     * @return describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters);
@@ -67,82 +70,88 @@ public interface RedisEnterprisesClient {
      * Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Create Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Create RedisEnterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the Redis Enterprise cluster.
+     * @return describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ClusterInner create(String resourceGroupName, String clusterName, ClusterInner parameters, Context context);
 
     /**
-     * Updates an existing Redis Enterprise cluster.
+     * Updates an existing RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(String resourceGroupName, String clusterName,
         ClusterUpdate parameters);
 
     /**
-     * Updates an existing Redis Enterprise cluster.
+     * Updates an existing RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes the Redis Enterprise cluster.
+     * @return the {@link SyncPoller} for polling of describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterInner>, ClusterInner> beginUpdate(String resourceGroupName, String clusterName,
         ClusterUpdate parameters, Context context);
 
     /**
-     * Updates an existing Redis Enterprise cluster.
+     * Updates an existing RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the Redis Enterprise cluster.
+     * @return describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters);
 
     /**
-     * Updates an existing Redis Enterprise cluster.
+     * Updates an existing RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
-     * @param parameters Parameters supplied to the Update Redis Enterprise operation.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
+     * @param parameters Parameters supplied to the Update RedisEnterprise operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the Redis Enterprise cluster.
+     * @return describes the RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ClusterInner update(String resourceGroupName, String clusterName, ClusterUpdate parameters, Context context);
 
     /**
-     * Deletes a Redis Enterprise cache cluster.
+     * Deletes a RedisEnterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -152,10 +161,11 @@ public interface RedisEnterprisesClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName);
 
     /**
-     * Deletes a Redis Enterprise cache cluster.
+     * Deletes a RedisEnterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -166,10 +176,11 @@ public interface RedisEnterprisesClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName, Context context);
 
     /**
-     * Deletes a Redis Enterprise cache cluster.
+     * Deletes a RedisEnterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -178,10 +189,11 @@ public interface RedisEnterprisesClient {
     void delete(String resourceGroupName, String clusterName);
 
     /**
-     * Deletes a Redis Enterprise cache cluster.
+     * Deletes a RedisEnterprise cache cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -191,35 +203,37 @@ public interface RedisEnterprisesClient {
     void delete(String resourceGroupName, String clusterName, Context context);
 
     /**
-     * Gets information about a Redis Enterprise cluster.
+     * Gets information about a RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a Redis Enterprise cluster along with {@link Response}.
+     * @return information about a RedisEnterprise cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ClusterInner> getByResourceGroupWithResponse(String resourceGroupName, String clusterName,
         Context context);
 
     /**
-     * Gets information about a Redis Enterprise cluster.
+     * Gets information about a RedisEnterprise cluster.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Redis Enterprise cluster.
+     * @param clusterName The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed
+     * characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a Redis Enterprise cluster.
+     * @return information about a RedisEnterprise cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ClusterInner getByResourceGroup(String resourceGroupName, String clusterName);
 
     /**
-     * Lists all Redis Enterprise clusters in a resource group.
+     * Lists all RedisEnterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -231,7 +245,7 @@ public interface RedisEnterprisesClient {
     PagedIterable<ClusterInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Lists all Redis Enterprise clusters in a resource group.
+     * Lists all RedisEnterprise clusters in a resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -244,23 +258,25 @@ public interface RedisEnterprisesClient {
     PagedIterable<ClusterInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Lists all Redis Enterprise clusters in the specified subscription.
+     * Gets all RedisEnterprise clusters in the specified subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return all RedisEnterprise clusters in the specified subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterInner> list();
 
     /**
-     * Lists all Redis Enterprise clusters in the specified subscription.
+     * Gets all RedisEnterprise clusters in the specified subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return all RedisEnterprise clusters in the specified subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterInner> list(Context context);
