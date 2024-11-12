@@ -10,8 +10,8 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 public final class CloudHsmClusterPrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/preview/2023-12-10-
-     * preview/examples/CloudHsmClusterPrivateEndpointConnection_Delete_MaximumSet_Gen.json
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
+     * examples/CloudHsmClusterPrivateEndpointConnection_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: CloudHsmClusterPrivateEndpointConnection_Delete_MaximumSet_Gen.
@@ -20,7 +20,7 @@ public final class CloudHsmClusterPrivateEndpointConnectionsDeleteSamples {
      */
     public static void cloudHsmClusterPrivateEndpointConnectionDeleteMaximumSetGen(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.cloudHsmClusterPrivateEndpointConnections().delete("rgcloudhsm", "chsm1", "sample-pec",
-            com.azure.core.util.Context.NONE);
+        manager.cloudHsmClusterPrivateEndpointConnections()
+            .delete("rgcloudhsm", "chsm1", "sample-pec", com.azure.core.util.Context.NONE);
     }
 }

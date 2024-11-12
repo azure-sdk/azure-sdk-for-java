@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
-import com.azure.resourcemanager.hardwaresecuritymodules.models.BackupProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterProperties;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSecurityDomainProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSku;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSkuFamily;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSkuName;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.PublicNetworkAccess;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +21,8 @@ import java.util.Map;
 public final class CloudHsmClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/preview/2023-12-10-
-     * preview/examples/CloudHsmCluster_CreateOrUpdate_MaximumSet_Gen.json
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
+     * examples/CloudHsmCluster_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: CloudHsmCluster_CreateOrUpdate_MaximumSet_Gen.
@@ -32,18 +31,18 @@ public final class CloudHsmClustersCreateOrUpdateSamples {
      */
     public static void cloudHsmClusterCreateOrUpdateMaximumSetGen(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.cloudHsmClusters().define("chsm1").withRegion("eastus2").withExistingResourceGroup("rgcloudhsm")
+        manager.cloudHsmClusters()
+            .define("chsm1")
+            .withRegion("eastus2")
+            .withExistingResourceGroup("rgcloudhsm")
             .withTags(mapOf("Dept", "hsm", "Environment", "dogfood"))
-            .withSku(new CloudHsmClusterSku().withFamily(CloudHsmClusterSkuFamily.B)
-                .withName(CloudHsmClusterSkuName.STANDARD_B1))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-1",
                     new UserAssignedIdentity())))
-            .withProperties(new CloudHsmClusterProperties()
-                .withSecurityDomain(new CloudHsmClusterSecurityDomainProperties().withFipsState(2))
-                .withPublicNetworkAccess("Disabled")
-                .withBackupProperties(new BackupProperties().withAzureStorageResourceUri("testStorageResourceUri")))
+            .withSku(new CloudHsmClusterSku().withFamily(CloudHsmClusterSkuFamily.B)
+                .withName(CloudHsmClusterSkuName.STANDARD_B1))
+            .withProperties(new CloudHsmClusterProperties().withPublicNetworkAccess(PublicNetworkAccess.DISABLED))
             .create();
     }
 

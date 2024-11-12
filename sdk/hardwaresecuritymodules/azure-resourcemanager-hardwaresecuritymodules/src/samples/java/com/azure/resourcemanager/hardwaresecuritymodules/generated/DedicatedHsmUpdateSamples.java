@@ -14,7 +14,7 @@ import java.util.Map;
 public final class DedicatedHsmUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
      * examples/DedicatedHsm_Update.json
      */
     /**
@@ -25,13 +25,14 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingDedicatedHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource = manager.dedicatedHsms()
-            .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
      * examples/PaymentHsm_Update.json
      */
     /**
@@ -42,7 +43,8 @@ public final class DedicatedHsmUpdateSamples {
     public static void updateAnExistingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         DedicatedHsm resource = manager.dedicatedHsms()
-            .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("hsm-group", "hsm1", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("Dept", "hsm", "Environment", "dogfood", "Slice", "A")).apply();
     }
 
