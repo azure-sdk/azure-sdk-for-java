@@ -58,7 +58,7 @@ public final class ResourceOperationDetails implements JsonSerializable<Resource
     /*
      * Timezone for the operation
      */
-    private String timeZone;
+    private String timezone;
 
     /*
      * Operation level errors if they exist
@@ -145,12 +145,12 @@ public final class ResourceOperationDetails implements JsonSerializable<Resource
     }
 
     /**
-     * Get the timeZone property: Timezone for the operation.
+     * Get the timezone property: Timezone for the operation.
      * 
-     * @return the timeZone value.
+     * @return the timezone value.
      */
-    public String timeZone() {
-        return this.timeZone;
+    public String timezone() {
+        return this.timezone;
     }
 
     /**
@@ -191,35 +191,6 @@ public final class ResourceOperationDetails implements JsonSerializable<Resource
                 .log(new IllegalArgumentException(
                     "Missing required property operationId in model ResourceOperationDetails"));
         }
-        if (resourceId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property resourceId in model ResourceOperationDetails"));
-        }
-        if (opType() == null) {
-            throw LOGGER.atError()
-                .log(
-                    new IllegalArgumentException("Missing required property opType in model ResourceOperationDetails"));
-        }
-        if (subscriptionId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property subscriptionId in model ResourceOperationDetails"));
-        }
-        if (deadline() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property deadline in model ResourceOperationDetails"));
-        }
-        if (deadlineType() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property deadlineType in model ResourceOperationDetails"));
-        }
-        if (state() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property state in model ResourceOperationDetails"));
-        }
         if (resourceOperationError() != null) {
             resourceOperationError().validate();
         }
@@ -244,7 +215,7 @@ public final class ResourceOperationDetails implements JsonSerializable<Resource
             this.deadline == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.deadline));
         jsonWriter.writeStringField("deadlineType", this.deadlineType == null ? null : this.deadlineType.toString());
         jsonWriter.writeStringField("state", this.state == null ? null : this.state.toString());
-        jsonWriter.writeStringField("timeZone", this.timeZone);
+        jsonWriter.writeStringField("timezone", this.timezone);
         jsonWriter.writeJsonField("resourceOperationError", this.resourceOperationError);
         jsonWriter.writeStringField("completedAt",
             this.completedAt == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.completedAt));
@@ -283,8 +254,8 @@ public final class ResourceOperationDetails implements JsonSerializable<Resource
                     deserializedResourceOperationDetails.deadlineType = DeadlineType.fromString(reader.getString());
                 } else if ("state".equals(fieldName)) {
                     deserializedResourceOperationDetails.state = OperationState.fromString(reader.getString());
-                } else if ("timeZone".equals(fieldName)) {
-                    deserializedResourceOperationDetails.timeZone = reader.getString();
+                } else if ("timezone".equals(fieldName)) {
+                    deserializedResourceOperationDetails.timezone = reader.getString();
                 } else if ("resourceOperationError".equals(fieldName)) {
                     deserializedResourceOperationDetails.resourceOperationError
                         = ResourceOperationError.fromJson(reader);

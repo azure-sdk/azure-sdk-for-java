@@ -20,10 +20,10 @@ public final class SubmitDeallocateRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SubmitDeallocateRequest model = BinaryData.fromString(
-            "{\"schedule\":{\"deadLine\":\"2021-10-11T02:15:13Z\",\"timeZone\":\"ijbpzvgnwzsymgl\",\"deadlineType\":\"InitiateAt\"},\"executionParameters\":{\"optimizationPreference\":\"Cost\",\"retryPolicy\":{\"retryCount\":2049014083,\"retryWindowInMinutes\":1760407196}},\"resources\":{\"ids\":[\"bihanuf\",\"fcbjysagithxqha\",\"ifpikxwczby\",\"cnpqxuhivyqniwby\"]},\"correlationid\":\"rkxvdum\"}")
+            "{\"schedule\":{\"deadline\":\"2021-10-11T02:15:13Z\",\"timezone\":\"ijbpzvgnwzsymgl\",\"deadlineType\":\"InitiateAt\"},\"executionParameters\":{\"optimizationPreference\":\"Cost\",\"retryPolicy\":{\"retryCount\":2049014083,\"retryWindowInMinutes\":1760407196}},\"resources\":{\"ids\":[\"bihanuf\",\"fcbjysagithxqha\",\"ifpikxwczby\",\"cnpqxuhivyqniwby\"]},\"correlationid\":\"rkxvdum\"}")
             .toObject(SubmitDeallocateRequest.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-10-11T02:15:13Z"), model.schedule().deadLine());
-        Assertions.assertEquals("ijbpzvgnwzsymgl", model.schedule().timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-10-11T02:15:13Z"), model.schedule().deadline());
+        Assertions.assertEquals("ijbpzvgnwzsymgl", model.schedule().timezone());
         Assertions.assertEquals(DeadlineType.INITIATE_AT, model.schedule().deadlineType());
         Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
         Assertions.assertEquals(2049014083, model.executionParameters().retryPolicy().retryCount());
@@ -35,8 +35,8 @@ public final class SubmitDeallocateRequestTests {
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         SubmitDeallocateRequest model = new SubmitDeallocateRequest()
-            .withSchedule(new Schedule().withDeadLine(OffsetDateTime.parse("2021-10-11T02:15:13Z"))
-                .withTimeZone("ijbpzvgnwzsymgl")
+            .withSchedule(new Schedule().withDeadline(OffsetDateTime.parse("2021-10-11T02:15:13Z"))
+                .withTimezone("ijbpzvgnwzsymgl")
                 .withDeadlineType(DeadlineType.INITIATE_AT))
             .withExecutionParameters(new ExecutionParameters().withOptimizationPreference(OptimizationPreference.COST)
                 .withRetryPolicy(new RetryPolicy().withRetryCount(2049014083).withRetryWindowInMinutes(1760407196)))
@@ -44,8 +44,8 @@ public final class SubmitDeallocateRequestTests {
                 new Resources().withIds(Arrays.asList("bihanuf", "fcbjysagithxqha", "ifpikxwczby", "cnpqxuhivyqniwby")))
             .withCorrelationid("rkxvdum");
         model = BinaryData.fromObject(model).toObject(SubmitDeallocateRequest.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-10-11T02:15:13Z"), model.schedule().deadLine());
-        Assertions.assertEquals("ijbpzvgnwzsymgl", model.schedule().timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-10-11T02:15:13Z"), model.schedule().deadline());
+        Assertions.assertEquals("ijbpzvgnwzsymgl", model.schedule().timezone());
         Assertions.assertEquals(DeadlineType.INITIATE_AT, model.schedule().deadlineType());
         Assertions.assertEquals(OptimizationPreference.COST, model.executionParameters().optimizationPreference());
         Assertions.assertEquals(2049014083, model.executionParameters().retryPolicy().retryCount());

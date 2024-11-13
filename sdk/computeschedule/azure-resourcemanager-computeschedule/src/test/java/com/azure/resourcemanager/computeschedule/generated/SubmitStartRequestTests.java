@@ -20,39 +20,39 @@ public final class SubmitStartRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         SubmitStartRequest model = BinaryData.fromString(
-            "{\"schedule\":{\"deadLine\":\"2021-05-28T01:58:06Z\",\"timeZone\":\"yhuybbkpod\",\"deadlineType\":\"InitiateAt\"},\"executionParameters\":{\"optimizationPreference\":\"Availability\",\"retryPolicy\":{\"retryCount\":895630833,\"retryWindowInMinutes\":1290742637}},\"resources\":{\"ids\":[\"mihe\",\"gnarxzxtheo\",\"usivye\"]},\"correlationid\":\"cciqihnhungbwjz\"}")
+            "{\"schedule\":{\"deadline\":\"2021-07-30T11:45:35Z\",\"timezone\":\"jrwzox\",\"deadlineType\":\"InitiateAt\"},\"executionParameters\":{\"optimizationPreference\":\"Availability\",\"retryPolicy\":{\"retryCount\":1984213346,\"retryWindowInMinutes\":1480100872}},\"resources\":{\"ids\":[\"zitonpeqfpjkjl\",\"ofpdvh\"]},\"correlationid\":\"fxxypininmayhuy\"}")
             .toObject(SubmitStartRequest.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-05-28T01:58:06Z"), model.schedule().deadLine());
-        Assertions.assertEquals("yhuybbkpod", model.schedule().timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-07-30T11:45:35Z"), model.schedule().deadline());
+        Assertions.assertEquals("jrwzox", model.schedule().timezone());
         Assertions.assertEquals(DeadlineType.INITIATE_AT, model.schedule().deadlineType());
         Assertions.assertEquals(OptimizationPreference.AVAILABILITY,
             model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(895630833, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(1290742637, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("mihe", model.resources().ids().get(0));
-        Assertions.assertEquals("cciqihnhungbwjz", model.correlationid());
+        Assertions.assertEquals(1984213346, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(1480100872, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("zitonpeqfpjkjl", model.resources().ids().get(0));
+        Assertions.assertEquals("fxxypininmayhuy", model.correlationid());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
         SubmitStartRequest model = new SubmitStartRequest()
-            .withSchedule(new Schedule().withDeadLine(OffsetDateTime.parse("2021-05-28T01:58:06Z"))
-                .withTimeZone("yhuybbkpod")
+            .withSchedule(new Schedule().withDeadline(OffsetDateTime.parse("2021-07-30T11:45:35Z"))
+                .withTimezone("jrwzox")
                 .withDeadlineType(DeadlineType.INITIATE_AT))
             .withExecutionParameters(
                 new ExecutionParameters().withOptimizationPreference(OptimizationPreference.AVAILABILITY)
-                    .withRetryPolicy(new RetryPolicy().withRetryCount(895630833).withRetryWindowInMinutes(1290742637)))
-            .withResources(new Resources().withIds(Arrays.asList("mihe", "gnarxzxtheo", "usivye")))
-            .withCorrelationid("cciqihnhungbwjz");
+                    .withRetryPolicy(new RetryPolicy().withRetryCount(1984213346).withRetryWindowInMinutes(1480100872)))
+            .withResources(new Resources().withIds(Arrays.asList("zitonpeqfpjkjl", "ofpdvh")))
+            .withCorrelationid("fxxypininmayhuy");
         model = BinaryData.fromObject(model).toObject(SubmitStartRequest.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-05-28T01:58:06Z"), model.schedule().deadLine());
-        Assertions.assertEquals("yhuybbkpod", model.schedule().timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-07-30T11:45:35Z"), model.schedule().deadline());
+        Assertions.assertEquals("jrwzox", model.schedule().timezone());
         Assertions.assertEquals(DeadlineType.INITIATE_AT, model.schedule().deadlineType());
         Assertions.assertEquals(OptimizationPreference.AVAILABILITY,
             model.executionParameters().optimizationPreference());
-        Assertions.assertEquals(895630833, model.executionParameters().retryPolicy().retryCount());
-        Assertions.assertEquals(1290742637, model.executionParameters().retryPolicy().retryWindowInMinutes());
-        Assertions.assertEquals("mihe", model.resources().ids().get(0));
-        Assertions.assertEquals("cciqihnhungbwjz", model.correlationid());
+        Assertions.assertEquals(1984213346, model.executionParameters().retryPolicy().retryCount());
+        Assertions.assertEquals(1480100872, model.executionParameters().retryPolicy().retryWindowInMinutes());
+        Assertions.assertEquals("zitonpeqfpjkjl", model.resources().ids().get(0));
+        Assertions.assertEquals("fxxypininmayhuy", model.correlationid());
     }
 }

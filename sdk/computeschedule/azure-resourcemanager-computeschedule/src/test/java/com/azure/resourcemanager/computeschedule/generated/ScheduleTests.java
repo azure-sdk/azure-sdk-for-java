@@ -14,21 +14,21 @@ public final class ScheduleTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         Schedule model = BinaryData
-            .fromString("{\"deadLine\":\"2021-06-10T17:14:25Z\",\"timeZone\":\"rtfw\",\"deadlineType\":\"Unknown\"}")
+            .fromString("{\"deadline\":\"2021-06-10T17:14:25Z\",\"timezone\":\"rtfw\",\"deadlineType\":\"Unknown\"}")
             .toObject(Schedule.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-06-10T17:14:25Z"), model.deadLine());
-        Assertions.assertEquals("rtfw", model.timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-06-10T17:14:25Z"), model.deadline());
+        Assertions.assertEquals("rtfw", model.timezone());
         Assertions.assertEquals(DeadlineType.UNKNOWN, model.deadlineType());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        Schedule model = new Schedule().withDeadLine(OffsetDateTime.parse("2021-06-10T17:14:25Z"))
-            .withTimeZone("rtfw")
+        Schedule model = new Schedule().withDeadline(OffsetDateTime.parse("2021-06-10T17:14:25Z"))
+            .withTimezone("rtfw")
             .withDeadlineType(DeadlineType.UNKNOWN);
         model = BinaryData.fromObject(model).toObject(Schedule.class);
-        Assertions.assertEquals(OffsetDateTime.parse("2021-06-10T17:14:25Z"), model.deadLine());
-        Assertions.assertEquals("rtfw", model.timeZone());
+        Assertions.assertEquals(OffsetDateTime.parse("2021-06-10T17:14:25Z"), model.deadline());
+        Assertions.assertEquals("rtfw", model.timezone());
         Assertions.assertEquals(DeadlineType.UNKNOWN, model.deadlineType());
     }
 }
