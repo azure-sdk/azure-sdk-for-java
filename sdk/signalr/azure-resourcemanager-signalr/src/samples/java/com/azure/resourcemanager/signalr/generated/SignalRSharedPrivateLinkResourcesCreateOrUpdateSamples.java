@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.signalr.generated;
 
+import com.azure.resourcemanager.signalr.fluent.models.SharedPrivateLinkResourceInner;
+
 /**
  * Samples for SignalRSharedPrivateLinkResources CreateOrUpdate.
  */
 public final class SignalRSharedPrivateLinkResourcesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2023-08-01-preview/examples/
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2024-10-01-preview/examples/
      * SignalRSharedPrivateLinkResources_CreateOrUpdate.json
      */
     /**
@@ -21,12 +23,10 @@ public final class SignalRSharedPrivateLinkResourcesCreateOrUpdateSamples {
     public static void
         signalRSharedPrivateLinkResourcesCreateOrUpdate(com.azure.resourcemanager.signalr.SignalRManager manager) {
         manager.signalRSharedPrivateLinkResources()
-            .define("upstream")
-            .withExistingSignalR("myResourceGroup", "mySignalRService")
-            .withGroupId("sites")
-            .withPrivateLinkResourceId(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.Web/sites/myWebApp")
-            .withRequestMessage("Please approve")
-            .create();
+            .createOrUpdate("upstream", "myResourceGroup", "mySignalRService", new SharedPrivateLinkResourceInner()
+                .withGroupId("sites")
+                .withPrivateLinkResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.Web/sites/myWebApp")
+                .withRequestMessage("Please approve"), com.azure.core.util.Context.NONE);
     }
 }

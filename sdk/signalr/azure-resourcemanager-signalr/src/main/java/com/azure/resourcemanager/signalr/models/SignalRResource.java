@@ -206,6 +206,13 @@ public interface SignalRResource {
     SignalRNetworkACLs networkACLs();
 
     /**
+     * Gets the applicationFirewall property: Application firewall settings for the resource.
+     * 
+     * @return the applicationFirewall value.
+     */
+    ApplicationFirewallSettings applicationFirewall();
+
+    /**
      * Gets the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled".
      * When it's Enabled, network ACLs still apply.
      * When it's Disabled, public network access is always disabled no matter what you set in network ACLs.
@@ -338,9 +345,10 @@ public interface SignalRResource {
             DefinitionStages.WithIdentity, DefinitionStages.WithTls, DefinitionStages.WithFeatures,
             DefinitionStages.WithLiveTraceConfiguration, DefinitionStages.WithResourceLogConfiguration,
             DefinitionStages.WithCors, DefinitionStages.WithServerless, DefinitionStages.WithUpstream,
-            DefinitionStages.WithNetworkACLs, DefinitionStages.WithPublicNetworkAccess,
-            DefinitionStages.WithDisableLocalAuth, DefinitionStages.WithDisableAadAuth,
-            DefinitionStages.WithRegionEndpointEnabled, DefinitionStages.WithResourceStopped {
+            DefinitionStages.WithNetworkACLs, DefinitionStages.WithApplicationFirewall,
+            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithDisableLocalAuth,
+            DefinitionStages.WithDisableAadAuth, DefinitionStages.WithRegionEndpointEnabled,
+            DefinitionStages.WithResourceStopped {
             /**
              * Executes the create request.
              * 
@@ -526,6 +534,19 @@ public interface SignalRResource {
         }
 
         /**
+         * The stage of the SignalRResource definition allowing to specify applicationFirewall.
+         */
+        interface WithApplicationFirewall {
+            /**
+             * Specifies the applicationFirewall property: Application firewall settings for the resource.
+             * 
+             * @param applicationFirewall Application firewall settings for the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withApplicationFirewall(ApplicationFirewallSettings applicationFirewall);
+        }
+
+        /**
          * The stage of the SignalRResource definition allowing to specify publicNetworkAccess.
          */
         interface WithPublicNetworkAccess {
@@ -629,8 +650,8 @@ public interface SignalRResource {
         extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithIdentity, UpdateStages.WithTls,
         UpdateStages.WithFeatures, UpdateStages.WithLiveTraceConfiguration, UpdateStages.WithResourceLogConfiguration,
         UpdateStages.WithCors, UpdateStages.WithServerless, UpdateStages.WithUpstream, UpdateStages.WithNetworkACLs,
-        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithDisableLocalAuth, UpdateStages.WithDisableAadAuth,
-        UpdateStages.WithRegionEndpointEnabled, UpdateStages.WithResourceStopped {
+        UpdateStages.WithApplicationFirewall, UpdateStages.WithPublicNetworkAccess, UpdateStages.WithDisableLocalAuth,
+        UpdateStages.WithDisableAadAuth, UpdateStages.WithRegionEndpointEnabled, UpdateStages.WithResourceStopped {
         /**
          * Executes the update request.
          * 
@@ -804,6 +825,19 @@ public interface SignalRResource {
              * @return the next definition stage.
              */
             Update withNetworkACLs(SignalRNetworkACLs networkACLs);
+        }
+
+        /**
+         * The stage of the SignalRResource update allowing to specify applicationFirewall.
+         */
+        interface WithApplicationFirewall {
+            /**
+             * Specifies the applicationFirewall property: Application firewall settings for the resource.
+             * 
+             * @param applicationFirewall Application firewall settings for the resource.
+             * @return the next definition stage.
+             */
+            Update withApplicationFirewall(ApplicationFirewallSettings applicationFirewall);
         }
 
         /**

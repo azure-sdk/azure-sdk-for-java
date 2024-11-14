@@ -29,6 +29,7 @@ import com.azure.resourcemanager.signalr.fluent.SignalRCustomDomainsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRManagementClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateLinkResourcesClient;
+import com.azure.resourcemanager.signalr.fluent.SignalRReplicaSharedPrivateLinkResourcesClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRReplicasClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRSharedPrivateLinkResourcesClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRsClient;
@@ -244,6 +245,20 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
     }
 
     /**
+     * The SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     */
+    private final SignalRReplicaSharedPrivateLinkResourcesClient signalRReplicaSharedPrivateLinkResources;
+
+    /**
+     * Gets the SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the SignalRReplicaSharedPrivateLinkResourcesClient object.
+     */
+    public SignalRReplicaSharedPrivateLinkResourcesClient getSignalRReplicaSharedPrivateLinkResources() {
+        return this.signalRReplicaSharedPrivateLinkResources;
+    }
+
+    /**
      * The SignalRSharedPrivateLinkResourcesClient object to access its operations.
      */
     private final SignalRSharedPrivateLinkResourcesClient signalRSharedPrivateLinkResources;
@@ -274,7 +289,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-08-01-preview";
+        this.apiVersion = "2024-10-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.signalRs = new SignalRsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
@@ -283,6 +298,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.signalRPrivateEndpointConnections = new SignalRPrivateEndpointConnectionsClientImpl(this);
         this.signalRPrivateLinkResources = new SignalRPrivateLinkResourcesClientImpl(this);
         this.signalRReplicas = new SignalRReplicasClientImpl(this);
+        this.signalRReplicaSharedPrivateLinkResources = new SignalRReplicaSharedPrivateLinkResourcesClientImpl(this);
         this.signalRSharedPrivateLinkResources = new SignalRSharedPrivateLinkResourcesClientImpl(this);
     }
 

@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.signalr.models.ApplicationFirewallSettings;
 import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.ResourceLogConfiguration;
@@ -115,6 +116,11 @@ public final class SignalRProperties implements JsonSerializable<SignalRProperti
      * Network ACLs for the resource
      */
     private SignalRNetworkACLs networkACLs;
+
+    /*
+     * Application firewall settings for the resource
+     */
+    private ApplicationFirewallSettings applicationFirewall;
 
     /*
      * Enable or disable public network access. Default to "Enabled".
@@ -412,6 +418,26 @@ public final class SignalRProperties implements JsonSerializable<SignalRProperti
     }
 
     /**
+     * Get the applicationFirewall property: Application firewall settings for the resource.
+     * 
+     * @return the applicationFirewall value.
+     */
+    public ApplicationFirewallSettings applicationFirewall() {
+        return this.applicationFirewall;
+    }
+
+    /**
+     * Set the applicationFirewall property: Application firewall settings for the resource.
+     * 
+     * @param applicationFirewall the applicationFirewall value to set.
+     * @return the SignalRProperties object itself.
+     */
+    public SignalRProperties withApplicationFirewall(ApplicationFirewallSettings applicationFirewall) {
+        this.applicationFirewall = applicationFirewall;
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled".
      * When it's Enabled, network ACLs still apply.
      * When it's Disabled, public network access is always disabled no matter what you set in network ACLs.
@@ -569,6 +595,9 @@ public final class SignalRProperties implements JsonSerializable<SignalRProperti
         if (networkACLs() != null) {
             networkACLs().validate();
         }
+        if (applicationFirewall() != null) {
+            applicationFirewall().validate();
+        }
     }
 
     /**
@@ -585,6 +614,7 @@ public final class SignalRProperties implements JsonSerializable<SignalRProperti
         jsonWriter.writeJsonField("serverless", this.serverless);
         jsonWriter.writeJsonField("upstream", this.upstream);
         jsonWriter.writeJsonField("networkACLs", this.networkACLs);
+        jsonWriter.writeJsonField("applicationFirewall", this.applicationFirewall);
         jsonWriter.writeStringField("publicNetworkAccess", this.publicNetworkAccess);
         jsonWriter.writeBooleanField("disableLocalAuth", this.disableLocalAuth);
         jsonWriter.writeBooleanField("disableAadAuth", this.disableAadAuth);
@@ -647,6 +677,8 @@ public final class SignalRProperties implements JsonSerializable<SignalRProperti
                     deserializedSignalRProperties.upstream = ServerlessUpstreamSettings.fromJson(reader);
                 } else if ("networkACLs".equals(fieldName)) {
                     deserializedSignalRProperties.networkACLs = SignalRNetworkACLs.fromJson(reader);
+                } else if ("applicationFirewall".equals(fieldName)) {
+                    deserializedSignalRProperties.applicationFirewall = ApplicationFirewallSettings.fromJson(reader);
                 } else if ("publicNetworkAccess".equals(fieldName)) {
                     deserializedSignalRProperties.publicNetworkAccess = reader.getString();
                 } else if ("disableLocalAuth".equals(fieldName)) {

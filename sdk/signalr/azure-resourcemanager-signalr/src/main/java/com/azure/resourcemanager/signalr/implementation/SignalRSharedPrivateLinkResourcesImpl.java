@@ -63,6 +63,28 @@ public final class SignalRSharedPrivateLinkResourcesImpl implements SignalRShare
         }
     }
 
+    public SharedPrivateLinkResource createOrUpdate(String sharedPrivateLinkResourceName, String resourceGroupName,
+        String resourceName, SharedPrivateLinkResourceInner parameters) {
+        SharedPrivateLinkResourceInner inner = this.serviceClient()
+            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters);
+        if (inner != null) {
+            return new SharedPrivateLinkResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public SharedPrivateLinkResource createOrUpdate(String sharedPrivateLinkResourceName, String resourceGroupName,
+        String resourceName, SharedPrivateLinkResourceInner parameters, Context context) {
+        SharedPrivateLinkResourceInner inner = this.serviceClient()
+            .createOrUpdate(sharedPrivateLinkResourceName, resourceGroupName, resourceName, parameters, context);
+        if (inner != null) {
+            return new SharedPrivateLinkResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName) {
         this.serviceClient().delete(sharedPrivateLinkResourceName, resourceGroupName, resourceName);
     }
@@ -72,96 +94,11 @@ public final class SignalRSharedPrivateLinkResourcesImpl implements SignalRShare
         this.serviceClient().delete(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context);
     }
 
-    public SharedPrivateLinkResource getById(String id) {
-        String sharedPrivateLinkResourceName
-            = ResourceManagerUtils.getValueFromIdByName(id, "sharedPrivateLinkResources");
-        if (sharedPrivateLinkResourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'sharedPrivateLinkResources'.", id)));
-        }
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "signalR");
-        if (resourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'signalR'.", id)));
-        }
-        return this.getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, Context.NONE)
-            .getValue();
-    }
-
-    public Response<SharedPrivateLinkResource> getByIdWithResponse(String id, Context context) {
-        String sharedPrivateLinkResourceName
-            = ResourceManagerUtils.getValueFromIdByName(id, "sharedPrivateLinkResources");
-        if (sharedPrivateLinkResourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'sharedPrivateLinkResources'.", id)));
-        }
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "signalR");
-        if (resourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'signalR'.", id)));
-        }
-        return this.getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context);
-    }
-
-    public void deleteById(String id) {
-        String sharedPrivateLinkResourceName
-            = ResourceManagerUtils.getValueFromIdByName(id, "sharedPrivateLinkResources");
-        if (sharedPrivateLinkResourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'sharedPrivateLinkResources'.", id)));
-        }
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "signalR");
-        if (resourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'signalR'.", id)));
-        }
-        this.delete(sharedPrivateLinkResourceName, resourceGroupName, resourceName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String sharedPrivateLinkResourceName
-            = ResourceManagerUtils.getValueFromIdByName(id, "sharedPrivateLinkResources");
-        if (sharedPrivateLinkResourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'sharedPrivateLinkResources'.", id)));
-        }
-        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "signalR");
-        if (resourceName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'signalR'.", id)));
-        }
-        this.delete(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context);
-    }
-
     private SignalRSharedPrivateLinkResourcesClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.signalr.SignalRManager manager() {
         return this.serviceManager;
-    }
-
-    public SharedPrivateLinkResourceImpl define(String name) {
-        return new SharedPrivateLinkResourceImpl(name, this.manager());
     }
 }

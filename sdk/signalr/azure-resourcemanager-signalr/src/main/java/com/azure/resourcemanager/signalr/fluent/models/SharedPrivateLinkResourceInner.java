@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceStatus;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Describes a Shared Private Link Resource.
@@ -173,6 +174,29 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
             this.innerProperties = new SharedPrivateLinkResourceProperties();
         }
         this.innerProperties().withRequestMessage(requestMessage);
+        return this;
+    }
+
+    /**
+     * Get the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @return the fqdns value.
+     */
+    public List<String> fqdns() {
+        return this.innerProperties() == null ? null : this.innerProperties().fqdns();
+    }
+
+    /**
+     * Set the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @param fqdns the fqdns value to set.
+     * @return the SharedPrivateLinkResourceInner object itself.
+     */
+    public SharedPrivateLinkResourceInner withFqdns(List<String> fqdns) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SharedPrivateLinkResourceProperties();
+        }
+        this.innerProperties().withFqdns(fqdns);
         return this;
     }
 

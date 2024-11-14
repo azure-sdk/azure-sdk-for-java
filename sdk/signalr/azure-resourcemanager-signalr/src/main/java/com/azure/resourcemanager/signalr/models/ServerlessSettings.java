@@ -29,6 +29,20 @@ public final class ServerlessSettings implements JsonSerializable<ServerlessSett
      */
     private Integer connectionTimeoutInSeconds;
 
+    /*
+     * Gets or sets the Keep-Alive Interval. Optional to set.
+     * Value is in seconds.
+     * The default value is 15 seconds.
+     * Customers should set this value to a shorter period if they want the service to send keep-alive messages more
+     * frequently,
+     * ensuring timely checks of the connection status.
+     * Conversely, customers can set this value to a longer period if they want the service to send keep-alive messages
+     * less frequently,
+     * reducing network traffic, but note that it may take longer to detect a disconnection.
+     * This interval ensures that the connection is maintained by sending periodic keep-alive messages to the client.
+     */
+    private Integer keepAliveIntervalInSeconds;
+
     /**
      * Creates an instance of ServerlessSettings class.
      */
@@ -72,6 +86,44 @@ public final class ServerlessSettings implements JsonSerializable<ServerlessSett
     }
 
     /**
+     * Get the keepAliveIntervalInSeconds property: Gets or sets the Keep-Alive Interval. Optional to set.
+     * Value is in seconds.
+     * The default value is 15 seconds.
+     * Customers should set this value to a shorter period if they want the service to send keep-alive messages more
+     * frequently,
+     * ensuring timely checks of the connection status.
+     * Conversely, customers can set this value to a longer period if they want the service to send keep-alive messages
+     * less frequently,
+     * reducing network traffic, but note that it may take longer to detect a disconnection.
+     * This interval ensures that the connection is maintained by sending periodic keep-alive messages to the client.
+     * 
+     * @return the keepAliveIntervalInSeconds value.
+     */
+    public Integer keepAliveIntervalInSeconds() {
+        return this.keepAliveIntervalInSeconds;
+    }
+
+    /**
+     * Set the keepAliveIntervalInSeconds property: Gets or sets the Keep-Alive Interval. Optional to set.
+     * Value is in seconds.
+     * The default value is 15 seconds.
+     * Customers should set this value to a shorter period if they want the service to send keep-alive messages more
+     * frequently,
+     * ensuring timely checks of the connection status.
+     * Conversely, customers can set this value to a longer period if they want the service to send keep-alive messages
+     * less frequently,
+     * reducing network traffic, but note that it may take longer to detect a disconnection.
+     * This interval ensures that the connection is maintained by sending periodic keep-alive messages to the client.
+     * 
+     * @param keepAliveIntervalInSeconds the keepAliveIntervalInSeconds value to set.
+     * @return the ServerlessSettings object itself.
+     */
+    public ServerlessSettings withKeepAliveIntervalInSeconds(Integer keepAliveIntervalInSeconds) {
+        this.keepAliveIntervalInSeconds = keepAliveIntervalInSeconds;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,6 +138,7 @@ public final class ServerlessSettings implements JsonSerializable<ServerlessSett
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeNumberField("connectionTimeoutInSeconds", this.connectionTimeoutInSeconds);
+        jsonWriter.writeNumberField("keepAliveIntervalInSeconds", this.keepAliveIntervalInSeconds);
         return jsonWriter.writeEndObject();
     }
 
@@ -106,6 +159,8 @@ public final class ServerlessSettings implements JsonSerializable<ServerlessSett
 
                 if ("connectionTimeoutInSeconds".equals(fieldName)) {
                     deserializedServerlessSettings.connectionTimeoutInSeconds = reader.getNullable(JsonReader::getInt);
+                } else if ("keepAliveIntervalInSeconds".equals(fieldName)) {
+                    deserializedServerlessSettings.keepAliveIntervalInSeconds = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

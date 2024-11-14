@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.signalr.models.ApplicationFirewallSettings;
 import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
 import com.azure.resourcemanager.signalr.models.ManagedIdentity;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
@@ -477,6 +478,29 @@ public final class SignalRResourceInner extends Resource {
             this.innerProperties = new SignalRProperties();
         }
         this.innerProperties().withNetworkACLs(networkACLs);
+        return this;
+    }
+
+    /**
+     * Get the applicationFirewall property: Application firewall settings for the resource.
+     * 
+     * @return the applicationFirewall value.
+     */
+    public ApplicationFirewallSettings applicationFirewall() {
+        return this.innerProperties() == null ? null : this.innerProperties().applicationFirewall();
+    }
+
+    /**
+     * Set the applicationFirewall property: Application firewall settings for the resource.
+     * 
+     * @param applicationFirewall the applicationFirewall value to set.
+     * @return the SignalRResourceInner object itself.
+     */
+    public SignalRResourceInner withApplicationFirewall(ApplicationFirewallSettings applicationFirewall) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SignalRProperties();
+        }
+        this.innerProperties().withApplicationFirewall(applicationFirewall);
         return this;
     }
 

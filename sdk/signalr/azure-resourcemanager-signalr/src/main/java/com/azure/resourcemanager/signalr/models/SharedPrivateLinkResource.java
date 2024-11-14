@@ -7,6 +7,7 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.signalr.fluent.models.SharedPrivateLinkResourceInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of SharedPrivateLinkResource.
@@ -70,6 +71,13 @@ public interface SharedPrivateLinkResource {
     String requestMessage();
 
     /**
+     * Gets the fqdns property: A list of FQDNs for third party private link service.
+     * 
+     * @return the fqdns value.
+     */
+    List<String> fqdns();
+
+    /**
      * Gets the status property: Status of the shared private link resource.
      * 
      * @return the status value.
@@ -112,13 +120,14 @@ public interface SharedPrivateLinkResource {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, resourceName.
+             * Specifies resourceGroupName, resourceName, replicaName.
              * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param resourceName The name of the resource.
+             * @param replicaName The name of the replica.
              * @return the next definition stage.
              */
-            WithCreate withExistingSignalR(String resourceGroupName, String resourceName);
+            WithCreate withExistingReplica(String resourceGroupName, String resourceName, String replicaName);
         }
 
         /**
@@ -126,7 +135,7 @@ public interface SharedPrivateLinkResource {
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithGroupId, DefinitionStages.WithPrivateLinkResourceId,
-            DefinitionStages.WithRequestMessage {
+            DefinitionStages.WithRequestMessage, DefinitionStages.WithFqdns {
             /**
              * Executes the create request.
              * 
@@ -184,6 +193,19 @@ public interface SharedPrivateLinkResource {
              */
             WithCreate withRequestMessage(String requestMessage);
         }
+
+        /**
+         * The stage of the SharedPrivateLinkResource definition allowing to specify fqdns.
+         */
+        interface WithFqdns {
+            /**
+             * Specifies the fqdns property: A list of FQDNs for third party private link service.
+             * 
+             * @param fqdns A list of FQDNs for third party private link service.
+             * @return the next definition stage.
+             */
+            WithCreate withFqdns(List<String> fqdns);
+        }
     }
 
     /**
@@ -196,8 +218,8 @@ public interface SharedPrivateLinkResource {
     /**
      * The template for SharedPrivateLinkResource update.
      */
-    interface Update
-        extends UpdateStages.WithGroupId, UpdateStages.WithPrivateLinkResourceId, UpdateStages.WithRequestMessage {
+    interface Update extends UpdateStages.WithGroupId, UpdateStages.WithPrivateLinkResourceId,
+        UpdateStages.WithRequestMessage, UpdateStages.WithFqdns {
         /**
          * Executes the update request.
          * 
@@ -258,6 +280,19 @@ public interface SharedPrivateLinkResource {
              * @return the next definition stage.
              */
             Update withRequestMessage(String requestMessage);
+        }
+
+        /**
+         * The stage of the SharedPrivateLinkResource update allowing to specify fqdns.
+         */
+        interface WithFqdns {
+            /**
+             * Specifies the fqdns property: A list of FQDNs for third party private link service.
+             * 
+             * @param fqdns A list of FQDNs for third party private link service.
+             * @return the next definition stage.
+             */
+            Update withFqdns(List<String> fqdns);
         }
     }
 

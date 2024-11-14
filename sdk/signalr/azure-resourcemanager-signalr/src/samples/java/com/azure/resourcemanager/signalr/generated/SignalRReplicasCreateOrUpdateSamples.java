@@ -15,7 +15,7 @@ import java.util.Map;
 public final class SignalRReplicasCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2023-08-01-preview/examples/
+     * specification/signalr/resource-manager/Microsoft.SignalRService/preview/2024-10-01-preview/examples/
      * SignalRReplicas_CreateOrUpdate.json
      */
     /**

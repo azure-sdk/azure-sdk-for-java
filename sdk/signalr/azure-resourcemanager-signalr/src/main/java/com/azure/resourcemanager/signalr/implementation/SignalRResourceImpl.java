@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.signalr.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.signalr.fluent.models.SharedPrivateLinkResourceInner;
 import com.azure.resourcemanager.signalr.fluent.models.SignalRResourceInner;
+import com.azure.resourcemanager.signalr.models.ApplicationFirewallSettings;
 import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
 import com.azure.resourcemanager.signalr.models.ManagedIdentity;
 import com.azure.resourcemanager.signalr.models.PrivateEndpointConnection;
@@ -164,6 +165,10 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
 
     public SignalRNetworkACLs networkACLs() {
         return this.innerModel().networkACLs();
+    }
+
+    public ApplicationFirewallSettings applicationFirewall() {
+        return this.innerModel().applicationFirewall();
     }
 
     public String publicNetworkAccess() {
@@ -368,6 +373,11 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
 
     public SignalRResourceImpl withNetworkACLs(SignalRNetworkACLs networkACLs) {
         this.innerModel().withNetworkACLs(networkACLs);
+        return this;
+    }
+
+    public SignalRResourceImpl withApplicationFirewall(ApplicationFirewallSettings applicationFirewall) {
+        this.innerModel().withApplicationFirewall(applicationFirewall);
         return this;
     }
 

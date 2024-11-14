@@ -103,6 +103,13 @@ public interface SignalRManagementClient {
     SignalRReplicasClient getSignalRReplicas();
 
     /**
+     * Gets the SignalRReplicaSharedPrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the SignalRReplicaSharedPrivateLinkResourcesClient object.
+     */
+    SignalRReplicaSharedPrivateLinkResourcesClient getSignalRReplicaSharedPrivateLinkResources();
+
+    /**
      * Gets the SignalRSharedPrivateLinkResourcesClient object to access its operations.
      * 
      * @return the SignalRSharedPrivateLinkResourcesClient object.
