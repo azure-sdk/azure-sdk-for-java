@@ -4,11 +4,204 @@
 
 ### Features Added
 
-### Breaking Changes
+* `models.Snapshot` was added
 
-### Bugs Fixed
+* `models.OperationDetails` was added
 
-### Other Changes
+* `AzureAppConfigurationClient` was added
+
+* `models.KeyValueFields` was added
+
+* `implementation.OperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationServiceVersion` was added
+
+* `models.Label` was added
+
+* `models.Key` was added
+
+* `models.CompositionType` was added
+
+* `models.OperationState` was added
+
+* `implementation.AzureAppConfigurationClientImpl$AzureAppConfigurationClientService` was added
+
+* `models.KeyValue` was added
+
+* `AzureAppConfigurationAsyncClient` was added
+
+* `implementation.SyncOperationLocationPollingStrategy` was added
+
+* `AzureAppConfigurationClientBuilder` was added
+
+* `models.LabelFields` was added
+
+* `implementation.AzureAppConfigurationClientImpl` was added
+
+* `models.KeyValueFilter` was added
+
+* `models.SnapshotStatus` was added
+
+#### `implementation.AzureAppConfigurationImpl$AzureAppConfigurationService` was modified
+
+* `getSnapshotNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `putLockNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValueNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `putLockNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `createSnapshotNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.ConfigurationSnapshot,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValuesNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `checkLabelsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteKeyValueNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkSnapshotsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `createSnapshotNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.ConfigurationSnapshot,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteKeyValueNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeysNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValuesNextNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValuesNextNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkLabelsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValuesNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkRevisionsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `updateSnapshotNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SnapshotUpdateParameters,java.lang.String,com.azure.core.util.Context)` was added
+* `checkSnapshotsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNextNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNextNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNextNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValueNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `updateSnapshotNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SnapshotUpdateParameters,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNextNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `putKeyValueNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyValue,java.lang.String,com.azure.core.util.Context)` was added
+* `putKeyValueNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyValue,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeysNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkRevisionsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `deleteLockNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValueNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNextNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNextNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkSnapshotNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteLockNoCustomHeadersSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValueNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkSnapshotNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `implementation.AzureAppConfigurationImpl` was modified
+
+* `getKeyValuesNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String)` was added
+* `getKeysNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String)` was added
+* `checkSnapshotNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was added
+* `checkRevisionsNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getRevisionsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getKeyValuesNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getLabelsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkLabelsNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getSnapshotsNextNoCustomHeadersSinglePageAsync(java.lang.String)` was added
+* `checkSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getKeyValuesNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getKeysNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String)` was added
+* `getKeyValuesNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeysNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getKeyValuesNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `createSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,models.ConfigurationSnapshot,com.azure.core.util.Context)` was added
+* `checkSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getLabelsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String)` was added
+* `checkSnapshotsNoCustomHeadersWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getKeyValuesNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getSnapshotNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `deleteLockNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getRevisionsNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkRevisionsNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `putKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyValue,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `deleteLockNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String)` was added
+* `getSnapshotsNoCustomHeaders(java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getKeysNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getLabelsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `deleteLockNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `createSnapshotNoCustomHeadersWithResponse(java.lang.String,models.ConfigurationSnapshot,com.azure.core.util.Context)` was added
+* `deleteKeyValueNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `putLockNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValuesNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `updateSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,implementation.models.SnapshotUpdateParameters,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getRevisionsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getKeysNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeysNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getLabelsNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String)` was added
+* `deleteKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkLabelsNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `updateSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,implementation.models.SnapshotUpdateParameters,java.lang.String,java.lang.String)` was added
+* `getSnapshotsNextNoCustomHeadersSinglePageAsync(java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValuesNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getLabelsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `checkLabelsNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkRevisionsNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `checkKeysNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `putKeyValueNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyValue,com.azure.core.util.Context)` was added
+* `getKeysNextNoCustomHeadersSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkKeyValuesNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `updateSnapshotNoCustomHeadersWithResponse(java.lang.String,implementation.models.SnapshotUpdateParameters,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `checkSnapshotsNoCustomHeadersWithResponseAsync(java.lang.String)` was added
+* `getKeyValuesNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getRevisionsNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getSnapshotsNextNoCustomHeadersSinglePage(java.lang.String,com.azure.core.util.Context)` was added
+* `createSnapshotNoCustomHeadersWithResponseAsync(java.lang.String,models.ConfigurationSnapshot)` was added
+* `getSnapshotsNoCustomHeaders(java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getKeyValuesNoCustomHeaders(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getSnapshotsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.util.List,java.util.List,com.azure.core.util.Context)` was added
+* `getKeysNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String)` was added
+* `checkKeyValuesNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `getRevisionsNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `getRevisionsNextNoCustomHeadersSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getKeyValueNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `getKeysNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String)` was added
+* `getLabelsNoCustomHeadersSinglePage(java.lang.String,java.lang.String,java.lang.String,java.util.List)` was added
+* `checkKeyValueNoCustomHeadersWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,com.azure.core.util.Context)` was added
+* `checkSnapshotsNoCustomHeadersWithResponseAsync(java.lang.String,com.azure.core.util.Context)` was added
+* `putLockNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getSnapshotsNextNoCustomHeadersSinglePage(java.lang.String)` was added
+* `putKeyValueNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.KeyValue)` was added
+* `getRevisionsNoCustomHeadersAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.List)` was added
+* `putLockNoCustomHeadersWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
 
 ## 1.7.2 (2024-10-27)
 
