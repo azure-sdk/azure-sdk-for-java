@@ -1,14 +1,8 @@
 # Release History
 
-## 2.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-15)
 
-### Features Added
-
-### Breaking Changes
-
-### Bugs Fixed
-
-### Other Changes
+- Azure Resource Manager Batch client library for Java. This package contains Microsoft Azure SDK for Batch Management SDK. Batch Client. Package tag package-2024-07. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## 2.0.0 (2024-09-26)
 
