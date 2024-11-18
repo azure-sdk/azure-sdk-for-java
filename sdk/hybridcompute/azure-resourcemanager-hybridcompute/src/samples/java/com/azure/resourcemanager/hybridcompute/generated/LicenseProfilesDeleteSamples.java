@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridcompute.generated;
 public final class LicenseProfilesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-07-31-preview/examples/
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-09-10-preview/examples/
      * licenseProfile/LicenseProfile_Delete.json
      */
     /**
