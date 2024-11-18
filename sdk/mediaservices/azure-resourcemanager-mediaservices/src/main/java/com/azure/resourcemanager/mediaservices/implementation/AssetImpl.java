@@ -70,6 +70,10 @@ public final class AssetImpl implements Asset, Asset.Definition, Asset.Update {
         return this.innerModel().storageEncryptionFormat();
     }
 
+    public String encryptionScope() {
+        return this.innerModel().encryptionScope();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -203,6 +207,11 @@ public final class AssetImpl implements Asset, Asset.Definition, Asset.Update {
 
     public AssetImpl withStorageAccountName(String storageAccountName) {
         this.innerModel().withStorageAccountName(storageAccountName);
+        return this;
+    }
+
+    public AssetImpl withEncryptionScope(String encryptionScope) {
+        this.innerModel().withEncryptionScope(encryptionScope);
         return this;
     }
 }

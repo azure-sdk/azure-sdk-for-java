@@ -182,7 +182,7 @@ import java.util.Arrays;
 public final class AccountFiltersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/accountFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/accountFilters-
      * create.json
      */
     /**
@@ -233,7 +233,7 @@ public final class AccountFiltersCreateOrUpdateSamples {
 public final class AccountFiltersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/accountFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/accountFilters-
      * delete.json
      */
     /**
@@ -258,7 +258,7 @@ public final class AccountFiltersDeleteSamples {
 public final class AccountFiltersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/accountFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/accountFilters-
      * get-by-name.json
      */
     /**
@@ -282,7 +282,7 @@ public final class AccountFiltersGetSamples {
 public final class AccountFiltersListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/accountFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/accountFilters-
      * list-all.json
      */
     /**
@@ -309,7 +309,7 @@ import com.azure.resourcemanager.mediaservices.models.PresentationTimeRange;
 public final class AccountFiltersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/accountFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/accountFilters-
      * update.json
      */
     /**
@@ -352,7 +352,7 @@ import java.util.Arrays;
 public final class AssetFiltersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-
      * create.json
      */
     /**
@@ -403,7 +403,7 @@ public final class AssetFiltersCreateOrUpdateSamples {
 public final class AssetFiltersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-
      * delete.json
      */
     /**
@@ -428,7 +428,7 @@ public final class AssetFiltersDeleteSamples {
 public final class AssetFiltersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-get
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-get
      * -by-name.json
      */
     /**
@@ -453,7 +453,7 @@ public final class AssetFiltersGetSamples {
 public final class AssetFiltersListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-
      * list-all.json
      */
     /**
@@ -481,7 +481,7 @@ import com.azure.resourcemanager.mediaservices.models.PresentationTimeRange;
 public final class AssetFiltersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-
      * update.json
      */
     /**
@@ -516,7 +516,28 @@ public final class AssetFiltersUpdateSamples {
 public final class AssetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-create.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-create-
+     * with-encryption-scope.json
+     */
+    /**
+     * Sample code: Create an Asset with encryption scope.
+     * 
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void
+        createAnAssetWithEncryptionScope(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager.assets()
+            .define("ClimbingMountLogan")
+            .withExistingMediaService("contosorg", "contosomedia")
+            .withDescription("A documentary showing the ascent of Mount Logan")
+            .withStorageAccountName("storage0")
+            .withEncryptionScope("encryptionScope1")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-create.
      * json
      */
     /**
@@ -544,7 +565,7 @@ public final class AssetsCreateOrUpdateSamples {
 public final class AssetsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-delete.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-delete.
      * json
      */
     /**
@@ -568,7 +589,7 @@ public final class AssetsDeleteSamples {
 public final class AssetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-get-by-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-get-by-
      * name.json
      */
     /**
@@ -592,7 +613,7 @@ public final class AssetsGetSamples {
 public final class AssetsGetEncryptionKeySamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-get-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-get-
      * encryption-keys.json
      */
     /**
@@ -618,7 +639,7 @@ public final class AssetsGetEncryptionKeySamples {
 public final class AssetsListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-by-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-by-
      * date.json
      */
     /**
@@ -633,7 +654,7 @@ public final class AssetsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-in-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-in-
      * date-range.json
      */
     /**
@@ -650,7 +671,7 @@ public final class AssetsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-all.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-all.
      * json
      */
     /**
@@ -677,7 +698,7 @@ import java.time.OffsetDateTime;
 public final class AssetsListContainerSasSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-sas-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-sas-
      * urls.json
      */
     /**
@@ -704,7 +725,7 @@ public final class AssetsListContainerSasSamples {
 public final class AssetsListStreamingLocatorsSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-
      * streaming-locators.json
      */
     /**
@@ -731,7 +752,7 @@ import com.azure.resourcemanager.mediaservices.models.Asset;
 public final class AssetsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-update.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-update.
      * json
      */
     /**
@@ -776,7 +797,7 @@ import java.util.Arrays;
 public final class ContentKeyPoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-create-multiple-options.json
      */
     /**
@@ -808,7 +829,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-create-nodrm-token.json
      */
     /**
@@ -834,7 +855,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-create-playready-open.json
      */
     /**
@@ -868,7 +889,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-create-widevine-token.json
      */
     /**
@@ -906,7 +927,7 @@ public final class ContentKeyPoliciesCreateOrUpdateSamples {
 public final class ContentKeyPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-delete.json
      */
     /**
@@ -931,7 +952,7 @@ public final class ContentKeyPoliciesDeleteSamples {
 public final class ContentKeyPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-get-by-name.json
      */
     /**
@@ -957,7 +978,7 @@ public final class ContentKeyPoliciesGetSamples {
 public final class ContentKeyPoliciesGetPolicyPropertiesWithSecretsSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-get-with-secrets.json
      */
     /**
@@ -983,7 +1004,7 @@ public final class ContentKeyPoliciesGetPolicyPropertiesWithSecretsSamples {
 public final class ContentKeyPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-list-all.json
      */
     /**
@@ -999,7 +1020,7 @@ public final class ContentKeyPoliciesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-list-in-date-range.json
      */
     /**
@@ -1017,7 +1038,7 @@ public final class ContentKeyPoliciesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-list-by-lastModified.json
      */
     /**
@@ -1048,7 +1069,7 @@ import java.util.Arrays;
 public final class ContentKeyPoliciesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-update.json
      */
     /**
@@ -2350,7 +2371,7 @@ public final class MediaservicesUpdateSamples {
 public final class OperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * operation-result-by-id.json
      */
     /**
@@ -2376,7 +2397,7 @@ public final class OperationResultsGetSamples {
 public final class OperationStatusesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * operation-status-by-id-terminal-state-failed.json
      */
     /**
@@ -2393,7 +2414,7 @@ public final class OperationStatusesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * operation-status-by-id-terminal-state.json
      */
     /**
@@ -2410,7 +2431,7 @@ public final class OperationStatusesGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * operation-status-by-id-non-terminal-state.json
      */
     /**
@@ -2958,7 +2979,7 @@ import java.util.UUID;
 public final class StreamingLocatorsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-clear.json
      */
     /**
@@ -2978,7 +2999,7 @@ public final class StreamingLocatorsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-secure.json
      */
     /**
@@ -3000,7 +3021,7 @@ public final class StreamingLocatorsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-secure-userDefinedContentKeys.json
      */
     /**
@@ -3040,7 +3061,7 @@ public final class StreamingLocatorsCreateSamples {
 public final class StreamingLocatorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-delete.json
      */
     /**
@@ -3064,7 +3085,7 @@ public final class StreamingLocatorsDeleteSamples {
 public final class StreamingLocatorsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-get-by-name.json
      */
     /**
@@ -3089,7 +3110,7 @@ public final class StreamingLocatorsGetSamples {
 public final class StreamingLocatorsListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-list.json
      */
     /**
@@ -3113,7 +3134,7 @@ public final class StreamingLocatorsListSamples {
 public final class StreamingLocatorsListContentKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-list-content-keys.json
      */
     /**
@@ -3138,7 +3159,7 @@ public final class StreamingLocatorsListContentKeysSamples {
 public final class StreamingLocatorsListPathsSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-list-paths-streaming-only.json
      */
     /**
@@ -3155,7 +3176,7 @@ public final class StreamingLocatorsListPathsSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-list-paths-streaming-and-download.json
      */
     /**
@@ -3200,7 +3221,7 @@ import java.util.Arrays;
 public final class StreamingPoliciesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-secure-streaming.json
      */
     /**
@@ -3250,7 +3271,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCenc-clearKeyEncryption.json
      */
     /**
@@ -3280,7 +3301,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCenc-only.json
      */
     /**
@@ -3315,7 +3336,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCbcs-only.json
      */
     /**
@@ -3343,7 +3364,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCbcs-clearKeyEncryption.json
      */
     /**
@@ -3369,7 +3390,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-clear.json
      */
     /**
@@ -3389,7 +3410,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-envelopeEncryption-only.json
      */
     /**
@@ -3423,7 +3444,7 @@ public final class StreamingPoliciesCreateSamples {
 public final class StreamingPoliciesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-delete.json
      */
     /**
@@ -3448,7 +3469,7 @@ public final class StreamingPoliciesDeleteSamples {
 public final class StreamingPoliciesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-policy
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-policy
      * -get-by-name.json
      */
     /**
@@ -3472,7 +3493,7 @@ public final class StreamingPoliciesGetSamples {
 public final class StreamingPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-list.json
      */
     /**
@@ -3499,7 +3520,7 @@ import com.azure.resourcemanager.mediaservices.models.Visibility;
 public final class TracksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * create.json
      */
     /**
@@ -3528,7 +3549,7 @@ public final class TracksCreateOrUpdateSamples {
 public final class TracksDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * delete.json
      */
     /**
@@ -3552,7 +3573,7 @@ public final class TracksDeleteSamples {
 public final class TracksGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-get
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-get
      * -by-name.json
      */
     /**
@@ -3577,7 +3598,7 @@ public final class TracksGetSamples {
 public final class TracksListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * list-all.json
      */
     /**
@@ -3603,7 +3624,7 @@ import com.azure.resourcemanager.mediaservices.models.TextTrack;
 public final class TracksUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * update.json
      */
     /**
@@ -3630,7 +3651,7 @@ public final class TracksUpdateSamples {
 public final class TracksUpdateTrackDataSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * update-data.json
      */
     /**
