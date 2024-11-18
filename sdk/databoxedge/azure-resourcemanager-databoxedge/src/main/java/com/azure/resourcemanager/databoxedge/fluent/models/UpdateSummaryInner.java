@@ -5,11 +5,14 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.InstallRebootBehavior;
+import com.azure.resourcemanager.databoxedge.models.JobStatus;
+import com.azure.resourcemanager.databoxedge.models.UpdateDetails;
 import com.azure.resourcemanager.databoxedge.models.UpdateOperation;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -24,6 +27,11 @@ public final class UpdateSummaryInner extends ArmBaseModel {
      * The device update information summary.
      */
     private UpdateSummaryProperties innerProperties;
+
+    /*
+     * Metadata pertaining to creation and last modification of UpdateSummary
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -53,6 +61,15 @@ public final class UpdateSummaryInner extends ArmBaseModel {
      */
     private UpdateSummaryProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of UpdateSummary.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -180,6 +197,29 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @return the lastSuccessfulScanJobTime value.
+     */
+    public OffsetDateTime lastSuccessfulScanJobTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSuccessfulScanJobTime();
+    }
+
+    /**
+     * Set the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @param lastSuccessfulScanJobTime the lastSuccessfulScanJobTime value to set.
+     * @return the UpdateSummaryInner object itself.
+     */
+    public UpdateSummaryInner withLastSuccessfulScanJobTime(OffsetDateTime lastSuccessfulScanJobTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UpdateSummaryProperties();
+        }
+        this.innerProperties().withLastSuccessfulScanJobTime(lastSuccessfulScanJobTime);
+        return this;
+    }
+
+    /**
      * Get the lastCompletedDownloadJobDateTime property: The time when the last Download job was completed
      * (success/cancelled/failed) on the appliance.
      * 
@@ -190,6 +230,50 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the lastCompletedDownloadJobId property: JobId of the last ran download job.(Can be
+     * success/cancelled/failed).
+     * 
+     * @return the lastCompletedDownloadJobId value.
+     */
+    public String lastCompletedDownloadJobId() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastCompletedDownloadJobId();
+    }
+
+    /**
+     * Get the lastDownloadJobStatus property: JobStatus of the last ran download job.
+     * 
+     * @return the lastDownloadJobStatus value.
+     */
+    public JobStatus lastDownloadJobStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastDownloadJobStatus();
+    }
+
+    /**
+     * Get the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @return the lastSuccessfulInstallJobDateTime value.
+     */
+    public OffsetDateTime lastSuccessfulInstallJobDateTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSuccessfulInstallJobDateTime();
+    }
+
+    /**
+     * Set the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @param lastSuccessfulInstallJobDateTime the lastSuccessfulInstallJobDateTime value to set.
+     * @return the UpdateSummaryInner object itself.
+     */
+    public UpdateSummaryInner withLastSuccessfulInstallJobDateTime(OffsetDateTime lastSuccessfulInstallJobDateTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UpdateSummaryProperties();
+        }
+        this.innerProperties().withLastSuccessfulInstallJobDateTime(lastSuccessfulInstallJobDateTime);
+        return this;
+    }
+
+    /**
      * Get the lastCompletedInstallJobDateTime property: The time when the last Install job was completed
      * (success/cancelled/failed) on the appliance.
      * 
@@ -197,6 +281,24 @@ public final class UpdateSummaryInner extends ArmBaseModel {
      */
     public OffsetDateTime lastCompletedInstallJobDateTime() {
         return this.innerProperties() == null ? null : this.innerProperties().lastCompletedInstallJobDateTime();
+    }
+
+    /**
+     * Get the lastCompletedInstallJobId property: JobId of the last ran install job.(Can be success/cancelled/failed).
+     * 
+     * @return the lastCompletedInstallJobId value.
+     */
+    public String lastCompletedInstallJobId() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastCompletedInstallJobId();
+    }
+
+    /**
+     * Get the lastInstallJobStatus property: JobStatus of the last ran install job.
+     * 
+     * @return the lastInstallJobStatus value.
+     */
+    public JobStatus lastInstallJobStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastInstallJobStatus();
     }
 
     /**
@@ -294,12 +396,30 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the updates property: The list of updates available for install.
+     * 
+     * @return the updates value.
+     */
+    public List<UpdateDetails> updates() {
+        return this.innerProperties() == null ? null : this.innerProperties().updates();
+    }
+
+    /**
      * Get the totalUpdateSizeInBytes property: The total size of updates available for download in bytes.
      * 
      * @return the totalUpdateSizeInBytes value.
      */
     public Double totalUpdateSizeInBytes() {
         return this.innerProperties() == null ? null : this.innerProperties().totalUpdateSizeInBytes();
+    }
+
+    /**
+     * Get the totalTimeInMinutes property: The total time in Minutes.
+     * 
+     * @return the totalTimeInMinutes value.
+     */
+    public Integer totalTimeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().totalTimeInMinutes();
     }
 
     /**
@@ -348,6 +468,8 @@ public final class UpdateSummaryInner extends ArmBaseModel {
                     deserializedUpdateSummaryInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedUpdateSummaryInner.innerProperties = UpdateSummaryProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedUpdateSummaryInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

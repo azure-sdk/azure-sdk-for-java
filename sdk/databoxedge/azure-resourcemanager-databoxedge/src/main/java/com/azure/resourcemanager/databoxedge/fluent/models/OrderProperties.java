@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.databoxedge.models.Address;
 import com.azure.resourcemanager.databoxedge.models.ContactDetails;
 import com.azure.resourcemanager.databoxedge.models.OrderStatus;
+import com.azure.resourcemanager.databoxedge.models.ShipmentType;
 import com.azure.resourcemanager.databoxedge.models.TrackingInfo;
 import java.io.IOException;
 import java.util.List;
@@ -22,6 +23,11 @@ import java.util.List;
  */
 @Fluent
 public final class OrderProperties implements JsonSerializable<OrderProperties> {
+    /*
+     * It specify the order resource id.
+     */
+    private String orderId;
+
     /*
      * The contact details.
      */
@@ -59,10 +65,24 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
      */
     private List<TrackingInfo> returnTrackingInfo;
 
+    /*
+     * ShipmentType of the order
+     */
+    private ShipmentType shipmentType;
+
     /**
      * Creates an instance of OrderProperties class.
      */
     public OrderProperties() {
+    }
+
+    /**
+     * Get the orderId property: It specify the order resource id.
+     * 
+     * @return the orderId value.
+     */
+    public String orderId() {
+        return this.orderId;
     }
 
     /**
@@ -115,17 +135,6 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
     }
 
     /**
-     * Set the currentStatus property: Current status of the order.
-     * 
-     * @param currentStatus the currentStatus value to set.
-     * @return the OrderProperties object itself.
-     */
-    public OrderProperties withCurrentStatus(OrderStatus currentStatus) {
-        this.currentStatus = currentStatus;
-        return this;
-    }
-
-    /**
      * Get the orderHistory property: List of status changes in the order.
      * 
      * @return the orderHistory value.
@@ -164,6 +173,26 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
     }
 
     /**
+     * Get the shipmentType property: ShipmentType of the order.
+     * 
+     * @return the shipmentType value.
+     */
+    public ShipmentType shipmentType() {
+        return this.shipmentType;
+    }
+
+    /**
+     * Set the shipmentType property: ShipmentType of the order.
+     * 
+     * @param shipmentType the shipmentType value to set.
+     * @return the OrderProperties object itself.
+     */
+    public OrderProperties withShipmentType(ShipmentType shipmentType) {
+        this.shipmentType = shipmentType;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -176,11 +205,7 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
         } else {
             contactInformation().validate();
         }
-        if (shippingAddress() == null) {
-            throw LOGGER.atError()
-                .log(
-                    new IllegalArgumentException("Missing required property shippingAddress in model OrderProperties"));
-        } else {
+        if (shippingAddress() != null) {
             shippingAddress().validate();
         }
         if (currentStatus() != null) {
@@ -207,7 +232,7 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("contactInformation", this.contactInformation);
         jsonWriter.writeJsonField("shippingAddress", this.shippingAddress);
-        jsonWriter.writeJsonField("currentStatus", this.currentStatus);
+        jsonWriter.writeStringField("shipmentType", this.shipmentType == null ? null : this.shipmentType.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -229,6 +254,8 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
 
                 if ("contactInformation".equals(fieldName)) {
                     deserializedOrderProperties.contactInformation = ContactDetails.fromJson(reader);
+                } else if ("orderId".equals(fieldName)) {
+                    deserializedOrderProperties.orderId = reader.getString();
                 } else if ("shippingAddress".equals(fieldName)) {
                     deserializedOrderProperties.shippingAddress = Address.fromJson(reader);
                 } else if ("currentStatus".equals(fieldName)) {
@@ -245,6 +272,8 @@ public final class OrderProperties implements JsonSerializable<OrderProperties> 
                 } else if ("returnTrackingInfo".equals(fieldName)) {
                     List<TrackingInfo> returnTrackingInfo = reader.readArray(reader1 -> TrackingInfo.fromJson(reader1));
                     deserializedOrderProperties.returnTrackingInfo = returnTrackingInfo;
+                } else if ("shipmentType".equals(fieldName)) {
+                    deserializedOrderProperties.shipmentType = ShipmentType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
