@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-iotcentral</artifactId>
-    <version>1.1.0-beta.2</version>
+    <version>1.1.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -77,8 +77,7 @@ app = iotCentralManager.apps()
     .withExistingResourceGroup(resourceGroupName)
     .withSku(new AppSkuInfo().withName(AppSku.ST2))
     .withIdentity(new SystemAssignedServiceIdentity().withType(SystemAssignedServiceIdentityType.NONE))
-    .withNetworkRuleSets(new NetworkRuleSets()
-        .withApplyToDevices(false)
+    .withNetworkRuleSets(new NetworkRuleSets().withApplyToDevices(false)
         .withApplyToIoTCentral(false)
         .withDefaultAction(NetworkAction.ALLOW)
         .withIpRules(Collections.emptyList()))
