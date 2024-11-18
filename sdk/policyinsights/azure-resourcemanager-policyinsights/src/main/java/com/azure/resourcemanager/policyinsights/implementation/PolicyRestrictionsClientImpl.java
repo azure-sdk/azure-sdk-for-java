@@ -116,7 +116,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.checkAtSubscriptionScope(this.client.getEndpoint(),
@@ -151,7 +151,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.checkAtSubscriptionScope(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
@@ -235,7 +235,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.checkAtResourceGroupScope(this.client.getEndpoint(),
@@ -276,7 +276,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.checkAtResourceGroupScope(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -365,7 +365,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.checkAtManagementGroupScope(this.client.getEndpoint(),
@@ -402,7 +402,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2022-03-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.checkAtManagementGroupScope(this.client.getEndpoint(), managementGroupsNamespace,

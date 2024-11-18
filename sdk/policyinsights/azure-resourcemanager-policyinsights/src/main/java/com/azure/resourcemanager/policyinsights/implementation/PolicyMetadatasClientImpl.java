@@ -106,7 +106,7 @@ public final class PolicyMetadatasClientImpl implements PolicyMetadatasClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -133,7 +133,7 @@ public final class PolicyMetadatasClientImpl implements PolicyMetadatasClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getResource(this.client.getEndpoint(), resourceName, apiVersion, accept, context);
@@ -198,7 +198,7 @@ public final class PolicyMetadatasClientImpl implements PolicyMetadatasClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, top, accept, context))
@@ -224,7 +224,7 @@ public final class PolicyMetadatasClientImpl implements PolicyMetadatasClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.list(this.client.getEndpoint(), apiVersion, top, accept, context)

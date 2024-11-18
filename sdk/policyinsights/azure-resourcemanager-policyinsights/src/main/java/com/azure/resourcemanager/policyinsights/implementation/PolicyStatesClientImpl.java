@@ -359,7 +359,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForManagementGroup(this.client.getEndpoint(),
@@ -413,7 +413,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -613,7 +613,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -657,7 +657,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter managementGroupName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForManagementGroup(this.client.getEndpoint(), policyStatesSummaryResource,
@@ -773,7 +773,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForSubscription(this.client.getEndpoint(),
@@ -824,7 +824,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1020,7 +1020,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForSubscription(this.client.getEndpoint(),
@@ -1061,7 +1061,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForSubscription(this.client.getEndpoint(), policyStatesSummaryResource, subscriptionId,
@@ -1183,7 +1183,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroup(this.client.getEndpoint(),
@@ -1240,7 +1240,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForResourceGroup(this.client.getEndpoint(), policyStatesResource, subscriptionId,
@@ -1447,7 +1447,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1494,7 +1494,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForResourceGroup(this.client.getEndpoint(), policyStatesSummaryResource, subscriptionId,
@@ -1614,7 +1614,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResource(this.client.getEndpoint(), policyStatesResource,
@@ -1667,7 +1667,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1868,7 +1868,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForResource(this.client.getEndpoint(), policyStatesSummaryResource,
@@ -1909,7 +1909,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForResource(this.client.getEndpoint(), policyStatesSummaryResource, resourceId,
@@ -2004,7 +2004,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.triggerSubscriptionEvaluation(this.client.getEndpoint(), subscriptionId,
@@ -2032,7 +2032,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
         if (subscriptionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.triggerSubscriptionEvaluation(this.client.getEndpoint(), subscriptionId, apiVersion, accept,
@@ -2186,7 +2186,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.triggerResourceGroupEvaluation(this.client.getEndpoint(), subscriptionId,
@@ -2219,7 +2219,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.triggerResourceGroupEvaluation(this.client.getEndpoint(), subscriptionId, resourceGroupName,
@@ -2409,7 +2409,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForPolicySetDefinition(this.client.getEndpoint(),
@@ -2467,7 +2467,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2680,7 +2680,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForPolicySetDefinition(this.client.getEndpoint(),
@@ -2729,7 +2729,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 new IllegalArgumentException("Parameter policySetDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForPolicySetDefinition(this.client.getEndpoint(), policyStatesSummaryResource,
@@ -2859,7 +2859,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForPolicyDefinition(this.client.getEndpoint(),
@@ -2917,7 +2917,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -3130,7 +3130,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForPolicyDefinition(this.client.getEndpoint(),
@@ -3178,7 +3178,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyDefinitionName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForPolicyDefinition(this.client.getEndpoint(), policyStatesSummaryResource,
@@ -3307,7 +3307,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -3366,7 +3366,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -3578,7 +3578,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForSubscriptionLevelPolicyAssignment(this.client.getEndpoint(),
@@ -3626,7 +3626,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForSubscriptionLevelPolicyAssignment(this.client.getEndpoint(),
@@ -3761,7 +3761,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -3825,7 +3825,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -4049,7 +4049,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.summarizeForResourceGroupLevelPolicyAssignment(this.client.getEndpoint(),
@@ -4103,7 +4103,7 @@ public final class PolicyStatesClientImpl implements PolicyStatesClient {
                 .error(new IllegalArgumentException("Parameter policyAssignmentName is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.summarizeForResourceGroupLevelPolicyAssignment(this.client.getEndpoint(),

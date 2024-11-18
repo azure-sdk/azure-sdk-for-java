@@ -183,7 +183,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForSubscription(this.client.getEndpoint(), subscriptionId,
@@ -230,7 +230,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForSubscription(this.client.getEndpoint(), subscriptionId,
@@ -361,7 +361,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroup(this.client.getEndpoint(), subscriptionId,
@@ -414,7 +414,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForResourceGroup(this.client.getEndpoint(), subscriptionId, resourceGroupName,
@@ -545,7 +545,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResource(this.client.getEndpoint(), resourceId,
@@ -594,7 +594,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
             return Mono.error(new IllegalArgumentException(
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForResource(this.client.getEndpoint(), resourceId, componentPolicyStatesResource,
@@ -729,7 +729,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForPolicyDefinition(this.client.getEndpoint(),
@@ -783,7 +783,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForPolicyDefinition(this.client.getEndpoint(), subscriptionId,
@@ -921,7 +921,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -977,7 +977,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForSubscriptionLevelPolicyAssignment(this.client.getEndpoint(), subscriptionId,
@@ -1125,7 +1125,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -1186,7 +1186,7 @@ public final class ComponentPolicyStatesClientImpl implements ComponentPolicySta
                 "Parameter componentPolicyStatesResource is required and cannot be null."));
         }
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2022-04-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listQueryResultsForResourceGroupLevelPolicyAssignment(this.client.getEndpoint(), subscriptionId,
