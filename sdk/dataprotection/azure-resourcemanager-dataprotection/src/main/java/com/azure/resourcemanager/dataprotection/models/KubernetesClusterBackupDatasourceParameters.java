@@ -266,7 +266,6 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
      */
     @Override
     public void validate() {
-        super.validate();
         if (backupHookReferences() != null) {
             backupHookReferences().forEach(e -> e.validate());
         }
