@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,7 +20,6 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
@@ -30,6 +30,7 @@ import com.azure.resourcemanager.chaos.implementation.ChaosManagementClientBuild
 import com.azure.resourcemanager.chaos.implementation.ExperimentsImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationStatusesImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationsImpl;
+import com.azure.resourcemanager.chaos.implementation.PrivateAccessesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetsImpl;
 import com.azure.resourcemanager.chaos.models.Capabilities;
@@ -37,6 +38,7 @@ import com.azure.resourcemanager.chaos.models.CapabilityTypes;
 import com.azure.resourcemanager.chaos.models.Experiments;
 import com.azure.resourcemanager.chaos.models.OperationStatuses;
 import com.azure.resourcemanager.chaos.models.Operations;
+import com.azure.resourcemanager.chaos.models.PrivateAccesses;
 import com.azure.resourcemanager.chaos.models.TargetTypes;
 import com.azure.resourcemanager.chaos.models.Targets;
 import java.time.Duration;
@@ -60,6 +62,8 @@ public final class ChaosManager {
     private OperationStatuses operationStatuses;
 
     private Operations operations;
+
+    private PrivateAccesses privateAccesses;
 
     private TargetTypes targetTypes;
 
@@ -229,7 +233,7 @@ public final class ChaosManager {
                 .append("-")
                 .append("com.azure.resourcemanager.chaos")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -262,7 +266,7 @@ public final class ChaosManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -333,6 +337,18 @@ public final class ChaosManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateAccesses. It manages PrivateAccess.
+     * 
+     * @return Resource collection API of PrivateAccesses.
+     */
+    public PrivateAccesses privateAccesses() {
+        if (this.privateAccesses == null) {
+            this.privateAccesses = new PrivateAccessesImpl(clientObject.getPrivateAccesses(), this);
+        }
+        return privateAccesses;
     }
 
     /**

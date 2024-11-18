@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.chaos.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -28,6 +29,7 @@ import com.azure.resourcemanager.chaos.fluent.ChaosManagementClient;
 import com.azure.resourcemanager.chaos.fluent.ExperimentsClient;
 import com.azure.resourcemanager.chaos.fluent.OperationStatusesClient;
 import com.azure.resourcemanager.chaos.fluent.OperationsClient;
+import com.azure.resourcemanager.chaos.fluent.PrivateAccessesClient;
 import com.azure.resourcemanager.chaos.fluent.TargetTypesClient;
 import com.azure.resourcemanager.chaos.fluent.TargetsClient;
 import java.io.IOException;
@@ -199,6 +201,20 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
     }
 
     /**
+     * The PrivateAccessesClient object to access its operations.
+     */
+    private final PrivateAccessesClient privateAccesses;
+
+    /**
+     * Gets the PrivateAccessesClient object to access its operations.
+     * 
+     * @return the PrivateAccessesClient object.
+     */
+    public PrivateAccessesClient getPrivateAccesses() {
+        return this.privateAccesses;
+    }
+
+    /**
      * The TargetTypesClient object to access its operations.
      */
     private final TargetTypesClient targetTypes;
@@ -243,12 +259,13 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-01-01";
+        this.apiVersion = "2024-03-22-preview";
         this.capabilities = new CapabilitiesClientImpl(this);
         this.capabilityTypes = new CapabilityTypesClientImpl(this);
         this.experiments = new ExperimentsClientImpl(this);
         this.operationStatuses = new OperationStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.privateAccesses = new PrivateAccessesClientImpl(this);
         this.targetTypes = new TargetTypesClientImpl(this);
         this.targets = new TargetsClientImpl(this);
     }
@@ -355,7 +372,7 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

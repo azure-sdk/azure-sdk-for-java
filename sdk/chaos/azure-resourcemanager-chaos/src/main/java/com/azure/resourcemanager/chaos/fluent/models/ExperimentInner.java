@@ -8,11 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
+import com.azure.resourcemanager.chaos.models.ExperimentIdentity;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,22 +26,34 @@ import java.util.Map;
 @Fluent
 public final class ExperimentInner extends Resource {
     /*
-     * The system metadata of the experiment resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * The identity of the experiment resource.
      */
-    @JsonProperty(value = "identity")
-    private ResourceIdentity identity;
+    private ExperimentIdentity identity;
 
     /*
      * The properties of the experiment resource.
      */
-    @JsonProperty(value = "properties", required = true)
     private ExperimentProperties innerProperties = new ExperimentProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of ExperimentInner class.
@@ -46,20 +62,11 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata of the experiment resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the identity property: The identity of the experiment resource.
      * 
      * @return the identity value.
      */
-    public ResourceIdentity identity() {
+    public ExperimentIdentity identity() {
         return this.identity;
     }
 
@@ -69,7 +76,7 @@ public final class ExperimentInner extends Resource {
      * @param identity the identity value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withIdentity(ResourceIdentity identity) {
+    public ExperimentInner withIdentity(ExperimentIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -81,6 +88,45 @@ public final class ExperimentInner extends Resource {
      */
     private ExperimentProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -157,6 +203,31 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDataStorage();
+    }
+
+    /**
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @param customerDataStorage the customerDataStorage value to set.
+     * @return the ExperimentInner object itself.
+     */
+    public ExperimentInner withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExperimentProperties();
+        }
+        this.innerProperties().withCustomerDataStorage(customerDataStorage);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -166,12 +237,68 @@ public final class ExperimentInner extends Resource {
             identity().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
         } else {
             innerProperties().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ExperimentInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of ExperimentInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of ExperimentInner if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ExperimentInner.
+     */
+    public static ExperimentInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            ExperimentInner deserializedExperimentInner = new ExperimentInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedExperimentInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedExperimentInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedExperimentInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedExperimentInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedExperimentInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedExperimentInner.innerProperties = ExperimentProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedExperimentInner.identity = ExperimentIdentity.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedExperimentInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedExperimentInner;
+        });
+    }
 }

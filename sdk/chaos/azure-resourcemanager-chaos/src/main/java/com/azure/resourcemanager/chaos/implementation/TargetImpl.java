@@ -32,10 +32,6 @@ public final class TargetImpl implements Target {
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String location() {
         return this.innerModel().location();
     }
@@ -47,6 +43,10 @@ public final class TargetImpl implements Target {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public TargetInner innerModel() {

@@ -34,13 +34,6 @@ public interface Target {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata of the target resource.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the location property: Location of the target resource.
      * 
      * @return the location value.
@@ -53,6 +46,13 @@ public interface Target {
      * @return the properties value.
      */
     Map<String, Object> properties();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.TargetInner object.
