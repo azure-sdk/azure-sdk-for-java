@@ -4,48 +4,24 @@
 
 package com.azure.resourcemanager.agrifood.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceListResultInner;
 import java.util.List;
 
-/** A list of private link resources. */
-@Fluent
-public final class PrivateLinkResourceListResult {
-    /*
-     * Array of private link resources
-     */
-    @JsonProperty(value = "value")
-    private List<PrivateLinkResourceInner> value;
-
+/**
+ * An immutable client-side representation of PrivateLinkResourceListResult.
+ */
+public interface PrivateLinkResourceListResult {
     /**
-     * Get the value property: Array of private link resources.
-     *
+     * Gets the value property: Array of private link resources.
+     * 
      * @return the value value.
      */
-    public List<PrivateLinkResourceInner> value() {
-        return this.value;
-    }
+    List<PrivateLinkResource> value();
 
     /**
-     * Set the value property: Array of private link resources.
-     *
-     * @param value the value value to set.
-     * @return the PrivateLinkResourceListResult object itself.
+     * Gets the inner com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceListResultInner object.
+     * 
+     * @return the inner object.
      */
-    public PrivateLinkResourceListResult withValue(List<PrivateLinkResourceInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
+    PrivateLinkResourceListResultInner innerModel();
 }

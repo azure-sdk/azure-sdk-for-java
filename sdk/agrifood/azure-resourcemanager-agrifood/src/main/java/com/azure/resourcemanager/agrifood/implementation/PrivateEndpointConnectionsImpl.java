@@ -4,14 +4,15 @@
 
 package com.azure.resourcemanager.agrifood.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.agrifood.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionListResultInner;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionListResult;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnections;
 
 public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConnections {
@@ -27,21 +28,11 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         this.serviceManager = serviceManager;
     }
 
-    public PrivateEndpointConnection get(String resourceGroupName, String farmBeatsResourceName,
-        String privateEndpointConnectionName) {
-        PrivateEndpointConnectionInner inner
-            = this.serviceClient().get(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName);
-        if (inner != null) {
-            return new PrivateEndpointConnectionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<PrivateEndpointConnection> getWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String privateEndpointConnectionName, Context context) {
+    public Response<PrivateEndpointConnection> getWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String privateEndpointConnectionName, Context context) {
         Response<PrivateEndpointConnectionInner> inner = this.serviceClient()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context);
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName,
+                context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PrivateEndpointConnectionImpl(inner.getValue(), this.manager()));
@@ -50,105 +41,135 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         }
     }
 
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName);
+    public PrivateEndpointConnection get(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName) {
+        PrivateEndpointConnectionInner inner = this.serviceClient()
+            .get(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName,
-        Context context) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context);
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName) {
+        this.serviceClient()
+            .delete(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName);
     }
 
-    public PagedIterable<PrivateEndpointConnection> listByResource(String resourceGroupName,
-        String farmBeatsResourceName) {
-        PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().listByResource(resourceGroupName, farmBeatsResourceName);
-        return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String privateEndpointConnectionName, Context context) {
+        this.serviceClient()
+            .delete(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context);
     }
 
-    public PagedIterable<PrivateEndpointConnection> listByResource(String resourceGroupName,
-        String farmBeatsResourceName, Context context) {
-        PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().listByResource(resourceGroupName, farmBeatsResourceName, context);
-        return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
+    public Response<PrivateEndpointConnectionListResult> listByResourceWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, Context context) {
+        Response<PrivateEndpointConnectionListResultInner> inner = this.serviceClient()
+            .listByResourceWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new PrivateEndpointConnectionListResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnectionListResult listByResource(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        PrivateEndpointConnectionListResultInner inner
+            = this.serviceClient().listByResource(resourceGroupName, dataManagerForAgricultureResourceName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionListResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PrivateEndpointConnection getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = Utils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
+        String privateEndpointConnectionName
+            = ResourceManagerUtils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
         return this
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName,
+                Context.NONE)
             .getValue();
     }
 
     public Response<PrivateEndpointConnection> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = Utils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
+        String privateEndpointConnectionName
+            = ResourceManagerUtils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context);
+        return this.getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName,
+            privateEndpointConnectionName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = Utils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
+        String privateEndpointConnectionName
+            = ResourceManagerUtils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        this.delete(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE);
+        this.delete(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName,
+            Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = Utils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
-        String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
+        String privateEndpointConnectionName
+            = ResourceManagerUtils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        this.delete(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context);
+        this.delete(resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context);
     }
 
     private PrivateEndpointConnectionsClient serviceClient() {
