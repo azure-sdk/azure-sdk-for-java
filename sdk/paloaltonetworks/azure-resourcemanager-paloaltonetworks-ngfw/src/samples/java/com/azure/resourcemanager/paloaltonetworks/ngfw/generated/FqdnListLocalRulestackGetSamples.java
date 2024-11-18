@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class FqdnListLocalRulestackGetSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * FqdnListLocalRulestack_Get_MinimumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class FqdnListLocalRulestackGetSamples {
      */
     public static void fqdnListLocalRulestackGetMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.fqdnListLocalRulestacks().getWithResponse("rgopenapi", "lrs1", "armid1",
-            com.azure.core.util.Context.NONE);
+        manager.fqdnListLocalRulestacks()
+            .getWithResponse("rgopenapi", "lrs1", "armid1", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * FqdnListLocalRulestack_Get_MaximumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class FqdnListLocalRulestackGetSamples {
      */
     public static void fqdnListLocalRulestackGetMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.fqdnListLocalRulestacks().getWithResponse("rgopenapi", "lrs1", "armid1",
-            com.azure.core.util.Context.NONE);
+        manager.fqdnListLocalRulestacks()
+            .getWithResponse("rgopenapi", "lrs1", "armid1", com.azure.core.util.Context.NONE);
     }
 }

@@ -12,7 +12,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectT
 public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listAdvancedSecurityObjects_MaximumSet_Gen.json
      */
     /**
@@ -22,13 +22,15 @@ public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
      */
     public static void localRulestacksListAdvancedSecurityObjectsMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listAdvancedSecurityObjectsWithResponse("rgopenapi", "lrs1",
-            AdvSecurityObjectTypeEnum.fromString("localRulestacks"), "a6a321", 20, com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listAdvancedSecurityObjectsWithResponse("rgopenapi", "lrs1",
+                AdvSecurityObjectTypeEnum.fromString("localRulestacks"), "a6a321", 20,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * LocalRulestacks_listAdvancedSecurityObjects_MinimumSet_Gen.json
      */
     /**
@@ -38,7 +40,8 @@ public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
      */
     public static void localRulestacksListAdvancedSecurityObjectsMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listAdvancedSecurityObjectsWithResponse("rgopenapi", "lrs1",
-            AdvSecurityObjectTypeEnum.fromString("localRulestacks"), null, null, com.azure.core.util.Context.NONE);
+        manager.localRulestacks()
+            .listAdvancedSecurityObjectsWithResponse("rgopenapi", "lrs1",
+                AdvSecurityObjectTypeEnum.fromString("localRulestacks"), null, null, com.azure.core.util.Context.NONE);
     }
 }

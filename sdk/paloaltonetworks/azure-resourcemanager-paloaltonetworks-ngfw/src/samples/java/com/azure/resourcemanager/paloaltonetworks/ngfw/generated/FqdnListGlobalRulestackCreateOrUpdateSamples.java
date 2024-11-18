@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * FqdnListGlobalRulestack_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -23,16 +23,18 @@ public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
      */
     public static void fqdnListGlobalRulestackCreateOrUpdateMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.fqdnListGlobalRulestacks().createOrUpdate("praval", "armid1",
-            new FqdnListGlobalRulestackResourceInner().withDescription("string")
-                .withFqdnList(Arrays.asList("string1", "string2")).withEtag("aaaaaaaaaaaaaaaaaa")
-                .withAuditComment("string"),
-            com.azure.core.util.Context.NONE);
+        manager.fqdnListGlobalRulestacks()
+            .createOrUpdate("praval", "armid1",
+                new FqdnListGlobalRulestackResourceInner().withDescription("string")
+                    .withFqdnList(Arrays.asList("string1", "string2"))
+                    .withEtag("aaaaaaaaaaaaaaaaaa")
+                    .withAuditComment("string"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * FqdnListGlobalRulestack_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -42,8 +44,9 @@ public final class FqdnListGlobalRulestackCreateOrUpdateSamples {
      */
     public static void fqdnListGlobalRulestackCreateOrUpdateMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.fqdnListGlobalRulestacks().createOrUpdate("praval", "armid1",
-            new FqdnListGlobalRulestackResourceInner().withFqdnList(Arrays.asList("string1", "string2")),
-            com.azure.core.util.Context.NONE);
+        manager.fqdnListGlobalRulestacks()
+            .createOrUpdate("praval", "armid1",
+                new FqdnListGlobalRulestackResourceInner().withFqdnList(Arrays.asList("string1", "string2")),
+                com.azure.core.util.Context.NONE);
     }
 }

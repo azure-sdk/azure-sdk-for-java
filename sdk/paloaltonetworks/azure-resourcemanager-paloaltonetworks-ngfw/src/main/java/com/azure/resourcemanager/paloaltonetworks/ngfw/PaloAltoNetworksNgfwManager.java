@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,7 +20,6 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
@@ -35,6 +35,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.LocalRules
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.LocalRulestacksImpl;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.OperationsImpl;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.PaloAltoNetworksCloudngfwBuilder;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.PaloAltoNetworksCloudngfwsImpl;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.PostRulesImpl;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.PreRulesImpl;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.implementation.PrefixListGlobalRulestacksImpl;
@@ -49,6 +50,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.GlobalRulestacks;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.LocalRules;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.LocalRulestacks;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.Operations;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PaloAltoNetworksCloudngfws;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PostRules;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PreRules;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PrefixListGlobalRulestacks;
@@ -77,6 +79,8 @@ public final class PaloAltoNetworksNgfwManager {
     private PreRules preRules;
 
     private Operations operations;
+
+    private PaloAltoNetworksCloudngfws paloAltoNetworksCloudngfws;
 
     private Firewalls firewalls;
 
@@ -256,7 +260,7 @@ public final class PaloAltoNetworksNgfwManager {
                 .append("-")
                 .append("com.azure.resourcemanager.paloaltonetworks.ngfw")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -289,7 +293,7 @@ public final class PaloAltoNetworksNgfwManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -387,6 +391,19 @@ public final class PaloAltoNetworksNgfwManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of PaloAltoNetworksCloudngfws.
+     * 
+     * @return Resource collection API of PaloAltoNetworksCloudngfws.
+     */
+    public PaloAltoNetworksCloudngfws paloAltoNetworksCloudngfws() {
+        if (this.paloAltoNetworksCloudngfws == null) {
+            this.paloAltoNetworksCloudngfws
+                = new PaloAltoNetworksCloudngfwsImpl(clientObject.getPaloAltoNetworksCloudngfws(), this);
+        }
+        return paloAltoNetworksCloudngfws;
     }
 
     /**

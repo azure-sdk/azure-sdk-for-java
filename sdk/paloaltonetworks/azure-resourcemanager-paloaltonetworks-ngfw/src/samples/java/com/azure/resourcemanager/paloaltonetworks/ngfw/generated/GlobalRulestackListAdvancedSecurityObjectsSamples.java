@@ -12,7 +12,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectT
 public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * GlobalRulestack_listAdvancedSecurityObjects_MaximumSet_Gen.json
      */
     /**
@@ -22,13 +22,14 @@ public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
      */
     public static void globalRulestackListAdvancedSecurityObjectsMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.globalRulestacks().listAdvancedSecurityObjectsWithResponse("praval",
-            AdvSecurityObjectTypeEnum.fromString("globalRulestacks"), "a6a321", 20, com.azure.core.util.Context.NONE);
+        manager.globalRulestacks()
+            .listAdvancedSecurityObjectsWithResponse("praval", AdvSecurityObjectTypeEnum.fromString("globalRulestacks"),
+                "a6a321", 20, com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * GlobalRulestack_listAdvancedSecurityObjects_MinimumSet_Gen.json
      */
     /**
@@ -38,7 +39,8 @@ public final class GlobalRulestackListAdvancedSecurityObjectsSamples {
      */
     public static void globalRulestackListAdvancedSecurityObjectsMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.globalRulestacks().listAdvancedSecurityObjectsWithResponse("praval",
-            AdvSecurityObjectTypeEnum.fromString("globalRulestacks"), null, null, com.azure.core.util.Context.NONE);
+        manager.globalRulestacks()
+            .listAdvancedSecurityObjectsWithResponse("praval", AdvSecurityObjectTypeEnum.fromString("globalRulestacks"),
+                null, null, com.azure.core.util.Context.NONE);
     }
 }

@@ -8,6 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AzureResourceManagerManagedIdentityProperties;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.DnsSettings;
@@ -18,7 +21,8 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PlanData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,20 +34,32 @@ public final class FirewallResourceInner extends Resource {
     /*
      * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
     private FirewallDeploymentProperties innerProperties = new FirewallDeploymentProperties();
 
     /*
      * The managed service identities assigned to this resource.
      */
-    @JsonProperty(value = "identity")
     private AzureResourceManagerManagedIdentityProperties identity;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of FirewallResourceInner class.
@@ -87,6 +103,36 @@ public final class FirewallResourceInner extends Resource {
      */
     public SystemData systemData() {
         return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -177,6 +223,29 @@ public final class FirewallResourceInner extends Resource {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.innerProperties() == null ? null : this.innerProperties().isStrataCloudManaged();
+    }
+
+    /**
+     * Set the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @param isStrataCloudManaged the isStrataCloudManaged value to set.
+     * @return the FirewallResourceInner object itself.
+     */
+    public FirewallResourceInner withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FirewallDeploymentProperties();
+        }
+        this.innerProperties().withIsStrataCloudManaged(isStrataCloudManaged);
+        return this;
+    }
+
+    /**
      * Get the panoramaConfig property: Panorama Configuration.
      * 
      * @return the panoramaConfig value.
@@ -196,6 +265,31 @@ public final class FirewallResourceInner extends Resource {
             this.innerProperties = new FirewallDeploymentProperties();
         }
         this.innerProperties().withPanoramaConfig(panoramaConfig);
+        return this;
+    }
+
+    /**
+     * Get the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @return the strataCloudManagerConfig value.
+     */
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.innerProperties() == null ? null : this.innerProperties().strataCloudManagerConfig();
+    }
+
+    /**
+     * Set the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @param strataCloudManagerConfig the strataCloudManagerConfig value to set.
+     * @return the FirewallResourceInner object itself.
+     */
+    public FirewallResourceInner withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FirewallDeploymentProperties();
+        }
+        this.innerProperties().withStrataCloudManagerConfig(strataCloudManagerConfig);
         return this;
     }
 
@@ -330,8 +424,9 @@ public final class FirewallResourceInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model FirewallResourceInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model FirewallResourceInner"));
         } else {
             innerProperties().validate();
         }
@@ -341,4 +436,60 @@ public final class FirewallResourceInner extends Resource {
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(FirewallResourceInner.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of FirewallResourceInner from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of FirewallResourceInner if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the FirewallResourceInner.
+     */
+    public static FirewallResourceInner fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            FirewallResourceInner deserializedFirewallResourceInner = new FirewallResourceInner();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("id".equals(fieldName)) {
+                    deserializedFirewallResourceInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedFirewallResourceInner.name = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedFirewallResourceInner.type = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedFirewallResourceInner.withLocation(reader.getString());
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedFirewallResourceInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedFirewallResourceInner.innerProperties = FirewallDeploymentProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedFirewallResourceInner.identity
+                        = AzureResourceManagerManagedIdentityProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedFirewallResourceInner.systemData = SystemData.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedFirewallResourceInner;
+        });
+    }
 }

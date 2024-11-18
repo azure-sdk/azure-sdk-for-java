@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class PrefixListLocalRulestackListByLocalRulestacksSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PrefixListLocalRulestack_ListByLocalRulestacks_MaximumSet_Gen.json
      */
     /**
@@ -20,13 +20,13 @@ public final class PrefixListLocalRulestackListByLocalRulestacksSamples {
      */
     public static void prefixListLocalRulestackListByLocalRulestacksMaximumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.prefixListLocalRulestacks().listByLocalRulestacks("rgopenapi", "lrs1",
-            com.azure.core.util.Context.NONE);
+        manager.prefixListLocalRulestacks()
+            .listByLocalRulestacks("rgopenapi", "lrs1", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PrefixListLocalRulestack_ListByLocalRulestacks_MinimumSet_Gen.json
      */
     /**
@@ -36,7 +36,7 @@ public final class PrefixListLocalRulestackListByLocalRulestacksSamples {
      */
     public static void prefixListLocalRulestackListByLocalRulestacksMinimumSetGen(
         com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.prefixListLocalRulestacks().listByLocalRulestacks("rgopenapi", "lrs1",
-            com.azure.core.util.Context.NONE);
+        manager.prefixListLocalRulestacks()
+            .listByLocalRulestacks("rgopenapi", "lrs1", com.azure.core.util.Context.NONE);
     }
 }

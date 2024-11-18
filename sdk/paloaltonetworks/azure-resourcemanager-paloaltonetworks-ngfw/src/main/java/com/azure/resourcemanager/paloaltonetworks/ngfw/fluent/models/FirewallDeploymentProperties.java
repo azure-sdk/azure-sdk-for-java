@@ -6,6 +6,10 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.DnsSettings;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.FrontendSetting;
@@ -15,72 +19,73 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PlanData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Properties specific to the Firewall resource deployment.
  */
 @Fluent
-public final class FirewallDeploymentProperties {
+public final class FirewallDeploymentProperties implements JsonSerializable<FirewallDeploymentProperties> {
     /*
      * panEtag info
      */
-    @JsonProperty(value = "panEtag")
     private String panEtag;
 
     /*
      * Network settings
      */
-    @JsonProperty(value = "networkProfile", required = true)
     private NetworkProfile networkProfile;
 
     /*
      * Panorama Managed: Default is False. Default will be CloudSec managed
      */
-    @JsonProperty(value = "isPanoramaManaged")
     private BooleanEnum isPanoramaManaged;
+
+    /*
+     * Strata Cloud Managed: Default is False. Default will be CloudSec managed
+     */
+    private BooleanEnum isStrataCloudManaged;
 
     /*
      * Panorama Configuration
      */
-    @JsonProperty(value = "panoramaConfig")
     private PanoramaConfig panoramaConfig;
+
+    /*
+     * Strata Cloud Manager Configuration, only applicable if Strata Cloud Manager is selected.
+     */
+    private StrataCloudManagerConfig strataCloudManagerConfig;
 
     /*
      * Associated Rulestack
      */
-    @JsonProperty(value = "associatedRulestack")
     private RulestackDetails associatedRulestack;
 
     /*
      * DNS settings for Firewall
      */
-    @JsonProperty(value = "dnsSettings", required = true)
     private DnsSettings dnsSettings;
 
     /*
      * Frontend settings for Firewall
      */
-    @JsonProperty(value = "frontEndSettings")
     private List<FrontendSetting> frontEndSettings;
 
     /*
      * Provisioning state of the resource.
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * Billing plan information.
      */
-    @JsonProperty(value = "planData", required = true)
     private PlanData planData;
 
     /*
      * Marketplace details
      */
-    @JsonProperty(value = "marketplaceDetails", required = true)
     private MarketplaceDetails marketplaceDetails;
 
     /**
@@ -150,6 +155,26 @@ public final class FirewallDeploymentProperties {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.isStrataCloudManaged;
+    }
+
+    /**
+     * Set the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @param isStrataCloudManaged the isStrataCloudManaged value to set.
+     * @return the FirewallDeploymentProperties object itself.
+     */
+    public FirewallDeploymentProperties withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        this.isStrataCloudManaged = isStrataCloudManaged;
+        return this;
+    }
+
+    /**
      * Get the panoramaConfig property: Panorama Configuration.
      * 
      * @return the panoramaConfig value.
@@ -166,6 +191,29 @@ public final class FirewallDeploymentProperties {
      */
     public FirewallDeploymentProperties withPanoramaConfig(PanoramaConfig panoramaConfig) {
         this.panoramaConfig = panoramaConfig;
+        return this;
+    }
+
+    /**
+     * Get the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @return the strataCloudManagerConfig value.
+     */
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.strataCloudManagerConfig;
+    }
+
+    /**
+     * Set the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @param strataCloudManagerConfig the strataCloudManagerConfig value to set.
+     * @return the FirewallDeploymentProperties object itself.
+     */
+    public FirewallDeploymentProperties
+        withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        this.strataCloudManagerConfig = strataCloudManagerConfig;
         return this;
     }
 
@@ -285,20 +333,25 @@ public final class FirewallDeploymentProperties {
      */
     public void validate() {
         if (networkProfile() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property networkProfile in model FirewallDeploymentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property networkProfile in model FirewallDeploymentProperties"));
         } else {
             networkProfile().validate();
         }
         if (panoramaConfig() != null) {
             panoramaConfig().validate();
         }
+        if (strataCloudManagerConfig() != null) {
+            strataCloudManagerConfig().validate();
+        }
         if (associatedRulestack() != null) {
             associatedRulestack().validate();
         }
         if (dnsSettings() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dnsSettings in model FirewallDeploymentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dnsSettings in model FirewallDeploymentProperties"));
         } else {
             dnsSettings().validate();
         }
@@ -306,18 +359,98 @@ public final class FirewallDeploymentProperties {
             frontEndSettings().forEach(e -> e.validate());
         }
         if (planData() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property planData in model FirewallDeploymentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property planData in model FirewallDeploymentProperties"));
         } else {
             planData().validate();
         }
         if (marketplaceDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property marketplaceDetails in model FirewallDeploymentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property marketplaceDetails in model FirewallDeploymentProperties"));
         } else {
             marketplaceDetails().validate();
         }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(FirewallDeploymentProperties.class);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
+        jsonWriter.writeJsonField("dnsSettings", this.dnsSettings);
+        jsonWriter.writeJsonField("planData", this.planData);
+        jsonWriter.writeJsonField("marketplaceDetails", this.marketplaceDetails);
+        jsonWriter.writeStringField("panEtag", this.panEtag);
+        jsonWriter.writeStringField("isPanoramaManaged",
+            this.isPanoramaManaged == null ? null : this.isPanoramaManaged.toString());
+        jsonWriter.writeStringField("isStrataCloudManaged",
+            this.isStrataCloudManaged == null ? null : this.isStrataCloudManaged.toString());
+        jsonWriter.writeJsonField("panoramaConfig", this.panoramaConfig);
+        jsonWriter.writeJsonField("strataCloudManagerConfig", this.strataCloudManagerConfig);
+        jsonWriter.writeJsonField("associatedRulestack", this.associatedRulestack);
+        jsonWriter.writeArrayField("frontEndSettings", this.frontEndSettings,
+            (writer, element) -> writer.writeJson(element));
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of FirewallDeploymentProperties from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of FirewallDeploymentProperties if the JsonReader was pointing to an instance of it, or null
+     * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the FirewallDeploymentProperties.
+     */
+    public static FirewallDeploymentProperties fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            FirewallDeploymentProperties deserializedFirewallDeploymentProperties = new FirewallDeploymentProperties();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("networkProfile".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.networkProfile = NetworkProfile.fromJson(reader);
+                } else if ("dnsSettings".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.dnsSettings = DnsSettings.fromJson(reader);
+                } else if ("planData".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.planData = PlanData.fromJson(reader);
+                } else if ("marketplaceDetails".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.marketplaceDetails = MarketplaceDetails.fromJson(reader);
+                } else if ("panEtag".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.panEtag = reader.getString();
+                } else if ("isPanoramaManaged".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.isPanoramaManaged
+                        = BooleanEnum.fromString(reader.getString());
+                } else if ("isStrataCloudManaged".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.isStrataCloudManaged
+                        = BooleanEnum.fromString(reader.getString());
+                } else if ("panoramaConfig".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.panoramaConfig = PanoramaConfig.fromJson(reader);
+                } else if ("strataCloudManagerConfig".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.strataCloudManagerConfig
+                        = StrataCloudManagerConfig.fromJson(reader);
+                } else if ("associatedRulestack".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.associatedRulestack = RulestackDetails.fromJson(reader);
+                } else if ("frontEndSettings".equals(fieldName)) {
+                    List<FrontendSetting> frontEndSettings
+                        = reader.readArray(reader1 -> FrontendSetting.fromJson(reader1));
+                    deserializedFirewallDeploymentProperties.frontEndSettings = frontEndSettings;
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedFirewallDeploymentProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedFirewallDeploymentProperties;
+        });
+    }
 }
