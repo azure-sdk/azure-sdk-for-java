@@ -1,14 +1,415 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2024-11-18)
+
+- Azure Resource Manager Kusto client library for Java. This package contains Microsoft Azure SDK for Kusto Management SDK. The Azure Kusto management API provides a RESTful set of web services that interact with Azure Kusto services to manage your clusters and databases. The API enables you to create, update, and delete clusters and databases. Package tag package-2024-04. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.FollowerDatabaseDefinitionGet` was added
 
-### Bugs Fixed
+* `models.FollowerDatabaseListResultGet` was added
 
-### Other Changes
+* `models.ScriptLevel` was added
+
+* `models.ZoneStatus` was added
+
+* `models.CalloutType` was added
+
+* `models.CalloutPolicyToRemove` was added
+
+* `models.PrincipalPermissionsAction` was added
+
+* `models.CalloutPoliciesList` was added
+
+* `models.OutboundAccess` was added
+
+* `models.CalloutPolicy` was added
+
+#### `models.DataConnection` was modified
+
+* `kind()` was added
+
+#### `models.ListResourceSkusResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.VirtualNetworkConfiguration` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DatabasePrincipalListRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureCapacity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SkuLocationInfoItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ScriptListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IotHubDataConnection` was modified
+
+* `kind()` was added
+* `id()` was added
+* `type()` was added
+* `name()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Clusters` was modified
+
+* `removeCalloutPolicy(java.lang.String,java.lang.String,models.CalloutPolicyToRemove)` was added
+* `listFollowerDatabasesGet(java.lang.String,java.lang.String)` was added
+* `listCalloutPolicies(java.lang.String,java.lang.String)` was added
+* `addCalloutPolicies(java.lang.String,java.lang.String,models.CalloutPoliciesList,com.azure.core.util.Context)` was added
+* `listCalloutPolicies(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `addCalloutPolicies(java.lang.String,java.lang.String,models.CalloutPoliciesList)` was added
+* `listFollowerDatabasesGet(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `removeCalloutPolicy(java.lang.String,java.lang.String,models.CalloutPolicyToRemove,com.azure.core.util.Context)` was added
+
+#### `models.ResourceSkuZoneDetails` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.KeyVaultProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SandboxCustomImagesListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkuDescriptionList` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterPrincipalAssignmentListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DataConnectionValidationResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DatabasePrincipalAssignmentListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ResourceSkuCapabilities` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventHubDataConnection` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `kind()` was added
+* `name()` was added
+* `id()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentityUserAssignedIdentities` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OptimizedAutoscale` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Script$Definition` was modified
+
+* `withScriptLevel(models.ScriptLevel)` was added
+* `withPrincipalPermissionsAction(models.PrincipalPermissionsAction)` was added
+
+#### `models.ClusterPrincipalAssignmentCheckNameRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AttachedDatabaseConfigurationsCheckNameRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Identity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SandboxCustomImage$Definition` was modified
+
+* `withBaseImageName(java.lang.String)` was added
+
+#### `models.EventGridDataConnection` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `id()` was added
+* `name()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `kind()` was added
+
+#### `models.PrivateEndpointProperty` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AcceptedAudiences` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DatabasePrincipalAssignmentCheckNameRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DatabaseInviteFollowerRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TrustedExternalTenant` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DataConnectionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Cluster` was modified
+
+* `zoneStatus()` was added
+* `addCalloutPolicies(models.CalloutPoliciesList,com.azure.core.util.Context)` was added
+* `calloutPolicies()` was added
+* `removeCalloutPolicy(models.CalloutPolicyToRemove)` was added
+* `addCalloutPolicies(models.CalloutPoliciesList)` was added
+* `listCalloutPolicies(com.azure.core.util.Context)` was added
+* `listCalloutPolicies()` was added
+* `removeCalloutPolicy(models.CalloutPolicyToRemove,com.azure.core.util.Context)` was added
+
+#### `models.ReadOnlyFollowingDatabase` was modified
+
+* `name()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `id()` was added
+* `kind()` was added
+
+#### `models.ClusterCheckNameRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SandboxCustomImage` was modified
+
+* `baseImageName()` was added
+
+#### `models.EndpointDependency` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SuspensionDetails` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EndpointDetail` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Cluster$Definition` was modified
+
+* `withCalloutPolicies(java.util.List)` was added
+
+#### `models.DatabaseListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FollowerDatabaseListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateLinkServiceConnectionStateProperty` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Script` was modified
+
+* `principalPermissionsAction()` was added
+* `scriptLevel()` was added
+
+#### `models.SandboxCustomImagesCheckNameRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `zoneStatus()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withCalloutPolicies(java.util.List)` was added
+* `name()` was added
+* `calloutPolicies()` was added
+* `id()` was added
+
+#### `models.ReadWriteDatabase` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `id()` was added
+* `name()` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `kind()` was added
+
+#### `models.DataConnectionCheckNameRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SandboxCustomImage$Update` was modified
+
+* `withBaseImageName(java.lang.String)` was added
+
+#### `models.TableLevelSharingProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Cluster$Update` was modified
+
+* `withCalloutPolicies(java.util.List)` was added
+
+#### `models.ScriptCheckNameRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AzureSku` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Script$Update` was modified
+
+* `withScriptLevel(models.ScriptLevel)` was added
+* `withPrincipalPermissionsAction(models.PrincipalPermissionsAction)` was added
+
+#### `models.DatabaseStatistics` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OutboundNetworkDependenciesEndpointListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AttachedDatabaseConfigurationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.CosmosDbDataConnection` was modified
+
+* `id()` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `name()` was added
+* `kind()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterMigrateRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Database` was modified
+
+* `kind()` was added
+
+#### `models.MigrationClusterProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedPrivateEndpointsCheckNameRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CheckNameRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ManagedPrivateEndpointListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnectionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.LanguageExtensionsList` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.0.0 (2023-10-20)
 
