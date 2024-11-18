@@ -4,17 +4,18 @@
 
 package com.azure.resourcemanager.hdinsight.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Gateway settings.
  */
-@Immutable
+@Fluent
 public final class GatewaySettingsInner implements JsonSerializable<GatewaySettingsInner> {
     /*
      * Indicates whether or not the gateway settings based authorization is enabled.
@@ -30,6 +31,11 @@ public final class GatewaySettingsInner implements JsonSerializable<GatewaySetti
      * The gateway settings user password.
      */
     private String password;
+
+    /*
+     * List of Entra user emails for gateway access.
+     */
+    private List<String> entraUsers;
 
     /**
      * Creates an instance of GatewaySettingsInner class.
@@ -66,6 +72,26 @@ public final class GatewaySettingsInner implements JsonSerializable<GatewaySetti
     }
 
     /**
+     * Get the entraUsers property: List of Entra user emails for gateway access.
+     * 
+     * @return the entraUsers value.
+     */
+    public List<String> entraUsers() {
+        return this.entraUsers;
+    }
+
+    /**
+     * Set the entraUsers property: List of Entra user emails for gateway access.
+     * 
+     * @param entraUsers the entraUsers value to set.
+     * @return the GatewaySettingsInner object itself.
+     */
+    public GatewaySettingsInner withEntraUsers(List<String> entraUsers) {
+        this.entraUsers = entraUsers;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -79,6 +105,7 @@ public final class GatewaySettingsInner implements JsonSerializable<GatewaySetti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeArrayField("entraUsers", this.entraUsers, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -103,6 +130,9 @@ public final class GatewaySettingsInner implements JsonSerializable<GatewaySetti
                     deserializedGatewaySettingsInner.username = reader.getString();
                 } else if ("restAuthCredential.password".equals(fieldName)) {
                     deserializedGatewaySettingsInner.password = reader.getString();
+                } else if ("entraUsers".equals(fieldName)) {
+                    List<String> entraUsers = reader.readArray(reader1 -> reader1.getString());
+                    deserializedGatewaySettingsInner.entraUsers = entraUsers;
                 } else {
                     reader.skipChildren();
                 }
