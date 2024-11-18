@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,7 +20,6 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
@@ -31,12 +31,13 @@ import com.azure.resourcemanager.applicationinsights.implementation.ApplicationI
 import com.azure.resourcemanager.applicationinsights.implementation.ComponentAvailableFeaturesImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ComponentCurrentBillingFeaturesImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ComponentFeatureCapabilitiesImpl;
+import com.azure.resourcemanager.applicationinsights.implementation.ComponentLinkedStorageAccountsOperationsImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ComponentQuotaStatusImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ComponentsImpl;
+import com.azure.resourcemanager.applicationinsights.implementation.DeletedWorkbooksImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ExportConfigurationsImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.FavoritesImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.LiveTokensImpl;
-import com.azure.resourcemanager.applicationinsights.implementation.MyWorkbooksImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.OperationsImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.ProactiveDetectionConfigurationsImpl;
 import com.azure.resourcemanager.applicationinsights.implementation.WebTestLocationsImpl;
@@ -50,12 +51,13 @@ import com.azure.resourcemanager.applicationinsights.models.ApiKeys;
 import com.azure.resourcemanager.applicationinsights.models.ComponentAvailableFeatures;
 import com.azure.resourcemanager.applicationinsights.models.ComponentCurrentBillingFeatures;
 import com.azure.resourcemanager.applicationinsights.models.ComponentFeatureCapabilities;
+import com.azure.resourcemanager.applicationinsights.models.ComponentLinkedStorageAccountsOperations;
 import com.azure.resourcemanager.applicationinsights.models.ComponentQuotaStatus;
 import com.azure.resourcemanager.applicationinsights.models.Components;
+import com.azure.resourcemanager.applicationinsights.models.DeletedWorkbooks;
 import com.azure.resourcemanager.applicationinsights.models.ExportConfigurations;
 import com.azure.resourcemanager.applicationinsights.models.Favorites;
 import com.azure.resourcemanager.applicationinsights.models.LiveTokens;
-import com.azure.resourcemanager.applicationinsights.models.MyWorkbooks;
 import com.azure.resourcemanager.applicationinsights.models.Operations;
 import com.azure.resourcemanager.applicationinsights.models.ProactiveDetectionConfigurations;
 import com.azure.resourcemanager.applicationinsights.models.WebTestLocations;
@@ -70,7 +72,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to ApplicationInsightsManager. Composite Swagger for Application Insights Management Client. */
+/**
+ * Entry point to ApplicationInsightsManager.
+ * Composite Swagger for Application Insights Management Client.
+ */
 public final class ApplicationInsightsManager {
     private Components components;
 
@@ -104,11 +109,13 @@ public final class ApplicationInsightsManager {
 
     private WorkbookTemplates workbookTemplates;
 
-    private MyWorkbooks myWorkbooks;
-
     private Workbooks workbooks;
 
     private LiveTokens liveTokens;
+
+    private ComponentLinkedStorageAccountsOperations componentLinkedStorageAccountsOperations;
+
+    private DeletedWorkbooks deletedWorkbooks;
 
     private final ApplicationInsightsManagementClient clientObject;
 
@@ -124,7 +131,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Creates an instance of ApplicationInsights service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the ApplicationInsights service API instance.
@@ -137,7 +144,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Creates an instance of ApplicationInsights service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the ApplicationInsights service API instance.
@@ -150,14 +157,16 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets a Configurable instance that can be used to create ApplicationInsightsManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new ApplicationInsightsManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -229,8 +238,8 @@ public final class ApplicationInsightsManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -272,7 +281,7 @@ public final class ApplicationInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.applicationinsights")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -305,7 +314,7 @@ public final class ApplicationInsightsManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -320,7 +329,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of Components. It manages ApplicationInsightsComponent.
-     *
+     * 
      * @return Resource collection API of Components.
      */
     public Components components() {
@@ -332,7 +341,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of Annotations.
-     *
+     * 
      * @return Resource collection API of Annotations.
      */
     public Annotations annotations() {
@@ -344,7 +353,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ApiKeys.
-     *
+     * 
      * @return Resource collection API of ApiKeys.
      */
     public ApiKeys apiKeys() {
@@ -356,7 +365,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ExportConfigurations.
-     *
+     * 
      * @return Resource collection API of ExportConfigurations.
      */
     public ExportConfigurations exportConfigurations() {
@@ -368,7 +377,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ComponentCurrentBillingFeatures.
-     *
+     * 
      * @return Resource collection API of ComponentCurrentBillingFeatures.
      */
     public ComponentCurrentBillingFeatures componentCurrentBillingFeatures() {
@@ -381,7 +390,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ComponentQuotaStatus.
-     *
+     * 
      * @return Resource collection API of ComponentQuotaStatus.
      */
     public ComponentQuotaStatus componentQuotaStatus() {
@@ -393,7 +402,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ComponentFeatureCapabilities.
-     *
+     * 
      * @return Resource collection API of ComponentFeatureCapabilities.
      */
     public ComponentFeatureCapabilities componentFeatureCapabilities() {
@@ -406,7 +415,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ComponentAvailableFeatures.
-     *
+     * 
      * @return Resource collection API of ComponentAvailableFeatures.
      */
     public ComponentAvailableFeatures componentAvailableFeatures() {
@@ -419,7 +428,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of ProactiveDetectionConfigurations.
-     *
+     * 
      * @return Resource collection API of ProactiveDetectionConfigurations.
      */
     public ProactiveDetectionConfigurations proactiveDetectionConfigurations() {
@@ -432,7 +441,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of WorkItemConfigurations.
-     *
+     * 
      * @return Resource collection API of WorkItemConfigurations.
      */
     public WorkItemConfigurations workItemConfigurations() {
@@ -445,7 +454,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of Favorites.
-     *
+     * 
      * @return Resource collection API of Favorites.
      */
     public Favorites favorites() {
@@ -457,7 +466,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of WebTestLocations.
-     *
+     * 
      * @return Resource collection API of WebTestLocations.
      */
     public WebTestLocations webTestLocations() {
@@ -469,7 +478,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of WebTests. It manages WebTest.
-     *
+     * 
      * @return Resource collection API of WebTests.
      */
     public WebTests webTests() {
@@ -481,7 +490,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of AnalyticsItems.
-     *
+     * 
      * @return Resource collection API of AnalyticsItems.
      */
     public AnalyticsItems analyticsItems() {
@@ -493,7 +502,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -505,7 +514,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of WorkbookTemplates. It manages WorkbookTemplate.
-     *
+     * 
      * @return Resource collection API of WorkbookTemplates.
      */
     public WorkbookTemplates workbookTemplates() {
@@ -516,20 +525,8 @@ public final class ApplicationInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of MyWorkbooks. It manages MyWorkbook.
-     *
-     * @return Resource collection API of MyWorkbooks.
-     */
-    public MyWorkbooks myWorkbooks() {
-        if (this.myWorkbooks == null) {
-            this.myWorkbooks = new MyWorkbooksImpl(clientObject.getMyWorkbooks(), this);
-        }
-        return myWorkbooks;
-    }
-
-    /**
      * Gets the resource collection API of Workbooks. It manages Workbook.
-     *
+     * 
      * @return Resource collection API of Workbooks.
      */
     public Workbooks workbooks() {
@@ -541,7 +538,7 @@ public final class ApplicationInsightsManager {
 
     /**
      * Gets the resource collection API of LiveTokens.
-     *
+     * 
      * @return Resource collection API of LiveTokens.
      */
     public LiveTokens liveTokens() {
@@ -552,9 +549,35 @@ public final class ApplicationInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of ComponentLinkedStorageAccountsOperations. It manages
+     * ComponentLinkedStorageAccounts.
+     * 
+     * @return Resource collection API of ComponentLinkedStorageAccountsOperations.
+     */
+    public ComponentLinkedStorageAccountsOperations componentLinkedStorageAccountsOperations() {
+        if (this.componentLinkedStorageAccountsOperations == null) {
+            this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsImpl(
+                clientObject.getComponentLinkedStorageAccountsOperations(), this);
+        }
+        return componentLinkedStorageAccountsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of DeletedWorkbooks.
+     * 
+     * @return Resource collection API of DeletedWorkbooks.
+     */
+    public DeletedWorkbooks deletedWorkbooks() {
+        if (this.deletedWorkbooks == null) {
+            this.deletedWorkbooks = new DeletedWorkbooksImpl(clientObject.getDeletedWorkbooks(), this);
+        }
+        return deletedWorkbooks;
+    }
+
+    /**
      * Gets wrapped service client ApplicationInsightsManagementClient providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client ApplicationInsightsManagementClient.
      */
     public ApplicationInsightsManagementClient serviceClient() {
