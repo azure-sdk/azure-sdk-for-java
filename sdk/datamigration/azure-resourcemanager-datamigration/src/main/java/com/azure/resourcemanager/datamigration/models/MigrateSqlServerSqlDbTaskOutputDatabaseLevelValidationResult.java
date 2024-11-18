@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 
 /**
- * Database validation result for Sql Server to Azure Sql DB migration.
+ * The MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult model.
  */
 @Immutable
 public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
@@ -22,6 +22,11 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
      * Result type
      */
     private String resultType = "MigrationDatabaseLevelValidationOutput";
+
+    /*
+     * Result identifier
+     */
+    private String id;
 
     /*
      * Migration Identifier
@@ -68,11 +73,6 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
      */
     private ValidationStatus status;
 
-    /*
-     * Result identifier
-     */
-    private String id;
-
     /**
      * Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult class.
      */
@@ -87,6 +87,16 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     @Override
     public String resultType() {
         return this.resultType;
+    }
+
+    /**
+     * Get the id property: Result identifier.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -173,16 +183,6 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     }
 
     /**
-     * Get the id property: Result identifier.
-     * 
-     * @return the id value.
-     */
-    @Override
-    public String id() {
-        return this.id;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -228,11 +228,11 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("id".equals(fieldName)) {
-                    deserializedMigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult.id = reader.getString();
-                } else if ("resultType".equals(fieldName)) {
+                if ("resultType".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult.resultType
                         = reader.getString();
+                } else if ("id".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult.id = reader.getString();
                 } else if ("migrationId".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult.migrationId
                         = reader.getString();

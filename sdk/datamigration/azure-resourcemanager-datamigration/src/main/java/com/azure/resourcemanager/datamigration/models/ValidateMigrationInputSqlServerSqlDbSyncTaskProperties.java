@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for task that validates migration input for SQL to Azure SQL DB sync migrations.
@@ -20,7 +22,7 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
     /*
      * Task type.
      */
-    private String taskType = "ValidateMigrationInput.SqlServer.SqlDb.Sync";
+    private TaskType taskType = TaskType.VALIDATE_MIGRATION_INPUT_SQL_SERVER_SQL_DB_SYNC;
 
     /*
      * Task input
@@ -35,7 +37,7 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
     /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +61,7 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -99,7 +101,7 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -121,6 +123,15 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ValidateMigrationInputSqlServerSqlDbSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -147,7 +158,8 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
         return jsonWriter.writeEndObject();
     }
@@ -176,10 +188,15 @@ public final class ValidateMigrationInputSqlServerSqlDbSyncTaskProperties extend
                     deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.state
                         = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.taskType = reader.getString();
+                    deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.taskType
+                        = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedValidateMigrationInputSqlServerSqlDbSyncTaskProperties.input
                         = ValidateSyncMigrationInputSqlServerTaskInput.fromJson(reader);

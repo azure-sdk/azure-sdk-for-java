@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that migrates MySQL databases to Azure Database for MySQL for online migrations.
@@ -20,7 +22,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
     /*
      * Task type.
      */
-    private String taskType = "Migrate.MySql.AzureDbForMySql.Sync";
+    private TaskType taskType = TaskType.MIGRATE_MY_SQL_AZURE_DB_FOR_MY_SQL_SYNC;
 
     /*
      * Task input
@@ -35,7 +37,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
     /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +61,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -98,7 +100,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -120,6 +122,15 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MigrateMySqlAzureDbForMySqlSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -146,7 +157,8 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
         return jsonWriter.writeEndObject();
     }
@@ -174,10 +186,15 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskProperties extends Project
                     deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.state
                         = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.taskType = reader.getString();
+                    deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.taskType
+                        = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedMigrateMySqlAzureDbForMySqlSyncTaskProperties.input
                         = MigrateMySqlAzureDbForMySqlSyncTaskInput.fromJson(reader);

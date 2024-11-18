@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Validation result for Sql Server to Azure Sql DB migration.
+ * The MigrateSqlServerSqlDbTaskOutputValidationResult model.
  */
 @Fluent
 public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends MigrateSqlServerSqlDbTaskOutput {
@@ -20,6 +20,11 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
      * Result type
      */
     private String resultType = "MigrationValidationOutput";
+
+    /*
+     * Migration validation result identifier
+     */
+    private String id;
 
     /*
      * Migration Identifier
@@ -37,11 +42,6 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
      */
     private ValidationStatus status;
 
-    /*
-     * Result identifier
-     */
-    private String id;
-
     /**
      * Creates an instance of MigrateSqlServerSqlDbTaskOutputValidationResult class.
      */
@@ -56,6 +56,16 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
     @Override
     public String resultType() {
         return this.resultType;
+    }
+
+    /**
+     * Get the id property: Migration validation result identifier.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -96,16 +106,6 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
      */
     public ValidationStatus status() {
         return this.status;
-    }
-
-    /**
-     * Get the id property: Result identifier.
-     * 
-     * @return the id value.
-     */
-    @Override
-    public String id() {
-        return this.id;
     }
 
     /**
@@ -151,10 +151,10 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("id".equals(fieldName)) {
-                    deserializedMigrateSqlServerSqlDbTaskOutputValidationResult.id = reader.getString();
-                } else if ("resultType".equals(fieldName)) {
+                if ("resultType".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskOutputValidationResult.resultType = reader.getString();
+                } else if ("id".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbTaskOutputValidationResult.id = reader.getString();
                 } else if ("migrationId".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskOutputValidationResult.migrationId = reader.getString();
                 } else if ("summaryResults".equals(fieldName)) {

@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that validates connection to Azure SQL Database Managed Instance.
@@ -20,7 +22,7 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
     /*
      * Task type.
      */
-    private String taskType = "ConnectToTarget.AzureSqlDbMI.Sync.LRS";
+    private TaskType taskType = TaskType.CONNECT_TO_TARGET_AZURE_SQL_DB_MI_SYNC_LRS;
 
     /*
      * Task input
@@ -35,7 +37,7 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
     /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +61,7 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -98,7 +100,7 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -120,6 +122,15 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToTargetSqlMISyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -146,7 +157,8 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
         return jsonWriter.writeEndObject();
     }
@@ -173,10 +185,15 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
                 } else if ("state".equals(fieldName)) {
                     deserializedConnectToTargetSqlMISyncTaskProperties.state = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedConnectToTargetSqlMISyncTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedConnectToTargetSqlMISyncTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedConnectToTargetSqlMISyncTaskProperties.taskType = reader.getString();
+                    deserializedConnectToTargetSqlMISyncTaskProperties.taskType
+                        = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedConnectToTargetSqlMISyncTaskProperties.input
                         = ConnectToTargetSqlMISyncTaskInput.fromJson(reader);

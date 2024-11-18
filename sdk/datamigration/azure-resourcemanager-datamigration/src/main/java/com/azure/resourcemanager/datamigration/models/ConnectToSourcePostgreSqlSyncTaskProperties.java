@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that validates connection to PostgreSQL server and source server requirements for online
@@ -21,7 +23,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     /*
      * Task type.
      */
-    private String taskType = "ConnectToSource.PostgreSql.Sync";
+    private TaskType taskType = TaskType.CONNECT_TO_SOURCE_POSTGRE_SQL_SYNC;
 
     /*
      * Task input
@@ -36,7 +38,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -60,7 +62,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -99,7 +101,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -121,6 +123,15 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToSourcePostgreSqlSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -147,7 +158,8 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
         return jsonWriter.writeEndObject();
     }
@@ -175,10 +187,15 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
                     deserializedConnectToSourcePostgreSqlSyncTaskProperties.state
                         = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedConnectToSourcePostgreSqlSyncTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedConnectToSourcePostgreSqlSyncTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedConnectToSourcePostgreSqlSyncTaskProperties.taskType = reader.getString();
+                    deserializedConnectToSourcePostgreSqlSyncTaskProperties.taskType
+                        = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedConnectToSourcePostgreSqlSyncTaskProperties.input
                         = ConnectToSourcePostgreSqlSyncTaskInput.fromJson(reader);

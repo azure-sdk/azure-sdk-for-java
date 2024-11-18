@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations.
@@ -20,7 +22,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     /*
      * Task type.
      */
-    private String taskType = "Migrate.SqlServer.AzureSqlDb.Sync";
+    private TaskType taskType = TaskType.MIGRATE_SQL_SERVER_AZURE_SQL_DB_SYNC;
 
     /*
      * Task input
@@ -35,7 +37,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +61,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -98,7 +100,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -120,6 +122,15 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MigrateSqlServerSqlDbSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -146,7 +157,8 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
         return jsonWriter.writeEndObject();
     }
@@ -174,10 +186,15 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
                     deserializedMigrateSqlServerSqlDbSyncTaskProperties.state
                         = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedMigrateSqlServerSqlDbSyncTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMigrateSqlServerSqlDbSyncTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedMigrateSqlServerSqlDbSyncTaskProperties.taskType = reader.getString();
+                    deserializedMigrateSqlServerSqlDbSyncTaskProperties.taskType
+                        = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbSyncTaskProperties.input
                         = MigrateSqlServerSqlDbSyncTaskInput.fromJson(reader);

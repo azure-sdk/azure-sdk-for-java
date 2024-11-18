@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that collects user tables for the given list of databases.
@@ -20,7 +22,7 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     /*
      * Task type.
      */
-    private String taskType = "GetUserTables.Sql";
+    private TaskType taskType = TaskType.GET_USER_TABLES_SQL;
 
     /*
      * Task input
@@ -33,9 +35,14 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     private List<GetUserTablesSqlTaskOutput> output;
 
     /*
+     * Task id
+     */
+    private String taskId;
+
+    /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +66,7 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -93,12 +100,32 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     }
 
     /**
+     * Get the taskId property: Task id.
+     * 
+     * @return the taskId value.
+     */
+    public String taskId() {
+        return this.taskId;
+    }
+
+    /**
+     * Set the taskId property: Task id.
+     * 
+     * @param taskId the taskId value to set.
+     * @return the GetUserTablesSqlTaskProperties object itself.
+     */
+    public GetUserTablesSqlTaskProperties withTaskId(String taskId) {
+        this.taskId = taskId;
+        return this;
+    }
+
+    /**
      * Get the commands property: Array of command properties.
      * 
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -120,6 +147,15 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GetUserTablesSqlTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -146,8 +182,10 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
+        jsonWriter.writeStringField("taskId", this.taskId);
         return jsonWriter.writeEndObject();
     }
 
@@ -173,16 +211,22 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
                 } else if ("state".equals(fieldName)) {
                     deserializedGetUserTablesSqlTaskProperties.state = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedGetUserTablesSqlTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedGetUserTablesSqlTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedGetUserTablesSqlTaskProperties.taskType = reader.getString();
+                    deserializedGetUserTablesSqlTaskProperties.taskType = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedGetUserTablesSqlTaskProperties.input = GetUserTablesSqlTaskInput.fromJson(reader);
                 } else if ("output".equals(fieldName)) {
                     List<GetUserTablesSqlTaskOutput> output
                         = reader.readArray(reader1 -> GetUserTablesSqlTaskOutput.fromJson(reader1));
                     deserializedGetUserTablesSqlTaskProperties.output = output;
+                } else if ("taskId".equals(fieldName)) {
+                    deserializedGetUserTablesSqlTaskProperties.taskId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

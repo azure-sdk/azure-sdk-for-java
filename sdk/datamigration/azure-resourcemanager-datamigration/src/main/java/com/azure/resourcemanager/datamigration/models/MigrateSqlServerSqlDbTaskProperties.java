@@ -9,8 +9,10 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that migrates on-prem SQL Server databases to Azure SQL Database.
@@ -20,7 +22,7 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
     /*
      * Task type.
      */
-    private String taskType = "Migrate.SqlServer.SqlDb";
+    private TaskType taskType = TaskType.MIGRATE_SQL_SERVER_SQL_DB;
 
     /*
      * Task input
@@ -33,9 +35,24 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
     private List<MigrateSqlServerSqlDbTaskOutput> output;
 
     /*
+     * task id
+     */
+    private String taskId;
+
+    /*
+     * whether the task can be cloned or not
+     */
+    private Boolean isCloneable;
+
+    /*
+     * DateTime in UTC when the task was created
+     */
+    private String createdOn;
+
+    /*
      * Array of command properties.
      */
-    private List<CommandProperties> commands;
+    private List<CommandPropertiesInner> commands;
 
     /*
      * The state of the task. This is ignored if submitted.
@@ -59,7 +76,7 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
      * @return the taskType value.
      */
     @Override
-    public String taskType() {
+    public TaskType taskType() {
         return this.taskType;
     }
 
@@ -93,12 +110,72 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
     }
 
     /**
+     * Get the taskId property: task id.
+     * 
+     * @return the taskId value.
+     */
+    public String taskId() {
+        return this.taskId;
+    }
+
+    /**
+     * Set the taskId property: task id.
+     * 
+     * @param taskId the taskId value to set.
+     * @return the MigrateSqlServerSqlDbTaskProperties object itself.
+     */
+    public MigrateSqlServerSqlDbTaskProperties withTaskId(String taskId) {
+        this.taskId = taskId;
+        return this;
+    }
+
+    /**
+     * Get the isCloneable property: whether the task can be cloned or not.
+     * 
+     * @return the isCloneable value.
+     */
+    public Boolean isCloneable() {
+        return this.isCloneable;
+    }
+
+    /**
+     * Set the isCloneable property: whether the task can be cloned or not.
+     * 
+     * @param isCloneable the isCloneable value to set.
+     * @return the MigrateSqlServerSqlDbTaskProperties object itself.
+     */
+    public MigrateSqlServerSqlDbTaskProperties withIsCloneable(Boolean isCloneable) {
+        this.isCloneable = isCloneable;
+        return this;
+    }
+
+    /**
+     * Get the createdOn property: DateTime in UTC when the task was created.
+     * 
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.createdOn;
+    }
+
+    /**
+     * Set the createdOn property: DateTime in UTC when the task was created.
+     * 
+     * @param createdOn the createdOn value to set.
+     * @return the MigrateSqlServerSqlDbTaskProperties object itself.
+     */
+    public MigrateSqlServerSqlDbTaskProperties withCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    /**
      * Get the commands property: Array of command properties.
      * 
      * @return the commands value.
      */
     @Override
-    public List<CommandProperties> commands() {
+    public List<CommandPropertiesInner> commands() {
         return this.commands;
     }
 
@@ -120,6 +197,15 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
     @Override
     public List<ManagementError> errors() {
         return this.errors;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MigrateSqlServerSqlDbTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
@@ -146,8 +232,12 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("taskType", this.taskType);
+        jsonWriter.writeMapField("clientData", clientData(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeJsonField("input", this.input);
+        jsonWriter.writeStringField("taskId", this.taskId);
+        jsonWriter.writeBooleanField("isCloneable", this.isCloneable);
+        jsonWriter.writeStringField("createdOn", this.createdOn);
         return jsonWriter.writeEndObject();
     }
 
@@ -173,10 +263,14 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
                 } else if ("state".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskProperties.state = TaskState.fromString(reader.getString());
                 } else if ("commands".equals(fieldName)) {
-                    List<CommandProperties> commands = reader.readArray(reader1 -> CommandProperties.fromJson(reader1));
+                    List<CommandPropertiesInner> commands
+                        = reader.readArray(reader1 -> CommandPropertiesInner.fromJson(reader1));
                     deserializedMigrateSqlServerSqlDbTaskProperties.commands = commands;
+                } else if ("clientData".equals(fieldName)) {
+                    Map<String, String> clientData = reader.readMap(reader1 -> reader1.getString());
+                    deserializedMigrateSqlServerSqlDbTaskProperties.withClientData(clientData);
                 } else if ("taskType".equals(fieldName)) {
-                    deserializedMigrateSqlServerSqlDbTaskProperties.taskType = reader.getString();
+                    deserializedMigrateSqlServerSqlDbTaskProperties.taskType = TaskType.fromString(reader.getString());
                 } else if ("input".equals(fieldName)) {
                     deserializedMigrateSqlServerSqlDbTaskProperties.input
                         = MigrateSqlServerSqlDbTaskInput.fromJson(reader);
@@ -184,6 +278,13 @@ public final class MigrateSqlServerSqlDbTaskProperties extends ProjectTaskProper
                     List<MigrateSqlServerSqlDbTaskOutput> output
                         = reader.readArray(reader1 -> MigrateSqlServerSqlDbTaskOutput.fromJson(reader1));
                     deserializedMigrateSqlServerSqlDbTaskProperties.output = output;
+                } else if ("taskId".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbTaskProperties.taskId = reader.getString();
+                } else if ("isCloneable".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbTaskProperties.isCloneable
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("createdOn".equals(fieldName)) {
+                    deserializedMigrateSqlServerSqlDbTaskProperties.createdOn = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
