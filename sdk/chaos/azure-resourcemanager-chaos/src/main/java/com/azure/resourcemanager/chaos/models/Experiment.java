@@ -76,14 +76,14 @@ public interface Experiment {
      * 
      * @return the steps value.
      */
-    List<ChaosExperimentStep> steps();
+    List<Step> steps();
 
     /**
      * Gets the selectors property: List of selectors.
      * 
      * @return the selectors value.
      */
-    List<ChaosTargetSelector> selectors();
+    List<Selector> selectors();
 
     /**
      * Gets the region of the resource.
@@ -175,7 +175,7 @@ public interface Experiment {
              * @param steps List of steps.
              * @return the next definition stage.
              */
-            WithSelectors withSteps(List<ChaosExperimentStep> steps);
+            WithSelectors withSteps(List<Step> steps);
         }
 
         /**
@@ -188,7 +188,7 @@ public interface Experiment {
              * @param selectors List of selectors.
              * @return the next definition stage.
              */
-            WithCreate withSelectors(List<ChaosTargetSelector> selectors);
+            WithCreate withSelectors(List<Selector> selectors);
         }
 
         /**
