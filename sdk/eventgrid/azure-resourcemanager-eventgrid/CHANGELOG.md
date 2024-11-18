@@ -1,14 +1,981 @@
 # Release History
 
-## 1.2.0-beta.7 (Unreleased)
+## 1.0.0-beta.1 (2024-11-18)
 
-### Features Added
+- Azure Resource Manager EventGrid client library for Java. This package contains Microsoft Azure SDK for EventGrid Management SDK. Azure EventGrid Management Client. Package tag package-2024-06-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.TopicTypePropertiesSupportedScopesForSourceItem` was removed
 
-### Other Changes
+#### `models.EventSubscription$DefinitionStages` was modified
+
+* `withExistingScope(java.lang.String)` was removed in stage 1
+
+#### `models.EventSubscription$Definition` was modified
+
+* `withExistingScope(java.lang.String)` was removed
+
+#### `models.EventSubscriptions` was modified
+
+* `define(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteById(java.lang.String)` was removed
+* `getById(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.PermissionBinding$DefinitionStages` was added
+
+* `models.PartnerDestinationInfo` was added
+
+* `models.PartnerUpdateDestinationInfo` was added
+
+* `models.CaCertificates` was added
+
+* `models.Subscription$Definition` was added
+
+* `models.Namespace$UpdateStages` was added
+
+* `models.SkuName` was added
+
+* `models.DeliveryMode` was added
+
+* `models.Channels` was added
+
+* `models.PartnerNamespaceSharedAccessKeys` was added
+
+* `models.StringEndsWithFilter` was added
+
+* `models.Namespaces` was added
+
+* `models.InlineEventProperties` was added
+
+* `models.Sku` was added
+
+* `models.Channel` was added
+
+* `models.PartnerNamespace` was added
+
+* `models.PartnerConfiguration` was added
+
+* `models.Channel$UpdateStages` was added
+
+* `models.PartnerRegistration$UpdateStages` was added
+
+* `models.BoolEqualsFilter` was added
+
+* `models.UpdateTopicSpacesConfigurationInfo` was added
+
+* `models.DeliveryConfiguration` was added
+
+* `models.PartnerConfigurationUpdateParameters` was added
+
+* `models.TopicSpace$Update` was added
+
+* `models.CaCertificateProvisioningState` was added
+
+* `models.NetworkSecurityPerimeterConfigurationIssueSeverity` was added
+
+* `models.MonitorAlertSeverity` was added
+
+* `models.PermissionBinding$UpdateStages` was added
+
+* `models.UpdateTopicsConfigurationInfo` was added
+
+* `models.StringNotEndsWithFilter` was added
+
+* `models.PermissionType` was added
+
+* `models.FilterOperatorType` was added
+
+* `models.PermissionBindingProvisioningState` was added
+
+* `models.NumberLessThanFilter` was added
+
+* `models.StringNotBeginsWithFilter` was added
+
+* `models.PartnerDestination$Definition` was added
+
+* `models.PartnerTopic$Definition` was added
+
+* `models.DataResidencyBoundary` was added
+
+* `models.StringContainsFilter` was added
+
+* `models.Filter` was added
+
+* `models.ResourceSku` was added
+
+* `models.SubscriptionsListResult` was added
+
+* `models.ResourceKind` was added
+
+* `models.NamespaceTopicsListResult` was added
+
+* `models.NamespaceTopic$Update` was added
+
+* `models.StringNotInFilter` was added
+
+* `models.PartnerClientAuthentication` was added
+
+* `models.CaCertificate$Definition` was added
+
+* `models.CaCertificate$DefinitionStages` was added
+
+* `models.TopicSpaces` was added
+
+* `models.Namespace` was added
+
+* `models.ClientCertificateAuthentication` was added
+
+* `models.Client$Update` was added
+
+* `models.RoutingEnrichments` was added
+
+* `models.ClientGroups` was added
+
+* `models.NamespaceTopics` was added
+
+* `models.NamespaceTopicEventSubscriptions` was added
+
+* `models.NumberNotInFilter` was added
+
+* `models.PartnerEndpointType` was added
+
+* `models.TopicsConfiguration` was added
+
+* `models.PartnerConfigurations` was added
+
+* `models.PartnerRegistration$Definition` was added
+
+* `models.StringBeginsWithFilter` was added
+
+* `models.VerifiedPartners` was added
+
+* `models.TopicSpace` was added
+
+* `models.NamespaceSharedAccessKeys` was added
+
+* `models.NetworkSecurityPerimeterConfigurationIssues` was added
+
+* `models.PartnerTopicActivationState` was added
+
+* `models.PartnerDestinationProvisioningState` was added
+
+* `models.TopicSpacesListResult` was added
+
+* `models.CustomJwtAuthenticationManagedIdentityType` was added
+
+* `models.ClientGroup` was added
+
+* `models.PartnerRegistrationProvisioningState` was added
+
+* `models.TopicSpace$Definition` was added
+
+* `models.StringInFilter` was added
+
+* `models.CaCertificate$Update` was added
+
+* `models.TopicSpacesConfiguration` was added
+
+* `models.DomainEventSubscriptions` was added
+
+* `models.PartnerTopics` was added
+
+* `models.ChannelProvisioningState` was added
+
+* `models.NamespaceSku` was added
+
+* `models.ChannelsListResult` was added
+
+* `models.PartnerDestinations` was added
+
+* `models.PartnerDestination` was added
+
+* `models.DeliverySchema` was added
+
+* `models.NumberInFilter` was added
+
+* `models.CaCertificate` was added
+
+* `models.PartnerRegistration` was added
+
+* `models.TopicSpaceProvisioningState` was added
+
+* `models.PartnerTopicRoutingMode` was added
+
+* `models.ClientGroupProvisioningState` was added
+
+* `models.CustomJwtAuthenticationSettings` was added
+
+* `models.TlsVersion` was added
+
+* `models.NetworkSecurityPerimeterConfigurationProfile` was added
+
+* `models.NumberLessThanOrEqualsFilter` was added
+
+* `models.PartnerTopicInfo` was added
+
+* `models.NetworkSecurityPerimeterAssociationAccessMode` was added
+
+* `models.PartnerNamespace$DefinitionStages` was added
+
+* `models.Channel$Update` was added
+
+* `models.CaCertificatesListResult` was added
+
+* `models.StaticStringRoutingEnrichment` was added
+
+* `models.ResourceMoveChangeHistory` was added
+
+* `models.PartnerTopicProvisioningState` was added
+
+* `models.CustomDomainConfiguration` was added
+
+* `models.StringNotContainsFilter` was added
+
+* `models.PartnerTopic` was added
+
+* `models.EventDefinitionKind` was added
+
+* `models.WebhookPartnerDestinationInfo` was added
+
+* `models.PartnerNamespace$Definition` was added
+
+* `models.EventInputSchema` was added
+
+* `models.PartnerNamespaceRegenerateKeyRequest` was added
+
+* `models.NamespaceTopicProvisioningState` was added
+
+* `models.PartnerAuthorization` was added
+
+* `models.PartnerDestination$Update` was added
+
+* `models.StaticRoutingEnrichmentType` was added
+
+* `models.VerifiedPartnersListResult` was added
+
+* `models.PartnerConfigurationProvisioningState` was added
+
+* `models.Subscription$Update` was added
+
+* `models.CaCertificate$UpdateStages` was added
+
+* `models.NamespaceTopic$Definition` was added
+
+* `models.NumberGreaterThanOrEqualsFilter` was added
+
+* `models.NetworkSecurityPerimeterConfigurationList` was added
+
+* `models.Clients` was added
+
+* `models.Subscription$DefinitionStages` was added
+
+* `models.CustomDomainValidationState` was added
+
+* `models.NamespacesListResult` was added
+
+* `models.PartnerNamespaces` was added
+
+* `models.TopicEventSubscriptions` was added
+
+* `models.DynamicRoutingEnrichment` was added
+
+* `models.Client` was added
+
+* `models.DomainTopicEventSubscriptions` was added
+
+* `models.CustomJwtAuthenticationManagedIdentity` was added
+
+* `models.TopicSpace$DefinitionStages` was added
+
+* `models.PermissionBindings` was added
+
+* `models.PartnerConfigurationsListResult` was added
+
+* `models.PartnerUpdateTopicInfo` was added
+
+* `models.PermissionBinding` was added
+
+* `models.NamespaceTopic` was added
+
+* `models.PartnerEventSubscriptionDestination` was added
+
+* `models.IsNotNullFilter` was added
+
+* `models.Namespace$Definition` was added
+
+* `models.ClientAuthenticationSettings` was added
+
+* `models.ClientState` was added
+
+* `models.QueueInfo` was added
+
+* `models.PartnerRegistration$Update` was added
+
+* `models.PartnerTopicUpdateParameters` was added
+
+* `models.PushInfo` was added
+
+* `models.ClientProvisioningState` was added
+
+* `models.PartnerDetails` was added
+
+* `models.ResourceAssociation` was added
+
+* `models.PartnerDestinationUpdateParameters` was added
+
+* `models.FiltersConfiguration` was added
+
+* `models.ClientGroup$UpdateStages` was added
+
+* `models.PermissionBinding$Update` was added
+
+* `models.RoutingIdentityType` was added
+
+* `models.CustomDomainOwnershipValidationResult` was added
+
+* `models.NetworkSecurityPerimeterConfigProvisioningState` was added
+
+* `models.SubscriptionFullUrl` was added
+
+* `models.Namespace$Update` was added
+
+* `models.PartnerRegistration$DefinitionStages` was added
+
+* `models.Namespace$DefinitionStages` was added
+
+* `models.PublisherType` was added
+
+* `models.SubscriptionProvisioningState` was added
+
+* `models.PartnerTopicEventSubscriptions` was added
+
+* `models.PartnerClientAuthenticationType` was added
+
+* `models.NamespaceUpdateParameters` was added
+
+* `models.PartnerNamespace$Update` was added
+
+* `models.NumberGreaterThanFilter` was added
+
+* `models.NamespaceProvisioningState` was added
+
+* `models.TopicTypeAdditionalEnforcedPermission` was added
+
+* `models.PermissionBindingsListResult` was added
+
+* `models.ClientCertificateValidationScheme` was added
+
+* `models.ClientsListResult` was added
+
+* `models.MonitorAlertEventSubscriptionDestination` was added
+
+* `models.PartnerDestinationActivationState` was added
+
+* `models.PartnerTopic$Update` was added
+
+* `models.EventTypeInfo` was added
+
+* `models.Subscription` was added
+
+* `models.PartnerNamespacesListResult` was added
+
+* `models.AlternativeAuthenticationNameSource` was added
+
+* `models.TopicSpace$UpdateStages` was added
+
+* `models.ClientGroupsListResult` was added
+
+* `models.Client$UpdateStages` was added
+
+* `models.NamespaceTopic$DefinitionStages` was added
+
+* `models.WebhookUpdatePartnerDestinationInfo` was added
+
+* `models.Client$DefinitionStages` was added
+
+* `models.Client$Definition` was added
+
+* `models.RoutingIdentityInfo` was added
+
+* `models.PartnerTopic$DefinitionStages` was added
+
+* `models.ReadinessState` was added
+
+* `models.NamespaceTopicEventSubscriptionDestination` was added
+
+* `models.ClientGroup$Update` was added
+
+* `models.PartnerNamespaceUpdateParameters` was added
+
+* `models.NetworkSecurityPerimeterConfigurationIssueType` was added
+
+* `models.Channel$Definition` was added
+
+* `models.NetworkSecurityPerimeterResourceType` was added
+
+* `models.TopicSpacesConfigurationState` was added
+
+* `models.PartnerTopic$UpdateStages` was added
+
+* `models.NetworkSecurityPerimeterSubscription` was added
+
+* `models.ClientGroup$Definition` was added
+
+* `models.SubscriptionUpdateParameters` was added
+
+* `models.NamespaceTopic$UpdateStages` was added
+
+* `models.NetworkSecurityPerimeterProfileAccessRule` was added
+
+* `models.NamespaceTopicUpdateParameters` was added
+
+* `models.NetworkSecurityPerimeterConfigurations` was added
+
+* `models.PartnerRegistrationsListResult` was added
+
+* `models.PartnerRegistrationUpdateParameters` was added
+
+* `models.Channel$DefinitionStages` was added
+
+* `models.VerifiedPartnerProvisioningState` was added
+
+* `models.CustomDomainIdentity` was added
+
+* `models.TopicTypeSourceScope` was added
+
+* `models.NetworkSecurityPerimeterInfo` was added
+
+* `models.StaticRoutingEnrichment` was added
+
+* `models.CustomDomainIdentityType` was added
+
+* `models.AzureADPartnerClientAuthentication` was added
+
+* `models.NumberInRangeFilter` was added
+
+* `models.IsNullOrUndefinedFilter` was added
+
+* `models.Subscription$UpdateStages` was added
+
+* `models.ChannelType` was added
+
+* `models.ChannelUpdateParameters` was added
+
+* `models.PermissionBinding$Definition` was added
+
+* `models.IssuerCertificateInfo` was added
+
+* `models.NamespaceRegenerateKeyRequest` was added
+
+* `models.PartnerNamespaceProvisioningState` was added
+
+* `models.PartnerTopicsListResult` was added
+
+* `models.PartnerDestination$UpdateStages` was added
+
+* `models.NumberNotInRangeFilter` was added
+
+* `models.ExtendedLocation` was added
+
+* `models.PartnerDestination$DefinitionStages` was added
+
+* `models.PartnerRegistrations` was added
+
+* `models.VerifiedPartner` was added
+
+* `models.PartnerNamespace$UpdateStages` was added
+
+* `models.NetworkSecurityPerimeterProfileAccessRuleDirection` was added
+
+* `models.Partner` was added
+
+* `models.NetworkSecurityPerimeterConfiguration` was added
+
+* `models.PartnerDestinationsListResult` was added
+
+* `models.ClientGroup$DefinitionStages` was added
+
+#### `models.EventSubscriptionsListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SystemTopic` was modified
+
+* `resourceGroupName()` was added
+
+#### `models.StringNotBeginsWithAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ConnectionState` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WebhookEventSubscriptionDestination` was modified
+
+* `minimumTlsVersionAllowed()` was added
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StringEndsWithAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NumberInRangeAdvancedFilter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+
+#### `models.IsNotNullAdvancedFilter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+
+#### `models.EventSubscription$Definition` was modified
+
+* `withExistingTopic(java.lang.String,java.lang.String)` was added
+
+#### `models.ServiceBusQueueEventSubscriptionDestination` was modified
+
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateEndpointConnectionListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserIdentityProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.TopicUpdateParameters` was modified
+
+* `minimumTlsVersionAllowed()` was added
+* `withSku(models.ResourceSku)` was added
+* `sku()` was added
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `dataResidencyBoundary()` was added
+* `eventTypeInfo()` was added
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IsNullOrUndefinedAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationsListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Domain$Update` was modified
+
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `withSku(models.ResourceSku)` was added
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+
+#### `models.DomainsListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Topic$Definition` was modified
+
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+* `withSku(models.ResourceSku)` was added
+* `withKind(models.ResourceKind)` was added
+* `withExtendedLocation(models.ExtendedLocation)` was added
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+
+#### `models.StringBeginsWithAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeliveryAttributeMapping` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DomainUpdateParameters` was modified
+
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withSku(models.ResourceSku)` was added
+* `eventTypeInfo()` was added
+* `sku()` was added
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `dataResidencyBoundary()` was added
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+* `minimumTlsVersionAllowed()` was added
+
+#### `models.StringNotEndsWithAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NumberGreaterThanAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.BoolEqualsAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StringNotInAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `operatorType()` was added
+
+#### `models.TopicsListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Topic$Update` was modified
+
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `withSku(models.ResourceSku)` was added
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+
+#### `models.NumberLessThanAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `operatorType()` was added
+
+#### `models.StaticDeliveryAttributeMapping` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `type()` was added
+
+#### `models.EventSubscriptionDestination` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DomainTopicsListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DeliveryWithResourceIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventSubscription` was modified
+
+* `resourceGroupName()` was added
+
+#### `models.AzureFunctionEventSubscriptionDestination` was modified
+
+* `endpointType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Domain` was modified
+
+* `eventTypeInfo()` was added
+* `sku()` was added
+* `dataResidencyBoundary()` was added
+* `minimumTlsVersionAllowed()` was added
+* `resourceGroupName()` was added
+
+#### `models.DeadLetterDestination` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `endpointType()` was added
+
+#### `models.DynamicDeliveryAttributeMapping` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `type()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StorageBlobDeadLetterDestination` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `endpointType()` was added
+
+#### `models.JsonField` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.EventSubscriptions` was modified
+
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.EventSubscriptionInner,com.azure.core.util.Context)` was added
+* `update(java.lang.String,java.lang.String,models.EventSubscriptionUpdateParameters)` was added
+* `update(java.lang.String,java.lang.String,models.EventSubscriptionUpdateParameters,com.azure.core.util.Context)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,fluent.models.EventSubscriptionInner)` was added
+
+#### `EventGridManager` was modified
+
+* `clientGroups()` was added
+* `permissionBindings()` was added
+* `topicSpaces()` was added
+* `partnerConfigurations()` was added
+* `channels()` was added
+* `namespaceTopicEventSubscriptions()` was added
+* `partnerTopicEventSubscriptions()` was added
+* `domainTopicEventSubscriptions()` was added
+* `verifiedPartners()` was added
+* `partnerDestinations()` was added
+* `partnerTopics()` was added
+* `namespaces()` was added
+* `topicEventSubscriptions()` was added
+* `authenticate(com.azure.core.http.HttpPipeline,com.azure.core.management.profile.AzureProfile)` was added
+* `namespaceTopics()` was added
+* `networkSecurityPerimeterConfigurations()` was added
+* `clients()` was added
+* `partnerRegistrations()` was added
+* `caCertificates()` was added
+* `domainEventSubscriptions()` was added
+* `partnerNamespaces()` was added
+
+#### `models.RetryPolicy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.JsonInputSchemaMapping` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `inputSchemaMappingType()` was added
+
+#### `models.EventTypesListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.EventSubscriptionIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Topic` was modified
+
+* `eventTypeInfo()` was added
+* `resourceGroupName()` was added
+* `kind()` was added
+* `minimumTlsVersionAllowed()` was added
+* `dataResidencyBoundary()` was added
+* `sku()` was added
+* `extendedLocation()` was added
+
+#### `models.EventSubscriptionFilter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.InboundIpRule` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DeadLetterWithResourceIdentity` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateLinkResourcesListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.StorageQueueEventSubscriptionDestination` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `endpointType()` was added
+
+#### `models.OperationInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StringInAdvancedFilter` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.StringContainsAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DomainRegenerateKeyRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NumberNotInRangeAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.IdentityInfo` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NumberNotInAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServiceBusTopicEventSubscriptionDestination` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `endpointType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.SystemTopicUpdateParameters` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Operation` was modified
+
+* `isDataAction()` was added
+
+#### `models.TopicRegenerateKeyRequest` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SystemTopicsListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NumberGreaterThanOrEqualsAdvancedFilter` was modified
+
+* `operatorType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.HybridConnectionEventSubscriptionDestination` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `endpointType()` was added
+
+#### `models.InputSchemaMapping` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `inputSchemaMappingType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TopicTypeInfo` was modified
+
+* `additionalEnforcedPermissions()` was added
+* `areRegionalAndGlobalSourcesSupported()` was added
+
+#### `models.StringNotContainsAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `operatorType()` was added
+
+#### `models.EventHubEventSubscriptionDestination` was modified
+
+* `endpointType()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.TopicTypesListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.NumberLessThanOrEqualsAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `operatorType()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Domain$Definition` was modified
+
+* `withDataResidencyBoundary(models.DataResidencyBoundary)` was added
+* `withMinimumTlsVersionAllowed(models.TlsVersion)` was added
+* `withSku(models.ResourceSku)` was added
+* `withEventTypeInfo(models.EventTypeInfo)` was added
+
+#### `models.JsonFieldWithDefault` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `EventGridManager$Configurable` was modified
+
+* `withRetryOptions(com.azure.core.http.policy.RetryOptions)` was added
+
+#### `models.NumberInAdvancedFilter` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `operatorType()` was added
+
+#### `models.EventSubscriptionUpdateParameters` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.2.0-beta.6 (2024-04-28)
 
