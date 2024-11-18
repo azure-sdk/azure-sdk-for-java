@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -27,22 +27,31 @@ import com.azure.resourcemanager.devcenter.fluent.AttachedNetworksClient;
 import com.azure.resourcemanager.devcenter.fluent.CatalogsClient;
 import com.azure.resourcemanager.devcenter.fluent.CheckNameAvailabilitiesClient;
 import com.azure.resourcemanager.devcenter.fluent.CheckScopedNameAvailabilitiesClient;
+import com.azure.resourcemanager.devcenter.fluent.CurationProfilesClient;
+import com.azure.resourcemanager.devcenter.fluent.CustomizationTasksClient;
 import com.azure.resourcemanager.devcenter.fluent.DevBoxDefinitionsClient;
 import com.azure.resourcemanager.devcenter.fluent.DevCenterManagementClient;
 import com.azure.resourcemanager.devcenter.fluent.DevCentersClient;
+import com.azure.resourcemanager.devcenter.fluent.EncryptionSetsClient;
 import com.azure.resourcemanager.devcenter.fluent.EnvironmentDefinitionsClient;
 import com.azure.resourcemanager.devcenter.fluent.EnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.GalleriesClient;
-import com.azure.resourcemanager.devcenter.fluent.ImagesClient;
 import com.azure.resourcemanager.devcenter.fluent.ImageVersionsClient;
+import com.azure.resourcemanager.devcenter.fluent.ImagesClient;
 import com.azure.resourcemanager.devcenter.fluent.NetworkConnectionsClient;
-import com.azure.resourcemanager.devcenter.fluent.OperationsClient;
 import com.azure.resourcemanager.devcenter.fluent.OperationStatusesClient;
+import com.azure.resourcemanager.devcenter.fluent.OperationsClient;
+import com.azure.resourcemanager.devcenter.fluent.PlanMembersClient;
+import com.azure.resourcemanager.devcenter.fluent.PlansClient;
 import com.azure.resourcemanager.devcenter.fluent.PoolsClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectAllowedEnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectCatalogEnvironmentDefinitionsClient;
+import com.azure.resourcemanager.devcenter.fluent.ProjectCatalogImageDefinitionBuildOperationsClient;
+import com.azure.resourcemanager.devcenter.fluent.ProjectCatalogImageDefinitionBuildsClient;
+import com.azure.resourcemanager.devcenter.fluent.ProjectCatalogImageDefinitionsClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectCatalogsClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectEnvironmentTypesClient;
+import com.azure.resourcemanager.devcenter.fluent.ProjectPoliciesClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectsClient;
 import com.azure.resourcemanager.devcenter.fluent.SchedulesClient;
 import com.azure.resourcemanager.devcenter.fluent.SkusClient;
@@ -146,6 +155,34 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
     }
 
     /**
+     * The PlansClient object to access its operations.
+     */
+    private final PlansClient plans;
+
+    /**
+     * Gets the PlansClient object to access its operations.
+     * 
+     * @return the PlansClient object.
+     */
+    public PlansClient getPlans() {
+        return this.plans;
+    }
+
+    /**
+     * The PlanMembersClient object to access its operations.
+     */
+    private final PlanMembersClient planMembers;
+
+    /**
+     * Gets the PlanMembersClient object to access its operations.
+     * 
+     * @return the PlanMembersClient object.
+     */
+    public PlanMembersClient getPlanMembers() {
+        return this.planMembers;
+    }
+
+    /**
      * The DevCentersClient object to access its operations.
      */
     private final DevCentersClient devCenters;
@@ -157,6 +194,48 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
      */
     public DevCentersClient getDevCenters() {
         return this.devCenters;
+    }
+
+    /**
+     * The EncryptionSetsClient object to access its operations.
+     */
+    private final EncryptionSetsClient encryptionSets;
+
+    /**
+     * Gets the EncryptionSetsClient object to access its operations.
+     * 
+     * @return the EncryptionSetsClient object.
+     */
+    public EncryptionSetsClient getEncryptionSets() {
+        return this.encryptionSets;
+    }
+
+    /**
+     * The CurationProfilesClient object to access its operations.
+     */
+    private final CurationProfilesClient curationProfiles;
+
+    /**
+     * Gets the CurationProfilesClient object to access its operations.
+     * 
+     * @return the CurationProfilesClient object.
+     */
+    public CurationProfilesClient getCurationProfiles() {
+        return this.curationProfiles;
+    }
+
+    /**
+     * The ProjectPoliciesClient object to access its operations.
+     */
+    private final ProjectPoliciesClient projectPolicies;
+
+    /**
+     * Gets the ProjectPoliciesClient object to access its operations.
+     * 
+     * @return the ProjectPoliciesClient object.
+     */
+    public ProjectPoliciesClient getProjectPolicies() {
+        return this.projectPolicies;
     }
 
     /**
@@ -269,6 +348,20 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
      */
     public ImageVersionsClient getImageVersions() {
         return this.imageVersions;
+    }
+
+    /**
+     * The SkusClient object to access its operations.
+     */
+    private final SkusClient skus;
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     * 
+     * @return the SkusClient object.
+     */
+    public SkusClient getSkus() {
+        return this.skus;
     }
 
     /**
@@ -412,17 +505,59 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
     }
 
     /**
-     * The SkusClient object to access its operations.
+     * The CustomizationTasksClient object to access its operations.
      */
-    private final SkusClient skus;
+    private final CustomizationTasksClient customizationTasks;
 
     /**
-     * Gets the SkusClient object to access its operations.
+     * Gets the CustomizationTasksClient object to access its operations.
      * 
-     * @return the SkusClient object.
+     * @return the CustomizationTasksClient object.
      */
-    public SkusClient getSkus() {
-        return this.skus;
+    public CustomizationTasksClient getCustomizationTasks() {
+        return this.customizationTasks;
+    }
+
+    /**
+     * The ProjectCatalogImageDefinitionsClient object to access its operations.
+     */
+    private final ProjectCatalogImageDefinitionsClient projectCatalogImageDefinitions;
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionsClient object.
+     */
+    public ProjectCatalogImageDefinitionsClient getProjectCatalogImageDefinitions() {
+        return this.projectCatalogImageDefinitions;
+    }
+
+    /**
+     * The ProjectCatalogImageDefinitionBuildsClient object to access its operations.
+     */
+    private final ProjectCatalogImageDefinitionBuildsClient projectCatalogImageDefinitionBuilds;
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionBuildsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionBuildsClient object.
+     */
+    public ProjectCatalogImageDefinitionBuildsClient getProjectCatalogImageDefinitionBuilds() {
+        return this.projectCatalogImageDefinitionBuilds;
+    }
+
+    /**
+     * The ProjectCatalogImageDefinitionBuildOperationsClient object to access its operations.
+     */
+    private final ProjectCatalogImageDefinitionBuildOperationsClient projectCatalogImageDefinitionBuildOperations;
+
+    /**
+     * Gets the ProjectCatalogImageDefinitionBuildOperationsClient object to access its operations.
+     * 
+     * @return the ProjectCatalogImageDefinitionBuildOperationsClient object.
+     */
+    public ProjectCatalogImageDefinitionBuildOperationsClient getProjectCatalogImageDefinitionBuildOperations() {
+        return this.projectCatalogImageDefinitionBuildOperations;
     }
 
     /**
@@ -484,8 +619,13 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-02-01";
+        this.apiVersion = "2024-10-01-preview";
+        this.plans = new PlansClientImpl(this);
+        this.planMembers = new PlanMembersClientImpl(this);
         this.devCenters = new DevCentersClientImpl(this);
+        this.encryptionSets = new EncryptionSetsClientImpl(this);
+        this.curationProfiles = new CurationProfilesClientImpl(this);
+        this.projectPolicies = new ProjectPoliciesClientImpl(this);
         this.projects = new ProjectsClientImpl(this);
         this.attachedNetworks = new AttachedNetworksClientImpl(this);
         this.projectCatalogs = new ProjectCatalogsClientImpl(this);
@@ -494,6 +634,7 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         this.galleries = new GalleriesClientImpl(this);
         this.images = new ImagesClientImpl(this);
         this.imageVersions = new ImageVersionsClientImpl(this);
+        this.skus = new SkusClientImpl(this);
         this.catalogs = new CatalogsClientImpl(this);
         this.environmentTypes = new EnvironmentTypesClientImpl(this);
         this.projectAllowedEnvironmentTypes = new ProjectAllowedEnvironmentTypesClientImpl(this);
@@ -504,7 +645,11 @@ public final class DevCenterManagementClientImpl implements DevCenterManagementC
         this.usages = new UsagesClientImpl(this);
         this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
         this.checkScopedNameAvailabilities = new CheckScopedNameAvailabilitiesClientImpl(this);
-        this.skus = new SkusClientImpl(this);
+        this.customizationTasks = new CustomizationTasksClientImpl(this);
+        this.projectCatalogImageDefinitions = new ProjectCatalogImageDefinitionsClientImpl(this);
+        this.projectCatalogImageDefinitionBuilds = new ProjectCatalogImageDefinitionBuildsClientImpl(this);
+        this.projectCatalogImageDefinitionBuildOperations
+            = new ProjectCatalogImageDefinitionBuildOperationsClientImpl(this);
         this.pools = new PoolsClientImpl(this);
         this.schedules = new SchedulesClientImpl(this);
         this.networkConnections = new NetworkConnectionsClientImpl(this);

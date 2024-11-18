@@ -13,7 +13,9 @@ import com.azure.resourcemanager.devcenter.models.GitCatalog;
  */
 public final class CatalogsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_CreateAdo.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * Catalogs_CreateAdo.json
      */
     /**
      * Sample code: Catalogs_CreateOrUpdateAdo.
@@ -32,7 +34,9 @@ public final class CatalogsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_CreateGitHub.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/
+     * Catalogs_CreateGitHub.json
      */
     /**
      * Sample code: Catalogs_CreateOrUpdateGitHub.

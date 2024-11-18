@@ -13,7 +13,9 @@ import com.azure.resourcemanager.devcenter.models.GitCatalog;
  */
 public final class CatalogsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Patch.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-10-01-preview/examples/Catalogs_Patch.
+     * json
      */
     /**
      * Sample code: Catalogs_Update.

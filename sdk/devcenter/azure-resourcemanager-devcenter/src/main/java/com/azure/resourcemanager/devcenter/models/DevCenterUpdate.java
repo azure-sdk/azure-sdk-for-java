@@ -5,8 +5,12 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.devcenter.fluent.models.DevCenterUpdateProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,13 +21,11 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     /*
      * Managed identity properties
      */
-    @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
     /*
      * Properties of a Dev Center to be updated.
      */
-    @JsonProperty(value = "properties")
     private DevCenterUpdateProperties innerProperties;
 
     /**
@@ -76,6 +78,29 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     @Override
     public DevCenterUpdate withLocation(String location) {
         super.withLocation(location);
+        return this;
+    }
+
+    /**
+     * Get the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    public String planId() {
+        return this.innerProperties() == null ? null : this.innerProperties().planId();
+    }
+
+    /**
+     * Set the planId property: Resource Id of an associated Plan.
+     * 
+     * @param planId the planId value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withPlanId(String planId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withPlanId(planId);
         return this;
     }
 
@@ -153,18 +178,138 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkSettings();
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxProvisioningSettings();
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+        return this;
+    }
+
+    /**
+     * Get the restrictedResourceTypes property: Indicates the resource types that are restricted from being accessed by
+     * a project unless allowed by a project policy.
+     * 
+     * @return the restrictedResourceTypes value.
+     */
+    public List<DevCenterResourceType> restrictedResourceTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().restrictedResourceTypes();
+    }
+
+    /**
+     * Set the restrictedResourceTypes property: Indicates the resource types that are restricted from being accessed by
+     * a project unless allowed by a project policy.
+     * 
+     * @param restrictedResourceTypes the restrictedResourceTypes value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withRestrictedResourceTypes(List<DevCenterResourceType> restrictedResourceTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withRestrictedResourceTypes(restrictedResourceTypes);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (identity() != null) {
             identity().validate();
         }
         if (innerProperties() != null) {
             innerProperties().validate();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
+        jsonWriter.writeStartObject();
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("location", location());
+        jsonWriter.writeJsonField("identity", this.identity);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        return jsonWriter.writeEndObject();
+    }
+
+    /**
+     * Reads an instance of DevCenterUpdate from the JsonReader.
+     * 
+     * @param jsonReader The JsonReader being read.
+     * @return An instance of DevCenterUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DevCenterUpdate.
+     */
+    public static DevCenterUpdate fromJson(JsonReader jsonReader) throws IOException {
+        return jsonReader.readObject(reader -> {
+            DevCenterUpdate deserializedDevCenterUpdate = new DevCenterUpdate();
+            while (reader.nextToken() != JsonToken.END_OBJECT) {
+                String fieldName = reader.getFieldName();
+                reader.nextToken();
+
+                if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDevCenterUpdate.withTags(tags);
+                } else if ("location".equals(fieldName)) {
+                    deserializedDevCenterUpdate.withLocation(reader.getString());
+                } else if ("identity".equals(fieldName)) {
+                    deserializedDevCenterUpdate.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedDevCenterUpdate.innerProperties = DevCenterUpdateProperties.fromJson(reader);
+                } else {
+                    reader.skipChildren();
+                }
+            }
+
+            return deserializedDevCenterUpdate;
+        });
     }
 }
